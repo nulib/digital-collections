@@ -1,0 +1,10 @@
+.bottom-bar {
+  display: table;
+  width: 100%;
+}
+
+.bottom-bar:after {
+  content: "";
+  display: table;
+  clear: both;
+}
