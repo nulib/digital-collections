@@ -10,7 +10,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, blockquot
 }
 
 /* line 16, /Library/WebServer/Documents/GIT/department-templates/scss/base/_reset.scss */
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, main, section {
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, main, section {
   display: block;
 }
 
@@ -1386,191 +1386,6 @@ header {
   }
 }
 
-/* line 7, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_top-nav.scss */
-#top-nav {
-  background: #4e2a84;
-  border-bottom: 5px solid #fff;
-}
-
-/* line 13, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_top-nav.scss */
-#top-nav .contain-1120 > ul {
-  display: table;
-  width: 100%;
-  line-height: 0;
-  position: relative;
-  background: #fff;
-}
-
-/* line 20, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_top-nav.scss */
-#top-nav .contain-1120 > ul > li {
-  display: table-cell;
-  text-align: center;
-  line-height: 100%;
-  font: 18px "Akkurat Pro Bold", "Arial Black", sans-serif;
-}
-
-/* line 26, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_top-nav.scss */
-#top-nav .contain-1120 > ul > li:hover a {
-  background: #f0f0f0;
-  transition: .3s;
-}
-
-/* line 31, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_top-nav.scss */
-#top-nav .contain-1120 > ul > li:hover a.button {
-  background: #4e2a84;
-}
-
-/* line 35, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_top-nav.scss */
-#top-nav .contain-1120 > ul > li:hover .dropdown, #top-nav .contain-1120 > ul > li:hover .dropdown-one-column, #top-nav .contain-1120 > ul > li:hover .dropdown-two-column {
-  left: 0;
-}
-
-/* line 39, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_top-nav.scss */
-#top-nav .contain-1120 > ul > li a {
-  color: #4e2a84;
-  text-decoration: none;
-  display: block;
-  padding: 1rem 1.5rem;
-}
-
-/* line 45, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_top-nav.scss */
-#top-nav .contain-1120 > ul > li a:hover {
-  text-decoration: underline;
-}
-
-/* line 50, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_top-nav.scss */
-#top-nav .contain-1120 > ul > li.active a {
-  background: #836eaa;
-  color: #fff;
-}
-
-/* line 55, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_top-nav.scss */
-#top-nav .contain-1120 > ul > li .dropdown-arrow {
-  background: url("https://common.northwestern.edu/v8/css/images/icons/arrow-down-ltpurple.svg") no-repeat 50%;
-  width: 10px;
-  height: 10px;
-  display: inline-block;
-  margin-left: .5em;
-}
-
-/* line 65, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_top-nav.scss */
-#top-nav .contain-1120 .dropdown, #top-nav .contain-1120 .dropdown-one-column, #top-nav .contain-1120 .dropdown-two-column {
-  position: absolute;
-  background: #f0f0f0;
-  left: -9999em;
-  z-index: 9998;
-  width: 100%;
-  padding: 2em;
-  text-align: left;
-  list-style: none;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-/* line 79, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_top-nav.scss */
-#top-nav .contain-1120 .dropdown .nav-intro, #top-nav .contain-1120 .dropdown .nav-links, #top-nav .contain-1120 .dropdown-one-column .nav-intro, #top-nav .contain-1120 .dropdown-one-column .nav-links, #top-nav .contain-1120 .dropdown-two-column .nav-intro, #top-nav .contain-1120 .dropdown-two-column .nav-links {
-  width: 50%;
-  float: left;
-  text-align: left;
-}
-
-/* line 85, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_top-nav.scss */
-#top-nav .contain-1120 .dropdown p.intro, #top-nav .contain-1120 .dropdown-one-column p.intro, #top-nav .contain-1120 .dropdown-two-column p.intro {
-  font: 30px "Campton Bold", Impact, sans-serif;
-  color: #4e2a84;
-  margin: 0 0 1rem 0;
-  padding-right: 2rem;
-}
-
-/* line 92, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_top-nav.scss */
-#top-nav .contain-1120 .dropdown .nav-links, #top-nav .contain-1120 .dropdown-one-column .nav-links, #top-nav .contain-1120 .dropdown-two-column .nav-links {
-  border-left: 2px solid #ccc;
-  padding-left: 1rem;
-}
-
-/* line 97, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_top-nav.scss */
-#top-nav .contain-1120 .dropdown ul, #top-nav .contain-1120 .dropdown-one-column ul, #top-nav .contain-1120 .dropdown-two-column ul {
-  display: block;
-  background: inherit;
-}
-
-/* line 101, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_top-nav.scss */
-#top-nav .contain-1120 .dropdown ul li, #top-nav .contain-1120 .dropdown-one-column ul li, #top-nav .contain-1120 .dropdown-two-column ul li {
-  display: block;
-  text-align: left;
-  width: inherit;
-  line-height: 1.4em;
-}
-
-/* line 107, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_top-nav.scss */
-#top-nav .contain-1120 .dropdown ul li a, #top-nav .contain-1120 .dropdown-one-column ul li a, #top-nav .contain-1120 .dropdown-two-column ul li a {
-  padding: .3em 0;
-  display: inline-block;
-  background: inherit;
-  color: #4e2a84;
-}
-
-/* line 113, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_top-nav.scss */
-#top-nav .contain-1120 .dropdown ul li a:hover, #top-nav .contain-1120 .dropdown-one-column ul li a:hover, #top-nav .contain-1120 .dropdown-two-column ul li a:hover {
-  text-decoration: underline;
-}
-
-/* line 124, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_top-nav.scss */
-#top-nav .contain-1120 .dropdown-two-column ul {
-  width: 100% !important;
-  -moz-column-count: 2;
-  -webkit-column-count: 2;
-  column-count: 2;
-  -webkit-column-gap: 2rem;
-  -moz-column-gap: 2rem;
-  column-gap: 2rem;
-  -webkit-column-rule: 2px solid #ccc;
-  -moz-column-rule: 2px solid #ccc;
-  column-rule: 2px solid #ccc;
-  margin: 0;
-  padding: 0;
-}
-
-/* line 138, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_top-nav.scss */
-#top-nav .contain-1120 .dropdown-two-column ul li {
-  background: none;
-  -webkit-column-break-inside: avoid;
-  page-break-inside: avoid;
-  break-inside: avoid;
-  display: inline-block;
-}
-
-/* line 152, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_top-nav.scss */
-#top-nav.narrow-dropdown ul li {
-  position: relative;
-}
-
-/* line 155, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_top-nav.scss */
-#top-nav.narrow-dropdown ul li:hover ul.nav-align-right {
-  right: 0;
-  left: inherit;
-}
-
-/* line 160, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_top-nav.scss */
-#top-nav.narrow-dropdown ul li:hover ul.nav-align-right li {
-  text-align: right;
-}
-
-/* line 165, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_top-nav.scss */
-#top-nav.narrow-dropdown .dropdown {
-  display: inherit;
-  width: 320px;
-  padding: 1em;
-}
-
-@media screen and (max-width: 768px) {
-  /* line 176, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_top-nav.scss */
-  #top-nav {
-    display: none;
-  }
-}
-
 /* line 3, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_left-nav.scss */
 #left-nav {
   width: 23.66071%;
@@ -1686,7 +1501,7 @@ header {
 }
 
 @media screen and (max-width: 768px) {
-  
+
 }
 
 /* line 3, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_footer.scss */
