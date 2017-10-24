@@ -1,1 +1,1 @@
-This application built using `create-react-app` (https://github.com/facebookincubator/create-react-app) will serve as a shared repository for ReactJS components created from Northwestern's Global Marketing style guide html and css templates.
+This application built using `create-react-app` (https://github.com/facebookincubator/create-react-app) will serve as a a powered front-end for Northwestern Library's Next Generation Repository.
