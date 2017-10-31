@@ -1,19 +1,27 @@
 import React, { Component } from 'react';
-import Header from './Header/';
-import Nav from './Nav';
-import BoilerPlatePage from './BoilerPlatePage';
-import Footer from './Footer';
+import {
+  BrowserRouter as Router,
+  Route
+} from 'react-router-dom';
+import Header from './components/Header/';
+import Nav from './components/Nav';
+import Footer from './components/Footer';
+import LandingPage from './containers/LandingPage';
+import ItemDetailPage from './containers/ItemDetailPage';
 import './App.css';
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <Header />
-        <Nav />
-        <BoilerPlatePage />
-        <Footer />
-      </div>
+      <Router>
+        <div>
+          <Header />
+          <Nav />
+          <Route exact path="/" component={LandingPage} />
+          <Route path="/item" component={ItemDetailPage} />
+          <Footer />
+        </div>
+      </Router>
     );
   }
 }
