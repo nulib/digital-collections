@@ -8,7 +8,7 @@ class BoilerPlatePage extends Component {
     return (
       <div id="page">
         <LeftNav />
-        <main id="main-content" className="content" tabindex="0">
+        <main id="main-content" className="content" tabIndex="0">
             <Breadcrumbs />
             <Sidebar />
 

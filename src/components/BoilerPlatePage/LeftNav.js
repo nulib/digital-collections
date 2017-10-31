@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 class LeftNav extends Component {
   render() {
     return (
-      <nav id="left-nav" aria-label="section navigation menu" tabindex="0">
+      <nav id="left-nav" aria-label="section navigation menu" tabIndex="0">
           <h2><a href="#">Section Header</a></h2>
           <ul>
               <li><a href="../index.html" className="active">Active Parent</a>
