@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import HeroSection from '../../components/HeroSection';
+import LandingPageSection from './LandingPageSection';
+import sectionsData from '../../api/sections-data';
 import './LandingPage.css';
 
 class LandingPage extends Component {
@@ -14,13 +16,10 @@ class LandingPage extends Component {
         <HeroSection />
         <div id="page">
           <main id="main-content" className="content" tabIndex="0">
-            <section>
-              <div className="section-top contain-970">
-                <h3>Explore Institutional Collections</h3>
-                <p><a href="#">View All Collections</a></p>
-                <p>Northwestern's Institutional Collections are a wide-ranging collection spanning cultures from .... more text goes here?</p>
-              </div>
-            </section>
+            <LandingPageSection sectionType={sectionsData.collections} />
+            <LandingPageSection sectionType={sectionsData.creators} />
+            <LandingPageSection sectionType={sectionsData.subjects} />
+            <LandingPageSection sectionType={sectionsData.workTypes} />
           </main>
         </div>
       </div>
