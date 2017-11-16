@@ -22,7 +22,7 @@ class App extends Component {
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/sets/:sectionType" component={SetsPage} />
           <Route exact path="/sets/:sectionType/:id" component={SetPage} />
-          <Route path="/item" component={ItemDetailPage} />
+          <Route path="/item/:id" component={ItemDetailPage} />
           <Footer />
         </div>
       </Router>

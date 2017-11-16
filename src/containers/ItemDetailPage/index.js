@@ -5,14 +5,27 @@ import * as itemDetailApi from '../../api/item-detail-api';
 import MetadataItem from './MetadataItem';
 
 class ItemDetailPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      isLoaded: false,
+      metadata: []
+    };
+  }
   componentDidMount() {
     document.body.className="standard-page narrow-page";
+
+    // Get metadata
+    const metadata = itemDetailApi.getMetadata();
+    this.setState({
+      metadata: metadata,
+      isLoaded: true
+    });
   }
 
   render() {
-    const metadata = itemDetailApi.getMetadata();
-
-    const metadataList = metadata.map((listItem, i) =>
+    const metadataList = this.state.metadata.map((listItem, i) =>
       <MetadataItem key={i} listItem={listItem} />);
 
     return (

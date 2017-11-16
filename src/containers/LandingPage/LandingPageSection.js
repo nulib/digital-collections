@@ -42,7 +42,10 @@ class LandingPageSection extends Component {
             <p><Link to={`/sets/${this.props.sectionType.name}`}>View All {label}</Link></p>
             <p>{this.props.sectionType.description}</p>
           </div>
-          <PhotoGrid items={this.state.items} sectionType={this.props.sectionType.name} />
+          <PhotoGrid
+            items={this.state.items} 
+            linkPrefix={`/sets/${this.props.sectionType.name}`}
+            />
         </section>
       );
     }
