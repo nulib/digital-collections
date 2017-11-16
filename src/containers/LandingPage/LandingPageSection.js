@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import {withRouter} from 'react-router';
 import PhotoGrid from '../../components/PhotoGrid';
 import SetsApi from '../../api/sets-api';
 
@@ -18,7 +19,7 @@ class LandingPageSection extends Component {
 
   componentDidMount() {
     // Grab REST API data here
-    const items = this.setsApi.getSetData(this.props.sectionType.name);
+    const items = this.setsApi.getAllSets(this.props.sectionType.name);
     this.setState({
       items: items,
       isLoaded: true

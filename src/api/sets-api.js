@@ -6,11 +6,11 @@ export default class SetsApi {
 
   /**
    * Helper function to configure the solr query
-   * @function getSetData
+   * @function getAllSets
    * @param {string} setType - Type of set to retrieve, ie. 'collection, creator, subject, etc'
    * @return {Array}
    */
-  getSetData(setType) {
+  getAllSets(setType) {
     let items = [];
 
     switch(setType) {
@@ -32,6 +32,53 @@ export default class SetsApi {
     }
 
     return items;
+  }
+
+  /**
+   * Mock function to get information on an individual set
+   * @param  {string} setType ie. 'collections', 'creators', etc...
+   * @param  {string} setId   id of the set
+   * @return {Object} the set object
+   */
+  getSet(setType, setId) {
+    const allSets = this.getAllSets(setType);
+    let obj = {};
+
+    allSets.forEach((set) => {
+      if (set.id === setId) {
+        obj = set;
+      }
+    });
+    return obj;
+  }
+
+  /**
+   * Mock get solr set items
+   * ie. "Get all items from the Berkely Collection"
+   * @param  {string} id Individual set item id
+   * @return {Array}
+   */
+  getSetItems(id) {
+    const setItems = [
+      {
+        id: 'a935fd47-f4ad-4497-a929-d5dc2f45df67',
+        label: 'Lovin Spoonful',
+        description: 'Lovin Spoonful description here...',
+        posterImage: 'sample-lovin-spoonful.jpg'
+      }, {
+        id: '237b837f-e334-4860-8f9f-049ef883906a',
+        label: 'Joan Baez',
+        description: 'Joan Baez description here...',
+        posterImage: 'sample-joan-baez.jpg'
+      }, {
+        id: '9b9563be-1800-4edd-aecd-24706b01a5ed',
+        label: 'Folk Song Jamboree',
+        description: 'Folk Song Jamboree description here...',
+        posterImage: 'sample-folk-song-jamboree.jpg'
+      }
+    ];
+
+    return setItems;
   }
 
   getCollections() {

@@ -3,10 +3,10 @@ import FilterInput from '../../components/FilterInput';
 import PhotoGrid from '../../components/PhotoGrid';
 import SetsApi from '../../api/sets-api';
 import sectionsData from '../../api/sections-data';
-import './SetsPage.css';
+import '../SetsPage/SetsPage.css';
 
 
-class SetsPage extends Component {
+class SetPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,11 +19,13 @@ class SetsPage extends Component {
 
     // Grab route params
     this.sectionType = props.match.params.sectionType;
+    this.id = props.match.params.id;
   }
 
   componentDidMount() {
     document.body.className="landing-page";
-    const items = this.setsApi.getAllSets(this.sectionType);
+
+    const items = this.setsApi.getSetItems(this.id);
     this.setState({
       items: items,
       isLoaded: true
@@ -31,20 +33,21 @@ class SetsPage extends Component {
   }
 
   render() {
-    const headline = sectionsData[this.sectionType].label;
-    const description = sectionsData[this.sectionType].description;
+    // Get set information
+    this.set = this.setsApi.getSet(this.sectionType, this.id);
+    console.log('set', this.set);
 
     return (
       <div>
         <div id="page" className="sets-page">
           <main id="main-content" className="content-full" tabIndex="0">
             <div className="contain-1120">
-              <h2>{headline}</h2>
-              <p>{description}</p>
+              <h2>{this.set.label}</h2>
+              <p>{this.set.description}</p>
               <form className="web-form">
-                <FilterInput filterName={sectionsData[this.sectionType].label} />
+                <FilterInput filterName={this.set.label} />
               </form>
-              <PhotoGrid items={this.state.items} sectionType={this.sectionType} />
+              <PhotoGrid items={this.state.items} sectionType={this.sectionType} routeParams={this.props.match.params} />
             </div>
           </main>
         </div>
@@ -53,4 +56,4 @@ class SetsPage extends Component {
   }
 }
 
-export default SetsPage;
+export default SetPage;
