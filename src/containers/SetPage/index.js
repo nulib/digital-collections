@@ -47,7 +47,10 @@ class SetPage extends Component {
               <form className="web-form">
                 <FilterInput filterName={this.set.label} />
               </form>
-              <PhotoGrid items={this.state.items} sectionType={this.sectionType} routeParams={this.props.match.params} />
+              <PhotoGrid
+                items={this.state.items}
+                linkPrefix={`/item`}
+                />
             </div>
           </main>
         </div>

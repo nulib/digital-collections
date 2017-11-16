@@ -86,7 +86,7 @@ export default class SetsApi {
       {
         id: '2a07f9e6-62fd-4287-a6ca-87ef97f047eb',
         label: 'Berkely Folk Festival',
-        description: 'Click this item to get to "Set" page',
+        description: 'One of the premier festivals of the 1960s, the Berkeley Folk Festival ruled.',
         posterImage: 'sample-little-richard.jpg'
       }, {
         id: 'beaffec8-ed52-4d49-88e0-fce7111e0d97',

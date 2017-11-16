@@ -10,7 +10,11 @@ class PhotoGrid extends Component {
     return (
       <div className="photo-grid contain-1120">
         {this.props.items.map((item) => (
-          <PhotoBox key={item.id} item={item} sectionType={this.props.sectionType} />
+          <PhotoBox
+            key={item.id}
+            item={item}
+            linkPath={`${this.props.linkPrefix}/${item.id}`}
+            />
         ))}
       </div>
     );

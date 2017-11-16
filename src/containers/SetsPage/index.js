@@ -44,7 +44,10 @@ class SetsPage extends Component {
               <form className="web-form">
                 <FilterInput filterName={sectionsData[this.sectionType].label} />
               </form>
-              <PhotoGrid items={this.state.items} sectionType={this.sectionType} />
+              <PhotoGrid
+                items={this.state.items}
+                linkPrefix={`/sets/${this.sectionType}`} 
+                />
             </div>
           </main>
         </div>
