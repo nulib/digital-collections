@@ -9,8 +9,8 @@ class PhotoGrid extends Component {
   render() {
     return (
       <div className="photo-grid contain-1120">
-        {this.props.items.map((item, index) => (
-          <PhotoBox item={item} key={index} />
+        {this.props.items.map((item) => (
+          <PhotoBox item={item} sectionType={this.props.sectionType} key={item.id} />
         ))}
       </div>
     );

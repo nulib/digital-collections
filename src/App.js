@@ -7,7 +7,7 @@ import Header from './components/Header/';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 import LandingPage from './containers/LandingPage';
-import SetsPage from './containers/SetPage';
+import SetsPage from './containers/SetsPage';
 import ItemDetailPage from './containers/ItemDetailPage';
 import './App.css';
 
@@ -19,7 +19,7 @@ class App extends Component {
           <Header />
           <Nav />
           <Route exact path="/" component={LandingPage} />
-          <Route path="/sets/:name" component={SetsPage} />
+          <Route path="/sets/:sectionType/:id?" component={SetsPage} />
           <Route path="/item" component={ItemDetailPage} />
           <Footer />
         </div>
