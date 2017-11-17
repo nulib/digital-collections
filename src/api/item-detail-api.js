@@ -1,67 +1,59 @@
-export function getMetadata() {
-  const mockMetadata = [
-    {
-      label: 'Creator',
-      value: 'Stanley, Frederic; United States. War Department.  Bureau of Public Relations; United States Army; U.S. GPO'
-    }, {
-      label: 'Title',
-      value: 'Title goes here'
-    }, {
-      label: 'Alternate Title',
-      value: 'The Original Punk Rocker'
-    }, {
-      label: 'Cultural Context',
-      value: 'Cultural Context goes here...'
-    }, {
-      label: 'Date',
-      value: '1964'
-    }, {
-      label: 'Style period',
-      value: 'Style period goes here...'
-    }, {
-      label: 'Technique',
-      value: 'Technique goes here...'
-    }, {
-      label: 'Material',
-      value: 'Graphite pencil'
-    }, {
-      label: 'Measurements',
-      value: '12 x 9.5'
-    }, {
-      label: 'Subject',
-      value: 'Casas, Ramón (Spanish painter, 1866-1932)--Portraits. Caricatures and cartoons'
-    }, {
-      label: 'Description',
-      value: 'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.'
-    }, {
-      label: 'Inscription',
-      value: '...'
-    }, {
-      label: 'Edition',
-      value: '...'
-    }, {
-      label: 'Location',
-      value: 'Berkeley, California; World War II Poster Collection at Northwestern University Library; U.S. Superintendent of Documents classNameification number: W1078:Am6; DIL:inu:dil-5f4c79ec-9f65-4e4l-88aa-b4flel28829b; Voyager: 2559278'
-    }, {
-      label: 'Source',
-      value: ''
-    }, {
-      label: 'Relation',
-      value: ''
-    }, {
-      label: 'Rights',
-      value: 'Materials published by the U.S. Government Printing Office are in the public domain and, as such, not subject to copyright restriction. However, the Library requests users to cite the URL and Northwestern University Library if they wish to reproduce images from it\'s poster database.'
-    }, {
-      label: 'Work Type',
-      value: ''
-    }, {
-      label: 'Textref',
-      value: ''
-    }, {
-      label: 'Identifier',
-      value: 'inu:dil-434eb23e-3a3a-402c-8494-d10c943e28df'
-    }
-  ]
+export default class ItemDetailApi {
+  getMetadata() {
+    const mockMetadata = {
+      "system_create_dtsi":"2017-11-17T19:44:17Z",
+      "system_modified_dtsi":"2017-11-17T19:50:01Z",
+      "has_model_ssim":["Image"],
+      "id":"dcc61425-c1ae-4af1-8194-5dbdd8638960",
+      "accessControl_ssim":["01b8e261-ea5e-4073-be55-6b1e8bc76259"],
+      "depositor_ssim":["adam.arling@northwestern.edu"],
+      "depositor_tesim":["adam.arling@northwestern.edu"],
+      "title_tesim":["Joan Baez Poster"],
+      "date_uploaded_dtsi":"2017-11-17T19:44:17Z",
+      "date_modified_dtsi":"2017-11-17T19:50:01Z",
+      "isPartOf_ssim":["admin_set/default"],
+      "accession_number_tesim":[""],
+      "ark_tesim":["ark:/99999/fk4z60tn34"],
+      "call_number_tesim":[""],
+      "caption_tesim":["Awesome Baez caption"],
+      "resource_type_tesim":["Image"],
+      "creator_tesim":["Joan Stanford"],
+      "contributor_tesim":["Joe Photograper"],
+      "keyword_tesim":["art, poster art"],
+      "publisher_tesim":["Morgan Jones Publishing Co."],
+      "language_tesim":["English"],
+      "based_near_tesim":["http://sws.geonames.org/5391959/"],
+      "based_near_label_tesim":["San Francisco"],
+      "description_tesim":["Joan Chandos Baez, born January 9, 1941 is an American folk singer, songwriter, musician, and activist whose contemporary folk music often includes songs of protest or social justice, Baez has performed publicly for over 59 years, releasing over 30 albums. Fluent in Spanish and English, she has also recorded songs in at least six other languages. "],
+      "license_tesim":["http://creativecommons.org/licenses/by-sa/3.0/us/"],
+      "rights_statement_tesim":["http://rightsstatements.org/vocab/InC/1.0/"],
+      "date_created_tesim":["January 1965"],
+      "thumbnail_path_ss":"/assets/work-ff055336041c3f7d310ad69109eda4a887b16ec501f35afc0a547c4adb97ee72.png",
+      "suppressed_bsi":false,
+      "actionable_workflow_roles_ssim":["default-depositing"],
+      "workflow_state_name_ssim":["deposited"],
+      "member_of_collections_ssim":["Berkeley Folk Festival"],
+      "member_of_collection_ids_ssim":["1ed8e649-644d-4fa3-a119-e4846c5e90d6"],
+      "visibility_ssi":"open",
+      "admin_set_tesim":[""],
+      "human_readable_type_tesim":["Image"],
+      "read_access_group_ssim":["public"],
+      "edit_access_person_ssim":["adam.arling@northwestern.edu"],
+      "_version_":1584344021587722240,
+      "timestamp":"2017-11-17T19:50:01.740Z",
+      "score":3.944439
+    };
 
-  return mockMetadata;
+    return fetch('/json/item-detail.json', {
+      headers : {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+       }
+    }).then(response => response.json())
+      .then(results => {
+        console.log(results)
+        return results;
+      })
+      .catch(err => console.error(err.toString()));
+  };
 }
