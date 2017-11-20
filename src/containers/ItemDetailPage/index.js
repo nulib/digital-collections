@@ -43,7 +43,7 @@ class ItemDetailPage extends Component {
               <h2>{metadata.title_tesim}</h2>
 
               <article className="uv-viewer-wrapper">
-                <img src={uvSampleImg} />
+                <img src={uvSampleImg} alt="Universal Viewer sample holder" />
               </article>
 
               <article className="item-detail-metadata">
@@ -63,8 +63,8 @@ class ItemDetailPage extends Component {
               <article className="item-detail-metadata">
                 <hr />
                 <p>This shows everything returned directly from solr:</p>
-                {Object.keys(metadata).map(keyName => (
-                  <MetadataItem label={keyName} value={metadata[keyName]} />
+                {Object.keys(metadata).map((keyName, index) => (
+                  <MetadataItem label={keyName} value={metadata[keyName]} key={index} />
                 ))}
               </article>
             </section>

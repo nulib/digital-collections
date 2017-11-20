@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import FilterInput from '../../components/FilterInput';
 import PhotoGrid from '../../components/PhotoGrid';
 import SetsApi from '../../api/sets-api';
-import sectionsData from '../../api/sections-data';
 import '../SetsPage/SetsPage.css';
 
 

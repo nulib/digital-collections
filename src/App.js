@@ -10,6 +10,9 @@ import LandingPage from './containers/LandingPage';
 import SetsPage from './containers/SetsPage';
 import SetPage from './containers/SetPage';
 import ItemDetailPage from './containers/ItemDetailPage';
+import ContactUs from './containers/ContactUs';
+import About from './containers/About';
+import Login from './containers/Login';
 import './App.css';
 
 class App extends Component {
@@ -23,6 +26,9 @@ class App extends Component {
           <Route exact path="/sets/:sectionType" component={SetsPage} />
           <Route exact path="/sets/:sectionType/:id" component={SetPage} />
           <Route path="/item/:id" component={ItemDetailPage} />
+          <Route path="/contactus" component={ContactUs} />
+          <Route path="/about" component={About} />
+          <Route path="/login" component={Login} />
           <Footer />
         </div>
       </Router>
