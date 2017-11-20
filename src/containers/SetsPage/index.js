@@ -23,10 +23,12 @@ class SetsPage extends Component {
 
   componentDidMount() {
     document.body.className="landing-page";
-    const items = this.setsApi.getAllSets(this.sectionType);
-    this.setState({
-      items: items,
-      isLoaded: true
+    // Grab REST API data here
+    this.setsApi.getAllSets(this.sectionType).then((data) => {
+      this.setState({
+        items: data.response.docs,
+        isLoaded: true
+      });
     });
   }
 
@@ -46,7 +48,7 @@ class SetsPage extends Component {
               </form>
               <PhotoGrid
                 items={this.state.items}
-                linkPrefix={`/sets/${this.sectionType}`} 
+                linkPrefix={`/sets/${this.sectionType}`}
                 />
             </div>
           </main>

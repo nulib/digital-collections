@@ -18,10 +18,11 @@ class LandingPageSection extends Component {
 
   componentDidMount() {
     // Grab REST API data here
-    const items = this.setsApi.getAllSets(this.props.sectionType.name);
-    this.setState({
-      items: items,
-      isLoaded: true
+    this.setsApi.getAllSets(this.props.sectionType.name).then((data) => {
+      this.setState({
+        items: data.response.docs,
+        isLoaded: true
+      });
     });
   }
 

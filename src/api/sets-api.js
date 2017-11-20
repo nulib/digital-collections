@@ -4,6 +4,20 @@
  */
 export default class SetsApi {
 
+  apiCall(url) {
+    return fetch(url, {
+      headers : {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+       }
+    }).then(response => response.json())
+      .then(results => {
+        console.log(results)
+        return results;
+      })
+      .catch(err => console.error(err.toString()));
+  }
+
   /**
    * Helper function to configure the solr query
    * @function getAllSets
@@ -15,7 +29,9 @@ export default class SetsApi {
 
     switch(setType) {
       case 'collections':
-        items = this.getCollections();
+        // Here can specify a local .json file path, or a real endpoint
+        const url = '/json/collections.json';
+        return this.apiCall(url);
         break;
       case 'creators':
         items = this.getCreators();
@@ -30,8 +46,6 @@ export default class SetsApi {
         items = [];
         break;
     }
-
-    return items;
   }
 
   /**
@@ -52,61 +66,9 @@ export default class SetsApi {
     return obj;
   }
 
-  /**
-   * Mock get solr set items
-   * ie. "Get all items from the Berkely Collection"
-   * @param  {string} id Individual set item id
-   * @return {Array}
-   */
-  getSetItems(id) {
-    const setItems = [
-      {
-        id: 'a935fd47-f4ad-4497-a929-d5dc2f45df67',
-        label: 'Lovin Spoonful',
-        description: 'Lovin Spoonful description here...',
-        posterImage: 'sample-lovin-spoonful.jpg'
-      }, {
-        id: '237b837f-e334-4860-8f9f-049ef883906a',
-        label: 'Joan Baez',
-        description: 'Joan Baez description here...',
-        posterImage: 'sample-joan-baez.jpg'
-      }, {
-        id: '9b9563be-1800-4edd-aecd-24706b01a5ed',
-        label: 'Folk Song Jamboree',
-        description: 'Folk Song Jamboree description here...',
-        posterImage: 'sample-folk-song-jamboree.jpg'
-      }
-    ];
-
-    return setItems;
-  }
-
-  getCollections() {
-    const mockCollections = [
-      {
-        id: '2a07f9e6-62fd-4287-a6ca-87ef97f047eb',
-        label: 'Berkely Folk Festival',
-        description: 'One of the premier festivals of the 1960s, the Berkeley Folk Festival ruled.',
-        posterImage: 'sample-little-richard.jpg'
-      }, {
-        id: 'beaffec8-ed52-4d49-88e0-fce7111e0d97',
-        label: 'World War II Posters',
-        description: 'Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero',
-        posterImage: 'sample-wwII-collection.jpg'
-      }, {
-        id: '35a1815c-1f81-45ff-8165-b7249d782422',
-        label: 'University Archives Postcards',
-        description: 'This generically represents it could be a video or audio Collection',
-        posterImage: 'sample-postcards-collection.jpg'
-      }, {
-        id: 'e77bdabf-a1da-4a53-a8d7-61950cc3595b',
-        label: 'Ramón Casas sketchbooks',
-        description: 'Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero',
-        posterImage: 'sample-casas-collection.jpg'
-      }
-    ];
-
-    return mockCollections;
+  getSetItems() {
+    const url = '/json/collection-items.json';
+    return this.apiCall(url);
   }
 
   getCreators() {

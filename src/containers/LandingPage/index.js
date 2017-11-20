@@ -17,9 +17,11 @@ class LandingPage extends Component {
         <div id="page">
           <main id="main-content" className="content" tabIndex="0">
             <LandingPageSection sectionType={sectionsData.collections} />
+            {/*
             <LandingPageSection sectionType={sectionsData.creators} />
             <LandingPageSection sectionType={sectionsData.subjects} />
             <LandingPageSection sectionType={sectionsData.workTypes} />
+            */}
           </main>
         </div>
       </div>

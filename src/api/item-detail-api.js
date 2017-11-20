@@ -1,6 +1,6 @@
 export default class ItemDetailApi {
 
-  getMetadata() {
+  getItemDetails() {
     return fetch('/json/item-detail.json', {
       headers : {
         "Content-Type": "application/json",
