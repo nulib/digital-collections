@@ -38,34 +38,19 @@ class Footer extends Component {
             </div>
             <div className="footer-content">
                 <p><strong>(Department Name) Social Media</strong></p>
-                <a href="#" className="social facebook">Facebook</a>
-                <a href="#" className="social twitter">Twitter</a>
-                <a href="#" className="social social instagram">Instagram</a>
-                <a href="#" className="social rss">RSS</a>
-                <a href="#" className="social youtube">YouTube</a>
-                <a href="#" className="social tumblr">Tumblr</a>
-                <a href="#" className="social wordpress">WordPress</a>
-                <a href="#" className="social futurity">Futurity</a>
-                <a href="#" className="social vimeo">Vimeo</a>
-                <a href="#" className="social linkedin">Linkedin</a>
-                <a href="#" className="social google-plus">Google Plus</a>
-                <a href="#" className="social google-groups">Google Groups</a>
-                <a href="#" className="social blog">Blog</a>
-                <a href="#" className="social github">Github</a>
-                <a href="#" className="social flickr">Flickr</a>
-                <a href="#" className="social storify">Storify</a>
-                <a href="#" className="social pinterest">Pinterest</a>
-                <a href="#" className="social we-will">We Will</a>
+                <a className="social facebook" href="https://www.facebook.com/NorthwesternLibrary">Facebook</a>
+                <a className="social twitter" href="https://twitter.com/nu_library">Twitter</a>
+                <a className="social instagram" href="https://www.instagram.com/nu_library/">Instagram</a>
+                <a className="social youtube" href="https://www.youtube.com/user/NorthwesternLib">YouTube</a>
             </div>
             <div className="footer-content">
-                <ul>
-                    <li><a href="#">Link 1</a></li>
-                    <li><a href="#">Link 2</a></li>
-                    <li><a href="#">Link 3</a></li>
-                    <li><a href="#">Link 4</a></li>
-                    <li><a href="#">Link 5</a></li>
-                    <li><a href="#">Link 6</a></li>
-                </ul>
+              <ul>
+                <li><a href="http://northwestern.libanswers.com/" target="_blank" rel="noopener noreferrer">FAQs</a></li>
+                <li><a href="about/support/index.html" target="_blank" rel="noopener noreferrer">Support Us</a></li>
+                <li><a href="about/library-jobs/index.html" target="_blank" rel="noopener noreferrer">Library Jobs</a></li>
+                <li><a href="about/administration/policies/index.html" target="_blank" rel="noopener noreferrer">Library Policies</a></li>
+                <li><a href="about/contact/general-feedback.html" target="_blank" rel="noopener noreferrer">Provide Feedback</a></li>
+              </ul>
             </div>
         </div>
     </footer>

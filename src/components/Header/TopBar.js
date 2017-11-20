@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import MobileLinks from './MobileLinks';
 import './TopBar.css';
 
@@ -13,9 +14,9 @@ class TopBar extends Component {
               <MobileLinks />
               <div id="right">
                   <ul>
-                      <li><a href="#">Contact Us</a></li>
-                      <li><a href="#">About</a></li>
-                      <li><a href="#">Login</a></li>
+                      <li><Link to="/contactus">Contact Us</Link></li>
+                      <li><Link to="/about">About</Link></li>
+                      <li><Link to="/login">Login</Link></li>
                   </ul>
               </div>
           </div>

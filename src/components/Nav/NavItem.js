@@ -13,11 +13,9 @@ class NavItem extends Component {
             </li>
             <li className="nav-links">
                 <ul>
-                    <li><a href="#">Link 1</a></li>
-                    <li><a href="#">Link 2</a></li>
-                    <li><a href="#">Link 3</a></li>
-                    <li><a href="#">Link 4</a></li>
-                    <li><a href="#">Link 5</a></li>
+                    <li><a>Link 1</a></li>
+                    <li><a>Link 2</a></li>
+                    <li><a>Link 3</a></li>
                 </ul>
             </li>
         </ul>

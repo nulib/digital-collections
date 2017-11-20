@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import NavItem from './NavItem';
-import sectionsData from '../../api/sections-data';
 import './Nav.css';
 
 class Nav extends Component {

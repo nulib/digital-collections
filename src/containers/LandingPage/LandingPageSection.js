@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import {withRouter} from 'react-router';
 import PhotoGrid from '../../components/PhotoGrid';
 import SetsApi from '../../api/sets-api';
 
@@ -43,7 +42,7 @@ class LandingPageSection extends Component {
             <p>{this.props.sectionType.description}</p>
           </div>
           <PhotoGrid
-            items={this.state.items} 
+            items={items}
             linkPrefix={`/sets/${this.props.sectionType.name}`}
             />
         </section>
