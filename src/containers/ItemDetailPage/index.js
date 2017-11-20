@@ -19,8 +19,8 @@ class ItemDetailPage extends Component {
   componentDidMount() {
     document.body.className="standard-page narrow-page";
 
-    // Get metadata
-    this.itemDetailApi.getMetadata().then((data) => {
+    // Get item details
+    this.itemDetailApi.getItemDetails().then((data) => {
       this.setState({
         metadata: data,
         isLoaded: true
