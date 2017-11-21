@@ -9,6 +9,7 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.14"
   },
+  "proxy": "http://devbox.library.northwestern.edu",
   "scripts": {
     "start": "PORT=3333 react-scripts start",
     "build": "react-scripts build",
