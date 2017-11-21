@@ -1,7 +1,45 @@
 import React, {Component} from 'react';
+import FooterSocial from './FooterSocial';
+import FooterLink from './FooterLink';
+import './Footer.css';
 
 class Footer extends Component {
   render() {
+    const socialItems = [{
+      additionalClasses: "facebook",
+      url: "https://www.facebook.com/NorthwesternLibrary",
+      label: "Facebook"
+    }, {
+      additionalClasses: "twitter",
+      url: "https://twitter.com/nu_library",
+      label: "Twitter"
+    }, {
+      additionalClasses: "instagram",
+      url: "https://www.instagram.com/nu_library/",
+      label: "Instagram"
+    }, {
+      additionalClasses: "youtube",
+      url: "https://www.youtube.com/user/NorthwesternLib",
+      label: "YouTube"
+    }];
+
+    const libraryLinks = [{
+      url: 'http://northwestern.libanswers.com/',
+      label: 'FAQs',
+    }, {
+      url: 'http://www.library.northwestern.edu/about/support/index.html',
+      label: 'Support Us',
+    }, {
+      url: 'http://www.library.northwestern.edu/about/library-jobs/index.html',
+      label: 'Library Jobs',
+    }, {
+      url: 'http://www.library.northwestern.edu/about/administration/policies/index.html',
+      label: 'Library Policies',
+    }, {
+      url: 'http://www.library.northwestern.edu/about/contact/general-feedback.html',
+      label: 'Provide Feedback',
+    }];
+
     return (
       <footer>
         <div className="contain-970">
@@ -19,37 +57,27 @@ class Footer extends Component {
             <div className="footer-content contact">
                 <ul>
                     <li className="footer-pin-icon"><span className="hide-label">Address</span></li>
-                    <li><strong>Your Department Name</strong></li>
-                    <li>633 Clark Street</li>
+                    <li>1970 Campus Drive</li>
                     <li>Evanston, IL 60208</li>
                 </ul>
                 <ul>
                     <li className="footer-phone-icon"><span className="hide-label">Phone number</span></li>
-                    <li>(123) 456-7890</li>
-                </ul>
-                <ul>
-                    <li className="footer-fax-icon"><span className="hide-label">Fax number</span></li>
-                    <li>(123) 456-7890</li>
+                    <li>(847) 491-7658</li>
                 </ul>
                 <ul>
                     <li className="footer-email-icon"><span className="hide-label">Email address</span></li>
-                    <li><a href="mailto:info@northwestern.edu">your-department@northwestern.edu</a></li>
+                    <li><a href="mailto:library@northwestern.edu">library@northwestern.edu</a></li>
                 </ul>
             </div>
             <div className="footer-content">
-                <p><strong>(Department Name) Social Media</strong></p>
-                <a className="social facebook" href="https://www.facebook.com/NorthwesternLibrary">Facebook</a>
-                <a className="social twitter" href="https://twitter.com/nu_library">Twitter</a>
-                <a className="social instagram" href="https://www.instagram.com/nu_library/">Instagram</a>
-                <a className="social youtube" href="https://www.youtube.com/user/NorthwesternLib">YouTube</a>
+                <p><strong>Libraries Social Media</strong></p>
+
+                {socialItems.map((item, index) => <FooterSocial key={index}  additionalClasses={item.additionalClasses} url={item.url} label={item.label} />
+                )}
             </div>
             <div className="footer-content">
               <ul>
-                <li><a href="http://northwestern.libanswers.com/" target="_blank" rel="noopener noreferrer">FAQs</a></li>
-                <li><a href="about/support/index.html" target="_blank" rel="noopener noreferrer">Support Us</a></li>
-                <li><a href="about/library-jobs/index.html" target="_blank" rel="noopener noreferrer">Library Jobs</a></li>
-                <li><a href="about/administration/policies/index.html" target="_blank" rel="noopener noreferrer">Library Policies</a></li>
-                <li><a href="about/contact/general-feedback.html" target="_blank" rel="noopener noreferrer">Provide Feedback</a></li>
+                {libraryLinks.map((item, index) => <FooterLink url={item.url} label={item.label} key={index} />)}
               </ul>
             </div>
         </div>
