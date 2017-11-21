@@ -57,6 +57,7 @@ class SetPage extends Component {
                 <FilterInput filterName={this.state.set.title_tesim} />
               </form>
               <PhotoGrid
+                additionalClasses="four-grid contain-1120"
                 items={this.state.items}
                 linkPrefix={`/item`}
                 />
