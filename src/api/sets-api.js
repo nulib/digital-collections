@@ -12,7 +12,6 @@ export default class SetsApi {
        }
     }).then(response => response.json())
       .then(results => {
-        console.log(results)
         return results;
       })
       .catch(err => console.error(err.toString()));
@@ -26,44 +25,32 @@ export default class SetsApi {
    */
   getAllSets(setType) {
     let items = [];
+    let url = '';
 
     switch(setType) {
       case 'collections':
         // Here can specify a local .json file path, or a real endpoint
-        const url = '/json/collections.json';
+        url = '/json/collections.json';
         return this.apiCall(url);
         break;
       case 'creators':
-        items = this.getCreators();
-        break;
+        url = '/json/collections.json';
+        return this.apiCall(url);
       case 'subjects':
-        items = this.getSubjects();
-        break;
+        url = '/json/collections.json';
+        return this.apiCall(url);
       case 'workTypes':
-        items = this.getWorkTypes();
-        break;
+        url = '/json/collections.json';
+        return this.apiCall(url);
       default:
-        items = [];
-        break;
+        url = '/json/collections.json';
+        return this.apiCall(url);
     }
   }
 
-  /**
-   * Mock function to get information on an individual set
-   * @param  {string} setType ie. 'collections', 'creators', etc...
-   * @param  {string} setId   id of the set
-   * @return {Object} the set object
-   */
   getSet(setType, setId) {
-    const allSets = this.getAllSets(setType);
-    let obj = {};
-
-    allSets.forEach((set) => {
-      if (set.id === setId) {
-        obj = set;
-      }
-    });
-    return obj;
+    const url = '/json/set-item.json';
+    return this.apiCall(url);
   }
 
   getSetItems() {

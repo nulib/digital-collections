@@ -11,7 +11,8 @@ class SetPage extends Component {
     this.state = {
       error: null,
       isLoaded: false,
-      items: []
+      items: [],
+      set: {}
     }
     // initialize the Sets API Class
     this.setsApi = new SetsApi();
@@ -23,8 +24,18 @@ class SetPage extends Component {
 
   componentDidMount() {
     document.body.className="landing-page";
+
     // Grab REST API data here
-    this.setsApi.getSetItems(this.id).then((data) => {
+
+    // Get set info
+    this.setsApi.getSet(this.sectionType, this.id).then(data => {
+      this.setState({
+        set: data
+      });
+    });
+
+    // Get set items
+    this.setsApi.getSetItems(this.id).then(data => {
       this.setState({
         items: data.response.docs,
         isLoaded: true
@@ -33,20 +44,17 @@ class SetPage extends Component {
   }
 
   render() {
-    // TODO: Fix this
-    // Get set information
-    // this.set = this.setsApi.getSet(this.sectionType, this.id);
-    // console.log('set', this.set);
-
     return (
       <div>
         <div id="page" className="sets-page">
           <main id="main-content" className="content-full" tabIndex="0">
             <div className="contain-1120">
-              <h2>Set title here</h2>
-              <p>Set description here</p>
+              <section>
+                <h2>{this.state.set.title_tesim}</h2>
+                <p>{this.state.set.description_tesim}</p>
+              </section>
               <form className="web-form">
-                <FilterInput filterName="Set label here" />
+                <FilterInput filterName={this.state.set.title_tesim} />
               </form>
               <PhotoGrid
                 items={this.state.items}
