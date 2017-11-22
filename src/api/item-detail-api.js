@@ -18,11 +18,8 @@ export default class ItemDetailApi {
       })
         .catch(err => console.error(err.toString()));
     } else {
-      return this.ApiClient.search(`q=${id}`).then(results => {
-        console.log(results)
-        return results;
-    })
-      .catch(err => console.error(this.ApiClient.api_base, err.toString()))
+      return this.ApiClient.search(`q=${id}`)
+        .catch(err => console.error(this.ApiClient.api_base, err.toString()))
     }
   }
 
@@ -30,7 +27,12 @@ export default class ItemDetailApi {
   getIIIFImage(id) {
     const api_url = `/concern/images/${id}/manifest.json`
     return fetch(api_url)
-      .then(response => response.json())
+      .then(function(response) {
+        if (!response.ok) {
+            throw Error(response.statusText);
+        }
+      return response;
+    }).then(response => response.json())
       .then(response => {
         const sample_image_url = response.sequences[0].canvases[0].images[0].resource['@id']
         console.log(sample_image_url)

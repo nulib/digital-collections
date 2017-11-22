@@ -1,41 +1,28 @@
 import React, {Component} from 'react';
 import FilterInput from '../../components/FilterInput';
 import PhotoGrid from '../../components/PhotoGrid';
-import SetsApi from '../../api/sets-api';
-import '../SetsPage/SetsPage.css';
+import CollectionsApi from '../../api/collections-api';
+import collectionsData from '../../api/collections-data';
+import './CollectionsPage.css';
 
 
-class SetPage extends Component {
+class CollectionsPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       error: null,
       isLoaded: false,
-      items: [],
-      set: {}
+      items: []
     }
     // initialize the Sets API Class
-    this.setsApi = new SetsApi();
+    this.collectionsApi = new CollectionsApi();
 
-    // Grab route params
-    this.sectionType = props.match.params.sectionType;
-    this.id = props.match.params.id;
   }
 
   componentDidMount() {
     document.body.className="landing-page";
-
     // Grab REST API data here
-
-    // Get set info
-    this.setsApi.getSet(this.sectionType, this.id).then(data => {
-      this.setState({
-        set: data.response.docs[0]
-      });
-    });
-
-    // Get set items
-    this.setsApi.getSetItems(this.id).then(data => {
+    this.collectionsApi.getAllCollections().then((data) => {
       this.setState({
         items: data.response.docs,
         isLoaded: true
@@ -44,21 +31,22 @@ class SetPage extends Component {
   }
 
   render() {
+    const headline = collectionsData.collections.label;
+    const description = collectionsData.collections.description;
+
     return (
       <div>
         <div id="page" className="sets-page">
           <main id="main-content" className="content-full" tabIndex="0">
             <div className="contain-1120">
-              <section>
-                <h2>{this.state.set.title_tesim}</h2>
-                <p>{this.state.set.description_tesim}</p>
-              </section>
+              <h2>{headline}</h2>
+              <p>{description}</p>
               <form className="web-form">
-                <FilterInput filterName={this.state.set.title_tesim} />
+                <FilterInput filterName={collectionsData.collections.label} />
               </form>
               <PhotoGrid
                 items={this.state.items}
-                linkPrefix={`/item`}
+                linkPrefix={`/collections`}
                 />
             </div>
           </main>
@@ -68,4 +56,4 @@ class SetPage extends Component {
   }
 }
 
-export default SetPage;
+export default CollectionsPage;

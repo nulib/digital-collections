@@ -1,33 +1,33 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import PhotoGrid from '../../components/PhotoGrid';
-import SetsApi from '../../api/sets-api';
+import CollectionsApi from '../../api/collections-api';
 
-class LandingPageSection extends Component {
+class LandingPageCollectionSection extends Component {
   constructor(props) {
     super(props);
     this.state = {
       error: null,
       isLoaded: false,
-      items: []
+      collections: []
     }
 
     // initialize the Sets API Class
-    this.setsApi = new SetsApi();
+    this.CollectionsApi = new CollectionsApi();
   }
 
   componentDidMount() {
     // Grab REST API data here
-    this.setsApi.getAllSets(this.props.sectionType.name).then((data) => {
+    this.CollectionsApi.getAllCollections().then((data) => {
       this.setState({
-        items: data.response.docs,
+        collections: data.response.docs,
         isLoaded: true
       });
     });
   }
 
   render() {
-    const { error, isLoaded, items } = this.state;
+    const { error, isLoaded, collections } = this.state;
     const label = this.props.sectionType.label;
 
     if (error) {
@@ -39,13 +39,12 @@ class LandingPageSection extends Component {
         <section>
           <div className="section-top contain-970">
             <h3>Explore {label}</h3>
-            <p><Link to={`/sets/${this.props.sectionType.name}`}>View All {label}</Link></p>
+            <p><Link to={`/collections`}>View All {label}</Link></p>
             <p>{this.props.sectionType.description}</p>
           </div>
           <PhotoGrid
-            additionalClasses="contain-1120"
-            items={items}
-            linkPrefix={`/sets/${this.props.sectionType.name}`}
+            items={collections}
+            linkPrefix={`/collections`}
             />
         </section>
       );
@@ -53,4 +52,4 @@ class LandingPageSection extends Component {
   }
 }
 
-export default LandingPageSection;
+export default LandingPageCollectionSection;

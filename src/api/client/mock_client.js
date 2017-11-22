@@ -1,9 +1,5 @@
 export default class MockClient {
 
-  constructor() {
-
-  }
-
   getData(file) {
     return fetch(file, {
       headers : {

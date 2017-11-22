@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import uvSampleImg from '../../images/sample-uv.png';
 import './ItemDetailPage.css';
 import ItemDetailApi from '../../api/item-detail-api';
 import MetadataItem from './MetadataItem';
@@ -24,10 +23,17 @@ class ItemDetailPage extends Component {
 
     // Get item details
     this.itemDetailApi.getItemDetails(this.id).then((data) => {
-      this.setState({
-        metadata: data.response.docs[0],
-        isLoaded: true
-      });
+        if (data.response.docs.length > 0) {
+          this.setState({
+            metadata: data.response.docs[0],
+            isLoaded: true
+          });
+        } else {
+          this.setState({
+            error: `${this.id} not found`,
+            isLoaded: true
+          });
+        }
     });
 
     // Get a placeholder image
@@ -43,7 +49,7 @@ class ItemDetailPage extends Component {
     const { error, isLoaded, metadata, sample_image_url } = this.state;
 
     if (error) {
-      return <div>Error: {error.message}</div>;
+      return <div>Error: {error}</div>;
     } else if (!isLoaded) {
       return <div>Loading ....</div>;
     } else {
