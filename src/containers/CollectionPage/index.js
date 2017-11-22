@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import FilterInput from '../../components/FilterInput';
 import PhotoGrid from '../../components/PhotoGrid';
-import SetsApi from '../../api/sets-api';
-import '../SetsPage/SetsPage.css';
+import CollectionsApi from '../../api/collections-api';
+import '../CollectionsPage/CollectionsPage.css';
 
 
-class SetPage extends Component {
+class CollectionPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,10 +15,10 @@ class SetPage extends Component {
       set: {}
     }
     // initialize the Sets API Class
-    this.setsApi = new SetsApi();
+    this.collectionsApi = new CollectionsApi();
 
     // Grab route params
-    this.sectionType = props.match.params.sectionType;
+    this.sectionType = 'collections';
     this.id = props.match.params.id;
   }
 
@@ -28,14 +28,14 @@ class SetPage extends Component {
     // Grab REST API data here
 
     // Get set info
-    this.setsApi.getSet(this.sectionType, this.id).then(data => {
+    this.collectionsApi.getCollection(this.id).then(data => {
       this.setState({
         set: data.response.docs[0]
       });
     });
 
     // Get set items
-    this.setsApi.getSetItems(this.id).then(data => {
+    this.collectionsApi.getCollectionItems(this.id).then(data => {
       this.setState({
         items: data.response.docs,
         isLoaded: true
@@ -57,7 +57,6 @@ class SetPage extends Component {
                 <FilterInput filterName={this.state.set.title_tesim} />
               </form>
               <PhotoGrid
-                additionalClasses="four-grid contain-1120"
                 items={this.state.items}
                 linkPrefix={`/item`}
                 />
@@ -69,4 +68,4 @@ class SetPage extends Component {
   }
 }
 
-export default SetPage;
+export default CollectionPage;

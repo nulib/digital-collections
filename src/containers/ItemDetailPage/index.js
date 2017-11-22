@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import uvSampleImg from '../../images/sample-uv.png';
 import './ItemDetailPage.css';
 import ItemDetailApi from '../../api/item-detail-api';
 import MetadataItem from './MetadataItem';
@@ -10,29 +9,47 @@ class ItemDetailPage extends Component {
     this.state = {
       error: null,
       isLoaded: false,
-      metadata: []
+      metadata: [],
+      id: '',
+      sample_image_url: ''
     };
 
     this.itemDetailApi = new ItemDetailApi();
+    this.id = props.match.params.id
   }
 
   componentDidMount() {
     document.body.className="standard-page narrow-page";
 
     // Get item details
-    this.itemDetailApi.getItemDetails().then((data) => {
+    this.itemDetailApi.getItemDetails(this.id).then((data) => {
+        if (data.response.docs.length > 0) {
+          this.setState({
+            metadata: data.response.docs[0],
+            isLoaded: true
+          });
+        } else {
+          this.setState({
+            error: `${this.id} not found`,
+            isLoaded: true
+          });
+        }
+    });
+
+    // Get a placeholder image
+    this.itemDetailApi.getIIIFImage(this.id).then((data) => {
       this.setState({
-        metadata: data,
+        sample_image_url: data,
         isLoaded: true
       });
     });
   }
 
   render() {
-    const { error, isLoaded, metadata } = this.state;
+    const { error, isLoaded, metadata, sample_image_url } = this.state;
 
     if (error) {
-      return <div>Error: {error.message}</div>;
+      return <div>Error: {error}</div>;
     } else if (!isLoaded) {
       return <div>Loading ....</div>;
     } else {
@@ -43,11 +60,11 @@ class ItemDetailPage extends Component {
               <h2>{metadata.title_tesim}</h2>
 
               <article className="uv-viewer-wrapper">
-                <img src={uvSampleImg} alt="Universal Viewer sample holder" />
+                <img src={sample_image_url} alt="Universal Viewer sample holder" />
               </article>
 
               <article className="item-detail-metadata">
-                <h4>Little Richard Title Piece Goes Here</h4>
+                <h4>{metadata.title_tesim}</h4>
                 <MetadataItem label="Creator" value={metadata.creator_tesim} />
                 <MetadataItem label="Title" value={metadata.title_tesim} />
                 <MetadataItem label="Keywords" value={metadata.keyword_tesim} />
