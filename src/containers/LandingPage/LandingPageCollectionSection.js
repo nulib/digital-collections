@@ -43,6 +43,7 @@ class LandingPageCollectionSection extends Component {
             <p>{this.props.sectionType.description}</p>
           </div>
           <PhotoGrid
+            additionalClasses="contain-1120 full-images"
             items={collections}
             linkPrefix={`/collections`}
             />

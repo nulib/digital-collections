@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import './PhotoBox.css';
 
 function PhotoBox(props) {
   const imageUrl = 'http://devbox.library.northwestern.edu' + props.item.thumbnail_path_ss;
