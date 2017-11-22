@@ -49,14 +49,13 @@ class CollectionPage extends Component {
         <div id="page" className="sets-page">
           <main id="main-content" className="content-full" tabIndex="0">
             <div className="contain-1120">
-              <section>
-                <h2>{this.state.set.title_tesim}</h2>
-                <p>{this.state.set.description_tesim}</p>
-              </section>
+              <h2>{this.state.set.title_tesim}</h2>
+              <p>{this.state.set.description_tesim}</p>
               <form className="web-form">
                 <FilterInput filterName={this.state.set.title_tesim} />
               </form>
               <PhotoGrid
+                additionalClasses="contain-1120 full-images"
                 items={this.state.items}
                 linkPrefix={`/item`}
                 />

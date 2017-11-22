@@ -5,10 +5,12 @@ import './NavItem.css';
 
 class NavItem extends Component {
   render() {
+    const { label, setType, subNav } = this.props;
+
     return (
       <li>
-        <Link to={`/sets/${this.props.setType}`}>{this.props.label} <span className="dropdown-arrow"></span></Link>
-        <NavItemDropDown />
+        <Link to={`/sets/${setType}`}>{label} <span className="dropdown-arrow"></span></Link>
+        <NavItemDropDown subNav={subNav} />
       </li>
     );
   }

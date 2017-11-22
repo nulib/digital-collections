@@ -47,6 +47,7 @@ class SetsPage extends Component {
                 <FilterInput filterName={sectionsData[this.sectionType].label} />
               </form>
               <PhotoGrid
+                additionalClasses="contain-1120 full-images"
                 items={this.state.items}
                 linkPrefix={`/sets/${this.sectionType}`}
                 />
