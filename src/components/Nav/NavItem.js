@@ -9,7 +9,7 @@ class NavItem extends Component {
 
     return (
       <li>
-        <Link to={`/sets/${setType}`}>{label} <span className="dropdown-arrow"></span></Link>
+        <Link to={`/${setType}`}>{label} <span className="dropdown-arrow"></span></Link>
         <NavItemDropDown subNav={subNav} />
       </li>
     );

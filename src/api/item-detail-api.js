@@ -25,6 +25,7 @@ export default class ItemDetailApi {
 
   // just temporary - grab a placeholder image until we implement a viewer
   getIIIFImage(id) {
+    // TODO: Fix this
     const api_url = `/concern/images/${id}/manifest.json`
     return fetch(api_url)
       .then(function(response) {

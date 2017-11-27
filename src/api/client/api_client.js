@@ -1,9 +1,7 @@
 export default class ApiClient {
 
   constructor() {
-
     this.api_base = 'http://localhost:8983/solr/hydra-development/select?'
-
   }
 
   search(strQuery) {
@@ -11,12 +9,12 @@ export default class ApiClient {
       headers : {
         "Content-Type": "application/json",
         "Accept": "application/json"
-       }
+      }
     }).then(this.handleErrors)
-      .then(response => response.json())
-      .then(results => {
-        console.log(results)
-        return results;
+    .then(response => response.json())
+    .then(results => {
+      console.log(results)
+      return results;
     })
     .catch(err => console.error(err.toString()));
 
@@ -24,9 +22,8 @@ export default class ApiClient {
 
   handleErrors(response) {
     if (!response.ok) {
-        throw Error(response.statusText);
+      throw Error(response.statusText);
     }
     return response;
   }
-
 }

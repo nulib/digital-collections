@@ -17,12 +17,6 @@ export default class SetsApi {
       .catch(err => console.error(err.toString()));
   }
 
-  /**
-   * Helper function to configure the solr query
-   * @function getAllSets
-   * @param {string} setType - Type of set to retrieve, ie. 'collection, creator, subject, etc'
-   * @return {Array}
-   */
   getAllSets(setType) {
     let url = '';
 
@@ -32,27 +26,27 @@ export default class SetsApi {
         url = '/json/collections.json';
         return this.apiCall(url);
       case 'creators':
-        url = '/json/collections.json';
+        url = '/json/sets.json';
         return this.apiCall(url);
       case 'subjects':
-        url = '/json/collections.json';
+        url = '/json/sets.json';
         return this.apiCall(url);
       case 'workTypes':
-        url = '/json/collections.json';
+        url = '/json/sets.json';
         return this.apiCall(url);
       default:
-        url = '/json/collections.json';
+        url = '/json/sets.json';
         return this.apiCall(url);
     }
   }
 
   getSet(setType, setId) {
-    const url = '/json/set-item.json';
+    const url = '/json/set.json';
     return this.apiCall(url);
   }
 
   getSetItems() {
-    const url = '/json/collection-items.json';
+    const url = '/json/set-items.json';
     return this.apiCall(url);
   }
 

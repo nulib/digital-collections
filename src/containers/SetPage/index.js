@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import FilterInput from '../../components/FilterInput';
 import PhotoGrid from '../../components/PhotoGrid';
+import CollectionsApi from '../../api/collections-api';
 import SetsApi from '../../api/sets-api';
+import sectionsData from '../../api/sections-data';
 import '../SetsPage/SetsPage.css';
 
 
@@ -14,8 +16,9 @@ class SetPage extends Component {
       items: [],
       set: {}
     }
-    // initialize the Sets API Class
+    // initialize API request wrappers
     this.setsApi = new SetsApi();
+    this.collectionsApi = new CollectionsApi();
 
     // Grab route params
     this.sectionType = props.match.params.sectionType;
@@ -23,23 +26,40 @@ class SetPage extends Component {
   }
 
   componentDidMount() {
-    document.body.className="landing-page";
+    document.body.className="standard-page";
 
     // Grab REST API data here
+    if (this.sectionType === 'collections') {
+      this.getCollectionData();
+    } else {
+      this.getSetsData();
+    }
+  }
 
+  getCollectionData() {
+    // Get collection info
+    this.collectionsApi.getCollection(this.id).then(this.updateSetState.bind(this));
+    // Get items in collection
+    this.collectionsApi.getCollectionItems(this.id).then(this.updateItemsState.bind(this));
+  }
+
+  getSetsData() {
     // Get set info
-    this.setsApi.getSet(this.sectionType, this.id).then(data => {
-      this.setState({
-        set: data.response.docs[0]
-      });
-    });
+    this.setsApi.getSet(this.sectionType, this.id).then(this.updateSetState.bind(this));
+    // Get items in set
+    this.setsApi.getSetItems(this.sectionType).then(this.updateItemsState.bind(this));
+  }
 
-    // Get set items
-    this.setsApi.getSetItems(this.id).then(data => {
-      this.setState({
-        items: data.response.docs,
-        isLoaded: true
-      });
+  updateItemsState(data) {
+    this.setState({
+      items: data.response.docs,
+      isLoaded: true
+    });
+  }
+
+  updateSetState(data) {
+    this.setState({
+      set: data.response.docs[0]
     });
   }
 
@@ -57,9 +77,9 @@ class SetPage extends Component {
                 <FilterInput filterName={this.state.set.title_tesim} />
               </form>
               <PhotoGrid
-                additionalClasses="four-grid contain-1120"
+                additionalClasses="four-grid contain-1120 full-images"
                 items={this.state.items}
-                linkPrefix={`/item`}
+                linkPrefix={`/sets/${this.sectionType}/${this.id}`}
                 />
             </div>
           </main>

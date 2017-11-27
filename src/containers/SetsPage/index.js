@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import FilterInput from '../../components/FilterInput';
 import PhotoGrid from '../../components/PhotoGrid';
+import CollectionsApi from '../../api/collections-api';
 import SetsApi from '../../api/sets-api';
 import sectionsData from '../../api/sections-data';
 import './SetsPage.css';
@@ -14,21 +15,31 @@ class SetsPage extends Component {
       isLoaded: false,
       items: []
     }
-    // initialize the Sets API Class
+    // initialize API request wrappers
     this.setsApi = new SetsApi();
+    this.collectionsApi = new CollectionsApi();
 
     // Grab route params
     this.sectionType = props.match.params.sectionType;
   }
 
   componentDidMount() {
-    document.body.className="landing-page";
+    document.body.className="standard-page";
+
     // Grab REST API data here
-    this.setsApi.getAllSets(this.sectionType).then((data) => {
-      this.setState({
-        items: data.response.docs,
-        isLoaded: true
-      });
+    // Collections
+    if (this.sectionType === 'collections') {
+      this.collectionsApi.getAllCollections().then(this.updateApiState.bind(this));
+    } // All other Sets
+    else {
+      this.setsApi.getAllSets(this.sectionType).then(this.updateApiState.bind(this));
+    }
+  }
+
+  updateApiState(data) {
+    this.setState({
+      items: data.response.docs,
+      isLoaded: true
     });
   }
 
@@ -47,7 +58,7 @@ class SetsPage extends Component {
                 <FilterInput filterName={sectionsData[this.sectionType].label} />
               </form>
               <PhotoGrid
-                additionalClasses="contain-1120 full-images"
+                additionalClasses="four-grid contain-1120 full-images"
                 items={this.state.items}
                 linkPrefix={`/sets/${this.sectionType}`}
                 />

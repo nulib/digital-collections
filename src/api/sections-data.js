@@ -1,4 +1,9 @@
 const sectionsData = {
+  collections: {
+    name: 'collections',
+    label: 'Institutional Collections',
+    description: `Northwestern's Institutional Collections are a wide-ranging collection spanning cultures from .... more text goes here?`
+  },
   creators: {
     name: 'creators',
     label: 'Creators',
@@ -12,7 +17,7 @@ const sectionsData = {
   workTypes: {
     name: 'workTypes',
     label: 'Work Type',
-    description: `Is it really necessary to display these descriptions, and if so where will they live where users/curators can update their text and the application can access the data?`
+    description: `This is mock description data for Work Types.  Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo.`
   }
 }
 

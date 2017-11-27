@@ -53,10 +53,10 @@ class Nav extends Component {
         ...prevState.workTypesSubNav,
         navLinks: [{
           label: 'Work type 1',
-          url: '/sets/workTypes'
+          url: 'workTypes'
         }, {
           label: 'Awesome work type',
-          url: '/sets/workTypes'
+          url: 'workTypes'
         }]
       }
     }));
