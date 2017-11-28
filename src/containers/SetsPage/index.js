@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import FilterInput from '../../components/FilterInput';
 import PhotoGrid from '../../components/PhotoGrid';
+import ErrorSection from '../../components/ErrorSection';
 import CollectionsApi from '../../api/collections-api';
 import SetsApi from '../../api/sets-api';
 import sectionsData from '../../api/sections-data';
@@ -44,30 +45,37 @@ class SetsPage extends Component {
   }
 
   render() {
+    const { error, isLoaded, items } = this.state;
     const headline = sectionsData[this.sectionType].label;
     const description = sectionsData[this.sectionType].description;
     const linkPrefix = `/${this.sectionType}`;
 
-    return (
-      <div>
-        <div id="page" className="sets-page">
-          <main id="main-content" className="content-full" tabIndex="0">
-            <div className="contain-1120">
-              <h2>{headline}</h2>
-              <p>{description}</p>
-              <form className="web-form">
-                <FilterInput filterName={sectionsData[this.sectionType].label} />
-              </form>
-              <PhotoGrid
-                additionalClasses="four-grid contain-1120 full-images"
-                items={this.state.items}
-                linkPrefix={linkPrefix}
-                />
-            </div>
-          </main>
+    if (error) {
+      return <ErrorSection error={error} />;
+    } else if (!isLoaded) {
+      return <div>{'Loading...'}</div>;
+    } else {
+      return (
+        <div>
+          <div id="page" className="sets-page">
+            <main id="main-content" className="content-full" tabIndex="0">
+              <div className="contain-1120">
+                <h2>{headline}</h2>
+                <p>{description}</p>
+                <form className="web-form">
+                  <FilterInput filterName={sectionsData[this.sectionType].label} />
+                </form>
+                <PhotoGrid
+                  additionalClasses="four-grid contain-1120 full-images"
+                  items={items}
+                  linkPrefix={linkPrefix}
+                  />
+              </div>
+            </main>
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 }
 

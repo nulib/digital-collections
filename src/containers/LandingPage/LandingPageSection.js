@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import ErrorSection from '../../components/ErrorSection';
 import PhotoGrid from '../../components/PhotoGrid';
 import CollectionsApi from '../../api/collections-api';
 import SetsApi from '../../api/sets-api';
@@ -30,10 +31,14 @@ class LandingPageSection extends Component {
   }
 
   updateApiState(data) {
-    this.setState({
-      items: data.response.docs,
-      isLoaded: true
-    });
+    if (data.error) {
+      this.setState({ error: data.error });
+    } else {
+      this.setState({
+        items: data.response.docs,
+        isLoaded: true
+      });
+    }
   }
 
   render() {
@@ -42,7 +47,7 @@ class LandingPageSection extends Component {
     const linkPrefix = `/${this.props.sectionType.name}`;
 
     if (error) {
-      return <div>Error: {error.message}</div>;
+      return <ErrorSection error={error} />;
     } else if (!isLoaded) {
       return <div>{'Loading...'}</div>;
     } else {

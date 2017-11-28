@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import FilterInput from '../../components/FilterInput';
 import PhotoGrid from '../../components/PhotoGrid';
+import ErrorSection from '../../components/ErrorSection';
 import CollectionsApi from '../../api/collections-api';
 import SetsApi from '../../api/sets-api';
 import '../SetsPage/SetsPage.css';
@@ -63,28 +64,36 @@ class SetPage extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <div id="page" className="sets-page">
-          <main id="main-content" className="content-full" tabIndex="0">
-            <div className="contain-1120">
-              <section>
-                <h2>{this.state.set.title_tesim}</h2>
-                <p>{this.state.set.description_tesim}</p>
-              </section>
-              <form className="web-form">
-                <FilterInput filterName={this.state.set.title_tesim} />
-              </form>
-              <PhotoGrid
-                additionalClasses="four-grid contain-1120 full-images"
-                items={this.state.items}
-                linkPrefix={`/${this.sectionType}/${this.id}`}
-                />
-            </div>
-          </main>
+    const { error, isLoaded, items, set } = this.state;
+
+    if (error) {
+      return <ErrorSection error={error} />;
+    } else if (!isLoaded) {
+      return <div>{'Loading...'}</div>;
+    } else {
+      return (
+        <div>
+          <div id="page" className="sets-page">
+            <main id="main-content" className="content-full" tabIndex="0">
+              <div className="contain-1120">
+                <section>
+                  <h2>{set.title_tesim}</h2>
+                  <p>{set.description_tesim}</p>
+                </section>
+                <form className="web-form">
+                  <FilterInput filterName={set.title_tesim} />
+                </form>
+                <PhotoGrid
+                  additionalClasses="four-grid contain-1120 full-images"
+                  items={items}
+                  linkPrefix={`/${this.sectionType}/${this.id}`}
+                  />
+              </div>
+            </main>
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 }
 

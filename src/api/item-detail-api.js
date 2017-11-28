@@ -1,33 +1,30 @@
-import ApiClient from './client/api_client';
-import MockClient from './client/mock_client';
+import ApiClient from './client/api-client';
+import MockClient from './client/mock-client';
 
 
 export default class ItemDetailApi {
-
   constructor(){
-    this.mocks = false;
-    this.ApiClient = new ApiClient();
-    this.MockClient = new MockClient();
+    this.apiClient = new ApiClient();
+    this.mockClient = new MockClient();
   }
 
   getItemDetails(id) {
-    if (this.mocks) {
-      return this.MockClient.getData('/json/item-detail.json').then(response => {
-        console.log(response)
+    return this.apiClient.search(`q=${id}`);
+  }
+
+  getMockItemDetails() {
+    return this.mockClient.getData('/json/item-detail.json')
+      .then(response => {
+        console.log('Item details mock response', response);
         return response;
-      })
-        .catch(err => console.error(err.toString()));
-    } else {
-      return this.ApiClient.search(`q=${id}`)
-        .catch(err => console.error(this.ApiClient.api_base, err.toString()))
-    }
+      });
   }
 
   // just temporary - grab a placeholder image until we implement a viewer
   getIIIFImage(id) {
-    // TODO: Fix this
-    const api_url = `/concern/images/${id}/manifest.json`
-    return fetch(api_url)
+    const apiUrl = `/concern/images/${id}/manifest.json`
+
+    return fetch(apiUrl)
       .then(function(response) {
         if (!response.ok) {
             throw Error(response.statusText);
@@ -39,9 +36,6 @@ export default class ItemDetailApi {
         console.log(sample_image_url)
         return sample_image_url;
       })
-    .catch(err => console.error(api_url, err.toString()))
+    .catch(err => console.error(apiUrl, err.toString()))
   }
-
-
-
 }
