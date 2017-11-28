@@ -18,7 +18,7 @@ class HeroSection extends Component {
             <div className="contain-1120">
                 <h2>Berkeley Folk Music Festival Archive</h2>
                 <p>View features from this popular festival between 1957 to 1970</p>
-                <Link to="/item" className="button">View this Awesome Digital Collections Set</Link>
+                <Link to="/collections" className="button">View this Awesome Digital Collections Set</Link>
             </div>
         </div>
       </section>

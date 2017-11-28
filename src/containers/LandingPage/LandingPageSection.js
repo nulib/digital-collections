@@ -39,7 +39,7 @@ class LandingPageSection extends Component {
   render() {
     const { error, isLoaded, items } = this.state;
     const label = this.props.sectionType.label;
-    const linkPrefix = `/sets/${this.props.sectionType.name}`;
+    const linkPrefix = `/${this.props.sectionType.name}`;
 
     if (error) {
       return <div>Error: {error.message}</div>;

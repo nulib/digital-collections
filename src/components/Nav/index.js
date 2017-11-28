@@ -18,7 +18,7 @@ class Nav extends Component {
       workTypesSubNav: {
         navIntro: {
           headline: 'Explore Work Types',
-          routePath: '/sets/workTypes',
+          routePath: '/workTypes',
           buttonLabel: 'View All'
         },
         navLinks: []

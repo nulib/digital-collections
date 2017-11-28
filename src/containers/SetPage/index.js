@@ -79,7 +79,7 @@ class SetPage extends Component {
               <PhotoGrid
                 additionalClasses="four-grid contain-1120 full-images"
                 items={this.state.items}
-                linkPrefix={`/sets/${this.sectionType}/${this.id}`}
+                linkPrefix={`/${this.sectionType}/${this.id}`}
                 />
             </div>
           </main>

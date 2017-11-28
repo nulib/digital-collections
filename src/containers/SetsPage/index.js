@@ -46,6 +46,7 @@ class SetsPage extends Component {
   render() {
     const headline = sectionsData[this.sectionType].label;
     const description = sectionsData[this.sectionType].description;
+    const linkPrefix = `/${this.sectionType}`;
 
     return (
       <div>
@@ -60,7 +61,7 @@ class SetsPage extends Component {
               <PhotoGrid
                 additionalClasses="four-grid contain-1120 full-images"
                 items={this.state.items}
-                linkPrefix={`/sets/${this.sectionType}`}
+                linkPrefix={linkPrefix}
                 />
             </div>
           </main>
