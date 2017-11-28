@@ -3,7 +3,6 @@ import FilterInput from '../../components/FilterInput';
 import PhotoGrid from '../../components/PhotoGrid';
 import CollectionsApi from '../../api/collections-api';
 import SetsApi from '../../api/sets-api';
-import sectionsData from '../../api/sections-data';
 import '../SetsPage/SetsPage.css';
 
 

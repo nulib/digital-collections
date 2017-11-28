@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import HeroSection from '../../components/HeroSection';
-import LandingPageCollectionSection from './LandingPageCollectionSection';
 import LandingPageSection from './LandingPageSection';
 import sectionsData from '../../api/sections-data';
 import './LandingPage.css';
