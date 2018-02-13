@@ -24,13 +24,13 @@ class App extends Component {
           <Header />
           <Nav />
           <Switch>
-            <Route exact path="/" component={LandingPage} />
-            <Route path="/about" component={About} />
-            <Route path="/contactus" component={ContactUs} />
-            <Route path="/login" component={Login} />
-            <Route exact path="/:sectionType" component={SetsPage} />
-            <Route exact path="/:sectionType/:id" component={SetPage} />
+            <Route exact path="/about" component={About} />
+            <Route exact path="/contactus" component={ContactUs} />
+            <Route exact path="/login" component={Login} />
             <Route exact path="/:sectionType/:id/:itemId" component={ItemDetailPage} />
+            <Route exact path="/:sectionType/:id" component={SetPage} />
+            <Route exact path="/:sectionType" component={SetsPage} />
+            <Route exact path="/" component={LandingPage} />
           </Switch>
           <Footer />
         </div>

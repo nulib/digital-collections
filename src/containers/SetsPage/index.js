@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import FilterInput from '../../components/FilterInput';
 import PhotoGrid from '../../components/PhotoGrid';
 import ErrorSection from '../../components/ErrorSection';
@@ -7,33 +7,48 @@ import SetsApi from '../../api/sets-api';
 import sectionsData from '../../api/sections-data';
 import './SetsPage.css';
 
-
 class SetsPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       error: null,
       isLoaded: false,
-      items: []
-    }
+      items: [],
+      sectionType: props.match.params.sectionType
+    };
     // initialize API request wrappers
     this.setsApi = new SetsApi();
     this.collectionsApi = new CollectionsApi();
+  }
 
-    // Grab route params
-    this.sectionType = props.match.params.sectionType;
+  componentWillReceiveProps(newProps) {
+    if (newProps.match.url !== this.props.match.url) {
+      this.getSetRecords(newProps.match.params.sectionType);
+    }
   }
 
   componentDidMount() {
-    document.body.className="standard-page";
+    document.body.className = 'standard-page';
+    this.getSetRecords(this.props.match.params.sectionType);
+  }
 
-    // Grab REST API data here
-    // Collections
-    if (this.sectionType === 'collections') {
-      this.collectionsApi.getAllCollections().then(this.updateApiState.bind(this));
-    } // All other Sets
-    else {
-      this.setsApi.getAllSets(this.sectionType).then(this.updateApiState.bind(this));
+  /**
+   * Grab set records from API
+   * @param  {string} sectionType Title of set which matches the param in the URL
+   * @return {void}
+   */
+  getSetRecords(sectionType) {
+    this.setState({ sectionType: sectionType });
+
+    if (sectionType === 'collections') {
+      this.collectionsApi
+        .getAllCollections()
+        .then(this.updateApiState.bind(this));
+    } else {
+      // All other Sets
+      this.setsApi
+        .getAllSets(sectionType)
+        .then(this.updateApiState.bind(this));
     }
   }
 
@@ -45,10 +60,10 @@ class SetsPage extends Component {
   }
 
   render() {
-    const { error, isLoaded, items } = this.state;
-    const headline = sectionsData[this.sectionType].label;
-    const description = sectionsData[this.sectionType].description;
-    const linkPrefix = `/${this.sectionType}`;
+    const { error, isLoaded, items, sectionType } = this.state;
+    const headline = sectionsData[sectionType].label;
+    const description = sectionsData[sectionType].description;
+    const linkPrefix = `/${sectionType}`;
 
     if (error) {
       return <ErrorSection error={error} />;
@@ -63,13 +78,15 @@ class SetsPage extends Component {
                 <h2>{headline}</h2>
                 <p>{description}</p>
                 <form className="web-form">
-                  <FilterInput filterName={sectionsData[this.sectionType].label} />
+                  <FilterInput
+                    filterName={sectionsData[sectionType].label}
+                  />
                 </form>
                 <PhotoGrid
                   additionalClasses="four-grid contain-1120 full-images"
                   items={items}
                   linkPrefix={linkPrefix}
-                  />
+                />
               </div>
             </main>
           </div>

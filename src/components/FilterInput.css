@@ -1,0 +1,15 @@
+.FilterInput.field {
+  position: relative;
+}
+.FilterInput #search-text {
+  width: 100%;
+  padding: .75rem;
+  padding-left: 2.5rem;
+}
+.FilterInput i {
+  font: normal normal normal 21px/1 FontAwesome !important;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: #716c6b;
+}
