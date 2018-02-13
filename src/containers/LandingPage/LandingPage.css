@@ -1,5 +1,19 @@
-.landing-page #page:after, .landing-page .photo-feature-2-across:after, .landing-page .photo-feature-3-across:after, .landing-page .feature-two-col:after, .landing-page .feature-three-col:after, .landing-page .feature-four-col:after, .landing-page .three-column-links:after, .landing-page .large-feature-inner:after, .landing-page .stats-callout:after, .landing-page .alternate-photo-float:after, .landing-page .news-event:after, .landing-page .news-box:after, .landing-page .news-full:after, .landing-page .news-full .news-box:after, .landing-page .photo-grid:after {
-  content: "";
+.landing-page #page:after,
+.landing-page .photo-feature-2-across:after,
+.landing-page .photo-feature-3-across:after,
+.landing-page .feature-two-col:after,
+.landing-page .feature-three-col:after,
+.landing-page .feature-four-col:after,
+.landing-page .three-column-links:after,
+.landing-page .large-feature-inner:after,
+.landing-page .stats-callout:after,
+.landing-page .alternate-photo-float:after,
+.landing-page .news-event:after,
+.landing-page .news-box:after,
+.landing-page .news-full:after,
+.landing-page .news-full .news-box:after,
+.landing-page .photo-grid:after {
+  content: '';
   display: table;
   clear: both;
 }
@@ -13,7 +27,7 @@
 }
 
 .landing-page .hero .hero-image.in-page h3 {
-  font: 24px "Campton Extra Bold", Impact, sans-serif;
+  font: 24px 'Campton Extra Bold', Impact, sans-serif;
   color: #fff;
   text-shadow: 2px 2px 0px black;
   margin-bottom: 1.5em;
@@ -21,15 +35,17 @@
 }
 
 .landing-page .hero .hero-image.in-page h3:before {
-  background: url("https://common.northwestern.edu/v8/css/images/icons/ltpurple-slash.svg") no-repeat 50%/17px 21px;
+  background: url('https://common.northwestern.edu/v8/css/images/icons/ltpurple-slash.svg')
+    no-repeat 50%/17px 21px;
   padding: 0 1.5rem;
-  content: " ";
+  content: ' ';
 }
 
 .landing-page .hero .hero-image.in-page h3:after {
-  background: url("https://common.northwestern.edu/v8/css/images/icons/ltpurple-slash.svg") no-repeat 50%/17px 21px;
+  background: url('https://common.northwestern.edu/v8/css/images/icons/ltpurple-slash.svg')
+    no-repeat 50%/17px 21px;
   padding: 0 1.5rem;
-  content: " ";
+  content: ' ';
 }
 
 .landing-page .hero .hero-image h2 {
@@ -37,11 +53,13 @@
 }
 
 .landing-page .hero .hero-image h2:before {
-  background: url("https://common.northwestern.edu/v8/css/images/icons/ltpurple-slash.svg") no-repeat 50%/17px 21px;
+  background: url('https://common.northwestern.edu/v8/css/images/icons/ltpurple-slash.svg')
+    no-repeat 50%/17px 21px;
 }
 
 .landing-page .hero .hero-image h2:after {
-  background: url("https://common.northwestern.edu/v8/css/images/icons/ltpurple-slash.svg") no-repeat 50%/17px 21px;
+  background: url('https://common.northwestern.edu/v8/css/images/icons/ltpurple-slash.svg')
+    no-repeat 50%/17px 21px;
 }
 
 .landing-page .hero.news-hero .hero-image {
@@ -54,7 +72,6 @@
 }
 
 @media screen and (max-width: 768px) {
-
   .landing-page .hero.mobile-hero .hero-image {
     display: block;
     height: 300px;
@@ -77,7 +94,8 @@
     margin-bottom: 0;
   }
 
-  .landing-page .hero.mobile-hero .mobile-hero-text h2 + p, .landing-page .hero.mobile-hero .mobile-hero-text h2 + .button {
+  .landing-page .hero.mobile-hero .mobile-hero-text h2 + p,
+  .landing-page .hero.mobile-hero .mobile-hero-text h2 + .button {
     margin-top: 1rem;
   }
 
@@ -96,7 +114,6 @@
 }
 
 @media screen and (max-width: 480px) {
-
   .landing-page .hero .hero-image {
     height: 400px;
   }
@@ -160,27 +177,22 @@
   }
 }
 
-
 .landing-page section {
   margin-bottom: 5rem;
 }
-
 
 .landing-page section.no-bottom-margin {
   margin-bottom: 0;
 }
 
-
 .landing-page #back-to-top {
   margin-bottom: 2rem;
 }
-
 
 .landing-page #page {
   margin: 0 auto;
   max-width: 1440px;
 }
-
 
 .landing-page .content {
   font-size: 16px;
@@ -188,34 +200,31 @@
   width: 100%;
 }
 
-
 .landing-page .content h3 {
-  font: 24px "Campton Extra Bold", Impact, sans-serif;
+  font: 24px 'Campton Extra Bold', Impact, sans-serif;
   color: #4e2a84;
   text-align: center;
 }
 
-
 .landing-page .content h3:before {
-  background: url("https://common.northwestern.edu/v8/css/images/icons/grey-slash.svg") no-repeat 50%/17px 21px;
+  background: url('https://common.northwestern.edu/v8/css/images/icons/grey-slash.svg')
+    no-repeat 50%/17px 21px;
   padding: 0 20px;
-  content: " ";
+  content: ' ';
 }
-
 
 .landing-page .content h3:after {
-  background: url("https://common.northwestern.edu/v8/css/images/icons/grey-slash.svg") no-repeat 50%/17px 21px;
+  background: url('https://common.northwestern.edu/v8/css/images/icons/grey-slash.svg')
+    no-repeat 50%/17px 21px;
   padding: 0 25px;
-  content: " ";
+  content: ' ';
 }
-
 
 .landing-page .content p.subhead {
   color: #4e2a84;
-  font: 46px/1.2em "Campton Book", Tahoma, sans-serif;
+  font: 46px/1.2em 'Campton Book', Tahoma, sans-serif;
   margin-bottom: 1rem;
 }
-
 
 .landing-page .content .section-top {
   margin-bottom: 3rem;
@@ -223,46 +232,57 @@
   padding: 0 1rem;
 }
 
-
 .landing-page .content .section-top h3 {
   margin-bottom: 4rem;
 }
-
 
 .landing-page .content .section-top h3 + p {
   margin-top: -2rem;
 }
 
 @media screen and (max-width: 480px) {
-
   .landing-page section {
     margin-bottom: 2.5rem;
   }
 
-  .landing-page .content .section-top h3, .landing-page .content .background-select h3, .landing-page .content .large-feature-wrap h3, .landing-page .content .in-page h3 {
-    font: 20px "Campton Extra Bold", Impact, sans-serif;
+  .landing-page .content .section-top h3,
+  .landing-page .content .background-select h3,
+  .landing-page .content .large-feature-wrap h3,
+  .landing-page .content .in-page h3 {
+    font: 20px 'Campton Extra Bold', Impact, sans-serif;
     margin-bottom: 1rem;
   }
 
-  .landing-page .content .section-top h3 + p, .landing-page .content .background-select h3 + p, .landing-page .content .large-feature-wrap h3 + p, .landing-page .content .in-page h3 + p {
+  .landing-page .content .section-top h3 + p,
+  .landing-page .content .background-select h3 + p,
+  .landing-page .content .large-feature-wrap h3 + p,
+  .landing-page .content .in-page h3 + p {
     margin-top: 0;
   }
 
-  .landing-page .content .section-top h3:before, .landing-page .content .background-select h3:before, .landing-page .content .large-feature-wrap h3:before, .landing-page .content .in-page h3:before {
+  .landing-page .content .section-top h3:before,
+  .landing-page .content .background-select h3:before,
+  .landing-page .content .large-feature-wrap h3:before,
+  .landing-page .content .in-page h3:before {
     background: none;
     padding: 0;
   }
 
-  .landing-page .content .section-top h3:after, .landing-page .content .background-select h3:after, .landing-page .content .large-feature-wrap h3:after, .landing-page .content .in-page h3:after {
+  .landing-page .content .section-top h3:after,
+  .landing-page .content .background-select h3:after,
+  .landing-page .content .large-feature-wrap h3:after,
+  .landing-page .content .in-page h3:after {
     background: none;
     padding: 0;
   }
 
-  .landing-page .content .section-top p.subhead, .landing-page .content .background-select p.subhead, .landing-page .content .large-feature-wrap p.subhead, .landing-page .content .in-page p.subhead {
+  .landing-page .content .section-top p.subhead,
+  .landing-page .content .background-select p.subhead,
+  .landing-page .content .large-feature-wrap p.subhead,
+  .landing-page .content .in-page p.subhead {
     font-size: 28px;
   }
 }
-
 
 .landing-page .photo-feature-2-across .photo-feature {
   width: 50%;
@@ -271,18 +291,15 @@
   max-height: 350px;
 }
 
-
 .landing-page .photo-feature-2-across .photo-feature img {
   display: block;
 }
-
 
 .landing-page .photo-feature-2-across .photo-feature .back {
   display: none;
   background-color: #836eaa;
   width: 100%;
 }
-
 
 .landing-page .photo-feature-2-across .photo-feature .text-over-image {
   color: #fff;
@@ -293,33 +310,29 @@
   width: 80%;
 }
 
-
 .landing-page .photo-feature-2-across .photo-feature .text-over-image h4 {
-  font: 30px "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font: 30px 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   color: #fff;
-  margin-bottom: -.5rem;
+  margin-bottom: -0.5rem;
   text-shadow: 2px 2px 0px black;
 }
-
 
 .landing-page .photo-feature-2-across .photo-feature p {
-  font: 16px/1.3em "Akkurat Pro Regular", Arial, sans-serif;
+  font: 16px/1.3em 'Akkurat Pro Regular', Arial, sans-serif;
   text-shadow: 2px 2px 0px black;
 }
 
-
 .landing-page .photo-feature-2-across .photo-feature p.link {
-  font-family: "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font-family: 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   text-transform: uppercase;
 }
 
-
 .landing-page .photo-feature-2-across .photo-feature p.link:after {
-  background: url("https://common.northwestern.edu/v8/css/images/icons/arrow-right-white.svg") no-repeat 50%/6px 10px;
+  background: url('https://common.northwestern.edu/v8/css/images/icons/arrow-right-white.svg')
+    no-repeat 50%/6px 10px;
   padding-right: 2rem;
-  content: " ";
+  content: ' ';
 }
-
 
 .landing-page .photo-feature-2-across .photo-feature .back-text {
   color: #fff;
@@ -337,26 +350,22 @@
   text-align: center;
 }
 
-
 .landing-page .photo-feature-2-across .photo-feature .back-text h4 {
-  font: 18px "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font: 18px 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   color: #fff;
   margin-bottom: 1.5em;
   text-shadow: none;
 }
 
-
 .landing-page .photo-feature-2-across .photo-feature .back-text p {
   text-shadow: none;
 }
-
 
 .landing-page .photo-feature-2-across .photo-feature .back-text p.link {
   margin-top: 1em;
 }
 
 @media screen and (max-width: 1150px) {
-
   .landing-page .photo-feature-2-across .photo-feature {
     width: 50%;
     max-height: 350px;
@@ -370,13 +379,16 @@
     font-size: 26px;
   }
 
-  .landing-page .photo-feature-2-across .photo-feature .text-over-image h4.campton {
+  .landing-page
+    .photo-feature-2-across
+    .photo-feature
+    .text-over-image
+    h4.campton {
     font-size: 30px;
   }
 }
 
 @media screen and (max-width: 875px) {
-
   .landing-page .photo-feature-2-across .photo-feature {
     width: inherit;
     max-width: 720px;
@@ -386,7 +398,6 @@
 }
 
 @media screen and (max-width: 768px) {
-
   .landing-page .photo-feature-2-across .photo-feature .text-over-image {
     width: 100%;
   }
@@ -395,7 +406,11 @@
     font-size: 24px;
   }
 
-  .landing-page .photo-feature-2-across .photo-feature .text-over-image h4.campton {
+  .landing-page
+    .photo-feature-2-across
+    .photo-feature
+    .text-over-image
+    h4.campton {
     font-size: 30px;
   }
 
@@ -409,14 +424,12 @@
 }
 
 @media screen and (max-width: 480px) {
-
   .landing-page .photo-feature-2-across h4.campton {
     font-size: 30px;
   }
 }
 
 @media screen and (max-width: 420px) {
-
   .landing-page .photo-feature-2-across .photo-feature .text-over-image {
     padding: 0 1em;
     bottom: 0;
@@ -426,16 +439,18 @@
     font-size: 20px;
   }
 
-  .landing-page .photo-feature-2-across .photo-feature .text-over-image h4.campton {
+  .landing-page
+    .photo-feature-2-across
+    .photo-feature
+    .text-over-image
+    h4.campton {
     font-size: 24px;
   }
 }
 
-
 .landing-page .photo-feature-3-across {
   margin-top: 3rem;
 }
-
 
 .landing-page .photo-feature-3-across .photo-feature {
   width: 33.333333%;
@@ -444,18 +459,15 @@
   max-height: 350px;
 }
 
-
 .landing-page .photo-feature-3-across .photo-feature img {
   display: block;
 }
-
 
 .landing-page .photo-feature-3-across .photo-feature .back {
   display: none;
   background-color: #836eaa;
   width: 100%;
 }
-
 
 .landing-page .photo-feature-3-across .photo-feature .text-over-image {
   color: #fff;
@@ -466,33 +478,29 @@
   width: 90%;
 }
 
-
 .landing-page .photo-feature-3-across .photo-feature h4 {
-  font: 30px "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font: 30px 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   color: #fff;
-  margin-bottom: -.5rem;
+  margin-bottom: -0.5rem;
   text-shadow: 2px 2px 0px black;
 }
-
 
 .landing-page .photo-feature-3-across .photo-feature p {
-  font: 16px/1.3em "Akkurat Pro Regular", Arial, sans-serif;
+  font: 16px/1.3em 'Akkurat Pro Regular', Arial, sans-serif;
   text-shadow: 2px 2px 0px black;
 }
 
-
 .landing-page .photo-feature-3-across .photo-feature p.link {
-  font-family: "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font-family: 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   text-transform: uppercase;
 }
 
-
 .landing-page .photo-feature-3-across .photo-feature p.link:after {
-  background: url("https://common.northwestern.edu/v8/css/images/icons/arrow-right-white.svg") no-repeat 50%/6px 10px;
+  background: url('https://common.northwestern.edu/v8/css/images/icons/arrow-right-white.svg')
+    no-repeat 50%/6px 10px;
   padding-right: 2rem;
-  content: " ";
+  content: ' ';
 }
-
 
 .landing-page .photo-feature-3-across .photo-feature .back-text {
   color: #fff;
@@ -510,26 +518,22 @@
   text-align: center;
 }
 
-
 .landing-page .photo-feature-3-across .photo-feature .back-text h4 {
-  font: 18px "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font: 18px 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   color: #fff;
   margin-bottom: 1.5em;
   text-shadow: none;
 }
 
-
 .landing-page .photo-feature-3-across .photo-feature .back-text p {
   text-shadow: none;
 }
-
 
 .landing-page .photo-feature-3-across .photo-feature .back-text p.link {
   margin-top: 1em;
 }
 
 @media screen and (max-width: 1150px) {
-
   .landing-page .photo-feature-3-across .photo-feature .text-over-image {
     padding: 0 1em;
   }
@@ -544,14 +548,12 @@
 }
 
 @media screen and (max-width: 960px) {
-
   .landing-page .photo-feature-3-across .photo-feature {
     width: 50%;
   }
 }
 
 @media screen and (max-width: 800px) {
-
   .landing-page .photo-feature-3-across .photo-feature {
     width: inherit;
     max-width: 480px;
@@ -561,7 +563,6 @@
 }
 
 @media screen and (max-width: 768px) {
-
   .landing-page .photo-feature-3-across .photo-feature {
     width: inherit;
     max-width: 480px;
@@ -577,7 +578,11 @@
     font-size: 24px;
   }
 
-  .landing-page .photo-feature-3-across .photo-feature .text-over-image h4.campton {
+  .landing-page
+    .photo-feature-3-across
+    .photo-feature
+    .text-over-image
+    h4.campton {
     font-size: 30px;
   }
 
@@ -591,14 +596,13 @@
 }
 
 @media screen and (max-width: 420px) {
-
   .landing-page .photo-feature-3-across .photo-feature .back-text {
-    padding: 0 .5rem;
+    padding: 0 0.5rem;
   }
 
   .landing-page .photo-feature-3-across .photo-feature .back-text h3 {
     font-size: 16px;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
 
   .landing-page .photo-feature-3-across .photo-feature .back-text p {
@@ -606,11 +610,9 @@
   }
 }
 
-
 .landing-page .photo-feature-3-across {
   margin-top: 3rem;
 }
-
 
 .landing-page .photo-feature-3-across .photo-feature {
   width: 33.333333%;
@@ -619,18 +621,15 @@
   max-height: 350px;
 }
 
-
 .landing-page .photo-feature-3-across .photo-feature img {
   display: block;
 }
-
 
 .landing-page .photo-feature-3-across .photo-feature .back {
   display: none;
   background-color: #836eaa;
   width: 100%;
 }
-
 
 .landing-page .photo-feature-3-across .photo-feature .text-over-image {
   color: #fff;
@@ -641,33 +640,29 @@
   width: 90%;
 }
 
-
 .landing-page .photo-feature-3-across .photo-feature h4 {
-  font: 30px "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font: 30px 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   color: #fff;
-  margin-bottom: -.5rem;
+  margin-bottom: -0.5rem;
   text-shadow: 2px 2px 0px black;
 }
-
 
 .landing-page .photo-feature-3-across .photo-feature p {
-  font: 16px/1.3em "Akkurat Pro Regular", Arial, sans-serif;
+  font: 16px/1.3em 'Akkurat Pro Regular', Arial, sans-serif;
   text-shadow: 2px 2px 0px black;
 }
 
-
 .landing-page .photo-feature-3-across .photo-feature p.link {
-  font-family: "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font-family: 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   text-transform: uppercase;
 }
 
-
 .landing-page .photo-feature-3-across .photo-feature p.link:after {
-  background: url("https://common.northwestern.edu/v8/css/images/icons/arrow-right-white.svg") no-repeat 50%/6px 10px;
+  background: url('https://common.northwestern.edu/v8/css/images/icons/arrow-right-white.svg')
+    no-repeat 50%/6px 10px;
   padding-right: 2rem;
-  content: " ";
+  content: ' ';
 }
-
 
 .landing-page .photo-feature-3-across .photo-feature .back-text {
   color: #fff;
@@ -685,26 +680,22 @@
   text-align: center;
 }
 
-
 .landing-page .photo-feature-3-across .photo-feature .back-text h4 {
-  font: 18px "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font: 18px 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   color: #fff;
   margin-bottom: 1.5em;
   text-shadow: none;
 }
 
-
 .landing-page .photo-feature-3-across .photo-feature .back-text p {
   text-shadow: none;
 }
-
 
 .landing-page .photo-feature-3-across .photo-feature .back-text p.link {
   margin-top: 1em;
 }
 
 @media screen and (max-width: 1150px) {
-
   .landing-page .photo-feature-3-across .photo-feature .text-over-image {
     padding: 0 1em;
   }
@@ -719,14 +710,12 @@
 }
 
 @media screen and (max-width: 960px) {
-
   .landing-page .photo-feature-3-across .photo-feature {
     width: 50%;
   }
 }
 
 @media screen and (max-width: 800px) {
-
   .landing-page .photo-feature-3-across .photo-feature {
     width: inherit;
     max-width: 480px;
@@ -736,7 +725,6 @@
 }
 
 @media screen and (max-width: 768px) {
-
   .landing-page .photo-feature-3-across .photo-feature {
     width: inherit;
     max-width: 480px;
@@ -752,7 +740,11 @@
     font-size: 24px;
   }
 
-  .landing-page .photo-feature-3-across .photo-feature .text-over-image h4.campton {
+  .landing-page
+    .photo-feature-3-across
+    .photo-feature
+    .text-over-image
+    h4.campton {
     font-size: 30px;
   }
 
@@ -766,21 +758,19 @@
 }
 
 @media screen and (max-width: 420px) {
-
   .landing-page .photo-feature-3-across .photo-feature .back-text {
-    padding: 0 .5rem;
+    padding: 0 0.5rem;
   }
 
   .landing-page .photo-feature-3-across .photo-feature .back-text h3 {
     font-size: 16px;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
 
   .landing-page .photo-feature-3-across .photo-feature .back-text p {
     font-size: 14px;
   }
 }
-
 
 .landing-page .feature-two-col {
   display: -webkit-flex;
@@ -791,7 +781,6 @@
   flex-wrap: wrap;
 }
 
-
 .landing-page .feature-two-col .feature-box {
   width: 49.10714%;
   float: left;
@@ -800,36 +789,30 @@
   position: relative;
 }
 
-
 .landing-page .feature-two-col .feature-box:first-child {
   margin-left: 0;
 }
-
 
 .landing-page .feature-two-col .feature-box .feature-copy {
   padding: 1rem 1.5rem 4rem 1.5rem;
 }
 
-
 .landing-page .feature-two-col .feature-box .feature-copy h4 {
-  font: 21px "Akkurat Pro Regular", Arial, sans-serif;
+  font: 21px 'Akkurat Pro Regular', Arial, sans-serif;
   text-transform: uppercase;
   color: #342f2e;
 }
 
-
 .landing-page .feature-two-col .feature-box .feature-copy ul {
   margin-left: 0;
-  padding-left: .5em;
+  padding-left: 0.5em;
 }
-
 
 .landing-page .feature-two-col .feature-box.no-button .feature-copy {
   padding-bottom: 1rem;
 }
 
 @media screen and (max-width: 768px) {
-
   .landing-page .feature-two-col {
     display: inherit;
   }
@@ -848,13 +831,11 @@
   }
 }
 
-
 .landing-page .feature-three-col {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
-
 
 .landing-page .feature-three-col .feature-box {
   width: 32.14286%;
@@ -864,31 +845,26 @@
   position: relative;
 }
 
-
 .landing-page .feature-three-col .feature-box:first-child {
   margin-left: 0;
 }
-
 
 .landing-page .feature-three-col .feature-box .feature-copy {
   padding: 1rem 1.5rem 4rem 1.5rem;
 }
 
-
 .landing-page .feature-three-col .feature-box .feature-copy h4 {
-  font: 21px "Akkurat Pro Regular", Arial, sans-serif;
+  font: 21px 'Akkurat Pro Regular', Arial, sans-serif;
   text-transform: uppercase;
   color: #342f2e;
 }
 
-
 .landing-page .feature-three-col .feature-box .feature-copy ul {
   margin-left: 0;
-  padding-left: .5em;
+  padding-left: 0.5em;
 }
 
 @media screen and (max-width: 875px) {
-
   .landing-page .feature-three-col {
     display: inherit;
   }
@@ -906,13 +882,11 @@
   }
 }
 
-
 .landing-page .feature-four-col {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
-
 
 .landing-page .feature-four-col .feature-box {
   width: 23.95833%;
@@ -922,31 +896,26 @@
   position: relative;
 }
 
-
 .landing-page .feature-four-col .feature-box:last-child {
   margin-right: 0;
 }
-
 
 .landing-page .feature-four-col .feature-box .feature-copy {
   padding: 1rem 1.5rem 4rem 1.5rem;
 }
 
-
 .landing-page .feature-four-col .feature-box .feature-copy h4 {
-  font: 21px "Akkurat Pro Regular", Arial, sans-serif;
+  font: 21px 'Akkurat Pro Regular', Arial, sans-serif;
   text-transform: uppercase;
   color: #342f2e;
 }
 
-
 .landing-page .feature-four-col .feature-box .feature-copy ul {
   margin-left: 0;
-  padding-left: .5em;
+  padding-left: 0.5em;
 }
 
 @media screen and (max-width: 920px) {
-
   .landing-page .feature-four-col {
     flex-wrap: wrap;
     max-width: 920px;
@@ -969,7 +938,6 @@
 }
 
 @media screen and (max-width: 590px) {
-
   .landing-page .feature-four-col {
     display: inherit;
     width: 100%;
@@ -981,15 +949,13 @@
   }
 }
 
-
 .landing-page .three-column-links h4 {
-  font: 30px "Akkurat Pro Regular", Arial, sans-serif;
+  font: 30px 'Akkurat Pro Regular', Arial, sans-serif;
   color: #716c6b;
   border-bottom: 4px solid #ccc;
   text-transform: none;
-  padding-bottom: .5rem;
+  padding-bottom: 0.5rem;
 }
-
 
 .landing-page .three-column-links article {
   float: left;
@@ -997,21 +963,17 @@
   margin-right: 1.78571%;
 }
 
-
 .landing-page .three-column-links article:last-child {
   margin-right: 0;
 }
-
 
 .landing-page .three-column-links article img {
   margin-bottom: 1rem;
 }
 
-
 .landing-page .three-column-links article p {
   margin-top: 0;
 }
-
 
 .landing-page .three-column-links ul {
   list-style: none;
@@ -1020,7 +982,6 @@
 }
 
 @media screen and (max-width: 875px) {
-
   .landing-page .three-column-links article {
     float: none;
     width: inherit;
@@ -1034,26 +995,22 @@
 }
 
 @media screen and (max-width: 480px) {
-
   .landing-page .three-column-links h4 {
     font-size: 24px;
   }
 }
 
-
 .landing-page .three-column-list h1 {
   margin-bottom: 2rem;
 }
 
-
 .landing-page .three-column-list h2 {
-  font: 30px "Akkurat Pro Regular", Arial, sans-serif;
+  font: 30px 'Akkurat Pro Regular', Arial, sans-serif;
   color: #716c6b;
   border-bottom: 4px solid #ccc;
   text-transform: none;
-  padding-bottom: .5rem;
+  padding-bottom: 0.5rem;
 }
-
 
 .landing-page .three-column-list ul {
   list-style: none;
@@ -1069,10 +1026,9 @@
   padding: 0;
 }
 
-
 .landing-page .three-column-list ul li {
   background: none;
-  padding: 0 0 .8em 0;
+  padding: 0 0 0.8em 0;
   line-height: 1.5em;
   -webkit-column-break-inside: avoid;
   page-break-inside: avoid;
@@ -1080,7 +1036,6 @@
 }
 
 @media screen and (max-width: 480px) {
-
   .landing-page .three-column-list h2 {
     font-size: 24px;
   }
@@ -1094,19 +1049,17 @@
   }
 }
 
-
 .landing-page .large-feature {
   padding: 4rem;
-  background: url("https://common.northwestern.edu/v8/css/images/slashes-grey-bg.gif") repeat;
+  background: url('https://common.northwestern.edu/v8/css/images/slashes-grey-bg.gif')
+    repeat;
 }
-
 
 .landing-page .large-feature-inner {
   max-width: 1120px;
   margin: 3rem auto 0 auto;
   box-sizing: content-box;
 }
-
 
 .landing-page .large-feature-inner .content-side {
   width: 78.57143%;
@@ -1115,19 +1068,16 @@
   padding-right: 3.57143%;
 }
 
-
 .landing-page .large-feature-inner .content-side img {
   float: left;
   margin: 0 2rem 2rem 0;
 }
 
-
 .landing-page .large-feature-inner .content-side h4 {
-  font: 48px/1.1em "Campton Bold", Impact, sans-serif;
+  font: 48px/1.1em 'Campton Bold', Impact, sans-serif;
   margin-bottom: 3rem;
   color: #4e2a84;
 }
-
 
 .landing-page .large-feature-inner > ul {
   width: 21.42857%;
@@ -1136,25 +1086,22 @@
   margin-left: 0;
 }
 
-
 .landing-page .large-feature-inner > ul li {
   background: none;
   line-height: 1.2rem;
   margin-bottom: 1rem;
 }
 
-
 .landing-page .large-feature-inner > ul li:after {
-  background: url("https://common.northwestern.edu/v8/css/images/icons/arrow-right-dkpurple.svg") no-repeat 50%/6px;
+  background: url('https://common.northwestern.edu/v8/css/images/icons/arrow-right-dkpurple.svg')
+    no-repeat 50%/6px;
   padding-right: 2rem;
-  content: " ";
+  content: ' ';
 }
-
 
 .landing-page .large-feature-inner > ul li a {
-  font-family: "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font-family: 'Akkurat Pro Bold', 'Arial Black', sans-serif;
 }
-
 
 .landing-page .large-feature-inner .right-side {
   width: 21.42857%;
@@ -1162,21 +1109,18 @@
   padding-left: 1.5rem;
 }
 
-
 .landing-page .large-feature-inner .right-side h4 {
-  font: 24px "Akkurat Pro Regular", Arial, sans-serif;
-  padding-bottom: .5rem;
+  font: 24px 'Akkurat Pro Regular', Arial, sans-serif;
+  padding-bottom: 0.5rem;
   margin-bottom: 1.5rem;
   border-bottom: 4px solid #ccc;
   color: #716c6b;
 }
 
-
 .landing-page .large-feature-inner .right-side ul {
   padding-left: 0;
   margin-left: 0;
 }
-
 
 .landing-page .large-feature-inner .right-side ul li {
   background: none;
@@ -1185,28 +1129,30 @@
   padding-left: 0;
 }
 
-
 .landing-page .large-feature-inner .right-side ul li:after {
-  background: url("https://common.northwestern.edu/v8/css/images/icons/arrow-right-dkpurple.svg") no-repeat 50%/6px;
+  background: url('https://common.northwestern.edu/v8/css/images/icons/arrow-right-dkpurple.svg')
+    no-repeat 50%/6px;
   padding-right: 2rem;
-  content: " ";
+  content: ' ';
 }
 
-
 .landing-page .large-feature-inner .right-side ul li a {
-  font-family: "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font-family: 'Akkurat Pro Bold', 'Arial Black', sans-serif;
 }
 
 @media screen and (max-width: 1100px) {
-
-  .landing-page .large-feature-inner .content-side, .landing-page .large-feature-inner > ul, .landing-page .large-feature-inner .right-side {
+  .landing-page .large-feature-inner .content-side,
+  .landing-page .large-feature-inner > ul,
+  .landing-page .large-feature-inner .right-side {
     float: none;
     width: 100%;
     border: none;
     border-right: 0;
   }
 
-  .landing-page .large-feature-inner .content-side li, .landing-page .large-feature-inner > ul li, .landing-page .large-feature-inner .right-side li {
+  .landing-page .large-feature-inner .content-side li,
+  .landing-page .large-feature-inner > ul li,
+  .landing-page .large-feature-inner .right-side li {
     padding-left: 0;
   }
 
@@ -1215,7 +1161,7 @@
   }
 
   .landing-page .large-feature-inner .content-side:after {
-    content: "";
+    content: '';
     display: table;
     clear: both;
   }
@@ -1226,7 +1172,6 @@
 }
 
 @media screen and (max-width: 850px) {
-
   .landing-page .large-feature-wrap {
     padding: 2rem;
   }
@@ -1246,7 +1191,6 @@
 }
 
 @media screen and (max-width: 480px) {
-
   .landing-page .large-feature-wrap {
     padding: 1rem;
   }
@@ -1259,7 +1203,8 @@
     font-size: 20px;
   }
 
-  .landing-page .large-feature h3:before, .landing-page .large-feature h3:after {
+  .landing-page .large-feature h3:before,
+  .landing-page .large-feature h3:after {
     background: none;
   }
 
@@ -1267,7 +1212,6 @@
     font-size: 28px;
   }
 }
-
 
 .landing-page .stats-callout {
   border-top: 4px solid #f0f0f0;
@@ -1279,7 +1223,6 @@
   flex-wrap: wrap;
 }
 
-
 .landing-page .stats-callout div {
   width: 33%;
   float: left;
@@ -1287,42 +1230,35 @@
   margin: 0 auto;
 }
 
-
 .landing-page .stats-callout span {
   display: table-cell;
   vertical-align: middle;
 }
 
-
 .landing-page .stats-callout span.big {
-  font: 72px/1.1em "Campton Bold", Impact, sans-serif;
+  font: 72px/1.1em 'Campton Bold', Impact, sans-serif;
   color: #4e2a84;
   display: block;
 }
-
 
 .landing-page .stats-callout span.small {
-  font: 24px "Campton Extra Light", "Courier New", sans-serif;
+  font: 24px 'Campton Extra Light', 'Courier New', sans-serif;
   color: #4e2a84;
   display: block;
 }
-
 
 .landing-page .stats-callout.one-callout {
   display: block;
 }
-
 
 .landing-page .stats-callout.one-callout div {
   width: 100%;
   float: none;
 }
 
-
 .landing-page .stats-callout.one-callout span.big {
   display: inline;
 }
-
 
 .landing-page .stats-callout.one-callout span.small {
   display: inline;
@@ -1330,50 +1266,47 @@
 }
 
 @media screen and (max-width: 800px) {
-
   .landing-page .stats-callout span.big {
-    font: 48px "Campton Bold", Impact, sans-serif;
+    font: 48px 'Campton Bold', Impact, sans-serif;
   }
 
   .landing-page .stats-callout span.small {
-    font: 20px "Campton Extra Light", "Courier New", sans-serif;
+    font: 20px 'Campton Extra Light', 'Courier New', sans-serif;
   }
 }
 
 @media screen and (max-width: 550px) {
-
   .landing-page .stats-callout span.big {
-    font: 24px "Campton Bold", Impact, sans-serif;
+    font: 24px 'Campton Bold', Impact, sans-serif;
   }
 
   .landing-page .stats-callout span.small {
-    font: 15px "Campton Extra Light", "Courier New", sans-serif;
+    font: 15px 'Campton Extra Light', 'Courier New', sans-serif;
   }
 }
 
 @media screen and (max-width: 480px) {
-
-  .landing-page .stats-callout.one-callout span.big, .landing-page .stats-callout.one-callout span.small {
+  .landing-page .stats-callout.one-callout span.big,
+  .landing-page .stats-callout.one-callout span.small {
     display: block;
   }
 }
-
 
 .landing-page .alternate-photo-float {
   margin-bottom: 5rem;
 }
 
-
 .landing-page .alternate-photo-float h4 {
-  font: 30px "Akkurat Pro Regular", Arial, sans-serif;
+  font: 30px 'Akkurat Pro Regular', Arial, sans-serif;
   color: #716c6b;
   border-bottom: 4px solid #ccc;
   text-transform: none;
-  padding-bottom: .5rem;
+  padding-bottom: 0.5rem;
 }
 
-
-.landing-page .alternate-photo-float .image-left, .landing-page .alternate-photo-float .image-right, .landing-page .alternate-photo-float .text {
+.landing-page .alternate-photo-float .image-left,
+.landing-page .alternate-photo-float .image-right,
+.landing-page .alternate-photo-float .text {
   width: 49.10714%;
   max-width: 550px;
   margin-right: 3.57143%;
@@ -1382,11 +1315,11 @@
   max-height: 310px;
 }
 
-
-.landing-page .alternate-photo-float .image-left:last-child, .landing-page .alternate-photo-float .image-right:last-child, .landing-page .alternate-photo-float .text:last-child {
+.landing-page .alternate-photo-float .image-left:last-child,
+.landing-page .alternate-photo-float .image-right:last-child,
+.landing-page .alternate-photo-float .text:last-child {
   margin-right: 0;
 }
-
 
 .landing-page .alternate-photo-float .text {
   width: 47.32143%;
@@ -1395,18 +1328,15 @@
   max-height: none;
 }
 
-
 .landing-page .alternate-photo-float .text:last-child {
   margin-right: 0;
 }
 
-
 .landing-page .alternate-photo-float .text.tl-text {
   color: #4e2a84;
-  font: 24px/1.2em "Campton Book",Tahoma,sans-serif;
+  font: 24px/1.2em 'Campton Book', Tahoma, sans-serif;
   margin-bottom: 1em;
 }
-
 
 .landing-page .alternate-photo-float .text ul {
   list-style: none;
@@ -1422,16 +1352,14 @@
   padding: 0;
 }
 
-
 .landing-page .alternate-photo-float .text ul li {
   background: none;
-  padding: 0 0 .5em 0;
+  padding: 0 0 0.5em 0;
   line-height: 1.5em;
   -webkit-column-break-inside: avoid;
   page-break-inside: avoid;
   break-inside: avoid;
 }
-
 
 .landing-page .alternate-photo-float .text .column {
   width: 45%;
@@ -1439,11 +1367,9 @@
   float: left;
 }
 
-
 .landing-page .alternate-photo-float .text .column:last-child {
   margin-right: 0;
 }
-
 
 .landing-page .alternate-photo-float .text .column ul {
   -moz-column-count: 1;
@@ -1454,11 +1380,9 @@
   column-gap: normal;
 }
 
-
 .landing-page .alternate-photo-float .text img {
   z-index: 30;
 }
-
 
 .landing-page .alternate-photo-float .text-over-image {
   position: absolute;
@@ -1468,28 +1392,24 @@
   text-align: center;
   z-index: 31;
   padding: 0 1em;
-  font: 24px "Campton Extra Bold", Impact, sans-serif;
+  font: 24px 'Campton Extra Bold', Impact, sans-serif;
 }
-
 
 .landing-page .alternate-photo-float .text-over-image p {
   margin: 0;
 }
 
-
 .landing-page .alternate-photo-float .text-over-image .big {
-  font: 72px/1em "Campton Bold", Impact, sans-serif;
+  font: 72px/1em 'Campton Bold', Impact, sans-serif;
 }
 
 @media screen and (max-width: 1150px) {
-
   .landing-page .alternate-photo-float .quote {
     font-size: 20px;
   }
 }
 
 @media screen and (max-width: 900px) {
-
   .landing-page .alternate-photo-float .quote {
     font-size: 18px;
   }
@@ -1506,7 +1426,6 @@
 }
 
 @media screen and (max-width: 875px) {
-
   .landing-page .alternate-photo-float {
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -1526,14 +1445,18 @@
     margin-top: 1rem;
   }
 
-  .landing-page .alternate-photo-float .image-left, .landing-page .alternate-photo-float .image-right, .landing-page .alternate-photo-float .text {
+  .landing-page .alternate-photo-float .image-left,
+  .landing-page .alternate-photo-float .image-right,
+  .landing-page .alternate-photo-float .text {
     width: 100%;
     float: none;
     position: relative;
     margin-right: 0;
   }
 
-  .landing-page .alternate-photo-float .image-left:last-child, .landing-page .alternate-photo-float .image-right:last-child, .landing-page .alternate-photo-float .text:last-child {
+  .landing-page .alternate-photo-float .image-left:last-child,
+  .landing-page .alternate-photo-float .image-right:last-child,
+  .landing-page .alternate-photo-float .text:last-child {
     margin-right: auto;
   }
 
@@ -1549,14 +1472,12 @@
 }
 
 @media screen and (max-width: 768px) {
-
   .landing-page .alternate-photo-float .text.tl-text {
     font-size: 22px;
   }
 }
 
 @media screen and (max-width: 480px) {
-
   .landing-page .alternate-photo-float .text.tl-text {
     font-size: 18px;
   }
@@ -1576,7 +1497,6 @@
 }
 
 @media screen and (max-width: 420px) {
-
   .landing-page .alternate-photo-float .text ul {
     -moz-column-count: inherit;
     -moz-column-gap: inherit;
@@ -1588,7 +1508,6 @@
 }
 
 @media screen and (max-width: 380px) {
-
   .landing-page .alternate-photo-float .text-over-image {
     font-size: 18px;
     line-height: 1em;
@@ -1599,13 +1518,11 @@
   }
 }
 
-
 .landing-page .background-select {
   width: 100%;
   display: table;
   min-height: 400px;
 }
-
 
 .landing-page .background-select .background-select-image {
   text-align: center;
@@ -1616,70 +1533,60 @@
   padding: 5rem 1em 3rem 1em;
 }
 
-
 .landing-page .background-select h3 {
   margin-bottom: 2rem;
 }
-
 
 .landing-page .background-select p {
   margin-bottom: 3rem;
 }
 
-
 .landing-page .background-select a.button {
   margin-bottom: 2rem;
 }
 
-
 .landing-page .background-select.purple-slashes p {
   color: #fff;
 }
-
 
 .landing-page .background-select.purple-slashes h3 {
   color: #fff;
 }
 
 @media screen and (max-width: 960px) {
-
   .landing-page .purple-slashes .purple-half {
     padding: 2rem;
   }
 }
 
 @media screen and (max-width: 875px) {
-
   .landing-page .background-select p.subhead {
     font-size: 36px;
   }
 }
 
-
 .landing-page .quote {
-  font: 24px/1.2em "Campton Book", Tahoma, sans-serif;
+  font: 24px/1.2em 'Campton Book', Tahoma, sans-serif;
   color: #4e2a84;
   margin-bottom: 1em;
 }
 
-
 .landing-page .quote span {
-  background: url("https://common.northwestern.edu/v8/css/images/icons/quote.png") no-repeat;
+  background: url('https://common.northwestern.edu/v8/css/images/icons/quote.png')
+    no-repeat;
   width: 35px;
   height: 24px;
   display: inline-block;
-  margin-right: .5rem;
+  margin-right: 0.5rem;
 }
 
-
 .landing-page .quote figcaption {
-  font: 16px/1.4em "Akkurat Pro Regular", Arial, sans-serif;
+  font: 16px/1.4em 'Akkurat Pro Regular', Arial, sans-serif;
   color: #716c6b;
 }
 
-
 .landing-page .quote figcaption span {
-  font: 18px "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font: 18px 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   background: none;
   height: inherit;
   width: inherit;
@@ -1687,13 +1594,13 @@
   margin-right: inherit;
 }
 
-
 .landing-page .number-boxes {
-  background: #4e2a84 url("https://common.northwestern.edu/v8/css/images/slashes.purple-bg.gif") repeat;
+  background: #4e2a84
+    url('https://common.northwestern.edu/v8/css/images/slashes.purple-bg.gif')
+    repeat;
   padding: 2em 1em;
   text-align: center;
 }
-
 
 .landing-page .number-boxes .half {
   width: 50%;
@@ -1702,25 +1609,21 @@
   padding: 2rem 7rem;
 }
 
-
 .landing-page .number-boxes .half:last-child {
   border-right: none;
 }
 
-
 .landing-page .number-boxes .half p {
-  font: 24px "Campton Extra Bold", Impact, sans-serif;
+  font: 24px 'Campton Extra Bold', Impact, sans-serif;
   color: #b6acd1;
 }
 
-
 .landing-page .number-boxes .half p span {
-  font: 96px "Campton Bold", Impact, sans-serif;
+  font: 96px 'Campton Bold', Impact, sans-serif;
   color: #fff;
 }
 
 @media screen and (max-width: 768px) {
-
   .landing-page .number-boxes .half {
     padding: 2rem;
   }
@@ -1735,7 +1638,6 @@
 }
 
 @media screen and (max-width: 480px) {
-
   .landing-page .number-boxes .half {
     width: 100%;
     float: none;
@@ -1749,62 +1651,59 @@
   }
 }
 
-
 .landing-page .news-event {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-
 .landing-page .news-event section {
   margin-bottom: 2rem;
 }
 
-
-.landing-page .news, .landing-page .events {
+.landing-page .news,
+.landing-page .events {
   border-bottom: 4px solid #ccc;
   position: relative;
 }
 
-
-.landing-page .news h4, .landing-page .events h4 {
-  font: 30px "Akkurat Pro Regular", Arial, sans-serif;
+.landing-page .news h4,
+.landing-page .events h4 {
+  font: 30px 'Akkurat Pro Regular', Arial, sans-serif;
   color: #716c6b;
   border-bottom: 4px solid #ccc;
-  padding-bottom: .5rem;
+  padding-bottom: 0.5rem;
   margin-bottom: 1.5rem;
 }
 
-
-.landing-page .news h5, .landing-page .events h5 {
-  font: 18px/1.3em "Akkurat Pro Bold", "Arial Black", sans-serif;
+.landing-page .news h5,
+.landing-page .events h5 {
+  font: 18px/1.3em 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   color: #342f2e;
   margin-bottom: 1rem;
 }
 
-
-.landing-page .news p.link, .landing-page .events p.link {
-  font: 16px "Akkurat Pro Bold", "Arial Black", sans-serif;
+.landing-page .news p.link,
+.landing-page .events p.link {
+  font: 16px 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   position: absolute;
   bottom: -2.5rem;
   text-transform: uppercase;
   margin-bottom: 0;
 }
 
-
-.landing-page .news p.link:after, .landing-page .events p.link:after {
-  background: url("https://common.northwestern.edu/v8/css/images/icons/arrow-right-dkpurple.svg") no-repeat top 35% right 50%/6px 10px;
+.landing-page .news p.link:after,
+.landing-page .events p.link:after {
+  background: url('https://common.northwestern.edu/v8/css/images/icons/arrow-right-dkpurple.svg')
+    no-repeat top 35% right 50%/6px 10px;
   padding-right: 1.5em;
-  content: " ";
+  content: ' ';
 }
-
 
 .landing-page .news {
   float: left;
   width: 66.07143%;
 }
-
 
 .landing-page .news-box {
   float: left;
@@ -1813,11 +1712,9 @@
   margin-bottom: 1rem;
 }
 
-
 .landing-page .news-box:nth-of-type(2n) {
   margin-right: 0;
 }
-
 
 .landing-page .news-box .news-image {
   width: 47.22222%;
@@ -1825,12 +1722,10 @@
   margin-right: 2.77778%;
 }
 
-
 .landing-page .news-box .news-text {
   float: left;
   width: 50%;
 }
-
 
 .landing-page .news-full {
   position: relative;
@@ -1838,13 +1733,11 @@
   margin-bottom: 6rem;
 }
 
-
 .landing-page .news-full .news-box h4 {
-  font: 18px/1.3em "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font: 18px/1.3em 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   color: #4e2a84;
   margin-bottom: 1rem;
 }
-
 
 .landing-page .news-full .news-box {
   float: left;
@@ -1853,11 +1746,9 @@
   margin-bottom: 1rem;
 }
 
-
 .landing-page .news-full .news-box:nth-of-type(3n) {
   margin-right: 0;
 }
-
 
 .landing-page .news-full .news-box .news-image {
   width: 47.22222%;
@@ -1865,37 +1756,31 @@
   margin-right: 2.77778%;
 }
 
-
 .landing-page .news-full .news-box .news-text {
   float: left;
   width: 50%;
 }
 
-
 .landing-page .news-full p.link {
-  font: 16px "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font: 16px 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   position: absolute;
   bottom: -2.5rem;
   text-transform: uppercase;
   margin-bottom: 0;
 }
 
-
 .landing-page .showcase .news {
   width: 32.14286%;
   padding-bottom: 1rem;
 }
 
-
 .landing-page .showcase .news img {
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
-
 
 .landing-page .showcase .news h5 {
   color: #716c6b;
 }
-
 
 .landing-page .events {
   float: left;
@@ -1903,19 +1788,16 @@
   margin-left: 1.78571%;
 }
 
-
 .landing-page .events h5 {
-  margin-bottom: .2rem;
+  margin-bottom: 0.2rem;
   color: #716c6b;
 }
-
 
 .landing-page .events p {
   margin-top: 0;
 }
 
 @media screen and (max-width: 900px) {
-
   .landing-page .news {
     width: 60%;
   }
@@ -1941,7 +1823,6 @@
 }
 
 @media screen and (max-width: 900px) {
-
   .landing-page .news-full .news-box {
     width: 47.77778%;
     margin-right: 2.22222%;
@@ -1962,7 +1843,6 @@
 }
 
 @media screen and (max-width: 768px) {
-
   .landing-page .news-event.showcase {
     display: inherit;
     margin-bottom: 3rem;
@@ -1974,7 +1854,8 @@
     margin-top: 2rem;
   }
 
-  .landing-page .news-event.showcase .news, .landing-page .news-event.showcase .events {
+  .landing-page .news-event.showcase .news,
+  .landing-page .news-event.showcase .events {
     width: 100%;
     float: none;
     margin-bottom: 3rem;
@@ -1982,7 +1863,8 @@
     border-bottom: none;
   }
 
-  .landing-page .news-event.showcase .news:nth-child(3, 3), .landing-page .news-event.showcase .events:nth-child(3, 3) {
+  .landing-page .news-event.showcase .news:nth-child(3, 3),
+  .landing-page .news-event.showcase .events:nth-child(3, 3) {
     margin-bottom: 0;
   }
 
@@ -1992,13 +1874,13 @@
 }
 
 @media screen and (max-width: 550px) {
-
   .landing-page .news-event {
     display: inherit;
     margin-bottom: 3rem;
   }
 
-  .landing-page .news, .landing-page .events {
+  .landing-page .news,
+  .landing-page .events {
     width: 100%;
     float: none;
     margin-bottom: 3rem;
@@ -2006,7 +1888,8 @@
     border-bottom: none;
   }
 
-  .landing-page .news p.link, .landing-page .events p.link {
+  .landing-page .news p.link,
+  .landing-page .events p.link {
     position: relative;
     bottom: 0;
     margin-top: 2rem;
@@ -2028,19 +1911,18 @@
 }
 
 @media screen and (max-width: 550px) {
-
-  .landing-page .news h5, .landing-page .events h5 {
+  .landing-page .news h5,
+  .landing-page .events h5 {
     font-size: 18px;
   }
 }
 
 @media screen and (max-width: 480px) {
-
-  .landing-page .news h4, .landing-page .events h4 {
+  .landing-page .news h4,
+  .landing-page .events h4 {
     font-size: 24px;
   }
 }
-
 
 .landing-page #announcement {
   background: #e4e0ee;
@@ -2050,34 +1932,29 @@
   max-width: 1440px;
 }
 
-
 .landing-page #announcement h2 {
-  font: 34px "Campton Bold", Impact, sans-serif;
+  font: 34px 'Campton Bold', Impact, sans-serif;
 }
 
-
 .landing-page #announcement h3 {
-  font: 26px "Campton Bold", Impact, sans-serif;
+  font: 26px 'Campton Bold', Impact, sans-serif;
   background: none;
   text-align: left;
 }
 
-
-.landing-page #announcement h3::before, .landing-page #announcement h3::after {
+.landing-page #announcement h3::before,
+.landing-page #announcement h3::after {
   background: none;
   padding: 0;
 }
 
-
 .landing-page #announcement h4 {
-  font: 21px "Campton Bold", Impact, sans-serif;
+  font: 21px 'Campton Bold', Impact, sans-serif;
 }
-
 
 .landing-page #announcement h5 {
-  font: 18px "Campton Bold", Impact, sans-serif;
+  font: 18px 'Campton Bold', Impact, sans-serif;
 }
-
 
 .landing-page #announcement a {
   color: #4e2a84;
@@ -2085,13 +1962,11 @@
   text-decoration: none;
 }
 
-
 .landing-page #announcement a:hover {
   text-decoration: underline;
 }
 
 @media screen and (max-width: 768px) {
-
   .landing-page #announcement h2 {
     font-size: 26px;
     line-height: 1.2em;
@@ -2106,8 +1981,8 @@
   }
 }
 
-
-.landing-page .swiper-button-next, .landing-page .swiper-button-prev {
+.landing-page .swiper-button-next,
+.landing-page .swiper-button-prev {
   width: 35px;
   height: 35px;
   -moz-background-size: 35px 35px;
@@ -2115,9 +1990,9 @@
   background-size: 35px 35px;
 }
 
-
 .landing-page .swiper-button-prev {
-  background: url("https://common.northwestern.edu/v8/css/images/icons/arrow-right-purple-white.svg") no-repeat;
+  background: url('https://common.northwestern.edu/v8/css/images/icons/arrow-right-purple-white.svg')
+    no-repeat;
   -webkit-transform: rotate(180deg);
   -moz-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
@@ -2127,18 +2002,17 @@
   right: auto;
 }
 
-
 .landing-page .swiper-button-next {
-  background: url("https://common.northwestern.edu/v8/css/images/icons/arrow-right-purple-white.svg") no-repeat;
+  background: url('https://common.northwestern.edu/v8/css/images/icons/arrow-right-purple-white.svg')
+    no-repeat;
   right: 10px;
   left: auto;
 }
 
-
 .landing-page .caption {
-  font: 20px/1.3em "Akkurat Pro Regular", Arial, sans-serif;
+  font: 20px/1.3em 'Akkurat Pro Regular', Arial, sans-serif;
   position: absolute;
-  bottom: .4rem;
+  bottom: 0.4rem;
   padding: 1rem;
   background: rgba(0, 0, 0, 0.3);
   color: #fff;
@@ -2146,47 +2020,43 @@
   margin: 0;
 }
 
-
 .landing-page .caption strong {
-  font-family: "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font-family: 'Akkurat Pro Bold', 'Arial Black', sans-serif;
 }
 
-
 .landing-page .caption a {
-  font-family: "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font-family: 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   text-transform: uppercase;
   text-decoration: none;
   color: #fff;
 }
 
-
 .landing-page .caption a:after {
-  background: url("https://common.northwestern.edu/v8/css/images/icons/arrow-right-white.svg") no-repeat 50%/8px 12px;
+  background: url('https://common.northwestern.edu/v8/css/images/icons/arrow-right-white.svg')
+    no-repeat 50%/8px 12px;
   padding-right: 1.5rem;
-  content: " ";
+  content: ' ';
 }
-
 
 .landing-page .caption a:hover {
   text-decoration: underline;
 }
 
 @media screen and (max-width: 768px) {
-
   .landing-page .caption {
     font-size: 16px;
   }
 }
 
 @media screen and (max-width: 600px) {
-
   .landing-page .caption {
     position: relative;
     background: #836eaa;
     font-size: 14px;
   }
 
-  .landing-page .swiper-button-next, .landing-page .swiper-button-prev {
+  .landing-page .swiper-button-next,
+  .landing-page .swiper-button-prev {
     width: 25px;
     height: 25px;
     -moz-background-size: 25px 25px;
@@ -2195,7 +2065,6 @@
     margin-top: -3rem;
   }
 }
-
 
 .landing-page .photo-grid {
   display: -webkit-flex;
@@ -2207,7 +2076,6 @@
   margin-top: 1.5rem;
 }
 
-
 .landing-page .photo-grid article {
   width: 23.66071%;
   margin-right: 1.78571%;
@@ -2216,51 +2084,45 @@
   line-height: 1.5rem;
 }
 
-
-.landing-page .photo-grid article:nth-of-type(4n+4) {
+.landing-page .photo-grid article:nth-of-type(4n + 4) {
   margin-right: 0;
 }
 
-
 .landing-page .photo-grid article h4 {
-  font: 16px "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font: 16px 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   color: #342f2e;
   margin: 1rem 0 0 0;
 }
 
-
 .landing-page .photo-grid article h4 + p {
-  margin-top: .5rem;
+  margin-top: 0.5rem;
 }
 
-
 .landing-page .photo-grid article p.link {
-  font-family: "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font-family: 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   text-transform: uppercase;
 }
 
-
 .landing-page .photo-grid article p.link:after {
-  background: url("https://common.northwestern.edu/v8/css/images/icons/arrow-right-dkpurple.svg") no-repeat 0.8em 3px/5px 8px;
+  background: url('https://common.northwestern.edu/v8/css/images/icons/arrow-right-dkpurple.svg')
+    no-repeat 0.8em 3px/5px 8px;
   padding-right: 3rem;
-  content: " ";
+  content: ' ';
 }
 
 @media screen and (max-width: 768px) {
-
   .landing-page .photo-grid article {
     width: 48.5%;
     max-width: 265px;
     margin-right: 3%;
   }
 
-  .landing-page .photo-grid article:nth-of-type(2n+2) {
+  .landing-page .photo-grid article:nth-of-type(2n + 2) {
     margin-right: 0;
   }
 }
 
 @media screen and (max-width: 475px) {
-
   .landing-page .photo-grid article {
     width: 100%;
   }

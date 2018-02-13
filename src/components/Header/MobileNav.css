@@ -43,7 +43,7 @@
   }
   #mobile-nav li {
     position: relative;
-    font: 18px "Akkurat Pro Bold", "Arial Black", sans-serif;
+    font: 18px 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   }
   #mobile-nav li a {
     text-decoration: none;
@@ -51,11 +51,11 @@
     display: block;
     border-bottom: 1px solid #f0f0f0;
     position: relative;
-    padding: .9em 3em .9em .8em;
+    padding: 0.9em 3em 0.9em 0.8em;
   }
   #mobile-nav li a.active {
     color: #000;
-    font-family: "Akkurat Pro Bold", "Arial Black", sans-serif;
+    font-family: 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   }
   #mobile-nav li .arrow.open a {
     -webkit-transform: rotate(180deg);
@@ -66,7 +66,8 @@
   #mobile-nav li .arrow a {
     width: 50px;
     height: 48px;
-    background: url("https://common.northwestern.edu/v8/css/images/icons/mobile-down-arrow-ltpurple.svg") no-repeat center/20px 20px;
+    background: url('https://common.northwestern.edu/v8/css/images/icons/mobile-down-arrow-ltpurple.svg')
+      no-repeat center/20px 20px;
     display: block;
     position: absolute;
     top: 0;
@@ -77,7 +78,7 @@
     padding: 0;
   }
   #mobile-nav li li {
-    font: 16px/1.2em "Akkurat Pro Regular", Arial, sans-serif;
+    font: 16px/1.2em 'Akkurat Pro Regular', Arial, sans-serif;
   }
   #mobile-nav li li a {
     padding-left: 1.5em;
@@ -98,7 +99,7 @@
     background: #401f68;
   }
   #mobile-nav-bottom:after {
-    content: "";
+    content: '';
     display: table;
     clear: both;
   }
@@ -121,14 +122,15 @@
   #mobile-nav-bottom li a {
     text-transform: uppercase;
     color: #fff;
-    font: 12px/2em "Akkurat Pro Bold", "Arial Black", sans-serif;
+    font: 12px/2em 'Akkurat Pro Bold', 'Arial Black', sans-serif;
     border: none;
     padding: inherit;
   }
   #mobile-nav-bottom li a.white-link {
     color: #fff;
   }
-  #mobile-nav-bottom #mobile-nav-bottom-left, #mobile-nav-bottom #mobile-nav-bottom-right {
+  #mobile-nav-bottom #mobile-nav-bottom-left,
+  #mobile-nav-bottom #mobile-nav-bottom-right {
     width: 50%;
     display: inline-block;
     float: left;

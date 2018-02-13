@@ -23,13 +23,91 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* line 3, /Library/WebServer/Documents/GIT/department-templates/scss/base/_reset.scss */
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, img, ins, kbd, q, s, samp, small, strike, tt, var, u, center, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, button,
-#top-nav ul, #top-nav li, #global-links ul, #global-links li, #left-nav ul, #left-nav li, ul#breadcrumbs, ul#breadcrumbs li {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+tt,
+var,
+u,
+center,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video,
+button,
+#top-nav ul,
+#top-nav li,
+#global-links ul,
+#global-links li,
+#left-nav ul,
+#left-nav li,
+ul#breadcrumbs,
+ul#breadcrumbs li {
   margin: 0;
   padding: 0;
   border: 0;
@@ -39,7 +117,16 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, blockquot
 }
 
 /* line 16, /Library/WebServer/Documents/GIT/department-templates/scss/base/_reset.scss */
-article, aside, details, figcaption, figure, header, hgroup, menu, main, section {
+article,
+aside,
+details,
+figcaption,
+figure,
+header,
+hgroup,
+menu,
+main,
+section {
   display: block;
 }
 
@@ -49,12 +136,16 @@ body {
 }
 
 /* line 24, /Library/WebServer/Documents/GIT/department-templates/scss/base/_reset.scss */
-blockquote, q {
+blockquote,
+q {
   quotes: none;
 }
 
 /* line 28, /Library/WebServer/Documents/GIT/department-templates/scss/base/_reset.scss */
-blockquote:before, blockquote:after, q:before, q:after {
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
   content: '';
   content: none;
 }
@@ -70,7 +161,7 @@ table {
   background: #fcf3c5;
   font: 1.5em/1em Arial, sans-serif;
   text-align: center;
-  padding: .5em;
+  padding: 0.5em;
   border-bottom: 1px solid #000;
 }
 
@@ -85,8 +176,22 @@ table {
 }
 
 /* line 20, /Library/WebServer/Documents/GIT/department-templates/scss/base/_mixins-extends.scss */
-#search:after, #tab-content > div:after, .tab-content > div:after, .standard-page #page:after, .standard-page .photo-feature-2-across:after, .standard-page .feature-two-col:after, .standard-page .alternate-photo-float:after, .standard-page .showcase .below-content:after, .standard-page .people-big .people-wrap:after, .standard-page .people-medium .people-wrap:after, .standard-page .people-small .people-wrap:after, .standard-page .news:after, .standard-page .plus-section:after, .narrow-page #news-story .wrap:after, .standard-page .photo-grid:after {
-  content: "";
+#search:after,
+#tab-content > div:after,
+.tab-content > div:after,
+.standard-page #page:after,
+.standard-page .photo-feature-2-across:after,
+.standard-page .feature-two-col:after,
+.standard-page .alternate-photo-float:after,
+.standard-page .showcase .below-content:after,
+.standard-page .people-big .people-wrap:after,
+.standard-page .people-medium .people-wrap:after,
+.standard-page .people-small .people-wrap:after,
+.standard-page .news:after,
+.standard-page .plus-section:after,
+.narrow-page #news-story .wrap:after,
+.standard-page .photo-grid:after {
+  content: '';
   display: table;
   clear: both;
 }
@@ -103,7 +208,7 @@ html {
 
 /* line 11, /Library/WebServer/Documents/GIT/department-templates/scss/base/_core.scss */
 body {
-  font: 62.5%/1.7em "Akkurat Pro Regular", Arial, sans-serif;
+  font: 62.5%/1.7em 'Akkurat Pro Regular', Arial, sans-serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -119,7 +224,7 @@ body {
 
 /* line 26, /Library/WebServer/Documents/GIT/department-templates/scss/base/_core.scss */
 a.screen-reader-shortcut {
-  left: .5em;
+  left: 0.5em;
   position: absolute;
   top: -99px;
 }
@@ -131,7 +236,7 @@ a.screen-reader-shortcut:focus {
   color: #401f68;
   font: bold 1.5em sans-serif;
   padding: 1rem;
-  top: .5rem;
+  top: 0.5rem;
   z-index: 5;
 }
 
@@ -184,9 +289,9 @@ a.screen-reader-shortcut:focus {
 /* line 84, /Library/WebServer/Documents/GIT/department-templates/scss/base/_core.scss */
 ul#breadcrumbs {
   list-style: none;
-  font: 12px/1.5rem "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font: 12px/1.5rem 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   text-transform: uppercase;
-  padding: 0 0 .5rem 0;
+  padding: 0 0 0.5rem 0;
   margin-bottom: 2rem;
   border-bottom: 4px solid #f0f0f0;
   min-height: 30px;
@@ -195,7 +300,8 @@ ul#breadcrumbs {
 /* line 93, /Library/WebServer/Documents/GIT/department-templates/scss/base/_core.scss */
 ul#breadcrumbs li {
   display: inline;
-  background: url("https://common.northwestern.edu/v8/css/images/icons/arrow-right-ltpurple.svg") no-repeat center left 8px/8px 8px;
+  background: url('https://common.northwestern.edu/v8/css/images/icons/arrow-right-ltpurple.svg')
+    no-repeat center left 8px/8px 8px;
   padding-left: 2em;
 }
 
@@ -239,8 +345,8 @@ ul#breadcrumbs a {
 
 /* line 135, /Library/WebServer/Documents/GIT/department-templates/scss/base/_core.scss */
 #instagram p {
-  font: 16px "Akkurat Pro Bold", "Arial Black", sans-serif;
-  padding: 1rem .5rem;
+  font: 16px 'Akkurat Pro Bold', 'Arial Black', sans-serif;
+  padding: 1rem 0.5rem;
   margin: 0;
   text-transform: uppercase;
   color: #fff;
@@ -283,7 +389,9 @@ img .outline {
 }
 
 /* line 176, /Library/WebServer/Documents/GIT/department-templates/scss/base/_core.scss */
-.responsive-container iframe, .responsive-container object, .responsive-container embed {
+.responsive-container iframe,
+.responsive-container object,
+.responsive-container embed {
   position: absolute;
   top: 0;
   left: 0;
@@ -304,7 +412,7 @@ img .outline {
 /* line 192, /Library/WebServer/Documents/GIT/department-templates/scss/base/_core.scss */
 .responsive-container .overlay h2 {
   color: white;
-  font: 60px/1.2em "Campton Bold", Impact, sans-serif;
+  font: 60px/1.2em 'Campton Bold', Impact, sans-serif;
   margin-bottom: 1rem;
   position: relative;
   text-shadow: 2px 2px 0 black;
@@ -312,7 +420,7 @@ img .outline {
 
 /* line 202, /Library/WebServer/Documents/GIT/department-templates/scss/base/_core.scss */
 a.photo-hover:hover {
-  opacity: .8;
+  opacity: 0.8;
 }
 
 /* line 206, /Library/WebServer/Documents/GIT/department-templates/scss/base/_core.scss */
@@ -327,27 +435,42 @@ a.photo-hover:hover {
 
 /* line 215, /Library/WebServer/Documents/GIT/department-templates/scss/base/_core.scss */
 .group:after {
-  content: "";
+  content: '';
   display: table;
   clear: both;
 }
 
 /* line 222, /Library/WebServer/Documents/GIT/department-templates/scss/base/_core.scss */
-a[href$=".pdf"], a[href$=".PDF"], a.pdf {
+a[href$='.pdf'],
+a[href$='.PDF'],
+a.pdf {
   padding-right: 1.25rem;
-  background: url("https://common.northwestern.edu/v8/css/images/icons/pdf.png") no-repeat right center;
+  background: url('https://common.northwestern.edu/v8/css/images/icons/pdf.png')
+    no-repeat right center;
 }
 
 /* line 227, /Library/WebServer/Documents/GIT/department-templates/scss/base/_core.scss */
-a[href$=".docx"], a[href$=".DOCX"], a.docx, a[href$=".doc"], a[href$=".DOC"], a.doc {
+a[href$='.docx'],
+a[href$='.DOCX'],
+a.docx,
+a[href$='.doc'],
+a[href$='.DOC'],
+a.doc {
   padding-right: 1.25rem;
-  background: url("https://common.northwestern.edu/v8/css/images/icons/word.png") no-repeat right center;
+  background: url('https://common.northwestern.edu/v8/css/images/icons/word.png')
+    no-repeat right center;
 }
 
 /* line 232, /Library/WebServer/Documents/GIT/department-templates/scss/base/_core.scss */
-a[href$=".xlsx"], a[href$=".XLSX"], a.xlsx, a[href$=".xls"], a[href$=".XLS"], a.xls {
+a[href$='.xlsx'],
+a[href$='.XLSX'],
+a.xlsx,
+a[href$='.xls'],
+a[href$='.XLS'],
+a.xls {
   padding-right: 1.25rem;
-  background: url("https://common.northwestern.edu/v8/css/images/icons/excel.png") no-repeat right center;
+  background: url('https://common.northwestern.edu/v8/css/images/icons/excel.png')
+    no-repeat right center;
 }
 
 @media screen and (max-width: 1140px) {
@@ -389,12 +512,12 @@ a[href$=".xlsx"], a[href$=".XLSX"], a.xlsx, a[href$=".xls"], a[href$=".XLS"], a.
   /* line 277, /Library/WebServer/Documents/GIT/department-templates/scss/base/_core.scss */
   .responsive-container .overlay h2 {
     font-size: 36px;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
   /* line 284, /Library/WebServer/Documents/GIT/department-templates/scss/base/_core.scss */
   #back-to-top {
     display: block;
-    font: 18px "Akkurat Pro Bold", "Arial Black", sans-serif;
+    font: 18px 'Akkurat Pro Bold', 'Arial Black', sans-serif;
     color: #401f68;
     text-align: center;
     text-transform: uppercase;
@@ -402,16 +525,18 @@ a[href$=".xlsx"], a[href$=".XLSX"], a.xlsx, a[href$=".xls"], a[href$=".XLS"], a.
   }
   /* line 292, /Library/WebServer/Documents/GIT/department-templates/scss/base/_core.scss */
   #back-to-top:before {
-    background: url("https://common.northwestern.edu/v8/css/images/icons/arrow-down-ltpurple.svg") no-repeat 50%/15px 19px;
+    background: url('https://common.northwestern.edu/v8/css/images/icons/arrow-down-ltpurple.svg')
+      no-repeat 50%/15px 19px;
     padding: 0 25px;
-    content: " ";
+    content: ' ';
   }
   /* line 298, /Library/WebServer/Documents/GIT/department-templates/scss/base/_core.scss */
   #back-to-top:after {
-    background: url("https://common.northwestern.edu/v8/css/images/icons/arrow-down-ltpurple.svg") no-repeat 50%/15px 19px;
+    background: url('https://common.northwestern.edu/v8/css/images/icons/arrow-down-ltpurple.svg')
+      no-repeat 50%/15px 19px;
     background-size: 15px 19px;
     padding: 0 25px;
-    content: " ";
+    content: ' ';
   }
   /* line 306, /Library/WebServer/Documents/GIT/department-templates/scss/base/_core.scss */
   #back-to-top {
@@ -419,11 +544,13 @@ a[href$=".xlsx"], a[href$=".XLSX"], a.xlsx, a[href$=".xls"], a[href$=".XLS"], a.
   }
   /* line 309, /Library/WebServer/Documents/GIT/department-templates/scss/base/_core.scss */
   #back-to-top:before {
-    background: url("https://common.northwestern.edu/v8/css/images/icons/arrow-up-ltpurple.svg") no-repeat 50%/15px 19px;
+    background: url('https://common.northwestern.edu/v8/css/images/icons/arrow-up-ltpurple.svg')
+      no-repeat 50%/15px 19px;
   }
   /* line 313, /Library/WebServer/Documents/GIT/department-templates/scss/base/_core.scss */
   #back-to-top:after {
-    background: url("https://common.northwestern.edu/v8/css/images/icons/arrow-up-ltpurple.svg") no-repeat 50%/15px 19px;
+    background: url('https://common.northwestern.edu/v8/css/images/icons/arrow-up-ltpurple.svg')
+      no-repeat 50%/15px 19px;
   }
   /* line 321, /Library/WebServer/Documents/GIT/department-templates/scss/base/_core.scss */
   #instagram ul li {
@@ -443,7 +570,7 @@ a[href$=".xlsx"], a[href$=".XLSX"], a.xlsx, a[href$=".xls"], a[href$=".XLS"], a.
   /* line 338, /Library/WebServer/Documents/GIT/department-templates/scss/base/_core.scss */
   .responsive-container .overlay h2 {
     font-size: 24px;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
   /* line 348, /Library/WebServer/Documents/GIT/department-templates/scss/base/_core.scss */
   #instagram ul li {
@@ -457,35 +584,35 @@ a[href$=".xlsx"], a[href$=".XLSX"], a.xlsx, a[href$=".xls"], a[href$=".XLS"], a.
 
 /* line 4, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
 h2 {
-  font: 46px/1.2em "Campton Book", Tahoma, sans-serif;
+  font: 46px/1.2em 'Campton Book', Tahoma, sans-serif;
   color: #4e2a84;
   margin-bottom: 1rem;
 }
 
 /* line 10, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
 h3 {
-  font: 34px/1.2em "Campton Bold", Impact, sans-serif;
+  font: 34px/1.2em 'Campton Bold', Impact, sans-serif;
   color: #4e2a84;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 
 /* line 16, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
 h4 {
-  font: 26px/1.2em "Akkurat Pro Regular", Arial, sans-serif;
+  font: 26px/1.2em 'Akkurat Pro Regular', Arial, sans-serif;
   color: #716c6b;
   margin-bottom: 1rem;
 }
 
 /* line 22, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
 h5 {
-  font: 21px/1.3em "Akkurat Pro Regular", Arial, sans-serif;
+  font: 21px/1.3em 'Akkurat Pro Regular', Arial, sans-serif;
   color: #4e2a84;
   margin-bottom: 1rem;
 }
 
 /* line 28, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
 h6 {
-  font: 18px/1.3em "Campton Bold", Impact, sans-serif;
+  font: 18px/1.3em 'Campton Bold', Impact, sans-serif;
   color: #716c6b;
   margin-bottom: 1rem;
 }
@@ -507,78 +634,112 @@ h6 {
 }
 
 /* line 51, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
-.content a, .content-full a {
-  font-family: "Akkurat Pro Bold", "Arial Black", sans-serif;
+.content a,
+.content-full a {
+  font-family: 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   color: #4e2a84;
   text-decoration: none;
 }
 
 /* line 56, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
-.content a:hover, .content-full a:hover {
+.content a:hover,
+.content-full a:hover {
   text-decoration: underline;
 }
 
 /* line 61, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
-.content a em, .content em a, .content a i, .content i a, .content-full a em, .content-full em a, .content-full a i, .content-full i a {
-  font-family: "Akkurat Pro Bold Italic", "Arial Black", sans-serif;
+.content a em,
+.content em a,
+.content a i,
+.content i a,
+.content-full a em,
+.content-full em a,
+.content-full a i,
+.content-full i a {
+  font-family: 'Akkurat Pro Bold Italic', 'Arial Black', sans-serif;
 }
 
 /* line 65, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
-.content strong, .content b, .content-full strong, .content-full b {
-  font-family: "Akkurat Pro Bold", "Arial Black", sans-serif;
+.content strong,
+.content b,
+.content-full strong,
+.content-full b {
+  font-family: 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   font-weight: normal;
 }
 
 /* line 70, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
-.content em, .content i, .content-full em, .content-full i {
-  font-family: "Akkurat Pro Italic", Arial, sans-serif;
+.content em,
+.content i,
+.content-full em,
+.content-full i {
+  font-family: 'Akkurat Pro Italic', Arial, sans-serif;
   font-style: normal;
 }
 
 /* line 75, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
-.content strong em, .content em strong, .content strong i, .content i strong, .content b i, .content i b, .content-full strong em, .content-full em strong, .content-full strong i, .content-full i strong, .content-full b i, .content-full i b {
-  font-family: "Akkurat Pro Bold Italic", "Arial Black", sans-serif;
+.content strong em,
+.content em strong,
+.content strong i,
+.content i strong,
+.content b i,
+.content i b,
+.content-full strong em,
+.content-full em strong,
+.content-full strong i,
+.content-full i strong,
+.content-full b i,
+.content-full i b {
+  font-family: 'Akkurat Pro Bold Italic', 'Arial Black', sans-serif;
   font-style: normal;
   font-weight: normal;
 }
 
 /* line 86, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
-.content ul, .content-full ul {
+.content ul,
+.content-full ul {
   padding-left: 1em;
 }
 
 /* line 89, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
-.content ul > li, .content-full ul > li {
+.content ul > li,
+.content-full ul > li {
   list-style: none;
-  background: url("https://common.northwestern.edu/v8/css/images/icons/bullet.png") 0 0.5em no-repeat;
-  padding: 0 0 .5em 1em;
+  background: url('https://common.northwestern.edu/v8/css/images/icons/bullet.png')
+    0 0.5em no-repeat;
+  padding: 0 0 0.5em 1em;
 }
 
 /* line 94, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
-.content ul > li > ul, .content-full ul > li > ul {
-  margin-top: .5em;
+.content ul > li > ul,
+.content-full ul > li > ul {
+  margin-top: 0.5em;
 }
 
 /* line 97, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
-.content ul > li > ul li, .content-full ul > li > ul li {
+.content ul > li > ul li,
+.content-full ul > li > ul li {
   background: none;
   list-style: circle;
-  padding-left: .5em;
+  padding-left: 0.5em;
 }
 
 /* line 102, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
-.content ul > li > ul li:last-child, .content-full ul > li > ul li:last-child {
+.content ul > li > ul li:last-child,
+.content-full ul > li > ul li:last-child {
   padding-bottom: 0;
 }
 
 /* line 108, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
-.content ul > li > ol, .content-full ul > li > ol {
+.content ul > li > ol,
+.content-full ul > li > ol {
   padding-left: 2em;
-  margin-top: .5em;
+  margin-top: 0.5em;
 }
 
 /* line 112, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
-.content ul > li > ol > li, .content-full ul > li > ol > li {
+.content ul > li > ol > li,
+.content-full ul > li > ol > li {
   background: none;
   list-style-type: decimal;
   overflow: inherit;
@@ -586,115 +747,134 @@ h6 {
 }
 
 /* line 118, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
-.content ul > li > ol > li:last-child, .content-full ul > li > ol > li:last-child {
+.content ul > li > ol > li:last-child,
+.content-full ul > li > ol > li:last-child {
   padding-bottom: 0;
 }
 
 /* line 125, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
-.content ul.center-list > li, .content-full ul.center-list > li {
+.content ul.center-list > li,
+.content-full ul.center-list > li {
   background: none;
   padding: 0;
 }
 
 /* line 131, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
-.content ol, .content-full ol {
+.content ol,
+.content-full ol {
   padding-left: 2.2em;
 }
 
 /* line 134, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
-.content ol > li, .content-full ol > li {
+.content ol > li,
+.content-full ol > li {
   list-style-type: decimal;
-  padding: 0 0 .5em .5em;
+  padding: 0 0 0.5em 0.5em;
 }
 
 /* line 138, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
-.content ol > li > ol, .content-full ol > li > ol {
-  margin-top: .5em;
+.content ol > li > ol,
+.content-full ol > li > ol {
+  margin-top: 0.5em;
   padding-left: 1.2em;
 }
 
 /* line 142, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
-.content ol > li > ol li, .content-full ol > li > ol li {
+.content ol > li > ol li,
+.content-full ol > li > ol li {
   list-style: lower-alpha;
 }
 
 /* line 145, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
-.content ol > li > ol li:last-child, .content-full ol > li > ol li:last-child {
+.content ol > li > ol li:last-child,
+.content-full ol > li > ol li:last-child {
   padding-bottom: 0;
 }
 
 /* line 151, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
-.content ol > li > ul, .content-full ol > li > ul {
-  margin-top: .5em;
+.content ol > li > ul,
+.content-full ol > li > ul {
+  margin-top: 0.5em;
   padding-left: 0;
 }
 
 /* line 159, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
-.content ol > li > ul > li:last-child, .content-full ol > li > ul > li:last-child {
+.content ol > li > ul > li:last-child,
+.content-full ol > li > ul > li:last-child {
   padding-bottom: 0;
 }
 
 /* line 167, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
-.content table, .content-full table {
+.content table,
+.content-full table {
   width: 100%;
   margin: 1em 0 0 0;
-  font-family: "Akkurat Pro Regular", Arial, sans-serif;
+  font-family: 'Akkurat Pro Regular', Arial, sans-serif;
   line-height: 1.5em;
 }
 
 /* line 173, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
-.content table th, .content-full table th {
+.content table th,
+.content-full table th {
   background: #4e2a84;
-  font: 18px "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font: 18px 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   color: #fff;
-  padding: .7rem 1rem .7rem 1rem;
+  padding: 0.7rem 1rem 0.7rem 1rem;
   text-align: left;
   border: 2px solid #fff;
 }
 
 /* line 182, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
-.content table td, .content-full table td {
-  padding: .7rem 1rem .7rem 1rem;
+.content table td,
+.content-full table td {
+  padding: 0.7rem 1rem 0.7rem 1rem;
   border: 2px solid #fff;
   vertical-align: top;
 }
 
 /* line 188, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
-.content table tr.stripe, .content-full table tr.stripe {
+.content table tr.stripe,
+.content-full table tr.stripe {
   background: #f0f0f0;
 }
 
 /* line 192, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
-.content table tr.hover td, .content-full table tr.hover td {
+.content table tr.hover td,
+.content-full table tr.hover td {
   background: #e4e0ee;
   color: #342f2e;
 }
 
 /* line 201, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
-.content table.table-no-hover tr.hover td, .content-full table.table-no-hover tr.hover td {
+.content table.table-no-hover tr.hover td,
+.content-full table.table-no-hover tr.hover td {
   background: none;
   color: inherit;
 }
 
 /* line 206, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
-.content table.table-no-hover tr.hover.stripe, .content-full table.table-no-hover tr.hover.stripe {
+.content table.table-no-hover tr.hover.stripe,
+.content-full table.table-no-hover tr.hover.stripe {
   background: #f0f0f0;
 }
 
 /* line 214, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
-.content table.table-center-header th, .content-full table.table-center-header th {
+.content table.table-center-header th,
+.content-full table.table-center-header th {
   text-align: center;
 }
 
 /* line 221, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
-.content table.table-no-stripe tr.stripe, .content-full table.table-no-stripe tr.stripe {
+.content table.table-no-stripe tr.stripe,
+.content-full table.table-no-stripe tr.stripe {
   background: transparent;
 }
 
 /* line 226, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
-.content table ul, .content-full table ul {
+.content table ul,
+.content-full table ul {
   margin-left: 0;
-  padding-top: .5rem;
+  padding-top: 0.5rem;
 }
 
 /* line 234, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
@@ -705,13 +885,13 @@ h6 {
 /* line 238, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
 .align-image-left {
   float: left;
-  margin: .5rem 1.5rem .5rem 0;
+  margin: 0.5rem 1.5rem 0.5rem 0;
 }
 
 /* line 243, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
 .align-image-right {
   float: right;
-  margin: .5rem 0 .5rem 1.5rem;
+  margin: 0.5rem 0 0.5rem 1.5rem;
 }
 
 /* line 248, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
@@ -722,7 +902,9 @@ h6 {
 
 @media screen and (max-width: 768px) {
   /* line 255, /Library/WebServer/Documents/GIT/department-templates/scss/base/_typography.scss */
-  .align-image-left, .align-image-right, .align-image-center {
+  .align-image-left,
+  .align-image-right,
+  .align-image-center {
     float: none;
     margin: 0 0 1rem 0;
     display: block;
@@ -730,84 +912,94 @@ h6 {
 }
 
 @font-face {
-  font-family: "Akkurat Pro Light";
-  src: url("https://common.northwestern.edu/v8/css/fonts/AkkuratProLight.woff") format("woff");
+  font-family: 'Akkurat Pro Light';
+  src: url('https://common.northwestern.edu/v8/css/fonts/AkkuratProLight.woff')
+    format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Akkurat Pro Light Italic";
-  src: url("https://common.northwestern.edu/v8/css/fonts/AkkuratProLightItalic.woff") format("woff");
+  font-family: 'Akkurat Pro Light Italic';
+  src: url('https://common.northwestern.edu/v8/css/fonts/AkkuratProLightItalic.woff')
+    format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Akkurat Pro Regular";
-  src: url("https://common.northwestern.edu/v8/css/fonts/AkkuratProRegular.woff") format("woff");
+  font-family: 'Akkurat Pro Regular';
+  src: url('https://common.northwestern.edu/v8/css/fonts/AkkuratProRegular.woff')
+    format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Akkurat Pro Italic";
-  src: url("https://common.northwestern.edu/v8/css/fonts/AkkuratProItalic.woff") format("woff");
+  font-family: 'Akkurat Pro Italic';
+  src: url('https://common.northwestern.edu/v8/css/fonts/AkkuratProItalic.woff')
+    format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Akkurat Pro Bold";
-  src: url("https://common.northwestern.edu/v8/css/fonts/AkkuratProBold.woff") format("woff");
+  font-family: 'Akkurat Pro Bold';
+  src: url('https://common.northwestern.edu/v8/css/fonts/AkkuratProBold.woff')
+    format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Akkurat Pro Bold Italic";
-  src: url("https://common.northwestern.edu/v8/css/fonts/AkkuratProBoldItalic.woff") format("woff");
+  font-family: 'Akkurat Pro Bold Italic';
+  src: url('https://common.northwestern.edu/v8/css/fonts/AkkuratProBoldItalic.woff')
+    format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Campton Book";
-  src: url("https://common.northwestern.edu/v8/css/fonts/CamptonBook.woff") format("woff");
+  font-family: 'Campton Book';
+  src: url('https://common.northwestern.edu/v8/css/fonts/CamptonBook.woff')
+    format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Campton Bold";
-  src: url("https://common.northwestern.edu/v8/css/fonts/CamptonBold.woff") format("woff");
+  font-family: 'Campton Bold';
+  src: url('https://common.northwestern.edu/v8/css/fonts/CamptonBold.woff')
+    format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Campton Extra Bold";
-  src: url("https://common.northwestern.edu/v8/css/fonts/CamptonExtraBold.woff") format("woff");
+  font-family: 'Campton Extra Bold';
+  src: url('https://common.northwestern.edu/v8/css/fonts/CamptonExtraBold.woff')
+    format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Campton Extra Light";
-  src: url("https://common.northwestern.edu/v8/css/fonts/CamptonExtraLight.woff") format("woff");
+  font-family: 'Campton Extra Light';
+  src: url('https://common.northwestern.edu/v8/css/fonts/CamptonExtraLight.woff')
+    format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 /* line 5, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
 .web-form form {
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 
 /* line 9, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
 .web-form fieldset {
   border: 1px solid #f0f0f0;
-  padding: .35em .625em .75em;
+  padding: 0.35em 0.625em 0.75em;
   margin: 0;
   border: 0;
 }
@@ -818,8 +1010,8 @@ h6 {
   margin-left: -7px;
   display: block;
   width: 100%;
-  padding: .3em 0;
-  margin-bottom: .3em;
+  padding: 0.3em 0;
+  margin-bottom: 0.3em;
   color: #342f2e;
   border-bottom: 1px solid #ccc;
 }
@@ -835,48 +1027,56 @@ h6 {
 }
 
 /* line 35, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
-.web-form label, .web-form .label {
-  margin: .5em 0 .2em;
+.web-form label,
+.web-form .label {
+  margin: 0.5em 0 0.2em;
   display: block;
 }
 
 /* line 39, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
-.web-form label.inline, .web-form .label.inline {
+.web-form label.inline,
+.web-form .label.inline {
   display: inline;
-  margin: .5em 1em .2em 0;
+  margin: 0.5em 1em 0.2em 0;
 }
 
 /* line 44, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
-.web-form label.right, .web-form .label.right {
+.web-form label.right,
+.web-form .label.right {
   font-style: italic;
   font-weight: normal;
-  font-size: .9em;
+  font-size: 0.9em;
 }
 
 /* line 50, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
-.web-form label .required, .web-form .label .required {
+.web-form label .required,
+.web-form .label .required {
   display: inline;
 }
 
 /* line 55, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
-.web-form input + label, .web-form select + label, .web-form .label-secondary + label, .web-form .required + label {
+.web-form input + label,
+.web-form select + label,
+.web-form .label-secondary + label,
+.web-form .required + label {
   margin: 1.5rem 0 0;
 }
 
 /* line 59, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
-.web-form input[type="text"] {
+.web-form input[type='text'] {
   border: 1px solid #ccc;
-  font-family: "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font-family: 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   color: #342f2e;
   -webkit-appearance: none;
   -moz-appearance: none;
   -webkit-border-radius: 0;
-  padding: .25rem .5rem;
-  margin: 0 .65rem 0 0;
+  padding: 0.25rem 0.5rem;
+  margin: 0 0.65rem 0 0;
 }
 
 /* line 70, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
-.web-form input[type=checkbox], .web-form input[type=radio] {
+.web-form input[type='checkbox'],
+.web-form input[type='radio'] {
   box-sizing: border-box;
   padding: 0;
   height: 15px;
@@ -884,7 +1084,7 @@ h6 {
 }
 
 /* line 77, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
-.web-form input[type=search] {
+.web-form input[type='search'] {
   -webkit-appearance: textfield;
   -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box;
@@ -892,12 +1092,28 @@ h6 {
 }
 
 /* line 84, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
-.web-form input[type=search]::-webkit-search-cancel-button, .web-form input[type=search]::-webkit-search-decoration {
+.web-form input[type='search']::-webkit-search-cancel-button,
+.web-form input[type='search']::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 
 /* line 88, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
-.web-form input[type=text], .web-form input[type=password], .web-form input[type=email], .web-form input[type=url], .web-form input[type=date], .web-form input[type=month], .web-form input[type=time], .web-form input[type=datetime], .web-form input[type=datetime-local], .web-form input[type=week], .web-form input[type=number], .web-form input[type=search], .web-form input[type=tel], .web-form input[type=color], .web-form select, .web-form textarea {
+.web-form input[type='text'],
+.web-form input[type='password'],
+.web-form input[type='email'],
+.web-form input[type='url'],
+.web-form input[type='date'],
+.web-form input[type='month'],
+.web-form input[type='time'],
+.web-form input[type='datetime'],
+.web-form input[type='datetime-local'],
+.web-form input[type='week'],
+.web-form input[type='number'],
+.web-form input[type='search'],
+.web-form input[type='tel'],
+.web-form input[type='color'],
+.web-form select,
+.web-form textarea {
   display: inline-block;
   border: 1px solid #ccc;
   color: #716c6b;
@@ -908,7 +1124,7 @@ h6 {
   -webkit-font-smoothing: antialiased;
   width: 50%;
   background: #fff;
-  padding: .5em;
+  padding: 0.5em;
   -webkit-transition: 0.3s linear border;
   -moz-transition: 0.3s linear border;
   -ms-transition: 0.3s linear border;
@@ -917,65 +1133,149 @@ h6 {
 }
 
 /* line 102, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
-.web-form input[type=text].required, .web-form input[type=password].required, .web-form input[type=email].required, .web-form input[type=url].required, .web-form input[type=date].required, .web-form input[type=month].required, .web-form input[type=time].required, .web-form input[type=datetime].required, .web-form input[type=datetime-local].required, .web-form input[type=week].required, .web-form input[type=number].required, .web-form input[type=search].required, .web-form input[type=tel].required, .web-form input[type=color].required, .web-form select.required, .web-form textarea.required {
+.web-form input[type='text'].required,
+.web-form input[type='password'].required,
+.web-form input[type='email'].required,
+.web-form input[type='url'].required,
+.web-form input[type='date'].required,
+.web-form input[type='month'].required,
+.web-form input[type='time'].required,
+.web-form input[type='datetime'].required,
+.web-form input[type='datetime-local'].required,
+.web-form input[type='week'].required,
+.web-form input[type='number'].required,
+.web-form input[type='search'].required,
+.web-form input[type='tel'].required,
+.web-form input[type='color'].required,
+.web-form select.required,
+.web-form textarea.required {
   border: 1px solid #b2292e;
 }
 
 /* line 107, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
-.web-form input[type=text].narrow, .web-form input[type=password].narrow, .web-form input[type=email].narrow, .web-form input[type=url].narrow, .web-form input[type=date].narrow, .web-form input[type=month].narrow, .web-form input[type=time].narrow, .web-form input[type=datetime].narrow, .web-form input[type=datetime-local].narrow, .web-form input[type=week].narrow, .web-form input[type=number].narrow, .web-form input[type=search].narrow, .web-form input[type=tel].narrow, .web-form input[type=color].narrow, .web-form select.narrow, .web-form textarea.narrow {
+.web-form input[type='text'].narrow,
+.web-form input[type='password'].narrow,
+.web-form input[type='email'].narrow,
+.web-form input[type='url'].narrow,
+.web-form input[type='date'].narrow,
+.web-form input[type='month'].narrow,
+.web-form input[type='time'].narrow,
+.web-form input[type='datetime'].narrow,
+.web-form input[type='datetime-local'].narrow,
+.web-form input[type='week'].narrow,
+.web-form input[type='number'].narrow,
+.web-form input[type='search'].narrow,
+.web-form input[type='tel'].narrow,
+.web-form input[type='color'].narrow,
+.web-form select.narrow,
+.web-form textarea.narrow {
   width: 25%;
 }
 
 /* line 112, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
-.web-form input[type=text]:focus, .web-form input[type=password]:focus, .web-form input[type=email]:focus, .web-form input[type=url]:focus, .web-form input[type=date]:focus, .web-form input[type=month]:focus, .web-form input[type=time]:focus, .web-form input[type=datetime]:focus, .web-form input[type=datetime-local]:focus, .web-form input[type=week]:focus, .web-form input[type=number]:focus, .web-form input[type=search]:focus, .web-form input[type=tel]:focus, .web-form input[type=color]:focus, .web-form select:focus, .web-form textarea:focus {
+.web-form input[type='text']:focus,
+.web-form input[type='password']:focus,
+.web-form input[type='email']:focus,
+.web-form input[type='url']:focus,
+.web-form input[type='date']:focus,
+.web-form input[type='month']:focus,
+.web-form input[type='time']:focus,
+.web-form input[type='datetime']:focus,
+.web-form input[type='datetime-local']:focus,
+.web-form input[type='week']:focus,
+.web-form input[type='number']:focus,
+.web-form input[type='search']:focus,
+.web-form input[type='tel']:focus,
+.web-form input[type='color']:focus,
+.web-form select:focus,
+.web-form textarea:focus {
   outline: 0 none;
   border-color: #4e2a84;
 }
 
 /* line 117, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
-.web-form input[type=text].required:focus, .web-form input[type=password].required:focus, .web-form input[type=email].required:focus, .web-form input[type=url].required:focus, .web-form input[type=date].required:focus, .web-form input[type=month].required:focus, .web-form input[type=time].required:focus, .web-form input[type=datetime].required:focus, .web-form input[type=datetime-local].required:focus, .web-form input[type=week].required:focus, .web-form input[type=number].required:focus, .web-form input[type=search].required:focus, .web-form input[type=tel].required:focus, .web-form input[type=color].required:focus, .web-form select.required:focus, .web-form textarea.required:focus {
+.web-form input[type='text'].required:focus,
+.web-form input[type='password'].required:focus,
+.web-form input[type='email'].required:focus,
+.web-form input[type='url'].required:focus,
+.web-form input[type='date'].required:focus,
+.web-form input[type='month'].required:focus,
+.web-form input[type='time'].required:focus,
+.web-form input[type='datetime'].required:focus,
+.web-form input[type='datetime-local'].required:focus,
+.web-form input[type='week'].required:focus,
+.web-form input[type='number'].required:focus,
+.web-form input[type='search'].required:focus,
+.web-form input[type='tel'].required:focus,
+.web-form input[type='color'].required:focus,
+.web-form select.required:focus,
+.web-form textarea.required:focus {
   border-color: #b2292e;
 }
 
 /* line 121, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
-.web-form input[type=file]:focus, .web-form input[type=radio]:focus, .web-form input[type=checkbox]:focus {
+.web-form input[type='file']:focus,
+.web-form input[type='radio']:focus,
+.web-form input[type='checkbox']:focus {
   outline: thin dotted #342f2e;
   outline: 1px auto #4e2a84;
 }
 
 /* line 126, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
-.web-form input[type=text][disabled], .web-form input[type=password][disabled], .web-form input[type=email][disabled], .web-form input[type=url][disabled], .web-form input[type=date][disabled], .web-form input[type=month][disabled], .web-form input[type=time][disabled], .web-form input[type=datetime][disabled], .web-form input[type=datetime-local][disabled], .web-form input[type=week][disabled], .web-form input[type=number][disabled], .web-form input[type=search][disabled], .web-form input[type=tel][disabled], .web-form input[type=color][disabled], .web-form select[disabled], .web-form textarea[disabled] {
+.web-form input[type='text'][disabled],
+.web-form input[type='password'][disabled],
+.web-form input[type='email'][disabled],
+.web-form input[type='url'][disabled],
+.web-form input[type='date'][disabled],
+.web-form input[type='month'][disabled],
+.web-form input[type='time'][disabled],
+.web-form input[type='datetime'][disabled],
+.web-form input[type='datetime-local'][disabled],
+.web-form input[type='week'][disabled],
+.web-form input[type='number'][disabled],
+.web-form input[type='search'][disabled],
+.web-form input[type='tel'][disabled],
+.web-form input[type='color'][disabled],
+.web-form select[disabled],
+.web-form textarea[disabled] {
   cursor: not-allowed;
   background-color: #f0f0f0;
   color: #ccc;
 }
 
 /* line 132, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
-.web-form input[readonly], .web-form select[readonly], .web-form textarea[readonly], .web-form input[readonly]:focus, .web-form select[readonly]:focus, .web-form textarea[readonly]:focus {
+.web-form input[readonly],
+.web-form select[readonly],
+.web-form textarea[readonly],
+.web-form input[readonly]:focus,
+.web-form select[readonly]:focus,
+.web-form textarea[readonly]:focus {
   background: #f0f0f0;
   color: #716c6b;
   border-color: #ccc;
 }
 
 /* line 138, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
-.web-form input[type=file] {
+.web-form input[type='file'] {
   background-image: none;
 }
 
 /* line 141, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
-.web-form input[type=file]:hover {
+.web-form input[type='file']:hover {
   background-image: none;
 }
 
 /* line 146, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
 .web-form select {
-  background: #fff url("https://common.northwestern.edu/v8/css/images/icons/arrow-down-dkpurple.svg") no-repeat top 50% right 0.5rem/17px 10px;
+  background: #fff
+    url('https://common.northwestern.edu/v8/css/images/icons/arrow-down-dkpurple.svg')
+    no-repeat top 50% right 0.5rem/17px 10px;
   color: #716c6b;
-  font-family: "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font-family: 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   border: 1px solid #ccc;
   display: inline-block;
-  padding: .5em;
-  margin: 0 .65rem 0 0;
+  padding: 0.5em;
+  margin: 0 0.65rem 0 0;
   -webkit-appearance: none;
   -moz-appearance: none;
   -webkit-border-radius: 0;
@@ -999,7 +1299,7 @@ h6 {
 
 /* line 168, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
 .web-form select option {
-  font-family: "Akkurat Pro Regular", Arial, sans-serif;
+  font-family: 'Akkurat Pro Regular', Arial, sans-serif;
 }
 
 /* line 173, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
@@ -1010,7 +1310,7 @@ h6 {
 /* line 177, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
 .web-form textarea {
   border: 1px solid #ccc;
-  padding: 0.3em 1.5em 0.3em .5em;
+  padding: 0.3em 1.5em 0.3em 0.5em;
   width: 100%;
   height: 8em;
   -webkit-appearance: none;
@@ -1024,7 +1324,7 @@ h6 {
 
 /* line 191, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
 .web-form .checkbox {
-  margin-right: .3em;
+  margin-right: 0.3em;
 }
 
 /* line 194, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
@@ -1041,7 +1341,7 @@ h6 {
 
 /* line 206, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
 .web-form .radio {
-  margin-right: .3em;
+  margin-right: 0.3em;
 }
 
 /* line 209, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
@@ -1057,7 +1357,8 @@ h6 {
 }
 
 /* line 224, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
-.web-form label span.required, .web-form .label span.required {
+.web-form label span.required,
+.web-form .label span.required {
   display: inline;
   margin-left: 0.5rem;
 }
@@ -1068,9 +1369,10 @@ h6 {
 }
 
 /* line 238, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
-.web-form .form-help-inline, .web-form .form-message-inline {
+.web-form .form-help-inline,
+.web-form .form-message-inline {
   display: inline-block;
-  padding-left: .3em;
+  padding-left: 0.3em;
   color: #716c6b;
   vertical-align: middle;
 }
@@ -1081,100 +1383,170 @@ h6 {
 }
 
 /* line 254, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
-.web-form button::-moz-focus-inner, .web-form input::-moz-focus-inner {
+.web-form button::-moz-focus-inner,
+.web-form input::-moz-focus-inner {
   border: 0;
   padding: 0;
 }
 
 /* line 259, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
-.web-form button, .web-form input, .web-form select, .web-form textarea {
+.web-form button,
+.web-form input,
+.web-form select,
+.web-form textarea {
   font-size: 100%;
   vertical-align: baseline;
   vertical-align: middle;
 }
 
 /* line 265, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
-.web-form button, .web-form input {
+.web-form button,
+.web-form input {
   line-height: normal;
 }
 
 /* line 269, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
-.web-form button, .web-form input[type=button], .web-form input[type=reset], .web-form input[type=submit] {
+.web-form button,
+.web-form input[type='button'],
+.web-form input[type='reset'],
+.web-form input[type='submit'] {
   -webkit-appearance: button;
   cursor: pointer;
   overflow: visible;
 }
 
 /* line 275, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
-.web-form button[disabled], .web-form input[disabled] {
+.web-form button[disabled],
+.web-form input[disabled] {
   cursor: default;
 }
 
 @media only screen and (max-width: 480px) {
   /* line 285, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
-  .web-form button[type=submit] {
-    margin: .7em 0 0;
+  .web-form button[type='submit'] {
+    margin: 0.7em 0 0;
   }
   /* line 289, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
-  .web-form input[type=text], .web-form input[type=password], .web-form input[type=email], .web-form input[type=url], .web-form input[type=date], .web-form input[type=month], .web-form input[type=time], .web-form input[type=datetime], .web-form input[type=datetime-local], .web-form input[type=week], .web-form input[type=number], .web-form input[type=search], .web-form input[type=tel], .web-form input[type=color], .web-form label {
-    margin-bottom: .3em;
+  .web-form input[type='text'],
+  .web-form input[type='password'],
+  .web-form input[type='email'],
+  .web-form input[type='url'],
+  .web-form input[type='date'],
+  .web-form input[type='month'],
+  .web-form input[type='time'],
+  .web-form input[type='datetime'],
+  .web-form input[type='datetime-local'],
+  .web-form input[type='week'],
+  .web-form input[type='number'],
+  .web-form input[type='search'],
+  .web-form input[type='tel'],
+  .web-form input[type='color'],
+  .web-form label {
+    margin-bottom: 0.3em;
     display: block;
   }
   /* line 294, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
-  .web-form input[type=text], .web-form input[type=password], .web-form input[type=email], .web-form input[type=url], .web-form input[type=date], .web-form input[type=month], .web-form input[type=time], .web-form input[type=datetime], .web-form input[type=datetime-local], .web-form input[type=week], .web-form input[type=number], .web-form input[type=search], .web-form input[type=tel], .web-form input[type=color], .web-form select, .web-form textarea {
+  .web-form input[type='text'],
+  .web-form input[type='password'],
+  .web-form input[type='email'],
+  .web-form input[type='url'],
+  .web-form input[type='date'],
+  .web-form input[type='month'],
+  .web-form input[type='time'],
+  .web-form input[type='datetime'],
+  .web-form input[type='datetime-local'],
+  .web-form input[type='week'],
+  .web-form input[type='number'],
+  .web-form input[type='search'],
+  .web-form input[type='tel'],
+  .web-form input[type='color'],
+  .web-form select,
+  .web-form textarea {
     width: 100%;
   }
   /* line 299, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
-  .web-form input[type=text].narrow, .web-form input[type=password].narrow, .web-form input[type=email].narrow, .web-form input[type=url].narrow, .web-form input[type=date].narrow, .web-form input[type=month].narrow, .web-form input[type=time].narrow, .web-form input[type=datetime].narrow, .web-form input[type=datetime-local].narrow, .web-form input[type=week].narrow, .web-form input[type=number].narrow, .web-form input[type=search].narrow, .web-form input[type=tel].narrow, .web-form input[type=color].narrow, .web-form select.narrow, .web-form textarea.narrow {
+  .web-form input[type='text'].narrow,
+  .web-form input[type='password'].narrow,
+  .web-form input[type='email'].narrow,
+  .web-form input[type='url'].narrow,
+  .web-form input[type='date'].narrow,
+  .web-form input[type='month'].narrow,
+  .web-form input[type='time'].narrow,
+  .web-form input[type='datetime'].narrow,
+  .web-form input[type='datetime-local'].narrow,
+  .web-form input[type='week'].narrow,
+  .web-form input[type='number'].narrow,
+  .web-form input[type='search'].narrow,
+  .web-form input[type='tel'].narrow,
+  .web-form input[type='color'].narrow,
+  .web-form select.narrow,
+  .web-form textarea.narrow {
     width: 50%;
   }
   /* line 305, /Library/WebServer/Documents/GIT/department-templates/scss/base/_forms.scss */
-  .web-form .form-help-inline, .web-form -message-inline, .web-form -message {
+  .web-form .form-help-inline,
+  .web-form -message-inline,
+  .web-form -message {
     display: block;
     font-size: 80%;
-    padding: .2em 0 .8em;
+    padding: 0.2em 0 0.8em;
   }
 }
 
 /* line 3, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_emergency.scss */
-#emergency, #breaking_news {
+#emergency,
+#breaking_news {
   background: #b2292e;
   padding: 1rem 5rem 1.5rem 5rem;
-  font: 16px "Akkurat Pro Regular", Arial, sans-serif;
+  font: 16px 'Akkurat Pro Regular', Arial, sans-serif;
   color: #fff;
   text-align: center;
 }
 
 /* line 10, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_emergency.scss */
-#emergency a, #breaking_news a {
+#emergency a,
+#breaking_news a {
   color: #fff;
   text-decoration: underline;
-  font-family: "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font-family: 'Akkurat Pro Bold', 'Arial Black', sans-serif;
 }
 
 /* line 15, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_emergency.scss */
-#emergency a:hover, #breaking_news a:hover {
+#emergency a:hover,
+#breaking_news a:hover {
   text-decoration: none;
 }
 
 /* line 20, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_emergency.scss */
-#emergency h1, #emergency h2, #emergency h4, #emergency h4, #emergency h5, #breaking_news h1, #breaking_news h2, #breaking_news h4, #breaking_news h4, #breaking_news h5 {
+#emergency h1,
+#emergency h2,
+#emergency h4,
+#emergency h4,
+#emergency h5,
+#breaking_news h1,
+#breaking_news h2,
+#breaking_news h4,
+#breaking_news h4,
+#breaking_news h5 {
   color: #fff;
 }
 
 /* line 24, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_emergency.scss */
-#emergency h2, #breaking_news h2 {
-  font: 26px "Campton Bold", Impact, sans-serif;
+#emergency h2,
+#breaking_news h2 {
+  font: 26px 'Campton Bold', Impact, sans-serif;
 }
 
 /* line 28, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_emergency.scss */
-#emergency h3, #breaking_news h3 {
-  font: 26px "Campton Bold", Impact, sans-serif;
+#emergency h3,
+#breaking_news h3 {
+  font: 26px 'Campton Bold', Impact, sans-serif;
 }
 
 /* line 32, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_emergency.scss */
-#emergency h4, #breaking_news h4 {
-  font: 24px "Campton Bold", Impact, sans-serif;
+#emergency h4,
+#breaking_news h4 {
+  font: 24px 'Campton Bold', Impact, sans-serif;
 }
 
 @media screen and (max-width: 768px) {
@@ -1201,7 +1573,7 @@ header {
 
 /* line 126, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_header.scss */
 #department h1 {
-  font: 32px "Akkurat Pro Regular", Arial, sans-serif;
+  font: 32px 'Akkurat Pro Regular', Arial, sans-serif;
   line-height: 1em;
 }
 
@@ -1219,7 +1591,7 @@ header {
 
 /* line 141, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_header.scss */
 #department h2 {
-  font: 32px "Akkurat Pro Regular", Arial, sans-serif;
+  font: 32px 'Akkurat Pro Regular', Arial, sans-serif;
   line-height: 1em;
   color: #fff;
   margin: 1rem 0 0 0;
@@ -1239,11 +1611,11 @@ header {
 @media screen and (max-width: 1445px) {
   /* line 161, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_header.scss */
   #top-bar {
-    padding: 0 .5rem;
+    padding: 0 0.5rem;
   }
   /* line 165, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_header.scss */
   #department {
-    padding-left: .5rem;
+    padding-left: 0.5rem;
   }
 }
 
@@ -1257,7 +1629,7 @@ header {
   #top-bar #left {
     display: inline-block;
     float: none;
-    margin-left: .5rem;
+    margin-left: 0.5rem;
   }
   /* line 182, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_header.scss */
   #top-bar #right {
@@ -1266,23 +1638,24 @@ header {
   /* line 187, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_header.scss */
   #department {
     width: 100%;
-    padding: .5rem;
+    padding: 0.5rem;
     height: auto;
   }
   /* line 192, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_header.scss */
   #department h1 {
-    margin: .5rem 0;
+    margin: 0.5rem 0;
     font-size: 24px;
   }
   /* line 197, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_header.scss */
   #department h2 {
-    margin: .2rem .2rem .2rem 0;
+    margin: 0.2rem 0.2rem 0.2rem 0;
   }
 }
 
 @media screen and (max-width: 480px) {
   /* line 207, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_header.scss */
-  #department h1, #department h2 {
+  #department h1,
+  #department h2 {
     font-size: 22px;
   }
 }
@@ -1304,9 +1677,9 @@ header {
 #search .search-form input {
   width: 230px;
   height: 35px;
-  padding: 0 .3em 0 0;
+  padding: 0 0.3em 0 0;
   float: left;
-  font: 18px "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font: 18px 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   background: none;
   color: #fff;
   border: none;
@@ -1340,7 +1713,8 @@ header {
   cursor: pointer;
   height: 35px;
   width: 35px;
-  background: url("https://common.northwestern.edu/v8/css/images/icons/search.svg") no-repeat 1em 0.4em;
+  background: url('https://common.northwestern.edu/v8/css/images/icons/search.svg')
+    no-repeat 1em 0.4em;
   background-size: 20px 20px;
   border: none;
   border-bottom: 1px solid #b6acd1;
@@ -1381,7 +1755,7 @@ header {
     margin: 0 20px;
     height: 63px;
     position: relative;
-    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA/CAYAAAAhZaJUAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDE0IDc5LjE1Njc5NywgMjAxNC8wOC8yMC0wOTo1MzowMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OThCRkYyRUZFQUM5MTFFNDg4MkNDNUM0RUJBRUJDM0YiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OThCRkYyRjBFQUM5MTFFNDg4MkNDNUM0RUJBRUJDM0YiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5OEJGRjJFREVBQzkxMUU0ODgyQ0M1QzRFQkFFQkMzRiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5OEJGRjJFRUVBQzkxMUU0ODgyQ0M1QzRFQkFFQkMzRiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pr4qas0AAAAeSURBVHjaYvj//z8DEwMQDHuCmf+n3n8G6vkXIMAAeQ0Iq8diMWYAAAAASUVORK5CYII=");
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA/CAYAAAAhZaJUAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDE0IDc5LjE1Njc5NywgMjAxNC8wOC8yMC0wOTo1MzowMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OThCRkYyRUZFQUM5MTFFNDg4MkNDNUM0RUJBRUJDM0YiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OThCRkYyRjBFQUM5MTFFNDg4MkNDNUM0RUJBRUJDM0YiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5OEJGRjJFREVBQzkxMUU0ODgyQ0M1QzRFQkFFQkMzRiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5OEJGRjJFRUVBQzkxMUU0ODgyQ0M1QzRFQkFFQkMzRiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pr4qas0AAAAeSURBVHjaYvj//z8DEwMQDHuCmf+n3n8G6vkXIMAAeQ0Iq8diMWYAAAAASUVORK5CYII=');
   }
   /* line 105, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_search.scss */
   .search-form input {
@@ -1389,7 +1763,7 @@ header {
     height: 32px;
     margin: 15px 0;
     float: left;
-    font: 18px "Akkurat Pro Bold", "Arial Black", sans-serif;
+    font: 18px 'Akkurat Pro Bold', 'Arial Black', sans-serif;
     color: #fff;
     background: none;
     border: none;
@@ -1401,7 +1775,8 @@ header {
     height: 32px;
     width: 32px;
     padding: 10px 0 15px;
-    background: url("https://common.northwestern.edu/v8/css/images/icons/search.svg") no-repeat 1em 0.4em/20px 20px;
+    background: url('https://common.northwestern.edu/v8/css/images/icons/search.svg')
+      no-repeat 1em 0.4em/20px 20px;
     background-position: right center;
     border-bottom: none;
     position: absolute;
@@ -1409,7 +1784,8 @@ header {
     bottom: 18px;
   }
   /* line 130, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_search.scss */
-  .search-form .hide-label, .search-form input[type="hidden"] {
+  .search-form .hide-label,
+  .search-form input[type='hidden'] {
     visibility: hidden;
     display: none;
   }
@@ -1419,7 +1795,7 @@ header {
 #left-nav {
   width: 23.66071%;
   float: left;
-  font-family: "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font-family: 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   margin-bottom: 3rem;
   outline: none !important;
 }
@@ -1433,9 +1809,9 @@ header {
 #left-nav h2 {
   border-bottom: 4px solid #f0f0f0;
   min-height: 30px;
-  padding-bottom: .5rem;
+  padding-bottom: 0.5rem;
   margin-bottom: 2rem;
-  font: 18px/1.5rem "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font: 18px/1.5rem 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   text-transform: none;
 }
 
@@ -1453,7 +1829,7 @@ header {
 /* line 31, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_left-nav.scss */
 #left-nav ul ul {
   margin-top: 1.5rem;
-  padding-left: .3rem;
+  padding-left: 0.3rem;
 }
 
 /* line 35, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_left-nav.scss */
@@ -1473,7 +1849,7 @@ header {
   padding-bottom: 1rem;
   font-size: 18px;
   line-height: 1.4em;
-  font-family: "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font-family: 'Akkurat Pro Bold', 'Arial Black', sans-serif;
 }
 
 /* line 53, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_left-nav.scss */
@@ -1495,7 +1871,7 @@ header {
 
 /* line 67, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_left-nav.scss */
 #left-nav li li {
-  margin-left: .5rem;
+  margin-left: 0.5rem;
   padding-bottom: 1rem;
   font-size: 14px;
 }
@@ -1503,18 +1879,18 @@ header {
 /* line 72, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_left-nav.scss */
 #left-nav li li li {
   margin-left: 1rem;
-  font-family: "Akkurat Pro Bold Italic", "Arial Black", sans-serif;
+  font-family: 'Akkurat Pro Bold Italic', 'Arial Black', sans-serif;
   color: #636262;
 }
 
 /* line 77, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_left-nav.scss */
 #left-nav li li li a.active {
-  font-family: "Akkurat Pro Bold Italic", "Arial Black", sans-serif;
+  font-family: 'Akkurat Pro Bold Italic', 'Arial Black', sans-serif;
 }
 
 /* line 83, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_left-nav.scss */
 #left-nav li:last-child {
-  padding-bottom: .3rem;
+  padding-bottom: 0.3rem;
 }
 
 /* line 87, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_left-nav.scss */
@@ -1530,11 +1906,11 @@ header {
 }
 
 @media screen and (max-width: 768px) {
-
 }
 
 /* line 2, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_responsive-tabs.scss */
-#tabs, .tabs {
+#tabs,
+.tabs {
   list-style: none;
   width: 100%;
   margin: 0;
@@ -1543,141 +1919,162 @@ header {
 }
 
 /* line 9, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_responsive-tabs.scss */
-#tabs li, .tabs li {
+#tabs li,
+.tabs li {
   background: none;
-  margin: 0 .3rem 0 0;
+  margin: 0 0.3rem 0 0;
   padding: 0;
   display: inline;
   vertical-align: middle;
 }
 
 /* line 16, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_responsive-tabs.scss */
-#tabs li:last-child, .tabs li:last-child {
+#tabs li:last-child,
+.tabs li:last-child {
   margin: 0;
 }
 
 /* line 20, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_responsive-tabs.scss */
-#tabs li a, .tabs li a {
-  font: 18px "Akkurat Pro Bold", "Arial Black", sans-serif;
+#tabs li a,
+.tabs li a {
+  font: 18px 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   color: #836eaa;
   background: #e4e0ee;
-  padding: .75rem 1.2rem .5rem 1.2rem;
+  padding: 0.75rem 1.2rem 0.5rem 1.2rem;
   display: inline-block;
-  -webkit-transition: all .2s ease;
-  transition: all .2s ease;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 /* line 29, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_responsive-tabs.scss */
-#tabs li a:hover, .tabs li a:hover {
+#tabs li a:hover,
+.tabs li a:hover {
   text-decoration: none;
   background: #4e2a84;
   color: #fff;
 }
 
 /* line 35, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_responsive-tabs.scss */
-#tabs li a.active, .tabs li a.active {
+#tabs li a.active,
+.tabs li a.active {
   background: #4e2a84;
   color: #fff;
 }
 
 /* line 44, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_responsive-tabs.scss */
-.content ul.tabs, .content-full ul.tabs {
+.content ul.tabs,
+.content-full ul.tabs {
   padding-left: 0;
 }
 
 /* line 48, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_responsive-tabs.scss */
-.content ul.tabs > li, .content-full ul.tabs > li {
+.content ul.tabs > li,
+.content-full ul.tabs > li {
   background: none;
   padding: 0;
 }
 
 /* line 54, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_responsive-tabs.scss */
-.standard-page #tabs, #standard-page .tabs {
+.standard-page #tabs,
+#standard-page .tabs {
   text-align: left;
 }
 
 /* line 58, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_responsive-tabs.scss */
-#tab-content, .tab-content {
+#tab-content,
+.tab-content {
   border-top: 3px solid #4e2a84;
   margin: 0 0 3rem 0;
   padding: 1rem 0 0 0;
 }
 
 /* line 66, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_responsive-tabs.scss */
-#tab-content > div h3, .tab-content > div h3 {
+#tab-content > div h3,
+.tab-content > div h3 {
   margin-top: 1rem;
 }
 
 /* line 72, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_responsive-tabs.scss */
-#tab-content .row, .tab-content .row {
+#tab-content .row,
+.tab-content .row {
   border-bottom: 3px solid #f0f0f0;
   padding: 0 0 2rem 0;
 }
 
 /* line 77, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_responsive-tabs.scss */
-#tab-content .responsive-table, .tab-content .responsive-table {
+#tab-content .responsive-table,
+.tab-content .responsive-table {
   margin-top: 0;
 }
 
 /* line 81, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_responsive-tabs.scss */
-#tab-content .headings, .tab-content .headings {
+#tab-content .headings,
+.tab-content .headings {
   display: table-cell;
   width: 32.14286%;
   padding-right: 1rem;
 }
 
 /* line 86, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_responsive-tabs.scss */
-#tab-content .headings h4, .tab-content .headings h4 {
-  font: 30px "Campton Bold", Impact, sans-serif;
+#tab-content .headings h4,
+.tab-content .headings h4 {
+  font: 30px 'Campton Bold', Impact, sans-serif;
   color: #4e2a84;
 }
 
 /* line 90, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_responsive-tabs.scss */
-#tab-content .headings h4 span, .tab-content .headings h4 span {
+#tab-content .headings h4 span,
+.tab-content .headings h4 span {
   display: block;
   color: #b6acd1;
 }
 
 /* line 97, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_responsive-tabs.scss */
-#tab-content .contents, .tab-content .contents {
+#tab-content .contents,
+.tab-content .contents {
   display: table-cell;
   width: 66.07143%;
 }
 
 /* line 101, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_responsive-tabs.scss */
-#tab-content .contents .callout, .tab-content .contents .callout {
+#tab-content .contents .callout,
+.tab-content .contents .callout {
   background: #836eaa;
-  padding: .1rem 1rem;
+  padding: 0.1rem 1rem;
   margin: 0 0 1rem 2rem;
   width: 266px;
-  font: 24px "Campton Book", Tahoma, sans-serif;
+  font: 24px 'Campton Book', Tahoma, sans-serif;
   color: #fff;
   float: right;
 }
 
 /* line 110, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_responsive-tabs.scss */
-#tab-content .contents .callout a, .tab-content .contents .callout a {
+#tab-content .contents .callout a,
+.tab-content .contents .callout a {
   text-decoration: underline;
-  font-family: "Campton Book", Tahoma, sans-serif;
+  font-family: 'Campton Book', Tahoma, sans-serif;
   color: #fff;
 }
 
 /* line 116, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_responsive-tabs.scss */
-#tab-content .contents .callout h4, .tab-content .contents .callout h4 {
-  font: 16px "Akkurat Pro Bold", "Arial Black", sans-serif;
+#tab-content .contents .callout h4,
+.tab-content .contents .callout h4 {
+  font: 16px 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   padding-top: 1rem;
   margin-bottom: 0;
   color: #fff;
 }
 
 /* line 122, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_responsive-tabs.scss */
-#tab-content .contents .callout h4 + p, .tab-content .contents .callout h4 + p {
-  margin: .5rem 0;
+#tab-content .contents .callout h4 + p,
+.tab-content .contents .callout h4 + p {
+  margin: 0.5rem 0;
 }
 
 @media screen and (max-width: 1150px) {
   /* line 133, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_responsive-tabs.scss */
-  #tabs li a, .tabs li a {
+  #tabs li a,
+  .tabs li a {
     font-size: 16px;
     margin-top: 5px;
   }
@@ -1692,7 +2089,8 @@ header {
 
 @media screen and (max-width: 850px) {
   /* line 150, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_responsive-tabs.scss */
-  #tab-content .contents .callout, .tab-content .contents .callout {
+  #tab-content .contents .callout,
+  .tab-content .contents .callout {
     float: none;
     margin: 1em 0 1em 0;
     width: 100%;
@@ -1706,16 +2104,25 @@ header {
     font-size: 18px;
   }
   /* line 170, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_responsive-tabs.scss */
-  #tab-content .headings, #tab-content .contents, .tab-content .headings, .tab-content .contents {
+  #tab-content .headings,
+  #tab-content .contents,
+  .tab-content .headings,
+  .tab-content .contents {
     width: 100%;
     display: block;
   }
   /* line 174, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_responsive-tabs.scss */
-  #tab-content .headings .callout, #tab-content .contents .callout, .tab-content .headings .callout, .tab-content .contents .callout {
+  #tab-content .headings .callout,
+  #tab-content .contents .callout,
+  .tab-content .headings .callout,
+  .tab-content .contents .callout {
     font-size: 18px;
   }
   /* line 178, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_responsive-tabs.scss */
-  #tab-content .headings h3, #tab-content .contents h3, .tab-content .headings h3, .tab-content .contents h3 {
+  #tab-content .headings h3,
+  #tab-content .contents h3,
+  .tab-content .headings h3,
+  .tab-content .contents h3 {
     font-size: 26px;
   }
 }
@@ -1740,19 +2147,24 @@ header {
 
 /* line 21, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_main.scss */
 .standard-page p + h3,
-.standard-page ul + h3, .standard-page ol + h3 {
+.standard-page ul + h3,
+.standard-page ol + h3 {
   margin-top: 2.5rem;
 }
 
 /* line 26, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_main.scss */
-.standard-page ul + h4, .standard-page ol + h4,
-.standard-page ul + h5, .standard-page ol + h5,
-.standard-page ul + h6, .standard-page ol + h6 {
+.standard-page ul + h4,
+.standard-page ol + h4,
+.standard-page ul + h5,
+.standard-page ol + h5,
+.standard-page ul + h6,
+.standard-page ol + h6 {
   margin-top: 2rem;
 }
 
 /* line 32, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_main.scss */
-.standard-page p + h4, .standard-page p + h6 {
+.standard-page p + h4,
+.standard-page p + h6 {
   margin-top: 2.5rem;
 }
 
@@ -1785,25 +2197,25 @@ header {
 
 /* line 59, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_main.scss */
 .standard-page #sidebar .box h3 {
-  font: 18px/1.2em "Campton Bold", Impact, sans-serif;
+  font: 18px/1.2em 'Campton Bold', Impact, sans-serif;
   color: #342f2e;
 }
 
 /* line 64, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_main.scss */
 .standard-page #sidebar .box h4 {
-  font: 16px/1.2em "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font: 16px/1.2em 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   color: #342f2e;
   margin-top: inherit;
 }
 
 /* line 70, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_main.scss */
 .standard-page #sidebar .box ul {
-  margin: 1em 0 .5em 0;
+  margin: 1em 0 0.5em 0;
 }
 
 /* line 73, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_main.scss */
 .standard-page #sidebar .box ul li {
-  background-position: 0 .3em;
+  background-position: 0 0.3em;
 }
 
 /* line 81, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_main.scss */
@@ -1823,10 +2235,10 @@ header {
   background: #fff;
   border: 1px solid #ccc;
   color: #716c6b;
-  font: 16px "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font: 16px 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   display: inline-block;
-  margin: 0 .4em .3em 0;
-  padding: .5rem .8rem;
+  margin: 0 0.4em 0.3em 0;
+  padding: 0.5rem 0.8rem;
   text-decoration: none;
 }
 
@@ -1856,7 +2268,7 @@ header {
   display: block;
   padding: 0;
   margin-bottom: 1em;
-  padding: 1em .5em 0 5em;
+  padding: 1em 0.5em 0 5em;
   min-height: 90px;
 }
 
@@ -1868,10 +2280,10 @@ header {
   top: 0;
   bottom: 0;
   left: 0;
-  font: 72px "Campton Bold", Impact, sans-serif;
+  font: 72px 'Campton Bold', Impact, sans-serif;
   color: #4e2a84;
   margin: 0;
-  padding: 0 .15em 0 .15em;
+  padding: 0 0.15em 0 0.15em;
   text-align: center;
 }
 
@@ -1893,12 +2305,14 @@ header {
 
 @media screen and (max-width: 768px) {
   /* line 165, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_main.scss */
-  .standard-page .content, .standard-page .content-full {
+  .standard-page .content,
+  .standard-page .content-full {
     float: none;
     width: 100%;
   }
   /* line 169, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_main.scss */
-  .standard-page .content h2, .standard-page .content-full h2 {
+  .standard-page .content h2,
+  .standard-page .content-full h2 {
     font-size: 36px;
   }
   /* line 174, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_main.scss */
@@ -1909,11 +2323,13 @@ header {
 
 @media screen and (max-width: 480px) {
   /* line 183, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_main.scss */
-  .standard-page .content h2, .standard-page .content-full h2 {
+  .standard-page .content h2,
+  .standard-page .content-full h2 {
     font-size: 32px;
   }
   /* line 187, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_main.scss */
-  .standard-page .content h3, .standard-page .content-full h3 {
+  .standard-page .content h3,
+  .standard-page .content-full h3 {
     font-size: 24px;
   }
   /* line 192, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_main.scss */
@@ -1965,29 +2381,30 @@ header {
 
 /* line 34, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_photo-feature-2-across.scss */
 .standard-page .photo-feature-2-across .photo-feature h4 {
-  font: 30px "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font: 30px 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   color: #fff;
-  margin-bottom: -.5rem;
+  margin-bottom: -0.5rem;
   text-shadow: 2px 2px 0px black;
 }
 
 /* line 41, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_photo-feature-2-across.scss */
 .standard-page .photo-feature-2-across .photo-feature p {
-  font: 16px/1.3em "Akkurat Pro Regular", Arial, sans-serif;
+  font: 16px/1.3em 'Akkurat Pro Regular', Arial, sans-serif;
   text-shadow: 2px 2px 0px black;
 }
 
 /* line 45, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_photo-feature-2-across.scss */
 .standard-page .photo-feature-2-across .photo-feature p.link {
-  font-family: "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font-family: 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   text-transform: uppercase;
 }
 
 /* line 49, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_photo-feature-2-across.scss */
 .standard-page .photo-feature-2-across .photo-feature p.link:after {
-  background: url("https://common.northwestern.edu/v8/css/images/icons/arrow-right-white.svg") no-repeat 50%/6px 10px;
+  background: url('https://common.northwestern.edu/v8/css/images/icons/arrow-right-white.svg')
+    no-repeat 50%/6px 10px;
   padding-right: 2rem;
-  content: " ";
+  content: ' ';
 }
 
 /* line 57, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_photo-feature-2-across.scss */
@@ -2007,7 +2424,7 @@ header {
 
 /* line 71, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_photo-feature-2-across.scss */
 .standard-page .photo-feature-2-across .photo-feature .back-text h4 {
-  font: 18px "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font: 18px 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   color: #fff;
   margin-bottom: 1.5em;
   text-shadow: none;
@@ -2063,11 +2480,11 @@ header {
 @media screen and (max-width: 480px) {
   /* line 138, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_photo-feature-2-across.scss */
   .standard-page .photo-feature-2-across .photo-feature .back-text {
-    padding: 0 .5rem;
+    padding: 0 0.5rem;
   }
   /* line 141, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_photo-feature-2-across.scss */
   .standard-page .photo-feature-2-across .photo-feature .back-text h4 {
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
   /* line 145, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_photo-feature-2-across.scss */
   .standard-page .photo-feature-2-across .photo-feature .back-text p {
@@ -2120,8 +2537,9 @@ header {
 }
 
 /* line 33, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_feature-boxes-2-columns.scss */
-.standard-page .feature-two-col .feature-box .feature-copy h3, .standard-page .feature-two-col .feature-box .feature-copy h4 {
-  font: 21px "Akkurat Pro Regular", Arial, sans-serif;
+.standard-page .feature-two-col .feature-box .feature-copy h3,
+.standard-page .feature-two-col .feature-box .feature-copy h4 {
+  font: 21px 'Akkurat Pro Regular', Arial, sans-serif;
   text-transform: uppercase;
   color: #342f2e;
 }
@@ -2172,12 +2590,12 @@ header {
 
 /* line 21, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_stats-callout.scss */
 .standard-page .stats-callout span.big {
-  font: 72px "Campton Bold", Impact, sans-serif;
+  font: 72px 'Campton Bold', Impact, sans-serif;
 }
 
 /* line 25, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_stats-callout.scss */
 .standard-page .stats-callout span.small {
-  font: 24px "Campton Extra Light", "Courier New", sans-serif;
+  font: 24px 'Campton Extra Light', 'Courier New', sans-serif;
   padding-left: 1rem;
 }
 
@@ -2188,7 +2606,7 @@ header {
   }
   /* line 40, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_stats-callout.scss */
   .standard-page .stats-callout span.big {
-    font: 48px "Campton Bold", Impact, sans-serif;
+    font: 48px 'Campton Bold', Impact, sans-serif;
   }
 }
 
@@ -2198,16 +2616,19 @@ header {
 }
 
 /* line 9, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_alternate-photo-float.scss */
-.standard-page .alternate-photo-float h3, .standard-page .alternate-photo-float h4 {
-  font: 30px "Akkurat Pro Regular", Arial, sans-serif;
+.standard-page .alternate-photo-float h3,
+.standard-page .alternate-photo-float h4 {
+  font: 30px 'Akkurat Pro Regular', Arial, sans-serif;
   color: #716c6b;
   border-bottom: 4px solid #ccc;
   text-transform: none;
-  padding-bottom: .5rem;
+  padding-bottom: 0.5rem;
 }
 
 /* line 17, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_alternate-photo-float.scss */
-.standard-page .alternate-photo-float .image-left, .standard-page .alternate-photo-float .image-right, .standard-page .alternate-photo-float .text {
+.standard-page .alternate-photo-float .image-left,
+.standard-page .alternate-photo-float .image-right,
+.standard-page .alternate-photo-float .text {
   width: 43.0622%;
   max-width: 360px;
   margin-right: 2.39234%;
@@ -2217,7 +2638,9 @@ header {
 }
 
 /* line 25, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_alternate-photo-float.scss */
-.standard-page .alternate-photo-float .image-left:last-child, .standard-page .alternate-photo-float .image-right:last-child, .standard-page .alternate-photo-float .text:last-child {
+.standard-page .alternate-photo-float .image-left:last-child,
+.standard-page .alternate-photo-float .image-right:last-child,
+.standard-page .alternate-photo-float .text:last-child {
   margin-right: 0;
 }
 
@@ -2252,21 +2675,28 @@ header {
     margin-bottom: 2rem;
   }
   /* line 59, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_alternate-photo-float.scss */
-  .standard-page .alternate-photo-float h3, .standard-page .alternate-photo-float h4 {
+  .standard-page .alternate-photo-float h3,
+  .standard-page .alternate-photo-float h4 {
     margin-top: 1rem;
   }
   /* line 63, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_alternate-photo-float.scss */
-  .standard-page .alternate-photo-float .image-left, .standard-page .alternate-photo-float .image-right, .standard-page .alternate-photo-float .text {
+  .standard-page .alternate-photo-float .image-left,
+  .standard-page .alternate-photo-float .image-right,
+  .standard-page .alternate-photo-float .text {
     width: 100%;
     float: none;
     position: relative;
   }
   /* line 68, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_alternate-photo-float.scss */
-  .standard-page .alternate-photo-float .image-left:last-child, .standard-page .alternate-photo-float .image-right:last-child, .standard-page .alternate-photo-float .text:last-child {
+  .standard-page .alternate-photo-float .image-left:last-child,
+  .standard-page .alternate-photo-float .image-right:last-child,
+  .standard-page .alternate-photo-float .text:last-child {
     margin-right: auto;
   }
   /* line 72, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_alternate-photo-float.scss */
-  .standard-page .alternate-photo-float .image-left .quote p, .standard-page .alternate-photo-float .image-right .quote p, .standard-page .alternate-photo-float .text .quote p {
+  .standard-page .alternate-photo-float .image-left .quote p,
+  .standard-page .alternate-photo-float .image-right .quote p,
+  .standard-page .alternate-photo-float .text .quote p {
     margin-top: 1em;
   }
   /* line 77, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_alternate-photo-float.scss */
@@ -2321,7 +2751,7 @@ header {
 
 /* line 21, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_background-select.scss */
 .standard-page .background-select h3 {
-  font: 42px "Campton Book", Tahoma, sans-serif;
+  font: 42px 'Campton Book', Tahoma, sans-serif;
   color: #fff;
   margin-bottom: 1rem;
 }
@@ -2334,7 +2764,7 @@ header {
 
 /* line 32, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_background-select.scss */
 .standard-page .background-select .select-date {
-  font: 18px "Campton Bold", Impact, sans-serif;
+  font: 18px 'Campton Bold', Impact, sans-serif;
   text-transform: uppercase;
   margin-bottom: 1.5rem;
 }
@@ -2354,11 +2784,11 @@ header {
 
 /* line 12, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_showcase.scss */
 .standard-page .showcase .caption {
-  font: 14px "Akkurat Pro Italic", Arial, sans-serif;
+  font: 14px 'Akkurat Pro Italic', Arial, sans-serif;
   margin: 0;
   position: absolute;
-  bottom: .5rem;
-  padding: .5rem;
+  bottom: 0.5rem;
+  padding: 0.5rem;
   background: rgba(0, 0, 0, 0.5);
   color: #fff;
   width: 100%;
@@ -2366,11 +2796,12 @@ header {
 
 /* line 22, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_showcase.scss */
 .standard-page .showcase .caption strong {
-  font-family: "Akkurat Pro Bold Italic", "Arial Black", sans-serif;
+  font-family: 'Akkurat Pro Bold Italic', 'Arial Black', sans-serif;
 }
 
 /* line 28, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_showcase.scss */
-.standard-page .showcase .swiper-button-next, .standard-page .showcase .swiper-button-prev {
+.standard-page .showcase .swiper-button-next,
+.standard-page .showcase .swiper-button-prev {
   width: 35px;
   height: 35px;
   -moz-background-size: 35px 35px;
@@ -2380,7 +2811,8 @@ header {
 
 /* line 36, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_showcase.scss */
 .standard-page .showcase .swiper-button-prev {
-  background: url("https://common.northwestern.edu/v8/css/images/icons/arrow-right-purple-white.svg") no-repeat;
+  background: url('https://common.northwestern.edu/v8/css/images/icons/arrow-right-purple-white.svg')
+    no-repeat;
   -webkit-transform: rotate(180deg);
   -moz-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
@@ -2392,14 +2824,15 @@ header {
 
 /* line 47, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_showcase.scss */
 .standard-page .showcase .swiper-button-next {
-  background: url("https://common.northwestern.edu/v8/css/images/icons/arrow-right-purple-white.svg") no-repeat;
+  background: url('https://common.northwestern.edu/v8/css/images/icons/arrow-right-purple-white.svg')
+    no-repeat;
   right: 10px;
   left: auto;
 }
 
 /* line 53, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_showcase.scss */
 .standard-page .showcase p + h4 {
-  margin: 1.5rem 0 .5rem 0;
+  margin: 1.5rem 0 0.5rem 0;
 }
 
 /* line 57, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_showcase.scss */
@@ -2425,13 +2858,13 @@ header {
 
 /* line 79, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_showcase.scss */
 .standard-page .showcase .stat-list {
-  font: 24px "Campton Extra Light", "Courier New", sans-serif;
+  font: 24px 'Campton Extra Light', 'Courier New', sans-serif;
   color: #4e2a84;
 }
 
 /* line 83, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_showcase.scss */
 .standard-page .showcase .stat-list strong {
-  font: 72px/1em "Campton Bold", Impact, sans-serif;
+  font: 72px/1em 'Campton Bold', Impact, sans-serif;
   color: #4e2a84;
   display: block;
 }
@@ -2458,9 +2891,9 @@ header {
 
 /* line 104, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_showcase.scss */
 .standard-page .showcase .stat-list ul li:first-child {
-  font: 30px/1.2em "Campton Bold", Impact, sans-serif;
+  font: 30px/1.2em 'Campton Bold', Impact, sans-serif;
   color: #4e2a84;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 
 /* line 111, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_showcase.scss */
@@ -2471,27 +2904,28 @@ header {
 
 /* line 115, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_showcase.scss */
 .standard-page .showcase .stat-list ul.bullet li {
-  background: url("https://common.northwestern.edu/v8/css/images/icons/bullet.png") top left no-repeat;
-  background-position: 0 .5rem;
-  padding: 0 0 .5rem 1em;
+  background: url('https://common.northwestern.edu/v8/css/images/icons/bullet.png')
+    top left no-repeat;
+  background-position: 0 0.5rem;
+  padding: 0 0 0.5rem 1em;
   font-size: 20px;
 }
 
 /* line 121, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_showcase.scss */
 .standard-page .showcase .stat-list ul.bullet li:first-child {
-  font: 26px/1.2em "Campton Bold", Impact, sans-serif;
+  font: 26px/1.2em 'Campton Bold', Impact, sans-serif;
   color: #4e2a84;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
   background: none;
   padding: 1rem 0 1rem 0;
 }
 
 /* line 135, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_showcase.scss */
 .standard-page .showcase .links p {
-  font: 18px "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font: 18px 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   color: #716c6b;
   border-bottom: 4px solid #f0f0f0;
-  padding-bottom: .5rem;
+  padding-bottom: 0.5rem;
 }
 
 /* line 142, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_showcase.scss */
@@ -2502,7 +2936,7 @@ header {
 
 /* line 146, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_showcase.scss */
 .standard-page .showcase .links ul li {
-  font: 16px "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font: 16px 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   background: none;
   padding: 0;
   margin-bottom: 1rem;
@@ -2510,9 +2944,10 @@ header {
 
 /* line 152, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_showcase.scss */
 .standard-page .showcase .links ul li:after {
-  background: url("https://common.northwestern.edu/v8/css/images/icons/arrow-right-dkpurple.svg") no-repeat 50%/6px 10px;
+  background: url('https://common.northwestern.edu/v8/css/images/icons/arrow-right-dkpurple.svg')
+    no-repeat 50%/6px 10px;
   padding-right: 2rem;
-  content: " ";
+  content: ' ';
 }
 
 @media screen and (max-width: 1145px) {
@@ -2549,10 +2984,11 @@ header {
   .standard-page .showcase .caption {
     position: relative;
     background: #836eaa;
-    bottom: .6rem;
+    bottom: 0.6rem;
   }
   /* line 205, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_showcase.scss */
-  .standard-page .showcase .swiper-button-next, .standard-page .showcase .swiper-button-prev {
+  .standard-page .showcase .swiper-button-next,
+  .standard-page .showcase .swiper-button-prev {
     width: 25px;
     height: 25px;
     -moz-background-size: 25px 25px;
@@ -2564,18 +3000,19 @@ header {
 
 /* line 5, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_pullquotes.scss */
 .standard-page .quote {
-  font: 24px/1.2em "Campton Book", Tahoma, sans-serif;
+  font: 24px/1.2em 'Campton Book', Tahoma, sans-serif;
   color: #4e2a84;
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
 }
 
 /* line 10, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_pullquotes.scss */
 .standard-page .quote span {
-  background: url("https://common.northwestern.edu/v8/css/images/icons/quote.png") no-repeat;
+  background: url('https://common.northwestern.edu/v8/css/images/icons/quote.png')
+    no-repeat;
   width: 35px;
   height: 24px;
   display: inline-block;
-  margin-right: .5rem;
+  margin-right: 0.5rem;
 }
 
 /* line 18, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_pullquotes.scss */
@@ -2585,7 +3022,7 @@ header {
 
 /* line 22, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_pullquotes.scss */
 .standard-page .quote figcaption {
-  font: 16px/1.4em "Akkurat Pro Regular", Arial, sans-serif;
+  font: 16px/1.4em 'Akkurat Pro Regular', Arial, sans-serif;
   color: #716c6b;
 }
 
@@ -2604,47 +3041,66 @@ header {
 }
 
 /* line 5, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_people-list.scss */
-.standard-page .people-big, .standard-page .people-medium, .standard-page .people-small {
+.standard-page .people-big,
+.standard-page .people-medium,
+.standard-page .people-small {
   margin: 1rem 0 2rem 0;
 }
 
 /* line 9, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_people-list.scss */
-.standard-page .people-big > p:first-of-type, .standard-page .people-medium > p:first-of-type, .standard-page .people-small > p:first-of-type {
+.standard-page .people-big > p:first-of-type,
+.standard-page .people-medium > p:first-of-type,
+.standard-page .people-small > p:first-of-type {
   margin-top: 0;
 }
 
 /* line 19, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_people-list.scss */
-.standard-page .people-big .people-wrap.no-image .people-image, .standard-page .people-medium .people-wrap.no-image .people-image, .standard-page .people-small .people-wrap.no-image .people-image {
+.standard-page .people-big .people-wrap.no-image .people-image,
+.standard-page .people-medium .people-wrap.no-image .people-image,
+.standard-page .people-small .people-wrap.no-image .people-image {
   display: none;
 }
 
 /* line 23, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_people-list.scss */
-.standard-page .people-big .people-wrap.no-image .people-content, .standard-page .people-medium .people-wrap.no-image .people-content, .standard-page .people-small .people-wrap.no-image .people-content {
+.standard-page .people-big .people-wrap.no-image .people-content,
+.standard-page .people-medium .people-wrap.no-image .people-content,
+.standard-page .people-small .people-wrap.no-image .people-content {
   width: 100%;
 }
 
 /* line 29, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_people-list.scss */
-.standard-page .people-big .people-image, .standard-page .people-medium .people-image, .standard-page .people-small .people-image {
+.standard-page .people-big .people-image,
+.standard-page .people-medium .people-image,
+.standard-page .people-small .people-image {
   float: left;
   margin-right: 2.39234%;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 
 /* line 34, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_people-list.scss */
-.standard-page .people-big .people-content, .standard-page .people-medium .people-content, .standard-page .people-small .people-content {
+.standard-page .people-big .people-content,
+.standard-page .people-medium .people-content,
+.standard-page .people-small .people-content {
   float: right;
 }
 
 /* line 37, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_people-list.scss */
-.standard-page .people-big .people-content h3, .standard-page .people-big .people-content h4, .standard-page .people-medium .people-content h3, .standard-page .people-medium .people-content h4, .standard-page .people-small .people-content h3, .standard-page .people-small .people-content h4 {
-  font: 24px/1.2em "Campton Bold", Impact, sans-serif;
+.standard-page .people-big .people-content h3,
+.standard-page .people-big .people-content h4,
+.standard-page .people-medium .people-content h3,
+.standard-page .people-medium .people-content h4,
+.standard-page .people-small .people-content h3,
+.standard-page .people-small .people-content h4 {
+  font: 24px/1.2em 'Campton Bold', Impact, sans-serif;
   color: #716c6b;
   margin-bottom: 0;
 }
 
 /* line 42, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_people-list.scss */
-.standard-page .people-big .people-content .title, .standard-page .people-medium .people-content .title, .standard-page .people-small .people-content .title {
-  font: 18px/1.2em "Akkurat Pro Regular", Arial, sans-serif;
+.standard-page .people-big .people-content .title,
+.standard-page .people-medium .people-content .title,
+.standard-page .people-small .people-content .title {
+  font: 18px/1.2em 'Akkurat Pro Regular', Arial, sans-serif;
   margin-top: 0;
 }
 
@@ -2680,7 +3136,8 @@ header {
 
 @media screen and (max-width: 600px) {
   /* line 89, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_people-list.scss */
-  .standard-page .people-big .people-image, .standard-page .people-big .people-content {
+  .standard-page .people-big .people-image,
+  .standard-page .people-big .people-content {
     float: none;
     width: 100%;
   }
@@ -2688,12 +3145,14 @@ header {
 
 @media screen and (max-width: 540px) {
   /* line 99, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_people-list.scss */
-  .standard-page .people-medium .people-image, .standard-page .people-medium .people-content {
+  .standard-page .people-medium .people-image,
+  .standard-page .people-medium .people-content {
     float: none;
     width: 100%;
   }
   /* line 107, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_people-list.scss */
-  .standard-page .people-small .people-image, .standard-page .people-small .people-content {
+  .standard-page .people-small .people-image,
+  .standard-page .people-small .people-content {
     float: none;
     width: 100%;
   }
@@ -2712,19 +3171,19 @@ header {
 
 /* line 15, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_news-event.scss */
 .standard-page .news h4.news-title {
-  font: 18px/1.3em "Akkurat Pro Bold", "Arial Black", sans-serif;
-  margin-bottom: .5rem;
+  font: 18px/1.3em 'Akkurat Pro Bold', 'Arial Black', sans-serif;
+  margin-bottom: 0.5rem;
 }
 
 /* line 20, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_news-event.scss */
 .standard-page .news .news-date {
-  font: 14px/1.4em "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font: 14px/1.4em 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   color: #342f2e;
 }
 
 /* line 25, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_news-event.scss */
 .standard-page .news .news-description {
-  margin-top: .5rem;
+  margin-top: 0.5rem;
 }
 
 /* line 31, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_news-event.scss */
@@ -2740,15 +3199,16 @@ header {
   text-align: center;
   top: 0;
   width: 90px;
-  padding: .25rem;
+  padding: 0.25rem;
   background: #4e2a84;
-  font-family: "Campton Bold", Impact, sans-serif;
+  font-family: 'Campton Bold', Impact, sans-serif;
   color: #fff;
   float: left;
 }
 
 /* line 47, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_news-event.scss */
-.standard-page .event .event-date .month, .standard-page .event .event-date year {
+.standard-page .event .event-date .month,
+.standard-page .event .event-date year {
   font-size: 14px;
 }
 
@@ -2759,9 +3219,9 @@ header {
 
 /* line 56, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_news-event.scss */
 .standard-page .event .event-time-location {
-  font: 14px/1.4em "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font: 14px/1.4em 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   color: #342f2e;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 
 /* line 62, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_news-event.scss */
@@ -2771,13 +3231,13 @@ header {
 
 /* line 65, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_news-event.scss */
 .standard-page .event .event-description h4 {
-  font: 18px/1.3em "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font: 18px/1.3em 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   margin-bottom: 0;
 }
 
 /* line 70, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_news-event.scss */
 .standard-page .event .event-description > p {
-  margin-top: .5rem;
+  margin-top: 0.5rem;
 }
 
 @media screen and (max-width: 420px) {
@@ -2814,7 +3274,8 @@ header {
 
 @media screen and (max-width: 600px) {
   /* line 31, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_plus-section.scss */
-  .standard-page .plus-section .left-side, .standard-page .plus-section .right-side {
+  .standard-page .plus-section .left-side,
+  .standard-page .plus-section .right-side {
     width: 100%;
     float: none;
   }
@@ -2844,15 +3305,16 @@ header {
 
 /* line 23, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_two-column-links.scss */
 .standard-page .two-column-links article img {
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 
 /* line 27, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_two-column-links.scss */
-.standard-page .two-column-links article h3, .standard-page .two-column-links article h4 {
-  font: 26px "Akkurat Pro Regular", Arial, sans-serif;
+.standard-page .two-column-links article h3,
+.standard-page .two-column-links article h4 {
+  font: 26px 'Akkurat Pro Regular', Arial, sans-serif;
   color: #716c6b;
   margin-bottom: 1rem;
-  padding-bottom: .5rem;
+  padding-bottom: 0.5rem;
   border-bottom: 4px solid #ccc;
 }
 
@@ -2882,14 +3344,18 @@ header {
 }
 
 /* line 11, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_expand-collapse.scss */
-.expander1 h3 > a, .expander1 h4 > a {
-  background: url("https://common.northwestern.edu/v8/css/images/icons/arrow-right-dkpurple.svg") no-repeat 0.5rem center/8px 16px;
-  padding: .5em 0 .5rem 2rem;
+.expander1 h3 > a,
+.expander1 h4 > a {
+  background: url('https://common.northwestern.edu/v8/css/images/icons/arrow-right-dkpurple.svg')
+    no-repeat 0.5rem center/8px 16px;
+  padding: 0.5em 0 0.5rem 2rem;
 }
 
 /* line 16, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_expand-collapse.scss */
-.expander1 h3.open a, .expander1 h4.open a {
-  background: url("https://common.northwestern.edu/v8/css/images/icons/arrow-down-dkpurple.svg") no-repeat 0.3rem center/16px 8px;
+.expander1 h3.open a,
+.expander1 h4.open a {
+  background: url('https://common.northwestern.edu/v8/css/images/icons/arrow-down-dkpurple.svg')
+    no-repeat 0.3rem center/16px 8px;
 }
 
 /* line 23, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_expand-collapse.scss */
@@ -2899,21 +3365,26 @@ header {
 }
 
 /* line 29, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_expand-collapse.scss */
-.expander2 h3 > a, .expander2 h4 > a {
-  background: url("https://common.northwestern.edu/v8/css/images/icons/arrow-right-dkpurple.svg") no-repeat 0.5rem center/8px 16px;
-  padding: .5em 0 .5rem 2rem;
+.expander2 h3 > a,
+.expander2 h4 > a {
+  background: url('https://common.northwestern.edu/v8/css/images/icons/arrow-right-dkpurple.svg')
+    no-repeat 0.5rem center/8px 16px;
+  padding: 0.5em 0 0.5rem 2rem;
 }
 
 /* line 35, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_expand-collapse.scss */
-.expander2 h3.open a, .expander2 h4.open a {
-  background: url("https://common.northwestern.edu/v8/css/images/icons/arrow-down-dkpurple.svg") no-repeat 0.3rem center/16px 8px;
+.expander2 h3.open a,
+.expander2 h4.open a {
+  background: url('https://common.northwestern.edu/v8/css/images/icons/arrow-down-dkpurple.svg')
+    no-repeat 0.3rem center/16px 8px;
 }
 
 /* line 39, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_expand-collapse.scss */
-.expander2 h3 span, .expander2 h4 span {
+.expander2 h3 span,
+.expander2 h4 span {
   float: right;
   border-right: 1px solid #f0f0f0;
-  padding-right: .5rem;
+  padding-right: 0.5rem;
 }
 
 /* line 48, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_expand-collapse.scss */
@@ -2922,24 +3393,30 @@ header {
 }
 
 /* line 51, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_expand-collapse.scss */
-.expander3 h3, .expander3 h4 {
+.expander3 h3,
+.expander3 h4 {
   background: #4e2a84;
 }
 
 /* line 54, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_expand-collapse.scss */
-.expander3 h3 > a, .expander3 h4 > a {
-  background: url("https://common.northwestern.edu/v8/css/images/icons/arrow-right-white.svg") no-repeat right 1rem center/12px 18px;
-  padding: .5em 3rem .5rem 1rem;
+.expander3 h3 > a,
+.expander3 h4 > a {
+  background: url('https://common.northwestern.edu/v8/css/images/icons/arrow-right-white.svg')
+    no-repeat right 1rem center/12px 18px;
+  padding: 0.5em 3rem 0.5rem 1rem;
   color: #fff;
 }
 
 /* line 60, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_expand-collapse.scss */
-.expander3 h3.open a, .expander3 h4.open a {
-  background: url("https://common.northwestern.edu/v8/css/images/icons/arrow-down-white.svg") no-repeat right 1rem center/18px 12px;
+.expander3 h3.open a,
+.expander3 h4.open a {
+  background: url('https://common.northwestern.edu/v8/css/images/icons/arrow-down-white.svg')
+    no-repeat right 1rem center/18px 12px;
 }
 
 /* line 69, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_expand-collapse.scss */
-.expander h3, .expander h4 {
+.expander h3,
+.expander h4 {
   margin: 0;
   font-size: 18px;
   line-height: inherit;
@@ -2947,12 +3424,14 @@ header {
 }
 
 /* line 75, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_expand-collapse.scss */
-.expander h3:first-of-type, .expander h4:first-of-type {
+.expander h3:first-of-type,
+.expander h4:first-of-type {
   border-top: none;
 }
 
 /* line 79, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_expand-collapse.scss */
-.expander h3 > a, .expander h4 > a {
+.expander h3 > a,
+.expander h4 > a {
   display: block;
   margin: 0;
 }
@@ -2965,7 +3444,7 @@ header {
 /* line 88, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_expand-collapse.scss */
 .expander > div h4 {
   color: #716c6b;
-  font: 26px/1.2em "Akkurat Pro Regular",Arial,sans-serif;
+  font: 26px/1.2em 'Akkurat Pro Regular', Arial, sans-serif;
   margin-bottom: 1rem;
   background: none;
 }
@@ -2998,7 +3477,7 @@ header {
 
 /* line 21, /Library/WebServer/Documents/GIT/department-templates/scss/page-types/standard-page/_narrow-page.scss */
 .narrow-page #news-story .wrap #credit {
-  font: 16px/1.4em "Campton Bold", Impact, sans-serif;
+  font: 16px/1.4em 'Campton Bold', Impact, sans-serif;
   color: #342f2e;
   width: 69.35484%;
 }
@@ -3027,7 +3506,7 @@ header {
   border-top: 4px solid #f0f0f0;
   border-bottom: 4px solid #f0f0f0;
   padding: 1.5rem 0;
-  font: 20px "Campton Book", Tahoma, sans-serif;
+  font: 20px 'Campton Book', Tahoma, sans-serif;
   color: #4e2a84;
 }
 
@@ -3082,16 +3561,23 @@ header {
 }
 
 /* line 3, /Library/WebServer/Documents/GIT/department-templates/scss/base/_buttons.scss */
-.content a.button, .content-full a.button, .content p.button a, .content-full p.button a, .hero a.button, #top-nav ul li a.button, .tl-slideshow a.button, input[type="submit"] {
-  font: 16px "Akkurat Pro Bold", "Arial Black", sans-serif;
+.content a.button,
+.content-full a.button,
+.content p.button a,
+.content-full p.button a,
+.hero a.button,
+#top-nav ul li a.button,
+.tl-slideshow a.button,
+input[type='submit'] {
+  font: 16px 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   color: #fff;
   background: #4e2a84;
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
   font-weight: normal;
-  margin: 0 .5em .5em 0;
-  padding: .8em 1em .7em 1em;
+  margin: 0 0.5em 0.5em 0;
+  padding: 0.8em 1em 0.7em 1em;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   display: inline-block;
@@ -3112,8 +3598,15 @@ header {
 }
 
 /* line 31, /Library/WebServer/Documents/GIT/department-templates/scss/base/_buttons.scss */
-.content a.button:before, .content-full a.button:before, .content p.button a:before, .content-full p.button a:before, .hero a.button:before, #top-nav ul li a.button:before, .tl-slideshow a.button:before, input[type="submit"]:before {
-  content: "";
+.content a.button:before,
+.content-full a.button:before,
+.content p.button a:before,
+.content-full p.button a:before,
+.hero a.button:before,
+#top-nav ul li a.button:before,
+.tl-slideshow a.button:before,
+input[type='submit']:before {
+  content: '';
   position: absolute;
   z-index: -1;
   top: 0;
@@ -3134,19 +3627,72 @@ header {
 }
 
 /* line 52, /Library/WebServer/Documents/GIT/department-templates/scss/base/_buttons.scss */
-.content a.button:hover, .content a.button:focus, .content a.button:active, .content-full a.button:hover, .content-full a.button:focus, .content-full a.button:active, .content p.button a:hover, .content p.button a:focus, .content p.button a:active, .content-full p.button a:hover, .content-full p.button a:focus, .content-full p.button a:active, .hero a.button:hover, .hero a.button:focus, .hero a.button:active, #top-nav ul li a.button:hover, #top-nav ul li a.button:focus, #top-nav ul li a.button:active, .tl-slideshow a.button:hover, .tl-slideshow a.button:focus, .tl-slideshow a.button:active, input[type="submit"]:hover, input[type="submit"]:focus, input[type="submit"]:active {
+.content a.button:hover,
+.content a.button:focus,
+.content a.button:active,
+.content-full a.button:hover,
+.content-full a.button:focus,
+.content-full a.button:active,
+.content p.button a:hover,
+.content p.button a:focus,
+.content p.button a:active,
+.content-full p.button a:hover,
+.content-full p.button a:focus,
+.content-full p.button a:active,
+.hero a.button:hover,
+.hero a.button:focus,
+.hero a.button:active,
+#top-nav ul li a.button:hover,
+#top-nav ul li a.button:focus,
+#top-nav ul li a.button:active,
+.tl-slideshow a.button:hover,
+.tl-slideshow a.button:focus,
+.tl-slideshow a.button:active,
+input[type='submit']:hover,
+input[type='submit']:focus,
+input[type='submit']:active {
   color: #fff;
   text-decoration: none;
 }
 
 /* line 57, /Library/WebServer/Documents/GIT/department-templates/scss/base/_buttons.scss */
-.content a.button:hover:before, .content a.button:focus:before, .content a.button:active:before, .content-full a.button:hover:before, .content-full a.button:focus:before, .content-full a.button:active:before, .content p.button a:hover:before, .content p.button a:focus:before, .content p.button a:active:before, .content-full p.button a:hover:before, .content-full p.button a:focus:before, .content-full p.button a:active:before, .hero a.button:hover:before, .hero a.button:focus:before, .hero a.button:active:before, #top-nav ul li a.button:hover:before, #top-nav ul li a.button:focus:before, #top-nav ul li a.button:active:before, .tl-slideshow a.button:hover:before, .tl-slideshow a.button:focus:before, .tl-slideshow a.button:active:before, input[type="submit"]:hover:before, input[type="submit"]:focus:before, input[type="submit"]:active:before {
+.content a.button:hover:before,
+.content a.button:focus:before,
+.content a.button:active:before,
+.content-full a.button:hover:before,
+.content-full a.button:focus:before,
+.content-full a.button:active:before,
+.content p.button a:hover:before,
+.content p.button a:focus:before,
+.content p.button a:active:before,
+.content-full p.button a:hover:before,
+.content-full p.button a:focus:before,
+.content-full p.button a:active:before,
+.hero a.button:hover:before,
+.hero a.button:focus:before,
+.hero a.button:active:before,
+#top-nav ul li a.button:hover:before,
+#top-nav ul li a.button:focus:before,
+#top-nav ul li a.button:active:before,
+.tl-slideshow a.button:hover:before,
+.tl-slideshow a.button:focus:before,
+.tl-slideshow a.button:active:before,
+input[type='submit']:hover:before,
+input[type='submit']:focus:before,
+input[type='submit']:active:before {
   -webkit-transform: scaleX(1);
   transform: scaleX(1);
 }
 
 /* line 62, /Library/WebServer/Documents/GIT/department-templates/scss/base/_buttons.scss */
-.content a.button.normal-case, .content-full a.button.normal-case, .content p.button a.normal-case, .content-full p.button a.normal-case, .hero a.button.normal-case, #top-nav ul li a.button.normal-case, .tl-slideshow a.button.normal-case, input[type="submit"].normal-case {
+.content a.button.normal-case,
+.content-full a.button.normal-case,
+.content p.button a.normal-case,
+.content-full p.button a.normal-case,
+.hero a.button.normal-case,
+#top-nav ul li a.button.normal-case,
+.tl-slideshow a.button.normal-case,
+input[type='submit'].normal-case {
   text-transform: none;
 }
 
@@ -3160,7 +3706,9 @@ header {
 }
 
 /* line 75, /Library/WebServer/Documents/GIT/department-templates/scss/base/_buttons.scss */
-.purple-slashes a.button, #map-feature a.button, .standard-page .background-select a.button {
+.purple-slashes a.button,
+#map-feature a.button,
+.standard-page .background-select a.button {
   background: #836eaa;
 }
 

@@ -19,12 +19,12 @@ nav {
   display: table-cell;
   text-align: center;
   line-height: 100%;
-  font: 18px "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font: 18px 'Akkurat Pro Bold', 'Arial Black', sans-serif;
 }
 
 #top-nav .contain-1120 > ul > li:hover a {
   background: #f0f0f0;
-  transition: .3s;
+  transition: 0.3s;
 }
 
 #top-nav .contain-1120 > ul > li:hover a.button {

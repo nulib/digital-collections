@@ -1,12 +1,12 @@
 #top-bar:after {
-  content: "";
+  content: '';
   display: table;
   clear: both;
 }
 
 #top-bar {
   background: #401f68;
-  font: 12px/1.4em "Akkurat Pro Bold", "Arial Black", sans-serif;
+  font: 12px/1.4em 'Akkurat Pro Bold', 'Arial Black', sans-serif;
   min-height: 60px;
 }
 
@@ -40,7 +40,9 @@
   position: relative;
 }
 
-#top-bar #right > ul a:hover, #top-bar #right > ul a:focus, #top-bar #right > ul a:active {
+#top-bar #right > ul a:hover,
+#top-bar #right > ul a:focus,
+#top-bar #right > ul a:active {
   text-decoration: underline;
 }
 
@@ -53,11 +55,13 @@
   height: 60px;
 }
 
-#top-bar #right > ul li:hover, #top-bar #right > ul li.hover {
+#top-bar #right > ul li:hover,
+#top-bar #right > ul li.hover {
   z-index: 100;
 }
 
-#top-bar #right > ul li:hover ul, #top-bar #right > ul li.hover ul {
+#top-bar #right > ul li:hover ul,
+#top-bar #right > ul li.hover ul {
   right: 0;
   top: 60px;
   z-index: 1000;
@@ -72,11 +76,12 @@
 }
 
 #top-bar #right > ul li .dropdown-arrow {
-  background: url("https://common.northwestern.edu/v8/css/images/icons/arrow-down-white.svg") no-repeat 50% center;
+  background: url('https://common.northwestern.edu/v8/css/images/icons/arrow-down-white.svg')
+    no-repeat 50% center;
   width: 10px;
   height: 10px;
   display: inline-block;
-  margin-left: .5em;
+  margin-left: 0.5em;
 }
 
 #top-bar #right > ul ul {
@@ -84,14 +89,14 @@
   top: 100%;
   width: 150px;
   background: #765da0;
-  padding: .5rem;
+  padding: 0.5rem;
   text-align: right;
   z-index: -1000;
 }
 
 #top-bar #right > ul ul li {
   float: none;
-  padding: 0 0 .5rem 0;
+  padding: 0 0 0.5rem 0;
   width: 100%;
   margin: 0;
   display: inline-block;
@@ -99,7 +104,8 @@
   height: inherit;
 }
 
-#top-bar #right > ul ul li:hover ul, #top-bar #right > ul ul li.hover ul {
+#top-bar #right > ul ul li:hover ul,
+#top-bar #right > ul ul li.hover ul {
   left: 0;
 }
 

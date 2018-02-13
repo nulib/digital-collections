@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './components/Header/';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
@@ -27,7 +23,11 @@ class App extends Component {
             <Route exact path="/about" component={About} />
             <Route exact path="/contactus" component={ContactUs} />
             <Route exact path="/login" component={Login} />
-            <Route exact path="/:sectionType/:id/:itemId" component={ItemDetailPage} />
+            <Route
+              exact
+              path="/:sectionType/:id/:itemId"
+              component={ItemDetailPage}
+            />
             <Route exact path="/:sectionType/:id" component={SetPage} />
             <Route exact path="/:sectionType" component={SetsPage} />
             <Route exact path="/" component={LandingPage} />

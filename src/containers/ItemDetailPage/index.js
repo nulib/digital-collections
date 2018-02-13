@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import ErrorSection from '../../components/ErrorSection';
 import ItemDetailApi from '../../api/item-detail-api';
 import MetadataItem from './MetadataItem';
@@ -22,16 +22,20 @@ class ItemDetailPage extends Component {
   }
 
   componentDidMount() {
-    document.body.className="standard-page narrow-page";
+    document.body.className = 'standard-page narrow-page';
     // Grab REST API data here
     if (this.sectionType === 'collections') {
-      this.itemDetailApi.getItemDetails(this.itemId).then(this.updateItemDetailsState.bind(this));
+      this.itemDetailApi
+        .getItemDetails(this.itemId)
+        .then(this.updateItemDetailsState.bind(this));
     } else {
-      this.itemDetailApi.getMockItemDetails().then(this.updateItemDetailsState.bind(this));
+      this.itemDetailApi
+        .getMockItemDetails()
+        .then(this.updateItemDetailsState.bind(this));
     }
 
     // Get a placeholder image
-    this.itemDetailApi.getIIIFImage(this.itemId).then((data) => {
+    this.itemDetailApi.getIIIFImage(this.itemId).then(data => {
       this.setState({
         sample_image_url: data
       });
@@ -67,7 +71,10 @@ class ItemDetailPage extends Component {
               <h2>{metadata.title_tesim}</h2>
 
               <article className="uv-viewer-wrapper">
-                <img src={sample_image_url} alt="Universal Viewer sample holder" />
+                <img
+                  src={sample_image_url}
+                  alt="Universal Viewer sample holder"
+                />
               </article>
 
               <article className="item-detail-metadata">
@@ -75,20 +82,42 @@ class ItemDetailPage extends Component {
                 <MetadataItem label="Creator" value={metadata.creator_tesim} />
                 <MetadataItem label="Title" value={metadata.title_tesim} />
                 <MetadataItem label="Keywords" value={metadata.keyword_tesim} />
-                <MetadataItem label="Date Created" value={metadata.date_created_tesim} />
-                <MetadataItem label="Publisher" value={metadata.publisher_tesim} />
-                <MetadataItem label="Geographic Location" value={metadata.based_near_label_tesim} />
-                <MetadataItem label="Description" value={metadata.description_tesim} />
+                <MetadataItem
+                  label="Date Created"
+                  value={metadata.date_created_tesim}
+                />
+                <MetadataItem
+                  label="Publisher"
+                  value={metadata.publisher_tesim}
+                />
+                <MetadataItem
+                  label="Geographic Location"
+                  value={metadata.based_near_label_tesim}
+                />
+                <MetadataItem
+                  label="Description"
+                  value={metadata.description_tesim}
+                />
                 <MetadataItem label="License" value={metadata.license_tesim} />
-                <MetadataItem label="Rights Statement" value={metadata.rights_statement_tesim} />
-                <MetadataItem label="Member of Collection(s)" value={metadata.member_of_collections_ssim} />
+                <MetadataItem
+                  label="Rights Statement"
+                  value={metadata.rights_statement_tesim}
+                />
+                <MetadataItem
+                  label="Member of Collection(s)"
+                  value={metadata.member_of_collections_ssim}
+                />
               </article>
 
               <article className="item-detail-metadata">
                 <hr />
                 <p>This shows everything returned directly from solr:</p>
                 {Object.keys(metadata).map((keyName, index) => (
-                  <MetadataItem label={keyName} value={metadata[keyName]} key={index} />
+                  <MetadataItem
+                    label={keyName}
+                    value={metadata[keyName]}
+                    key={index}
+                  />
                 ))}
               </article>
             </section>

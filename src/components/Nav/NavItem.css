@@ -23,11 +23,12 @@
 }
 
 #top-nav .contain-1120 > ul > li .dropdown-arrow {
-  background: url("https://common.northwestern.edu/v8/css/images/icons/arrow-down-ltpurple.svg") no-repeat 50%;
+  background: url('https://common.northwestern.edu/v8/css/images/icons/arrow-down-ltpurple.svg')
+    no-repeat 50%;
   width: 10px;
   height: 10px;
   display: inline-block;
-  margin-left: .5em;
+  margin-left: 0.5em;
 }
 
 #top-nav .contain-1120 .dropdown,
@@ -49,7 +50,7 @@
 #top-nav .contain-1120 .dropdown p.intro,
 #top-nav .contain-1120 .dropdown-one-column p.intro,
 #top-nav .contain-1120 .dropdown-two-column p.intro {
-  font: 30px "Campton Bold", Impact, sans-serif;
+  font: 30px 'Campton Bold', Impact, sans-serif;
   color: #4e2a84;
   margin: 0 0 1rem 0;
   padding-right: 2rem;
@@ -74,7 +75,7 @@
 #top-nav .contain-1120 .dropdown ul li a,
 #top-nav .contain-1120 .dropdown-one-column ul li a,
 #top-nav .contain-1120 .dropdown-two-column ul li a {
-  padding: .3em 0;
+  padding: 0.3em 0;
   display: inline-block;
   background: inherit;
   color: #4e2a84;

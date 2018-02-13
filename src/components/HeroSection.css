@@ -21,23 +21,45 @@
 
 /* line 22, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_heroes.scss */
 .hero .hero-image:before {
-  content: " ";
+  content: ' ';
   width: 100%;
   height: 100%;
   position: absolute;
   bottom: 0;
   left: 0;
-  background: -moz-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.45) 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, transparent), color-stop(100%, rgba(0, 0, 0, 0.45)));
-  background: -webkit-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.45) 100%);
+  background: -moz-linear-gradient(
+    top,
+    transparent 0%,
+    rgba(0, 0, 0, 0.45) 100%
+  );
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, transparent),
+    color-stop(100%, rgba(0, 0, 0, 0.45))
+  );
+  background: -webkit-linear-gradient(
+    top,
+    transparent 0%,
+    rgba(0, 0, 0, 0.45) 100%
+  );
   background: -o-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.45) 100%);
-  background: -ms-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.45) 100%);
-  background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.45) 100%);
+  background: -ms-linear-gradient(
+    top,
+    transparent 0%,
+    rgba(0, 0, 0, 0.45) 100%
+  );
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.45) 100%
+  );
 }
 
 /* line 38, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_heroes.scss */
 .hero h2 {
-  font: 24px "Campton Extra Bold", Impact, sans-serif;
+  font: 24px 'Campton Extra Bold', Impact, sans-serif;
   color: #fff;
   text-shadow: 2px 2px 0px black;
   margin-bottom: 1.5em;
@@ -46,21 +68,23 @@
 
 /* line 45, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_heroes.scss */
 .hero h2:before {
-  background: url("https://common.northwestern.edu/v8/css/images/icons/ltpurple-slash.svg") no-repeat 50%/17px 21px;
+  background: url('https://common.northwestern.edu/v8/css/images/icons/ltpurple-slash.svg')
+    no-repeat 50%/17px 21px;
   padding: 0 1.5rem;
-  content: " ";
+  content: ' ';
 }
 
 /* line 51, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_heroes.scss */
 .hero h2:after {
-  background: url("https://common.northwestern.edu/v8/css/images/icons/ltpurple-slash.svg") no-repeat 50%/17px 21px;
+  background: url('https://common.northwestern.edu/v8/css/images/icons/ltpurple-slash.svg')
+    no-repeat 50%/17px 21px;
   padding: 0 1.5rem;
-  content: " ";
+  content: ' ';
 }
 
 /* line 58, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_heroes.scss */
 .hero p {
-  font: 60px/1.2em "Campton Bold", Impact, sans-serif;
+  font: 60px/1.2em 'Campton Bold', Impact, sans-serif;
   color: #fff;
   text-shadow: 2px 2px 0px black;
   margin: 0 0 1rem 0;
@@ -113,7 +137,8 @@
     margin-bottom: 0;
   }
   /* line 188, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_heroes.scss */
-  .standard-page .hero.mobile-hero .mobile-hero-text h2 + p, .standard-page .hero.mobile-hero .mobile-hero-text h2 + .button {
+  .standard-page .hero.mobile-hero .mobile-hero-text h2 + p,
+  .standard-page .hero.mobile-hero .mobile-hero-text h2 + .button {
     margin-top: 1rem;
   }
   /* line 193, /Library/WebServer/Documents/GIT/department-templates/scss/sections/_heroes.scss */

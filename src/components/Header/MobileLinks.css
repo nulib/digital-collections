@@ -31,18 +31,24 @@
   }
 
   .mobile-link.mobile-search-link {
-    background: url("https://common.northwestern.edu/v8/css/images/icons/search.svg") no-repeat center/20px 20px;
+    background: url('https://common.northwestern.edu/v8/css/images/icons/search.svg')
+      no-repeat center/20px 20px;
   }
 
   .mobile-link.mobile-search-link.open {
-    background: #4e2a84 url("https://common.northwestern.edu/v8/css/images/icons/alert-x-white-home.svg") no-repeat center/20px 20px;
+    background: #4e2a84
+      url('https://common.northwestern.edu/v8/css/images/icons/alert-x-white-home.svg')
+      no-repeat center/20px 20px;
   }
 
   .mobile-link.mobile-nav-link {
-    background: url("https://common.northwestern.edu/v8/css/images/icons/hamburger.svg") no-repeat center/20px 20px;
+    background: url('https://common.northwestern.edu/v8/css/images/icons/hamburger.svg')
+      no-repeat center/20px 20px;
   }
 
   .mobile-link.mobile-nav-link.open {
-    background: #fff url("https://common.northwestern.edu/v8/css/images/icons/close-button-dkpurple.svg") no-repeat center/20px 20px;
+    background: #fff
+      url('https://common.northwestern.edu/v8/css/images/icons/close-button-dkpurple.svg')
+      no-repeat center/20px 20px;
   }
 }

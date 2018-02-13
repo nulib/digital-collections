@@ -1,11 +1,10 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import FilterInput from '../../components/FilterInput';
 import PhotoGrid from '../../components/PhotoGrid';
 import ErrorSection from '../../components/ErrorSection';
 import CollectionsApi from '../../api/collections-api';
 import SetsApi from '../../api/sets-api';
 import '../SetsPage/SetsPage.css';
-
 
 class SetPage extends Component {
   constructor(props) {
@@ -15,7 +14,7 @@ class SetPage extends Component {
       isLoaded: false,
       items: [],
       set: {}
-    }
+    };
     // initialize API request wrappers
     this.setsApi = new SetsApi();
     this.collectionsApi = new CollectionsApi();
@@ -26,7 +25,7 @@ class SetPage extends Component {
   }
 
   componentDidMount() {
-    document.body.className="standard-page";
+    document.body.className = 'standard-page';
 
     // Grab REST API data here
     if (this.sectionType === 'collections') {
@@ -38,16 +37,24 @@ class SetPage extends Component {
 
   getCollectionData() {
     // Get collection info
-    this.collectionsApi.getCollection(this.id).then(this.updateSetState.bind(this));
+    this.collectionsApi
+      .getCollection(this.id)
+      .then(this.updateSetState.bind(this));
     // Get items in collection
-    this.collectionsApi.getCollectionItems(this.id).then(this.updateItemsState.bind(this));
+    this.collectionsApi
+      .getCollectionItems(this.id)
+      .then(this.updateItemsState.bind(this));
   }
 
   getSetsData() {
     // Get set info
-    this.setsApi.getSet(this.sectionType, this.id).then(this.updateSetState.bind(this));
+    this.setsApi
+      .getSet(this.sectionType, this.id)
+      .then(this.updateSetState.bind(this));
     // Get items in set
-    this.setsApi.getSetItems(this.sectionType).then(this.updateItemsState.bind(this));
+    this.setsApi
+      .getSetItems(this.sectionType)
+      .then(this.updateItemsState.bind(this));
   }
 
   updateItemsState(data) {
@@ -87,7 +94,7 @@ class SetPage extends Component {
                   additionalClasses="four-grid contain-1120 full-images"
                   items={items}
                   linkPrefix={`/${this.sectionType}/${this.id}`}
-                  />
+                />
               </div>
             </main>
           </div>

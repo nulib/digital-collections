@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import TopBar from './TopBar';
 import BottomBar from './BottomBar';
 

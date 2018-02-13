@@ -8,7 +8,7 @@ export default class SetsApi {
   getAllSets(setType) {
     let url = '';
 
-    switch(setType) {
+    switch (setType) {
       case 'collections':
         // Here can specify a local .json file path, or a real endpoint
         url = '/json/collections.json';

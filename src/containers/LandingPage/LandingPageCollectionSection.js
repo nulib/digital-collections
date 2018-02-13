@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PhotoGrid from '../../components/PhotoGrid';
 import CollectionsApi from '../../api/collections-api';
 
@@ -10,7 +10,7 @@ class LandingPageCollectionSection extends Component {
       error: null,
       isLoaded: false,
       collections: []
-    }
+    };
 
     // initialize the Sets API Class
     this.CollectionsApi = new CollectionsApi();
@@ -18,7 +18,7 @@ class LandingPageCollectionSection extends Component {
 
   componentDidMount() {
     // Grab REST API data here
-    this.CollectionsApi.getAllCollections().then((data) => {
+    this.CollectionsApi.getAllCollections().then(data => {
       this.setState({
         collections: data.response.docs,
         isLoaded: true
@@ -39,14 +39,16 @@ class LandingPageCollectionSection extends Component {
         <section>
           <div className="section-top contain-970">
             <h3>Explore {label}</h3>
-            <p><Link to={`/collections`}>View All {label}</Link></p>
+            <p>
+              <Link to={`/collections`}>View All {label}</Link>
+            </p>
             <p>{this.props.sectionType.description}</p>
           </div>
           <PhotoGrid
             additionalClasses="contain-1120 full-images"
             items={collections}
             linkPrefix={`/collections`}
-            />
+          />
         </section>
       );
     }

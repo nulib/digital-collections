@@ -3,13 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "husky": "^0.14.3",
+    "lint-staged": "^6.1.0",
+    "prettier": "^1.10.2",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.14"
   },
+  "lint-staged": {
+    "src/**/*.{js,jsx,json,css}": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
+  },
   "proxy": "http://devbox.library.northwestern.edu",
   "scripts": {
+    "precommit": "lint-staged",
     "start": "PORT=3333 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

@@ -19,6 +19,6 @@ const sectionsData = {
     label: 'Work Type',
     description: `This is mock description data for Work Types.  Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo.`
   }
-}
+};
 
 export default sectionsData;

@@ -1,15 +1,20 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './PhotoBox.css';
 
 function PhotoBox(props) {
-  const imageUrl = 'http://devbox.library.northwestern.edu' + props.item.thumbnail_path_ss;
+  const imageUrl =
+    'http://devbox.library.northwestern.edu' + props.item.thumbnail_path_ss;
 
-  let description = ''
+  let description = '';
   if (props.item.hasOwnProperty('description_tesim')) {
-    description = props.item.description_tesim[0].split(' ').splice(0, 40).join(' ') + '...';
+    description =
+      props.item.description_tesim[0]
+        .split(' ')
+        .splice(0, 40)
+        .join(' ') + '...';
   } else {
-    description = ''
+    description = '';
   }
 
   return (

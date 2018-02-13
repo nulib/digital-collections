@@ -46,9 +46,7 @@ class SetsPage extends Component {
         .then(this.updateApiState.bind(this));
     } else {
       // All other Sets
-      this.setsApi
-        .getAllSets(sectionType)
-        .then(this.updateApiState.bind(this));
+      this.setsApi.getAllSets(sectionType).then(this.updateApiState.bind(this));
     }
   }
 
@@ -78,9 +76,7 @@ class SetsPage extends Component {
                 <h2>{headline}</h2>
                 <p>{description}</p>
                 <form className="web-form">
-                  <FilterInput
-                    filterName={sectionsData[sectionType].label}
-                  />
+                  <FilterInput filterName={sectionsData[sectionType].label} />
                 </form>
                 <PhotoGrid
                   additionalClasses="four-grid contain-1120 full-images"

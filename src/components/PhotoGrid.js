@@ -7,12 +7,12 @@ function PhotoGrid(props) {
 
   return (
     <div className={classes}>
-      {props.items.map((item) => (
+      {props.items.map(item => (
         <PhotoBox
           key={item.id}
           item={item}
           linkPath={`${props.linkPrefix}/${item.id}`}
-          />
+        />
       ))}
     </div>
   );

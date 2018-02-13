@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 class ContactUs extends Component {
   componentDidMount() {
-    document.body.className="standard-page narrow-page";
+    document.body.className = 'standard-page narrow-page';
   }
 
   render() {
