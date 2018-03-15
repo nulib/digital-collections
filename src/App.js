@@ -3,10 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './components/Header/';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
-import LandingPage from './containers/LandingPage';
-import SetsPage from './containers/SetsPage';
-import SetPage from './containers/SetPage';
-import ItemDetailPage from './containers/ItemDetailPage';
+import HomeContainer from './containers/HomeContainer';
 import ContactUs from './containers/ContactUs';
 import About from './containers/About';
 import Login from './containers/Login';
@@ -23,14 +20,7 @@ class App extends Component {
             <Route exact path="/about" component={About} />
             <Route exact path="/contactus" component={ContactUs} />
             <Route exact path="/login" component={Login} />
-            <Route
-              exact
-              path="/:sectionType/:id/:itemId"
-              component={ItemDetailPage}
-            />
-            <Route exact path="/:sectionType/:id" component={SetPage} />
-            <Route exact path="/:sectionType" component={SetsPage} />
-            <Route exact path="/" component={LandingPage} />
+            <Route exact path="/" component={HomeContainer} />
           </Switch>
           <Footer />
         </div>

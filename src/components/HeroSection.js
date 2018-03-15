@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import aliceImage from '../images/alice-at-the-greek-1440x600.png';
-import './HeroSection.css';
 
 class HeroSection extends Component {
   render() {

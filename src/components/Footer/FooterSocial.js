@@ -1,5 +1,4 @@
 import React from 'react';
-import './FooterSocial.css';
 
 function FooterSocial(props) {
   const classes = 'social ' + props.additionalClasses;

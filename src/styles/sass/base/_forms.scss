@@ -1,0 +1,287 @@
+// forms
+
+.web-form {
+
+	form {
+		margin-bottom: .5rem;
+    }
+
+	fieldset {
+		border: 1px solid $light-grey;
+//		padding: .35em .625em .75em;
+		margin-bottom: 1em;
+		border: 0;
+	
+        p {
+            margin: 0;
+        }
+    }
+
+	.field {
+		margin-bottom: 1em;
+	   
+        p {
+            margin: 0;
+        }
+    }    
+    
+	label,
+    .label,
+    legend {
+		margin: .5em 0 .2em;
+		display: block;
+
+        &.inline {
+            display: inline;
+            margin: .5em 1em .2em 0;
+        }
+        
+		&.right {
+			font-style: italic;
+			font-weight: normal;
+			font-size: .9em;
+		}
+	}
+
+	input+label,
+    select+label,
+    .label-secondary+label,
+    .required+label {
+		margin: 1.5rem 0 0;
+	}
+
+	input[type=search]::-webkit-search-cancel-button, 
+    input[type=search]::-webkit-search-decoration {
+		-webkit-appearance: none;
+	}
+
+	input, select, textarea {
+		display: inline-block;
+		border: 1px solid $medium-grey;
+        font: inherit;
+		color: $rich-black-80;
+		border-radius: 0;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		-webkit-font-smoothing: antialiased;
+		width: 50%; // previously: min-width: 30rem
+		background: $white;
+        padding: .5em;
+		@include borderFade();
+
+		&.required {
+			border: 1px solid $red;
+		}
+        
+        // for smaller input fields
+        &.narrow { 
+            width: 25%; // previously: min-width: 15rem;
+        }
+	}
+    
+	input[type=checkbox], 
+    input[type=radio] {
+		box-sizing: border-box;
+		padding: 0;
+		height: 15px;
+		width: 15px;
+	}
+
+	input[type=search] {
+		-webkit-appearance: textfield;
+		-moz-box-sizing: content-box;
+		-webkit-box-sizing: content-box;
+		box-sizing: content-box;
+	}    
+
+	input:focus, 
+    select:focus, 
+    textarea:focus {
+//		outline: thin dashed;
+		border-color: $nu-purple;
+	}
+    
+	input.required:focus,
+    select.required:focus,
+    textarea.required:focus {
+		border-color: $red;
+	}
+
+	input:focus {
+//		outline: thin dotted $rich-black-80;
+		outline: 1px auto $nu-purple;
+	}
+
+	input[disabled],
+    select[disabled],
+    textarea[disabled] {
+		cursor: not-allowed;
+		background-color: $light-grey;
+		color: $medium-grey;
+	}
+
+	input[readonly],
+    select[readonly],
+    textarea[readonly],
+    input[readonly]:focus,
+    select[readonly]:focus,
+    textarea[readonly]:focus {
+		background: $light-grey;
+		color:  $rich-black-50;
+		border-color: $medium-grey;
+	}
+
+	input[type=file] {
+		background-image: none;
+
+		&:hover {
+			background-image: none;
+		}
+	}
+
+	select {
+		background: $white url("#{$path-images}/icons/arrow-down-dkpurple.svg")  no-repeat top 50% right .5rem / 17px 10px;
+		color: $rich-black-50;
+        width: inherit;
+        padding-right: 2rem;
+		margin: 0 .65rem 0 0;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		-webkit-border-radius: 0;
+        height: 45px;
+
+		&::-ms-expand {
+			display: none;
+		}
+
+		&:-moz-focusring {
+			color: transparent;
+			text-shadow: 0 0 0 $black;
+		}
+
+		option {
+			font-family: $AkkuratProRegular;
+		}
+    }
+
+	select[multiple] {
+		height: auto
+	}
+
+	textarea {
+		border: 1px solid $medium-grey;
+		padding: 0.3em 1.5em 0.3em .5em;
+		width: 100%;
+        height: 8em;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		-webkit-border-radius: 0;
+		overflow: auto;
+		vertical-align: top;
+	}
+
+	.required {
+		color: $red;
+		font-weight: normal;
+	}
+
+	label, .label {
+        
+		span {
+            
+			&.required {
+				margin-left: 0.5rem;
+			}
+		}
+	}
+
+	span {
+        
+		&.required {
+			display: inline;
+		}
+	}
+
+	.form-help-inline,
+    .form-message-inline {
+		display: inline-block;
+		padding-left: .3em;
+		color: $rich-black-50;
+		vertical-align: middle;
+	}
+
+	.form-message {
+		display: block;
+	}
+
+    // buttons
+	button::-moz-focus-inner,
+    input::-moz-focus-inner {
+		border: 0;
+		padding: 0
+	}
+
+	button,
+    input,
+    select,
+    textarea {
+		font-size: 100%;
+		vertical-align: baseline;
+		vertical-align: middle;
+	}
+
+	button,
+    input {
+		line-height: normal;
+	}
+
+	button,
+    input[type=button],
+    input[type=reset],
+    input[type=submit] {
+		-webkit-appearance: button;
+		cursor: pointer;
+		overflow: visible;
+	}
+
+	button[disabled],
+    input[disabled] {
+		cursor: default;
+	}
+
+    // media queries
+    @media only screen and (max-width: 480px) {
+
+        button[type=submit] {
+            margin: .7em 0 0
+        }
+
+        input,
+        label {
+            margin-bottom: .3em;
+            display: block;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+
+            // for smaller input fields
+            &.narrow { 
+                width: 50%;
+            }        
+        }
+
+        .form-help-inline, 
+        -message-inline,
+        -message {
+            display: block;
+            font-size: 80%;
+            padding: .2em 0 .8em;
+        }
+    }
+}

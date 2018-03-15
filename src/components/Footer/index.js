@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import FooterSocial from './FooterSocial';
 import FooterLink from './FooterLink';
-import './Footer.css';
 
 class Footer extends Component {
   render() {

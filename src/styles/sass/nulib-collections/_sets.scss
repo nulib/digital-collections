@@ -1,0 +1,72 @@
+.photo-grid {
+  article {
+    p,
+    .item-count {
+      margin-top: .5rem;
+    }
+    .item-count {
+      font: 14px/1.4em $AkkuratProBold;
+      color: $rich-black-80;
+    }
+  }
+}
+
+// Collection Items page sidebar
+.standard-page #sidebar.left-sidebar {
+  float: left;
+  margin: 0;
+  width: 30%;
+
+  @media screen and (max-width: 700px) {
+    width: 100%;
+    float: none;
+  }
+
+  // Form elements
+  .web-form {
+    input {
+      width: 100%;
+      padding-right: 30px;
+    }
+    .search-bar-wrapper {
+      position: relative;
+    }
+    .sidebar-search-icon {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      cursor: pointer;
+      color: $nu-purple;
+      font-size: 1.3rem;
+    }
+  }
+}
+
+// Facets list styles
+ul.facet-list {
+  li {
+    padding-right: 30px;
+    position: relative;
+
+    &.active {
+      background: none;
+      font-family: $AkkuratProBold;
+      padding-left: 1rem;
+    }
+
+    .close {
+      color: $nu-purple;
+      position: absolute;
+      left: 0;
+      top: 1px;
+      cursor: pointer;
+    }
+
+    .count {
+      position: absolute;
+      display: block;
+      top: 0;
+      right: 0;
+    }
+  }
+}

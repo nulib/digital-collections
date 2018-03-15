@@ -5,6 +5,8 @@
   "dependencies": {
     "husky": "^0.14.3",
     "lint-staged": "^6.1.0",
+    "node-sass-chokidar": "^1.1.0",
+    "npm-run-all": "^4.1.2",
     "prettier": "^1.10.2",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
@@ -19,9 +21,13 @@
   },
   "proxy": "http://devbox.library.northwestern.edu",
   "scripts": {
+    "build-css": "node-sass-chokidar src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "start-js": "PORT=3333 react-scripts start",
+    "start": "npm-run-all -p watch-css start-js",
+    "build-js": "react-scripts build",
+    "build": "npm-run-all build-css build-js",
     "precommit": "lint-staged",
-    "start": "PORT=3333 react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }

@@ -1,9 +1,9 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="theme-color" content="#000000">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!--
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
@@ -23,11 +23,22 @@
     <script src="https://use.fontawesome.com/2f37cc7e8b.js"></script>
   </head>
   <body>
-    <noscript>
-      You need to enable JavaScript to run this app.
-    </noscript>
-    <a id="top"></a>
-    <a href="#main-content" class="screen-reader-shortcut">Skip to main content</a>
+    <script>document.getElementsByTagName('body')[0].setAttribute('class','landing-page');</script>
+        <!--[if lt IE 9]>
+            <div id="ie">
+            <p><img src="https://common.northwestern.edu/v8/css/images/icons/ie8-warning.png" alt="Warning icon" /> Your browser is <strong>out-of-date</strong> and has known <strong>security flaws</strong>. We recommend you update your browser: <a href="http://www.google.com/chrome/" target="_blank">Chrome</a> - <a href="https://www.mozilla.org/en-US/firefox/new/" target="_blank">Firefox</a> - <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie" target="_blank">Internet Explorer</a> - <a href="https://www.apple.com/safari/" target="_blank">Safari</a>.</p>
+            </div>
+        <![endif]-->
+        <!--
+            <div id="emergency">
+            <h2>Emergency Update</h2>
+            <div id="emergency-content">
+            <a href="http://www.northwestern.edu/news/breaking-news/">Breaking News Link</a><br /><br />
+            Text which could be somewhat long because this would describe something that happened<br /><br />
+            Date
+            </div>
+            </div>
+        -->
     <div id="root"></div>
     <!--
       This HTML file is a template.

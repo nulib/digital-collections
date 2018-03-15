@@ -1,0 +1,189 @@
+.item-section {
+  padding: 2rem 0;
+}
+
+.item-viewer-wrapper {
+  background: $rich-black-80;
+  padding: 1.5rem 0;
+
+  .item-wrapper {
+    text-align: center;
+    padding-bottom: 1rem;
+    img {
+      display: inline-block;
+      cursor: pointer;
+    }
+  }
+
+  .item-controls-wrapper {
+    .item-control {
+      color: $light-grey;
+      display: inline-block;
+      margin-left: 10px;
+      &:first-of-type {
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+// Summary of item details underneath the item
+.item-summary-wrapper {
+  background: $light-grey;
+
+  .item-summary {
+    @extend %clearfix;
+
+    .item-left {
+      width: 50%;
+      float: left;
+      border-right: 1px solid $medium-grey;
+      padding-right: 10px;
+
+      @include mobile-full-width();
+    }
+    .item-right {
+      width: 50%;
+      float: right;
+      padding-left: 20px;
+
+      .summary-list-item {
+        width: 25%;
+      }
+
+      @include mobile-full-width();
+    }
+    // Item detail 3 horizontal boxes
+    .summary-list {
+      display: flex;
+      flex-wrap: nowrap;
+
+      .summary-list-item {
+        width: 33%;
+
+        &.social-media {
+          text-align: right;
+          .fa {
+            font-size: 2rem;
+          }
+        }
+        &.permalink {
+          width: 50%;
+        }
+        &.download {
+          width: 100%;
+
+          .data-value {
+            display: flex;
+            align-items: flex-end;
+          }
+        }
+      }
+      .data-label {
+        font-family: $AkkuratProBold;
+      }
+      .data-value {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    .permalink-wrapper {
+      display: flex;
+      justify-content: space-between;
+
+      .permalink-input {
+        width: 80%;
+      }
+      .button {
+        width: 20%;
+        margin: 0;
+      }
+    }
+  }
+}
+
+.download-option-box {
+  margin: 10px 10px 0 0;
+  width: 100px;
+  height: 40px;
+  color: $white;
+  background: $rich-black-50;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  &.big {
+    width: 120px;
+    height: 50px;
+  }
+}
+
+// Item categories accordions
+.item-categories-wrapper {
+  .this-item-wrapper {
+    text-align: center;
+
+    .fa {
+      font-size: 6rem;
+      color: $light-grey;
+    }
+    img {
+      display: inline-block;
+      max-height: 200px;
+    }
+  }
+
+  .see-more-link {
+    display: inline-block;
+    padding: 0;
+    background: none;
+    border-bottom: 1px dashed $nu-purple;
+
+    &:hover {
+      border-bottom: 1px dashed $white;
+      text-decoration: none;
+    }
+  }
+
+  // Carousels
+  .showcase {
+    margin-bottom: 1rem;
+  }
+
+  .cite-group-col {
+    float: left;
+    width: 50%;
+  }
+  .cite-group {
+    > p {
+      text-indent: -40px;
+      margin-left: 40px;
+    }
+  }
+
+
+  // Timeliny overrides
+  .timeliny {
+    padding: 5rem 0;
+    .timeliny-timeline .timeliny-timeblock.active .timeliny-dot {
+      border-color: $nu-purple-30;
+      background-color: $nu-purple-30;
+    }
+    .timeliny-dot {
+      &:before,
+      &:after {
+        color: $rich-black-50;
+      }
+      &:before {
+        top: -3rem;
+      }
+      &:after {
+        top: 3.6rem;
+      }
+    }
+  }
+}

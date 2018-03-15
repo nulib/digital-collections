@@ -1,0 +1,15 @@
+// "un-style" a standard NU <ul> list
+@mixin ul-no-style() {
+  padding-left: 0;
+  li {
+    background: none;
+    padding-left: 0;
+  }
+}
+
+@mixin mobile-full-width() {
+  @media screen and (max-width: 700px) {
+    width: 100%;
+    float: none;
+  }
+}

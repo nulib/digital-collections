@@ -1,0 +1,43 @@
+// stats callout
+
+.standard-page {
+
+    .stats-callout {
+        border-top: 4px solid $light-grey;
+        border-bottom: 4px solid $light-grey;
+        text-align: center;
+        color: $nu-purple;
+        padding: 1rem 0;
+    
+        div {
+            margin: 0 auto;
+        }
+        
+        span {  
+            display: block;
+
+            &.big {
+               font: 72px/1.2em $CamptonBold; 
+            }
+
+            &.small {
+                font: 24px/1.2em $CamptonExtraLight;
+            }
+        }
+    }
+
+    // media queries       
+    @media screen and (max-width: 480px) {
+        
+        .stats-callout {
+            
+            span {
+
+                &.big {
+                    font-size: 48px;
+                }
+            }
+        } 
+    }
+     
+}  // end

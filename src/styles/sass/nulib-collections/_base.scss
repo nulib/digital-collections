@@ -1,0 +1,111 @@
+.standard-page .full-width .content {
+  float: none;
+  width: 100%;
+}
+
+// Unstyled lists
+ul.no-style {
+  @include ul-no-style();
+
+  &.horizontal {
+    > li {
+      display: inline-block;
+    }
+  }
+}
+
+// Font awesome
+.fa {
+  font-family: "FontAwesome" !important;
+}
+
+#page {
+  // Add content margins
+  &.standard-margin {
+    // Taken from scss/page-types/standard-page/_main.scss:18
+    margin: 2rem auto 0 auto;
+    max-width: 1120px;
+    @extend %clearfix;
+  }
+
+  // Full width standard page
+  &.full-width {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+// Update sidebar and main content widths for Collection Items page
+#page {
+  &.collection-items,
+  &.search {
+    max-width: 1440px;
+
+    #left-nav {
+      width: 30%;
+      @extend #main-content;
+      font-family: $AkkuratProRegular;
+      font-size: 14px;
+    }
+    #main-content {
+      &.content {
+        width: 67%;
+
+        @media screen and (max-width: 700px) {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+main#main-content {
+  position: relative;
+  // Extra see more link in homepage
+  .see-more-link {
+    margin-left: 1rem;
+    small {
+      font-size: .9rem;
+    }
+  }
+}
+
+.relative-wrapper {
+  position: relative;
+}
+
+// TODO: Still need this?
+// Background Select module
+// http://www.northwestern.edu/templates/page-types/left-navigation/modules.html
+.background-select-header {
+  font: 42px $CamptonBook !important;
+  color: $white !important;
+  margin-bottom: 1rem;
+
+  &:before,
+  &:after {
+    background: none !important;
+    padding: 0 !important;
+  }
+}
+
+// Extra swiper code
+.standard-page {
+  .showcase {
+    &.nulib-showcase {
+      // Add support for caption plus number of items darker shading
+      .caption {
+        padding: 0;
+        .detail,
+        .num-items {
+          display: block;
+          padding: .5rem .75rem .25rem;
+        }
+        .num-items {
+          background: rgba(0, 0, 0, .1);
+          padding: .25rem .75rem .5rem;
+        }
+      }
+    }
+  }
+}
