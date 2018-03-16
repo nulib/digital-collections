@@ -4,6 +4,8 @@ import FooterLink from './FooterLink';
 
 class Footer extends Component {
   render() {
+    const year = new Date().getFullYear();
+
     const socialItems = [
       {
         additionalClasses: 'facebook',
@@ -64,13 +66,7 @@ class Footer extends Component {
               />
             </a>
             <ul>
-              <li>
-                &copy;{' '}
-                <script type="text/javascript">
-                  document.write(new Date().getFullYear())
-                </script>{' '}
-                Northwestern University
-              </li>
+              <li>&copy; {year} Northwestern University</li>
               <li>
                 <a href="http://www.northwestern.edu/contact.html">
                   Contact Northwestern University

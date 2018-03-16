@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Header = () => {
   return (
     <header>
-      <a href="#main-content" className="screen-reader-shortcut">
+      <a href="smain-content" className="screen-reader-shortcut">
         Skip to main content
       </a>
       <div id="top-bar">
@@ -62,7 +62,7 @@ const Header = () => {
       <div id="bottom-bar" className="contain-1120">
         <div id="site-name">
           <h1>
-            <Link to="index.html">LIBRARIES - DIGITAL COLLECTIONS</Link>
+            <Link to="/">LIBRARIES - DIGITAL COLLECTIONS</Link>
           </h1>
         </div>
       </div>
@@ -75,7 +75,7 @@ const Header = () => {
             <li tabindex="0">
               <Link to="/">About Digital Collections</Link>
               <span className="arrow">
-                <a aria-haspopup="true" href="#" role="button">
+                <a aria-haspopup="true" role="button">
                   <span>Expand</span>
                   Submenu
                 </a>
@@ -84,7 +84,7 @@ const Header = () => {
             <li>
               <Link to="/">Browse</Link>
               <span className="arrow">
-                <a aria-haspopup="true" href="#" role="button">
+                <a aria-haspopup="true" role="button">
                   <span>Expand</span>
                   Submenu
                 </a>
@@ -104,7 +104,7 @@ const Header = () => {
             <li>
               <Link to="/">Collection Types</Link>
               <span className="arrow">
-                <a aria-haspopup="true" href="#" role="button">
+                <a aria-haspopup="true" role="button">
                   <span>Expand</span>
                   Submenu
                 </a>

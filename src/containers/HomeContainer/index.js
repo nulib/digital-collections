@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import HeroSection from '../../components/HeroSection';
-import sectionsData from '../../api/sections-data';
 
 class HomeContainer extends Component {
   componentDidMount() {
