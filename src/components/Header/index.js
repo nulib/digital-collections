@@ -72,7 +72,7 @@ const Header = () => {
         </a>
         <nav id="mobile-nav" aria-label="mobile menu">
           <ul>
-            <li tabindex="0">
+            <li tabIndex="0">
               <Link to="/">About Digital Collections</Link>
               <span className="arrow">
                 <a aria-haspopup="true" role="button">

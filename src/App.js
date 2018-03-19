@@ -8,6 +8,7 @@ import ContactUs from './containers/ContactUs';
 import About from './containers/About';
 import Login from './containers/Login';
 import './App.css';
+import './libs/nuwebcomm-scripts.js';
 
 class App extends Component {
   render() {

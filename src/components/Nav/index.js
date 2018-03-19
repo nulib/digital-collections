@@ -1,5 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import $ from 'jquery';
+
+const handleSearchIconClick = e => {
+  // desktop: toggle search menu
+  $('#library-search-dropdown').slideToggle('medium');
+  e.preventDefault();
+};
+
+const styles = {
+  searchButton: {
+    cursor: 'pointer'
+  }
+};
 
 const Nav = () => {
   return (
@@ -68,7 +81,7 @@ const Nav = () => {
             </ul>
           </li>
           <li id="library-search-button">
-            <a>
+            <a style={styles.searchButton} onClick={handleSearchIconClick}>
               &nbsp;<span className="hide-label">
                 Click to open search menu
               </span>
