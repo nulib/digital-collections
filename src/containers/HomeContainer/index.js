@@ -8,11 +8,18 @@ class HomeContainer extends Component {
   }
 
   render() {
+    const heroData = {
+      title: 'Berkeley Folk Festival',
+      subTitle: 'Summer of love - collection description here',
+      collectionId: 'asdf0986asdf09',
+      heroImage: 'alice-at-the-greek-1440x600.png'
+    };
+
     return (
       <div>
         <div className="relative-wrapper homepage-hero-wrapper contain-1440">
           <GlobalSearch />
-          <HeroSection />
+          <HeroSection heroData={heroData} />
         </div>
         <div id="page">
           <main id="main-content" className="content" tabIndex="0" />

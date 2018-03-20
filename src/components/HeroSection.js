@@ -1,11 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import aliceImage from '../images/alice-at-the-greek-1440x600.png';
 
-const HeroSection = () => {
+const HeroSection = props => {
+  const { title, subTitle, heroImage } = props.heroData;
+  // Need this 'require()' for webpack to grab the image
+  const bgImage = require(`../images/${heroImage}`);
+  const buttonText = 'View Collection';
   const styles = {
     heroBg: {
-      backgroundImage: 'url(' + aliceImage + ')',
+      backgroundImage: `url(${bgImage})`,
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
       backgroundPosition: 'center'
@@ -16,18 +19,18 @@ const HeroSection = () => {
     <div className="section hero mobile-hero no-bottom-margin contain-1440">
       <div className="hero-image" style={styles.heroBg}>
         <div className="contain-1120">
-          <h2>Berkeley Folk Festival</h2>
-          <p>Summer of love - collection description here</p>
+          <h2>{title}</h2>
+          <p>{subTitle}</p>
           <Link to="/" className="button" aria-label="enter descriptive text">
-            View Collection
+            {buttonText}
           </Link>
         </div>
       </div>
       <div className="mobile-hero-text">
-        <h2>Page Title</h2>
-        <p>Optional Subhead</p>
+        <h2>{title}</h2>
+        <p>{subTitle}</p>
         <Link to="/" className="button" aria-label="enter descriptive text">
-          Optional Button
+          {buttonText}
         </Link>
       </div>
     </div>
