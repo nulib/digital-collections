@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const HeroSection = props => {
   const { title, subTitle, heroImage } = props.heroData;
   // Need this 'require()' for webpack to grab the image
-  const bgImage = require(`../images/${heroImage}`);
+  const bgImage = require(`../../images/${heroImage}`);
   const buttonText = 'View Collection';
   const styles = {
     heroBg: {
