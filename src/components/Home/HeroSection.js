@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const HeroSection = props => {
   const { title, subTitle, heroImage } = props.heroData;
@@ -35,6 +36,14 @@ const HeroSection = props => {
       </div>
     </div>
   );
+};
+
+HeroSection.propTypes = {
+  heroData: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    subTitle: PropTypes.string.isRequired,
+    heroImage: PropTypes.string.isRequired
+  })
 };
 
 export default HeroSection;

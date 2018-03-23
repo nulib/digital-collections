@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 import Swiper from 'swiper';
 import 'swiper/dist/css/swiper.css';
 import $ from 'jquery';
@@ -106,5 +106,17 @@ class Carousel extends Component {
     );
   }
 }
+
+Carousel.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.object).isRequired,
+  slidesPerView: PropTypes.number.isRequired
+};
+
+CarouselItem.propTypes = {
+  item: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired
+  })
+};
 
 export default Carousel;

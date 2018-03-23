@@ -21,10 +21,10 @@ const CarouselSection = props => {
 };
 
 CarouselSection.propTypes = {
-  sectionTitle: PropTypes.string,
-  linkTo: PropTypes.string,
-  items: PropTypes.array,
-  slidesPerView: PropTypes.number
+  sectionTitle: PropTypes.string.isRequired,
+  linkTo: PropTypes.string.isRequired,
+  items: PropTypes.array.isRequired,
+  slidesPerView: PropTypes.number.isRequired
 };
 
 export default CarouselSection;
