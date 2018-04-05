@@ -15,6 +15,7 @@ const Header = () => {
                 href="http://www.northwestern.edu/"
                 title="Northwestern University Home"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <span className="hide-label">Northwestern University</span>
               </a>

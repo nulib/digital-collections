@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
 import HeroSection from '../components/Home/HeroSection';
-import GlobalSearch from '../components/GlobalSearch';
 import CarouselSection from '../components/CarouselSection';
 import HeroSecondarySection from '../components/Home/HeroSecondarySection';
-import { recentlyDigitizedItems } from '../api/mock-data/recently-digitized-items';
-import { recentlyDigitizedCollections } from '../api/mock-data/recently-digitized-collections';
-import { photographyCollections } from '../api/mock-data/photography-collections';
+import MockClient from '../api/client/mock-client';
+import { heroData } from '../api/heros';
+import { heroSecondaryData } from '../api/heros';
 
 class HomeContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       recentlyDigitizedItems: [],
-      recentlyDigitizedCollections: []
+      recentlyDigitizedCollections: [],
+      photographyCollections: []
     };
+    this.updateCarouselData = this.updateCarouselData.bind(this);
+    this.mockClient = new MockClient();
+
     // Add 'landing-page' class to <body> so the hero image displays properly
     document
       .getElementsByTagName('body')[0]
@@ -21,45 +24,34 @@ class HomeContainer extends Component {
   }
 
   componentDidMount() {
-    //document.body.class = 'landing-page';
-    this.setState({
-      recentlyDigitizedItems: this.getRecentlyDigitizedItems(),
-      recentlyDigitizedCollections: this.getRecentlyDigitizedCollections(),
-      photographyCollections: this.getPhotographyCollections()
+    // Mock urls to feed json data for testing
+    const urls = [
+      '/json/mock/recently-digitized-items.js',
+      '/json/mock/recently-digitized-collections.js',
+      '/json/mock/photography-collections.js'
+    ];
+    const grabData = url => this.mockClient.getData(url);
+    // Fetch all three carousel's data at once asynchronously via Promise.all
+    Promise.all(urls.map(grabData)).then(response => {
+      console.log('response', response);
+      this.updateCarouselData(response);
     });
   }
 
-  getRecentlyDigitizedItems() {
-    // Put AJAX / fetch here to grab data
-    return recentlyDigitizedItems;
-  }
-
-  getRecentlyDigitizedCollections() {
-    // Put AJAX / fetch here to grab data
-    return recentlyDigitizedCollections;
-  }
-
-  getPhotographyCollections() {
-    // Put AJAX / fetch here to grab data
-    return photographyCollections;
+  updateCarouselData(response) {
+    this.setState({
+      recentlyDigitizedItems: response[0],
+      recentlyDigitizedCollections: response[1],
+      photographyCollections: response[2]
+    });
   }
 
   render() {
-    const { recentlyDigitizedItems, recentlyDigitizedCollections } = this.state;
-    const heroData = {
-      title: 'Berkeley Folk Festival',
-      subTitle: 'Summer of love - collection description here',
-      collectionId: 'asdf0986asdf09',
-      heroImage: 'alice-at-the-greek-1440x600.png'
-    };
-    const heroSecondaryData = {
-      title: 'Historic Postcards',
-      subTitle:
-        'Browse our collection of Postcards from the University Archives',
-      collectionId: 'qweras888',
-      imageUrl:
-        'https://images.northwestern.edu/image-service/inu-dil-0ec605c7-e63f-4e4f-843d-7b508a2ce1f6/full/,780/0/grey.jpg'
-    };
+    const {
+      recentlyDigitizedItems,
+      recentlyDigitizedCollections,
+      photographyCollections
+    } = this.state;
 
     return (
       <div>
