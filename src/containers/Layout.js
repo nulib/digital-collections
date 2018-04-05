@@ -4,7 +4,7 @@ import Header from '../components/Header/';
 import Nav from '../components/Nav';
 import GlobalSearch from '../components/GlobalSearch';
 import Footer from '../components/Footer';
-import HomeContainer from './HomeContainer';
+import HomePage from './HomePage';
 import ContactUs from './ContactUs';
 import About from './About';
 import Login from './Login';
@@ -23,7 +23,7 @@ const Layout = () => {
             <Route exact path="/about" component={About} />
             <Route exact path="/contactus" component={ContactUs} />
             <Route exact path="/login" component={Login} />
-            <Route exact path="/" component={HomeContainer} />
+            <Route exact path="/" component={HomePage} />
           </Switch>
         </main>
       </div>

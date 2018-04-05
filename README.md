@@ -1,23 +1,23 @@
 # Next Generation Presentation Layer
-A front-end, ReactJS application for Northwestern's Next Generation Repository.  This application will serve as the presentation layer, containing discovery UI components for browsing and searching ingested items through the Hyrax Donut back-end.
+This ReactJS application serves as the presentation layer for Northwestern's Next Generation Repository.  It contains discovery UI components for searching, filtering, browsing and navigation of items ingested through Hyrax.
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
-### Prerequisites:
- * You must have a local donut instance running and available at http://devbox.library.northwestern.edu
- * You must have the `solr_wrapper` associated with that donut instance running locally and available at http://localhost:8983/
- * In the `package.json` file the app is configured to proxy donut in order to grab the IIIFManifests (we are just using the manifest to grab one image url for display until we have a viewer implemented)
- * Enable CORS for your local Solr instance. See #4 here: http://opensourceconnections.com/blog/2015/03/26/going-cross-origin-with-solr/. The file you want to edit is in `/tmp/solr-development/server/solr-webapp/WEB-INF/web.xml`
- * You must have collections and images (works + filesets) created in your local donut instance **with visibility set to public**
 
 ### Installing
 ```bash
 $ git clone git@github.com:nulib/next-gen-front-end-react.git
 $ cd next-gen-front-end-react
-$ npm install
-$ npm start
+$ yarn install
+$ yarn start
 ```
+
+### Prerequisites (not current, but coming soon):
+ * You must have a local donut instance running and available at http://devbox.library.northwestern.edu
+ * You must have the `solr_wrapper` associated with that donut instance running locally and available at http://localhost:8983/
+ * In the `package.json` file the app is configured to proxy donut in order to grab the IIIFManifests (we are just using the manifest to grab one image url for display until we have a viewer implemented)
+ * Enable CORS for your local Solr instance. See #4 here: http://opensourceconnections.com/blog/2015/03/26/going-cross-origin-with-solr/. The file you want to edit is in `/tmp/solr-development/server/solr-webapp/WEB-INF/web.xml`
+ * You must have collections and images (works + filesets) created in your local donut instance **with visibility set to public**
 
 The app will be available at http://localhost:3333
 
@@ -59,7 +59,8 @@ Add additional notes about how to deploy this on a live system
 
 ## Built With
 * ReactJS - UI component library
-* Others...
+* Redux - state management
+* Northwestern Global Marketing design templates
 
 ## Contributing
 Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.
@@ -74,6 +75,5 @@ We use SemVer for versioning. For the versions available, see the tags on this r
 This project is licensed under the MIT License - see the LICENSE.md file for details
 
 ## Acknowledgements
-* Hat tip to anyone who's code was used
 * New York Public Library
 * Google Art Project

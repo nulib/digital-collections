@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import HeroSection from '../../components/Home/HeroSection';
-import GlobalSearch from '../../components/GlobalSearch';
-import CarouselSection from '../../components/CarouselSection';
-import HeroSecondarySection from '../../components/Home/HeroSecondarySection';
-import { recentlyDigitizedItems } from '../../api/mock-data/recently-digitized-items';
-import { recentlyDigitizedCollections } from '../../api/mock-data/recently-digitized-collections';
-import { photographyCollections } from '../../api/mock-data/photography-collections';
+import HeroSection from '../components/Home/HeroSection';
+import GlobalSearch from '../components/GlobalSearch';
+import CarouselSection from '../components/CarouselSection';
+import HeroSecondarySection from '../components/Home/HeroSecondarySection';
+import { recentlyDigitizedItems } from '../api/mock-data/recently-digitized-items';
+import { recentlyDigitizedCollections } from '../api/mock-data/recently-digitized-collections';
+import { photographyCollections } from '../api/mock-data/photography-collections';
 
 class HomeContainer extends Component {
   constructor(props) {
