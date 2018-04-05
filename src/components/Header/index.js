@@ -11,12 +11,13 @@ const Header = () => {
         <div className="contain-1120">
           <div id="left">
             <div id="northwestern">
-              <Link
-                to="http://www.northwestern.edu/"
+              <a
+                href="http://www.northwestern.edu/"
                 title="Northwestern University Home"
+                target="_blank"
               >
                 <span className="hide-label">Northwestern University</span>
-              </Link>
+              </a>
             </div>
             <div id="parent-unit">
               <Link to="/">Parent Unit Name</Link>

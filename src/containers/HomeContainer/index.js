@@ -14,6 +14,10 @@ class HomeContainer extends Component {
       recentlyDigitizedItems: [],
       recentlyDigitizedCollections: []
     };
+    // Add 'landing-page' class to <body> so the hero image displays properly
+    document
+      .getElementsByTagName('body')[0]
+      .setAttribute('class', 'landing-page');
   }
 
   componentDidMount() {
@@ -62,31 +66,27 @@ class HomeContainer extends Component {
         <div className="relative-wrapper homepage-hero-wrapper contain-1440">
           <HeroSection heroData={heroData} />
         </div>
-        <div id="page">
-          <main id="main-content" className="content" tabIndex="0">
-            <section className="standard-page contain-1120">
-              <CarouselSection
-                sectionTitle="Recently Digitized Items"
-                linkTo=""
-                items={recentlyDigitizedItems}
-                slidesPerView={6}
-              />
-              <CarouselSection
-                sectionTitle="Recently Digitized and Updated Collections"
-                linkTo=""
-                items={recentlyDigitizedCollections}
-                slidesPerView={4}
-              />
-              <HeroSecondarySection heroData={heroSecondaryData} />
-              <CarouselSection
-                sectionTitle="Photography Collections"
-                linkTo=""
-                items={photographyCollections}
-                slidesPerView={4}
-              />
-            </section>
-          </main>
-        </div>
+        <section className="standard-page contain-1120">
+          <CarouselSection
+            sectionTitle="Recently Digitized Items"
+            linkTo=""
+            items={recentlyDigitizedItems}
+            slidesPerView={6}
+          />
+          <CarouselSection
+            sectionTitle="Recently Digitized and Updated Collections"
+            linkTo=""
+            items={recentlyDigitizedCollections}
+            slidesPerView={4}
+          />
+          <HeroSecondarySection heroData={heroSecondaryData} />
+          <CarouselSection
+            sectionTitle="Photography Collections"
+            linkTo=""
+            items={photographyCollections}
+            slidesPerView={4}
+          />
+        </section>
       </div>
     );
   }

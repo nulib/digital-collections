@@ -8,7 +8,7 @@ import HomeContainer from './HomeContainer';
 import ContactUs from './ContactUs';
 import About from './About';
 import Login from './Login';
-import '../App.css';
+import '../Layout.css';
 import '../libs/nuwebcomm-scripts.js';
 
 const Layout = () => {
@@ -17,12 +17,16 @@ const Layout = () => {
       <Header />
       <Nav />
       <GlobalSearch />
-      <Switch>
-        <Route exact path="/about" component={About} />
-        <Route exact path="/contactus" component={ContactUs} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/" component={HomeContainer} />
-      </Switch>
+      <div id="page">
+        <main id="main-content" className="content" tabIndex="0">
+          <Switch>
+            <Route exact path="/about" component={About} />
+            <Route exact path="/contactus" component={ContactUs} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/" component={HomeContainer} />
+          </Switch>
+        </main>
+      </div>
       <Footer />
     </div>
   );
