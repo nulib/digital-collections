@@ -17,7 +17,7 @@ class HomeContainer extends Component {
   }
 
   componentDidMount() {
-    document.body.class = 'landing-page';
+    //document.body.class = 'landing-page';
     this.setState({
       recentlyDigitizedItems: this.getRecentlyDigitizedItems(),
       recentlyDigitizedCollections: this.getRecentlyDigitizedCollections(),
@@ -60,7 +60,6 @@ class HomeContainer extends Component {
     return (
       <div>
         <div className="relative-wrapper homepage-hero-wrapper contain-1440">
-          <GlobalSearch />
           <HeroSection heroData={heroData} />
         </div>
         <div id="page">

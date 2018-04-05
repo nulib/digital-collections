@@ -20,7 +20,7 @@ const Nav = () => {
       <div className="contain-1120">
         <ul>
           <li>
-            <Link to="/">About Digital Collections</Link>
+            <Link to="/about">About Digital Collections</Link>
           </li>
           <li>
             <Link to="/">

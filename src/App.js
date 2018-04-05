@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import Header from './components/Header/';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
