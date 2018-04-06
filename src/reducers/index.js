@@ -1,9 +1,8 @@
 import { combineReducers } from 'redux';
+import carouselReducer from './carouselReducer';
 
-const recentlyDigitizedItems = (state = {}, action) => {
-  return state;
-};
-
-export default combineReducers({
-  recentlyDigitizedItems
+const rootReducer = combineReducers({
+  carouselReducer
 });
+
+export default rootReducer;

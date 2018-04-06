@@ -2,21 +2,14 @@ import React, { Component } from 'react';
 import HeroSection from '../components/Home/HeroSection';
 import CarouselSection from '../components/CarouselSection';
 import HeroSecondarySection from '../components/Home/HeroSecondarySection';
-import MockClient from '../api/client/mock-client';
 import { heroData } from '../api/heros';
 import { heroSecondaryData } from '../api/heros';
+import { connect } from 'react-redux';
+import { fetchCarouselItems, CAROUSELS } from '../actions';
 
-class HomeContainer extends Component {
+class HomePage extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      recentlyDigitizedItems: [],
-      recentlyDigitizedCollections: [],
-      photographyCollections: []
-    };
-    this.updateCarouselData = this.updateCarouselData.bind(this);
-    this.mockClient = new MockClient();
-
     // Add 'landing-page' class to <body> so the hero image displays properly
     document
       .getElementsByTagName('body')[0]
@@ -24,34 +17,35 @@ class HomeContainer extends Component {
   }
 
   componentDidMount() {
-    // Mock urls to feed json data for testing
-    const urls = [
-      '/json/mock/recently-digitized-items.js',
-      '/json/mock/recently-digitized-collections.js',
-      '/json/mock/photography-collections.js'
-    ];
-    const grabData = url => this.mockClient.getData(url);
-    // Fetch all three carousel's data at once asynchronously via Promise.all
-    Promise.all(urls.map(grabData)).then(response => {
-      console.log('response', response);
-      this.updateCarouselData(response);
-    });
-  }
+    // Dispatch redux thunk action creators to grab async api data
+    this.props.dispatch(
+      fetchCarouselItems(
+        '/json/mock/recently-digitized-items.js',
+        CAROUSELS.RECENTLY_DIGITIZED_ITEMS
+      )
+    );
 
-  updateCarouselData(response) {
-    this.setState({
-      recentlyDigitizedItems: response[0],
-      recentlyDigitizedCollections: response[1],
-      photographyCollections: response[2]
-    });
+    this.props.dispatch(
+      fetchCarouselItems(
+        '/json/mock/recently-digitized-collections.js',
+        CAROUSELS.RECENTLY_DIGITIZED_COLLECTIONS
+      )
+    );
+
+    this.props.dispatch(
+      fetchCarouselItems(
+        '/json/mock/photography-collections.js',
+        CAROUSELS.PHOTOGRAPHY_COLLECTIONS
+      )
+    );
   }
 
   render() {
     const {
-      recentlyDigitizedItems,
-      recentlyDigitizedCollections,
-      photographyCollections
-    } = this.state;
+      recentlyDigitizedItems = {},
+      recentlyDigitizedCollections = {},
+      photographyCollections = {}
+    } = this.props.carousels;
 
     return (
       <div>
@@ -62,20 +56,20 @@ class HomeContainer extends Component {
           <CarouselSection
             sectionTitle="Recently Digitized Items"
             linkTo=""
-            items={recentlyDigitizedItems}
+            items={recentlyDigitizedItems.items}
             slidesPerView={6}
           />
           <CarouselSection
             sectionTitle="Recently Digitized and Updated Collections"
             linkTo=""
-            items={recentlyDigitizedCollections}
+            items={recentlyDigitizedCollections.items}
             slidesPerView={4}
           />
           <HeroSecondarySection heroData={heroSecondaryData} />
           <CarouselSection
             sectionTitle="Photography Collections"
             linkTo=""
-            items={photographyCollections}
+            items={photographyCollections.items}
             slidesPerView={4}
           />
         </section>
@@ -84,4 +78,8 @@ class HomeContainer extends Component {
   }
 }
 
-export default HomeContainer;
+const mapStateToProps = state => ({
+  carousels: state.carouselReducer
+});
+
+export default connect(mapStateToProps)(HomePage);

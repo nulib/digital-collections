@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const CarouselSection = props => {
-  const { sectionTitle, linkTo, items, slidesPerView } = props;
+  const { sectionTitle, linkTo, items = [], slidesPerView } = props;
   const link = `/${linkTo}`;
 
   return (
@@ -23,7 +23,7 @@ const CarouselSection = props => {
 CarouselSection.propTypes = {
   sectionTitle: PropTypes.string.isRequired,
   linkTo: PropTypes.string.isRequired,
-  items: PropTypes.array.isRequired,
+  items: PropTypes.array,
   slidesPerView: PropTypes.number.isRequired
 };
 

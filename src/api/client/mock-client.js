@@ -9,7 +9,6 @@ export default class MockClient {
       .then(response => response.json())
       .then(
         results => {
-          console.log('mock client data', results);
           return results;
         },
         error => {
