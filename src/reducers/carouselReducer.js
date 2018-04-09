@@ -1,6 +1,7 @@
 import {
-  FETCH_CAROUSEL_ITEMS_REQUEST,
-  FETCH_CAROUSEL_ITEMS_SUCCESS
+  CAROUSEL_ITEMS_REQUEST,
+  CAROUSEL_ITEMS_SUCCESS,
+  CAROUSEL_ITEMS_FAILURE
 } from '../actions';
 
 const initialState = {
@@ -11,17 +12,23 @@ const initialState = {
 
 function items(state = initialState, action) {
   switch (action.type) {
-    case FETCH_CAROUSEL_ITEMS_REQUEST:
+    case CAROUSEL_ITEMS_REQUEST:
       return Object.assign({}, state, {
         loading: true,
         error: false
       });
-    case FETCH_CAROUSEL_ITEMS_SUCCESS:
+    case CAROUSEL_ITEMS_SUCCESS:
       return Object.assign({}, state, {
         loading: false,
         error: false,
         items: action.items,
         lastUpdated: action.receivedAt
+      });
+    case CAROUSEL_ITEMS_FAILURE:
+      return Object.assign({}, state, {
+        loading: false,
+        error: action.error,
+        items: []
       });
     default:
       return state;
@@ -30,11 +37,15 @@ function items(state = initialState, action) {
 
 export default function carouselReducer(state = {}, action) {
   switch (action.type) {
-    case FETCH_CAROUSEL_ITEMS_REQUEST:
+    case CAROUSEL_ITEMS_REQUEST:
       return Object.assign({}, state, {
         [action.title]: items(state[action.title], action)
       });
-    case FETCH_CAROUSEL_ITEMS_SUCCESS:
+    case CAROUSEL_ITEMS_SUCCESS:
+      return Object.assign({}, state, {
+        [action.title]: items(state[action.title], action)
+      });
+    case CAROUSEL_ITEMS_FAILURE:
       return Object.assign({}, state, {
         [action.title]: items(state[action.title], action)
       });

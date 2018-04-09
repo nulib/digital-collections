@@ -1,12 +1,13 @@
-import MockClient from '../api/client/mock-client';
-const mockClient = new MockClient();
+// import MockClient from '../api/client/mock-client';
+// const mockClient = new MockClient();
+import fetch from 'cross-fetch';
 
 /*
   Action types
  */
-export const FETCH_CAROUSEL_ITEMS_REQUEST = 'FETCH_CAROUSEL_ITEMS_REQUEST';
-export const FETCH_CAROUSEL_ITEMS_SUCCESS = 'FETCH_CAROUSEL_ITEMS_SUCCESS';
-export const FETCH_CAROUSEL_ITEMS_FAILURE = 'FETCH_CAROUSEL_ITEMS_FAILURE';
+export const CAROUSEL_ITEMS_REQUEST = 'CAROUSEL_ITEMS_REQUEST';
+export const CAROUSEL_ITEMS_SUCCESS = 'CAROUSEL_ITEMS_SUCCESS';
+export const CAROUSEL_ITEMS_FAILURE = 'CAROUSEL_ITEMS_FAILURE';
 
 /*
   Other constants
@@ -17,34 +18,56 @@ export const CAROUSELS = {
   PHOTOGRAPHY_COLLECTIONS: 'photographyCollections'
 };
 
-export const fetchCarouselItems = (url, title) => {
-  return dispatch => {
-    dispatch(fetchCarouselItemsRequest(url, title));
-    return mockClient
-      .getData(url)
-      .then(response => {
-        dispatch(fetchCarouselItemsSuccess(response, title));
-      })
-      .catch(error => console.log('error', error));
-  };
-};
-
 /*
   Action creators
  */
-function fetchCarouselItemsRequest(url, title) {
+function carouselItemsRequest(url, title) {
+  // The request started, use this action to show a spinner or loading indicator
   return {
-    type: FETCH_CAROUSEL_ITEMS_REQUEST,
+    type: CAROUSEL_ITEMS_REQUEST,
     url,
     title
   };
 }
 
-function fetchCarouselItemsSuccess(items, title) {
+function carouselItemsSuccess(items, title) {
   return {
-    type: FETCH_CAROUSEL_ITEMS_SUCCESS,
+    type: CAROUSEL_ITEMS_SUCCESS,
     items: items,
     title: title,
     receivedAt: Date.now()
   };
+}
+
+function carouselItemsFailure(error, title) {
+  return {
+    type: CAROUSEL_ITEMS_FAILURE,
+    title: title,
+    error: error
+  };
+}
+
+/*
+  Thunk action creators
+ */
+export const fetchCarouselItems = (url, title) => {
+  return dispatch => {
+    dispatch(carouselItemsRequest(url, title));
+    return fetch(url)
+      .then(handleErrors)
+      .then(res => res.json())
+      .then(json => {
+        dispatch(carouselItemsSuccess(json, title));
+        return json;
+      })
+      .catch(error => dispatch(carouselItemsFailure(error, title)));
+  };
+};
+
+// Handle HTTP errors since fetch won't.
+function handleErrors(response) {
+  if (!response.ok) {
+    throw Error(response.statusText);
+  }
+  return response;
 }

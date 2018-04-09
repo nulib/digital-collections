@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.4",
+    "cross-fetch": "^2.1.0",
     "husky": "^0.14.3",
     "jquery": "^3.3.1",
     "lint-staged": "^6.1.0",

@@ -1,11 +1,6 @@
 export default class MockClient {
   getData(file) {
-    return fetch(file, {
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json'
-      }
-    })
+    return fetch(file)
       .then(response => response.json())
       .then(
         results => {
