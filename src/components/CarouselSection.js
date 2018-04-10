@@ -2,10 +2,20 @@ import React from 'react';
 import Carousel from './Carousel';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import ErrorSection from './ErrorSection';
 
 const CarouselSection = props => {
-  const { sectionTitle, linkTo, items = [], slidesPerView } = props;
+  const {
+    sectionTitle,
+    linkTo,
+    items = [],
+    slidesPerView,
+    loading,
+    error
+  } = props;
   const link = `/${linkTo}`;
+
+  const errorMessage = <div>There was an error loading the items</div>;
 
   return (
     <div>
@@ -15,6 +25,7 @@ const CarouselSection = props => {
           <small>See More</small>
         </Link>
       </h4>
+      {error && <ErrorSection error={error} />}
       <Carousel items={items} slidesPerView={slidesPerView} />
     </div>
   );

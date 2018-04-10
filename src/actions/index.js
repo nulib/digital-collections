@@ -1,5 +1,3 @@
-// import MockClient from '../api/client/mock-client';
-// const mockClient = new MockClient();
 import fetch from 'cross-fetch';
 
 /*
@@ -8,6 +6,10 @@ import fetch from 'cross-fetch';
 export const CAROUSEL_ITEMS_REQUEST = 'CAROUSEL_ITEMS_REQUEST';
 export const CAROUSEL_ITEMS_SUCCESS = 'CAROUSEL_ITEMS_SUCCESS';
 export const CAROUSEL_ITEMS_FAILURE = 'CAROUSEL_ITEMS_FAILURE';
+export const UPDATE_BODY_CLASS = 'UPDATE_BODY_CLASS';
+export const COLLECTIONS_REQUEST = 'COLLECTIONS_REQUEST';
+export const COLLECTIONS_SUCCESS = 'COLLECTIONS_SUCCESS';
+export const COLLECTIONS_FAILURE = 'COLLECTIONS_FAILURE';
 
 /*
   Other constants
@@ -47,6 +49,42 @@ function carouselItemsFailure(error, title) {
   };
 }
 
+function updateBodyClass(bodyClass) {
+  return {
+    type: UPDATE_BODY_CLASS,
+    bodyClass
+  };
+}
+
+function collectionsRequest() {
+  return {
+    type: COLLECTIONS_REQUEST
+  };
+}
+
+function collectionsSuccess(items) {
+  return {
+    type: COLLECTIONS_SUCCESS,
+    items: items,
+    receivedAt: Date.now()
+  };
+}
+
+function collectionsFailure(error) {
+  return {
+    type: COLLECTIONS_FAILURE,
+    error: error
+  };
+}
+
+export const handleUpdateBodyClass = (bodyClass = 'landing-page') => {
+  document.getElementsByTagName('body')[0].setAttribute('class', bodyClass);
+
+  return dispatch => {
+    dispatch(updateBodyClass());
+  };
+};
+
 /*
   Thunk action creators
  */
@@ -61,6 +99,20 @@ export const fetchCarouselItems = (url, title) => {
         return json;
       })
       .catch(error => dispatch(carouselItemsFailure(error, title)));
+  };
+};
+
+export const fetchCollections = () => {
+  return dispatch => {
+    dispatch(collectionsRequest());
+    return fetch('/json/mock/all-collections.js')
+      .then(handleErrors)
+      .then(res => res.json())
+      .then(json => {
+        dispatch(collectionsSuccess(json));
+        return json;
+      })
+      .catch(error => dispatch(collectionsFailure(error)));
   };
 };
 

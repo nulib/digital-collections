@@ -35,7 +35,7 @@ function items(state = initialState, action) {
   }
 }
 
-export default function carouselReducer(state = {}, action) {
+export default function carousels(state = {}, action) {
   switch (action.type) {
     case CAROUSEL_ITEMS_REQUEST:
       return Object.assign({}, state, {

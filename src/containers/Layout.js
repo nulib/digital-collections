@@ -8,6 +8,7 @@ import HomePage from './HomePage';
 import ContactUs from './ContactUs';
 import About from './About';
 import Login from './Login';
+import AllCollections from './AllCollections';
 import '../Layout.css';
 import '../libs/nuwebcomm-scripts.js';
 
@@ -17,12 +18,13 @@ const Layout = () => {
       <Header />
       <Nav />
       <GlobalSearch />
-      <div id="page">
+      <div id="page" className="standard-margin">
         <main id="main-content" className="content" tabIndex="0">
           <Switch>
             <Route exact path="/about" component={About} />
             <Route exact path="/contactus" component={ContactUs} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/collections" component={AllCollections} />
             <Route exact path="/" component={HomePage} />
           </Switch>
         </main>

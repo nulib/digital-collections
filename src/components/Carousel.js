@@ -22,7 +22,9 @@ class Carousel extends Component {
   }
 
   componentDidUpdate() {
-    this.initializeSwiper();
+    if (this.props.items.length > 0) {
+      this.initializeSwiper();
+    }
   }
 
   initializeSwiper() {

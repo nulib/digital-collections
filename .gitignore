@@ -6,6 +6,9 @@
 # testing
 /coverage
 
+# dev
+src/reduxStoreDataModel.js
+
 # css dev
 src/**/*.css
 

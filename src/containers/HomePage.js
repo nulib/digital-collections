@@ -5,18 +5,17 @@ import HeroSecondarySection from '../components/Home/HeroSecondarySection';
 import { heroData } from '../api/heros';
 import { heroSecondaryData } from '../api/heros';
 import { connect } from 'react-redux';
-import { fetchCarouselItems, CAROUSELS } from '../actions';
+import {
+  fetchCarouselItems,
+  CAROUSELS,
+  handleUpdateBodyClass
+} from '../actions';
 
 class HomePage extends Component {
-  constructor(props) {
-    super(props);
-    // Add 'landing-page' class to <body> so the hero image displays properly
-    document
-      .getElementsByTagName('body')[0]
-      .setAttribute('class', 'landing-page');
-  }
-
   componentDidMount() {
+    document.getElementById('page').classList.remove('standard-margin');
+    this.props.dispatch(handleUpdateBodyClass('landing-page'));
+
     // Dispatch redux thunk action creators to grab async api data
     this.props.dispatch(
       fetchCarouselItems(
@@ -58,6 +57,8 @@ class HomePage extends Component {
             linkTo=""
             items={recentlyDigitizedItems.items}
             slidesPerView={6}
+            loading={recentlyDigitizedItems.loading}
+            error={recentlyDigitizedItems.error}
           />
           <CarouselSection
             sectionTitle="Recently Digitized and Updated Collections"
@@ -79,7 +80,7 @@ class HomePage extends Component {
 }
 
 const mapStateToProps = state => ({
-  carousels: state.carouselReducer
+  carousels: state.carousels
 });
 
 export default connect(mapStateToProps)(HomePage);
