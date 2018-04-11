@@ -1,21 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import PhotoBox from './PhotoBox';
-import './PhotoGrid.css';
 
 function PhotoGrid(props) {
-  const classes = 'photo-grid ' + props.additionalClasses;
-
   return (
-    <div className={classes}>
-      {props.items.map(item => (
-        <PhotoBox
-          key={item.id}
-          item={item}
-          linkPath={`${props.linkPrefix}/${item.id}`}
-        />
-      ))}
+    <div className="photo-grid contain-1120">
+      {props.items.length > 0 &&
+        props.items.map(item => <PhotoBox item={item} />)}
     </div>
   );
 }
+
+PhotoGrid.propTypes = {
+  items: PropTypes.array
+};
 
 export default PhotoGrid;

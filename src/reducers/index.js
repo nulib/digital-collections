@@ -15,8 +15,8 @@ const general = (state = {}, action) => {
 };
 
 const rootReducer = combineReducers({
-  carousels,
   general,
+  carousels,
   collections
 });
 
