@@ -43,10 +43,20 @@ Explain how to run the automated tests for this system
 ### End to End Tests
 
 ### Unit Tests
-Explain what these tests test and why
+Unit tests are handled via Jest
+https://facebook.github.io/jest/
+
+If your dev environment is Mac OSX, you'll need to install `watchman` to run the tests (at this current time).  If you use HomeBrew:
 ```
-Give an example
+brew install watchman
 ```
+Then to run tests:
+```
+yarn test
+```
+
+We'll follow convention from Create React App for testing convention using Jest:
+https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#running-tests
 
 ### Coding Style Tests
 Explain what these tests test and why
