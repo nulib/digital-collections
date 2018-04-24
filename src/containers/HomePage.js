@@ -11,31 +11,28 @@ import {
   handleUpdateBodyClass
 } from '../actions';
 
-class HomePage extends Component {
+export class HomePage extends Component {
   componentDidMount() {
-    document.getElementById('page').classList.remove('standard-margin');
-    this.props.dispatch(handleUpdateBodyClass('landing-page'));
+    const page = document.getElementById('page');
+    if (page) {
+      page.classList.remove('standard-margin');
+    }
+    this.props.handleUpdateBodyClass('landing-page');
 
     // Dispatch redux thunk action creators to grab async api data
-    this.props.dispatch(
-      fetchCarouselItems(
-        '/json/mock/recently-digitized-items.js',
-        CAROUSELS.RECENTLY_DIGITIZED_ITEMS
-      )
+    this.props.fetchCarouselItems(
+      '/json/mock/recently-digitized-items.js',
+      CAROUSELS.RECENTLY_DIGITIZED_ITEMS
     );
 
-    this.props.dispatch(
-      fetchCarouselItems(
-        '/json/mock/recently-digitized-collections.js',
-        CAROUSELS.RECENTLY_DIGITIZED_COLLECTIONS
-      )
+    this.props.fetchCarouselItems(
+      '/json/mock/recently-digitized-collections.js',
+      CAROUSELS.RECENTLY_DIGITIZED_COLLECTIONS
     );
 
-    this.props.dispatch(
-      fetchCarouselItems(
-        '/json/mock/photography-collections.js',
-        CAROUSELS.PHOTOGRAPHY_COLLECTIONS
-      )
+    this.props.fetchCarouselItems(
+      '/json/mock/photography-collections.js',
+      CAROUSELS.PHOTOGRAPHY_COLLECTIONS
     );
   }
 
@@ -83,4 +80,10 @@ const mapStateToProps = state => ({
   carousels: state.carousels
 });
 
-export default connect(mapStateToProps)(HomePage);
+const mapDispatchToProps = dispatch => ({
+  handleUpdateBodyClass: bodyClass =>
+    dispatch(handleUpdateBodyClass(bodyClass)),
+  fetchCarouselItems: (url, title) => dispatch(fetchCarouselItems(url, title))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
