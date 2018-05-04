@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import Breadcrumbs from '../components/Breadcrumbs';
 import PhotoGrid from '../components/PhotoGrid';
 import { handleUpdateBodyClass, fetchCollections } from '../actions';

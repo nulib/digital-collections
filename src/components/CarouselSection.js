@@ -5,17 +5,8 @@ import PropTypes from 'prop-types';
 import ErrorSection from './ErrorSection';
 
 const CarouselSection = props => {
-  const {
-    sectionTitle,
-    linkTo,
-    items = [],
-    slidesPerView,
-    loading,
-    error
-  } = props;
+  const { sectionTitle, linkTo, items = [], slidesPerView, error } = props;
   const link = `/${linkTo}`;
-
-  const errorMessage = <div>There was an error loading the items</div>;
 
   return (
     <div>
