@@ -13,11 +13,7 @@ import {
 
 export class HomePage extends Component {
   componentDidMount() {
-    const page = document.getElementById('page');
-    if (page) {
-      page.classList.remove('standard-margin');
-    }
-    this.props.handleUpdateBodyClass('landing-page');
+    this.handleBodyClassUpdate();
 
     // Dispatch redux thunk action creators to grab async api data
     this.props.fetchCarouselItems(
@@ -34,6 +30,14 @@ export class HomePage extends Component {
       '/json/mock/photography-collections.js',
       CAROUSELS.PHOTOGRAPHY_COLLECTIONS
     );
+  }
+
+  handleBodyClassUpdate() {
+    const page = document.getElementById('page');
+    if (page) {
+      page.classList.remove('standard-margin');
+    }
+    this.props.handleUpdateBodyClass('landing-page');
   }
 
   render() {

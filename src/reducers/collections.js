@@ -12,6 +12,8 @@ export default function collections(state = {}, action) {
       return Object.assign({}, state, {
         items: action.items
       });
+    case COLLECTIONS_FAILURE:
+      return state;
     default:
       return state;
   }
