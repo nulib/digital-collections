@@ -1,18 +1,14 @@
-import {
-  COLLECTIONS_REQUEST,
-  COLLECTIONS_SUCCESS,
-  COLLECTIONS_FAILURE
-} from '../actions';
+import * as actionTypes from '../actions/types';
 
 export default function collections(state = {}, action) {
   switch (action.type) {
-    case COLLECTIONS_REQUEST:
+    case actionTypes.COLLECTIONS_REQUEST:
       return state;
-    case COLLECTIONS_SUCCESS:
+    case actionTypes.COLLECTIONS_SUCCESS:
       return Object.assign({}, state, {
         items: action.items
       });
-    case COLLECTIONS_FAILURE:
+    case actionTypes.COLLECTIONS_FAILURE:
       return state;
     default:
       return state;

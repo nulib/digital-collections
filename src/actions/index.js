@@ -1,15 +1,9 @@
 import fetch from 'cross-fetch';
+import * as actionTypes from './types';
+import * as solrParser from '../services/solr-parser';
+import CollectionsApi from '../api/collections-api';
 
-/*
-  Action types
- */
-export const CAROUSEL_ITEMS_REQUEST = 'CAROUSEL_ITEMS_REQUEST';
-export const CAROUSEL_ITEMS_SUCCESS = 'CAROUSEL_ITEMS_SUCCESS';
-export const CAROUSEL_ITEMS_FAILURE = 'CAROUSEL_ITEMS_FAILURE';
-export const UPDATE_BODY_CLASS = 'UPDATE_BODY_CLASS';
-export const COLLECTIONS_REQUEST = 'COLLECTIONS_REQUEST';
-export const COLLECTIONS_SUCCESS = 'COLLECTIONS_SUCCESS';
-export const COLLECTIONS_FAILURE = 'COLLECTIONS_FAILURE';
+const collectionsApi = new CollectionsApi();
 
 /*
   Other constants
@@ -23,18 +17,17 @@ export const CAROUSELS = {
 /*
   Action creators
  */
-function carouselItemsRequest(url, title) {
+function carouselItemsRequest(title) {
   // The request started, use this action to show a spinner or loading indicator
   return {
-    type: CAROUSEL_ITEMS_REQUEST,
-    url,
+    type: actionTypes.CAROUSEL_ITEMS_REQUEST,
     title
   };
 }
 
 function carouselItemsSuccess(items, title) {
   return {
-    type: CAROUSEL_ITEMS_SUCCESS,
+    type: actionTypes.CAROUSEL_ITEMS_SUCCESS,
     items: items,
     title: title,
     receivedAt: Date.now()
@@ -43,7 +36,7 @@ function carouselItemsSuccess(items, title) {
 
 function carouselItemsFailure(error, title) {
   return {
-    type: CAROUSEL_ITEMS_FAILURE,
+    type: actionTypes.CAROUSEL_ITEMS_FAILURE,
     title: title,
     error: error
   };
@@ -51,20 +44,20 @@ function carouselItemsFailure(error, title) {
 
 function updateBodyClass(bodyClass) {
   return {
-    type: UPDATE_BODY_CLASS,
+    type: actionTypes.UPDATE_BODY_CLASS,
     bodyClass
   };
 }
 
 function collectionsRequest() {
   return {
-    type: COLLECTIONS_REQUEST
+    type: actionTypes.COLLECTIONS_REQUEST
   };
 }
 
 function collectionsSuccess(items) {
   return {
-    type: COLLECTIONS_SUCCESS,
+    type: actionTypes.COLLECTIONS_SUCCESS,
     items: items,
     receivedAt: Date.now()
   };
@@ -72,7 +65,7 @@ function collectionsSuccess(items) {
 
 function collectionsFailure(error) {
   return {
-    type: COLLECTIONS_FAILURE,
+    type: actionTypes.COLLECTIONS_FAILURE,
     error: error
   };
 }
@@ -88,17 +81,25 @@ export const handleUpdateBodyClass = (bodyClass = 'landing-page') => {
 /*
   Thunk action creators
  */
-export const fetchCarouselItems = (url, title) => {
+export const fetchCarouselItems = title => {
   return dispatch => {
-    dispatch(carouselItemsRequest(url, title));
-    return fetch(url)
-      .then(handleErrors)
-      .then(res => res.json())
-      .then(json => {
-        dispatch(carouselItemsSuccess(json, title));
-        return json;
-      })
-      .catch(error => dispatch(carouselItemsFailure(error, title)));
+    let solrResponse;
+
+    const request = async () => {
+      solrResponse = await collectionsApi.getRecentlyDigitizedItems();
+
+      if (solrResponse.error) {
+        console.log(solrResponse);
+        dispatch(carouselItemsFailure(solrResponse));
+        return;
+      }
+
+      const carouselData = await solrParser.extractCarouselData(solrResponse);
+      console.log('carouselData', carouselData);
+    };
+
+    dispatch(carouselItemsRequest(title));
+    request();
   };
 };
 
