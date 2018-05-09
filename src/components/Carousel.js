@@ -5,12 +5,12 @@ import 'swiper/dist/css/swiper.css';
 import $ from 'jquery';
 
 const CarouselItem = props => {
-  const { url, title } = props.item;
+  const { description, imageUrl, label } = props.item;
 
   return (
     <a className="swiper-slide">
-      <img alt="enter descriptive text" src={url} />
-      <div className="caption">{title}</div>
+      <img alt={description} src={imageUrl} />
+      <div className="caption">{label}</div>
     </a>
   );
 };
@@ -99,7 +99,7 @@ class Carousel extends Component {
           }}
         >
           <div className="swiper-wrapper">
-            {items.map(item => <CarouselItem key={item.url} item={item} />)}
+            {items.map(item => <CarouselItem key={item.id} item={item} />)}
           </div>
           <div className="swiper-button-next" />
           <div className="swiper-button-prev" />
@@ -116,8 +116,9 @@ Carousel.propTypes = {
 
 CarouselItem.propTypes = {
   item: PropTypes.shape({
-    url: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired
+    description: PropTypes.array,
+    imageUrl: PropTypes.string.isRequired,
+    label: PropTypes.string
   })
 };
 

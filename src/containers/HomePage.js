@@ -17,16 +17,8 @@ export class HomePage extends Component {
 
     // Dispatch redux thunk action creators to grab async api data
     this.props.fetchCarouselItems(CAROUSELS.RECENTLY_DIGITIZED_ITEMS);
-
-    // this.props.fetchCarouselItems(
-    //   '/json/mock/recently-digitized-collections.js',
-    //   CAROUSELS.RECENTLY_DIGITIZED_COLLECTIONS
-    // );
-    //
-    // this.props.fetchCarouselItems(
-    //   '/json/mock/photography-collections.js',
-    //   CAROUSELS.PHOTOGRAPHY_COLLECTIONS
-    // );
+    //this.props.fetchCarouselItems(CAROUSELS.RECENTLY_DIGITIZED_COLLECTIONS);
+    //this.props.fetchCarouselItems(CAROUSELS.PHOTOGRAPHY_COLLECTIONS);
   }
 
   handleBodyClassUpdate() {

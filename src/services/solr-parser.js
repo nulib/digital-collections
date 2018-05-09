@@ -1,4 +1,5 @@
-import { DEVBOX_URL } from './global-vars';
+import * as globalVars from './global-vars';
+import * as iiifParser from './iiif-parser';
 
 /**
  * Helper array to store each item's 'id' and 'manifest url'
@@ -13,37 +14,13 @@ function buildSolrHelperObj(docs) {
     const uriSegment = getModelUriSegment(doc.has_model_ssim);
 
     docObj.id = doc.id;
-    docObj.manifestUrl = `${DEVBOX_URL}concern/${uriSegment}/${
+    docObj.manifestUrl = `${globalVars.DEVBOX_URL}concern/${uriSegment}/${
       doc.id
     }/manifest`;
 
     return docObj;
   });
   return helperArray;
-}
-
-/**
- * Put together all the data which carousels need to load and display proper data
- * @param  {array} manifests An array of 2.0 IIIF manifests
- * @return {array} An array of objects which contain data that will feed a carousel
- */
-// TODO: Better set up 'metadata' below if we're going to use it?  Saves from front end from having to parse it.
-function constructCarouselItems(manifests) {
-  const iiifSizeDefinition = '/square/,175/0/default.jpg';
-  const items = manifests.map(manifest => {
-    const { label, description, metadata } = manifest;
-    let obj = {
-      label,
-      description,
-      metadata
-    };
-    const iiifRootUrl =
-      manifest.sequences[0].canvases[0].images[0].resource.service['@id'];
-    obj.imageUrl = `${iiifRootUrl}${iiifSizeDefinition}`;
-
-    return obj;
-  });
-  return items;
 }
 
 export async function extractCarouselData(solrResponse) {
@@ -62,7 +39,7 @@ export async function extractCarouselData(solrResponse) {
   }
 
   // Put together data the carousel needs
-  obj.items = constructCarouselItems(manifests);
+  obj.items = iiifParser.constructCarouselItems(manifests);
 
   return obj;
 }
@@ -91,7 +68,9 @@ async function getManifests(helperArray) {
  */
 function getModelUriMap() {
   let modelUriMap = new Map();
+
   modelUriMap.set('Image', 'images');
+  modelUriMap.set('Collection', 'collections');
   return modelUriMap;
 }
 

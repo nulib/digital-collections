@@ -17,8 +17,9 @@ function items(state = initialState, action) {
       return Object.assign({}, state, {
         loading: false,
         error: false,
-        items: action.items,
-        lastUpdated: action.receivedAt
+        items: action.payload ? action.payload.items : [],
+        lastUpdated: action.receivedAt,
+        numFound: action.numFound
       });
     case actionTypes.CAROUSEL_ITEMS_FAILURE:
       return Object.assign({}, state, {
