@@ -1,21 +1,18 @@
 export default class ApiClient {
   constructor() {
-    this.apiBase = 'http://localhost:8983/solr/hydra-development/select?';
+    this.apiBase = '/solr/development-core/select?';
   }
 
-  search(strQuery) {
-    return fetch(this.apiBase + strQuery)
-      .then(response => response.json())
-      .then(
-        results => {
-          console.log(results);
-          return results;
-        },
-        error => {
-          const data = {};
-          data.error = error;
-          return data;
-        }
-      );
+  async search(strQuery) {
+    const response = await fetch(this.apiBase + strQuery);
+    if (!response.ok) {
+      return {
+        error: true,
+        statusText: response.statusText,
+        url: response.url
+      };
+    }
+    const json = await response.json();
+    return json;
   }
 }

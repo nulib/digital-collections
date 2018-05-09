@@ -16,20 +16,17 @@ export class HomePage extends Component {
     this.handleBodyClassUpdate();
 
     // Dispatch redux thunk action creators to grab async api data
-    this.props.fetchCarouselItems(
-      '/json/mock/recently-digitized-items.js',
-      CAROUSELS.RECENTLY_DIGITIZED_ITEMS
-    );
+    this.props.fetchCarouselItems(CAROUSELS.RECENTLY_DIGITIZED_ITEMS);
 
-    this.props.fetchCarouselItems(
-      '/json/mock/recently-digitized-collections.js',
-      CAROUSELS.RECENTLY_DIGITIZED_COLLECTIONS
-    );
-
-    this.props.fetchCarouselItems(
-      '/json/mock/photography-collections.js',
-      CAROUSELS.PHOTOGRAPHY_COLLECTIONS
-    );
+    // this.props.fetchCarouselItems(
+    //   '/json/mock/recently-digitized-collections.js',
+    //   CAROUSELS.RECENTLY_DIGITIZED_COLLECTIONS
+    // );
+    //
+    // this.props.fetchCarouselItems(
+    //   '/json/mock/photography-collections.js',
+    //   CAROUSELS.PHOTOGRAPHY_COLLECTIONS
+    // );
   }
 
   handleBodyClassUpdate() {
@@ -87,7 +84,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   handleUpdateBodyClass: bodyClass =>
     dispatch(handleUpdateBodyClass(bodyClass)),
-  fetchCarouselItems: (url, title) => dispatch(fetchCarouselItems(url, title))
+  fetchCarouselItems: title => dispatch(fetchCarouselItems(title))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

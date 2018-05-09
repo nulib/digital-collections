@@ -1,8 +1,8 @@
 import ApiClient from './client/api-client';
 
 /**
- * Handle all fetch() network communication for Sets here
- * @class SetApiTest
+ * Handle all fetch() network communication for Collections here
+ * @class CollectionsApi
  */
 export default class CollectionsApi {
   constructor() {
@@ -27,6 +27,11 @@ export default class CollectionsApi {
       `member_of_collection_ids_ssim:${id}`,
       `visibility_ssi:open`
     ];
+    return this.apiClient.search(this.queryStringBuilder(queryPieces));
+  }
+
+  getRecentlyDigitizedItems() {
+    const queryPieces = [`has_model_ssim:Image`];
     return this.apiClient.search(this.queryStringBuilder(queryPieces));
   }
 

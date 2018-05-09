@@ -12,38 +12,19 @@ $ yarn install
 $ yarn start
 ```
 
-### Prerequisites (not current, but coming soon):
- * You must have a local donut instance running and available at http://devbox.library.northwestern.edu
- * You must have the `solr_wrapper` associated with that donut instance running locally and available at http://localhost:8983/
- * In the `package.json` file the app is configured to proxy donut in order to grab the IIIFManifests (we are just using the manifest to grab one image url for display until we have a viewer implemented)
- * Enable CORS for your local Solr instance. See #4 here: http://opensourceconnections.com/blog/2015/03/26/going-cross-origin-with-solr/. The file you want to edit is in `/tmp/solr-development/server/solr-webapp/WEB-INF/web.xml`
+### Prerequisites for Development:
+ * You must have a local DONUT (NU's Hyrax) instance running and available at http://devbox.library.northwestern.edu in order for this application to grab data.
+ * You must have a Solr instance running and available at http://localhost:8983/
+ * In the `package.json` file the app is configured to proxy Solr in order to grab the IIIF manifests.
  * You must have collections and images (works + filesets) created in your local donut instance **with visibility set to public**
 
 The app will be available at http://localhost:3333
 
-### Collections Thumbnails
-There is a field for Collection Thumbnails in Hyrax but it is not exposed in the UI. You can manually add a thumbnail to a collection in the rails console to ease development. You'll need the id of the collection and the id of an image that you want to use as the thumbnail.
-
-```
-cd <your local donut directory>
-bundle exec rails c
-
-c=Collection.find('b2a42c55-733a-4155-823b-dce6c157b206')
-i=Image.find('8bd9acaf-31ec-4a4b-bf43-d319ac3a3863')
-c.thumbnail_id = i.thumbnail_id
-c.save
-```
-
 ### Mock Data
-If you want to use mock data instead of making API calls in order to do development, see the example in `/src/api/item-detail-api.js`
+Mock data feeding this application is no longer supported in `master`, however available in release/tag version `v1.1`.
 
 ## Running the tests
-Explain how to run the automated tests for this system
-
-### End to End Tests
-
-### Unit Tests
-Unit tests are handled via Jest
+Unit tests are handled via Jest:
 https://facebook.github.io/jest/
 
 If your dev environment is Mac OSX, you'll need to install `watchman` to run the tests (at this current time).  If you use HomeBrew:
@@ -59,9 +40,10 @@ We'll follow convention from Create React App for testing convention using Jest:
 https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#running-tests
 
 ### Coding Style Tests
-Explain what these tests test and why
+All tests should live directly next to the files they're testing.  The files should be named as follows: `FileNameHere.test.js` An example directory looks like:
 ```
-Give an example
+src/containers/HomePage.js
+src/containers/HomePage.test.js
 ```
 
 ## Deployment

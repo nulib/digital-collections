@@ -31,7 +31,11 @@
       "git add"
     ]
   },
-  "proxy": "http://devbox.library.northwestern.edu",
+  "proxy": {
+    "/solr": {
+      "target": "http://localhost:8983"
+    }
+  },
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
