@@ -2,9 +2,9 @@ import ApiClient from './client/api-client';
 
 /**
  * Handle all fetch() network communication for Collections here
- * @class CollectionsApi
+ * @class Api
  */
-export default class CollectionsApi {
+export default class Api {
   constructor() {
     this.apiClient = new ApiClient();
   }

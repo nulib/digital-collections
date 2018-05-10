@@ -1,9 +1,10 @@
 import fetch from 'cross-fetch';
 import * as actionTypes from './types';
 import * as solrParser from '../services/solr-parser';
-import CollectionsApi from '../api/collections-api';
+import * as globalVars from '../services/global-vars';
+import Api from '../api';
 
-const collectionsApi = new CollectionsApi();
+const api = new Api();
 
 /*
   Other constants
@@ -83,17 +84,21 @@ export const handleUpdateBodyClass = (bodyClass = 'landing-page') => {
  */
 export const fetchCarouselItems = title => {
   return dispatch => {
-    let solrResponse;
-
     const request = async () => {
       // Determine what we want to retrieve from Solr.  Recently Digitized Items, Collections, a Sub Collection?
+      let solrResponse;
+      let modelType;
 
       switch (title) {
         case CAROUSELS.RECENTLY_DIGITIZED_ITEMS:
-          solrResponse = await collectionsApi.getRecentlyDigitizedItems();
+          solrResponse = await api.getRecentlyDigitizedItems();
+          modelType = globalVars.IMAGE;
           break;
         case CAROUSELS.RECENTLY_DIGITIZED_COLLECTIONS:
-          solrResponse = await collectionsApi.getAllCollections();
+          solrResponse = await api.getAllCollections();
+          modelType = globalVars.COLLECTION;
+          solrResponse = mockCollectionsResponse(solrResponse);
+          console.log('Collections solrResponse', solrResponse);
           break;
         default:
           console.log('No Solr query type defined');
@@ -106,13 +111,18 @@ export const fetchCarouselItems = title => {
         return;
       }
 
-      // Dispatch success action
-      const carouselData = await solrParser.extractCarouselData(solrResponse);
+      // Specify if this is a 'Collection' or 'Image' model we're grabbing Solr data for
+      const carouselData = await solrParser.extractCarouselData(
+        solrResponse,
+        modelType
+      );
       console.log('carouselData', carouselData);
 
       if (carouselData) {
+        // Dispatch success action
         dispatch(carouselItemsSuccess(carouselData, title));
       } else {
+        // Handle error
         dispatch(
           carouselItemsFailure(
             {
@@ -143,10 +153,22 @@ export const fetchCollections = () => {
   };
 };
 
+/**
+ * Helper functions
+ */
+
 // Handle HTTP errors since fetch won't.
 function handleErrors(response) {
   if (!response.ok) {
     throw Error(response.statusText);
   }
   return response;
+}
+
+function mockCollectionsResponse(solrResponse) {
+  solrResponse.response.docs.forEach(doc => {
+    doc.thumbnail_iiif_url_ss =
+      'http://localhost:8183/iiif/2/0b%2F46%2Fc5%2Fac%2F-d%2F51%2F0-%2F45%2F1c%2F-8%2F95%2F0-%2Fbb%2Fdb%2Fcb%2F47%2F3d%2Fd9/pct:10,10,60,60/256,256/0/default.jpg';
+  });
+  return solrResponse;
 }
