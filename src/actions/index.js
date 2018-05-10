@@ -25,11 +25,11 @@ function carouselItemsRequest(title) {
   };
 }
 
-function carouselItemsSuccess(items, title) {
+function carouselItemsSuccess(payload, title) {
   return {
     type: actionTypes.CAROUSEL_ITEMS_SUCCESS,
-    items: items,
-    title: title,
+    payload,
+    title,
     receivedAt: Date.now()
   };
 }
@@ -86,16 +86,42 @@ export const fetchCarouselItems = title => {
     let solrResponse;
 
     const request = async () => {
-      solrResponse = await collectionsApi.getRecentlyDigitizedItems();
+      // Determine what we want to retrieve from Solr.  Recently Digitized Items, Collections, a Sub Collection?
 
+      switch (title) {
+        case CAROUSELS.RECENTLY_DIGITIZED_ITEMS:
+          solrResponse = await collectionsApi.getRecentlyDigitizedItems();
+          break;
+        case CAROUSELS.RECENTLY_DIGITIZED_COLLECTIONS:
+          solrResponse = await collectionsApi.getAllCollections();
+          break;
+        default:
+          console.log('No Solr query type defined');
+      }
+
+      // Handle error
       if (solrResponse.error) {
         console.log(solrResponse);
         dispatch(carouselItemsFailure(solrResponse));
         return;
       }
 
+      // Dispatch success action
       const carouselData = await solrParser.extractCarouselData(solrResponse);
       console.log('carouselData', carouselData);
+
+      if (carouselData) {
+        dispatch(carouselItemsSuccess(carouselData, title));
+      } else {
+        dispatch(
+          carouselItemsFailure(
+            {
+              error: true
+            },
+            title
+          )
+        );
+      }
     };
 
     dispatch(carouselItemsRequest(title));
