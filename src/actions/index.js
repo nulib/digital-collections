@@ -9,6 +9,7 @@ const api = new Api();
 /*
   Other constants
  */
+// TODO: Move this to global vars
 export const CAROUSELS = {
   RECENTLY_DIGITIZED_ITEMS: 'recentlyDigitizedItems',
   RECENTLY_DIGITIZED_COLLECTIONS: 'recentlyDigitizedCollections',
@@ -35,11 +36,11 @@ function carouselItemsSuccess(payload, title) {
   };
 }
 
-function carouselItemsFailure(error, title) {
+function carouselItemsFailure(errorObj, title) {
   return {
     type: actionTypes.CAROUSEL_ITEMS_FAILURE,
-    title: title,
-    error: error
+    error: errorObj,
+    title: title
   };
 }
 
@@ -97,7 +98,6 @@ export const fetchCarouselItems = title => {
         case CAROUSELS.RECENTLY_DIGITIZED_COLLECTIONS:
           solrResponse = await api.getAllCollections();
           modelType = globalVars.COLLECTION;
-          solrResponse = mockCollectionsResponse(solrResponse);
           console.log('Collections solrResponse', solrResponse);
           break;
         default:
@@ -107,14 +107,13 @@ export const fetchCarouselItems = title => {
       // Handle error
       if (solrResponse.error) {
         console.log(solrResponse);
-        dispatch(carouselItemsFailure(solrResponse));
+        dispatch(carouselItemsFailure(solrResponse, title));
         return;
       }
 
-      // Specify if this is a 'Collection' or 'Image' model we're grabbing Solr data for
       const carouselData = await solrParser.extractCarouselData(
         solrResponse,
-        modelType
+        modelType // Specify if this is a 'Collection' or 'Image' model we're grabbing Solr data for
       );
       console.log('carouselData', carouselData);
 
@@ -126,7 +125,9 @@ export const fetchCarouselItems = title => {
         dispatch(
           carouselItemsFailure(
             {
-              error: true
+              error: true,
+              statusText:
+                'Error in actions creator.  No carouselData returned from Solr parser.'
             },
             title
           )
@@ -163,12 +164,4 @@ function handleErrors(response) {
     throw Error(response.statusText);
   }
   return response;
-}
-
-function mockCollectionsResponse(solrResponse) {
-  solrResponse.response.docs.forEach(doc => {
-    doc.thumbnail_iiif_url_ss =
-      'http://localhost:8183/iiif/2/0b%2F46%2Fc5%2Fac%2F-d%2F51%2F0-%2F45%2F1c%2F-8%2F95%2F0-%2Fbb%2Fdb%2Fcb%2F47%2F3d%2Fd9/pct:10,10,60,60/256,256/0/default.jpg';
-  });
-  return solrResponse;
 }

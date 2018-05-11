@@ -46,7 +46,7 @@ describe('HomePage (not connected) Component', () => {
   });
 
   it('should call fetchCarouselItems() actionCreator mapped to props', () => {
-    expect(mockFetchCarouselItems.mock.calls.length).toBe(3);
+    expect(mockFetchCarouselItems.mock.calls.length).toBe(2);
   });
 
   it('should render HeroSection', () => {

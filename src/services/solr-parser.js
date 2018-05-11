@@ -26,9 +26,11 @@ function buildSolrHelperObj(docs) {
 function constructCollectionCarouseltItems(docs) {
   const items = docs.map(doc => {
     let obj = {
-      description: '',
+      description: [],
       id: doc.id,
-      imageUrl: doc.thumbnail_iiif_url_ss,
+      imageUrl: doc.thumbnail_iiif_url_ss
+        ? `${doc.thumbnail_iiif_url_ss}${globalVars.IIIF_MEDIUM_ITEM_REGION}`
+        : '',
       label: doc.title_tesim[0],
       metadata: null
     };
@@ -45,7 +47,9 @@ export async function extractCarouselData(solrResponse, modelType) {
   // Total records found
   obj.numFound = response.numFound;
 
+  /////////////////////////////////////////////////////
   // Get 'Image' model data from a combination of Solr documents and IIIF manifests
+  // /////////////////////////////////////////////////
   if (modelType === globalVars.IMAGE) {
     const helperArray = buildSolrHelperObj(response.docs);
     // Fetch all manifests, or return if there was an error retrieving manifests
@@ -57,8 +61,9 @@ export async function extractCarouselData(solrResponse, modelType) {
     }
     obj.items = iiifParser.constructCarouselItems(manifests);
   }
-
+  /////////////////////////////////////////////////////
   // Get 'Collection' model data from Solr, from the Solr documents directly
+  // //////////////////////////////////////////////////
   else if (modelType === globalVars.COLLECTION) {
     obj.items = constructCollectionCarouseltItems(response.docs);
   }

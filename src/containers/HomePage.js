@@ -57,6 +57,10 @@ export class HomePage extends Component {
             slidesPerView={4}
           />
           <HeroSecondarySection heroData={heroSecondaryData} />
+          <p>
+            TODO: Need to figure out collections nesting in DONUT... in order to
+            represent here.
+          </p>
           <CarouselSection
             sectionTitle="Photography Collections"
             linkTo=""
