@@ -5,11 +5,8 @@ import HeroSecondarySection from '../components/Home/HeroSecondarySection';
 import { heroData } from '../api/heros';
 import { heroSecondaryData } from '../api/heros';
 import { connect } from 'react-redux';
-import {
-  fetchCarouselItems,
-  CAROUSELS,
-  handleUpdateBodyClass
-} from '../actions';
+import { handleUpdateBodyClass } from '../actions';
+import { fetchCarouselItems, CAROUSELS } from '../actions/carousels';
 
 export class HomePage extends Component {
   componentDidMount() {
