@@ -23,23 +23,50 @@ function buildSolrHelperObj(docs) {
   return helperArray;
 }
 
-export async function extractCarouselData(solrResponse) {
+function constructCollectionCarouseltItems(docs) {
+  const items = docs.map(doc => {
+    let obj = {
+      description: [],
+      id: doc.id,
+      imageUrl: doc.thumbnail_iiif_url_ss
+        ? `${doc.thumbnail_iiif_url_ss}${globalVars.IIIF_MEDIUM_ITEM_REGION}`
+        : '',
+      label: doc.title_tesim[0],
+      metadata: null
+    };
+
+    return obj;
+  });
+  return items;
+}
+
+export async function extractCarouselData(solrResponse, modelType) {
   const { response } = solrResponse;
-  const helperArray = buildSolrHelperObj(response.docs);
   let obj = {};
 
   // Total records found
   obj.numFound = response.numFound;
 
-  // Fetch all manifests, or return if there was an error retrieving manifests
-  const manifests = await getManifests(helperArray);
-  console.log('manifests', manifests);
-  if (!manifests) {
-    return;
-  }
+  /////////////////////////////////////////////////////
+  // Get 'Image' model data from a combination of Solr documents and IIIF manifests
+  // /////////////////////////////////////////////////
+  if (modelType === globalVars.IMAGE) {
+    const helperArray = buildSolrHelperObj(response.docs);
+    // Fetch all manifests, or return if there was an error retrieving manifests
+    const manifests = await getManifests(helperArray);
+    console.log('manifests', manifests);
 
-  // Put together data the carousel needs
-  obj.items = iiifParser.constructCarouselItems(manifests);
+    if (!manifests) {
+      return;
+    }
+    obj.items = iiifParser.constructCarouselItems(manifests);
+  }
+  /////////////////////////////////////////////////////
+  // Get 'Collection' model data from Solr, from the Solr documents directly
+  // //////////////////////////////////////////////////
+  else if (modelType === globalVars.COLLECTION) {
+    obj.items = constructCollectionCarouseltItems(response.docs);
+  }
 
   return obj;
 }
@@ -68,9 +95,7 @@ async function getManifests(helperArray) {
  */
 function getModelUriMap() {
   let modelUriMap = new Map();
-
   modelUriMap.set('Image', 'images');
-  modelUriMap.set('Collection', 'collections');
   return modelUriMap;
 }
 

@@ -2,9 +2,9 @@ import ApiClient from './client/api-client';
 
 /**
  * Handle all fetch() network communication for Collections here
- * @class CollectionsApi
+ * @class Api
  */
-export default class CollectionsApi {
+export default class Api {
   constructor() {
     this.apiClient = new ApiClient();
   }
@@ -15,9 +15,13 @@ export default class CollectionsApi {
     return this.apiClient.search(this.queryStringBuilder(queryPieces));
   }
 
-  getCollection(id) {
-    const strQuery = `q=${id}`;
-    return this.apiClient.search(strQuery);
+  getCollections(title) {
+    const queryPieces = [
+      `has_model_ssim:Collection`,
+      `visibility_ssi:open`,
+      `keyword_tesim:"${title}"`
+    ];
+    return this.apiClient.search(this.queryStringBuilder(queryPieces));
   }
 
   getCollectionItems(id) {
