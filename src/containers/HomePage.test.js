@@ -45,8 +45,22 @@ describe('HomePage (not connected) Component', () => {
     expect(mockHandleUpdateBodyClass.mock.calls.length).toBe(1);
   });
 
-  it('should call fetchCarouselItems() actionCreator mapped to props', () => {
-    expect(mockFetchCarouselItems.mock.calls.length).toBe(2);
+  it('should attempt to display custom defined carousels', () => {
+    const carouselsByKeyword = wrapper.instance().carouselsByKeyword;
+    expect(carouselsByKeyword).toBeTruthy();
+    expect(carouselsByKeyword.length).toBeGreaterThanOrEqual(1);
+  });
+
+  it('should call fetchCarouselItems() actionCreator mapped to props, the correct amount of times', () => {
+    // Assume Home component is always calling fetchCarouselItems at least twice
+    // for recently digitized items, and recently digitized collections.
+    const defaultCallCount = 2;
+
+    // ... and then more depending on how many 'dynamic' carousels are defined in Home component.
+    const dynamicCarouselLength =
+      wrapper.instance().carouselsByKeyword.length || 0;
+    const expectedCallCount = dynamicCarouselLength + defaultCallCount;
+    expect(mockFetchCarouselItems.mock.calls.length).toBe(expectedCallCount);
   });
 
   it('should render HeroSection', () => {
@@ -57,8 +71,8 @@ describe('HomePage (not connected) Component', () => {
     expect(wrapper.find(HeroSecondarySection)).toHaveLength(1);
   });
 
-  it('should render three CarouselSections', () => {
-    expect(wrapper.find(CarouselSection)).toHaveLength(3);
+  it('should render a CarouselSection(s)', () => {
+    expect(wrapper.find(CarouselSection).length).toBeGreaterThanOrEqual(1);
   });
 });
 

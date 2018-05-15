@@ -43,8 +43,8 @@ export const fetchCarouselItems = title => {
   return dispatch => {
     const request = async () => {
       // Determine what we want to retrieve from Solr.  Recently Digitized Items, Collections, a Sub Collection?
-      let solrResponse;
-      let modelType;
+      let solrResponse = {};
+      let modelType = globalVars.COLLECTION;
 
       switch (title) {
         case CAROUSELS.RECENTLY_DIGITIZED_ITEMS:
@@ -53,10 +53,9 @@ export const fetchCarouselItems = title => {
           break;
         case CAROUSELS.RECENTLY_DIGITIZED_COLLECTIONS:
           solrResponse = await api.getAllCollections();
-          modelType = globalVars.COLLECTION;
           break;
         default:
-          console.log('No Solr query type defined');
+          solrResponse = await api.getCollections(title);
       }
 
       // Handle error
