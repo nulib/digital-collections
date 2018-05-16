@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Swiper from 'swiper';
+import Swiper from 'swiper/dist/js/swiper.js';
 import 'swiper/dist/css/swiper.css';
 import $ from 'jquery';
 
