@@ -9,13 +9,27 @@ import { handleUpdateBodyClass } from '../actions';
 import { fetchCarouselItems, CAROUSELS } from '../actions/carousels';
 
 export class HomePage extends Component {
+  constructor(props) {
+    super(props);
+
+    ////////////////////////////////////////////////////////
+    // Carousel collections defined by collection keyword
+    // /////////////////////////////////////////////////////
+    this.carouselsByKeyword = [
+      'Posters',
+      'Photography',
+      'Berkeley Folk Music Festival'
+    ];
+  }
   componentDidMount() {
     this.handleBodyClassUpdate();
 
     // Dispatch redux thunk action creators to grab async api data
     this.props.fetchCarouselItems(CAROUSELS.RECENTLY_DIGITIZED_ITEMS);
     this.props.fetchCarouselItems(CAROUSELS.RECENTLY_DIGITIZED_COLLECTIONS);
-    //this.props.fetchCarouselItems(CAROUSELS.PHOTOGRAPHY_COLLECTIONS);
+    this.carouselsByKeyword.forEach(title =>
+      this.props.fetchCarouselItems(title)
+    );
   }
 
   handleBodyClassUpdate() {
@@ -26,11 +40,34 @@ export class HomePage extends Component {
     this.props.handleUpdateBodyClass('landing-page');
   }
 
+  createCarousels() {
+    const { carousels } = this.props;
+
+    return this.carouselsByKeyword.map(keyword => {
+      const keywordCarousel = carousels[keyword];
+
+      if (keywordCarousel && keywordCarousel.items.length > 0) {
+        return (
+          <CarouselSection
+            key={keyword}
+            sectionTitle={keyword}
+            linkTo=""
+            items={keywordCarousel.items}
+            slidesPerView={4}
+            loading={keywordCarousel.loading}
+            error={keywordCarousel.error}
+          />
+        );
+      } else {
+        return '';
+      }
+    });
+  }
+
   render() {
     const {
       recentlyDigitizedItems = {},
-      recentlyDigitizedCollections = {},
-      photographyCollections = {}
+      recentlyDigitizedCollections = {}
     } = this.props.carousels;
 
     return (
@@ -54,16 +91,7 @@ export class HomePage extends Component {
             slidesPerView={4}
           />
           <HeroSecondarySection heroData={heroSecondaryData} />
-          <p>
-            TODO: Need to figure out collections nesting in DONUT... in order to
-            represent here.
-          </p>
-          <CarouselSection
-            sectionTitle="Photography Collections"
-            linkTo=""
-            items={photographyCollections.items}
-            slidesPerView={4}
-          />
+          {this.createCarousels()}
         </section>
       </div>
     );

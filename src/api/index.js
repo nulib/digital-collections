@@ -15,9 +15,13 @@ export default class Api {
     return this.apiClient.search(this.queryStringBuilder(queryPieces));
   }
 
-  getCollection(id) {
-    const strQuery = `q=${id}`;
-    return this.apiClient.search(strQuery);
+  getCollections(title) {
+    const queryPieces = [
+      `has_model_ssim:Collection`,
+      `visibility_ssi:open`,
+      `keyword_tesim:"${title}"`
+    ];
+    return this.apiClient.search(this.queryStringBuilder(queryPieces));
   }
 
   getCollectionItems(id) {
