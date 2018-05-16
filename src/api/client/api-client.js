@@ -1,3 +1,5 @@
+import fetch from 'cross-fetch';
+
 export default class ApiClient {
   constructor() {
     this.apiBase = '/solr/development-core/select?';

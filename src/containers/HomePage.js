@@ -5,11 +5,8 @@ import HeroSecondarySection from '../components/Home/HeroSecondarySection';
 import { heroData } from '../api/heros';
 import { heroSecondaryData } from '../api/heros';
 import { connect } from 'react-redux';
-import {
-  fetchCarouselItems,
-  CAROUSELS,
-  handleUpdateBodyClass
-} from '../actions';
+import { handleUpdateBodyClass } from '../actions';
+import { fetchCarouselItems, CAROUSELS } from '../actions/carousels';
 
 export class HomePage extends Component {
   componentDidMount() {
@@ -17,7 +14,7 @@ export class HomePage extends Component {
 
     // Dispatch redux thunk action creators to grab async api data
     this.props.fetchCarouselItems(CAROUSELS.RECENTLY_DIGITIZED_ITEMS);
-    //this.props.fetchCarouselItems(CAROUSELS.RECENTLY_DIGITIZED_COLLECTIONS);
+    this.props.fetchCarouselItems(CAROUSELS.RECENTLY_DIGITIZED_COLLECTIONS);
     //this.props.fetchCarouselItems(CAROUSELS.PHOTOGRAPHY_COLLECTIONS);
   }
 
@@ -57,6 +54,10 @@ export class HomePage extends Component {
             slidesPerView={4}
           />
           <HeroSecondarySection heroData={heroSecondaryData} />
+          <p>
+            TODO: Need to figure out collections nesting in DONUT... in order to
+            represent here.
+          </p>
           <CarouselSection
             sectionTitle="Photography Collections"
             linkTo=""
