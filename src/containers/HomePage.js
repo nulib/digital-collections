@@ -40,7 +40,7 @@ export class HomePage extends Component {
     this.props.handleUpdateBodyClass('landing-page');
   }
 
-  createCarousels() {
+  createAdditionalCarousels() {
     const { carousels } = this.props;
 
     return this.carouselsByKeyword.map(keyword => {
@@ -91,7 +91,7 @@ export class HomePage extends Component {
             slidesPerView={4}
           />
           <HeroSecondarySection heroData={heroSecondaryData} />
-          {this.createCarousels()}
+          {this.createAdditionalCarousels()}
         </section>
       </div>
     );
