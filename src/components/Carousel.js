@@ -21,8 +21,19 @@ class Carousel extends Component {
     this.initializeSwiper = this.initializeSwiper.bind(this);
   }
 
-  componentDidUpdate() {
+  // Dynamic carousels added by keyword may already have their items data filled when they enter here.
+  componentDidMount() {
     if (this.props.items.length > 0) {
+      this.initializeSwiper();
+    }
+  }
+
+  // Some carousels may be declared in initial render, when their items have yet to be filled.
+  componentDidUpdate(prevProps) {
+    const { items } = this.props;
+    const prevItems = prevProps.items;
+
+    if (items.length > 0 && items.length !== prevItems.length) {
       this.initializeSwiper();
     }
   }
