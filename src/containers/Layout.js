@@ -9,6 +9,7 @@ import ContactUs from './ContactUs';
 import About from './About';
 import Login from './Login';
 import AllCollections from './AllCollections';
+import ItemDetailContainer from './ItemDetailContainer';
 import '../Layout.css';
 import '../libs/nuwebcomm-scripts.js';
 
@@ -25,6 +26,7 @@ const Layout = () => {
             <Route exact path="/contactus" component={ContactUs} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/collections" component={AllCollections} />
+            <Route path="/items/:id" component={ItemDetailContainer} />
             <Route exact path="/" component={HomePage} />
           </Switch>
         </main>

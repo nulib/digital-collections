@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Breadcrumbs from '../components/Breadcrumbs';
+import Breadcrumbs from '../components/breadcrumbs/Breadcrumbs';
 import PhotoGrid from '../components/PhotoGrid';
 import { handleUpdateBodyClass, fetchCollections } from '../actions';
 import { connect } from 'react-redux';
