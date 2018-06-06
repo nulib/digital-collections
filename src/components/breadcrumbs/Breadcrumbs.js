@@ -1,9 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-
-const CrumbLink = props => <Link to={props.item.link}>{props.item.title}</Link>;
+import PropTypes from 'prop-types';
+import CrumbLink from './CrumbLink';
 
 const Breadcrumbs = props => {
+  if (!props.items) {
+    return [];
+  }
   const crumbs = props.items.map((item, i) => {
     const isLastCrumb = props.items.length - 1 === i;
 
@@ -19,6 +21,12 @@ const Breadcrumbs = props => {
       <ul id="breadcrumbs">{crumbs}</ul>
     </section>
   );
+};
+
+Breadcrumbs.propTypes = {
+  items: PropTypes.arrayOf(
+    PropTypes.shape({ title: PropTypes.string, link: PropTypes.string })
+  )
 };
 
 export default Breadcrumbs;

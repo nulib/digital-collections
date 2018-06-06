@@ -34,6 +34,11 @@ export default class Api {
     return this.apiClient.search(this.queryStringBuilder(queryPieces));
   }
 
+  getItem(id) {
+    const queryPieces = [`id:${id}`, `visibility_ssi:open`];
+    return this.apiClient.search(this.queryStringBuilder(queryPieces));
+  }
+
   getRecentlyDigitizedItems() {
     const queryPieces = [`has_model_ssim:Image`];
     return this.apiClient.search(this.queryStringBuilder(queryPieces));

@@ -3,17 +3,7 @@ import PropTypes from 'prop-types';
 import Swiper from 'swiper/dist/js/swiper.js';
 import 'swiper/dist/css/swiper.css';
 import $ from 'jquery';
-
-const CarouselItem = props => {
-  const { description, imageUrl, label } = props.item;
-
-  return (
-    <a className="swiper-slide">
-      <img alt={description} src={imageUrl} />
-      <div className="caption">{label}</div>
-    </a>
-  );
-};
+import CarouselItem from './CarouselItem';
 
 class Carousel extends Component {
   constructor(props) {
