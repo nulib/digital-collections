@@ -33,6 +33,7 @@ function collectionsFailure(error) {
   };
 }
 
+// TODO: Move this out of Redux into a helper service
 export const handleUpdateBodyClass = (bodyClass = 'landing-page') => {
   document.getElementsByTagName('body')[0].setAttribute('class', bodyClass);
 
