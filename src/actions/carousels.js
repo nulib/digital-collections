@@ -1,9 +1,7 @@
 import * as actionTypes from './types';
 import * as solrParser from '../services/solr-parser';
 import * as globalVars from '../services/global-vars';
-import Api from '../api';
-
-const api = new Api();
+import * as api from '../api';
 
 export const CAROUSELS = {
   RECENTLY_DIGITIZED_ITEMS: 'recentlyDigitizedItems',

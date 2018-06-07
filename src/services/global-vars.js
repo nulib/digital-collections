@@ -1,4 +1,5 @@
 export const DEVBOX_URL = 'http://devbox.library.northwestern.edu/';
+export const SOLR_BASE = '/solr/development-core/select?';
 
 // IIIF Spec for displaying an image:
 // http://iiif.io/api/image/2.1/#image-request-parameters
