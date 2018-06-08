@@ -32,12 +32,8 @@ export class HomePage extends Component {
     );
   }
 
-  handleBodyClassUpdate() {
-    const page = document.getElementById('page');
-    if (page) {
-      page.classList.remove('standard-margin');
-    }
-    this.props.handleUpdateBodyClass('landing-page');
+  componentWillUnmount() {
+    this.resetBodyClassUpdate();
   }
 
   createAdditionalCarousels() {
@@ -62,6 +58,22 @@ export class HomePage extends Component {
         return '';
       }
     });
+  }
+
+  handleBodyClassUpdate() {
+    const page = document.getElementById('page');
+    if (page) {
+      page.classList.remove('standard-margin');
+    }
+    this.props.handleUpdateBodyClass('landing-page');
+  }
+
+  resetBodyClassUpdate() {
+    const page = document.getElementById('page');
+    if (page) {
+      page.classList.add('standard-margin');
+    }
+    document.getElementsByTagName('body')[0].removeAttribute('class');
   }
 
   render() {

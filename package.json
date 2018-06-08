@@ -23,7 +23,8 @@
     "redux": "^3.7.2",
     "redux-mock-store": "^1.5.1",
     "redux-thunk": "^2.2.0",
-    "swiper": "^4.2.0"
+    "swiper": "^4.2.0",
+    "universalviewer": "^3.0.16"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,json,css}": [

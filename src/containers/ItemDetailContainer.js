@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
-import Api from '../api';
-import Breadcrumbs from '../components/breadcrumbs/Breadcrumbs.js';
+import * as api from '../api';
+import Breadcrumbs from '../components/breadcrumbs/Breadcrumbs';
+import UniversalViewerContainer from './UniversalViewerContainer';
 
-const api = new Api();
-
-class ItemDetailContainer extends Component {
+export class ItemDetailContainer extends Component {
   state = {
     error: null,
     item: null
@@ -13,6 +12,7 @@ class ItemDetailContainer extends Component {
 
   componentDidMount() {
     const { match } = this.props;
+
     if (!match.params.id) {
       return this.setState({
         error: 'Missing id in query param'
@@ -22,7 +22,7 @@ class ItemDetailContainer extends Component {
   }
 
   createBreadcrumbData(item) {
-    let crumbs = [{ title: 'Items', link: 'items' }];
+    let crumbs = [{ title: 'Items', link: '/items' }];
 
     if (item) {
       crumbs.push({
@@ -36,18 +36,26 @@ class ItemDetailContainer extends Component {
   getItem(id) {
     const request = async () => {
       const response = await api.getItem(id);
-      this.setState({ item: response.response.docs[0] });
+      let error = null;
+      if (response.response.docs.length === 0) {
+        error = 'No Solr documents were returned';
+      }
+      this.setState({ item: response.response.docs[0], error });
     };
     request();
   }
 
-  renderContent() {}
-
   render() {
-    const { item } = this.state;
+    const { item, error } = this.state;
     const breadCrumbData = item ? this.createBreadcrumbData(item) : [];
 
-    return <Breadcrumbs items={breadCrumbData} />;
+    return (
+      <div>
+        {error}
+        <Breadcrumbs items={breadCrumbData} />
+        <UniversalViewerContainer item={item} />
+      </div>
+    );
   }
 }
 
