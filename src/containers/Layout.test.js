@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Layout from './Layout';
-import Header from '../components/header';
-import Nav from '../components/nav';
+import Header from '../components/Header';
+import Nav from '../components/Nav';
 import GlobalSearch from '../components/GlobalSearch';
 import { Switch, Route } from 'react-router-dom';
 
