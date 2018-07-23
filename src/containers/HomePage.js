@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import HeroSection from '../components/Home/HeroSection';
+import HeroSection from '../components/home/HeroSection';
 import CarouselSection from '../components/CarouselSection';
-import HeroSecondarySection from '../components/Home/HeroSecondarySection';
+import HeroSecondarySection from '../components/home/HeroSecondarySection';
 import { heroData } from '../api/heros';
 import { heroSecondaryData } from '../api/heros';
 import { connect } from 'react-redux';
