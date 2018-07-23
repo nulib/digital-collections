@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Header from '../components/header/';
-import Nav from '../components/nav';
+import Header from '../components/Header/';
+import Nav from '../components/Nav';
 import GlobalSearch from '../components/GlobalSearch';
-import Footer from '../components/footer';
+import Footer from '../components/Footer';
 import HomePage from './HomePage';
 import ContactUs from './ContactUs';
 import About from './About';
