@@ -4,8 +4,8 @@ import ConnectedApp, { HomePage } from './HomePage';
 import configureMockStore from 'redux-mock-store';
 const mockStore = configureMockStore();
 
-import HeroSection from '../components/Home/HeroSection';
-import HeroSecondarySection from '../components/Home/HeroSecondarySection';
+import HeroSection from '../components/home/HeroSection';
+import HeroSecondarySection from '../components/home/HeroSecondarySection';
 import CarouselSection from '../components/CarouselSection';
 
 const initialState = {

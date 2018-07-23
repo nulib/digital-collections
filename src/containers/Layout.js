@@ -1,15 +1,16 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Header from '../components/Header/';
-import Nav from '../components/Nav';
+import Header from '../components/header/';
+import Nav from '../components/nav';
 import GlobalSearch from '../components/GlobalSearch';
-import Footer from '../components/Footer';
+import Footer from '../components/footer';
 import HomePage from './HomePage';
 import ContactUs from './ContactUs';
 import About from './About';
 import Login from './Login';
 import AllCollections from './AllCollections';
 import ItemDetailContainer from './ItemDetailContainer';
+import ItemsContainer from './ItemsContainer';
 import '../Layout.css';
 import '../libs/nuwebcomm-scripts.js';
 
@@ -27,6 +28,7 @@ const Layout = () => {
             <Route exact path="/login" component={Login} />
             <Route exact path="/collections" component={AllCollections} />
             <Route path="/items/:id" component={ItemDetailContainer} />
+            <Route path="/items/" component={ItemsContainer} />
             <Route exact path="/" component={HomePage} />
           </Switch>
         </main>
