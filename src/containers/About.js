@@ -7,10 +7,16 @@ class About extends Component {
 
   render() {
     return (
-      <section className="contain-1120">
-        <h2>About</h2>
-        <p>Info goes here</p>
-      </section>
+      <div className="standard-page">
+        <div id="page" className="full-width">
+          <main id="main-content" className="content" tabIndex="0">
+            <section className="contain-1120">
+              <h2>About</h2>
+              <p>Info goes here</p>
+            </section>
+          </main>
+        </div>
+      </div>
     );
   }
 }

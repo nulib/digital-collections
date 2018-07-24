@@ -29,10 +29,6 @@ describe('Layout Component', () => {
     expect(wrapper.find(GlobalSearch)).toHaveLength(1);
   });
 
-  it('renders the <main> html element', () => {
-    expect(wrapper.find('main#main-content')).toHaveLength(1);
-  });
-
   it('renders Switch routing component', () => {
     expect(wrapper.find(Switch)).toHaveLength(1);
   });

@@ -1,8 +1,22 @@
 import React, { Component } from 'react';
+import SearchResults from '../components/SearchResults';
+import SearchResulsSidebar from '../components/SearchResults/SearchResultsSidebar';
 
 class SearchResultsContainer extends Component {
+  componentDidMount() {
+    document.body.classList.add('standard-page');
+    document.getElementById('page').classList.remove('standard-margin');
+  }
+
   render() {
-    return <h1>SearchResultsContainer</h1>;
+    return (
+      <div className="standard-page">
+        <div id="page" className="search">
+          <SearchResulsSidebar />
+          <SearchResults />
+        </div>
+      </div>
+    );
   }
 }
 
