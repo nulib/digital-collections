@@ -1,4 +1,5 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const SearchResultsSidebar = () => {
   return (
@@ -24,8 +25,8 @@ const SearchResultsSidebar = () => {
                 <h3 className="open">Topic</h3>
                 <ul className="facet-list no-style">
                   <li className="active">
-                    <span className="close fa fa-close" /> Active filtered topic
-                    (won't display below)
+                    <FontAwesomeIcon icon="times" /> Active filtered topic *
+                    will not display below)
                   </li>
                   <li>
                     <a href="#">
