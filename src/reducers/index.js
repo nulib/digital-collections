@@ -1,14 +1,10 @@
 import { combineReducers } from 'redux';
 import carousels from './carousels';
 import collections from './collections';
-import * as actionTypes from '../actions/types';
+import search from './search';
 
 const general = (state = {}, action) => {
   switch (action.type) {
-    case actionTypes.UPDATE_BODY_CLASS:
-      return Object.assign({}, state, {
-        bodyClass: action.bodyClass
-      });
     default:
       return state;
   }
@@ -17,7 +13,8 @@ const general = (state = {}, action) => {
 const rootReducer = combineReducers({
   general,
   carousels,
-  collections
+  collections,
+  search
 });
 
 export default rootReducer;

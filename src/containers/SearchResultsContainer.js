@@ -1,23 +1,25 @@
 import React, { Component } from 'react';
 import SearchResults from '../components/SearchResults';
 import SearchResulsSidebar from '../components/SearchResults/SearchResultsSidebar';
+import { connect } from 'react-redux';
 
 class SearchResultsContainer extends Component {
-  componentDidMount() {
-    document.body.classList.add('standard-page');
-    document.getElementById('page').classList.remove('standard-margin');
-  }
-
   render() {
+    const { results, searchTerm = '' } = this.props.search;
+
     return (
       <div className="standard-page">
         <div id="page" className="search">
           <SearchResulsSidebar />
-          <SearchResults />
+          <SearchResults results={results} searchTerm={searchTerm} />
         </div>
       </div>
     );
   }
 }
 
-export default SearchResultsContainer;
+const mapStateToProps = state => ({
+  search: state.search
+});
+
+export default connect(mapStateToProps)(SearchResultsContainer);

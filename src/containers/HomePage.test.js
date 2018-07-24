@@ -87,6 +87,5 @@ describe('HomePage Container Component', () => {
 
   it('renders mapDispatchToProps props', () => {
     expect(wrapper.prop('fetchCarouselItems')).toBeDefined();
-    expect(wrapper.prop('handleUpdateBodyClass')).toBeDefined();
   });
 });

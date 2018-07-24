@@ -5,13 +5,6 @@ import * as actionTypes from './types';
   Action creators
  */
 
-function updateBodyClass(bodyClass) {
-  return {
-    type: actionTypes.UPDATE_BODY_CLASS,
-    bodyClass
-  };
-}
-
 function collectionsRequest() {
   return {
     type: actionTypes.COLLECTIONS_REQUEST
@@ -32,15 +25,6 @@ function collectionsFailure(error) {
     error: error
   };
 }
-
-// TODO: Move this out of Redux into a helper service
-export const handleUpdateBodyClass = (bodyClass = 'landing-page') => {
-  document.getElementsByTagName('body')[0].setAttribute('class', bodyClass);
-
-  return dispatch => {
-    dispatch(updateBodyClass());
-  };
-};
 
 /*
   Thunk action creators

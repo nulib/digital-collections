@@ -5,7 +5,6 @@ import HeroSecondarySection from '../components/Home/HeroSecondarySection';
 import { heroData } from '../api/heros';
 import { heroSecondaryData } from '../api/heros';
 import { connect } from 'react-redux';
-import { handleUpdateBodyClass } from '../actions';
 import { fetchCarouselItems, CAROUSELS } from '../actions/carousels';
 
 export class HomePage extends Component {
@@ -97,8 +96,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  handleUpdateBodyClass: bodyClass =>
-    dispatch(handleUpdateBodyClass(bodyClass)),
   fetchCarouselItems: title => dispatch(fetchCarouselItems(title))
 });
 

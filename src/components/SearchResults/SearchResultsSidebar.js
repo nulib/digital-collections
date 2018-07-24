@@ -25,23 +25,23 @@ const SearchResultsSidebar = () => {
                 <h3 className="open">Topic</h3>
                 <ul className="facet-list no-style">
                   <li className="active">
-                    <FontAwesomeIcon icon="times" /> Active filtered topic *
-                    will not display below)
+                    <FontAwesomeIcon icon="times" className="close" /> Active
+                    filtered topic will not display below)
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="">
                       Public figures
                       <span className="count">104</span>
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="">
                       Sculptures
                       <span className="count">42</span>
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="">
                       Homes and haunts <span className="count">119</span>
                     </a>
                   </li>
@@ -49,19 +49,19 @@ const SearchResultsSidebar = () => {
                 <h3>Name</h3>
                 <ul className="facet-list no-style">
                   <li>
-                    <a href="#">
+                    <a href="">
                       Napoleon I, Emperor of the French, 1769-1821{' '}
                       <span className="count">632</span>
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="">
                       Franklin, Benjamin, 1706-1790{' '}
                       <span className="count">13</span>
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="">
                       Grant, Ulysses S. (Ulysses Simpson), 1822-1885{' '}
                       <span className="count">87</span>
                     </a>
@@ -70,27 +70,27 @@ const SearchResultsSidebar = () => {
                 <h3>Collection</h3>
                 <ul className="facet-list no-style">
                   <li className="active">
-                    <span className="close fa fa-close" /> This current
-                    collection
+                    <FontAwesomeIcon icon="times" className="close" /> This
+                    current collection
                   </li>
                   <li>
-                    <a href="#">Print Collection portrait file</a>
+                    <a href="">Print Collection portrait file</a>
                   </li>
                 </ul>
                 <h3>Place</h3>
                 <ul className="facet-list no-style">
                   <li>
-                    <a href="#">
+                    <a href="">
                       New York City <span className="count">100</span>
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="">
                       Italy <span className="count">13</span>
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="">
                       St. Helena <span className="count">276</span>
                     </a>
                   </li>
@@ -98,12 +98,12 @@ const SearchResultsSidebar = () => {
                 <h3>Genre</h3>
                 <ul className="facet-list no-style">
                   <li>
-                    <a href="#">
+                    <a href="">
                       Still image <span className="count">341</span>
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="">
                       Portrait <span className="count">23</span>
                     </a>
                   </li>
