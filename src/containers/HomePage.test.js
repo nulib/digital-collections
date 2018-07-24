@@ -24,13 +24,11 @@ const initialState = {
 describe('HomePage (not connected) Component', () => {
   let wrapper;
   const mockFetchCarouselItems = jest.fn();
-  const mockHandleUpdateBodyClass = jest.fn();
 
   beforeEach(() => {
     wrapper = shallow(
       <HomePage
         carousels={initialState}
-        handleUpdateBodyClass={mockHandleUpdateBodyClass}
         fetchCarouselItems={mockFetchCarouselItems}
       />
     );
@@ -38,11 +36,6 @@ describe('HomePage (not connected) Component', () => {
 
   afterEach(() => {
     mockFetchCarouselItems.mockClear();
-    mockHandleUpdateBodyClass.mockClear();
-  });
-
-  it('should call handleUpdateBodyClass() actionCreator mapped to props', () => {
-    expect(mockHandleUpdateBodyClass.mock.calls.length).toBe(1);
   });
 
   it('should attempt to display custom defined carousels', () => {
@@ -94,6 +87,5 @@ describe('HomePage Container Component', () => {
 
   it('renders mapDispatchToProps props', () => {
     expect(wrapper.prop('fetchCarouselItems')).toBeDefined();
-    expect(wrapper.prop('handleUpdateBodyClass')).toBeDefined();
   });
 });

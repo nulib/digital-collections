@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Breadcrumbs from '../components/breadcrumbs/Breadcrumbs';
 import PhotoGrid from '../components/PhotoGrid';
-import { handleUpdateBodyClass, fetchCollections } from '../actions';
+import { fetchCollections } from '../actions';
 import { connect } from 'react-redux';
 
 const breadcrumbItems = [
@@ -10,11 +10,6 @@ const breadcrumbItems = [
 ];
 
 class AllCollections extends Component {
-  constructor(props) {
-    super(props);
-    this.props.dispatch(handleUpdateBodyClass('landing-page'));
-  }
-
   componentDidMount() {
     this.props.dispatch(fetchCollections());
   }
