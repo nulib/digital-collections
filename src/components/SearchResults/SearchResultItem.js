@@ -51,7 +51,12 @@ const SearchResultItem = props => {
       <h4 id="grid1">
         {title_tesim.map(title => (
           <div key={title}>
-            <LinkWrapper itemId={props.item.id}>{title}</LinkWrapper>
+            <LinkWrapper
+              itemId={props.item.id}
+              modelType={props.item.has_model_ssim[0]}
+            >
+              {title}
+            </LinkWrapper>
           </div>
         ))}
       </h4>
