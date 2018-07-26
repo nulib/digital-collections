@@ -6,7 +6,6 @@ import Sort from './Sort';
 
 const SearchResults = props => {
   const numResults = props.results ? props.results.length : 0;
-
   const breadCrumbItems = [
     {
       title: 'Search',
@@ -22,13 +21,18 @@ const SearchResults = props => {
     <main id="main-content" className="content" tabIndex="-1">
       <Breadcrumbs items={breadCrumbItems} />
       <h4>
-        {numResults} results found for {props.searchTerm}
+        {numResults === 0
+          ? `Enter a search term above...`
+          : `${numResults} results found for ${props.searchTerm}`}
       </h4>
-      <Sort />
+      {numResults > 0 && <Sort />}
 
       <div className="section">
         <div className="photo-grid three-grid">
-          <SearchResultItem />
+          {props.results &&
+            props.results.map(item => (
+              <SearchResultItem key={item.id} item={item} />
+            ))}
         </div>
       </div>
     </main>
