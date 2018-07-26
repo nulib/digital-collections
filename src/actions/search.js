@@ -29,7 +29,6 @@ export const doSearch = searchTerm => {
       let solrResponse = await getSearchResults(searchTerm);
 
       // Dispatch success action
-      console.log('solr results', solrResponse.response.docs);
       dispatch(searchSuccess(solrResponse.response.docs, searchTerm));
     };
 
