@@ -51,11 +51,15 @@ export class ItemDetailContainer extends Component {
     const breadCrumbData = item ? this.createBreadcrumbData(item) : [];
 
     return (
-      <div>
-        {error}
-        <Breadcrumbs items={breadCrumbData} />
-        <UniversalViewerContainer item={item} />
-        <ItemDetailMetadata item={item} />
+      <div className="standard-page">
+        <div id="page" className="full-width">
+          <main id="main-content" className="content" tabIndex="0">
+            {error}
+            <Breadcrumbs items={breadCrumbData} />
+            <UniversalViewerContainer item={item} />
+            <ItemDetailMetadata item={item} />
+          </main>
+        </div>
       </div>
     );
   }

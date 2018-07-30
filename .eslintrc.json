@@ -1,0 +1,37 @@
+{
+    "extends": [
+      "plugin:react/recommended",
+      "prettier",
+      "prettier/react"
+    ],
+    "plugins": [
+      "react",
+      "prettier"
+    ],
+    "parser": "babel-eslint",
+    "parserOptions": {
+      "ecmaVersion": 7,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "env": {
+      "es6": true,
+      "node": true
+    },
+    "rules": {
+      "prettier/prettier": ["error", {
+        "semi": true,
+        "singleQuote": true
+      }]
+    },
+    "overrides": [
+      {
+        "files": ["*Container.js"],
+        "rules": {
+          "react/prop-types": 0
+        }
+      }
+    ]
+  }

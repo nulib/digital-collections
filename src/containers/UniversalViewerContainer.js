@@ -37,19 +37,21 @@ class UniversalViewerContainer extends Component {
 
     return (
       <section className="item-viewer-wrapper">
-        <div
-          className="uv"
-          data-locale="en-GB:English (GB),cy-GB:Cymraeg"
-          data-config=""
-          data-uri={`${DEVBOX_URL}concern/images/${item.id}/manifest`}
-          data-collectionindex="0"
-          data-manifestindex="0"
-          data-sequenceindex="0"
-          data-canvasindex="0"
-          data-xywh="-1742,-20,4698,2007"
-          data-rotation="0"
-          style={styles.uvWrapper}
-        />
+        <div className="contain-1120">
+          <div
+            className="uv"
+            data-locale="en-GB:English (GB),cy-GB:Cymraeg"
+            data-config=""
+            data-uri={`${DEVBOX_URL}concern/images/${item.id}/manifest`}
+            data-collectionindex="0"
+            data-manifestindex="0"
+            data-sequenceindex="0"
+            data-canvasindex="0"
+            data-xywh="-1742,-20,4698,2007"
+            data-rotation="0"
+            style={styles.uvWrapper}
+          />
+        </div>
       </section>
     );
   }
