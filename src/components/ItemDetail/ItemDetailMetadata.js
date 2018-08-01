@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import LineEntry from './LineEntry';
 
 const ItemDetailMetadata = props => {
@@ -6,36 +7,52 @@ const ItemDetailMetadata = props => {
     return [];
   }
 
+  const {
+    title_tesim,
+    admin_set_tesim,
+    subject_topical_label_tesim,
+    subject_topical_tesim,
+    genre_label_tesim,
+    genre_tesim,
+    human_readable_type_tesim,
+    ark_tesim,
+    rights_statement_tesim
+  } = props.item;
+
   return (
     <section className="item-section contain-970 item-categories-wrapper">
       <div id="tab-container">
         <div aria-labelledby="tab-item-data" id="tab-panel1" role="tabpanel">
-          <LineEntry title="Title" labels={props.item.title_tesim} />
-          <LineEntry title="Collections" labels={props.item.admin_set_tesim} />
+          <LineEntry title="Title" labels={title_tesim} />
+          <LineEntry title="Collections" labels={admin_set_tesim} />
           <LineEntry
             title="Topics"
-            labels={props.item.subject_topical_label_tesim}
-            urls={props.item.subject_topical_tesim}
+            labels={subject_topical_label_tesim}
+            urls={subject_topical_tesim}
           />
           <LineEntry
             title="Genres"
-            labels={props.item.genre_label_tesim}
-            urls={props.item.genre_tesim}
+            labels={genre_label_tesim}
+            urls={genre_tesim}
           />
           <LineEntry
             title="Type of Resource"
-            labels={props.item.human_readable_type_tesim}
+            labels={human_readable_type_tesim}
           />
-          <LineEntry title="Identifiers" labels={props.item.ark_tesim} />
+          <LineEntry title="Identifiers" labels={ark_tesim} />
           <LineEntry
             title="Rights Statement"
-            labels={props.item.rights_statement_tesim}
-            urls={props.item.rights_statement_tesim}
+            labels={rights_statement_tesim}
+            urls={rights_statement_tesim}
           />
         </div>
       </div>
     </section>
   );
+};
+
+ItemDetailMetadata.propTypes = {
+  item: PropTypes.object
 };
 
 export default ItemDetailMetadata;
