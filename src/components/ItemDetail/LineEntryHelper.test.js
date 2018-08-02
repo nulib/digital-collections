@@ -1,5 +1,5 @@
 import React from 'react';
-import { calculatedLink } from './helpers.js';
+import { calculatedLink } from './LineEntryHelper.js';
 
 test('calculatedLink returns plain text if no url is passed in', () => {
   expect(JSON.stringify(calculatedLink('test label', 0))).toBe(

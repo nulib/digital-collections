@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { calculatedLink } from '../../services/helpers.js';
+import { calculatedLink } from './LineEntryHelper.js';
 
 const LineEntry = props => {
   const { title, labels, urls } = props;
