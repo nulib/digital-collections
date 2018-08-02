@@ -99,7 +99,4 @@ const mapDispatchToProps = dispatch => ({
   fetchCarouselItems: title => dispatch(fetchCarouselItems(title))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(HomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

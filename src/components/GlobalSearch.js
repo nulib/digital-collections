@@ -78,7 +78,6 @@ const mapStateToProps = state => ({
 });
 
 const globalSearchWithRouter = withRouter(GlobalSearch);
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(globalSearchWithRouter);
+export default connect(mapStateToProps, mapDispatchToProps)(
+  globalSearchWithRouter
+);
