@@ -3,7 +3,7 @@ import { withRouter } from 'react-router';
 import * as api from '../api';
 import Breadcrumbs from '../components/breadcrumbs/Breadcrumbs';
 import UniversalViewerContainer from './UniversalViewerContainer';
-import ItemDetailMetadata from '../components/ItemDetail/ItemDetailMetadata';
+import ItemDetail from '../components/ItemDetail/ItemDetail';
 
 export class ItemDetailContainer extends Component {
   state = {
@@ -57,7 +57,7 @@ export class ItemDetailContainer extends Component {
             {error}
             <Breadcrumbs items={breadCrumbData} />
             <UniversalViewerContainer item={item} />
-            <ItemDetailMetadata item={item} />
+            <ItemDetail item={item} />
           </main>
         </div>
       </div>
