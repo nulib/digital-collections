@@ -6,9 +6,10 @@ const ItemDetailMetadata = props => {
   if (!props.item) {
     return [];
   }
+  console.log('Props: ' + props);
 
   const {
-    title_tesim = null,
+    title = null,
     alternate_title_tesim = null,
     abstract = null,
     caption = null,
