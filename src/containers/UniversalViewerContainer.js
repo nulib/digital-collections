@@ -29,7 +29,7 @@ class UniversalViewerContainer extends Component {
   }
 
   render() {
-    const { item } = this.props;
+    const { id, item } = this.props;
 
     if (!item) {
       return null;
@@ -42,7 +42,7 @@ class UniversalViewerContainer extends Component {
             className="uv"
             data-locale="en-GB:English (GB),cy-GB:Cymraeg"
             data-config=""
-            data-uri={`${DEVBOX_URL}concern/images/${item.id}/manifest`}
+            data-uri={`${DEVBOX_URL}concern/images/${id}/manifest`}
             data-collectionindex="0"
             data-manifestindex="0"
             data-sequenceindex="0"
