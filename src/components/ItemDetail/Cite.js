@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import LineEntry from './LineEntry';
+import MultiMetadata from './MultiMetadata';
+import SingleMetadata from './SingleMetadata';
 
 const Cite = props => {
   if (!props.item) {
@@ -31,14 +32,20 @@ const Cite = props => {
     return [title_tesim + ' wikipedia format'];
   };
 
+  return null;
+
   return (
     <div>
       <div className="cite-group-col">
         <div className="cite-group">
-          <LineEntry title="Ark" labels={ark_tesim} urls={ark_tesim} />
-          <LineEntry title="Identifier" labels={identifier} urls={identifier} />
-          <LineEntry title="License" labels={license} urls={license} />
-          <LineEntry
+          <MultiMetadata title="Ark" labels={ark_tesim} urls={ark_tesim} />
+          <MultiMetadata
+            title="Identifier"
+            labels={identifier}
+            urls={identifier}
+          />
+          <MultiMetadata title="License" labels={license} urls={license} />
+          <SingleMetadata
             title="Use Statement"
             labels={use_statement}
             urls={use_statement}
@@ -46,10 +53,13 @@ const Cite = props => {
         </div>
       </div>
       <div className="cite-group-col">
-        <LineEntry title="MLA Format" labels={formatMLA()} />
-        <LineEntry title="Chicago/Turabian Format" labels={formatChicago()} />
-        <LineEntry title="APA Format" labels={formatAPA()} />
-        <LineEntry title="Wikipedia Citation" labels={formatWikipedia()} />
+        <SingleMetadata title="MLA Format" labels={formatMLA()} />
+        <SingleMetadata
+          title="Chicago/Turabian Format"
+          labels={formatChicago()}
+        />
+        <SingleMetadata title="APA Format" labels={formatAPA()} />
+        <SingleMetadata title="Wikipedia Citation" labels={formatWikipedia()} />
       </div>
     </div>
   );

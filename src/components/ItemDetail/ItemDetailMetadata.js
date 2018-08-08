@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import LineEntry from './LineEntry';
+import MultiMetadata from './MultiMetadata';
+import SingleMetadata from './SingleMetadata';
 
 const ItemDetailMetadata = props => {
   if (!props.item) {
@@ -10,88 +11,62 @@ const ItemDetailMetadata = props => {
 
   const {
     title = null,
-    alternate_title_tesim = null,
     abstract = null,
     caption = null,
     creator = null,
-    nul_creator = null,
     contributor = null,
     date = null,
     description = null,
-    admin_set_tesim = null, // division
-    genre_label_tesim = null,
-    genre_tesim = null,
+    admin_set = null, // division
     keyword = null,
     language = null,
     location = null,
-    physical_description_material = null,
-    physical_description_size = null,
     provenance = null,
     publisher = null,
     related_url = null,
     rights_holder = null,
     source = null,
-    style_period = null,
-    technique = null,
-    subject_topical_label_tesim = null,
-    subject_topical_tesim = null,
-    rights_statement_label_tesim = null
+    subject = null,
+    rights_statement = null,
+    extra_fields = null
   } = props.item;
 
   return (
     <div>
-      <LineEntry title="Title" labels={title_tesim} />
-      <LineEntry title="Alternate Title" labels={alternate_title_tesim} />
-      <LineEntry title="Abstract" labels={abstract} />
-      <LineEntry title="Caption" labels={caption} />
-      <LineEntry title="Creator" labels={creator} urls={creator} />
-      <LineEntry title="Contributor" labels={contributor} urls={contributor} />
-      <LineEntry title="Date" labels={date} urls={date} />
-      <LineEntry title="Description" labels={description} />
-      <LineEntry
-        title="Division"
-        labels={admin_set_tesim}
-        urls={admin_set_tesim}
-      />
-      <LineEntry title="Genre" labels={genre_label_tesim} urls={genre_tesim} />
-      <LineEntry title="Keyword" labels={keyword} urls={keyword} />
-      <LineEntry title="Language" labels={language} urls={language} />
-      <LineEntry title="Location" labels={location} urls={location} />
-      <LineEntry
+      <SingleMetadata title="Title" items={title.primary} />
+      <SingleMetadata title="Alternate Title" items={title.alternate} />
+      <SingleMetadata title="Abstract" items={abstract} />
+      <SingleMetadata title="Caption" items={caption} />
+      <MultiMetadata title="Creator" items={creator} />
+      <MultiMetadata title="Contributor" items={contributor} />
+      <SingleMetadata title="Date" items={date} />
+      <SingleMetadata title="Description" items={description} />
+      <SingleMetadata title="Division" items={admin_set.title} />
+      <MultiMetadata title="Genre" items={extra_fields.genre} />
+      <MultiMetadata title="Keyword" items={keyword} />
+      <MultiMetadata title="Language" items={language} />
+      <MultiMetadata title="Location" items={location} />
+      <MultiMetadata
         title="Physcial Description Material"
-        labels={physical_description_material}
-        urls={physical_description_material}
+        items={extra_fields.physical_description.material}
       />
-      <LineEntry
+      <MultiMetadata
         title="Physcial Description Size"
-        labels={physical_description_size}
-        urls={physical_description_size}
+        items={extra_fields.physical_description.size}
       />
-      <LineEntry title="Provenance" labels={provenance} />
-      <LineEntry title="Publisher" labels={publisher} urls={publisher} />
-      <LineEntry title="Related url" labels={related_url} urls={related_url} />
-      <LineEntry
-        title="Rights holder"
-        labels={rights_holder}
-        urls={rights_holder}
+      <SingleMetadata title="Provenance" items={provenance} />
+      <MultiMetadata title="Publisher" items={publisher} urls={publisher} />
+      <MultiMetadata
+        title="Related url"
+        items={related_url}
+        urls={related_url}
       />
-      <LineEntry
-        title="Rights Statement"
-        labels={rights_statement_label_tesim}
-        urls={rights_statement_label_tesim}
-      />
-      <LineEntry title="Source" labels={source} urls={source} />
-      <LineEntry
-        title="Style period"
-        labels={style_period}
-        urls={style_period}
-      />
-      <LineEntry
-        title="Subjects"
-        labels={subject_topical_label_tesim}
-        urls={subject_topical_tesim}
-      />
-      <LineEntry title="Technique" labels={technique} urls={technique} />
+      <MultiMetadata title="Rights holder" items={rights_holder} />
+      <SingleMetadata title="Rights Statement" items={rights_statement} />
+      <MultiMetadata title="Source" items={source} urls={source} />
+      <MultiMetadata title="Style period" items={extra_fields.style_period} />
+      <MultiMetadata title="Subjects" items={subject} />
+      <MultiMetadata title="Technique" items={extra_fields.technique} />
     </div>
   );
 };

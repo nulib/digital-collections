@@ -61,7 +61,7 @@ export class ItemDetailContainer extends Component {
             {error}
             <Breadcrumbs items={breadCrumbData} />
             <UniversalViewerContainer id={id} item={item} />
-            <ItemDetailMetadata item={item} />
+            <ItemDetail item={item} />
           </main>
         </div>
       </div>
