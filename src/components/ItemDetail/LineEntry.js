@@ -8,11 +8,6 @@ const LineEntry = props => {
   return (
     <div>
       <h4>{title}</h4>
-      <ul>
-        {labels.map((label, i) => {
-          return calculatedLink(label, i, urls);
-        })}
-      </ul>
     </div>
   );
 };

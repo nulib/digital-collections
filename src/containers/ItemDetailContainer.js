@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
-import * as api from '../api';
+import * as elasticsearchApi from '../api/elasticsearch-api.js';
 import Breadcrumbs from '../components/breadcrumbs/Breadcrumbs';
 import UniversalViewerContainer from './UniversalViewerContainer';
 import ItemDetailMetadata from '../components/ItemDetail/ItemDetailMetadata';
@@ -8,7 +8,8 @@ import ItemDetailMetadata from '../components/ItemDetail/ItemDetailMetadata';
 export class ItemDetailContainer extends Component {
   state = {
     error: null,
-    item: null
+    item: null,
+    id: null
   };
 
   componentDidMount() {
@@ -27,7 +28,7 @@ export class ItemDetailContainer extends Component {
 
     if (item) {
       crumbs.push({
-        title: item.title_tesim.join(),
+        title: item.title.primary[0],
         link: ''
       });
     }
@@ -36,18 +37,21 @@ export class ItemDetailContainer extends Component {
 
   getItem(id) {
     const request = async () => {
-      const response = await api.getItem(id);
+      const response = await elasticsearchApi.getItem(id);
       let error = null;
-      if (response.response.docs.length === 0) {
-        error = 'No Solr documents were returned';
+
+      if (response.error) {
+        error = response.statusText;
+      } else if (!response.found) {
+        error = 'Item not found';
       }
-      this.setState({ item: response.response.docs[0], error });
+      this.setState({ id: id, item: response._source, error });
     };
     request();
   }
 
   render() {
-    const { item, error } = this.state;
+    const { id, item, error } = this.state;
     const breadCrumbData = item ? this.createBreadcrumbData(item) : [];
 
     return (
@@ -56,7 +60,7 @@ export class ItemDetailContainer extends Component {
           <main id="main-content" className="content" tabIndex="0">
             {error}
             <Breadcrumbs items={breadCrumbData} />
-            <UniversalViewerContainer item={item} />
+            <UniversalViewerContainer id={id} item={item} />
             <ItemDetailMetadata item={item} />
           </main>
         </div>
