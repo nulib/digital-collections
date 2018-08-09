@@ -1,6 +1,7 @@
 import React from 'react';
 import Cite from './Cite';
 import ItemDetailMetadata from './ItemDetailMetadata';
+import FindThisItem from './FindThisItem';
 
 const ItemDetail = props => {
   return (
@@ -41,6 +42,9 @@ const ItemDetail = props => {
         <div id="tab-content">
           <div aria-labelledby="tab-item-data" id="tab-panel1" role="tabpanel">
             <ItemDetailMetadata item={props.item} />
+          </div>
+          <div aria-labelledby="tab-find-item" id="tab-panel2" role="tabpanel">
+            <FindThisItem item={props.item} />
           </div>
           <div aria-labelledby="tab-cite" id="tab-panel3" role="tabpanel">
             <Cite item={props.item} />

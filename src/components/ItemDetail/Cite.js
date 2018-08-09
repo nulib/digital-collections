@@ -9,57 +9,47 @@ const Cite = props => {
   }
 
   const {
-    title_tesim = null,
-    ark_tesim = null,
+    title = null,
+    permalink = null,
     identifier = null,
     license = null,
     use_statement = null
   } = props.item;
 
   let formatMLA = () => {
-    return [title_tesim + " here's the rest MLA"];
+    return [title.primary + " here's the rest MLA"];
   };
 
   let formatChicago = () => {
-    return [title_tesim + ' chicago format'];
+    return [title.primary + ' chicago format'];
   };
 
   let formatAPA = () => {
-    return [title_tesim + ' apa format'];
+    return [title.primary + ' apa format'];
   };
 
   let formatWikipedia = () => {
-    return [title_tesim + ' wikipedia format'];
+    return [title.primary + ' wikipedia format'];
   };
-
-  return null;
 
   return (
     <div>
       <div className="cite-group-col">
         <div className="cite-group">
-          <MultiMetadata title="Ark" labels={ark_tesim} urls={ark_tesim} />
-          <MultiMetadata
-            title="Identifier"
-            labels={identifier}
-            urls={identifier}
-          />
-          <MultiMetadata title="License" labels={license} urls={license} />
-          <SingleMetadata
-            title="Use Statement"
-            labels={use_statement}
-            urls={use_statement}
-          />
+          <SingleMetadata title="Ark" items={[permalink]} />
+          <MultiMetadata title="Identifier" items={identifier} />
+          <MultiMetadata title="License" items={license} />
+          <SingleMetadata title="Use Statement" items={use_statement} />
         </div>
       </div>
       <div className="cite-group-col">
-        <SingleMetadata title="MLA Format" labels={formatMLA()} />
+        <SingleMetadata title="MLA Format" items={formatMLA()} />
         <SingleMetadata
           title="Chicago/Turabian Format"
-          labels={formatChicago()}
+          items={formatChicago()}
         />
-        <SingleMetadata title="APA Format" labels={formatAPA()} />
-        <SingleMetadata title="Wikipedia Citation" labels={formatWikipedia()} />
+        <SingleMetadata title="APA Format" items={formatAPA()} />
+        <SingleMetadata title="Wikipedia Citation" items={formatWikipedia()} />
       </div>
     </div>
   );

@@ -7,13 +7,11 @@ const ItemDetailMetadata = props => {
   if (!props.item) {
     return [];
   }
-  console.log('Props: ' + props);
 
   const {
     title = null,
     abstract = null,
     caption = null,
-    creator = null,
     contributor = null,
     date = null,
     description = null,
@@ -31,14 +29,30 @@ const ItemDetailMetadata = props => {
     extra_fields = null
   } = props.item;
 
+  let getCreators = contributors => {
+    let creators = [];
+    for (let entry of contributors) {
+      if (entry.type === 'creator') creators.push(entry);
+    }
+    return creators;
+  };
+
+  let getContributors = contributors => {
+    let c = [];
+    for (let entry of contributors) {
+      if (entry.type === 'contributor') c.push(entry);
+    }
+    return c;
+  };
+
   return (
     <div>
       <SingleMetadata title="Title" items={title.primary} />
       <SingleMetadata title="Alternate Title" items={title.alternate} />
       <SingleMetadata title="Abstract" items={abstract} />
       <SingleMetadata title="Caption" items={caption} />
-      <MultiMetadata title="Creator" items={creator} />
-      <MultiMetadata title="Contributor" items={contributor} />
+      <MultiMetadata title="Creator" items={getCreators(contributor)} />
+      <MultiMetadata title="Contributor" items={getContributors(contributor)} />
       <SingleMetadata title="Date" items={date} />
       <SingleMetadata title="Description" items={description} />
       <SingleMetadata title="Division" items={admin_set.title} />
@@ -56,11 +70,7 @@ const ItemDetailMetadata = props => {
       />
       <SingleMetadata title="Provenance" items={provenance} />
       <MultiMetadata title="Publisher" items={publisher} urls={publisher} />
-      <MultiMetadata
-        title="Related url"
-        items={related_url}
-        urls={related_url}
-      />
+      <MultiMetadata title="Related url" items={related_url} />
       <MultiMetadata title="Rights holder" items={rights_holder} />
       <SingleMetadata title="Rights Statement" items={rights_statement} />
       <MultiMetadata title="Source" items={source} urls={source} />
