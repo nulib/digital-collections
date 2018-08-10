@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const SingleMetadata = props => {
-  const { title, items } = props;
+  const { title, item } = props;
 
-  if (items) {
+  if (item) {
     return (
       <div>
         <h4>{title}</h4>
-        <p>{items}</p>
+        <p>{item}</p>
       </div>
     );
   } else {
@@ -18,7 +18,7 @@ const SingleMetadata = props => {
 
 SingleMetadata.propTypes = {
   title: PropTypes.string,
-  items: PropTypes.array
+  item: PropTypes.array
 };
 
 export default SingleMetadata;

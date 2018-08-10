@@ -36,20 +36,20 @@ const Cite = props => {
     <div>
       <div className="cite-group-col">
         <div className="cite-group">
-          <SingleMetadata title="Ark" items={[permalink]} />
+          <SingleMetadata title="Ark" item={[permalink]} />
           <MultiMetadata title="Identifier" items={identifier} />
           <MultiMetadata title="License" items={license} />
-          <SingleMetadata title="Use Statement" items={use_statement} />
+          <SingleMetadata title="Use Statement" item={use_statement} />
         </div>
       </div>
       <div className="cite-group-col">
-        <SingleMetadata title="MLA Format" items={formatMLA()} />
+        <SingleMetadata title="MLA Format" item={formatMLA()} />
         <SingleMetadata
           title="Chicago/Turabian Format"
-          items={formatChicago()}
+          item={formatChicago()}
         />
-        <SingleMetadata title="APA Format" items={formatAPA()} />
-        <SingleMetadata title="Wikipedia Citation" items={formatWikipedia()} />
+        <SingleMetadata title="APA Format" item={formatAPA()} />
+        <SingleMetadata title="Wikipedia Citation" item={formatWikipedia()} />
       </div>
     </div>
   );

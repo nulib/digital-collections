@@ -21,14 +21,14 @@ const FindThisItem = props => {
 
   return (
     <div aria-labelledby="tab-find-item" id="tab-panel2" role="tabpanel">
-      <SingleMetadata item={accession} />
-      <MultiMetadata item={box_name} />
-      <MultiMetadata item={box_number} />
-      <MultiMetadata item={folder_name} />
-      <MultiMetadata item={folder_number} />
-      <SingleMetadata item={call_number} />
-      <SingleMetadata item={catalog_key} />
-      <SingleMetadata item={citation} />
+      <SingleMetadata title="Accession Number" item={accession} />
+      <MultiMetadata title="Box Name" items={box_name} />
+      <MultiMetadata title="Box Number" items={box_number} />
+      <MultiMetadata title="Folder Name" items={folder_name} />
+      <MultiMetadata title="Folder Number" items={folder_number} />
+      <SingleMetadata title="Call Number" item={call_number} />
+      <SingleMetadata title="Catalog Key" item={catalog_key} />
+      <SingleMetadata title="Citation" item={citation} />
     </div>
   );
 };

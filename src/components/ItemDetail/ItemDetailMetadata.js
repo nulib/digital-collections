@@ -47,15 +47,15 @@ const ItemDetailMetadata = props => {
 
   return (
     <div>
-      <SingleMetadata title="Title" items={title.primary} />
-      <SingleMetadata title="Alternate Title" items={title.alternate} />
-      <SingleMetadata title="Abstract" items={abstract} />
-      <SingleMetadata title="Caption" items={caption} />
+      <SingleMetadata title="Title" item={title.primary} />
+      <SingleMetadata title="Alternate Title" item={title.alternate} />
+      <SingleMetadata title="Abstract" item={abstract} />
+      <SingleMetadata title="Caption" item={caption} />
       <MultiMetadata title="Creator" items={getCreators(contributor)} />
       <MultiMetadata title="Contributor" items={getContributors(contributor)} />
-      <SingleMetadata title="Date" items={date} />
-      <SingleMetadata title="Description" items={description} />
-      <SingleMetadata title="Division" items={admin_set.title} />
+      <SingleMetadata title="Date" item={date} />
+      <SingleMetadata title="Description" item={description} />
+      <SingleMetadata title="Division" item={admin_set.title} />
       <MultiMetadata title="Genre" items={extra_fields.genre} />
       <MultiMetadata title="Keyword" items={keyword} />
       <MultiMetadata title="Language" items={language} />
@@ -68,12 +68,12 @@ const ItemDetailMetadata = props => {
         title="Physcial Description Size"
         items={extra_fields.physical_description.size}
       />
-      <SingleMetadata title="Provenance" items={provenance} />
+      <SingleMetadata title="Provenance" item={provenance} />
       <MultiMetadata title="Publisher" items={publisher} urls={publisher} />
       <MultiMetadata title="Related url" items={related_url} />
       <MultiMetadata title="Rights holder" items={rights_holder} />
-      <SingleMetadata title="Rights Statement" items={rights_statement} />
-      <MultiMetadata title="Source" items={source} urls={source} />
+      <SingleMetadata title="Rights Statement" item={rights_statement} />
+      <MultiMetadata title="Source" items={source} />
       <MultiMetadata title="Style period" items={extra_fields.style_period} />
       <MultiMetadata title="Subjects" items={subject} />
       <MultiMetadata title="Technique" items={extra_fields.technique} />
