@@ -1,6 +1,8 @@
+import { ELASTIC_SEARCH_ENDPOINT } from '../services/global-vars';
+
 const elasticsearch = require('elasticsearch');
 const client = new elasticsearch.Client({
-  host: 'http://localhost:9201',
+  host: ELASTIC_SEARCH_ENDPOINT,
   log: 'trace'
 });
 

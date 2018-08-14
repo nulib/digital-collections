@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import LineEntry from './LineEntry';
 
 const ItemDetailMetadata = props => {
   if (!props.item) {
