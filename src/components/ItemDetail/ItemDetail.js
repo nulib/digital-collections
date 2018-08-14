@@ -2,10 +2,90 @@ import React from 'react';
 import Cite from './Cite';
 import ItemDetailMetadata from './ItemDetailMetadata';
 import FindThisItem from './FindThisItem';
+import TabPanel from './TabPanel';
 
 const ItemDetail = props => {
+  if (!props.item) {
+    return [];
+  }
+
+  const {
+    title: { primary: [title] } = '',
+    title: { alternate: [alternate] } = '',
+    abstract: [abstract] = '',
+    caption: [caption] = '',
+    contributor = null,
+    date: [date] = '',
+    description: [description] = '',
+    admin_set: { title: [admin_set] } = '', // division
+    identifier = null,
+    license = null,
+    use_statement = '',
+    keyword = '',
+    language = null,
+    location = null,
+    permalink = '',
+    provenance: [provenance] = '',
+    publisher = '',
+    related_url = null,
+    rights_holder = '',
+    source = '',
+    subject = '',
+    rights_statement = '',
+    extra_fields: { genre } = null,
+    extra_fields: { physical_description: { material } } = null,
+    extra_fields: { physical_description: { size } } = null,
+    extra_fields: { style_period } = null,
+    extra_fields: { technique } = null,
+    accession = '',
+    box_name = null,
+    box_number = null,
+    folder_name = null,
+    folder_number = null,
+    call_number = '',
+    catalog_key = '',
+    citation = ''
+  } = props.item;
+
+  const metadataPanel = [
+    { label: 'Title', value: title },
+    { label: 'Alternate Title', value: alternate },
+    { label: 'Abstract', value: abstract },
+    { label: 'Caption', value: caption },
+    { label: 'Contributor', value: contributor },
+    { label: 'Date', value: date },
+    { label: 'Description', value: description },
+    { label: 'Division', value: admin_set },
+    { label: 'Keyword', value: keyword },
+    { label: 'Language', value: language },
+    { label: 'Location', value: location },
+    { label: 'Provenance', value: provenance },
+    { label: 'Publisher', value: publisher },
+    { label: 'Related Url', value: related_url },
+    { label: 'Rights Holder', value: rights_holder },
+    { label: 'Source', value: source },
+    { label: 'Subject', value: subject },
+    { label: 'Rights Statement', value: rights_statement },
+    { label: 'Genre', value: genre },
+    { label: 'Physical Description material', value: material },
+    { label: 'Physical Description size', value: size },
+    { label: 'Style Period', value: style_period },
+    { label: 'Technique', value: technique }
+  ];
+
+  const findThisItemPanel = [
+    { label: 'Accession', value: accession },
+    { label: 'Box Name', value: box_name },
+    { label: 'Box Number', value: box_number },
+    { label: 'Folder Name', value: folder_name },
+    { label: 'Folder Number', value: folder_number },
+    { label: 'Call Number', value: call_number },
+    { label: 'Catalog Key', value: catalog_key },
+    { label: 'Citation', value: citation }
+  ];
+
   return (
-    <section className="item-section contain-970 item-categories-wrapper">
+    <section class="item-section contain-970 item-categories-wrapper">
       <div id="tab-container">
         <ul id="tabs" role="tablist">
           <li role="presentation">
@@ -41,10 +121,10 @@ const ItemDetail = props => {
         </ul>
         <div id="tab-content">
           <div aria-labelledby="tab-item-data" id="tab-panel1" role="tabpanel">
-            <ItemDetailMetadata item={props.item} />
+            <TabPanel data={metadataPanel} />
           </div>
           <div aria-labelledby="tab-find-item" id="tab-panel2" role="tabpanel">
-            <FindThisItem item={props.item} />
+            <TabPanel data={findThisItemPanel} />
           </div>
           <div aria-labelledby="tab-cite" id="tab-panel3" role="tabpanel">
             <Cite item={props.item} />

@@ -9,18 +9,18 @@ const FindThisItem = props => {
   }
 
   const {
-    accession = null,
+    accession = '',
     box_name = null,
     box_number = null,
     folder_name = null,
     folder_number = null,
-    call_number = null,
-    catalog_key = null,
-    citation = null
+    call_number = '',
+    catalog_key = '',
+    citation = ''
   } = props.item;
 
   return (
-    <div aria-labelledby="tab-find-item" id="tab-panel2" role="tabpanel">
+    <div>
       <SingleMetadata title="Accession Number" item={accession} />
       <MultiMetadata title="Box Name" items={box_name} />
       <MultiMetadata title="Box Number" items={box_number} />

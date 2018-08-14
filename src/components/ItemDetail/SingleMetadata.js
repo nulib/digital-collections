@@ -18,7 +18,7 @@ const SingleMetadata = props => {
 
 SingleMetadata.propTypes = {
   title: PropTypes.string,
-  item: PropTypes.array
+  item: PropTypes.string
 };
 
 export default SingleMetadata;

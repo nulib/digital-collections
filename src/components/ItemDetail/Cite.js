@@ -9,47 +9,33 @@ const Cite = props => {
   }
 
   const {
-    title = null,
-    permalink = null,
+    title: { primary: [title] } = '',
+    permalink = '',
     identifier = null,
     license = null,
-    use_statement = null
+    use_statement = ''
   } = props.item;
 
-  let formatMLA = () => {
-    return [title.primary + " here's the rest MLA"];
-  };
-
-  let formatChicago = () => {
-    return [title.primary + ' chicago format'];
-  };
-
-  let formatAPA = () => {
-    return [title.primary + ' apa format'];
-  };
-
-  let formatWikipedia = () => {
-    return [title.primary + ' wikipedia format'];
-  };
+  let formatMLA = `${title} here's the rest MLA`;
+  let formatChicago = `${title} chicago format`;
+  let formatAPA = `${title} apa format`;
+  let formatWikipedia = `${title} wikipedia format`;
 
   return (
     <div>
       <div className="cite-group-col">
         <div className="cite-group">
-          <SingleMetadata title="Ark" item={[permalink]} />
+          <SingleMetadata title="Ark" item={permalink} />
           <MultiMetadata title="Identifier" items={identifier} />
           <MultiMetadata title="License" items={license} />
           <SingleMetadata title="Use Statement" item={use_statement} />
         </div>
       </div>
       <div className="cite-group-col">
-        <SingleMetadata title="MLA Format" item={formatMLA()} />
-        <SingleMetadata
-          title="Chicago/Turabian Format"
-          item={formatChicago()}
-        />
-        <SingleMetadata title="APA Format" item={formatAPA()} />
-        <SingleMetadata title="Wikipedia Citation" item={formatWikipedia()} />
+        <SingleMetadata title="MLA Format" item={formatMLA} />
+        <SingleMetadata title="Chicago/Turabian Format" item={formatChicago} />
+        <SingleMetadata title="APA Format" item={formatAPA} />
+        <SingleMetadata title="Wikipedia Citation" item={formatWikipedia} />
       </div>
     </div>
   );
