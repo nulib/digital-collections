@@ -3,7 +3,7 @@ import { withRouter } from 'react-router';
 import * as elasticsearchApi from '../api/elasticsearch-api.js';
 import Breadcrumbs from '../components/breadcrumbs/Breadcrumbs';
 import UniversalViewerContainer from './UniversalViewerContainer';
-import ItemDetailMetadata from '../components/ItemDetail/ItemDetailMetadata';
+import ItemDetail from '../components/ItemDetail/ItemDetail';
 import DetailSummary from '../components/ItemDetail/DetailSummary/index.js';
 
 export class ItemDetailContainer extends Component {
@@ -63,7 +63,7 @@ export class ItemDetailContainer extends Component {
             <Breadcrumbs items={breadCrumbData} />
             <UniversalViewerContainer id={id} item={item} />
             <DetailSummary item={item} />
-            <ItemDetailMetadata item={item} />
+            <ItemDetail item={item} />
           </main>
         </div>
       </div>
