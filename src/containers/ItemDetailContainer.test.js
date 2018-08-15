@@ -1,9 +1,9 @@
-jest.mock('../api/index.js');
+jest.mock('../api/elasticsearch-api.js');
 
 import React from 'react';
 import { shallow } from 'enzyme';
 import ItemDetailContainer from './ItemDetailContainer';
-import * as api from '../api';
+import * as elasticsearchApi from '../api/elasticsearch-api.js';
 
 const mockReactRouterProps = {
   match: {
@@ -31,7 +31,7 @@ it('creates default breadCrumbData, and additional breadCrumbData when another i
   );
   const instance = wrapper.instance();
   let defaultCrumbs = [{ title: 'Items', link: '/items' }];
-  const item = { title_tesim: ['Second Item'] };
+  const item = { title: { primary: ['This is the primary title'] } };
 
   expect(instance.createBreadcrumbData()).toEqual(defaultCrumbs);
   expect(instance.createBreadcrumbData(item)).toHaveLength(2);
@@ -44,13 +44,17 @@ it('fetches item data from solr and sets the item on component state', async () 
   );
   const expectedState = {
     error: null,
+    id: '5cd66892-6e63-4476-bd3e-f295355d0302',
     item: {
-      id: '5cd66892-6e63-4476-bd3e-f295355d0302',
-      title_tesim: ['Berkeley Image 4']
+      title: {
+        primary: ['This is the title']
+      }
     }
   };
 
   expect.assertions(1);
-  const data = await api.getItem('5cd66892-6e63-4476-bd3e-f295355d0302');
+  const data = await elasticsearchApi.getItem(
+    '5cd66892-6e63-4476-bd3e-f295355d0302'
+  );
   expect(wrapper.state()).toEqual(expectedState);
 });
