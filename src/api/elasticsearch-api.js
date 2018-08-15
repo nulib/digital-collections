@@ -7,18 +7,11 @@ const client = new elasticsearch.Client({
 });
 
 export async function getItem(id) {
-  try {
-    const response = await client.get({
-      index: 'common',
-      ignore: [404],
-      type: '_all',
-      id: id
-    });
-    return response;
-  } catch (error) {
-    return {
-      error: true,
-      statusText: error.message
-    };
-  }
+  const response = await client.get({
+    index: 'common',
+    ignore: [404],
+    type: '_all',
+    id: id
+  });
+  return response;
 }
