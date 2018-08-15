@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import * as elasticsearchApi from '../api/elasticsearch-api.js';
 import Breadcrumbs from '../components/breadcrumbs/Breadcrumbs';
-import UniversalViewerContainer from './UniversalViewerContainer';
-import ItemDetail from '../components/ItemDetail/ItemDetail';
 import DetailSummary from '../components/ItemDetail/DetailSummary/index.js';
+import ErrorSection from '../components/ErrorSection';
+import ItemDetail from '../components/ItemDetail/ItemDetail';
+import UniversalViewerContainer from './UniversalViewerContainer';
 
 export class ItemDetailContainer extends Component {
   state = {
@@ -42,7 +43,7 @@ export class ItemDetailContainer extends Component {
       let error = null;
 
       if (response.error) {
-        error = response.statusText;
+        error = response.error.reason;
       } else if (!response.found) {
         error = 'Item not found';
       }
@@ -54,16 +55,25 @@ export class ItemDetailContainer extends Component {
   render() {
     const { id, item, error } = this.state;
     const breadCrumbData = item ? this.createBreadcrumbData(item) : [];
+    const renderDisplay = () => {
+      if (error) {
+        return <ErrorSection message={error} />;
+      }
+      return (
+        <div>
+          <Breadcrumbs items={breadCrumbData} />
+          <UniversalViewerContainer id={id} item={item} />
+          <DetailSummary item={item} />
+          <ItemDetail item={item} />
+        </div>
+      );
+    };
 
     return (
       <div className="standard-page">
         <div id="page" className="full-width">
           <main id="main-content" className="content" tabIndex="0">
-            {error}
-            <Breadcrumbs items={breadCrumbData} />
-            <UniversalViewerContainer id={id} item={item} />
-            <DetailSummary item={item} />
-            <ItemDetail item={item} />
+            {renderDisplay()}
           </main>
         </div>
       </div>
