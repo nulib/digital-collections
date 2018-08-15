@@ -5,6 +5,8 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faAngleDown,
   faAngleUp,
-  faTimes
+  faTimes,
+  faCopy
 } from '@fortawesome/free-solid-svg-icons';
-library.add(faAngleDown, faAngleUp, faTimes);
+import { fab } from '@fortawesome/free-brands-svg-icons';
+library.add(faAngleDown, faAngleUp, faTimes, faCopy, fab);

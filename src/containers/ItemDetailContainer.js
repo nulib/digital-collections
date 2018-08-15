@@ -4,6 +4,7 @@ import * as elasticsearchApi from '../api/elasticsearch-api.js';
 import Breadcrumbs from '../components/breadcrumbs/Breadcrumbs';
 import UniversalViewerContainer from './UniversalViewerContainer';
 import ItemDetail from '../components/ItemDetail/ItemDetail';
+import DetailSummary from '../components/ItemDetail/DetailSummary/index.js';
 
 export class ItemDetailContainer extends Component {
   state = {
@@ -61,6 +62,7 @@ export class ItemDetailContainer extends Component {
             {error}
             <Breadcrumbs items={breadCrumbData} />
             <UniversalViewerContainer id={id} item={item} />
+            <DetailSummary item={item} />
             <ItemDetail item={item} />
           </main>
         </div>
