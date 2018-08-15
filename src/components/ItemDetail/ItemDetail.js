@@ -1,7 +1,4 @@
 import React from 'react';
-import Cite from './Cite';
-import ItemDetailMetadata from './ItemDetailMetadata';
-import FindThisItem from './FindThisItem';
 import TabPanel from './TabPanel';
 
 const ItemDetail = props => {
@@ -84,8 +81,28 @@ const ItemDetail = props => {
     { label: 'Citation', value: citation }
   ];
 
+  let formatMLA = `${title} here's the rest MLA`;
+  let formatChicago = `${title} chicago format`;
+  let formatAPA = `${title} apa format`;
+  let formatWikipedia = `${title} wikipedia format`;
+
+  const citePanel = [
+    { label: 'Title', value: title },
+    { label: 'Permalink', value: permalink },
+    { label: 'Identifier', value: identifier },
+    { label: 'License', value: license },
+    { label: 'Use Statement', value: use_statement }
+  ];
+
+  const citationFormats = [
+    { label: 'MLA Format', value: formatMLA },
+    { label: 'Chicago/Turabian Format', value: formatChicago },
+    { label: 'APA Format', value: formatAPA },
+    { label: 'Wikipedia Citation', value: formatWikipedia }
+  ];
+
   return (
-    <section class="item-section contain-970 item-categories-wrapper">
+    <section className="item-section contain-970 item-categories-wrapper">
       <div id="tab-container">
         <ul id="tabs" role="tablist">
           <li role="presentation">
@@ -121,13 +138,22 @@ const ItemDetail = props => {
         </ul>
         <div id="tab-content">
           <div aria-labelledby="tab-item-data" id="tab-panel1" role="tabpanel">
-            <TabPanel data={metadataPanel} />
+            <TabPanel items={metadataPanel} />
           </div>
           <div aria-labelledby="tab-find-item" id="tab-panel2" role="tabpanel">
-            <TabPanel data={findThisItemPanel} />
+            <TabPanel items={findThisItemPanel} />
           </div>
           <div aria-labelledby="tab-cite" id="tab-panel3" role="tabpanel">
-            <Cite item={props.item} />
+            <div className="cite-group-col">
+              <div className="cite-group">
+                <TabPanel items={citePanel} />
+              </div>
+            </div>
+            <div className="cite-group-col">
+              <div className="cite-group">
+                <TabPanel items={citationFormats} />
+              </div>
+            </div>
           </div>
         </div>
       </div>
