@@ -11,6 +11,7 @@ const breadcrumbItems = [
 
 class AllCollections extends Component {
   componentDidMount() {
+    document.body.className = 'landing-page';
     this.props.dispatch(fetchCollections());
   }
 
@@ -18,12 +19,14 @@ class AllCollections extends Component {
     const items = this.props.collections.items || [];
 
     return (
-      <div>
-        <Breadcrumbs items={breadcrumbItems} />
-        <div className="contain-1120">
-          <h2>All Collections</h2>
-        </div>
-        <PhotoGrid items={items} />
+      <div id="page" class="standard-margin">
+        <main id="main-content" class="content" tabindex="0">
+          <Breadcrumbs items={breadcrumbItems} />
+          <div className="contain-1120">
+            <h2>All Collections</h2>
+          </div>
+          <PhotoGrid items={items} />
+        </main>
       </div>
     );
   }

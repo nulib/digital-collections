@@ -3,30 +3,37 @@ import * as globalVars from './global-vars';
 function constructCarouselItems(docs, modelType) {
   const iiifUrlKey =
     modelType === globalVars.COLLECTION
-      ? 'thumbnail_iiif_url_ss'
-      : 'file_set_iiif_urls_ssim';
+      ? 'thumbnail_iiif_url'
+      : 'representative_file_url'; // this may not hold true as we get other types...
   const items = docs.map(doc => {
     let obj = {
-      id: doc.id,
-      imageUrl: doc[iiifUrlKey]
-        ? `${doc[iiifUrlKey]}${globalVars.IIIF_MEDIUM_ITEM_REGION}`
+      id: doc._id,
+      type: modelType,
+      imageUrl: doc._source[iiifUrlKey]
+        ? `${doc._source[iiifUrlKey]}${globalVars.IIIF_MEDIUM_ITEM_REGION}`
         : '',
-      label: doc.title_tesim[0]
+      label: doc._source.title.primary[0]
     };
-
+    console.log('ID OF OBJ: ' + obj.id);
+    console.log('imgUrl: ' + obj.imageUrl);
+    console.log('label: ' + obj.label);
     return obj;
   });
+  console.log('ITEMS:' + items);
   return items;
 }
 
-export async function extractCarouselData(solrResponse, modelType) {
-  const { response } = solrResponse;
+export async function extractCarouselData(elasticsearchResponse, modelType) {
+  console.log('Model:' + modelType);
+  console.log('hits:' + elasticsearchResponse.hits.total);
+
   let obj = {};
 
-  // Total records found
-  obj.numFound = response.numFound;
-  obj.items = constructCarouselItems(response.docs, modelType);
-
+  obj.numFound = elasticsearchResponse.hits.total;
+  obj.items = constructCarouselItems(
+    elasticsearchResponse.hits.hits,
+    modelType
+  );
   return obj;
 }
 

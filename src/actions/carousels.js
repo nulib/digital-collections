@@ -1,7 +1,7 @@
 import * as actionTypes from './types';
-import * as solrParser from '../services/solr-parser';
+import * as elasticsearchParser from '../services/elasticsearch-parser';
 import * as globalVars from '../services/global-vars';
-import * as api from '../api';
+import * as elasticsearchApi from '../api/elasticsearch-api.js';
 
 export const CAROUSELS = {
   RECENTLY_DIGITIZED_ITEMS: 'recentlyDigitizedItems',
@@ -40,31 +40,32 @@ export function carouselItemsFailure(errorObj, title) {
 export const fetchCarouselItems = title => {
   return dispatch => {
     const request = async () => {
-      // Determine what we want to retrieve from Solr.  Recently Digitized Items, Collections, a Sub Collection?
-      let solrResponse = {};
+      let elasticsearchResponse = {};
       let modelType = globalVars.COLLECTION;
 
       switch (title) {
         case CAROUSELS.RECENTLY_DIGITIZED_ITEMS:
-          solrResponse = await api.getRecentlyDigitizedItems();
+          elasticsearchResponse = await elasticsearchApi.getRecentlyDigitizedItems();
           modelType = globalVars.IMAGE;
           break;
         case CAROUSELS.RECENTLY_DIGITIZED_COLLECTIONS:
-          solrResponse = await api.getAllCollections();
+          elasticsearchResponse = await elasticsearchApi.getAllCollections();
           break;
         default:
-          solrResponse = await api.getCollections(title);
+          elasticsearchResponse = await elasticsearchApi.getCollectionsByKeyword(
+            title
+          );
       }
 
-      // Handle error
-      if (solrResponse.error) {
-        dispatch(carouselItemsFailure(solrResponse, title));
+      if (elasticsearchResponse.error) {
+        dispatch(carouselItemsFailure(elasticsearchResponse, title));
+        console.log('ERROR');
         return;
       }
 
-      const carouselData = await solrParser.extractCarouselData(
-        solrResponse,
-        modelType // Specify if this is a 'Collection' or 'Image' model we're grabbing Solr data for
+      const carouselData = await elasticsearchParser.extractCarouselData(
+        elasticsearchResponse,
+        modelType // Specify if this is a 'Collection' or 'Image' model
       );
 
       if (carouselData) {

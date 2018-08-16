@@ -6,7 +6,11 @@ const CarouselItem = props => {
   const { description, imageUrl, label } = props.item;
 
   const handleClick = () => {
-    props.history.push(`/items/${props.item.id}`);
+    const path =
+      props.item.type === 'Collection'
+        ? `/collections/${props.item.id}`
+        : `/items/${props.item.id}`;
+    props.history.push(path);
   };
 
   return (
