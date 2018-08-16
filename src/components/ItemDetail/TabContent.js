@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MetadataDisplay from './MetadataDisplay';
 
-const TabPanel = props => {
+const TabContent = props => {
   if (!props.items) {
     return [];
   }
@@ -20,8 +20,8 @@ const TabPanel = props => {
   );
 };
 
-TabPanel.propTypes = {
+TabContent.propTypes = {
   items: PropTypes.array
 };
 
-export default TabPanel;
+export default TabContent;

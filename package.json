@@ -25,6 +25,7 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.14",
     "react-share": "^2.2.0",
+    "react-tabs": "^2.2.2",
     "react-test-renderer": "^16.3.1",
     "redux": "^3.7.2",
     "redux-mock-store": "^1.5.1",
