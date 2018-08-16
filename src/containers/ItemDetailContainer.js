@@ -15,6 +15,7 @@ export class ItemDetailContainer extends Component {
   };
 
   componentDidMount() {
+    document.body.className = 'standard-page';
     const { match } = this.props;
 
     if (!match.params.id) {

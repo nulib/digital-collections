@@ -2,41 +2,6 @@ import ApiClient from './client/api-client';
 
 const apiClient = new ApiClient();
 
-export function getAllCollections() {
-  // Actual Solr query: 'fq=has_model_ssim:Collection+AND+visibility_ssi:open&wt=json'
-  const queryPieces = [`has_model_ssim:Collection`, `visibility_ssi:open`];
-  return apiClient.search(queryStringBuilder(queryPieces));
-}
-
-export function getCollections(title) {
-  const queryPieces = [
-    `has_model_ssim:Collection`,
-    `visibility_ssi:open`,
-    `keyword_tesim:"${title}"`
-  ];
-  return apiClient.search(queryStringBuilder(queryPieces));
-}
-
-export function getCollectionItems(id) {
-  // Actual Solr query `fq=has_model_ssim:Image+AND+member_of_collection_ids_ssim:${id}+AND+visibility_ssi:open&wt=json`;
-  const queryPieces = [
-    `has_model_ssim:Image`,
-    `member_of_collection_ids_ssim:${id}`,
-    `visibility_ssi:open`
-  ];
-  return apiClient.search(queryStringBuilder(queryPieces));
-}
-
-export function getItem(id) {
-  const queryPieces = [`id:${id}`, `visibility_ssi:open`];
-  return apiClient.search(queryStringBuilder(queryPieces));
-}
-
-export function getRecentlyDigitizedItems() {
-  const queryPieces = [`has_model_ssim:Image`];
-  return apiClient.search(queryStringBuilder(queryPieces));
-}
-
 export function getSearchResults(searchTerm) {
   const queryPieces = [
     `has_model_ssim:(Image Collection)`,

@@ -10,6 +10,7 @@ import Header from '../components/Header/';
 import HomePage from './HomePage';
 import ItemsContainer from './ItemsContainer';
 import ItemDetailContainer from './ItemDetailContainer';
+import CollectionContainer from './CollectionContainer';
 import Login from './Login';
 import Nav from '../components/Nav';
 import SearchResultsContainer from './SearchResultsContainer';
@@ -32,7 +33,7 @@ const Layout = () => {
           component={SearchResultsContainer}
         />
         {/* TODO: Set up this component */}
-        <Route exact path="/collections/:id" component={AllCollections} />
+        <Route exact path="/collections/:id" component={CollectionContainer} />
 
         <Route exact path="/collections" component={AllCollections} />
         <Route path="/items/:id" component={ItemDetailContainer} />

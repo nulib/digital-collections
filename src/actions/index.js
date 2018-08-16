@@ -1,5 +1,5 @@
-import fetch from 'cross-fetch';
 import * as actionTypes from './types';
+import * as elasticsearchApi from '../api/elasticsearch-api.js';
 
 /*
   Action creators
@@ -31,26 +31,17 @@ function collectionsFailure(error) {
  */
 export const fetchCollections = () => {
   return dispatch => {
+    const request = async () => {
+      let elasticsearchResponse = {};
+      elasticsearchResponse = await elasticsearchApi.getAllCollections();
+
+      if (elasticsearchResponse.error) {
+        dispatch(collectionsFailure(elasticsearchResponse.error));
+        return;
+      }
+      dispatch(collectionsSuccess(elasticsearchResponse.hits.hits));
+    };
     dispatch(collectionsRequest());
-    return fetch('/json/mock/all-collections.js')
-      .then(handleErrors)
-      .then(res => res.json())
-      .then(json => {
-        dispatch(collectionsSuccess(json));
-        return json;
-      })
-      .catch(error => dispatch(collectionsFailure(error)));
+    request();
   };
 };
-
-/**
- * Helper functions
- */
-
-// Handle HTTP errors since fetch won't.
-function handleErrors(response) {
-  if (!response.ok) {
-    throw Error(response.statusText);
-  }
-  return response;
-}
