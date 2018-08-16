@@ -1,5 +1,6 @@
 import React from 'react';
-import TabPanel from './TabPanel';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import TabContent from './TabContent';
 
 const ItemDetail = props => {
   if (!props.item) {
@@ -103,60 +104,34 @@ const ItemDetail = props => {
 
   return (
     <section className="item-section contain-970 item-categories-wrapper">
-      <div id="tab-container">
-        <ul id="tabs" role="tablist">
-          <li role="presentation">
-            <a
-              aria-controls="tab-panel1"
-              href="#tab-panel1"
-              id="tab1"
-              role="tab"
-            >
-              About this Item
-            </a>
-          </li>
-          <li role="presentation">
-            <a
-              aria-controls="tab-panel2"
-              href="#tab-panel2"
-              id="tab2"
-              role="tab"
-            >
-              Find this Item
-            </a>
-          </li>
-          <li role="presentation">
-            <a
-              aria-controls="tab-panel3"
-              href="#tab-panel3"
-              id="tab3"
-              role="tab"
-            >
-              Cite this Item
-            </a>
-          </li>
-        </ul>
+      <Tabs selectedTabClassName="active" id="tab-container">
+        <TabList id="tabs" role="tablist">
+          <Tab role="tab">About this Item</Tab>
+          <Tab role="tab">Find this Item</Tab>
+          <Tab role="tab">Cite this Item</Tab>
+        </TabList>
+
         <div id="tab-content">
-          <div aria-labelledby="tab-item-data" id="tab-panel1" role="tabpanel">
-            <TabPanel items={metadataPanel} />
-          </div>
-          <div aria-labelledby="tab-find-item" id="tab-panel2" role="tabpanel">
-            <TabPanel items={findThisItemPanel} />
-          </div>
-          <div aria-labelledby="tab-cite" id="tab-panel3" role="tabpanel">
+          <TabPanel>
+            <TabContent items={metadataPanel} />
+          </TabPanel>
+          <TabPanel>
+            <TabContent items={findThisItemPanel} />
+          </TabPanel>
+          <TabPanel>
             <div className="cite-group-col">
               <div className="cite-group">
-                <TabPanel items={citePanel} />
+                <TabContent items={citePanel} />
               </div>
             </div>
             <div className="cite-group-col">
               <div className="cite-group">
-                <TabPanel items={citationFormats} />
+                <TabContent items={citationFormats} />
               </div>
             </div>
-          </div>
+          </TabPanel>
         </div>
-      </div>
+      </Tabs>
     </section>
   );
 };
