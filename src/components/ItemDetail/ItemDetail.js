@@ -18,7 +18,7 @@ const ItemDetail = props => {
     admin_set: { title: [admin_set] } = '', // division
     identifier = null,
     license = null,
-    use_statement = '',
+    nul_use_statement = '',
     keyword = '',
     language = null,
     location = null,
@@ -35,14 +35,14 @@ const ItemDetail = props => {
     extra_fields: { physical_description: { size } } = null,
     extra_fields: { style_period } = null,
     extra_fields: { technique } = null,
-    accession = '',
+    accession_number = '',
     extra_fields: { box: { name: box_name } } = null,
     extra_fields: { box: { number: box_number } } = null,
     extra_fields: { folder: { name: folder_name } } = null,
     extra_fields: { folder: { number: folder_number } } = null,
     call_number = '',
     catalog_key = '',
-    citation = ''
+    bibliographic_citation = ''
   } = props.item;
 
   const metadataPanel = [
@@ -72,14 +72,14 @@ const ItemDetail = props => {
   ];
 
   const findThisItemPanel = [
-    { label: 'Accession', value: accession },
+    { label: 'Accession', value: accession_number },
     { label: 'Box Name', value: box_name },
     { label: 'Box Number', value: box_number },
     { label: 'Folder Name', value: folder_name },
     { label: 'Folder Number', value: folder_number },
     { label: 'Call Number', value: call_number },
     { label: 'Catalog Key', value: catalog_key },
-    { label: 'Citation', value: citation }
+    { label: 'Citation', value: bibliographic_citation }
   ];
 
   let formatMLA = `${title} here's the rest MLA`;
@@ -92,7 +92,7 @@ const ItemDetail = props => {
     { label: 'Permalink', value: permalink },
     { label: 'Identifier', value: identifier },
     { label: 'License', value: license },
-    { label: 'Use Statement', value: use_statement }
+    { label: 'Use Statement', value: nul_use_statement }
   ];
 
   const citationFormats = [
