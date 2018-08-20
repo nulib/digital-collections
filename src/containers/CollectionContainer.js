@@ -82,7 +82,7 @@ export class CollectionContainer extends Component {
         return (
           <div>
             <Sidebar item={collection} />
-            <main id="main-content" className="content" tabindex="-1">
+            <main id="main-content" className="content" tabIndex="-1">
               <Breadcrumbs items={breadCrumbData} />
               <h2>{collection && collection.title.primary[0]}</h2>
               <div className="section">
