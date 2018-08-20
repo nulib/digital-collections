@@ -9,7 +9,7 @@ const breadcrumbItems = [
   { title: 'All Collections', link: '/' }
 ];
 
-class AllCollections extends Component {
+class AllCollectionsContainer extends Component {
   componentDidMount() {
     document.body.className = 'landing-page';
     this.props.dispatch(fetchCollections());
@@ -19,8 +19,8 @@ class AllCollections extends Component {
     const items = this.props.collections.items || [];
 
     return (
-      <div id="page" class="standard-margin">
-        <main id="main-content" class="content" tabindex="0">
+      <div id="page" className="standard-margin">
+        <main id="main-content" className="content" tabIndex="0">
           <Breadcrumbs items={breadcrumbItems} />
           <div className="contain-1120">
             <h2>All Collections</h2>
@@ -36,4 +36,4 @@ const mapStateToProps = state => ({
   collections: state.collections
 });
 
-export default connect(mapStateToProps)(AllCollections);
+export default connect(mapStateToProps)(AllCollectionsContainer);

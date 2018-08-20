@@ -31,8 +31,6 @@ export class CollectionContainer extends Component {
       const response = await elasticsearchApi.getCollection(id);
       let error = null;
 
-      console.log(response);
-
       if (response.error) {
         error = response.error.reason;
       } else if (!response.found) {
@@ -47,8 +45,6 @@ export class CollectionContainer extends Component {
     const request = async () => {
       const response = await elasticsearchApi.getCollectionItems(id);
       let error = null;
-
-      console.log(response);
 
       if (response.error) {
         error = response.error.reason;

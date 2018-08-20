@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
+import placeholderImage from '../images/book_placeholder.jpg';
 
 const CarouselItem = props => {
   const { description, imageUrl, label } = props.item;
+  const displayImage = imageUrl === '' ? placeholderImage : imageUrl;
 
   const handleClick = () => {
     const path =
@@ -15,7 +17,7 @@ const CarouselItem = props => {
 
   return (
     <a className="swiper-slide" style={styles.itemStyle} onClick={handleClick}>
-      <img alt={description} src={imageUrl} />
+      <img alt={description} src={displayImage} />
       <div className="caption">{label}</div>
     </a>
   );
