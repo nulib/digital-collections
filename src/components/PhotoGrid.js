@@ -4,7 +4,7 @@ import PhotoBox from './PhotoBox';
 
 function PhotoGrid(props) {
   return (
-    <div className="photo-grid contain-1120">
+    <div className="photo-grid three-grid contain-1120">
       {props.items.length > 0 &&
         props.items.map(item => <PhotoBox key={item._id} item={item} />)}
     </div>
