@@ -21,7 +21,6 @@ export class HomePage extends Component {
     ];
   }
   componentDidMount() {
-    document.body.className = 'landing-page';
     // Dispatch redux thunk action creators to grab async api data
     this.props.fetchCarouselItems(CAROUSELS.RECENTLY_DIGITIZED_ITEMS);
     this.props.fetchCarouselItems(CAROUSELS.RECENTLY_DIGITIZED_COLLECTIONS);
@@ -61,7 +60,7 @@ export class HomePage extends Component {
     } = this.props.carousels;
 
     return (
-      <div>
+      <div className="landing-page">
         <div id="page">
           <main id="main-content" className="content" tabIndex="0">
             <div className="relative-wrapper homepage-hero-wrapper contain-1440">
