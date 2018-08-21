@@ -2,7 +2,7 @@ import { ELASTICSEARCH_PROXY_BASE } from '../services/global-vars';
 
 const elasticsearch = require('elasticsearch');
 const client = new elasticsearch.Client({
-  host: ELASTICSEARCH_PROXY_BASE,
+  host: ELASTICSEARCH_PROXY_BASE + '/search',
   log: 'trace'
 });
 
@@ -29,7 +29,11 @@ export async function getCollection(id) {
 export async function getAllCollections() {
   const response = await client.search({
     index: 'common',
-    q: 'model.name:Collection'
+    body: {
+      query: {
+        match: { 'model.name': 'Collection' }
+      }
+    }
   });
   return response;
 }
@@ -88,7 +92,11 @@ export async function getCollectionsByKeyword(keyword) {
 export async function getRecentlyDigitizedItems() {
   const response = await client.search({
     index: 'common',
-    q: 'model.name:Image'
+    body: {
+      query: {
+        match: { 'model.name': 'Image' }
+      }
+    }
   });
   return response;
 }
