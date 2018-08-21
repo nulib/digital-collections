@@ -32,9 +32,7 @@ const Layout = () => {
           path="/search-results"
           component={SearchResultsContainer}
         />
-        {/* TODO: Set up this component */}
         <Route exact path="/collections/:id" component={CollectionContainer} />
-
         <Route exact path="/collections" component={AllCollectionsContainer} />
         <Route path="/items/:id" component={ItemDetailContainer} />
         <Route path="/items/" component={ItemsContainer} />

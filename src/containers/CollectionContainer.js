@@ -14,16 +14,15 @@ export class CollectionContainer extends Component {
   };
 
   componentDidMount() {
-    document.body.className = 'standard-page';
-    const { match } = this.props;
+    const { id } = this.props.match.params;
 
-    if (!match.params.id) {
+    if (!id) {
       return this.setState({
         error: 'Missing id in query param'
       });
     }
-    this.getCollection(match.params.id);
-    this.getCollectionItems(match.params.id);
+    this.getCollection(id);
+    this.getCollectionItems(id);
   }
 
   getCollection(id) {
@@ -65,6 +64,7 @@ export class CollectionContainer extends Component {
     }
     return crumbs;
   }
+
   render() {
     const { collection, error, items } = this.state;
     const breadCrumbData = collection
