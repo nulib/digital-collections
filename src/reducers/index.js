@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import auth from './auth';
 import carousels from './carousels';
 import collections from './collections';
 import search from './search';
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   general,
   carousels,
   collections,
-  search
+  search,
+  auth
 });
 
 export default rootReducer;

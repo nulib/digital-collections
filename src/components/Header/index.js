@@ -1,4 +1,5 @@
 import React from 'react';
+import Login from '../Login';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
@@ -30,7 +31,7 @@ const Header = () => {
                 <Link to="/">library.northwestern.edu</Link>
               </li>
               <li>
-                <Link to="/">Sign in</Link>
+                <Login />
               </li>
               <li className="resources">
                 Global Dropdown
