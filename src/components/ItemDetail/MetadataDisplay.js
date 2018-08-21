@@ -26,7 +26,7 @@ const MetadataDisplay = props => {
   else if (Array.isArray(items))
     display = items.map(item => multipleItems(item));
 
-  if (items) {
+  if (items && items.length > 0) {
     return (
       <div>
         <h4>{title}</h4>
