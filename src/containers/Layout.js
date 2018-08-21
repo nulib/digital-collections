@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -67,7 +68,9 @@ const mapDispatchToProps = dispatch => ({
   fetchApiToken: () => dispatch(fetchApiToken())
 });
 
-export default connect(
+const ConnectedLayout = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Layout);
+
+export default withRouter(ConnectedLayout);

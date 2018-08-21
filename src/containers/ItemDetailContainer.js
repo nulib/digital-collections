@@ -54,7 +54,7 @@ export class ItemDetailContainer extends Component {
       const response = await elasticsearchApi.getAdminSetItems(id);
       const carouselData = await elasticsearchParser.extractCarouselData(
         response,
-        globalVars.IMAGE
+        globalVars.IMAGE_MODEL
       );
       this.setState({
         adminSetItems: carouselData
@@ -70,7 +70,7 @@ export class ItemDetailContainer extends Component {
         const response = await elasticsearchApi.getCollectionItems(id);
         const carouselData = await elasticsearchParser.extractCarouselData(
           response,
-          globalVars.IMAGE
+          globalVars.IMAGE_MODEL
         );
         this.setState({
           collectionItems: carouselData
