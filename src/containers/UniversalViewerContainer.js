@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { DEVBOX_URL } from '../services/global-vars';
+import { DONUT_URL } from '../services/global-vars';
 
 /* eslint-disable */
 class UniversalViewerContainer extends Component {
@@ -42,7 +42,7 @@ class UniversalViewerContainer extends Component {
             className="uv"
             data-locale="en-GB:English (GB),cy-GB:Cymraeg"
             data-config=""
-            data-uri={`${DEVBOX_URL}concern/images/${id}/manifest`}
+            data-uri={`${DONUT_URL}concern/images/${id}/manifest`}
             data-collectionindex="0"
             data-manifestindex="0"
             data-sequenceindex="0"

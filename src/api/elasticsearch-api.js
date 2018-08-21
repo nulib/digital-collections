@@ -1,8 +1,8 @@
-import { ELASTIC_SEARCH_ENDPOINT } from '../services/global-vars';
+import { ELASTICSEARCH_PROXY_BASE } from '../services/global-vars';
 
 const elasticsearch = require('elasticsearch');
 const client = new elasticsearch.Client({
-  host: ELASTIC_SEARCH_ENDPOINT,
+  host: ELASTICSEARCH_PROXY_BASE,
   log: 'trace'
 });
 

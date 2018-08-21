@@ -2,7 +2,7 @@ import * as globalVars from './global-vars';
 
 function constructCarouselItems(docs, modelType) {
   const iiifUrlKey =
-    modelType === globalVars.COLLECTION
+    modelType === globalVars.COLLECTION_MODEL
       ? 'thumbnail_iiif_url'
       : 'representative_file_url'; // this may not hold true as we get other types...
   const items = docs.map(doc => {

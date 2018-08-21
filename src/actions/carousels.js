@@ -41,12 +41,12 @@ export const fetchCarouselItems = title => {
   return dispatch => {
     const request = async () => {
       let elasticsearchResponse = {};
-      let modelType = globalVars.COLLECTION;
+      let modelType = globalVars.COLLECTION_MODEL;
 
       switch (title) {
         case CAROUSELS.RECENTLY_DIGITIZED_ITEMS:
           elasticsearchResponse = await elasticsearchApi.getRecentlyDigitizedItems();
-          modelType = globalVars.IMAGE;
+          modelType = globalVars.IMAGE_MODEL;
           break;
         case CAROUSELS.RECENTLY_DIGITIZED_COLLECTIONS:
           elasticsearchResponse = await elasticsearchApi.getAllCollections();
