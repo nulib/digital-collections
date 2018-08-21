@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import About from './About';
-import AllCollections from './AllCollections';
+import AllCollectionsContainer from './AllCollectionsContainer';
 import ContactUs from './ContactUs';
 import Footer from '../components/Footer';
 import GlobalSearch from '../components/GlobalSearch';
@@ -35,7 +35,7 @@ const Layout = () => {
         {/* TODO: Set up this component */}
         <Route exact path="/collections/:id" component={CollectionContainer} />
 
-        <Route exact path="/collections" component={AllCollections} />
+        <Route exact path="/collections" component={AllCollectionsContainer} />
         <Route path="/items/:id" component={ItemDetailContainer} />
         <Route path="/items/" component={ItemsContainer} />
         <Route exact path="/" component={HomePage} />
