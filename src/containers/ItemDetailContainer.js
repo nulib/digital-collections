@@ -6,12 +6,17 @@ import DetailSummary from '../components/ItemDetail/DetailSummary/index.js';
 import ErrorSection from '../components/ErrorSection';
 import ItemDetail from '../components/ItemDetail/ItemDetail';
 import UniversalViewerContainer from './UniversalViewerContainer';
+import * as elasticsearchParser from '../services/elasticsearch-parser';
+import * as globalVars from '../../src/services/global-vars';
+import ItemDetailCarousels from '../components/ItemDetail/ItemDetailCarousels';
 
 export class ItemDetailContainer extends Component {
   state = {
     error: null,
     item: null,
-    id: null
+    id: null,
+    collectionItems: {},
+    adminSetItems: {}
   };
 
   componentDidMount() {
@@ -38,6 +43,43 @@ export class ItemDetailContainer extends Component {
     return crumbs;
   }
 
+  getCategoryItems() {
+    this.getCollectionItems();
+    this.getAdminSetItems();
+  }
+
+  getAdminSetItems() {
+    const id = this.state.item.admin_set.id;
+    const request = async () => {
+      const response = await elasticsearchApi.getAdminSetItems(id);
+      const carouselData = await elasticsearchParser.extractCarouselData(
+        response,
+        globalVars.IMAGE
+      );
+      this.setState({
+        adminSetItems: carouselData
+      });
+    };
+    request();
+  }
+
+  getCollectionItems() {
+    if (this.state.item.collection.length > 0) {
+      const id = this.state.item.collection[0].id;
+      const request = async () => {
+        const response = await elasticsearchApi.getCollectionItems(id);
+        const carouselData = await elasticsearchParser.extractCarouselData(
+          response,
+          globalVars.IMAGE
+        );
+        this.setState({
+          collectionItems: carouselData
+        });
+      };
+      request();
+    }
+  }
+
   getItem(id) {
     const request = async () => {
       const response = await elasticsearchApi.getItem(id);
@@ -48,13 +90,20 @@ export class ItemDetailContainer extends Component {
       } else if (!response.found) {
         error = 'Item not found';
       }
-      this.setState({ id: id, item: response._source, error });
+      this.setState(
+        {
+          id: id,
+          item: response._source,
+          error: error
+        },
+        () => this.getCategoryItems()
+      );
     };
     request();
   }
 
   render() {
-    const { id, item, error } = this.state;
+    const { id, item, error, collectionItems, adminSetItems } = this.state;
     const breadCrumbData = item ? this.createBreadcrumbData(item) : [];
     const renderDisplay = () => {
       if (error) {
@@ -65,6 +114,14 @@ export class ItemDetailContainer extends Component {
           <Breadcrumbs items={breadCrumbData} />
           <UniversalViewerContainer id={id} item={item} />
           <DetailSummary item={item} />
+          {item && (
+            <ItemDetailCarousels
+              adminSetItems={adminSetItems}
+              collectionItems={collectionItems}
+              error={error}
+              item={item}
+            />
+          )}
           <ItemDetail item={item} />
         </div>
       );
