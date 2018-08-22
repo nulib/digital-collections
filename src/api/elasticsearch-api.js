@@ -51,6 +51,23 @@ export async function getCollectionItems(id) {
   return response;
 }
 
+export async function getAdminSetItems(id) {
+  const response = await client.search({
+    index: 'common',
+    body: {
+      query: {
+        bool: {
+          must: [
+            { match: { 'model.name': 'Image' } },
+            { match: { 'admin_set.id': id } }
+          ]
+        }
+      }
+    }
+  });
+  return response;
+}
+
 export async function getCollectionsByKeyword(keyword) {
   const response = await client.search({
     index: 'common',
