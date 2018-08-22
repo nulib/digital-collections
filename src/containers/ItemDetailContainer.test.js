@@ -37,12 +37,14 @@ it('creates default breadCrumbData, and additional breadCrumbData when another i
   expect(instance.createBreadcrumbData(item)).toHaveLength(2);
 });
 
-it('fetches item data from solr and sets the item on component state', async () => {
+it('fetches item data from the api and sets the item on component state', async () => {
   // Just so we can read state in the test
   const wrapper = shallow(
     <ItemDetailContainer.WrappedComponent match={mockReactRouterProps.match} />
   );
   const expectedState = {
+    adminSetItems: {},
+    collectionItems: {},
     error: null,
     id: '5cd66892-6e63-4476-bd3e-f295355d0302',
     item: {

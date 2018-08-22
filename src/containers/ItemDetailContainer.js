@@ -8,15 +8,15 @@ import ItemDetail from '../components/ItemDetail/ItemDetail';
 import UniversalViewerContainer from './UniversalViewerContainer';
 import * as elasticsearchParser from '../services/elasticsearch-parser';
 import * as globalVars from '../../src/services/global-vars';
-import CarouselSection from '../components/CarouselSection';
+import ItemDetailCarousels from '../components/ItemDetail/ItemDetailCarousels';
 
 export class ItemDetailContainer extends Component {
   state = {
     error: null,
     item: null,
     id: null,
-    collection_items: null,
-    admin_set_items: null
+    collectionItems: {},
+    adminSetItems: {}
   };
 
   componentDidMount() {
@@ -49,24 +49,15 @@ export class ItemDetailContainer extends Component {
   }
 
   getAdminSetItems() {
-    console.log('getting admin sets...');
     const id = this.state.item.admin_set.id;
     const request = async () => {
       const response = await elasticsearchApi.getAdminSetItems(id);
-      let error = null;
-
-      if (response.error) {
-        error = response.error.reason;
-      } else if (!response.found) {
-        error = 'Collection not found';
-      }
-
       const carouselData = await elasticsearchParser.extractCarouselData(
         response,
         globalVars.IMAGE
       );
       this.setState({
-        admin_set_items: carouselData
+        adminSetItems: carouselData
       });
     };
     request();
@@ -77,20 +68,12 @@ export class ItemDetailContainer extends Component {
       const id = this.state.item.collection[0].id;
       const request = async () => {
         const response = await elasticsearchApi.getCollectionItems(id);
-        let error = null;
-
-        if (response.error) {
-          error = response.error.reason;
-        } else if (!response.found) {
-          error = 'Collection not found';
-        }
-
         const carouselData = await elasticsearchParser.extractCarouselData(
           response,
           globalVars.IMAGE
         );
         this.setState({
-          collection_items: carouselData
+          collectionItems: carouselData
         });
       };
       request();
@@ -120,7 +103,7 @@ export class ItemDetailContainer extends Component {
   }
 
   render() {
-    const { id, item, error, collection_items, admin_set_items } = this.state;
+    const { id, item, error, collectionItems, adminSetItems } = this.state;
     const breadCrumbData = item ? this.createBreadcrumbData(item) : [];
     const renderDisplay = () => {
       if (error) {
@@ -131,44 +114,14 @@ export class ItemDetailContainer extends Component {
           <Breadcrumbs items={breadCrumbData} />
           <UniversalViewerContainer id={id} item={item} />
           <DetailSummary item={item} />
-          <section className="contain-1120 item-section item-categories-wrapper">
-            <h3>Library Division and Collections with this Item:</h3>
-
-            <div className="expander expander1" data-collapse="data-collapse">
-              {item && collection_items && <h3 className="open">Collection</h3>}
-              {item &&
-                collection_items && (
-                  <CarouselSection
-                    sectionTitle={item.collection[0].title[0]}
-                    linkTo=""
-                    items={collection_items.items}
-                    slidesPerView={6}
-                    loading=""
-                    error=""
-                  />
-                )}
-              {item &&
-                admin_set_items && <h3 className="open">Library Division</h3>}
-              {item &&
-                admin_set_items && (
-                  <CarouselSection
-                    sectionTitle={item.admin_set.title[0]}
-                    linkTo=""
-                    items={admin_set_items.items}
-                    slidesPerView={6}
-                    loading=""
-                    error=""
-                  />
-                )}
-            </div>
-            <div className="this-item-wrapper">
-              <div>
-                <span className="fa fa-caret-down" />
-              </div>
-              <p>This item</p>
-              <img src={item && item.thumbnail_url} />
-            </div>
-          </section>
+          {item && (
+            <ItemDetailCarousels
+              adminSetItems={adminSetItems}
+              collectionItems={collectionItems}
+              error={error}
+              item={item}
+            />
+          )}
           <ItemDetail item={item} />
         </div>
       );
