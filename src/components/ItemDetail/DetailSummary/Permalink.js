@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import PropTypes from 'prop-types';
 
 class Permalink extends React.Component {
   constructor(props) {
@@ -36,5 +37,9 @@ class Permalink extends React.Component {
     );
   }
 }
+
+Permalink.propTypes = {
+  permalink: PropTypes.string.isRequired
+};
 
 export default Permalink;

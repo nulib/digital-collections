@@ -4,6 +4,11 @@ import SummaryListItem from './SummaryListItem';
 
 const MetadataSummary = props => {
   const { item } = props;
+  const styles = {
+    wrapper: {
+      marginBottom: '1em'
+    }
+  };
 
   let creators = [];
 
@@ -14,7 +19,7 @@ const MetadataSummary = props => {
   }
 
   return (
-    <div className="summary-list no-style horizontal">
+    <div className="summary-list no-style horizontal" style={styles.wrapper}>
       {creators.length > 0 && (
         <SummaryListItem header="Creators" items={creators} />
       )}
