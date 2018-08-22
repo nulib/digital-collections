@@ -6,6 +6,8 @@ const client = new elasticsearch.Client({
   log: 'trace'
 });
 
+const PAGE_SIZE = 500;
+
 export async function getItem(id) {
   const response = await client.get({
     index: 'common',
@@ -30,6 +32,7 @@ export async function getAllCollections() {
   const response = await client.search({
     index: 'common',
     body: {
+      size: PAGE_SIZE,
       query: {
         match: { 'model.name': 'Collection' }
       }
@@ -42,6 +45,7 @@ export async function getCollectionItems(id) {
   const response = await client.search({
     index: 'common',
     body: {
+      size: PAGE_SIZE,
       query: {
         bool: {
           must: [
@@ -64,6 +68,7 @@ export async function getAdminSetItems(id) {
   const response = await client.search({
     index: 'common',
     body: {
+      size: PAGE_SIZE,
       query: {
         bool: {
           must: [
@@ -86,6 +91,7 @@ export async function getCollectionsByKeyword(keyword) {
   const response = await client.search({
     index: 'common',
     body: {
+      size: PAGE_SIZE,
       query: {
         bool: {
           must: [
@@ -103,6 +109,7 @@ export async function getRecentlyDigitizedItems() {
   const response = await client.search({
     index: 'common',
     body: {
+      size: PAGE_SIZE,
       query: {
         match: { 'model.name': 'Image' }
       }
