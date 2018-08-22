@@ -46,7 +46,12 @@ export async function getCollectionItems(id) {
         bool: {
           must: [
             { match: { 'model.name': 'Image' } },
-            { match: { 'collection.id': id } }
+            {
+              nested: {
+                path: 'collection',
+                query: { match: { 'collection.id': id } }
+              }
+            }
           ]
         }
       }
@@ -63,7 +68,12 @@ export async function getAdminSetItems(id) {
         bool: {
           must: [
             { match: { 'model.name': 'Image' } },
-            { match: { 'admin_set.id': id } }
+            {
+              nested: {
+                path: 'admin_set',
+                query: { match: { 'admin_set.id': id } }
+              }
+            }
           ]
         }
       }
