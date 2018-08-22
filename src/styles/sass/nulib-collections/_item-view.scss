@@ -61,16 +61,21 @@
         width: 33%;
 
         &.social-media {
-          text-align: right;
+          display: flex;
+          align-items: flex-end;
+          justify-content: flex-end;
+          width: 30%;
           .fa{
             font-size: 2rem;
           }
         }
         &.permalink {
-          width: 50%;
+          padding-top:.7rem;
+          width: 60%;
         }
         &.download {
-          width: 100%;
+          width: 50%;
+          padding-top:.7rem;
 
           .data-value {
             display: flex;
@@ -100,11 +105,17 @@
         margin: 0;
       }
     }
+
+    .identifier-wrapper {
+      .summary-list-item {
+        width:70%;
+      }
+    }
   }
 }
 
 .download-option-box {
-  margin: 10px 10px 0 0;
+  margin: 3px 10px 0 0;
   width: 100px;
   height: 40px;
   color: $white;
