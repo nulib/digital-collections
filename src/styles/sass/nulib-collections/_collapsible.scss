@@ -1,0 +1,28 @@
+.expander > div {
+  margin: 0;
+}
+
+// Styles using the React 'Collapsible' component.  See details at:
+// https://github.com/glennflanagan/react-collapsible
+.Collapsible__trigger {
+  a {
+    cursor: pointer;
+  }
+
+  &.is-open {
+    a {
+      @include collapsible-right-arrow();
+    }
+  }
+}
+
+.Collapsible__contentInner {
+  margin: 1rem 2rem;
+}
+
+.Collapsible:first-of-type {
+  h3 {
+    border-top: none;
+  }
+}
+// End styles using the React 'Collapsible' component.

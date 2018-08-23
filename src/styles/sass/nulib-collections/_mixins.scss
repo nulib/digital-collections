@@ -13,3 +13,13 @@
     float: none;
   }
 }
+
+// Collapsible arrows
+@mixin collapsible-down-arrow() {
+  background: url(images/arrow-right-dkpurple.svg) no-repeat 0.5rem center/8px 16px;
+  padding: .5em 0 .5rem 2rem;
+  border: none;
+}
+@mixin collapsible-right-arrow() {
+  background: url(images/arrow-down-dkpurple.svg) no-repeat 0.3rem center/16px 8px;
+}
