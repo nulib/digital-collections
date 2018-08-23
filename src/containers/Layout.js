@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import About from './About';
 import AllCollectionsContainer from './AllCollectionsContainer';
@@ -16,31 +18,59 @@ import Nav from '../components/Nav';
 import SearchResultsContainer from './SearchResultsContainer';
 import '../Layout.css';
 import '../libs/nuwebcomm-scripts.js';
+import { fetchApiToken } from '../actions/auth';
 
-const Layout = () => {
-  return (
-    <div>
-      <Header />
-      <Nav />
-      <GlobalSearch />
-      <Switch>
-        <Route exact path="/about" component={About} />
-        <Route exact path="/contactus" component={ContactUs} />
-        <Route exact path="/login" component={Login} />
-        <Route
-          exact
-          path="/search-results"
-          component={SearchResultsContainer}
-        />
-        <Route exact path="/collections/:id" component={CollectionContainer} />
-        <Route exact path="/collections" component={AllCollectionsContainer} />
-        <Route path="/items/:id" component={ItemDetailContainer} />
-        <Route path="/items/" component={ItemsContainer} />
-        <Route exact path="/" component={HomePage} />
-      </Switch>
-      <Footer />
-    </div>
-  );
-};
+class Layout extends Component {
+  componentDidMount() {
+    this.props.fetchApiToken();
+  }
 
-export default Layout;
+  render() {
+    return (
+      <div>
+        <Header />
+        <Nav />
+        <GlobalSearch />
+        <Switch>
+          <Route exact path="/about" component={About} />
+          <Route exact path="/contactus" component={ContactUs} />
+          <Route exact path="/login" component={Login} />
+          <Route
+            exact
+            path="/search-results"
+            component={SearchResultsContainer}
+          />
+          <Route
+            exact
+            path="/collections/:id"
+            component={CollectionContainer}
+          />
+          <Route
+            exact
+            path="/collections"
+            component={AllCollectionsContainer}
+          />
+          <Route path="/items/:id" component={ItemDetailContainer} />
+          <Route path="/items/" component={ItemsContainer} />
+          <Route exact path="/" component={HomePage} />
+        </Switch>
+        <Footer />
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  authToken: state.auth.token
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchApiToken: () => dispatch(fetchApiToken())
+});
+
+const ConnectedLayout = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Layout);
+
+export default withRouter(ConnectedLayout);

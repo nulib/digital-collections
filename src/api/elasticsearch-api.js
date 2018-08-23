@@ -1,10 +1,12 @@
-import { ELASTIC_SEARCH_ENDPOINT } from '../services/global-vars';
+import { ELASTICSEARCH_PROXY_BASE } from '../services/global-vars';
 
 const elasticsearch = require('elasticsearch');
 const client = new elasticsearch.Client({
-  host: ELASTIC_SEARCH_ENDPOINT,
+  host: ELASTICSEARCH_PROXY_BASE + '/search',
   log: 'trace'
 });
+
+const PAGE_SIZE = 500;
 
 export async function getItem(id) {
   const response = await client.get({
@@ -29,7 +31,12 @@ export async function getCollection(id) {
 export async function getAllCollections() {
   const response = await client.search({
     index: 'common',
-    q: 'model.name:Collection'
+    body: {
+      size: PAGE_SIZE,
+      query: {
+        match: { 'model.name': 'Collection' }
+      }
+    }
   });
   return response;
 }
@@ -38,11 +45,17 @@ export async function getCollectionItems(id) {
   const response = await client.search({
     index: 'common',
     body: {
+      size: PAGE_SIZE,
       query: {
         bool: {
           must: [
             { match: { 'model.name': 'Image' } },
-            { match: { 'collection.id': id } }
+            {
+              nested: {
+                path: 'collection',
+                query: { match: { 'collection.id': id } }
+              }
+            }
           ]
         }
       }
@@ -55,11 +68,17 @@ export async function getAdminSetItems(id) {
   const response = await client.search({
     index: 'common',
     body: {
+      size: PAGE_SIZE,
       query: {
         bool: {
           must: [
             { match: { 'model.name': 'Image' } },
-            { match: { 'admin_set.id': id } }
+            {
+              nested: {
+                path: 'admin_set',
+                query: { match: { 'admin_set.id': id } }
+              }
+            }
           ]
         }
       }
@@ -72,6 +91,7 @@ export async function getCollectionsByKeyword(keyword) {
   const response = await client.search({
     index: 'common',
     body: {
+      size: PAGE_SIZE,
       query: {
         bool: {
           must: [
@@ -88,7 +108,12 @@ export async function getCollectionsByKeyword(keyword) {
 export async function getRecentlyDigitizedItems() {
   const response = await client.search({
     index: 'common',
-    q: 'model.name:Image'
+    body: {
+      size: PAGE_SIZE,
+      query: {
+        match: { 'model.name': 'Image' }
+      }
+    }
   });
   return response;
 }
