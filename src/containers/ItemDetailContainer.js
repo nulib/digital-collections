@@ -20,8 +20,16 @@ export class ItemDetailContainer extends Component {
   };
 
   componentDidMount() {
+    this.displayItem(this.props);
+  }
+
+  UNSAFE_componentWillReceiveProps(props) {
+    this.displayItem(props);
+  }
+
+  displayItem(props) {
     document.body.className = 'standard-page';
-    const { match } = this.props;
+    const { match } = props;
 
     if (!match.params.id) {
       return this.setState({

@@ -10,7 +10,9 @@ const ItemDetailCarousels = props => {
 
   const renderCollectionsCarousel = () => {
     const shouldDisplay =
-      Object.keys(item).length > 0 && Object.keys(collectionItems).length > 0;
+      Object.keys(item).length > 0 &&
+      Object.keys(collectionItems).length > 0 &&
+      item.collection.length > 0;
 
     if (!shouldDisplay) {
       return null;
