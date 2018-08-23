@@ -106,9 +106,15 @@ const ItemDetail = props => {
     <section className="item-section contain-970 item-categories-wrapper">
       <Tabs selectedTabClassName="active" id="tab-container">
         <TabList id="tabs" role="tablist">
-          <Tab role="tab">About this Item</Tab>
-          <Tab role="tab">Find this Item</Tab>
-          <Tab role="tab">Cite this Item</Tab>
+          <Tab role="tab" data-tab-id="about">
+            About this Item
+          </Tab>
+          <Tab role="tab" data-tab-id="find">
+            Find this Item
+          </Tab>
+          <Tab role="tab" data-tab-id="cite">
+            Cite this Item
+          </Tab>
         </TabList>
 
         <div id="tab-content">
