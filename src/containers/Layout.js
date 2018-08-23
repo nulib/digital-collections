@@ -15,6 +15,7 @@ import ItemDetailContainer from './ItemDetailContainer';
 import CollectionContainer from './CollectionContainer';
 import Login from './Login';
 import Nav from '../components/Nav';
+import Notifications from 'react-notify-toast';
 import SearchResultsContainer from './SearchResultsContainer';
 import '../Layout.css';
 import '../libs/nuwebcomm-scripts.js';
@@ -29,6 +30,7 @@ class Layout extends Component {
     return (
       <div>
         <Header />
+        <Notifications />
         <Nav />
         <GlobalSearch />
         <Switch>
