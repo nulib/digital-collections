@@ -4,6 +4,7 @@ import MetadataSummary from './MetadataSummary';
 import ButtonRow from './ButtonRow';
 import DownloadRow from './DownloadRow';
 import IdentifiersRow from './IdentifiersRow';
+import Permalink from './Permalink';
 
 const DetailSummary = props => {
   if (!props.item) {
@@ -23,6 +24,11 @@ const DetailSummary = props => {
         </article>
         <article className="item-right">
           <IdentifiersRow item={item} />
+          <div className="summary-list">
+            {props.item.permalink && (
+              <Permalink permalink={props.item.permalink} />
+            )}
+          </div>
           {item.representative_file_url && <DownloadRow item={item} />}
         </article>
       </div>
