@@ -1,12 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import $ from 'jquery';
-
-const handleSearchIconClick = e => {
-  // desktop: toggle search menu
-  $('#library-search-dropdown').slideToggle('medium');
-  e.preventDefault();
-};
+import { connect } from 'react-redux';
+import { searchToggle } from '../../actions/search';
 
 const styles = {
   searchButton: {
@@ -14,7 +10,16 @@ const styles = {
   }
 };
 
-const Nav = () => {
+const Nav = props => {
+  const handleSearchIconClick = e => {
+    // desktop: toggle search menu
+    $('#library-search-dropdown').slideToggle('medium');
+    e.preventDefault();
+
+    // Send redux action that Global Search is open or close
+    props.searchToggle();
+  };
+
   return (
     <nav id="top-nav" aria-label="main navigation menu">
       <div className="contain-1120">
@@ -93,4 +98,11 @@ const Nav = () => {
   );
 };
 
-export default Nav;
+const mapDispatchToProps = dispatch => ({
+  searchToggle: () => dispatch(searchToggle())
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Nav);
