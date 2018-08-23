@@ -105,6 +105,7 @@ export class ItemDetailContainer extends Component {
   render() {
     const { id, item, error, collectionItems, adminSetItems } = this.state;
     const breadCrumbData = item ? this.createBreadcrumbData(item) : [];
+
     const renderDisplay = () => {
       if (error) {
         return <ErrorSection message={error} />;

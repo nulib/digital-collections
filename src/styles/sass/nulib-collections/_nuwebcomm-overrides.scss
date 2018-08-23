@@ -1,0 +1,14 @@
+// Collapsible arrow styles
+.expander h3:first-of-type {
+  border-top: 1px solid $light-grey;
+}
+
+.expander1 h3 > a, 
+.expander1 h4 > a {
+  @include collapsible-down-arrow();
+}
+
+.expander1 h3.open a, 
+.expander1 h4.open a {
+  @include collapsible-right-arrow();
+}
