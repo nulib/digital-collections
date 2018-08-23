@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { forceLogout } from '../../actions/auth';
 import * as nulApi from '../../services/nul-api.js';
 
 const Login = props => {
   const authToken = props.authToken || '';
-  let loginText;
   const loginClick = () => nulApi.login();
   const logoutClick = () => props.forceLogout();
   const styles = {
