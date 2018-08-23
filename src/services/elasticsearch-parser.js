@@ -14,19 +14,12 @@ function constructCarouselItems(docs, modelType) {
         : '',
       label: doc._source.title.primary[0]
     };
-    console.log('ID OF OBJ: ' + obj.id);
-    console.log('imgUrl: ' + obj.imageUrl);
-    console.log('label: ' + obj.label);
     return obj;
   });
-  console.log('ITEMS:' + items);
   return items;
 }
 
 export async function extractCarouselData(elasticsearchResponse, modelType) {
-  console.log('Model:' + modelType);
-  console.log('hits:' + elasticsearchResponse.hits.total);
-
   let obj = {};
 
   obj.numFound = elasticsearchResponse.hits.total;
