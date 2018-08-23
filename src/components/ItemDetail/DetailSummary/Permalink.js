@@ -2,6 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import PropTypes from 'prop-types';
+import { notify } from 'react-notify-toast';
 
 class Permalink extends React.Component {
   constructor(props) {
@@ -10,6 +11,13 @@ class Permalink extends React.Component {
       copied: false
     };
   }
+
+  handleCopied = e => {
+    const myColor = { background: '#58b947', text: '#FFF' };
+
+    this.setState({ copied: true });
+    notify.show('Permalink copied to clipboard', 'custom', 5000, myColor);
+  };
 
   render() {
     const { permalink } = this.props;
@@ -24,10 +32,7 @@ class Permalink extends React.Component {
             className="permalink-input"
             value={permalink}
           />
-          <CopyToClipboard
-            text={permalink}
-            onCopy={() => this.setState({ copied: true })}
-          >
+          <CopyToClipboard text={permalink} onCopy={this.handleCopied}>
             <button className="copy-button button">
               <FontAwesomeIcon icon="copy" />
             </button>
