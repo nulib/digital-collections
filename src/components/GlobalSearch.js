@@ -16,7 +16,7 @@ class GlobalSearch extends Component {
 
   styles = {
     section: {
-      display: 'block'
+      display: 'none'
     }
   };
 
@@ -74,10 +74,12 @@ const mapDispatchToProps = dispatch => ({
   doSearch: searchTerm => dispatch(doSearch(searchTerm))
 });
 const mapStateToProps = state => ({
+  open: state.open,
   search: state.search
 });
 
 const globalSearchWithRouter = withRouter(GlobalSearch);
-export default connect(mapStateToProps, mapDispatchToProps)(
-  globalSearchWithRouter
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(globalSearchWithRouter);

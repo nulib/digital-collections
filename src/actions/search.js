@@ -23,6 +23,12 @@ export function searchFailure(error, statusText) {
   };
 }
 
+export function searchToggle() {
+  return {
+    type: actionTypes.SEARCH_TOGGLE
+  };
+}
+
 export const doSearch = searchTerm => {
   return dispatch => {
     const request = async () => {
