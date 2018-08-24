@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
 import { DONUT_URL } from '../services/global-vars';
+import { withRouter } from 'react-router';
 
 /* eslint-disable */
 class UniversalViewerContainer extends Component {
   componentDidMount() {
     this.loadUVEmbedScript();
+  }
+
+  componentDidUpdate(prevProps) {
+    console.log('UPDATED');
+    if (prevProps.location.pathname !== this.props.location.pathname) {
+      this.removeUVEmbedScript();
+      this.loadUVEmbedScript();
+    }
   }
 
   componentWillUnmount() {
@@ -30,6 +39,7 @@ class UniversalViewerContainer extends Component {
 
   render() {
     const { id, item } = this.props;
+    console.log('id', id);
 
     if (!item) {
       return null;
@@ -65,5 +75,5 @@ const styles = {
   }
 };
 
-export default UniversalViewerContainer;
+export default withRouter(UniversalViewerContainer);
 /* eslint-enable */

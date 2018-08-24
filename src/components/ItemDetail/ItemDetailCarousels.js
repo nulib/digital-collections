@@ -10,7 +10,9 @@ const ItemDetailCarousels = props => {
 
   const renderCollectionsCarousel = () => {
     const shouldDisplay =
-      Object.keys(item).length > 0 && Object.keys(collectionItems).length > 0;
+      Object.keys(item).length > 0 &&
+      Object.keys(collectionItems).length > 0 &&
+      item.collection.length > 0;
 
     if (!shouldDisplay) {
       return null;
@@ -36,6 +38,7 @@ const ItemDetailCarousels = props => {
           trigger={<CollapsibleHeader label="Library Division" />}
           open={true}
         >
+          {/* Admin Sets carousel */}
           {item &&
             adminSetItems && (
               <CarouselSection
@@ -52,6 +55,7 @@ const ItemDetailCarousels = props => {
           trigger={<CollapsibleHeader label="Collection" />}
           open={true}
         >
+          {/* Collections carousel */}
           {renderCollectionsCarousel()}
         </Collapsible>
       </div>

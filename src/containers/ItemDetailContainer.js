@@ -20,7 +20,6 @@ export class ItemDetailContainer extends Component {
   };
 
   componentDidMount() {
-    document.body.className = 'standard-page';
     const { match } = this.props;
 
     if (!match.params.id) {
@@ -29,6 +28,12 @@ export class ItemDetailContainer extends Component {
       });
     }
     this.getItem(match.params.id);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.location.pathname !== this.props.location.pathname) {
+      this.getItem(this.props.match.params.id);
+    }
   }
 
   createBreadcrumbData(item) {
