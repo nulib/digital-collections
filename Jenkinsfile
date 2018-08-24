@@ -10,5 +10,5 @@ node {
     returnStdout: true
   ).trim()
 
-  sh "docker run -t -v ${HOME}/.aws:/home/node/.aws -v $(pwd):/home/node/app -e AWS_DEFAULT_PROFILE=${tag_name} ${BUILDFLAGS} nulib/frontend-deploy"
+  sh "docker run -t -v \${HOME}/.aws:/home/node/.aws -v \$(pwd):/home/node/app -e AWS_DEFAULT_PROFILE=${tag_name} ${BUILDFLAGS} nulib/frontend-deploy"
 }
