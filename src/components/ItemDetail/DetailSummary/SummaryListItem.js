@@ -7,7 +7,7 @@ const SummaryListItem = props => {
     <div className="summary-list-item">
       <div className="data-label">{header}</div>
       {items.map((item, index) => (
-        <div key="index" className="data-value">
+        <div key={'index_' + index} className="data-value">
           {item}
         </div>
       ))}
