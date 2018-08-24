@@ -32,7 +32,7 @@ export class ItemDetailContainer extends Component {
   }
 
   createBreadcrumbData(item) {
-    let crumbs = [{ title: 'Items', link: '/items' }];
+    let crumbs = [{ title: 'Items', link: '/search-results' }];
 
     if (item) {
       crumbs.push({
@@ -68,7 +68,6 @@ export class ItemDetailContainer extends Component {
       const id = this.state.item.collection[0].id;
       const request = async () => {
         const response = await elasticsearchApi.getCollectionItems(id);
-        console.log('getCollectionItems() response', response);
         const carouselData = await elasticsearchParser.extractCarouselData(
           response,
           globalVars.IMAGE_MODEL

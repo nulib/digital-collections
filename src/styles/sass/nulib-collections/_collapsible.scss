@@ -20,6 +20,12 @@
   margin: 1rem 2rem;
 }
 
+.collapsible-no-side-margins {
+  .Collapsible__contentInner {
+    margin: 1rem 0;
+  }
+}
+
 .Collapsible:first-of-type {
   h3 {
     border-top: none;

@@ -51,7 +51,10 @@ ul.facet-list {
     &.active {
       background: none;
       font-family: $AkkuratProBold;
-      padding-left: 1rem;
+
+      > svg {
+        margin-right: 5px;
+      }
     }
 
     .close {
