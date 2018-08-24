@@ -30,7 +30,7 @@ it('creates default breadCrumbData, and additional breadCrumbData when another i
     <ItemDetailContainer.WrappedComponent match={{ params: {} }} />
   );
   const instance = wrapper.instance();
-  let defaultCrumbs = [{ title: 'Items', link: '/items' }];
+  let defaultCrumbs = [{ title: 'Items', link: '/search-results' }];
   const item = { title: { primary: ['This is the primary title'] } };
 
   expect(instance.createBreadcrumbData()).toEqual(defaultCrumbs);
