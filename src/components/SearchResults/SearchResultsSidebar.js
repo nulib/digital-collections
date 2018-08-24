@@ -1,5 +1,20 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Collapsible from 'react-collapsible';
+import CollapsibleHeader from '../CollapsibleHeader';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+
+const ListItem = props => {
+  return (
+    <li>
+      <Link to="/">
+        {props.label} <span className="count">{props.count}</span>
+      </Link>
+    </li>
+  );
+};
 
 const SearchResultsSidebar = () => {
   return (
@@ -21,93 +36,74 @@ const SearchResultsSidebar = () => {
           <div id="tab-content">
             {/* Filter */}
             <div aria-labelledby="tab1" id="tab-panel1" role="tabpanel">
-              <div className="expander expander1" data-collapse="data-collapse">
-                <h3 className="open">Topic</h3>
-                <ul className="facet-list no-style">
-                  <li className="active">
-                    <FontAwesomeIcon icon="times" className="close" /> Active
-                    filtered topic will not display below)
-                  </li>
-                  <li>
-                    <a href="">
-                      Public figures
-                      <span className="count">104</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="">
-                      Sculptures
-                      <span className="count">42</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="">
-                      Homes and haunts <span className="count">119</span>
-                    </a>
-                  </li>
-                </ul>
-                <h3>Name</h3>
-                <ul className="facet-list no-style">
-                  <li>
-                    <a href="">
-                      Napoleon I, Emperor of the French, 1769-1821{' '}
-                      <span className="count">632</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="">
-                      Franklin, Benjamin, 1706-1790{' '}
-                      <span className="count">13</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="">
-                      Grant, Ulysses S. (Ulysses Simpson), 1822-1885{' '}
-                      <span className="count">87</span>
-                    </a>
-                  </li>
-                </ul>
-                <h3>Collection</h3>
-                <ul className="facet-list no-style">
-                  <li className="active">
-                    <FontAwesomeIcon icon="times" className="close" /> This
-                    current collection
-                  </li>
-                  <li>
-                    <a href="">Print Collection portrait file</a>
-                  </li>
-                </ul>
-                <h3>Place</h3>
-                <ul className="facet-list no-style">
-                  <li>
-                    <a href="">
-                      New York City <span className="count">100</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="">
-                      Italy <span className="count">13</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="">
-                      St. Helena <span className="count">276</span>
-                    </a>
-                  </li>
-                </ul>
-                <h3>Genre</h3>
-                <ul className="facet-list no-style">
-                  <li>
-                    <a href="">
-                      Still image <span className="count">341</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="">
-                      Portrait <span className="count">23</span>
-                    </a>
-                  </li>
-                </ul>
+              <div className="expander expander1 collapsible-no-side-margins">
+                <Collapsible
+                  trigger={<CollapsibleHeader label="Topic" />}
+                  open={true}
+                >
+                  <ul className="facet-list no-style">
+                    <li className="active">
+                      <FontAwesomeIcon icon="times" /> Active filtered topic
+                      will not display below)
+                    </li>
+                    <ListItem label="Public Figures" count="104" />
+                    <ListItem label="Sculptures" count="42" />
+                    <ListItem label="Homes and haunts" count="119" />
+                  </ul>
+                </Collapsible>
+
+                <Collapsible
+                  trigger={<CollapsibleHeader label="Name" />}
+                  open={true}
+                >
+                  <ul className="facet-list no-style">
+                    <ListItem
+                      label="Napoleon I, Emperor of the French, 1769-1821"
+                      count="632"
+                    />
+                    <ListItem
+                      label="Franklin, Benjamin, 1706-1790"
+                      count="13"
+                    />
+                    <ListItem
+                      label="Grant, Ulysses S. (Ulysses Simpson), 1822-1885"
+                      count="87"
+                    />
+                  </ul>
+                </Collapsible>
+
+                <Collapsible
+                  trigger={<CollapsibleHeader label="Collection" />}
+                  open={true}
+                >
+                  <ul className="facet-list no-style">
+                    <li className="active">
+                      <FontAwesomeIcon icon="times" /> This current collection
+                    </li>
+                    <ListItem label="Print Collection portrait file" />
+                  </ul>
+                </Collapsible>
+
+                <Collapsible
+                  trigger={<CollapsibleHeader label="Place" />}
+                  open={false}
+                >
+                  <ul className="facet-list no-style">
+                    <ListItem label="New York City" count="100" />
+                    <ListItem label="Italy" count="13" />
+                    <ListItem label="St. Helena" count="66" />
+                  </ul>
+                </Collapsible>
+
+                <Collapsible
+                  trigger={<CollapsibleHeader label="Genre" />}
+                  open={false}
+                >
+                  <ul className="facet-list no-style">
+                    <ListItem label="Still image" count="48" />
+                    <ListItem label="Portrait" count="4" />
+                  </ul>
+                </Collapsible>
               </div>
 
               <h4>Date Range</h4>
@@ -135,6 +131,11 @@ const SearchResultsSidebar = () => {
       </div>
     </div>
   );
+};
+
+ListItem.propTypes = {
+  label: PropTypes.string.isRequired,
+  count: PropTypes.number
 };
 
 export default SearchResultsSidebar;
