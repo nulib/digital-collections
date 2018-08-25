@@ -22,7 +22,15 @@ const MetadataDisplay = props => {
 
   let display;
 
-  if (typeof items === 'string') display = singleItem(items);
+  if (title === 'Contributor') {
+    display = items.map(item => (
+      <li key={item.label}>
+        <a href={`/reactivesearch?ContributorFilter="${item.label}"`}>
+          {item.label}
+        </a>
+      </li>
+    ));
+  } else if (typeof items === 'string') display = singleItem(items);
   else if (Array.isArray(items))
     display = items.map(item => multipleItems(item));
 
