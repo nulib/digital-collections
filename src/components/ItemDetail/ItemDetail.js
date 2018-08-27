@@ -29,7 +29,7 @@ const ItemDetail = props => {
     rights_holder = '',
     source = '',
     subject = '',
-    rights_statement = '',
+    rights_statement: { label: rights_statement_text } = null,
     genre = null,
     physical_description: { material } = null,
     physical_description: { size } = null,
@@ -63,7 +63,7 @@ const ItemDetail = props => {
     { label: 'Rights Holder', value: rights_holder },
     { label: 'Source', value: source },
     { label: 'Subject', value: subject },
-    { label: 'Rights Statement', value: rights_statement },
+    { label: 'Rights Statement', value: rights_statement_text },
     { label: 'Genre', value: genre },
     { label: 'Physical Description material', value: material },
     { label: 'Physical Description size', value: size },
@@ -91,7 +91,7 @@ const ItemDetail = props => {
     { label: 'Title', value: title },
     { label: 'Permalink', value: permalink },
     { label: 'Identifier', value: identifier },
-    { label: 'License', value: license },
+    { label: 'Licenses', value: license },
     { label: 'Use Statement', value: nul_use_statement }
   ];
 
