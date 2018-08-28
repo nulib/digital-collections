@@ -17,42 +17,42 @@ class ReactivesearchContainer extends Component {
             <div className="box">
               <MultiList
                 componentId="KeywordFilter"
-                dataField="keyword"
+                dataField="keyword.keyword"
                 title="Keyword"
                 showSearch={false}
                 URLParams={true}
               />
               <SingleList
                 componentId="CollectionFilter"
-                dataField="collection_facet"
+                dataField="collection.title.keyword"
                 title="Collection"
                 showSearch={false}
                 URLParams={true}
               />
               <SingleList
                 componentId="ContributorFilter"
-                dataField="contributor_facet"
+                dataField="contributor.label.keyword"
                 title="Contributor"
                 showSearch={false}
                 URLParams={true}
               />
               <MultiList
                 componentId="SubjectFilter"
-                dataField="subject_facet"
+                dataField="subject.label.keyword"
                 title="Subject (All)"
                 showSearch={false}
                 URLParams={true}
               />
               <MultiList
                 componentId="AdminSetFilter"
-                dataField="admin_set_facet"
+                dataField="admin_set.title.keyword"
                 title="Division"
                 showSearch={false}
                 URLParams={true}
               />
               <DateRange
                 componentId="DateRange"
-                dataField="expanded-date"
+                dataField="expanded_date"
                 title="Date Range"
               />
             </div>
