@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import {
   DataSearch,
-  SingleList,
   MultiList,
-  DateRange,
   SelectedFilters,
-  ResultCard
+  ResultCard,
+  DynamicRangeSlider
 } from '@appbaseio/reactivesearch';
 
 class ReactivesearchContainer extends Component {
@@ -16,44 +15,89 @@ class ReactivesearchContainer extends Component {
           <div id="sidebar" className="left-sidebar content" tabIndex="-1">
             <div className="box">
               <MultiList
-                componentId="KeywordFilter"
-                dataField="keyword.keyword"
-                title="Keyword"
-                showSearch={false}
-                URLParams={true}
-              />
-              <SingleList
-                componentId="CollectionFilter"
+                componentId="Collection"
                 dataField="collection.title.keyword"
                 title="Collection"
                 showSearch={false}
                 URLParams={true}
               />
-              <SingleList
-                componentId="ContributorFilter"
+              <MultiList
+                componentId="Creator"
+                dataField="creator.label.keyword"
+                title="Creator"
+                showSearch={false}
+                URLParams={true}
+              />
+              <MultiList
+                componentId="Contributor"
                 dataField="contributor.label.keyword"
                 title="Contributor"
                 showSearch={false}
                 URLParams={true}
               />
               <MultiList
-                componentId="SubjectFilter"
-                dataField="subject.label.keyword"
-                title="Subject (All)"
+                componentId="Genre"
+                dataField="genre.label.keyword"
+                title="Genre"
                 showSearch={false}
                 URLParams={true}
               />
               <MultiList
-                componentId="AdminSetFilter"
-                dataField="admin_set.title.keyword"
-                title="Division"
+                componentId="Language"
+                dataField="language.label.keyword"
+                title="Language"
                 showSearch={false}
                 URLParams={true}
               />
-              <DateRange
-                componentId="DateRange"
-                dataField="expanded_date"
-                title="Date Range"
+              <MultiList
+                componentId="AdminSet"
+                dataField="admin_set.title.keyword"
+                title="Library Unit"
+                showSearch={false}
+                URLParams={true}
+              />
+              <MultiList
+                componentId="RightsStatement"
+                dataField="rights_statement.label.keyword"
+                title="Rights Statement"
+                showSearch={false}
+                URLParams={true}
+              />
+              <MultiList
+                componentId="StylePeriod"
+                dataField="style_period.label.keyword"
+                title="Style Period"
+                showSearch={false}
+                URLParams={true}
+              />
+              <MultiList
+                componentId="Subject"
+                dataField="subject.label.keyword"
+                title="Subject"
+                showSearch={false}
+                URLParams={true}
+              />
+              <MultiList
+                componentId="Technique"
+                dataField="technique.label.keyword"
+                title="Technique"
+                showSearch={false}
+                URLParams={true}
+              />
+              <MultiList
+                componentId="Visibility"
+                dataField="visibility.keyword"
+                title="Visibility"
+                showSearch={false}
+                URLParams={true}
+              />
+              <DynamicRangeSlider
+                componentId="Date"
+                dataField="year"
+                title="Date"
+                showHistogram={true}
+                showFilter={true}
+                stepValue={10}
               />
             </div>
           </div>
@@ -62,7 +106,7 @@ class ReactivesearchContainer extends Component {
               <h2>Reactivesearch</h2>
               <DataSearch
                 className="datasearch"
-                componentId="mainSearch"
+                componentId="Search"
                 dataField={['full_text']}
                 queryFormat="or"
                 placeholder="Search for an item"
@@ -73,6 +117,7 @@ class ReactivesearchContainer extends Component {
                 autosuggest={false}
                 iconPosition="left"
                 filterLabel="search"
+                URLParams={true}
               />
             </div>
             <SelectedFilters />
@@ -80,13 +125,20 @@ class ReactivesearchContainer extends Component {
               componentId="results"
               dataField="title"
               react={{
-                or: [
-                  'mainSearch',
-                  'KeywordFilter',
-                  'CollectionFilter',
-                  'DateRange',
-                  'ContributorFilter',
-                  'SubjectFilter'
+                and: [
+                  'Search',
+                  'Date',
+                  'Visibility',
+                  'Technique',
+                  'Subject',
+                  'StylePeriod',
+                  'RightsStatement',
+                  'AdminSet',
+                  'Language',
+                  'Genre',
+                  'Contributor',
+                  'Creator',
+                  'Collection'
                 ]
               }}
               defaultQuery={(value, props) => ({
@@ -95,6 +147,7 @@ class ReactivesearchContainer extends Component {
                 }
               })}
               size={12}
+              pagination={true}
               onData={function(res) {
                 return {
                   image: res.thumbnail_url,
