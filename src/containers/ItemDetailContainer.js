@@ -31,6 +31,9 @@ export class ItemDetailContainer extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    if (!prevProps.location) {
+      return;
+    }
     if (prevProps.location.pathname !== this.props.location.pathname) {
       this.getItem(this.props.match.params.id);
     }
