@@ -9,88 +9,56 @@ import {
 
 class ReactivesearchContainer extends Component {
   render() {
+    const facets = [
+      { name: 'Collection', field: 'collection.title.keyword' },
+      { name: 'Creator', field: 'creator.label.keyword' },
+      { name: 'Contributor', field: 'contributor.label.keyword' },
+      { name: 'Genre', field: 'genre.label.keyword' },
+      { name: 'Language', field: 'language.label.keyword' },
+      { name: 'Library Unit', field: 'admin_set.title.keyword' },
+      { name: 'Rights Statement', field: 'rights_statement.label.keyword' },
+      { name: 'Subject', field: 'subject.label.keyword' },
+      { name: 'Technique', field: 'technique.label.keyword' },
+      { name: 'Visibility', field: 'visibility.keyword' }
+    ];
+
+    const allFilters = [
+      'Search',
+      'Date',
+      'Visibility',
+      'Technique',
+      'Subject',
+      'StylePeriod',
+      'RightsStatement',
+      'AdminSet',
+      'Language',
+      'Genre',
+      'Contributor',
+      'Creator',
+      'Collection'
+    ];
+
     return (
       <div className="standard-page">
         <div id="page" className="search">
           <div id="sidebar" className="left-sidebar content" tabIndex="-1">
             <div className="box">
-              <MultiList
-                componentId="Collection"
-                dataField="collection.title.keyword"
-                title="Collection"
-                showSearch={false}
-                URLParams={true}
-              />
-              <MultiList
-                componentId="Creator"
-                dataField="creator.label.keyword"
-                title="Creator"
-                showSearch={false}
-                URLParams={true}
-              />
-              <MultiList
-                componentId="Contributor"
-                dataField="contributor.label.keyword"
-                title="Contributor"
-                showSearch={false}
-                URLParams={true}
-              />
-              <MultiList
-                componentId="Genre"
-                dataField="genre.label.keyword"
-                title="Genre"
-                showSearch={false}
-                URLParams={true}
-              />
-              <MultiList
-                componentId="Language"
-                dataField="language.label.keyword"
-                title="Language"
-                showSearch={false}
-                URLParams={true}
-              />
-              <MultiList
-                componentId="AdminSet"
-                dataField="admin_set.title.keyword"
-                title="Library Unit"
-                showSearch={false}
-                URLParams={true}
-              />
-              <MultiList
-                componentId="RightsStatement"
-                dataField="rights_statement.label.keyword"
-                title="Rights Statement"
-                showSearch={false}
-                URLParams={true}
-              />
-              <MultiList
-                componentId="StylePeriod"
-                dataField="style_period.label.keyword"
-                title="Style Period"
-                showSearch={false}
-                URLParams={true}
-              />
-              <MultiList
-                componentId="Subject"
-                dataField="subject.label.keyword"
-                title="Subject"
-                showSearch={false}
-                URLParams={true}
-              />
-              <MultiList
-                componentId="Technique"
-                dataField="technique.label.keyword"
-                title="Technique"
-                showSearch={false}
-                URLParams={true}
-              />
-              <MultiList
-                componentId="Visibility"
-                dataField="visibility.keyword"
-                title="Visibility"
-                showSearch={false}
-                URLParams={true}
-              />
+              {facets.map(facet => (
+                <MultiList
+                  componentId={facet.name.replace(/\s+/g, '')}
+                  dataField={facet.field}
+                  title={facet.name}
+                  showCheckbox={false}
+                  showMissing={true}
+                  showSearch={false}
+                  URLParams={true}
+                  react={{
+                    and: allFilters.filter(entry => {
+                      return entry !== facet.name.replace(/\s+/g, '');
+                    })
+                  }}
+                />
+              ))}
               <DynamicRangeSlider
                 componentId="Date"
                 dataField="year"
@@ -125,21 +93,7 @@ class ReactivesearchContainer extends Component {
               componentId="results"
               dataField="title"
               react={{
-                and: [
-                  'Search',
-                  'Date',
-                  'Visibility',
-                  'Technique',
-                  'Subject',
-                  'StylePeriod',
-                  'RightsStatement',
-                  'AdminSet',
-                  'Language',
-                  'Genre',
-                  'Contributor',
-                  'Creator',
-                  'Collection'
-                ]
+                and: allFilters
               }}
               defaultQuery={(value, props) => ({
                 match: {
