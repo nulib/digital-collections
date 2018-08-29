@@ -25,7 +25,7 @@ const MetadataDisplay = props => {
   if (title === 'Contributor') {
     display = items.map(item => (
       <li key={item.label}>
-        <a href={`/reactivesearch?ContributorFilter="${item.label}"`}>
+        <a href={`/reactivesearch?Contributor=["${item.label}"]`}>
           {item.label}
         </a>
       </li>
