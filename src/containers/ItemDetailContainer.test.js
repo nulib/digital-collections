@@ -2,7 +2,9 @@ jest.mock('../api/elasticsearch-api.js');
 
 import React from 'react';
 import { shallow } from 'enzyme';
-import ItemDetailContainer from './ItemDetailContainer';
+import ConnectedItemDetailContainer, {
+  ItemDetailContainer
+} from './ItemDetailContainer';
 import * as elasticsearchApi from '../api/elasticsearch-api.js';
 
 const mockReactRouterProps = {
@@ -14,21 +16,17 @@ const mockReactRouterProps = {
 };
 
 it('renders without crashing', () => {
-  const wrapper = shallow(<ItemDetailContainer />);
+  const wrapper = shallow(<ConnectedItemDetailContainer />);
   expect(wrapper).toBeTruthy();
 });
 
 it('sets an error state in componentDidMount() when no item id is present in the url', () => {
-  const wrapper = shallow(
-    <ItemDetailContainer.WrappedComponent match={{ params: {} }} />
-  );
-  expect(wrapper.state('error')).not.toBeNull();
+  const wrapper = shallow(<ItemDetailContainer match={{ params: {} }} />);
+  expect(wrapper.state('error')).toEqual('Missing id in query param');
 });
 
 it('creates default breadCrumbData, and additional breadCrumbData when another item is passed in', () => {
-  const wrapper = shallow(
-    <ItemDetailContainer.WrappedComponent match={{ params: {} }} />
-  );
+  const wrapper = shallow(<ItemDetailContainer match={{ params: {} }} />);
   const instance = wrapper.instance();
   let defaultCrumbs = [{ title: 'Items', link: '/search-results' }];
   const item = { title: { primary: ['This is the primary title'] } };
@@ -40,7 +38,7 @@ it('creates default breadCrumbData, and additional breadCrumbData when another i
 it('fetches item data from the api and sets the item on component state', async () => {
   // Just so we can read state in the test
   const wrapper = shallow(
-    <ItemDetailContainer.WrappedComponent match={mockReactRouterProps.match} />
+    <ItemDetailContainer match={mockReactRouterProps.match} />
   );
   const expectedState = {
     adminSetItems: {},

@@ -18,7 +18,7 @@ let items = [
 ];
 
 it('renders without crashing', () => {
-  const wrapper = shallow(<Breadcrumbs />);
+  const wrapper = shallow(<Breadcrumbs items={items} />);
   expect(wrapper.length).toEqual(1);
 });
 
