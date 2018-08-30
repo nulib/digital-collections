@@ -38,6 +38,12 @@ class ReactivesearchContainer extends Component {
       'Collection'
     ];
 
+    const multiListInnerClass = {
+      title: 'rs-facet-title',
+      list: 'rs-facet-list',
+      label: 'rs-facet-label'
+    };
+
     return (
       <div className="standard-page">
         <div id="page" className="search">
@@ -45,6 +51,9 @@ class ReactivesearchContainer extends Component {
             <div className="box">
               {facets.map(facet => (
                 <MultiList
+                  key={facet.name}
+                  className={'adam'}
+                  innerClass={multiListInnerClass}
                   componentId={facet.name.replace(/\s+/g, '')}
                   dataField={facet.field}
                   title={facet.name}

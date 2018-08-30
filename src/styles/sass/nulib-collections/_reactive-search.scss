@@ -1,0 +1,31 @@
+.rs-facet-title {
+  @extend h4;
+}
+
+
+
+.rs-facet-list {
+  margin: 1em 0 !important;
+
+  li {
+    height: auto !important;
+
+    &.active {
+      .rs-facet-label {
+        > span {
+          font-weight: normal;
+        }
+      }
+    }
+
+    &:not(.active) {
+      .rs-facet-label {
+        > span {
+          @extend a;
+        }
+      }
+    }
+  }
+}
+
+
