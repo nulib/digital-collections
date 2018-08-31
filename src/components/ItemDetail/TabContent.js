@@ -14,6 +14,7 @@ const TabContent = props => {
           key={item.label}
           title={item.label}
           items={item.value}
+          facet_value={item.facet_value}
         />
       ))}
     </div>

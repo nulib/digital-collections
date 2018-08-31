@@ -2,35 +2,41 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const MetadataDisplay = props => {
-  const { title, items } = props;
+  const { title, items, facet_value = '' } = props;
+
+  let itemText = item => {
+    return item.label ? item.label : item;
+  };
 
   let multipleItems = item => {
-    if (item.label) {
-      return <li key={item.label}>{item.label}</li>;
+    let text = itemText(item);
+    if (facet_value) {
+      return (
+        <li key={text}>
+          <a href={`/reactivesearch?${facet_value}=["${text}"]`}>{text}</a>
+        </li>
+      );
     } else {
-      return <li key={item}>{item}</li>;
+      return <li key={text}>{text}</li>;
     }
   };
 
   let singleItem = item => {
-    if (item.label) {
-      return <p key={item.label}>{item.label}</p>;
+    let text = itemText(item);
+    if (facet_value) {
+      return (
+        <p key={text}>
+          <a href={`/reactivesearch?${facet_value}=["${text}"]`}>{text}</a>
+        </p>
+      );
     } else {
-      return <p key={item}>{item}</p>;
+      return <p key={text}>{text}</p>;
     }
   };
 
   let display;
 
-  if (title === 'Contributor') {
-    display = items.map(item => (
-      <li key={item.label}>
-        <a href={`/reactivesearch?Contributor=["${item.label}"]`}>
-          {item.label}
-        </a>
-      </li>
-    ));
-  } else if (typeof items === 'string') display = singleItem(items);
+  if (typeof items === 'string') display = singleItem(items);
   else if (Array.isArray(items))
     display = items.map(item => multipleItems(item));
 
