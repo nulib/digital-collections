@@ -2,8 +2,6 @@
   @extend h4;
 }
 
-
-
 .rs-facet-list {
   margin: 1em 0 !important;
 
@@ -28,4 +26,33 @@
   }
 }
 
+.rs-search-icon {
+  height: 1.1rem;
+}
+
+.rs-search-input {
+  width: 100% !important;
+}
+
+.rs-result-item {
+  box-shadow: none !important;
+}
+
+.rs-result-title {
+  @extend h4;
+}
+
+.rs-result-item article {
+  max-height: 80px;
+}
+
+.rs-pagination {
+  > .active {
+    background-color: $nu-purple;
+    color: $white;
+    &:hover {
+      background-color: $nu-purple-60;
+    }
+  }
+}
 
