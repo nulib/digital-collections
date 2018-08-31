@@ -6,6 +6,7 @@ import {
   ResultCard,
   DynamicRangeSlider
 } from '@appbaseio/reactivesearch';
+import searchIcon from '../images/library-search.svg';
 
 class ReactivesearchContainer extends Component {
   render() {
@@ -82,17 +83,24 @@ class ReactivesearchContainer extends Component {
             <div>
               <h2>Reactivesearch</h2>
               <DataSearch
-                className="datasearch"
+                className="datasearch web-form"
                 componentId="Search"
                 dataField={['full_text']}
                 queryFormat="or"
                 placeholder="Search for an item"
                 innerClass={{
-                  input: 'searchbox',
+                  input: 'searchbox rs-search-input',
                   list: 'suggestionlist'
                 }}
                 autosuggest={false}
-                iconPosition="left"
+                icon={
+                  <img
+                    src={searchIcon}
+                    className="rs-search-icon"
+                    alt="search icon"
+                  />
+                }
+                iconPosition="right"
                 filterLabel="search"
                 URLParams={true}
               />
@@ -119,11 +127,12 @@ class ReactivesearchContainer extends Component {
                   description: <div>{res.description}</div>
                 };
               }}
-              className="result-data"
+              className="rs-result-card-data"
               innerClass={{
-                title: 'result-title',
-                image: 'result-image',
-                listItem: 'result-item'
+                image: 'rs-result-image',
+                listItem: 'rs-result-item',
+                pagination: 'rs-pagination',
+                title: 'rs-result-title'
               }}
             />
           </main>

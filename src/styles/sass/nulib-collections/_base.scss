@@ -39,7 +39,9 @@ ul.no-style {
 #page {
   &.collection-items,
   &.search {
-    max-width: 1440px;
+    
+    // Not sure this looks good anymore
+    //max-width: 1440px;
 
     #left-nav {
       width: 30%;
