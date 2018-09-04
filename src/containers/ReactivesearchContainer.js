@@ -18,6 +18,7 @@ class ReactivesearchContainer extends Component {
       { name: 'Language', field: 'language.label.keyword' },
       { name: 'Library Unit', field: 'admin_set.title.keyword' },
       { name: 'Rights Statement', field: 'rights_statement.label.keyword' },
+      { name: 'Style Period', field: 'style_period.label.keyword' },
       { name: 'Subject', field: 'subject.label.keyword' },
       { name: 'Technique', field: 'technique.label.keyword' },
       { name: 'Visibility', field: 'visibility.keyword' }
@@ -31,7 +32,7 @@ class ReactivesearchContainer extends Component {
       'Subject',
       'StylePeriod',
       'RightsStatement',
-      'AdminSet',
+      'LibraryUnit',
       'Language',
       'Genre',
       'Contributor',
