@@ -52,33 +52,41 @@ const ItemDetail = props => {
     { label: 'Alternate Title', value: alternate },
     { label: 'Abstract', value: abstract },
     { label: 'Caption', value: caption },
-    { label: 'Contributor', value: contributor },
+    { label: 'Contributor', value: contributor, facet_value: 'Contributor' },
     { label: 'Date', value: date },
     { label: 'Description', value: description },
-    { label: 'Division', value: admin_set },
+    { label: 'Division', value: admin_set, facet_value: 'LibraryUnit' },
     { label: 'Keyword', value: keyword },
-    { label: 'Language', value: language },
-    { label: 'Location', value: location },
+    { label: 'Language', value: language, facet_value: 'Language' },
+    { label: 'Location', value: location, facet_value: 'Location' },
     { label: 'Provenance', value: provenance },
-    { label: 'Publisher', value: publisher },
+    { label: 'Publisher', value: publisher, facet_value: 'Publisher' },
     { label: 'Related Url', value: related_url },
     { label: 'Rights Holder', value: rights_holder },
     { label: 'Source', value: source },
-    { label: 'Subject', value: subject },
-    { label: 'Rights Statement', value: rights_statement_text },
-    { label: 'Genre', value: genre },
+    { label: 'Subject', value: subject, facet_value: 'Subject' },
+    {
+      label: 'Rights Statement',
+      value: rights_statement_text,
+      facet_value: 'RightsStatement'
+    },
+    { label: 'Genre', value: genre, facet_value: 'Genre' },
     { label: 'Physical Description material', value: material },
     { label: 'Physical Description size', value: size },
-    { label: 'Style Period', value: style_period },
-    { label: 'Technique', value: technique }
+    { label: 'Style Period', value: style_period, facet_value: 'StylePeriod' },
+    { label: 'Technique', value: technique, facet_value: 'Technique' }
   ];
 
   const findThisItemPanel = [
     { label: 'Accession', value: accession_number },
-    { label: 'Box Name', value: box_name },
-    { label: 'Box Number', value: box_number },
-    { label: 'Folder Name', value: folder_name },
-    { label: 'Folder Number', value: folder_number },
+    { label: 'Box Name', value: box_name, facet_value: 'box_name' },
+    { label: 'Box Number', value: box_number, facet_value: 'box_number' },
+    { label: 'Folder Name', value: folder_name, facet_value: 'folder_name' },
+    {
+      label: 'Folder Number',
+      value: folder_number,
+      facet_value: 'folder_number'
+    },
     { label: 'Call Number', value: call_number },
     { label: 'Catalog Key', value: catalog_key },
     { label: 'Citation', value: bibliographic_citation }
@@ -101,7 +109,7 @@ const ItemDetail = props => {
     { label: 'Title', value: title },
     { label: 'Permalink', value: permalink },
     { label: 'Identifier', value: identifier },
-    { label: 'Licenses', value: license },
+    { label: 'Licenses', value: license, facet_value: 'License' },
     { label: 'Use Statement', value: nul_use_statement }
   ];
 
