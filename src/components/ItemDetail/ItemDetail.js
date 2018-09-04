@@ -14,6 +14,7 @@ const ItemDetail = props => {
     caption: [caption] = '',
     collection = null,
     contributor = null,
+    creator = null,
     date: [date] = '',
     description: [description] = '',
     admin_set: { title: [admin_set] } = '', // division
@@ -52,6 +53,7 @@ const ItemDetail = props => {
     { label: 'Alternate Title', value: alternate },
     { label: 'Abstract', value: abstract },
     { label: 'Caption', value: caption },
+    { label: 'Creator', value: creator, facet_value: 'Creator' },
     { label: 'Contributor', value: contributor, facet_value: 'Contributor' },
     { label: 'Date', value: date },
     { label: 'Description', value: description },
