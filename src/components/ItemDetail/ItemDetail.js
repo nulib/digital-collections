@@ -12,10 +12,12 @@ const ItemDetail = props => {
     title: { alternate: [alternate] } = '',
     abstract: [abstract] = '',
     caption: [caption] = '',
+    collection = null,
     contributor = null,
     date: [date] = '',
     description: [description] = '',
     admin_set: { title: [admin_set] } = '', // division
+    id = '',
     identifier = null,
     license = null,
     nul_use_statement = '',
@@ -82,10 +84,18 @@ const ItemDetail = props => {
     { label: 'Citation', value: bibliographic_citation }
   ];
 
-  let formatMLA = `${title} here's the rest MLA`;
-  let formatChicago = `${title} chicago format`;
-  let formatAPA = `${title} apa format`;
-  let formatWikipedia = `${title} wikipedia format`;
+  const nul = 'Northwestern University Libraries';
+  const item_link = `${window.location.origin}/${id}`;
+  const today = new Date().toDateString();
+  const collection_title =
+    collection && collection.length > 0 ? `${collection[0].title}.` : '';
+
+  const formatMLA = `${admin_set}, ${nul}. "${title}", ${collection_title} ${date}. ${
+    window.location.origin
+  }/${id}`;
+  const formatChicago = `${admin_set}, ${nul}. "${title}", ${collection_title} Accessed ${today}. ${item_link}`;
+  const formatAPA = `${admin_set}, ${nul}. (${date}). ${title}, Retrieved from ${item_link}`;
+  const formatWikipedia = `<ref name=NUL>{{cite web | url=${item_link} | title= ${title} (${date}) }} |author=Digital Collections, ${nul} |accessdate=${today} |publisher=${nul}, ${admin_set}}}</ref>`;
 
   const citePanel = [
     { label: 'Title', value: title },
