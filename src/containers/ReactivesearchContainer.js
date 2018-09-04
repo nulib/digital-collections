@@ -3,12 +3,30 @@ import {
   DataSearch,
   MultiList,
   SelectedFilters,
-  ResultCard,
+  ReactiveList,
   DynamicRangeSlider
 } from '@appbaseio/reactivesearch';
 import searchIcon from '../images/library-search.svg';
+import { Link } from 'react-router-dom';
+import { chopString } from '../services/helpers';
 
 class ReactivesearchContainer extends Component {
+  onData(res) {
+    const url = `/items/${res.id}`;
+
+    return (
+      <article key={res._id} className="photo-box" aria-labelledby="grid1">
+        <Link to={url}>
+          <img src={res.thumbnail_url} alt="enter descriptive text" />
+        </Link>
+        <h4 id="grid1">
+          <Link to={url}>{res.title.primary}</Link>
+        </h4>
+        <p>{res.description && chopString(res.description[0], 25)}</p>
+      </article>
+    );
+  }
+
   render() {
     const facets = [
       { name: 'Collection', field: 'collection.title.keyword' },
@@ -25,7 +43,7 @@ class ReactivesearchContainer extends Component {
     ];
 
     const allFilters = [
-      'Search',
+      'search',
       'Date',
       'Visibility',
       'Technique',
@@ -40,6 +58,7 @@ class ReactivesearchContainer extends Component {
       'Collection'
     ];
 
+    // Css class name helper
     const multiListInnerClass = {
       title: 'rs-facet-title',
       list: 'rs-facet-list',
@@ -85,7 +104,7 @@ class ReactivesearchContainer extends Component {
               <h2>Reactivesearch</h2>
               <DataSearch
                 className="datasearch web-form"
-                componentId="Search"
+                componentId="search"
                 dataField={['full_text']}
                 queryFormat="or"
                 placeholder="Search for an item"
@@ -107,7 +126,7 @@ class ReactivesearchContainer extends Component {
               />
             </div>
             <SelectedFilters />
-            <ResultCard
+            <ReactiveList
               componentId="results"
               dataField="title"
               react={{
@@ -120,20 +139,12 @@ class ReactivesearchContainer extends Component {
               })}
               size={12}
               pagination={true}
-              onData={function(res) {
-                return {
-                  image: res.thumbnail_url,
-                  url: '/items/' + res.id,
-                  title: res.title.primary,
-                  description: <div>{res.description}</div>
-                };
-              }}
-              className="rs-result-card-data"
+              paginationAt="bottom"
+              onData={this.onData}
               innerClass={{
-                image: 'rs-result-image',
-                listItem: 'rs-result-item',
+                list: 'rs-result-list photo-grid three-grid',
                 pagination: 'rs-pagination',
-                title: 'rs-result-title'
+                resultsInfo: 'rs-results-info'
               }}
             />
           </main>

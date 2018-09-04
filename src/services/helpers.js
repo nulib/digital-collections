@@ -17,3 +17,12 @@ export function getLinkPath(item) {
     item._source.model.name === 'Collection' ? 'collections' : 'items';
   return `/${linkPath}/${item._id}`;
 }
+
+export function chopString(str, chopLength) {
+  const extraText = str.split(' ').length > chopLength ? '...' : '';
+  let chopped = str
+    .split(' ')
+    .splice(0, chopLength)
+    .join(' ');
+  return `${chopped}${extraText}`;
+}
