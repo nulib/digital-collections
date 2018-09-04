@@ -51,36 +51,28 @@ const ItemDetail = props => {
     { label: 'Abstract', value: abstract },
     { label: 'Caption', value: caption },
     { label: 'Contributor', value: contributor, facet_value: 'Contributor' },
-    { label: 'Date', value: date, facet_value: 'Date' },
+    { label: 'Date', value: date },
     { label: 'Description', value: description },
-    { label: 'Division', value: admin_set, facet_value: 'admin_set' },
-    { label: 'Keyword', value: keyword, facet_value: 'Keyword' },
+    { label: 'Division', value: admin_set, facet_value: 'LibraryUnit' },
+    { label: 'Keyword', value: keyword },
     { label: 'Language', value: language, facet_value: 'Language' },
     { label: 'Location', value: location, facet_value: 'Location' },
     { label: 'Provenance', value: provenance },
     { label: 'Publisher', value: publisher, facet_value: 'Publisher' },
-    { label: 'Related Url', value: related_url, facet_value: 'related_url' },
+    { label: 'Related Url', value: related_url },
+    { label: 'Rights Holder', value: rights_holder },
+    { label: 'Source', value: source },
+    { label: 'Subject', value: subject, facet_value: 'Subject' },
     {
-      label: 'Rights Holder',
-      value: rights_holder,
-      facet_value: 'rights_holder'
+      label: 'Rights Statement',
+      value: rights_statement_text,
+      facet_value: 'RightsStatement'
     },
-    { label: 'Source', value: source, facet_value: 'source' },
-    { label: 'Subject', value: subject, facet_value: 'subject' },
-    { label: 'Rights Statement', value: rights_statement_text },
-    { label: 'Genre', value: genre, facet_value: 'genre' },
-    {
-      label: 'Physical Description material',
-      value: material,
-      facet_value: 'physical_description'
-    },
-    {
-      label: 'Physical Description size',
-      value: size,
-      facet_value: 'physical_description'
-    },
-    { label: 'Style Period', value: style_period, facet_value: 'style_period' },
-    { label: 'Technique', value: technique, facet_value: 'technique' }
+    { label: 'Genre', value: genre, facet_value: 'Genre' },
+    { label: 'Physical Description material', value: material },
+    { label: 'Physical Description size', value: size },
+    { label: 'Style Period', value: style_period, facet_value: 'StylePeriod' },
+    { label: 'Technique', value: technique, facet_value: 'Technique' }
   ];
 
   const findThisItemPanel = [
