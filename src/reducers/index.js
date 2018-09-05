@@ -15,8 +15,8 @@ const rootReducer = combineReducers({
   general,
   carousels,
   collections,
-  search,
-  auth
+  auth,
+  search
 });
 
 export default rootReducer;

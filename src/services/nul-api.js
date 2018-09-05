@@ -34,7 +34,6 @@ export async function extractApiToken(cookieStr) {
       resolve(nullUser);
     }
 
-    console.log(anonymous());
     let ssoToken = cookies.parse(cookieStr).openAMssoToken;
     if (ssoToken != null) {
       fetch(`${globalVars.ELASTICSEARCH_PROXY_BASE}/auth/callback`, {
@@ -44,7 +43,6 @@ export async function extractApiToken(cookieStr) {
           response
             .json()
             .then(data => {
-              console.log(data);
               localStorage.setItem('currentUser', data.user.mail);
               resolve({ token: data.token });
             })

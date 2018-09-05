@@ -19,7 +19,6 @@ import Login from './Login';
 import Nav from '../components/Nav';
 import Notifications from 'react-notify-toast';
 import ReactivesearchContainer from './ReactivesearchContainer';
-import SearchResultsContainer from './SearchResultsContainer';
 import '../Layout.css';
 import '../libs/nuwebcomm-scripts.js';
 import { fetchApiToken } from '../actions/auth';
@@ -47,11 +46,6 @@ class Layout extends Component {
             <Route exact path="/about" component={About} />
             <Route exact path="/contactus" component={ContactUs} />
             <Route exact path="/login" component={Login} />
-            <Route
-              exact
-              path="/search-results"
-              component={SearchResultsContainer}
-            />
             <Route
               exact
               path="/collections/:id"

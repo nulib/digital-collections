@@ -1,40 +1,51 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { doSearch } from '../actions/search';
 import { withRouter } from 'react-router';
+import { DataSearch } from '@appbaseio/reactivesearch';
+import searchIcon from '../images/library-search.svg';
+import * as actions from '../actions/search';
 
 class GlobalSearch extends Component {
   constructor(props) {
     super(props);
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
+
+    this.textInput = null;
+    this.setTextInputRef = element => {
+      this.textInput = element;
+    };
   }
 
-  state = {
-    searchInput: ''
-  };
-
   styles = {
+    searchIcon: {
+      cursor: 'pointer'
+    },
     section: {
-      display: 'none'
+      open: {
+        display: 'block'
+      },
+      closed: {
+        display: 'none'
+      }
     }
   };
 
-  handleInputChange(e) {
-    this.setState({ searchInput: e.target.value });
-  }
+  handleClick = e => {
+    const queryString = `?search="${this.textInput.value.replace(' ', '+')}"`;
 
-  handleSearchSubmit() {
-    this.props.doSearch(this.state.searchInput);
-    this.props.history.push('/search-results');
-  }
+    this.props.searchToggle();
+    this.props.history.push(`/reactivesearch${queryString}`);
+  };
 
   render() {
     return (
       <section
         className="contain-1440 home-search"
         id="library-search-dropdown"
-        style={this.styles.section}
+        style={
+          this.props.open
+            ? this.styles.section.open
+            : this.styles.section.closed
+        }
       >
         <div className="contain-1120">
           <div className="section-top">
@@ -46,23 +57,31 @@ class GlobalSearch extends Component {
           </div>
           <div className="for-column">
             <span>for</span>
-            <input
-              className="searchbox"
-              maxLength="256"
-              name="query"
-              placeholder="Ex: Cleopatra"
-              size="20"
-              title="search"
-              type="text"
-              value={this.state.searchInput}
-              onChange={this.handleInputChange}
+            <DataSearch
+              className="datasearch web-form"
+              componentId="search"
+              dataField={['full_text']}
+              queryFormat="or"
+              placeholder="Search for an item"
+              innerClass={{
+                input: 'searchbox rs-search-input',
+                list: 'suggestionlist'
+              }}
+              autosuggest={false}
+              icon={
+                <img
+                  style={this.styles.searchIcon}
+                  src={searchIcon}
+                  className="rs-search-icon"
+                  alt="search icon"
+                  onClick={this.handleClick}
+                />
+              }
+              iconPosition="right"
+              filterLabel="search"
+              URLParams={true}
+              innerRef={this.setTextInputRef}
             />
-            <button type="submit" onClick={this.handleSearchSubmit}>
-              <span className="hide-label">Search</span>
-            </button>
-            <div className="advanced-search">
-              <a>Advanced Search</a>
-            </div>
           </div>
         </div>
       </section>
@@ -70,12 +89,12 @@ class GlobalSearch extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  doSearch: searchTerm => dispatch(doSearch(searchTerm))
-});
 const mapStateToProps = state => ({
-  open: state.open,
-  search: state.search
+  open: state.search.open
+});
+
+const mapDispatchToProps = dispatch => ({
+  searchToggle: () => dispatch(actions.searchToggle())
 });
 
 const globalSearchWithRouter = withRouter(GlobalSearch);
