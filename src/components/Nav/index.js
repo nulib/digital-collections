@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import $ from 'jquery';
 import { connect } from 'react-redux';
 import { searchToggle } from '../../actions/search';
 
@@ -12,10 +11,6 @@ const styles = {
 
 const Nav = props => {
   const handleSearchIconClick = e => {
-    // desktop: toggle search menu
-    $('#library-search-dropdown').slideToggle('medium');
-    e.preventDefault();
-
     // Send redux action that Global Search is open or close
     props.searchToggle();
   };
@@ -87,9 +82,8 @@ const Nav = props => {
           </li>
           <li id="library-search-button">
             <a style={styles.searchButton} onClick={handleSearchIconClick}>
-              &nbsp;<span className="hide-label">
-                Click to open search menu
-              </span>
+              &nbsp;
+              <span className="hide-label">Click to open search menu</span>
             </a>
           </li>
         </ul>

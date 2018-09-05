@@ -169,9 +169,11 @@
 }
 #library-search-dropdown .for-column,
 #library-search .for-column {
-  width: 90%;
-  text-align: right;
-  padding-right: 40px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 #library-search-dropdown.home-search,
 #library-search.home-search {
