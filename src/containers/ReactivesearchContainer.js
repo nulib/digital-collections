@@ -101,7 +101,7 @@ class ReactivesearchContainer extends Component {
           </div>
           <main id="main-content" className="content" tabIndex="-1">
             <div>
-              <h2>Reactivesearch</h2>
+              <h2>Search Results</h2>
               <DataSearch
                 className="datasearch web-form"
                 componentId="search"

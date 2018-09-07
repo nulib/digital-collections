@@ -27,7 +27,12 @@
 }
 
 .rs-search-icon {
-  height: 1.1rem;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url('images/library-search.svg') no-repeat;
+  background-size: contain;
+  text-indent: -9999px;
 }
 
 .rs-search-input {
