@@ -13,9 +13,7 @@ const MetadataSummary = props => {
   let creators = [];
 
   if (item.creator) {
-    creators = item.creator
-      .filter(entry => entry.role === 'creator')
-      .map(creator => creator.label);
+    creators = item.creator.map(creator => creator.label);
   }
 
   return (
