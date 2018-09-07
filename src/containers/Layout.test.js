@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import Layout from './Layout';
 import Header from '../components/Header';
 import Nav from '../components/Nav';
-import GlobalSearch from '../components/GlobalSearch';
+import GlobalSearchContainer from '../containers/GlobalSearchContainer';
 import { Switch, Route } from 'react-router-dom';
 
 it('renders without crashing', () => {
