@@ -104,7 +104,11 @@ export class ItemDetailContainer extends Component {
           item: response._source,
           error: error
         },
-        () => this.getCategoryItems()
+        () => {
+          if (!this.state.error) {
+            this.getCategoryItems();
+          }
+        }
       );
     };
     request();
