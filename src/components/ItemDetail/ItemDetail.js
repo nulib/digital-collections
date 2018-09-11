@@ -57,7 +57,7 @@ const ItemDetail = props => {
     { label: 'Contributor', value: contributor, facet_value: 'Contributor' },
     { label: 'Date', value: date },
     { label: 'Description', value: description },
-    { label: 'Division', value: admin_set, facet_value: 'LibraryUnit' },
+    { label: 'Division', value: admin_set, facet_value: 'Library Unit' },
     { label: 'Keyword', value: keyword },
     { label: 'Language', value: language, facet_value: 'Language' },
     { label: 'Location', value: location, facet_value: 'Location' },
@@ -70,24 +70,23 @@ const ItemDetail = props => {
     {
       label: 'Rights Statement',
       value: rights_statement_text,
-      facet_value: 'RightsStatement'
+      facet_value: 'Rights Statement'
     },
     { label: 'Genre', value: genre, facet_value: 'Genre' },
     { label: 'Physical Description material', value: material },
     { label: 'Physical Description size', value: size },
-    { label: 'Style Period', value: style_period, facet_value: 'StylePeriod' },
+    { label: 'Style Period', value: style_period, facet_value: 'Style Period' },
     { label: 'Technique', value: technique, facet_value: 'Technique' }
   ];
 
   const findThisItemPanel = [
     { label: 'Accession', value: accession_number },
-    { label: 'Box Name', value: box_name, facet_value: 'box_name' },
-    { label: 'Box Number', value: box_number, facet_value: 'box_number' },
-    { label: 'Folder Name', value: folder_name, facet_value: 'folder_name' },
+    { label: 'Box Name', value: box_name },
+    { label: 'Box Number', value: box_number },
+    { label: 'Folder Name', value: folder_name },
     {
       label: 'Folder Number',
-      value: folder_number,
-      facet_value: 'folder_number'
+      value: folder_number
     },
     { label: 'Call Number', value: call_number },
     { label: 'Catalog Key', value: catalog_key },
@@ -111,7 +110,7 @@ const ItemDetail = props => {
     { label: 'Title', value: title },
     { label: 'Permalink', value: permalink },
     { label: 'Identifier', value: identifier },
-    { label: 'Licenses', value: license, facet_value: 'License' },
+    { label: 'Licenses', value: license },
     { label: 'Use Statement', value: nul_use_statement }
   ];
 
