@@ -12,3 +12,5 @@ export const IIIF_MEDIUM_ITEM_REGION =
   '/pct:10,10,60,60/256,256/0/default.jpg';
 export const IMAGE_MODEL = 'Image';
 export const COLLECTION_MODEL = 'Collection';
+export const HONEYBADGER_API_KEY = process.env.REACT_APP_HONEYBADGER_API_KEY;
+export const HONEYBADGER_ENV = process.env.REACT_APP_HONEYBADGER_ENV;
