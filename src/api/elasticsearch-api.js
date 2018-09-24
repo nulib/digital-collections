@@ -1,10 +1,10 @@
 import { ELASTICSEARCH_PROXY_BASE } from '../services/global-vars';
 import store from '../store';
+import Honeybadger from 'honeybadger-js';
 
 const elasticsearch = require('elasticsearch');
 const client = new elasticsearch.Client({
-  host: ELASTICSEARCH_PROXY_BASE + '/search',
-  log: 'trace'
+  host: ELASTICSEARCH_PROXY_BASE + '/search'
 });
 const PAGE_SIZE = 500;
 
@@ -17,7 +17,7 @@ function authHeader(headers = {}) {
   return Object.assign(headers, result);
 }
 
-export async function getItem(id) {
+async function asyncGetItem(id) {
   const response = await client.get({
     index: 'common',
     headers: authHeader(),
@@ -28,7 +28,7 @@ export async function getItem(id) {
   return response;
 }
 
-export async function getCollection(id) {
+async function asyncGetCollection(id) {
   const response = await client.get({
     index: 'common',
     headers: authHeader(),
@@ -39,7 +39,7 @@ export async function getCollection(id) {
   return response;
 }
 
-export async function getAllCollections() {
+async function asyncGetAllCollections() {
   const response = await client.search({
     index: 'common',
     headers: authHeader(),
@@ -53,7 +53,7 @@ export async function getAllCollections() {
   return response;
 }
 
-export async function getCollectionItems(id) {
+async function asyncGetCollectionItems(id) {
   const response = await client.search({
     index: 'common',
     headers: authHeader(),
@@ -72,7 +72,7 @@ export async function getCollectionItems(id) {
   return response;
 }
 
-export async function getAdminSetItems(id) {
+async function asyncGetAdminSetItems(id) {
   const response = await client.search({
     index: 'common',
     headers: authHeader(),
@@ -91,7 +91,7 @@ export async function getAdminSetItems(id) {
   return response;
 }
 
-export async function getCollectionsByKeyword(keyword) {
+async function asyncGetCollectionsByKeyword(keyword) {
   const response = await client.search({
     index: 'common',
     headers: authHeader(),
@@ -110,7 +110,7 @@ export async function getCollectionsByKeyword(keyword) {
   return response;
 }
 
-export async function getRecentlyDigitizedItems() {
+async function asyncGetRecentlyDigitizedItems() {
   const response = await client.search({
     index: 'common',
     headers: authHeader(),
@@ -123,3 +123,15 @@ export async function getRecentlyDigitizedItems() {
   });
   return response;
 }
+
+export const getItem = Honeybadger.wrap(asyncGetItem);
+export const getCollection = Honeybadger.wrap(asyncGetCollection);
+export const getAllCollections = Honeybadger.wrap(asyncGetAllCollections);
+export const getCollectionItems = Honeybadger.wrap(asyncGetCollectionItems);
+export const getAdminSetItems = Honeybadger.wrap(asyncGetAdminSetItems);
+export const getCollectionsByKeyword = Honeybadger.wrap(
+  asyncGetCollectionsByKeyword
+);
+export const getRecentlyDigitizedItems = Honeybadger.wrap(
+  asyncGetRecentlyDigitizedItems
+);

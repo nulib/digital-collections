@@ -22,6 +22,13 @@ import ReactivesearchContainer from './ReactivesearchContainer';
 import '../Layout.css';
 import '../libs/nuwebcomm-scripts.js';
 import { fetchApiToken } from '../actions/auth';
+import Honeybadger from 'honeybadger-js';
+
+Honeybadger.configure({
+  apiKey: globalVars.HONEYBADGER_API_KEY,
+  environment: globalVars.HONEYBADGER_ENV,
+  debug: true
+});
 
 class Layout extends Component {
   componentDidMount() {
