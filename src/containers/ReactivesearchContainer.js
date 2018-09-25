@@ -11,6 +11,22 @@ import { Link } from 'react-router-dom';
 import { chopString } from '../services/helpers';
 
 class ReactivesearchContainer extends Component {
+  constructor(props) {
+    super(props);
+
+    this.searchValue = null;
+    this.facetValue = null;
+  }
+
+  componentDidMount() {
+    this.searchValue = this.props.location.state
+      ? this.props.location.state.searchValue
+      : '';
+    this.facetValue = this.props.location.state
+      ? this.props.location.state.facetValue
+      : '';
+  }
+
   onData(res) {
     const url = `/items/${res.id}`;
 
@@ -70,25 +86,32 @@ class ReactivesearchContainer extends Component {
         <div id="page" className="search">
           <div id="sidebar" className="left-sidebar content" tabIndex="-1">
             <div className="box">
-              {facets.map(facet => (
-                <MultiList
-                  key={facet.name}
-                  className={'adam'}
-                  innerClass={multiListInnerClass}
-                  componentId={facet.name.replace(/\s+/g, '')}
-                  dataField={facet.field}
-                  title={facet.name}
-                  showCheckbox={false}
-                  showMissing={true}
-                  showSearch={false}
-                  URLParams={true}
-                  react={{
-                    and: allFilters.filter(entry => {
-                      return entry !== facet.name.replace(/\s+/g, '');
-                    })
-                  }}
-                />
-              ))}
+              {facets.map(facet => {
+                let defaultVal =
+                  this.facetValue && this.facetValue === facet.name
+                    ? [this.searchValue]
+                    : [];
+                return (
+                  <MultiList
+                    key={facet.name}
+                    className={'adam'}
+                    innerClass={multiListInnerClass}
+                    componentId={facet.name.replace(/\s+/g, '')}
+                    dataField={facet.field}
+                    defaultSelected={defaultVal}
+                    title={facet.name}
+                    showCheckbox={false}
+                    showMissing={true}
+                    showSearch={false}
+                    URLParams={true}
+                    react={{
+                      and: allFilters.filter(entry => {
+                        return entry !== facet.name.replace(/\s+/g, '');
+                      })
+                    }}
+                  />
+                );
+              })}
               <DynamicRangeSlider
                 componentId="Date"
                 dataField="year"
