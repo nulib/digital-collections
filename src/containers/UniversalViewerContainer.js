@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { DONUT_URL } from '../services/global-vars';
 import { withRouter } from 'react-router';
 
 /* eslint-disable */
@@ -62,7 +61,7 @@ class UniversalViewerContainer extends Component {
           className="uv"
           data-locale="en-GB:English (GB),cy-GB:Cymraeg"
           data-config=""
-          data-uri={`${DONUT_URL}concern/images/${id}/manifest`}
+          data-uri={item.iiif_manifest}
           /* These are example config options below, but for now seem better without them */
           // data-collectionindex="0"
           // data-manifestindex="0"
