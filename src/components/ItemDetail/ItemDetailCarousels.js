@@ -22,7 +22,7 @@ const ItemDetailCarousels = props => {
       <CarouselSection
         sectionTitle={item.collection[0].title[0]}
         linkTo=""
-        items={collectionItems.items}
+        items={collectionItems}
         slidesPerView={6}
         loading=""
         error=""
@@ -44,7 +44,7 @@ const ItemDetailCarousels = props => {
               <CarouselSection
                 sectionTitle={item.admin_set.title[0]}
                 linkTo=""
-                items={adminSetItems.items}
+                items={adminSetItems}
                 slidesPerView={6}
                 loading=""
                 error=""
@@ -66,8 +66,8 @@ const ItemDetailCarousels = props => {
 };
 
 ItemDetailCarousels.propTypes = {
-  adminSetItems: PropTypes.object.isRequired,
-  collectionItems: PropTypes.object.isRequired,
+  adminSetItems: PropTypes.array.isRequired,
+  collectionItems: PropTypes.array.isRequired,
   item: PropTypes.object.isRequired
 };
 

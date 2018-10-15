@@ -5,11 +5,12 @@ import { withRouter } from 'react-router';
 /* eslint-disable */
 class UniversalViewerContainer extends Component {
   componentDidMount() {
+    console.log('UV componentDidMount');
     this.loadUVEmbedScript();
   }
 
   componentDidUpdate(prevProps) {
-    console.log('UPDATED');
+    console.log('UV componentDidUpdate');
     if (prevProps.location.pathname !== this.props.location.pathname) {
       this.removeUVEmbedScript();
       this.loadUVEmbedScript();
@@ -17,10 +18,14 @@ class UniversalViewerContainer extends Component {
   }
 
   componentWillUnmount() {
-    this.removeUVEmbedScript();
+    // Leaving to a new route, avoid unnecessarily removing UV
+    if (this.props.history.location.pathname !== this.props.match.url) {
+      this.removeUVEmbedScript();
+    }
   }
 
   loadUVEmbedScript() {
+    console.log('loadUVEmbedScript');
     const script = document.createElement('script');
 
     script.id = 'uv-embed-script';
@@ -30,6 +35,7 @@ class UniversalViewerContainer extends Component {
   }
 
   removeUVEmbedScript() {
+    console.log('removeUVEmbedScript');
     const el = document.getElementById('uv-embed-script');
     el.parentNode.removeChild(el);
 
@@ -39,7 +45,10 @@ class UniversalViewerContainer extends Component {
 
   render() {
     const { id, item } = this.props;
+    console.log('UV render()');
     console.log('id', id);
+    console.log('item', item);
+    console.log(' ');
 
     if (!item) {
       return null;
