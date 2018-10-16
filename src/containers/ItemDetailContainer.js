@@ -20,7 +20,6 @@ class ItemDetailContainer extends Component {
   };
 
   componentDidMount() {
-    console.log('ItemDetailContainer mounted');
     const { match } = this.props;
 
     if (!match.params.id) {
@@ -116,10 +115,12 @@ class ItemDetailContainer extends Component {
   }
 
   render() {
-    console.log('render');
-    console.log('state', this.state);
     const { id, item, error, collectionItems, adminSetItems } = this.state;
     const breadCrumbData = item ? this.createBreadcrumbData(item) : [];
+
+    // This check ensures that when changing ids (items) on the same route, Universal Viewer embed
+    // workaround behaves consistently and displays the correct item
+    const idInSync = this.props.match.params.id === id;
 
     const renderDisplay = () => {
       if (error) {
@@ -128,7 +129,7 @@ class ItemDetailContainer extends Component {
       return (
         <div>
           <Breadcrumbs items={breadCrumbData} />
-          <UniversalViewerContainer id={id} item={item} />
+          {idInSync && <UniversalViewerContainer id={id} item={item} />}
           <DetailSummary item={item} />
           {item && (
             <ItemDetailCarousels

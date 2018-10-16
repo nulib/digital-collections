@@ -23,7 +23,7 @@ import '../Layout.css';
 import '../libs/nuwebcomm-scripts.js';
 import { fetchApiToken } from '../actions/auth';
 
-class Layout extends Component {
+export class Layout extends Component {
   componentDidMount() {
     this.props.fetchApiToken();
   }

@@ -5,12 +5,10 @@ import { withRouter } from 'react-router';
 /* eslint-disable */
 class UniversalViewerContainer extends Component {
   componentDidMount() {
-    console.log('UV componentDidMount');
     this.loadUVEmbedScript();
   }
 
   componentDidUpdate(prevProps) {
-    console.log('UV componentDidUpdate');
     if (prevProps.location.pathname !== this.props.location.pathname) {
       this.removeUVEmbedScript();
       this.loadUVEmbedScript();
@@ -24,8 +22,12 @@ class UniversalViewerContainer extends Component {
     }
   }
 
+  /**
+   * Manually add the universal viewer embed script to the DOM
+   * Note: Not a great solution, but the only way (as of now), we've found to render different
+   * embed viewers in a single page application.
+   */
   loadUVEmbedScript() {
-    console.log('loadUVEmbedScript');
     const script = document.createElement('script');
 
     script.id = 'uv-embed-script';
@@ -34,8 +36,11 @@ class UniversalViewerContainer extends Component {
     document.body.appendChild(script);
   }
 
+  /**
+   * Manually removed the universal viewer embed script from the DOM, and put a
+   * hack on the 'window' object to trick UV into re-rendering.
+   */
   removeUVEmbedScript() {
-    console.log('removeUVEmbedScript');
     const el = document.getElementById('uv-embed-script');
     el.parentNode.removeChild(el);
 
@@ -45,11 +50,8 @@ class UniversalViewerContainer extends Component {
 
   render() {
     const { id, item } = this.props;
-    console.log('UV render()');
-    console.log('id', id);
-    console.log('item', item);
-    console.log(' ');
 
+    // No item, no render
     if (!item) {
       return null;
     }
@@ -62,12 +64,13 @@ class UniversalViewerContainer extends Component {
             data-locale="en-GB:English (GB),cy-GB:Cymraeg"
             data-config=""
             data-uri={`${DONUT_URL}concern/images/${id}/manifest`}
-            data-collectionindex="0"
-            data-manifestindex="0"
-            data-sequenceindex="0"
-            data-canvasindex="0"
-            data-xywh="-1742,-20,4698,2007"
-            data-rotation="0"
+            /* These are example config options below, but for now seem better without them */
+            // data-collectionindex="0"
+            // data-manifestindex="0"
+            // data-sequenceindex="0"
+            // data-canvasindex="0"
+            // data-xywh="-1742,-20,4698,2007"
+            // data-rotation="0"
             style={styles.uvWrapper}
           />
         </div>

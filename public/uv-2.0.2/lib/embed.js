@@ -73,8 +73,6 @@
 
 docReady(function() {
     (function (window, document, version, callback) {
-
-        console.log('window.embedScriptIncluded', window.embedScriptIncluded);
         // only run this script once per page.
         if (window.embedScriptIncluded) return;
 
