@@ -19,15 +19,8 @@ export function forceLogout() {
 }
 
 export const fetchApiToken = () => {
-  const cookie = document.cookie;
-
-  return dispatch => {
-    const request = async () => {
-      let response = await nulApi.extractApiToken(cookie);
-
-      // Dispatch success action
-      dispatch(fetchApiTokenSuccess(response));
-    };
-    request();
+  return async dispatch => {
+    let response = await nulApi.extractApiToken(document.cookie);
+    dispatch(fetchApiTokenSuccess(response));
   };
 };

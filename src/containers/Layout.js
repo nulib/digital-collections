@@ -29,7 +29,14 @@ export class Layout extends Component {
   }
 
   render() {
-    const apiToken = this.props.authToken || '';
+    const apiToken = this.props.authToken;
+
+    // Delay rendering of component until the authToken has processed
+    // This avoids 'double' rendering of the entire app's components
+    // TODO: Look into an alternate way to wrap ReactiveBase around only the components which need it?
+    if (typeof apiToken === 'undefined') {
+      return null;
+    }
 
     return (
       <ReactiveBase
