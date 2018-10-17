@@ -10,7 +10,7 @@ import * as elasticsearchParser from '../services/elasticsearch-parser';
 import * as globalVars from '../../src/services/global-vars';
 import ItemDetailCarousels from '../components/ItemDetail/ItemDetailCarousels';
 
-class ItemDetailContainer extends Component {
+export class ItemDetailContainer extends Component {
   state = {
     error: null,
     item: null,

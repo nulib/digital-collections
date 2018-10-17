@@ -40,21 +40,30 @@ it('fetches item data from the api and sets the item on component state', async 
   const wrapper = shallow(
     <ItemDetailContainer match={mockReactRouterProps.match} />
   );
-  const expectedState = {
-    adminSetItems: {},
-    collectionItems: {},
-    error: null,
-    id: '5cd66892-6e63-4476-bd3e-f295355d0302',
-    item: {
-      title: {
-        primary: ['This is the title']
-      }
-    }
-  };
 
-  expect.assertions(1);
+  // Mock all async network requests within the container component
   const data = await elasticsearchApi.getItem(
     '5cd66892-6e63-4476-bd3e-f295355d0302'
   );
-  expect(wrapper.state()).toEqual(expectedState);
+  const data2 = await elasticsearchApi.getAdminSetItems(
+    '5cd66892-6e63-4476-bd3e-f295355d0302'
+  );
+  const data3 = await elasticsearchApi.getCollectionItems(
+    '5cd66892-6e63-4476-bd3e-f295355d0302'
+  );
+
+  // Get derived state after all mocked network requests
+  let wrapperState = wrapper.state();
+
+  expect(wrapperState).toHaveProperty('error');
+  expect(wrapperState).toHaveProperty('collectionItems');
+  expect(wrapperState).toHaveProperty('adminSetItems');
+  expect(wrapperState).toHaveProperty(
+    'id',
+    '5cd66892-6e63-4476-bd3e-f295355d0302'
+  );
+  expect(wrapperState).toHaveProperty(
+    'item.admin_set.id',
+    'c162a37d-00d1-4510-a8bf-06778e43a567'
+  );
 });
