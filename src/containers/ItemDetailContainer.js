@@ -15,8 +15,8 @@ export class ItemDetailContainer extends Component {
     error: null,
     item: null,
     id: null,
-    collectionItems: {},
-    adminSetItems: {}
+    collectionItems: [],
+    adminSetItems: []
   };
 
   componentDidMount() {
@@ -27,7 +27,7 @@ export class ItemDetailContainer extends Component {
         error: 'Missing id in query param'
       });
     }
-    this.getItem(match.params.id);
+    this.getApiData(match.params.id);
   }
 
   componentDidUpdate(prevProps) {
@@ -35,7 +35,7 @@ export class ItemDetailContainer extends Component {
       return;
     }
     if (prevProps.location.pathname !== this.props.location.pathname) {
-      this.getItem(this.props.match.params.id);
+      this.getApiData(this.props.match.params.id);
     }
   }
 
@@ -51,72 +51,76 @@ export class ItemDetailContainer extends Component {
     return crumbs;
   }
 
-  getCategoryItems() {
-    this.getCollectionItems();
-    this.getAdminSetItems();
-  }
+  async getApiData(id) {
+    let itemError = null;
+    let adminSets = {
+      id: null,
+      items: []
+    };
+    let collection = {
+      id: null,
+      items: []
+    };
 
-  getAdminSetItems() {
-    const id = this.state.item.admin_set.id;
-    const request = async () => {
-      const response = await elasticsearchApi.getAdminSetItems(id);
-      const carouselData = await elasticsearchParser.extractCarouselData(
-        response,
+    // First, get the item
+    const itemResponse = await elasticsearchApi.getItem(id);
+    const item = itemResponse._source;
+    adminSets.id = item.admin_set.id;
+    collection.id = item.collection.length > 0 ? item.collection[0].id : null;
+
+    // Handle possible errors
+    if (itemResponse.error) {
+      itemError = itemResponse.error.reason;
+    } else if (!itemResponse.found) {
+      itemError = 'Item not found';
+    }
+    if (itemError) {
+      return this.setState({
+        id: id,
+        item,
+        error: itemError
+      });
+    }
+
+    // Get admin set items for carousel
+    if (adminSets.id) {
+      const adminSetResponse = await elasticsearchApi.getAdminSetItems(
+        adminSets.id
+      );
+      let adminSetData = elasticsearchParser.extractCarouselData(
+        adminSetResponse,
         globalVars.IMAGE_MODEL
       );
-      this.setState({
-        adminSetItems: carouselData
-      });
-    };
-    request();
-  }
-
-  getCollectionItems() {
-    if (this.state.item.collection.length > 0) {
-      const id = this.state.item.collection[0].id;
-      const request = async () => {
-        const response = await elasticsearchApi.getCollectionItems(id);
-        const carouselData = await elasticsearchParser.extractCarouselData(
-          response,
-          globalVars.IMAGE_MODEL
-        );
-        this.setState({
-          collectionItems: carouselData
-        });
-      };
-      request();
+      adminSets.items = adminSetData.items;
     }
-  }
 
-  getItem(id) {
-    const request = async () => {
-      const response = await elasticsearchApi.getItem(id);
-      let error = null;
-
-      if (response.error) {
-        error = response.error.reason;
-      } else if (!response.found) {
-        error = 'Item not found';
-      }
-      this.setState(
-        {
-          id: id,
-          item: response._source,
-          error: error
-        },
-        () => {
-          if (!this.state.error) {
-            this.getCategoryItems();
-          }
-        }
+    // Get collection items for carousel
+    if (item.collection.length > 0) {
+      const collectionResponse = await elasticsearchApi.getCollectionItems(
+        collection.id
       );
-    };
-    request();
+      let collectionData = elasticsearchParser.extractCarouselData(
+        collectionResponse,
+        globalVars.IMAGE_MODEL
+      );
+      collection.items = collectionData.items;
+    }
+
+    this.setState({
+      id,
+      item,
+      adminSetItems: adminSets.items,
+      collectionItems: collection.items
+    });
   }
 
   render() {
     const { id, item, error, collectionItems, adminSetItems } = this.state;
     const breadCrumbData = item ? this.createBreadcrumbData(item) : [];
+
+    // This check ensures that when changing ids (items) on the same route, Universal Viewer embed
+    // workaround behaves consistently and displays the correct item
+    const idInSync = this.props.match.params.id === id;
 
     const renderDisplay = () => {
       if (error) {
@@ -125,7 +129,7 @@ export class ItemDetailContainer extends Component {
       return (
         <div>
           <Breadcrumbs items={breadCrumbData} />
-          <UniversalViewerContainer id={id} item={item} />
+          {idInSync && <UniversalViewerContainer id={id} item={item} />}
           <DetailSummary item={item} />
           {item && (
             <ItemDetailCarousels

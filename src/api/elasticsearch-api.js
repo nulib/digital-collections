@@ -3,8 +3,8 @@ import store from '../store';
 
 const elasticsearch = require('elasticsearch');
 const client = new elasticsearch.Client({
-  host: ELASTICSEARCH_PROXY_BASE + '/search',
-  log: 'trace'
+  host: ELASTICSEARCH_PROXY_BASE + '/search'
+  //log: 'trace'
 });
 const PAGE_SIZE = 500;
 

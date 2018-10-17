@@ -19,7 +19,7 @@ function constructCarouselItems(docs, modelType) {
   return items;
 }
 
-export async function extractCarouselData(elasticsearchResponse, modelType) {
+export function extractCarouselData(elasticsearchResponse, modelType) {
   let obj = {};
 
   obj.numFound = elasticsearchResponse.hits.total;
