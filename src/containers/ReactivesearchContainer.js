@@ -27,6 +27,7 @@ class ReactivesearchContainer extends Component {
       : '';
   }
 
+  // TODO: Turn the return jsx below into a component
   onData(res) {
     const url = `/items/${res.id}`;
 
@@ -81,6 +82,7 @@ class ReactivesearchContainer extends Component {
       label: 'rs-facet-label'
     };
 
+    //TODO: Break this into components
     return (
       <div className="standard-page">
         <div id="page" className="search">

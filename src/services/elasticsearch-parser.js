@@ -5,6 +5,7 @@ function constructCarouselItems(docs, modelType) {
     modelType === globalVars.COLLECTION_MODEL
       ? 'thumbnail_iiif_url'
       : 'representative_file_url'; // this may not hold true as we get other types...
+
   const items = docs.map(doc => {
     let obj = {
       id: doc._id,
@@ -12,8 +13,11 @@ function constructCarouselItems(docs, modelType) {
       imageUrl: doc._source[iiifUrlKey]
         ? `${doc._source[iiifUrlKey]}${globalVars.IIIF_MEDIUM_ITEM_REGION}`
         : '',
-      label: doc._source.title.primary[0]
+      label: doc._source.title.primary[0],
+      description:
+        doc._source.description.length > 0 ? doc._source.description[0] : ''
     };
+
     return obj;
   });
   return items;
@@ -28,6 +32,33 @@ export function extractCarouselData(elasticsearchResponse, modelType) {
     modelType
   );
   return obj;
+}
+
+function getIIIFUrlKey(modelType) {
+  return modelType === globalVars.COLLECTION_MODEL
+    ? 'thumbnail_iiif_url'
+    : 'representative_file_url';
+}
+
+/**
+ * Map data from elastic search response, to what the PhotoGrid component needs
+ * @param {Object} elasticsearchResponse Raw elastic search response object
+ * @param {String} modelType // Item or Collection?
+ */
+export function prepPhotoGridItems(elasticsearchResponse, modelType) {
+  const iiifUrlKey = getIIIFUrlKey(modelType);
+  const { hits } = elasticsearchResponse.hits;
+
+  return hits.map(hit => ({
+    id: hit._id,
+    type: modelType,
+    imageUrl: hit._source[iiifUrlKey]
+      ? `${hit._source[iiifUrlKey]}${globalVars.IIIF_MEDIUM_ITEM_REGION}`
+      : '',
+    label: hit._source.title.primary[0],
+    description:
+      hit._source.description.length > 0 ? hit._source.description[0] : ''
+  }));
 }
 
 /**

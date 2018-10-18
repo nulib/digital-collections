@@ -11,7 +11,7 @@ import Footer from '../components/Footer';
 import GlobalSearchContainer from '../containers/GlobalSearchContainer';
 import * as globalVars from '../services/global-vars';
 import Header from '../components/Header/';
-import HomePage from './HomePage';
+import HomePageContainer from './HomePageContainer';
 import ItemsContainer from './ItemsContainer';
 import ItemDetailContainer from './ItemDetailContainer';
 import CollectionContainer from './CollectionContainer';
@@ -69,7 +69,7 @@ export class Layout extends Component {
               path="/reactivesearch/"
               component={ReactivesearchContainer}
             />
-            <Route exact path="/" component={HomePage} />
+            <Route exact path="/" component={HomePageContainer} />
           </Switch>
           <Footer />
         </div>
