@@ -53,7 +53,6 @@ export class CollectionContainer extends Component {
       }
       // Prep the data for PhotoGrid
       let items = prepPhotoGridItems(response, globalVars.IMAGE_MODEL);
-      console.log('items', items);
       this.setState({ items });
     };
     request();
@@ -88,7 +87,7 @@ export class CollectionContainer extends Component {
               <Breadcrumbs items={breadCrumbData} />
               <h2>{collection && collection.title.primary[0]}</h2>
               <div className="section">
-                {items && <PhotoGrid items={items} />}
+                {items && <PhotoGrid items={items} cols={3} />}
               </div>
             </main>
           </div>

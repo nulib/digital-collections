@@ -75,7 +75,6 @@ function getIIIFUrlKey(modelType) {
 export function prepPhotoGridItems(elasticsearchResponse, modelType) {
   const iiifUrlKey = getIIIFUrlKey(modelType);
   const { hits } = elasticsearchResponse.hits;
-  console.log('hits', elasticsearchResponse.hits);
 
   return hits.map(hit => ({
     id: hit._id,
