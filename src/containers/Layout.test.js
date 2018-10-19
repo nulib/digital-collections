@@ -18,7 +18,6 @@ describe('Layout Component', () => {
   });
 
   xit('renders Header component', () => {
-    console.log('wrapper', wrapper);
     expect(wrapper.find(Header)).toHaveLength(1);
   });
 

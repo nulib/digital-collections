@@ -83,7 +83,6 @@ export class HomePageContainer extends Component {
       response,
       globalVars.COLLECTION_MODEL
     );
-    console.log('keyword items', items);
 
     return items;
   }
@@ -93,12 +92,10 @@ export class HomePageContainer extends Component {
    */
   async getGalleryCollections() {
     let response = await elasticsearchApi.getAllCollections();
-    console.log('response', response);
     const items = elasticsearchParser.prepPhotoGridItems(
       response,
       globalVars.COLLECTION_MODEL
     );
-    console.log('items', items);
 
     return items;
   }
