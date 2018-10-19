@@ -47,7 +47,7 @@ export class HomePageContainer extends Component {
           keywordCollections
         });
       })
-      .catch(error => console.log('handle error'));
+      .catch(error => console.log('Error grabbing data', error));
   }
 
   renderAdditionalGalleries() {
@@ -126,7 +126,7 @@ export class HomePageContainer extends Component {
             <div className="relative-wrapper homepage-hero-wrapper contain-1440">
               <HeroSection heroData={heroData} />
             </div>
-            <section className="standard-page contain-1120">
+            <div className="standard-page contain-1120">
               <PhotoGridSection
                 headline="Recently Digitized Items"
                 linkTo=""
@@ -141,7 +141,7 @@ export class HomePageContainer extends Component {
               />
               <HeroSecondarySection heroData={heroSecondaryData} />
               {this.renderAdditionalGalleries()}
-            </section>
+            </div>
           </main>
         </div>
       </div>

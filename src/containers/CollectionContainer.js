@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import * as elasticsearchApi from '../api/elasticsearch-api.js';
+import { prepPhotoGridItems } from '../services/elasticsearch-parser';
 import Breadcrumbs from '../components/breadcrumbs/Breadcrumbs';
 import ErrorSection from '../components/ErrorSection';
 import Sidebar from '../components/Collection/Sidebar';
 import PhotoGrid from '../components/PhotoGrid';
+import * as globalVars from '../services/global-vars';
 
 export class CollectionContainer extends Component {
   state = {
@@ -47,8 +49,12 @@ export class CollectionContainer extends Component {
 
       if (response.error) {
         error = response.error.reason;
+        return this.setState({ error, items: [] });
       }
-      this.setState({ items: response.hits.hits, error });
+      // Prep the data for PhotoGrid
+      let items = prepPhotoGridItems(response, globalVars.IMAGE_MODEL);
+      console.log('items', items);
+      this.setState({ items });
     };
     request();
   }

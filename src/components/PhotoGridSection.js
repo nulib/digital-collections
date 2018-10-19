@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PhotoBox from './PhotoBox';
+import PhotoGrid from './PhotoGrid';
 import { Link } from 'react-router-dom';
 
 const PhotoGridSection = props => {
@@ -12,10 +12,7 @@ const PhotoGridSection = props => {
           <Link to="/">{props.linkToText}</Link>
         </p>
       </div>
-      <div className="photo-grid contain-1120">
-        {props.items.length > 0 &&
-          props.items.map(item => <PhotoBox key={item.id} item={item} />)}
-      </div>
+      <PhotoGrid items={props.items} />
     </section>
   );
 };

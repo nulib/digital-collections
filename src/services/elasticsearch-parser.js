@@ -13,9 +13,8 @@ function constructCarouselItems(docs, modelType) {
       imageUrl: doc._source[iiifUrlKey]
         ? `${doc._source[iiifUrlKey]}${globalVars.IIIF_MEDIUM_ITEM_REGION}`
         : '',
-      label: doc._source.title.primary[0],
-      description:
-        doc._source.description.length > 0 ? doc._source.description[0] : ''
+      label: getESTitle(doc._source),
+      description: getESDescription(doc._source)
     };
 
     return obj;
@@ -34,6 +33,34 @@ export function extractCarouselData(elasticsearchResponse, modelType) {
   return obj;
 }
 
+/**
+ * Returns 'description' from ElasticSearch data structure
+ * For now, just returns the first description if there are multiples
+ * @param {Object} _source
+ */
+export function getESDescription(_source) {
+  return _source.description && _source.description.length > 0
+    ? _source.description[0]
+    : '';
+}
+
+/**
+ * Returns 'title' from ElasticSearch data structure
+ * For now, just returns the first title if there are multiples
+ * @param {Object} _source
+ */
+export function getESTitle(_source) {
+  if (!_source.title) {
+    return '';
+  }
+  const { title } = _source;
+  let primary = title.primary.length > 0 ? title.primary[0] : '';
+  let alternate =
+    title.alternate && title.alternate.length > 0 ? title.alternate : '';
+
+  return `${primary} ${alternate ? ` (${alternate})` : ''}`;
+}
+
 function getIIIFUrlKey(modelType) {
   return modelType === globalVars.COLLECTION_MODEL
     ? 'thumbnail_iiif_url'
@@ -48,6 +75,7 @@ function getIIIFUrlKey(modelType) {
 export function prepPhotoGridItems(elasticsearchResponse, modelType) {
   const iiifUrlKey = getIIIFUrlKey(modelType);
   const { hits } = elasticsearchResponse.hits;
+  console.log('hits', elasticsearchResponse.hits);
 
   return hits.map(hit => ({
     id: hit._id,
@@ -55,9 +83,8 @@ export function prepPhotoGridItems(elasticsearchResponse, modelType) {
     imageUrl: hit._source[iiifUrlKey]
       ? `${hit._source[iiifUrlKey]}${globalVars.IIIF_MEDIUM_ITEM_REGION}`
       : '',
-    label: hit._source.title.primary[0],
-    description:
-      hit._source.description.length > 0 ? hit._source.description[0] : ''
+    label: getESTitle(hit._source),
+    description: getESDescription(hit._source)
   }));
 }
 
