@@ -18,6 +18,11 @@ export function getLinkPath(item) {
   return `/${linkPath}/${item._id}`;
 }
 
+/**
+ * Helper function to chop a string into a limited word count, from the start of the text
+ * @param {String} str - The string to chop
+ * @param {Number} chopLength How many words to restrict the sentence to
+ */
 export function chopString(str, chopLength) {
   const extraText = str.split(' ').length > chopLength ? '...' : '';
   let chopped = str
