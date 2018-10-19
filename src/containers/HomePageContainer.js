@@ -7,6 +7,7 @@ import { heroSecondaryData } from '../api/heros';
 import * as elasticsearchApi from '../api/elasticsearch-api.js';
 import * as elasticsearchParser from '../services/elasticsearch-parser';
 import * as globalVars from '../services/global-vars';
+import { shuffleArray } from '../services/helpers';
 
 export class HomePageContainer extends Component {
   constructor(props) {
@@ -20,6 +21,9 @@ export class HomePageContainer extends Component {
       'Photography',
       'Berkeley Folk Music Festival'
     ];
+
+    // Default number of results we want displayed in the photo grids, on the homepage
+    this.numResults = 8;
 
     this.state = {
       galleryCollections: [],
@@ -42,8 +46,8 @@ export class HomePageContainer extends Component {
     Promise.all(promises)
       .then(([galleryItems, galleryCollections, ...keywordCollections]) => {
         this.setState({
-          galleryItems,
-          galleryCollections,
+          galleryItems: shuffleArray(galleryItems),
+          galleryCollections: shuffleArray(galleryCollections),
           keywordCollections
         });
       })
@@ -91,7 +95,7 @@ export class HomePageContainer extends Component {
    * Get all collections
    */
   async getGalleryCollections() {
-    let response = await elasticsearchApi.getAllCollections();
+    let response = await elasticsearchApi.getAllCollections(this.numResults);
     const items = elasticsearchParser.prepPhotoGridItems(
       response,
       globalVars.COLLECTION_MODEL
@@ -104,7 +108,9 @@ export class HomePageContainer extends Component {
    * Get recently digitized items
    */
   async getGalleryItems() {
-    let response = await elasticsearchApi.getRecentlyDigitizedItems();
+    let response = await elasticsearchApi.getRecentlyDigitizedItems(
+      this.numResults
+    );
     const items = elasticsearchParser.prepPhotoGridItems(
       response,
       globalVars.IMAGE_MODEL

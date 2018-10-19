@@ -110,12 +110,12 @@ export async function getCollectionsByKeyword(keyword) {
   return response;
 }
 
-export async function getRecentlyDigitizedItems() {
+export async function getRecentlyDigitizedItems(numResults = PAGE_SIZE) {
   const response = await client.search({
     index: 'common',
     headers: authHeader(),
     body: {
-      size: PAGE_SIZE,
+      size: numResults,
       query: {
         match: { 'model.name': 'Image' }
       }
