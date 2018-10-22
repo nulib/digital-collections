@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import Breadcrumbs from '../components/breadcrumbs/Breadcrumbs';
 import PhotoGrid from '../components/PhotoGrid';
-import { fetchCollections } from '../actions';
-import { connect } from 'react-redux';
+import LoadingSpinner from '../components/LoadingSpinner';
+import { getAllCollections } from '../api/elasticsearch-api';
+import { prepPhotoGridItems } from '../services/elasticsearch-parser';
+import * as globalVars from '../services/global-vars';
 
 const breadcrumbItems = [
   { title: 'Collections', link: 'collections' },
@@ -10,30 +12,44 @@ const breadcrumbItems = [
 ];
 
 class AllCollectionsContainer extends Component {
+  state = {
+    allCollections: [],
+    loading: true
+  };
+
   componentDidMount() {
-    document.body.className = 'landing-page';
-    this.props.dispatch(fetchCollections());
+    this.getAllCollections();
+  }
+
+  async getAllCollections() {
+    let response = await getAllCollections(8);
+
+    // Prep the data for PhotoGrid
+    let allCollections = prepPhotoGridItems(
+      response,
+      globalVars.COLLECTION_MODEL
+    );
+    this.setState({ allCollections, loading: false });
   }
 
   render() {
-    const items = this.props.collections.items || [];
+    const { allCollections, loading } = this.state;
 
     return (
-      <div id="page" className="standard-margin">
-        <main id="main-content" className="content" tabIndex="0">
-          <Breadcrumbs items={breadcrumbItems} />
-          <div className="contain-1120">
-            <h2>All Collections</h2>
-          </div>
-          <PhotoGrid items={items} />
-        </main>
+      <div className="standard-page">
+        <div id="page" className="full-width">
+          <main id="main-content" className="content" tabIndex="0">
+            <Breadcrumbs items={breadcrumbItems} />
+            <div className="contain-1120">
+              <h2>All Collections</h2>
+              <LoadingSpinner loading={loading} />
+              <PhotoGrid items={allCollections} />
+            </div>
+          </main>
+        </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  collections: state.collections
-});
-
-export default connect(mapStateToProps)(AllCollectionsContainer);
+export default AllCollectionsContainer;

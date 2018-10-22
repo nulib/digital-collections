@@ -39,12 +39,12 @@ export async function getCollection(id) {
   return response;
 }
 
-export async function getAllCollections() {
+export async function getAllCollections(numResults = PAGE_SIZE) {
   const response = await client.search({
     index: 'common',
     headers: authHeader(),
     body: {
-      size: PAGE_SIZE,
+      size: numResults,
       query: {
         match: { 'model.name': 'Collection' }
       }
