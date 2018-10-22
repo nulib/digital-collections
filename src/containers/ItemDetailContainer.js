@@ -9,14 +9,16 @@ import UniversalViewerContainer from './UniversalViewerContainer';
 import * as elasticsearchParser from '../services/elasticsearch-parser';
 import * as globalVars from '../../src/services/global-vars';
 import ItemDetailCarousels from '../components/ItemDetail/ItemDetailCarousels';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 export class ItemDetailContainer extends Component {
   state = {
-    error: null,
-    item: null,
-    id: null,
+    adminSetItems: [],
     collectionItems: [],
-    adminSetItems: []
+    error: null,
+    id: null,
+    item: null,
+    loading: true
   };
 
   componentDidMount() {
@@ -24,7 +26,8 @@ export class ItemDetailContainer extends Component {
 
     if (!match.params.id) {
       return this.setState({
-        error: 'Missing id in query param'
+        error: 'Missing id in query param',
+        loading: false
       });
     }
     this.getApiData(match.params.id);
@@ -78,7 +81,8 @@ export class ItemDetailContainer extends Component {
       return this.setState({
         id: id,
         item,
-        error: itemError
+        error: itemError,
+        loading: false
       });
     }
 
@@ -107,15 +111,23 @@ export class ItemDetailContainer extends Component {
     }
 
     this.setState({
+      adminSetItems: adminSets.items,
+      collectionItems: collection.items,
       id,
       item,
-      adminSetItems: adminSets.items,
-      collectionItems: collection.items
+      loading: false
     });
   }
 
   render() {
-    const { id, item, error, collectionItems, adminSetItems } = this.state;
+    const {
+      id,
+      item,
+      error,
+      collectionItems,
+      adminSetItems,
+      loading
+    } = this.state;
     const breadCrumbData = item ? this.createBreadcrumbData(item) : [];
 
     // This check ensures that when changing ids (items) on the same route, Universal Viewer embed
@@ -130,16 +142,21 @@ export class ItemDetailContainer extends Component {
         <div>
           <Breadcrumbs items={breadCrumbData} />
           {idInSync && <UniversalViewerContainer id={id} item={item} />}
-          <DetailSummary item={item} />
-          {item && (
-            <ItemDetailCarousels
-              adminSetItems={adminSetItems}
-              collectionItems={collectionItems}
-              error={error}
-              item={item}
-            />
+          <LoadingSpinner loading={loading} />
+          {!loading && (
+            <div>
+              <DetailSummary item={item} />
+              {item && (
+                <ItemDetailCarousels
+                  adminSetItems={adminSetItems}
+                  collectionItems={collectionItems}
+                  error={error}
+                  item={item}
+                />
+              )}
+              <ItemDetail item={item} />
+            </div>
           )}
-          <ItemDetail item={item} />
         </div>
       );
     };
