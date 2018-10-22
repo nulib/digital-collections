@@ -6,13 +6,15 @@ import Breadcrumbs from '../components/breadcrumbs/Breadcrumbs';
 import ErrorSection from '../components/ErrorSection';
 import Sidebar from '../components/Collection/Sidebar';
 import PhotoGrid from '../components/PhotoGrid';
+import LoadingSpinner from '../components/LoadingSpinner';
 import * as globalVars from '../services/global-vars';
 
 export class CollectionContainer extends Component {
   state = {
-    error: null,
     collection: null,
-    items: null
+    error: null,
+    items: null,
+    loading: true
   };
 
   componentDidMount() {
@@ -20,11 +22,14 @@ export class CollectionContainer extends Component {
 
     if (!id) {
       return this.setState({
-        error: 'Missing id in query param'
+        error: 'Missing id in query param',
+        loading: false
       });
     }
-    this.getCollection(id);
-    this.getCollectionItems(id);
+    setTimeout(() => {
+      this.getCollection(id);
+      this.getCollectionItems(id);
+    }, 4000);
   }
 
   getCollection(id) {
@@ -37,7 +42,7 @@ export class CollectionContainer extends Component {
       } else if (!response.found) {
         error = 'Collection not found';
       }
-      this.setState({ collection: response._source, error });
+      this.setState({ collection: response._source, error, loading: false });
     };
     request();
   }
@@ -53,7 +58,7 @@ export class CollectionContainer extends Component {
       }
       // Prep the data for PhotoGrid
       let items = prepPhotoGridItems(response, globalVars.IMAGE_MODEL);
-      this.setState({ items });
+      this.setState({ items, loading: false });
     };
     request();
   }
@@ -71,7 +76,7 @@ export class CollectionContainer extends Component {
   }
 
   render() {
-    const { collection, error, items } = this.state;
+    const { collection, error, items, loading } = this.state;
     const breadCrumbData = collection
       ? this.createBreadcrumbData(collection)
       : [];
@@ -85,10 +90,14 @@ export class CollectionContainer extends Component {
             <Sidebar item={collection} />
             <main id="main-content" className="content" tabIndex="-1">
               <Breadcrumbs items={breadCrumbData} />
-              <h2>{collection && collection.title.primary[0]}</h2>
-              <div className="section">
-                {items && <PhotoGrid items={items} cols={3} />}
-              </div>
+              {!loading && (
+                <div>
+                  <h2>{collection && collection.title.primary[0]}</h2>
+                  <div className="section">
+                    {items && <PhotoGrid items={items} cols={3} />}
+                  </div>
+                </div>
+              )}
             </main>
           </div>
         );
@@ -98,6 +107,7 @@ export class CollectionContainer extends Component {
     return (
       <div className="standard-page">
         <div id="page" className="collection-items">
+          <LoadingSpinner loading={loading} />
           {renderDisplay()}
         </div>
       </div>

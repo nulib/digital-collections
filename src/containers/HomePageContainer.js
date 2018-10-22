@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import HeroSection from '../components/Home/HeroSection';
 import HeroSecondarySection from '../components/Home/HeroSecondarySection';
 import PhotoGridSection from '../components/PhotoGridSection';
+import LoadingSpinner from '../components/LoadingSpinner';
 import { heroData } from '../api/heros';
 import { heroSecondaryData } from '../api/heros';
 import * as elasticsearchApi from '../api/elasticsearch-api.js';
@@ -28,7 +29,8 @@ export class HomePageContainer extends Component {
     this.state = {
       galleryCollections: [],
       galleryItems: [],
-      keywordCollections: []
+      keywordCollections: [],
+      loading: true
     };
   }
 
@@ -48,7 +50,8 @@ export class HomePageContainer extends Component {
         this.setState({
           galleryItems: shuffleArray(galleryItems),
           galleryCollections: shuffleArray(galleryCollections),
-          keywordCollections
+          keywordCollections,
+          loading: false
         });
       })
       .catch(error => console.log('Error grabbing data', error));
@@ -120,7 +123,7 @@ export class HomePageContainer extends Component {
   }
 
   render() {
-    const { galleryCollections, galleryItems } = this.state;
+    const { galleryCollections, galleryItems, loading } = this.state;
 
     return (
       <div className="landing-page">
@@ -130,20 +133,26 @@ export class HomePageContainer extends Component {
               <HeroSection heroData={heroData} />
             </div>
             <div className="standard-page contain-1120">
-              <PhotoGridSection
-                headline="Recently Digitized Items"
-                linkTo=""
-                linkToText="View All Items"
-                items={galleryItems}
-              />
-              <PhotoGridSection
-                headline="Recently Digitized and Updated Collections"
-                linkTo=""
-                linkToText="View All Collections"
-                items={galleryCollections}
-              />
+              <LoadingSpinner loading={loading} />
+              {!loading && (
+                <div>
+                  <PhotoGridSection
+                    headline="Recently Digitized Items"
+                    linkTo=""
+                    linkToText="View All Items"
+                    items={galleryItems}
+                  />
+                  <PhotoGridSection
+                    headline="Recently Digitized and Updated Collections"
+                    linkTo=""
+                    linkToText="View All Collections"
+                    items={galleryCollections}
+                  />
+                </div>
+              )}
+
               <HeroSecondarySection heroData={heroSecondaryData} />
-              {this.renderAdditionalGalleries()}
+              {!loading && this.renderAdditionalGalleries()}
             </div>
           </main>
         </div>
