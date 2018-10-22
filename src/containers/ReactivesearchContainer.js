@@ -7,15 +7,12 @@ import {
   DynamicRangeSlider
 } from '@appbaseio/reactivesearch';
 import searchIcon from '../images/library-search.svg';
-import { Link } from 'react-router-dom';
-import { chopString } from '../services/helpers';
 import PhotoBox from '../components/PhotoBox';
 import {
   getESDescription,
   getESImagePath,
   getESTitle
 } from '../services/elasticsearch-parser';
-import * as globalVars from '../services/global-vars';
 
 class ReactivesearchContainer extends Component {
   constructor(props) {
@@ -46,7 +43,6 @@ class ReactivesearchContainer extends Component {
       label: getESTitle(res),
       type: res.model.name
     };
-    const url = `/items/${res.id}`;
 
     return <PhotoBox key={item.id} item={item} />;
   }
