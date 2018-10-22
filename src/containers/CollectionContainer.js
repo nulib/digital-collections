@@ -107,7 +107,11 @@ export class CollectionContainer extends Component {
     return (
       <div className="standard-page">
         <div id="page" className="collection-items">
-          <LoadingSpinner loading={loading} />
+          {loading && (
+            <div style={{ marginBottom: '5rem' }}>
+              <LoadingSpinner loading={loading} />
+            </div>
+          )}
           {renderDisplay()}
         </div>
       </div>
