@@ -5,6 +5,12 @@ import * as globalVars from '../services/global-vars';
 import placeholderImage from '../images/book_placeholder.jpg';
 import { chopString } from '../services/helpers';
 
+const styles = {
+  title: {
+    lineHeight: '1.5rem'
+  }
+};
+
 const PhotoBox = props => {
   const { description, imageUrl, label, type } = props.item;
   let linkPath = `/${
@@ -18,7 +24,9 @@ const PhotoBox = props => {
         <img alt={label} src={imgSrc} />
       </Link>
       <h4>
-        <Link to={linkPath}>{label}</Link>
+        <Link to={linkPath} style={styles.title}>
+          {label}
+        </Link>
       </h4>
       <p>{chopString(description, 15)}</p>
     </article>

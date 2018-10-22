@@ -9,6 +9,13 @@ import {
 import searchIcon from '../images/library-search.svg';
 import { Link } from 'react-router-dom';
 import { chopString } from '../services/helpers';
+import PhotoBox from '../components/PhotoBox';
+import {
+  getESDescription,
+  getESImagePath,
+  getESTitle
+} from '../services/elasticsearch-parser';
+import * as globalVars from '../services/global-vars';
 
 class ReactivesearchContainer extends Component {
   constructor(props) {
@@ -27,21 +34,21 @@ class ReactivesearchContainer extends Component {
       : '';
   }
 
-  // TODO: Turn the return jsx below into a component
+  /**
+   * Helper function to display a custom component to display instead of ReactiveSearch's
+   * @param {Object} res - ReactivSearch result object
+   */
   onData(res) {
+    let item = {
+      description: getESDescription(res),
+      id: res.id,
+      imageUrl: getESImagePath(res),
+      label: getESTitle(res),
+      type: res.model.name
+    };
     const url = `/items/${res.id}`;
 
-    return (
-      <article key={res._id} className="photo-box" aria-labelledby="grid1">
-        <Link to={url}>
-          <img src={res.thumbnail_url} alt="enter descriptive text" />
-        </Link>
-        <h4 id="grid1">
-          <Link to={url}>{res.title.primary}</Link>
-        </h4>
-        <p>{res.description && chopString(res.description[0], 25)}</p>
-      </article>
-    );
+    return <PhotoBox key={item.id} item={item} />;
   }
 
   render() {

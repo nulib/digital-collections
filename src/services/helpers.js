@@ -1,5 +1,3 @@
-import placeholderImage from '../images/book_placeholder.jpg';
-
 /**
  * Helper function to chop a string into a limited word count, from the start of the text
  * @param {String} str - The string to chop
@@ -12,19 +10,6 @@ export function chopString(str, chopLength) {
     .splice(0, chopLength)
     .join(' ');
   return `${chopped}${extraText}`;
-}
-
-// TODO: might be able to delete this
-export function getImagePath(item) {
-  const imgUrl =
-    item._source.model.name === 'Collection'
-      ? item._source.thumbnail_iiif_url
-      : item._source.representative_file_url;
-
-  const returnUrl =
-    imgUrl === '' ? placeholderImage : `${imgUrl}/full/250,/0/default.jpg`;
-
-  return returnUrl;
 }
 
 // TODO: might be able to delete this
