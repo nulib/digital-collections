@@ -1,4 +1,5 @@
 import * as globalVars from './global-vars';
+import placeholderImage from '../images/book_placeholder.jpg';
 
 function constructCarouselItems(docs, modelType) {
   const iiifUrlKey =
@@ -37,6 +38,7 @@ export function extractCarouselData(elasticsearchResponse, modelType) {
  * Returns 'description' from ElasticSearch data structure
  * For now, just returns the first description if there are multiples
  * @param {Object} _source
+ * @return {String} A single description text string
  */
 export function getESDescription(_source) {
   return _source.description && _source.description.length > 0
@@ -45,9 +47,29 @@ export function getESDescription(_source) {
 }
 
 /**
+ * Helper function to return an image url based on whether item is a Collection or Work
+ * @param {Object} _source
+ * @return {String} url string
+ */
+export function getESImagePath(_source) {
+  const imgUrl =
+    _source.model.name === 'Collection'
+      ? _source.thumbnail_iiif_url
+      : _source.representative_file_url;
+
+  const returnUrl =
+    imgUrl === ''
+      ? placeholderImage
+      : `${imgUrl}${globalVars.IIIF_MEDIUM_ITEM_REGION}`;
+
+  return returnUrl;
+}
+
+/**
  * Returns 'title' from ElasticSearch data structure
  * For now, just returns the first title if there are multiples
  * @param {Object} _source
+ * @return {String} A single title string
  */
 export function getESTitle(_source) {
   if (!_source.title) {
