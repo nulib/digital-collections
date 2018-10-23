@@ -8,11 +8,17 @@ const ThisItem = props => {
     caret: {
       fontSize: '6rem',
       color: '#f0f0f0'
+    },
+    wrapper: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      marginBottom: '5rem'
     }
   };
 
   return (
-    <div className="this-item-wrapper">
+    <div className="this-item-wrapper" style={styles.wrapper}>
       <div>
         <FontAwesomeIcon icon="caret-down" style={styles.caret} />
       </div>

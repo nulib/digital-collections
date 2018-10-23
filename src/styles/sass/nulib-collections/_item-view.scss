@@ -29,6 +29,7 @@
 // Summary of item details underneath the item
 .item-summary-wrapper {
   background: $light-grey;
+  margin-bottom: 5rem;
 
   .item-summary {
     @extend %clearfix;

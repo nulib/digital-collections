@@ -58,7 +58,7 @@ class UniversalViewerContainer extends Component {
 
     return (
       <section className="item-viewer-wrapper">
-        <div className="contain-1120">
+        <div className="contain-1440">
           <div
             className="uv"
             data-locale="en-GB:English (GB),cy-GB:Cymraeg"
@@ -82,7 +82,7 @@ class UniversalViewerContainer extends Component {
 const styles = {
   uvWrapper: {
     width: '100%',
-    height: '600px',
+    height: '700px',
     backgroundColor: '#000'
   }
 };

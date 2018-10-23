@@ -9,7 +9,6 @@ const override = css`
 `;
 
 const LoadingSpinner = props => {
-  console.log('Loader', props);
   return (
     <BarLoader className={override} color={'#4e2a84'} loading={props.loading} />
   );
