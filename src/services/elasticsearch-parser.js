@@ -51,16 +51,16 @@ export function getESDescription(_source) {
  * @param {Object} _source
  * @return {String} url string
  */
-export function getESImagePath(_source) {
+export function getESImagePath(
+  _source,
+  iiifParams = globalVars.IIIF_MEDIUM_ITEM_REGION
+) {
   const imgUrl =
     _source.model.name === 'Collection'
       ? _source.thumbnail_iiif_url
       : _source.representative_file_url;
 
-  const returnUrl =
-    imgUrl === ''
-      ? placeholderImage
-      : `${imgUrl}${globalVars.IIIF_MEDIUM_ITEM_REGION}`;
+  const returnUrl = imgUrl === '' ? placeholderImage : `${imgUrl}${iiifParams}`;
 
   return returnUrl;
 }

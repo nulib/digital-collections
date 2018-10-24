@@ -15,7 +15,8 @@ const LoadingSpinner = props => {
 };
 
 LoadingSpinner.propTypes = {
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
+  padding: PropTypes.bool
 };
 
 export default LoadingSpinner;

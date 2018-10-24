@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import * as elasticsearchApi from '../api/elasticsearch-api.js';
 import Breadcrumbs from '../components/breadcrumbs/Breadcrumbs';
-import DetailSummary from '../components/ItemDetail/DetailSummary/index.js';
 import ErrorSection from '../components/ErrorSection';
 import ItemDetail from '../components/ItemDetail/ItemDetail';
 import UniversalViewerContainer from './UniversalViewerContainer';
@@ -11,6 +10,7 @@ import * as globalVars from '../../src/services/global-vars';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { shuffleArray } from '../services/helpers';
 import ParentCollections from '../components/ItemDetail/ParentCollections';
+import LargeFeature from '../components/ItemDetail/LargeFeature';
 
 export class ItemDetailContainer extends Component {
   constructor(props) {
@@ -27,7 +27,8 @@ export class ItemDetailContainer extends Component {
 
     this.styles = {
       page: {
-        marginTop: '2rem'
+        marginTop: '2rem',
+        marginBottom: '2rem'
       }
     };
   }
@@ -79,7 +80,7 @@ export class ItemDetailContainer extends Component {
 
   async getApiData(id) {
     let item = await this.getItem(id);
-    console.log('item', item);
+
     if (!item) {
       return;
     }
@@ -163,11 +164,12 @@ export class ItemDetailContainer extends Component {
       return (
         <div>
           <Breadcrumbs items={breadCrumbData} />
-          {idInSync && <UniversalViewerContainer id={id} item={item} />}
           <LoadingSpinner loading={loading} />
+
           {!loading && (
             <div>
-              <DetailSummary item={item} />
+              <LargeFeature item={item} />
+              {idInSync && <UniversalViewerContainer id={id} item={item} />}
               <ParentCollections
                 item={item}
                 adminSetItems={adminSetItems}
