@@ -43,7 +43,7 @@ class AllCollectionsContainer extends Component {
             <div className="contain-1120">
               <h2>All Collections</h2>
               <LoadingSpinner loading={loading} />
-              <PhotoGrid items={allCollections} />
+              <PhotoGrid items={allCollections} cols={4} />
             </div>
           </main>
         </div>
