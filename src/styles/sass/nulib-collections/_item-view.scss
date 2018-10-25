@@ -3,7 +3,6 @@
 }
 
 .item-viewer-wrapper {
-  margin: 1.5rem 0;
 
   .item-wrapper {
     text-align: center;
@@ -29,6 +28,7 @@
 // Summary of item details underneath the item
 .item-summary-wrapper {
   background: $light-grey;
+  margin-bottom: 5rem;
 
   .item-summary {
     @extend %clearfix;

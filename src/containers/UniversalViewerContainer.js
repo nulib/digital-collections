@@ -57,23 +57,21 @@ class UniversalViewerContainer extends Component {
     }
 
     return (
-      <section className="item-viewer-wrapper">
-        <div className="contain-1120">
-          <div
-            className="uv"
-            data-locale="en-GB:English (GB),cy-GB:Cymraeg"
-            data-config=""
-            data-uri={`${DONUT_URL}concern/images/${id}/manifest`}
-            /* These are example config options below, but for now seem better without them */
-            // data-collectionindex="0"
-            // data-manifestindex="0"
-            // data-sequenceindex="0"
-            // data-canvasindex="0"
-            // data-xywh="-1742,-20,4698,2007"
-            // data-rotation="0"
-            style={styles.uvWrapper}
-          />
-        </div>
+      <section className="section contain-1120">
+        <div
+          className="uv"
+          data-locale="en-GB:English (GB),cy-GB:Cymraeg"
+          data-config=""
+          data-uri={`${DONUT_URL}concern/images/${id}/manifest`}
+          /* These are example config options below, but for now seem better without them */
+          // data-collectionindex="0"
+          // data-manifestindex="0"
+          // data-sequenceindex="0"
+          // data-canvasindex="0"
+          // data-xywh="-1742,-20,4698,2007"
+          // data-rotation="0"
+          style={styles.uvWrapper}
+        />
       </section>
     );
   }
@@ -82,7 +80,7 @@ class UniversalViewerContainer extends Component {
 const styles = {
   uvWrapper: {
     width: '100%',
-    height: '600px',
+    height: '700px',
     backgroundColor: '#000'
   }
 };

@@ -53,12 +53,12 @@ export async function getAllCollections(numResults = PAGE_SIZE) {
   return response;
 }
 
-export async function getCollectionItems(id) {
+export async function getCollectionItems(id, numResults = PAGE_SIZE) {
   const response = await client.search({
     index: 'common',
     headers: authHeader(),
     body: {
-      size: PAGE_SIZE,
+      size: numResults,
       query: {
         bool: {
           must: [
@@ -72,12 +72,12 @@ export async function getCollectionItems(id) {
   return response;
 }
 
-export async function getAdminSetItems(id) {
+export async function getAdminSetItems(id, numResults = PAGE_SIZE) {
   const response = await client.search({
     index: 'common',
     headers: authHeader(),
     body: {
-      size: PAGE_SIZE,
+      size: numResults,
       query: {
         bool: {
           must: [
@@ -91,12 +91,12 @@ export async function getAdminSetItems(id) {
   return response;
 }
 
-export async function getCollectionsByKeyword(keyword) {
+export async function getCollectionsByKeyword(keyword, numResults = PAGE_SIZE) {
   const response = await client.search({
     index: 'common',
     headers: authHeader(),
     body: {
-      size: PAGE_SIZE,
+      size: numResults,
       query: {
         bool: {
           must: [

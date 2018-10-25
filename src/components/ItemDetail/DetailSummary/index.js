@@ -17,7 +17,7 @@ const DetailSummary = props => {
     <section className="item-summary-wrapper item-section">
       <div className="item-summary contain-1120">
         <article className="item-left">
-          <h3>{item.title.primary}</h3>
+          <h2>{item.title.primary}</h2>
           <p>{item.description}</p>
           <MetadataSummary item={item} />
           <ButtonRow />

@@ -51,16 +51,16 @@ export function getESDescription(_source) {
  * @param {Object} _source
  * @return {String} url string
  */
-export function getESImagePath(_source) {
+export function getESImagePath(
+  _source,
+  iiifParams = globalVars.IIIF_MEDIUM_ITEM_REGION
+) {
   const imgUrl =
     _source.model.name === 'Collection'
       ? _source.thumbnail_iiif_url
       : _source.representative_file_url;
 
-  const returnUrl =
-    imgUrl === ''
-      ? placeholderImage
-      : `${imgUrl}${globalVars.IIIF_MEDIUM_ITEM_REGION}`;
+  const returnUrl = imgUrl === '' ? placeholderImage : `${imgUrl}${iiifParams}`;
 
   return returnUrl;
 }
@@ -93,8 +93,13 @@ function getIIIFUrlKey(modelType) {
  * Map data from elastic search response, to what the PhotoGrid component needs
  * @param {Object} elasticsearchResponse Raw elastic search response object
  * @param {String} modelType // Item or Collection?
+ * @return {Array} of prepped items
  */
-export function prepPhotoGridItems(elasticsearchResponse, modelType) {
+export function prepPhotoGridItems(
+  elasticsearchResponse,
+  modelType,
+  iiifParams = globalVars.IIIF_MEDIUM_ITEM_REGION
+) {
   const iiifUrlKey = getIIIFUrlKey(modelType);
   const { hits } = elasticsearchResponse.hits;
 
@@ -102,7 +107,7 @@ export function prepPhotoGridItems(elasticsearchResponse, modelType) {
     id: hit._id,
     type: modelType,
     imageUrl: hit._source[iiifUrlKey]
-      ? `${hit._source[iiifUrlKey]}${globalVars.IIIF_MEDIUM_ITEM_REGION}`
+      ? `${hit._source[iiifUrlKey]}${iiifParams}`
       : '',
     label: getESTitle(hit._source),
     description: getESDescription(hit._source)
