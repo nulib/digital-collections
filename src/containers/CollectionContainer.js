@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import * as elasticsearchApi from '../api/elasticsearch-api.js';
+import { getESTitle } from '../services/elasticsearch-parser';
 import { prepPhotoGridItems } from '../services/elasticsearch-parser';
 import Breadcrumbs from '../components/breadcrumbs/Breadcrumbs';
 import ErrorSection from '../components/ErrorSection';
@@ -32,6 +33,18 @@ export class CollectionContainer extends Component {
     }, 4000);
   }
 
+  createBreadcrumbData(collection) {
+    let crumbs = [{ title: 'Collections', link: '/collections' }];
+
+    if (collection) {
+      crumbs.push({
+        title: getESTitle(collection),
+        link: ''
+      });
+    }
+    return crumbs;
+  }
+
   getCollection(id) {
     const request = async () => {
       const response = await elasticsearchApi.getCollection(id);
@@ -61,18 +74,6 @@ export class CollectionContainer extends Component {
       this.setState({ items, loading: false });
     };
     request();
-  }
-
-  createBreadcrumbData(collection) {
-    let crumbs = [{ title: 'Collections', link: '/collections' }];
-
-    if (collection) {
-      crumbs.push({
-        title: collection.title.primary[0],
-        link: ''
-      });
-    }
-    return crumbs;
   }
 
   render() {

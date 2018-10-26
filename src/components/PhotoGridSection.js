@@ -9,7 +9,7 @@ const PhotoGridSection = props => {
       <div className="section-top contain-970">
         <h3>{props.headline}</h3>
         <p>
-          <Link to="/">{props.linkToText}</Link>
+          <Link to={props.linkTo}>{props.linkToText}</Link>
         </p>
       </div>
       <PhotoGrid items={props.items} />
