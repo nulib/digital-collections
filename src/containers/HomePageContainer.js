@@ -138,13 +138,13 @@ export class HomePageContainer extends Component {
                 <div>
                   <PhotoGridSection
                     headline="Recently Digitized Items"
-                    linkTo=""
+                    linkTo="/reactivesearch"
                     linkToText="View All Items"
                     items={galleryItems}
                   />
                   <PhotoGridSection
                     headline="Recently Digitized and Updated Collections"
-                    linkTo=""
+                    linkTo="/collections"
                     linkToText="View All Collections"
                     items={galleryCollections}
                   />

@@ -55,11 +55,11 @@ export class ItemDetailContainer extends Component {
   }
 
   createBreadcrumbData(item) {
-    let crumbs = [{ title: 'Items', link: '/search-results' }];
+    let crumbs = [{ title: 'Items', link: '/reactivesearch' }];
 
     if (item) {
       crumbs.push({
-        title: item.title.primary[0],
+        title: elasticsearchParser.getESTitle(item),
         link: ''
       });
     }
