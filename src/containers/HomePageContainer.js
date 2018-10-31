@@ -8,7 +8,6 @@ import { heroSecondaryData } from '../api/heros';
 import * as elasticsearchApi from '../api/elasticsearch-api.js';
 import * as elasticsearchParser from '../services/elasticsearch-parser';
 import * as globalVars from '../services/global-vars';
-import { shuffleArray } from '../services/helpers';
 
 export class HomePageContainer extends Component {
   constructor(props) {
@@ -48,8 +47,8 @@ export class HomePageContainer extends Component {
     Promise.all(promises)
       .then(([galleryItems, galleryCollections, ...keywordCollections]) => {
         this.setState({
-          galleryItems: shuffleArray(galleryItems),
-          galleryCollections: shuffleArray(galleryCollections),
+          galleryItems: galleryItems,
+          galleryCollections: galleryCollections,
           keywordCollections,
           loading: false
         });

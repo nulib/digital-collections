@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const PhotoGridSection = props => {
   return (
-    <section>
+    <section className="section">
       <div className="section-top contain-970">
         <h3>{props.headline}</h3>
         <p>
