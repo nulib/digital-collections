@@ -22,7 +22,7 @@ class AllCollectionsContainer extends Component {
   }
 
   async getAllCollections() {
-    let response = await getAllCollections(8);
+    let response = await getAllCollections(100);
 
     // Prep the data for PhotoGrid
     let allCollections = prepPhotoGridItems(
