@@ -7,6 +7,19 @@ const client = new elasticsearch.Client({
   //log: 'trace'
 });
 const PAGE_SIZE = 500;
+const getObjBase = {
+  index: 'common',
+  headers: authHeader()
+};
+const sortKey = {
+  sort: [
+    {
+      modified_date: {
+        order: 'desc'
+      }
+    }
+  ]
+};
 
 function authHeader(headers = {}) {
   let result = {};
@@ -19,8 +32,7 @@ function authHeader(headers = {}) {
 
 export async function getItem(id) {
   const response = await client.get({
-    index: 'common',
-    headers: authHeader(),
+    ...getObjBase,
     ignore: [404],
     type: '_all',
     id: id
@@ -30,8 +42,7 @@ export async function getItem(id) {
 
 export async function getCollection(id) {
   const response = await client.get({
-    index: 'common',
-    headers: authHeader(),
+    ...getObjBase,
     ignore: [404],
     type: '_all',
     id: id
@@ -41,13 +52,13 @@ export async function getCollection(id) {
 
 export async function getAllCollections(numResults = PAGE_SIZE) {
   const response = await client.search({
-    index: 'common',
-    headers: authHeader(),
+    ...getObjBase,
     body: {
       size: numResults,
       query: {
         match: { 'model.name': 'Collection' }
-      }
+      },
+      ...sortKey
     }
   });
   return response;
@@ -55,8 +66,7 @@ export async function getAllCollections(numResults = PAGE_SIZE) {
 
 export async function getCollectionItems(id, numResults = PAGE_SIZE) {
   const response = await client.search({
-    index: 'common',
-    headers: authHeader(),
+    ...getObjBase,
     body: {
       size: numResults,
       query: {
@@ -66,7 +76,8 @@ export async function getCollectionItems(id, numResults = PAGE_SIZE) {
             { match: { 'collection.id': id } }
           ]
         }
-      }
+      },
+      ...sortKey
     }
   });
   return response;
@@ -74,8 +85,7 @@ export async function getCollectionItems(id, numResults = PAGE_SIZE) {
 
 export async function getAdminSetItems(id, numResults = PAGE_SIZE) {
   const response = await client.search({
-    index: 'common',
-    headers: authHeader(),
+    ...getObjBase,
     body: {
       size: numResults,
       query: {
@@ -85,7 +95,8 @@ export async function getAdminSetItems(id, numResults = PAGE_SIZE) {
             { match: { 'admin_set.id': id } }
           ]
         }
-      }
+      },
+      ...sortKey
     }
   });
   return response;
@@ -93,8 +104,7 @@ export async function getAdminSetItems(id, numResults = PAGE_SIZE) {
 
 export async function getCollectionsByKeyword(keyword, numResults = PAGE_SIZE) {
   const response = await client.search({
-    index: 'common',
-    headers: authHeader(),
+    ...getObjBase,
     body: {
       size: numResults,
       query: {
@@ -104,22 +114,28 @@ export async function getCollectionsByKeyword(keyword, numResults = PAGE_SIZE) {
             { match: { keyword: keyword } }
           ]
         }
-      }
+      },
+      ...sortKey
     }
   });
   return response;
 }
 
+/**
+ * Get all Work items from indexer
+ * @param {Number} numResults - Function caller can specify how many results they want back
+ */
 export async function getRecentlyDigitizedItems(numResults = PAGE_SIZE) {
   const response = await client.search({
-    index: 'common',
-    headers: authHeader(),
+    ...getObjBase,
     body: {
       size: numResults,
       query: {
         match: { 'model.name': 'Image' }
-      }
+      },
+      ...sortKey
     }
   });
+  console.log('response', response);
   return response;
 }
