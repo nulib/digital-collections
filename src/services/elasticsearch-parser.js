@@ -76,11 +76,15 @@ export function getESTitle(_source) {
     return '';
   }
   const { title } = _source;
-  let primary = title.primary.length > 0 ? title.primary[0] : '';
-  let alternate =
-    title.alternate && title.alternate.length > 0 ? title.alternate : '';
 
-  return `${primary} ${alternate ? ` (${alternate})` : ''}`;
+  // Single title
+  if (title.primary.length === 0) {
+    return title.primary.length;
+  }
+  // Multiple titles, delimit with a comma
+  return title.primary.map((title, i) => {
+    return i > 0 ? `, ${title}` : title;
+  });
 }
 
 function getIIIFUrlKey(modelType) {
