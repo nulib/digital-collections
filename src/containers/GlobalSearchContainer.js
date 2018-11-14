@@ -25,7 +25,7 @@ class GlobalSearchContainer extends Component {
   handleClick = e => {
     const queryString = `?search="${this.textInput.value.replace(' ', '+')}"`;
     this.props.searchToggle();
-    this.props.history.push(`/reactivesearch${queryString}`);
+    this.props.history.push(`/search${queryString}`);
   };
 
   render() {
