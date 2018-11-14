@@ -65,10 +65,7 @@ export class Layout extends Component {
             />
             <Route path="/items/:id" component={ItemDetailContainer} />
             <Route path="/items/" component={ItemsContainer} />
-            <Route
-              path="/reactivesearch/"
-              component={ReactivesearchContainer}
-            />
+            <Route path="/search/" component={ReactivesearchContainer} />
             <Route exact path="/" component={HomePageContainer} />
           </Switch>
           <Footer />

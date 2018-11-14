@@ -55,7 +55,7 @@ export class ItemDetailContainer extends Component {
   }
 
   createBreadcrumbData(item) {
-    let crumbs = [{ title: 'Items', link: '/reactivesearch' }];
+    let crumbs = [{ title: 'Items', link: '/search' }];
 
     if (item) {
       crumbs.push({

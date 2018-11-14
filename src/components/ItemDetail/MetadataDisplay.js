@@ -13,7 +13,7 @@ const MetadataDisplay = props => {
     return (
       <Link
         to={{
-          pathname: '/reactivesearch',
+          pathname: '/search',
           state: {
             facetValue: facetValue,
             searchValue: searchValue

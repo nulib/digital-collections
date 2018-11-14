@@ -28,7 +28,7 @@ it('sets an error state in componentDidMount() when no item id is present in the
 it('creates default breadCrumbData, and additional breadCrumbData when another item is passed in', () => {
   const wrapper = shallow(<ItemDetailContainer match={{ params: {} }} />);
   const instance = wrapper.instance();
-  let defaultCrumbs = [{ title: 'Items', link: '/reactivesearch' }];
+  let defaultCrumbs = [{ title: 'Items', link: '/search' }];
   const item = { title: { primary: ['This is the primary title'] } };
 
   expect(instance.createBreadcrumbData()).toEqual(defaultCrumbs);
