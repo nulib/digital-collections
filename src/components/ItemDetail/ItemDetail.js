@@ -8,8 +8,8 @@ const ItemDetail = props => {
   }
 
   const {
-    title: { primary: [title] } = '',
-    title: { alternate: [alternate] } = '',
+    title: { primary: title } = '',
+    title: { alternate: alternateTitle } = '',
     abstract: [abstract] = '',
     caption: [caption] = '',
     collection = null,
@@ -50,7 +50,7 @@ const ItemDetail = props => {
 
   const metadataPanel = [
     { label: 'Title', value: title },
-    { label: 'Alternate Title', value: alternate },
+    { label: 'Alternate Title', value: alternateTitle },
     { label: 'Abstract', value: abstract },
     { label: 'Caption', value: caption },
     { label: 'Creator', value: creator, facet_value: 'Creator' },
