@@ -19,6 +19,9 @@ class GlobalSearchContainer extends Component {
   styles = {
     searchIcon: {
       cursor: 'pointer'
+    },
+    inputWrapper: {
+      width: '450px'
     }
   };
 
@@ -26,6 +29,12 @@ class GlobalSearchContainer extends Component {
     const queryString = `?search="${this.textInput.value.replace(' ', '+')}"`;
     this.props.searchToggle();
     this.props.history.push(`/search${queryString}`);
+  };
+
+  handleKeyPress = e => {
+    if (e.key === 'Enter') {
+      this.handleClick(e);
+    }
   };
 
   render() {
@@ -46,6 +55,7 @@ class GlobalSearchContainer extends Component {
             <div className="for-column">
               <span>for</span>
               <DataSearch
+                style={this.styles.inputWrapper}
                 className="datasearch web-form"
                 componentId="search"
                 dataField={['full_text']}
@@ -62,8 +72,6 @@ class GlobalSearchContainer extends Component {
                     style={this.styles.searchIcon}
                     className="rs-search-icon"
                     alt="search icon"
-                    onClick={this.handleClick}
-                    onKeyPress={this.handleClick}
                   >
                     Search
                   </a>
@@ -72,6 +80,8 @@ class GlobalSearchContainer extends Component {
                 filterLabel="search"
                 URLParams={true}
                 innerRef={this.setTextInputRef}
+                onClick={this.handleClick}
+                onKeyPress={this.handleKeyPress}
               />
             </div>
           </div>

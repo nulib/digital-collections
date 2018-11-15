@@ -65,7 +65,7 @@ const Header = () => {
       <div id="bottom-bar" className="contain-1120">
         <div id="site-name">
           <h1>
-            <Link to="/">LIBRARIES - DIGITAL COLLECTIONS</Link>
+            <Link to="/">LIBRARIES | DIGITAL COLLECTIONS</Link>
           </h1>
         </div>
       </div>

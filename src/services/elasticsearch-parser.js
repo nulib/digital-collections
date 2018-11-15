@@ -66,8 +66,7 @@ export function getESImagePath(
 }
 
 /**
- * Returns 'title' from ElasticSearch data structure
- * For now, just returns the first title if there are multiples
+ * Returns 'title' from ElasticSearch data structure, and handles multiple title formatting
  * @param {Object} _source
  * @return {String} A single title string
  */
@@ -76,15 +75,11 @@ export function getESTitle(_source) {
     return '';
   }
   const { title } = _source;
-
-  // Single title
-  if (title.primary.length === 0) {
-    return title.primary.length;
-  }
-  // Multiple titles, delimit with a comma
-  return title.primary.map((title, i) => {
+  let titleArray = title.primary.map((title, i) => {
     return i > 0 ? `, ${title}` : title;
   });
+
+  return titleArray.join('');
 }
 
 function getIIIFUrlKey(modelType) {
