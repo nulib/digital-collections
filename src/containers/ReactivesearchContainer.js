@@ -166,7 +166,7 @@ class ReactivesearchContainer extends Component {
                   'model.name': 'Image'
                 }
               })}
-              loader={<LoadingSpinner loading="true" />}
+              loader={<LoadingSpinner loading={true} />}
               size={12}
               pagination={true}
               paginationAt="bottom"

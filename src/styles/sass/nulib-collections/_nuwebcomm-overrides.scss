@@ -3,12 +3,19 @@
   border-top: 1px solid $light-grey;
 }
 
-.expander1 h3 > a, 
+.expander1 h3 > a,
 .expander1 h4 > a {
   @include collapsible-down-arrow();
 }
 
-.expander1 h3.open a, 
+.expander1 h3.open a,
 .expander1 h4.open a {
   @include collapsible-right-arrow();
+}
+
+// Override form inputs only being 50% wide
+.web-form {
+  input.rs-search-input {
+    width: 100%;
+  }
 }
