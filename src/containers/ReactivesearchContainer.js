@@ -3,8 +3,7 @@ import {
   DataSearch,
   MultiList,
   SelectedFilters,
-  ReactiveList,
-  DynamicRangeSlider
+  ReactiveList
 } from '@appbaseio/reactivesearch';
 import searchIcon from '../images/library-search.svg';
 import PhotoBox from '../components/PhotoBox';
@@ -14,11 +13,11 @@ import {
   getESTitle
 } from '../services/elasticsearch-parser';
 import LoadingSpinner from '../components/LoadingSpinner';
+import YearSlider from '../components/reactive-search-wrappers/YearSlider';
 
 class ReactivesearchContainer extends Component {
   constructor(props) {
     super(props);
-
     this.searchValue = null;
     this.facetValue = null;
   }
@@ -118,14 +117,7 @@ class ReactivesearchContainer extends Component {
                   />
                 );
               })}
-              <DynamicRangeSlider
-                componentId="Date"
-                dataField="year"
-                title="Date"
-                showHistogram={true}
-                showFilter={true}
-                stepValue={10}
-              />
+              <YearSlider />
             </div>
           </div>
           <main id="main-content" className="content" tabIndex="-1">
