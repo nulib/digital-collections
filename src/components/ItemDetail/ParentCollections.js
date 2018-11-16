@@ -3,9 +3,11 @@ import FeatureBoxSection from '../FeatureBoxSection';
 import PropTypes from 'prop-types';
 import ThisItem from './ThisItem';
 import SectionTop from '../SectionTop';
+import { facetValues } from '../../services/reactive-search';
 
 const ParentCollections = props => {
   const { adminSetItems, collectionItems, item } = props;
+  const adminSetTitle = item.admin_set ? item.admin_set.title[0] : '';
 
   return (
     <section>
@@ -14,9 +16,16 @@ const ParentCollections = props => {
           <div>
             <SectionTop
               sectionTitle="Library Division"
-              optionalSubhead={item.admin_set.title[0]}
+              optionalSubhead={adminSetTitle}
               optionalButtons={[
-                { label: 'View All Items in Collection', url: '/' }
+                {
+                  label: 'View All Items in Library Division',
+                  url: '/search',
+                  state: {
+                    facetValue: facetValues.LIBRARY_UNIT,
+                    searchValue: adminSetTitle
+                  }
+                }
               ]}
             />
             <FeatureBoxSection items={adminSetItems} />
@@ -30,7 +39,14 @@ const ParentCollections = props => {
               sectionTitle="Collection"
               optionalSubhead={item.collection[0].title[0]}
               optionalButtons={[
-                { label: 'View All Items in Collection', url: '/' }
+                {
+                  label: 'View All Items in Collection',
+                  url: '/search',
+                  state: {
+                    facetValue: facetValues.COLLECTION,
+                    searchValue: item.collection[0].title[0]
+                  }
+                }
               ]}
             />
             <FeatureBoxSection items={collectionItems} />

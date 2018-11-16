@@ -19,7 +19,13 @@ const SectionTop = props => {
         <ul className="center-list">
           {optionalButtons.map(optionalButton => (
             <li key={optionalButton.label}>
-              <Link className="button" to={optionalButton.url}>
+              <Link
+                className="button"
+                to={{
+                  pathname: optionalButton.url,
+                  state: optionalButton.state
+                }}
+              >
                 {optionalButton.label}
               </Link>
             </li>
