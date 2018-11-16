@@ -14,6 +14,11 @@ import {
 } from '../services/elasticsearch-parser';
 import LoadingSpinner from '../components/LoadingSpinner';
 import YearSlider from '../components/reactive-search-wrappers/YearSlider';
+import {
+  GLOBAL_SEARCH_BAR_COMPONENT_ID,
+  imageFacets,
+  imageFilters
+} from '../services/reactive-search';
 
 class ReactivesearchContainer extends Component {
   constructor(props) {
@@ -48,35 +53,7 @@ class ReactivesearchContainer extends Component {
   }
 
   render() {
-    const facets = [
-      { name: 'Collection', field: 'collection.title.keyword' },
-      { name: 'Creator', field: 'creator.label.keyword' },
-      { name: 'Contributor', field: 'contributor.label.keyword' },
-      { name: 'Genre', field: 'genre.label.keyword' },
-      { name: 'Language', field: 'language.label.keyword' },
-      { name: 'Library Unit', field: 'admin_set.title.keyword' },
-      { name: 'Rights Statement', field: 'rights_statement.label.keyword' },
-      { name: 'Style Period', field: 'style_period.label.keyword' },
-      { name: 'Subject', field: 'subject.label.keyword' },
-      { name: 'Technique', field: 'technique.label.keyword' },
-      { name: 'Visibility', field: 'visibility.keyword' }
-    ];
-
-    const allFilters = [
-      'search',
-      'Date',
-      'Visibility',
-      'Technique',
-      'Subject',
-      'StylePeriod',
-      'RightsStatement',
-      'LibraryUnit',
-      'Language',
-      'Genre',
-      'Contributor',
-      'Creator',
-      'Collection'
-    ];
+    const allFilters = [GLOBAL_SEARCH_BAR_COMPONENT_ID, ...imageFilters];
 
     // Css class name helper
     const multiListInnerClass = {
@@ -91,7 +68,7 @@ class ReactivesearchContainer extends Component {
         <div id="page" className="search">
           <div id="sidebar" className="left-sidebar content" tabIndex="-1">
             <div className="box">
-              {facets.map(facet => {
+              {imageFacets.map(facet => {
                 let defaultVal =
                   this.facetValue && this.facetValue === facet.name
                     ? [this.searchValue]
@@ -125,7 +102,7 @@ class ReactivesearchContainer extends Component {
               <h2>Search Results</h2>
               <DataSearch
                 className="datasearch web-form"
-                componentId="search"
+                componentId={GLOBAL_SEARCH_BAR_COMPONENT_ID}
                 dataField={['full_text']}
                 queryFormat="or"
                 placeholder="Search for an item"
@@ -142,7 +119,7 @@ class ReactivesearchContainer extends Component {
                   />
                 }
                 iconPosition="right"
-                filterLabel="search"
+                filterLabel="Search"
                 URLParams={true}
               />
             </div>

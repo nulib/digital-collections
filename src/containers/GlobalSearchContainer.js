@@ -4,6 +4,7 @@ import { withRouter } from 'react-router';
 import { DataSearch } from '@appbaseio/reactivesearch';
 import * as actions from '../actions/search';
 import { SlideDown } from 'react-slidedown';
+import { GLOBAL_SEARCH_BAR_COMPONENT_ID } from '../services/reactive-search';
 import 'react-slidedown/lib/slidedown.css';
 
 class GlobalSearchContainer extends Component {
@@ -55,33 +56,36 @@ class GlobalSearchContainer extends Component {
             <div className="for-column">
               <span>for</span>
               <DataSearch
+                autosuggest={false}
                 style={this.styles.inputWrapper}
                 className="datasearch web-form"
-                componentId="search"
+                componentId={GLOBAL_SEARCH_BAR_COMPONENT_ID}
                 dataField={['full_text']}
-                queryFormat="or"
-                placeholder="Search for an item"
-                innerClass={{
-                  input: 'searchbox rs-search-input',
-                  list: 'suggestionlist'
-                }}
-                autosuggest={false}
+                filterLabel="Search"
                 icon={
                   <a
                     tabIndex="0"
                     style={this.styles.searchIcon}
                     className="rs-search-icon"
                     alt="search icon"
+                    onClick={this.handleClick}
+                    onKeyPress={this.handleKeyPress}
                   >
                     Search
                   </a>
                 }
                 iconPosition="right"
-                filterLabel="search"
-                URLParams={true}
                 innerRef={this.setTextInputRef}
+                innerClass={{
+                  input: 'searchbox rs-search-input',
+                  list: 'suggestionlist'
+                }}
                 onClick={this.handleClick}
                 onKeyPress={this.handleKeyPress}
+                queryFormat="or"
+                placeholder="Search for an item"
+                showFilter={false}
+                URLParams={true}
               />
             </div>
           </div>

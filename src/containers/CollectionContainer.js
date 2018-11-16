@@ -17,22 +17,13 @@ import {
   getESTitle
 } from '../services/elasticsearch-parser';
 import searchIcon from '../images/library-search.svg';
+import {
+  COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID,
+  imageFilters
+} from '../services/reactive-search';
 
-const allFilters = [
-  'collection-search',
-  'Date',
-  'Visibility',
-  'Technique',
-  'Subject',
-  'StylePeriod',
-  'RightsStatement',
-  'LibraryUnit',
-  'Language',
-  'Genre',
-  'Contributor',
-  'Creator',
-  'Collection'
-];
+// 'collection-search' is the Da
+const allFilters = [COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID, ...imageFilters];
 
 export class CollectionContainer extends Component {
   state = {
@@ -116,16 +107,11 @@ export class CollectionContainer extends Component {
                 <div>
                   <h2>{collection && collection.title.primary[0]}</h2>
                   <DataSearch
-                    className="datasearch web-form"
-                    componentId="collection-search"
-                    dataField={['full_text']}
-                    queryFormat="or"
-                    placeholder="Search within collection"
-                    innerClass={{
-                      input: 'searchbox rs-search-input',
-                      list: 'suggestionlist'
-                    }}
                     autosuggest={false}
+                    className="datasearch web-form"
+                    componentId={COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID}
+                    dataField={['full_text']}
+                    filterLabel="Collections search"
                     icon={
                       <img
                         src={searchIcon}
@@ -134,8 +120,13 @@ export class CollectionContainer extends Component {
                       />
                     }
                     iconPosition="right"
-                    filterLabel="search"
-                    URLParams={true}
+                    innerClass={{
+                      input: 'searchbox rs-search-input',
+                      list: 'suggestionlist'
+                    }}
+                    queryFormat="or"
+                    placeholder="Search within collection"
+                    URLParams={false}
                   />
                   <SelectedFilters />
                   <ReactiveList
