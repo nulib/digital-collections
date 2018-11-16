@@ -1,4 +1,5 @@
-.rs-facet-title {
+.rs-facet-title,
+.rs-facet-title > h2 {
   @extend h4;
 }
 
