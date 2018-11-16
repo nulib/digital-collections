@@ -58,7 +58,13 @@ export async function getAllCollections(numResults = PAGE_SIZE) {
       query: {
         match: { 'model.name': 'Collection' }
       },
-      ...sortKey
+      sort: [
+        {
+          'title.primary.keyword': {
+            order: 'asc'
+          }
+        }
+      ]
     }
   });
   return response;
