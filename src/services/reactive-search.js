@@ -6,9 +6,11 @@ export const facetValues = {
   COLLECTION: 'Collection',
   CONTRIBUTOR: 'Contributor',
   CREATOR: 'Creator',
+  DATE: 'Date',
   GENRE: 'Genre',
   LANGUAGE: 'Language',
   LIBRARY_UNIT: 'Library Unit',
+  LOCATION: 'Location',
   RIGHTS_STATEMENT: 'Rights Statement',
   STYLE_PERIOD: 'Style Period',
   SUBJECT: 'Subject',
@@ -24,6 +26,7 @@ export const imageFacets = [
   { name: facetValues.GENRE, field: 'genre.label.keyword' },
   { name: facetValues.LANGUAGE, field: 'language.label.keyword' },
   { name: facetValues.LIBRARY_UNIT, field: 'admin_set.title.keyword' },
+  { name: facetValues.LOCATION, field: 'based_near.label.keyword' },
   {
     name: facetValues.RIGHTS_STATEMENT,
     field: 'rights_statement.label.keyword'
@@ -36,16 +39,17 @@ export const imageFacets = [
 
 // These are common filters used for an Image in ReactivSearch components
 export const imageFilters = [
-  'Collection',
-  'Contributor',
-  'Creator',
-  'Date',
-  'Genre',
-  'Language',
+  facetValues.COLLECTION,
+  facetValues.CONTRIBUTOR,
+  facetValues.CREATOR,
+  facetValues.DATE,
+  facetValues.GENRE,
+  facetValues.LANGUAGE,
+  facetValues.LOCATION,
   'LibraryUnit',
   'RightsStatement',
   'StylePeriod',
-  'Subject',
-  'Technique',
-  'Visibility'
+  facetValues.SUBJECT,
+  facetValues.TECHNIQUE,
+  facetValues.VISIBILITY
 ];

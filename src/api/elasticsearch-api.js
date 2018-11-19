@@ -142,6 +142,5 @@ export async function getRecentlyDigitizedItems(numResults = PAGE_SIZE) {
       ...sortKey
     }
   });
-  console.log('response', response);
   return response;
 }
