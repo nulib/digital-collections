@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
   DataSearch,
-  MultiList,
   SelectedFilters,
   ReactiveList
 } from '@appbaseio/reactivesearch';
@@ -19,6 +18,7 @@ import {
   imageFacets,
   imageFilters
 } from '../services/reactive-search';
+import RSMultiList from '../components/reactive-search-wrappers/RSMultiList';
 
 class ReactivesearchContainer extends Component {
   constructor(props) {
@@ -55,13 +55,6 @@ class ReactivesearchContainer extends Component {
   render() {
     const allFilters = [GLOBAL_SEARCH_BAR_COMPONENT_ID, ...imageFilters];
 
-    // Css class name helper
-    const multiListInnerClass = {
-      title: 'rs-facet-title',
-      list: 'rs-facet-list',
-      label: 'rs-facet-label'
-    };
-
     //TODO: Break this into components
     return (
       <div className="standard-page">
@@ -73,28 +66,18 @@ class ReactivesearchContainer extends Component {
                   this.facetValue && this.facetValue === facet.name
                     ? [this.searchValue]
                     : [];
+
                 return (
-                  <MultiList
+                  <RSMultiList
                     key={facet.name}
-                    className={'adam'}
-                    innerClass={multiListInnerClass}
-                    componentId={facet.name.replace(/\s+/g, '')}
-                    dataField={facet.field}
-                    defaultSelected={defaultVal}
+                    allFilters={allFilters}
+                    defaultVal={defaultVal}
+                    facet={facet}
                     title={facet.name}
-                    showCheckbox={false}
-                    showMissing={true}
-                    showSearch={false}
-                    URLParams={true}
-                    react={{
-                      and: allFilters.filter(entry => {
-                        return entry !== facet.name.replace(/\s+/g, '');
-                      })
-                    }}
                   />
                 );
               })}
-              <YearSlider />
+              <YearSlider title="Date" />
             </div>
           </div>
           <main id="main-content" className="content" tabIndex="-1">
