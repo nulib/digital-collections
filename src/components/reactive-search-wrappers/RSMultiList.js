@@ -10,7 +10,7 @@ const multiListInnerClass = {
 };
 
 const RSMultiList = props => {
-  const { allFilters, defaultVal, facet, title } = props;
+  const { allFilters, defaultVal = [], facet, title } = props;
 
   return (
     <MultiList

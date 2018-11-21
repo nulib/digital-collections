@@ -27,6 +27,10 @@ class ReactivesearchContainer extends Component {
     this.facetValue = null;
   }
 
+  state = {
+    componentLoaded: false
+  };
+
   componentDidMount() {
     this.searchValue = this.props.location.state
       ? this.props.location.state.searchValue
@@ -34,6 +38,8 @@ class ReactivesearchContainer extends Component {
     this.facetValue = this.props.location.state
       ? this.props.location.state.facetValue
       : '';
+
+    this.setState({ componentLoaded: true });
   }
 
   /**
@@ -54,6 +60,7 @@ class ReactivesearchContainer extends Component {
 
   render() {
     const allFilters = [GLOBAL_SEARCH_BAR_COMPONENT_ID, ...imageFilters];
+    const { componentLoaded } = this.state;
 
     //TODO: Break this into components
     return (
@@ -61,22 +68,23 @@ class ReactivesearchContainer extends Component {
         <div id="page" className="search">
           <div id="sidebar" className="left-sidebar content" tabIndex="-1">
             <div className="box">
-              {imageFacets.map(facet => {
-                let defaultVal =
-                  this.facetValue && this.facetValue === facet.name
-                    ? [this.searchValue]
-                    : [];
+              {componentLoaded &&
+                imageFacets.map(facet => {
+                  let defaultVal =
+                    this.facetValue && this.facetValue === facet.name
+                      ? [this.searchValue]
+                      : [];
 
-                return (
-                  <RSMultiList
-                    key={facet.name}
-                    allFilters={allFilters}
-                    defaultVal={defaultVal}
-                    facet={facet}
-                    title={facet.name}
-                  />
-                );
-              })}
+                  return (
+                    <RSMultiList
+                      key={facet.name}
+                      allFilters={allFilters}
+                      defaultVal={defaultVal}
+                      facet={facet}
+                      title={facet.name}
+                    />
+                  );
+                })}
               <YearSlider title="Date" />
             </div>
           </div>
