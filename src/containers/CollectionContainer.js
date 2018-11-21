@@ -126,6 +126,7 @@ export class CollectionContainer extends Component {
                     }}
                     queryFormat="or"
                     placeholder="Search within collection"
+                    showFilter={true}
                     URLParams={false}
                   />
                   <SelectedFilters />

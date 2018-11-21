@@ -27,9 +27,8 @@ class GlobalSearchContainer extends Component {
   };
 
   handleClick = e => {
-    const queryString = `?search="${this.textInput.value.replace(' ', '+')}"`;
     this.props.searchToggle();
-    this.props.history.push(`/search${queryString}`);
+    this.props.history.push(`/search`);
   };
 
   handleKeyPress = e => {
@@ -85,7 +84,7 @@ class GlobalSearchContainer extends Component {
                 queryFormat="or"
                 placeholder="Search for an item"
                 showFilter={false}
-                URLParams={true}
+                URLParams={false}
               />
             </div>
           </div>
