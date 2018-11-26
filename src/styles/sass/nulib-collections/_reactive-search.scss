@@ -5,6 +5,8 @@
 
 .rs-facet-list {
   margin: 1em 0 !important;
+  overflow-x: none;
+  overflow-y: auto;
 
   li {
     height: auto !important;

@@ -3,7 +3,7 @@ import { DynamicRangeSlider } from '@appbaseio/reactivesearch';
 import PropTypes from 'prop-types';
 
 const YearSlider = props => {
-  const title = typeof props.title === undefined ? 'Date' : '';
+  const title = typeof props.title === 'undefined' ? 'Date' : props.title;
 
   return (
     <DynamicRangeSlider

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
   DataSearch,
-  MultiList,
   SelectedFilters,
   ReactiveList
 } from '@appbaseio/reactivesearch';
@@ -19,6 +18,7 @@ import {
   imageFacets,
   imageFilters
 } from '../services/reactive-search';
+import RSMultiList from '../components/reactive-search-wrappers/RSMultiList';
 
 class ReactivesearchContainer extends Component {
   constructor(props) {
@@ -27,6 +27,10 @@ class ReactivesearchContainer extends Component {
     this.facetValue = null;
   }
 
+  state = {
+    componentLoaded: false
+  };
+
   componentDidMount() {
     this.searchValue = this.props.location.state
       ? this.props.location.state.searchValue
@@ -34,6 +38,8 @@ class ReactivesearchContainer extends Component {
     this.facetValue = this.props.location.state
       ? this.props.location.state.facetValue
       : '';
+
+    this.setState({ componentLoaded: true });
   }
 
   /**
@@ -54,13 +60,7 @@ class ReactivesearchContainer extends Component {
 
   render() {
     const allFilters = [GLOBAL_SEARCH_BAR_COMPONENT_ID, ...imageFilters];
-
-    // Css class name helper
-    const multiListInnerClass = {
-      title: 'rs-facet-title',
-      list: 'rs-facet-list',
-      label: 'rs-facet-label'
-    };
+    const { componentLoaded } = this.state;
 
     //TODO: Break this into components
     return (
@@ -68,33 +68,24 @@ class ReactivesearchContainer extends Component {
         <div id="page" className="search">
           <div id="sidebar" className="left-sidebar content" tabIndex="-1">
             <div className="box">
-              {imageFacets.map(facet => {
-                let defaultVal =
-                  this.facetValue && this.facetValue === facet.name
-                    ? [this.searchValue]
-                    : [];
-                return (
-                  <MultiList
-                    key={facet.name}
-                    className={'adam'}
-                    innerClass={multiListInnerClass}
-                    componentId={facet.name.replace(/\s+/g, '')}
-                    dataField={facet.field}
-                    defaultSelected={defaultVal}
-                    title={facet.name}
-                    showCheckbox={false}
-                    showMissing={true}
-                    showSearch={false}
-                    URLParams={true}
-                    react={{
-                      and: allFilters.filter(entry => {
-                        return entry !== facet.name.replace(/\s+/g, '');
-                      })
-                    }}
-                  />
-                );
-              })}
-              <YearSlider />
+              {componentLoaded &&
+                imageFacets.map(facet => {
+                  let defaultVal =
+                    this.facetValue && this.facetValue === facet.name
+                      ? [this.searchValue]
+                      : [];
+
+                  return (
+                    <RSMultiList
+                      key={facet.name}
+                      allFilters={allFilters}
+                      defaultVal={defaultVal}
+                      facet={facet}
+                      title={facet.name}
+                    />
+                  );
+                })}
+              <YearSlider title="Date" />
             </div>
           </div>
           <main id="main-content" className="content" tabIndex="-1">
