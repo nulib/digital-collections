@@ -118,24 +118,32 @@ class ReactivesearchContainer extends Component {
             <ReactiveList
               componentId="results"
               dataField="title"
-              react={{
-                and: allFilters
-              }}
               defaultQuery={(value, props) => ({
                 match: {
                   'model.name': 'Image'
-                }
+                },
+                sort: [
+                  {
+                    'title.primary.keyword': {
+                      order: 'asc'
+                    }
+                  }
+                ]
               })}
-              loader={<LoadingSpinner loading={true} />}
-              size={12}
-              pagination={true}
-              paginationAt="bottom"
-              onData={this.onData}
               innerClass={{
                 list: 'rs-result-list photo-grid three-grid',
                 pagination: 'rs-pagination',
                 resultsInfo: 'rs-results-info'
               }}
+              loader={<LoadingSpinner loading={true} />}
+              onData={this.onData}
+              pagination={true}
+              paginationAt="bottom"
+              react={{
+                and: allFilters
+              }}
+              size={12}
+              //sortBy="asc"
             />
           </main>
         </div>

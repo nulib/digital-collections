@@ -1,6 +1,7 @@
 import React from 'react';
 import Login from '../Login';
 import { Link } from 'react-router-dom';
+import QuickLinks from './QuickLinks';
 
 const Header = () => {
   return (
@@ -33,35 +34,13 @@ const Header = () => {
               <li>
                 <Login />
               </li>
-              <li className="resources">
-                Global Dropdown
-                <span className="dropdown-arrow" />
-                <ul>
-                  <li>
-                    <Link to="/">Global Drop Link 1</Link>
-                  </li>
-                  <li>
-                    <Link to="/">Global Drop Link 2</Link>
-                  </li>
-                  <li>
-                    <Link to="/">Global Drop Link 3</Link>
-                  </li>
-                </ul>
-              </li>
             </ul>
           </div>
         </div>
       </div>
-      <div id="quick-links" aria-label="quick links navigation">
-        <ul>
-          <li>
-            <Link to="/">Quick Link 1</Link>
-          </li>
-          <li>
-            <Link to="/">Contact Us</Link>
-          </li>
-        </ul>
-      </div>
+
+      <QuickLinks />
+
       <div id="bottom-bar" className="contain-1120">
         <div id="site-name">
           <h1>

@@ -16,7 +16,7 @@ import ItemsContainer from './ItemsContainer';
 import ItemDetailContainer from './ItemDetailContainer';
 import CollectionContainer from './CollectionContainer';
 import Login from './Login';
-import Nav from '../components/Nav';
+import NavContainer from './NavContainer';
 import Notifications from 'react-notify-toast';
 import ReactivesearchContainer from './ReactivesearchContainer';
 import '../Layout.css';
@@ -47,7 +47,7 @@ export class Layout extends Component {
         <div>
           <Header />
           <Notifications />
-          <Nav />
+          <NavContainer />
           <GlobalSearchContainer />
           <Switch>
             <Route exact path="/about" component={About} />
