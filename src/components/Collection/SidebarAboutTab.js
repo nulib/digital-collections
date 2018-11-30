@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { chopString } from '../../services/helpers';
+import { getESDescription } from '../../services/elasticsearch-parser';
 
 const SidebarAboutTab = props => {
   const { item } = props;
@@ -7,7 +9,7 @@ const SidebarAboutTab = props => {
   return (
     <div>
       <h3>Collection Description</h3>
-      <p>{item.description}</p>
+      <p>{chopString(getESDescription(item), 70)}</p>
       <h4>Dates / Origin</h4>
       <ul>
         <li>Circa 1916 (Approximate)</li>
