@@ -17,8 +17,7 @@ export const IIIF_FEATURE_BOX_REGION =
   process.env.REACT_APP_IIIF_FEATURE_BOX_REGION ||
   '/pct:10,10,60,38.4/345,/0/default.jpg';
 export const IIIF_LARGE_FEATURE_REGION =
-  process.env.REACT_APP_IIIF_LARGE_FEATURE_REGION ||
-  '/pct:10,10,80,40/455,/0/default.jpg';
+  process.env.REACT_APP_IIIF_LARGE_FEATURE_REGION || '/full/300,/0/default.jpg';
 export const IMAGE_MODEL = 'Image';
 export const COLLECTION_MODEL = 'Collection';
 export const HONEYBADGER_API_KEY = process.env.REACT_APP_HONEYBADGER_API_KEY;

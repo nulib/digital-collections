@@ -5,8 +5,8 @@ import Permalink from './DetailSummary/Permalink';
 import SocialLinks from './DetailSummary/SocialLinks';
 import DownloadRow from './DetailSummary/DownloadRow';
 import PropTypes from 'prop-types';
-import img from '../../images/455x255.gif';
 import * as globalVars from '../../services/global-vars';
+import { chopString } from '../../services/helpers';
 
 const LargeFeature = props => {
   const { item } = props;
@@ -42,7 +42,7 @@ const LargeFeature = props => {
           <h4>{title}</h4>
           <img alt={title} src={imageUrl} />
           <div className="text">
-            <p>{description}</p>
+            <p>{chopString(description, 70)}</p>
           </div>
           <ButtonRow />
         </div>
