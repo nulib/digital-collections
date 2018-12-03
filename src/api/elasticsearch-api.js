@@ -144,3 +144,13 @@ export async function getRecentlyDigitizedItems(numResults = PAGE_SIZE) {
   });
   return response;
 }
+
+export async function getTotalItemCount() {
+  const response = await client.search({
+    ...getObjBase,
+    body: {
+      size: 0
+    }
+  });
+  return response;
+}

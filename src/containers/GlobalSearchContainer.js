@@ -6,7 +6,16 @@ import * as actions from '../actions/search';
 import { SlideDown } from 'react-slidedown';
 import { GLOBAL_SEARCH_BAR_COMPONENT_ID } from '../services/reactive-search';
 import 'react-slidedown/lib/slidedown.css';
+import { getTotalItemCount } from '../api/elasticsearch-api';
 
+const styles = {
+  searchIcon: {
+    cursor: 'pointer'
+  },
+  inputWrapper: {
+    width: '450px'
+  }
+};
 class GlobalSearchContainer extends Component {
   constructor(props) {
     super(props);
@@ -17,14 +26,21 @@ class GlobalSearchContainer extends Component {
     };
   }
 
-  styles = {
-    searchIcon: {
-      cursor: 'pointer'
-    },
-    inputWrapper: {
-      width: '450px'
-    }
+  state = {
+    totalItemCount: null
   };
+
+  componentDidMount() {
+    this.getTotalItems();
+  }
+
+  async getTotalItems() {
+    let response = await getTotalItemCount();
+
+    this.setState({
+      totalItemCount: response.hits.total
+    });
+  }
 
   handleClick = e => {
     this.props.searchToggle();
@@ -38,6 +54,8 @@ class GlobalSearchContainer extends Component {
   };
 
   render() {
+    const { totalItemCount } = this.state;
+
     return (
       <SlideDown closed={!this.props.open}>
         <section
@@ -47,16 +65,14 @@ class GlobalSearchContainer extends Component {
           <div className="contain-1120">
             <div className="section-top">
               <p className="subhead">
-                {
-                  " Explore 729,730 items digitized from Northwestern's digital collections. "
-                }
+                {`Explore ${totalItemCount} items digitized from Northwestern's digital collections.`}
               </p>
             </div>
             <div className="for-column">
               <span>for</span>
               <DataSearch
                 autosuggest={false}
-                style={this.styles.inputWrapper}
+                style={styles.inputWrapper}
                 className="datasearch web-form"
                 componentId={GLOBAL_SEARCH_BAR_COMPONENT_ID}
                 dataField={['full_text']}
@@ -64,7 +80,7 @@ class GlobalSearchContainer extends Component {
                 icon={
                   <a
                     tabIndex="0"
-                    style={this.styles.searchIcon}
+                    style={styles.searchIcon}
                     className="rs-search-icon"
                     alt="search icon"
                     onClick={this.handleClick}
