@@ -1,6 +1,8 @@
 import * as actionTypes from './types';
 import * as elasticsearchApi from '../api/elasticsearch-api.js';
 
+// TODO: Remove this?
+
 /*
   Action creators
  */

@@ -3,8 +3,7 @@ import HeroSection from '../components/Home/HeroSection';
 import HeroSecondarySection from '../components/Home/HeroSecondarySection';
 import PhotoGridSection from '../components/PhotoGridSection';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { heroData } from '../api/heros';
-import { heroSecondaryData } from '../api/heros';
+import { heroFava, heroWPA, heroSecondaryData } from '../api/heros';
 import * as elasticsearchApi from '../api/elasticsearch-api.js';
 import * as elasticsearchParser from '../services/elasticsearch-parser';
 import * as globalVars from '../services/global-vars';
@@ -31,6 +30,9 @@ export class HomePageContainer extends Component {
       keywordCollections: [],
       loading: true
     };
+
+    // For now randomly (50%) display alternate hero image
+    this.heroBool = Math.random() >= 0.5;
   }
 
   componentDidMount() {
@@ -129,7 +131,7 @@ export class HomePageContainer extends Component {
         <div id="page">
           <main id="main-content" className="content" tabIndex="0">
             <div className="relative-wrapper homepage-hero-wrapper contain-1440">
-              <HeroSection heroData={heroData} />
+              <HeroSection heroData={this.heroBool ? heroWPA : heroFava} />
             </div>
             <div className="standard-page contain-1120">
               <LoadingSpinner loading={loading} />
