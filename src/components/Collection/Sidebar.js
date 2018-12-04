@@ -5,7 +5,7 @@ import SidebarAboutTab from './SidebarAboutTab';
 import SidebarFilterTab from './SidebarFilterTab';
 
 const Sidebar = props => {
-  const { item } = props;
+  const { collectionItems, item } = props;
 
   return (
     <div
@@ -24,7 +24,10 @@ const Sidebar = props => {
             <div id="tab-content">
               {/* About tab */}
               <TabPanel>
-                <SidebarAboutTab item={item} />
+                <SidebarAboutTab
+                  item={item}
+                  collectionItems={collectionItems}
+                />
               </TabPanel>
 
               {/* Filter */}
@@ -40,6 +43,7 @@ const Sidebar = props => {
 };
 
 Sidebar.propTypes = {
+  collectionItems: PropTypes.array,
   item: PropTypes.object
 };
 
