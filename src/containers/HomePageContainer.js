@@ -40,7 +40,7 @@ export class HomePageContainer extends Component {
 
     // Combine async network requests
     promises.push(this.getGalleryItems());
-    promises.push(this.getGalleryCollections());
+    promises.push(this.getFeaturedCollections());
     this.galleryKeywords.forEach(keyword =>
       promises.push(this.getGalleryByKeyword(keyword))
     );
@@ -80,6 +80,19 @@ export class HomePageContainer extends Component {
         />
       );
     });
+  }
+
+  async getFeaturedCollections() {
+    let response = await elasticsearchApi.getCollectionsByKeyword(
+      'Featured',
+      8
+    );
+    const collections = elasticsearchParser.prepPhotoGridItems(
+      response,
+      globalVars.COLLECTION_MODEL
+    );
+
+    return collections;
   }
 
   /**
@@ -138,13 +151,13 @@ export class HomePageContainer extends Component {
               {!loading && (
                 <div>
                   <PhotoGridSection
-                    headline="Recently Digitized Items"
+                    headline="Recently Added and Updated Items"
                     linkTo="/search"
                     linkToText="View All Items"
                     items={galleryItems}
                   />
                   <PhotoGridSection
-                    headline="Recently Digitized and Updated Collections"
+                    headline="Featured Collections"
                     linkTo="/collections"
                     linkToText="View All Collections"
                     items={galleryCollections}

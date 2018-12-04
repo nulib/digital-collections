@@ -30,22 +30,21 @@ function authHeader(headers = {}) {
   return Object.assign(headers, result);
 }
 
-export async function getItem(id) {
-  const response = await client.get({
+export async function getAdminSetItems(id, numResults = PAGE_SIZE) {
+  const response = await client.search({
     ...getObjBase,
-    ignore: [404],
-    type: '_all',
-    id: id
-  });
-  return response;
-}
-
-export async function getCollection(id) {
-  const response = await client.get({
-    ...getObjBase,
-    ignore: [404],
-    type: '_all',
-    id: id
+    body: {
+      size: numResults,
+      query: {
+        bool: {
+          must: [
+            { match: { 'model.name': 'Image' } },
+            { match: { 'admin_set.id': id } }
+          ]
+        }
+      },
+      ...sortKey
+    }
   });
   return response;
 }
@@ -70,40 +69,12 @@ export async function getAllCollections(numResults = PAGE_SIZE) {
   return response;
 }
 
-export async function getCollectionItems(id, numResults = PAGE_SIZE) {
-  const response = await client.search({
+export async function getCollection(id) {
+  const response = await client.get({
     ...getObjBase,
-    body: {
-      size: numResults,
-      query: {
-        bool: {
-          must: [
-            { match: { 'model.name': 'Image' } },
-            { match: { 'collection.id': id } }
-          ]
-        }
-      },
-      ...sortKey
-    }
-  });
-  return response;
-}
-
-export async function getAdminSetItems(id, numResults = PAGE_SIZE) {
-  const response = await client.search({
-    ...getObjBase,
-    body: {
-      size: numResults,
-      query: {
-        bool: {
-          must: [
-            { match: { 'model.name': 'Image' } },
-            { match: { 'admin_set.id': id } }
-          ]
-        }
-      },
-      ...sortKey
-    }
+    ignore: [404],
+    type: '_all',
+    id: id
   });
   return response;
 }
@@ -123,6 +94,36 @@ export async function getCollectionsByKeyword(keyword, numResults = PAGE_SIZE) {
       },
       ...sortKey
     }
+  });
+
+  return response;
+}
+
+export async function getCollectionItems(id, numResults = PAGE_SIZE) {
+  const response = await client.search({
+    ...getObjBase,
+    body: {
+      size: numResults,
+      query: {
+        bool: {
+          must: [
+            { match: { 'model.name': 'Image' } },
+            { match: { 'collection.id': id } }
+          ]
+        }
+      },
+      ...sortKey
+    }
+  });
+  return response;
+}
+
+export async function getItem(id) {
+  const response = await client.get({
+    ...getObjBase,
+    ignore: [404],
+    type: '_all',
+    id: id
   });
   return response;
 }
