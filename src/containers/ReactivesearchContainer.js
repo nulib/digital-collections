@@ -143,7 +143,6 @@ class ReactivesearchContainer extends Component {
                 and: allFilters
               }}
               size={12}
-              //sortBy="asc"
             />
           </main>
         </div>

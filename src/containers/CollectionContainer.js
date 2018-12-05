@@ -28,6 +28,7 @@ const allFilters = [COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID, ...imageFilters];
 export class CollectionContainer extends Component {
   state = {
     collection: null,
+    collectionItems: [],
     error: null,
     items: null,
     loading: true
@@ -42,7 +43,11 @@ export class CollectionContainer extends Component {
         loading: false
       });
     }
+    // Grab collection data from ElasticSearch
     this.getCollection(id);
+
+    // Grab collection items to pass to About tab
+    this.getCollectionItems(id);
   }
 
   createBreadcrumbData(collection) {
@@ -67,9 +72,20 @@ export class CollectionContainer extends Component {
       } else if (!response.found) {
         error = 'Collection not found';
       }
+
       this.setState({ collection: response._source, error, loading: false });
     };
     request();
+  }
+
+  async getCollectionItems(id) {
+    let response = await elasticsearchApi.getCollectionItems(id, 1000);
+
+    if (response.hits.hits.length > 0) {
+      this.setState({
+        collectionItems: response.hits.hits
+      });
+    }
   }
 
   /**
@@ -89,7 +105,7 @@ export class CollectionContainer extends Component {
   }
 
   render() {
-    const { collection, error, loading } = this.state;
+    const { collection, collectionItems, error, loading } = this.state;
     const breadCrumbData = collection
       ? this.createBreadcrumbData(collection)
       : [];
@@ -100,7 +116,7 @@ export class CollectionContainer extends Component {
       if (collection) {
         return (
           <div>
-            <Sidebar item={collection} />
+            <Sidebar item={collection} collectionItems={collectionItems} />
             <main id="main-content" className="content" tabIndex="-1">
               <Breadcrumbs items={breadCrumbData} />
               {!loading && (
