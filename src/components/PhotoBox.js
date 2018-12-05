@@ -13,9 +13,11 @@ const styles = {
 
 const PhotoBox = props => {
   const { description, imageUrl, label, type } = props.item;
+
   let linkPath = `/${
     type === globalVars.IMAGE_MODEL ? 'items' : 'collections'
   }/${props.item.id}`;
+
   let imgSrc = imageUrl ? imageUrl : placeholderImage;
 
   return (
@@ -28,12 +30,13 @@ const PhotoBox = props => {
           {label}
         </Link>
       </h4>
-      <p>{chopString(description, 15)}</p>
+      {!props.hideDescriptions && <p>{chopString(description, 15)}</p>}
     </article>
   );
 };
 
 PhotoBox.propTypes = {
+  hideDescriptions: PropTypes.bool,
   item: PropTypes.shape({
     description: PropTypes.string,
     id: PropTypes.string,

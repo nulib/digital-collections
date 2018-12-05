@@ -92,6 +92,7 @@ function getIIIFUrlKey(modelType) {
  * Map data from elastic search response, to what the PhotoGrid component needs
  * @param {Object} elasticsearchResponse Raw elastic search response object
  * @param {String} modelType // Item or Collection?
+ * @param {String} iiifParams /// IIIF image sizing params to use - defaults to a medium region
  * @return {Array} of prepped items
  */
 export function prepPhotoGridItems(

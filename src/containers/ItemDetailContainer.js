@@ -18,6 +18,7 @@ export class ItemDetailContainer extends Component {
 
     this.state = {
       adminSetItems: [],
+      collectionId: null,
       collectionItems: [],
       error: null,
       id: null,
@@ -42,6 +43,7 @@ export class ItemDetailContainer extends Component {
         loading: false
       });
     }
+
     this.getApiData(match.params.id);
   }
 
@@ -73,8 +75,7 @@ export class ItemDetailContainer extends Component {
     );
     return elasticsearchParser.prepPhotoGridItems(
       adminSetResponse,
-      globalVars.IMAGE_MODEL,
-      globalVars.IIIF_FEATURE_BOX_REGION
+      globalVars.IMAGE_MODEL
     );
   }
 
@@ -103,14 +104,18 @@ export class ItemDetailContainer extends Component {
       return [];
     }
 
+    // Pass this property down the tree for linking purposes in Show All Items in Collection
+    this.setState({
+      collectionId: collection[0].id
+    });
+
     let response = await elasticsearchApi.getCollectionItems(
       collection[0].id,
       4
     );
     let items = elasticsearchParser.prepPhotoGridItems(
       response,
-      globalVars.IMAGE_MODEL,
-      globalVars.IIIF_FEATURE_BOX_REGION
+      globalVars.IMAGE_MODEL
     );
 
     return items;
@@ -147,6 +152,7 @@ export class ItemDetailContainer extends Component {
       id,
       item,
       error,
+      collectionId,
       collectionItems,
       adminSetItems,
       loading
@@ -174,6 +180,7 @@ export class ItemDetailContainer extends Component {
                 item={item}
                 adminSetItems={adminSetItems}
                 collectionItems={collectionItems}
+                collectionId={collectionId}
               />
               <ItemDetail item={item} />
             </div>
