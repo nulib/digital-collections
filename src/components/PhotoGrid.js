@@ -23,13 +23,20 @@ function PhotoGrid(props) {
   return (
     <div className={className}>
       {props.items.length > 0 &&
-        props.items.map(item => <PhotoBox key={item.id} item={item} />)}
+        props.items.map(item => (
+          <PhotoBox
+            key={item.id}
+            hideDescriptions={props.hideDescriptions}
+            item={item}
+          />
+        ))}
     </div>
   );
 }
 
 PhotoGrid.propTypes = {
   cols: PropTypes.number,
+  hideDescriptions: PropTypes.bool,
   items: PropTypes.array
 };
 

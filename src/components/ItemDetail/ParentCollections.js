@@ -1,19 +1,19 @@
 import React from 'react';
-import FeatureBoxSection from '../FeatureBoxSection';
+import PhotoGrid from '../PhotoGrid';
 import PropTypes from 'prop-types';
 import ThisItem from './ThisItem';
 import SectionTop from '../SectionTop';
 import { facetValues } from '../../services/reactive-search';
 
 const ParentCollections = props => {
-  const { adminSetItems, collectionItems, item } = props;
+  const { adminSetItems, collectionId, collectionItems, item } = props;
   const adminSetTitle = item.admin_set ? item.admin_set.title[0] : '';
 
   return (
-    <section>
+    <div>
       {item &&
         adminSetItems && (
-          <div>
+          <section className="section">
             <SectionTop
               sectionTitle="Library Division"
               optionalSubhead={adminSetTitle}
@@ -28,33 +28,29 @@ const ParentCollections = props => {
                 }
               ]}
             />
-            <FeatureBoxSection items={adminSetItems} />
-          </div>
+            <PhotoGrid items={adminSetItems} hideDescriptions={true} />
+          </section>
         )}
 
       {item &&
         collectionItems.length > 0 && (
-          <div>
+          <section className="section">
             <SectionTop
               sectionTitle="Collection"
               optionalSubhead={item.collection[0].title[0]}
               optionalButtons={[
                 {
                   label: 'View All Items in Collection',
-                  url: '/search',
-                  state: {
-                    facetValue: facetValues.COLLECTION,
-                    searchValue: item.collection[0].title[0]
-                  }
+                  url: `/collections/${collectionId}`
                 }
               ]}
             />
-            <FeatureBoxSection items={collectionItems} />
-          </div>
+            <PhotoGrid items={collectionItems} />
+          </section>
         )}
 
       <ThisItem item={item} />
-    </section>
+    </div>
   );
 };
 

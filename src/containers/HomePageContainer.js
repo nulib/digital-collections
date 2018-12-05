@@ -15,11 +15,7 @@ export class HomePageContainer extends Component {
     ////////////////////////////////////////////////////////
     // Gallery items defined by collection keyword
     // /////////////////////////////////////////////////////
-    this.galleryKeywords = [
-      'Posters',
-      'Photography',
-      'Berkeley Folk Music Festival'
-    ];
+    this.galleryKeywords = ['Posters', 'Photography'];
 
     // Default number of results we want displayed in the photo grids, on the homepage
     this.numResults = 8;
