@@ -1,6 +1,6 @@
 // DataSearch (search bar) component id
 export const COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID = 'collection-search';
-export const GLOBAL_SEARCH_BAR_COMPONENT_ID = 'search';
+export const GLOBAL_SEARCH_BAR_COMPONENT_ID = 'q';
 
 export const facetValues = {
   COLLECTION: 'Collection',

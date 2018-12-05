@@ -20,7 +20,6 @@ class GlobalSearchContainer extends Component {
   constructor(props) {
     super(props);
 
-    this.textInput = null;
     this.setTextInputRef = element => {
       this.textInput = element;
     };
@@ -99,7 +98,7 @@ class GlobalSearchContainer extends Component {
                 onKeyPress={this.handleKeyPress}
                 queryFormat="or"
                 placeholder="Search for an item"
-                showFilter={false}
+                showFilter={true}
                 URLParams={false}
               />
             </div>
