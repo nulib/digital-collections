@@ -12,7 +12,10 @@ const PhotoGridSection = props => {
           <Link to={props.linkTo}>{props.linkToText}</Link>
         </p>
       </div>
-      <PhotoGrid items={props.items} />
+      <PhotoGrid
+        items={props.items}
+        hideDescriptions={props.hideDescriptions}
+      />
     </section>
   );
 };
@@ -22,6 +25,11 @@ PhotoGridSection.propTypes = {
   items: PropTypes.array,
   linkTo: PropTypes.string,
   linkToText: PropTypes.string
+};
+
+PhotoGridSection.propTypes = {
+  items: PropTypes.array,
+  hideDescriptions: PropTypes.bool
 };
 
 export default PhotoGridSection;

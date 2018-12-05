@@ -31,3 +31,11 @@ export const COLLECTION_MODEL = 'Collection';
 
 export const HONEYBADGER_API_KEY = process.env.REACT_APP_HONEYBADGER_API_KEY;
 export const HONEYBADGER_ENV = process.env.REACT_APP_HONEYBADGER_ENV;
+
+// This array holds Keyword Metadata values set in Donut, which are used to group Collections
+// on the Homepage
+export const HOMEPAGE_COLLECTION_GROUP_KEYWORDS = [
+  'Posters',
+  'Photography',
+  'Evanston'
+];
