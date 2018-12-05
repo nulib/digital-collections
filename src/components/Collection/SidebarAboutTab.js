@@ -4,6 +4,8 @@ import { chopString } from '../../services/helpers';
 import { getESDescription } from '../../services/elasticsearch-parser';
 import { Link } from 'react-router-dom';
 import { facetValues } from '../../services/reactive-search';
+import Collapsible from 'react-collapsible';
+import CollapsibleHeader from '../CollapsibleHeader';
 
 const AboutMetaValues = props => {
   const values = [...props.items];
@@ -17,7 +19,7 @@ const AboutMetaValues = props => {
             pathname: '/search',
             state: {
               facetValue: props.facetValue,
-              searchValue: value
+              searchValue: '' + value
             }
           }}
         >
@@ -65,35 +67,59 @@ const SidebarAboutTab = props => {
     <div>
       <h3>Collection Description</h3>
       <p>{chopString(getESDescription(item), 70)}</p>
-      <h4>Dates / Origin</h4>
-      <ul>
-        <AboutMetaValues
-          items={aboutMetaMapper.date}
-          facetValue={facetValues.DATE}
-        />
-      </ul>
-      <h4>Library Locations</h4>
-      <ul>
-        <AboutMetaValues items={aboutMetaMapper.admin_set} />
-      </ul>
-      <h4>Locations</h4>
-      <ul>
-        <AboutMetaValues
-          items={aboutMetaMapper.based_near}
-          facetValue={facetValues.LOCATION}
-        />
-      </ul>
-      <h4>Subjects</h4>
-      <ul>
-        <AboutMetaValues
-          items={aboutMetaMapper.subject}
-          facetValue={facetValues.SUBJECT}
-        />
-      </ul>
-      <h4>Work Types (display or no)?</h4>
-      <ul>
-        <li>Photographs</li>
-      </ul>
+
+      <div className="collapsible-no-side-margins">
+        <div className="expander expander1">
+          <Collapsible
+            trigger={<CollapsibleHeader label="Dates / Origin" />}
+            open={true}
+            key="Dates / Origin"
+          >
+            <ul>
+              <AboutMetaValues items={aboutMetaMapper.date} />
+            </ul>
+          </Collapsible>
+
+          <Collapsible
+            trigger={<CollapsibleHeader label="Library Locations" />}
+            open={true}
+            key="Library Locations"
+          >
+            <ul>
+              <AboutMetaValues
+                items={aboutMetaMapper.admin_set}
+                facetValue={facetValues.LIBRARY_UNIT}
+              />
+            </ul>
+          </Collapsible>
+
+          <Collapsible
+            trigger={<CollapsibleHeader label="Locations" />}
+            open={true}
+            key="Locations"
+          >
+            <ul>
+              <AboutMetaValues
+                items={aboutMetaMapper.based_near}
+                facetValue={facetValues.LOCATION}
+              />
+            </ul>
+          </Collapsible>
+
+          <Collapsible
+            trigger={<CollapsibleHeader label="Subjects" />}
+            open={true}
+            key="Subjects"
+          >
+            <ul>
+              <AboutMetaValues
+                items={aboutMetaMapper.subject}
+                facetValue={facetValues.SUBJECT}
+              />
+            </ul>
+          </Collapsible>
+        </div>
+      </div>
     </div>
   );
 };
