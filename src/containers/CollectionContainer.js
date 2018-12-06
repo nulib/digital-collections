@@ -43,11 +43,17 @@ export class CollectionContainer extends Component {
         loading: false
       });
     }
-    // Grab collection data from ElasticSearch
-    this.getCollection(id);
+    this.getApiData(id);
+  }
 
-    // Grab collection items to pass to About tab
-    this.getCollectionItems(id);
+  componentDidUpdate(prevProps) {
+    if (!prevProps.location) {
+      return;
+    }
+    if (prevProps.location.pathname !== this.props.location.pathname) {
+      const { id } = this.props.match.params;
+      this.getApiData(id);
+    }
   }
 
   createBreadcrumbData(collection) {
@@ -60,6 +66,14 @@ export class CollectionContainer extends Component {
       });
     }
     return crumbs;
+  }
+
+  getApiData(id) {
+    // Grab collection data from ElasticSearch
+    this.getCollection(id);
+
+    // Grab collection items to pass to About tab
+    this.getCollectionItems(id);
   }
 
   getCollection(id) {
