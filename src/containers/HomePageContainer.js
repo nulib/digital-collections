@@ -12,11 +12,6 @@ export class HomePageContainer extends Component {
   constructor(props) {
     super(props);
 
-    ////////////////////////////////////////////////////////
-    // Gallery items defined by collection keyword
-    // /////////////////////////////////////////////////////
-    this.galleryKeywords = ['Posters', 'Photography'];
-
     // Default number of results we want displayed in the photo grids, on the homepage
     this.numResults = 8;
 
@@ -37,7 +32,7 @@ export class HomePageContainer extends Component {
     // Combine async network requests
     promises.push(this.getGalleryItems());
     promises.push(this.getFeaturedCollections());
-    this.galleryKeywords.forEach(keyword =>
+    globalVars.HOMEPAGE_COLLECTION_GROUP_KEYWORDS.forEach(keyword =>
       promises.push(this.getGalleryByKeyword(keyword))
     );
 
@@ -57,7 +52,7 @@ export class HomePageContainer extends Component {
   renderAdditionalGalleries() {
     const { keywordCollections } = this.state;
 
-    return this.galleryKeywords.map((keyword, i) => {
+    return globalVars.HOMEPAGE_COLLECTION_GROUP_KEYWORDS.map((keyword, i) => {
       // No values (yet), just return
       if (
         keywordCollections.length === 0 ||
@@ -69,7 +64,7 @@ export class HomePageContainer extends Component {
       return (
         <PhotoGridSection
           key={keyword}
-          headline={`${keyword} Collection Items`}
+          headline={`${keyword} Collections`}
           linkTo=""
           linkToText="View All Collections of this type"
           items={keywordCollections[i]}
@@ -151,6 +146,7 @@ export class HomePageContainer extends Component {
                     linkTo="/search"
                     linkToText="View All Items"
                     items={galleryItems}
+                    hideDescriptions={true}
                   />
                   <PhotoGridSection
                     headline="Featured Collections"
