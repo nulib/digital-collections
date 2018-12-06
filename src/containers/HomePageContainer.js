@@ -65,8 +65,6 @@ export class HomePageContainer extends Component {
         <PhotoGridSection
           key={keyword}
           headline={`${keyword} Collections`}
-          linkTo=""
-          linkToText="View All Collections of this type"
           items={keywordCollections[i]}
         />
       );
@@ -91,19 +89,6 @@ export class HomePageContainer extends Component {
    */
   async getGalleryByKeyword(keyword) {
     let response = await elasticsearchApi.getCollectionsByKeyword(keyword);
-    const items = elasticsearchParser.prepPhotoGridItems(
-      response,
-      globalVars.COLLECTION_MODEL
-    );
-
-    return items;
-  }
-
-  /**
-   * Get all collections
-   */
-  async getGalleryCollections() {
-    let response = await elasticsearchApi.getAllCollections(this.numResults);
     const items = elasticsearchParser.prepPhotoGridItems(
       response,
       globalVars.COLLECTION_MODEL
