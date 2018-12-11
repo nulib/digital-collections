@@ -22,6 +22,7 @@ export function login() {
 
 export function logout() {
   localStorage.removeItem(loginKey);
+  iiifAuth('');
 }
 
 export function loginLink() {
