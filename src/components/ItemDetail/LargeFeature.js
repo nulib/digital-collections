@@ -40,7 +40,6 @@ const LargeFeature = props => {
       <div className="large-feature-inner">
         <div className="content-side" style={styles.contentSide}>
           <h4>{title}</h4>
-          <img alt={title} src={imageUrl} />
           <div className="text">
             <p>{chopString(description, 70)}</p>
           </div>

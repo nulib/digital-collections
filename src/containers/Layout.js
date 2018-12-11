@@ -22,7 +22,6 @@ import ReactivesearchContainer from './ReactivesearchContainer';
 import '../Layout.css';
 import '../libs/nuwebcomm-scripts.js';
 import { fetchApiToken } from '../actions/auth';
-import OpenDragon from '../components/OpenDragon';
 
 export class Layout extends Component {
   componentDidMount() {
@@ -67,7 +66,6 @@ export class Layout extends Component {
             <Route path="/items/:id" component={ItemDetailContainer} />
             <Route path="/items/" component={ItemsContainer} />
             <Route path="/search/" component={ReactivesearchContainer} />
-            <Route path="/openseadragon" component={OpenDragon} />
             <Route exact path="/" component={HomePageContainer} />
           </Switch>
           <Footer />

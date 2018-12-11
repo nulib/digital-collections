@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import * as elasticsearchApi from '../api/elasticsearch-api.js';
-import Breadcrumbs from '../components/breadcrumbs/Breadcrumbs';
 import ErrorSection from '../components/ErrorSection';
 import ItemDetail from '../components/ItemDetail/ItemDetail';
-import UniversalViewerContainer from './UniversalViewerContainer';
 import * as elasticsearchParser from '../services/elasticsearch-parser';
 import * as globalVars from '../../src/services/global-vars';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { shuffleArray } from '../services/helpers';
 import ParentCollections from '../components/ItemDetail/ParentCollections';
 import LargeFeature from '../components/ItemDetail/LargeFeature';
+import OpenSeadragonContainer from './OpenSeadragonContainer';
 
 export class ItemDetailContainer extends Component {
   constructor(props) {
@@ -24,13 +23,6 @@ export class ItemDetailContainer extends Component {
       id: null,
       item: null,
       loading: true
-    };
-
-    this.styles = {
-      page: {
-        marginTop: '2rem',
-        marginBottom: '2rem'
-      }
     };
   }
 
@@ -169,13 +161,11 @@ export class ItemDetailContainer extends Component {
       }
       return (
         <div>
-          <Breadcrumbs items={breadCrumbData} />
           <LoadingSpinner loading={loading} />
 
           {!loading && (
             <div>
               <LargeFeature item={item} />
-              {idInSync && <UniversalViewerContainer id={id} item={item} />}
               <ParentCollections
                 item={item}
                 adminSetItems={adminSetItems}
@@ -191,7 +181,8 @@ export class ItemDetailContainer extends Component {
 
     return (
       <div className="landing-page">
-        <div id="page" style={this.styles.page}>
+        {idInSync && <OpenSeadragonContainer id={id} item={item} />}
+        <div id="page">
           <main id="main-content" className="content" tabIndex="0">
             {renderDisplay()}
           </main>

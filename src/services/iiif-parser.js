@@ -64,3 +64,20 @@ async function getManifests(helperArray) {
 
   return manifests;
 }
+
+export function getTileSources(manifest) {
+  let tileSources = [];
+  let canvases = manifest.sequences[0].canvases;
+
+  if (!manifest.sequences || !canvases) {
+    return tileSources;
+  }
+
+  tileSources = canvases.map(canvas => {
+    if (canvas.images.length > 0 && canvas.images[0].resource) {
+      return canvas.images[0].resource.service['@id'];
+    }
+  });
+
+  return tileSources;
+}

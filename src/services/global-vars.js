@@ -28,6 +28,9 @@ export const IIIF_FEATURE_BOX_REGION =
 export const IIIF_LARGE_FEATURE_REGION =
   process.env.REACT_APP_IIIF_LARGE_FEATURE_REGION || '/full/300,/0/default.jpg';
 
+export const IIIF_LARGE_IMAGE_REGION =
+  process.env.IIIF_LARGE_IMAGE_REGION || '/full/800,/0/default.jpg';
+
 export const IMAGE_MODEL = 'Image';
 export const COLLECTION_MODEL = 'Collection';
 
