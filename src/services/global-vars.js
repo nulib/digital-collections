@@ -7,6 +7,8 @@ export const ELASTICSEARCH_PROXY_BASE =
 export const SOLR_BASE =
   process.env.REACT_APP_SOLR_BASE || '/solr/development-core/select?';
 
+export const IIIF_LOGIN_URL = process.env.REACT_APP_IIIF_LOGIN_URL;
+
 export const IIIF_SMALL_ITEM_REGION =
   process.env.REACT_APP_IIIF_SMALL_ITEM_REGION ||
   '/pct:10,10,60,60/175,175/0/default.jpg';
