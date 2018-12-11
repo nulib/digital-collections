@@ -27,8 +27,12 @@ function authHeader(headers = {}) {
   if (state.auth.token) {
     result['Authorization'] = 'Bearer ' + state.auth.token;
   }
-  return Object.assign(headers, result);
+  return { ...headers, ...result };
 }
+
+store.subscribe(() => {
+  getObjBase.headers = authHeader();
+});
 
 export async function getAdminSetItems(id, numResults = PAGE_SIZE) {
   const response = await client.search({
