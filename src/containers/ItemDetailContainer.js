@@ -149,7 +149,6 @@ export class ItemDetailContainer extends Component {
       adminSetItems,
       loading
     } = this.state;
-    const breadCrumbData = item ? this.createBreadcrumbData(item) : [];
 
     // This check ensures that when changing ids (items) on the same route, Universal Viewer embed
     // workaround behaves consistently and displays the correct item
@@ -181,7 +180,7 @@ export class ItemDetailContainer extends Component {
 
     return (
       <div className="landing-page">
-        {idInSync && <OpenSeadragonContainer id={id} item={item} />}
+        {idInSync && <OpenSeadragonContainer item={item} />}
         <div id="page">
           <main id="main-content" className="content" tabIndex="0">
             {renderDisplay()}

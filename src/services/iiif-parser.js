@@ -48,23 +48,6 @@ function getIIIFRootUrl(manifest) {
   return iiifRootUrl;
 }
 
-/**
- * Fetch IIIF manifests for supplied manifest urls
- * @param  {Array} helperArray An array of objects which delivers an item's id and manifest url
- * @return {Array} An array of IIIF manifest objects
- */
-async function getManifests(helperArray) {
-  let promises = [];
-  for (let item of helperArray) {
-    promises.push(fetch(item.manifestUrl).then(response => response.json()));
-  }
-  const manifests = await Promise.all(promises)
-    .then(response => response)
-    .catch(error => console.log(error));
-
-  return manifests;
-}
-
 export function getTileSources(manifest) {
   let tileSources = [];
   let canvases = manifest.sequences[0].canvases;
@@ -73,9 +56,9 @@ export function getTileSources(manifest) {
     return tileSources;
   }
 
-  tileSources = canvases.map(canvas => {
+  canvases.forEach(canvas => {
     if (canvas.images.length > 0 && canvas.images[0].resource) {
-      return canvas.images[0].resource.service['@id'];
+      tileSources.push(canvas.images[0].resource.service['@id']);
     }
   });
 

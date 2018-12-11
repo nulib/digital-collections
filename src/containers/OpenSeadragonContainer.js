@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import OpenSeadragonViewer from '../components/OpenSeadragonViewer';
 import PropTypes from 'prop-types';
-import { IIIF_LARGE_IMAGE_REGION } from '../services/global-vars';
 import { getTileSources } from '../services/iiif-parser';
 import { getManifest } from '../api';
+import LoadingSpinner from '../components/LoadingSpinner';
+import { getESTitle } from '../services/elasticsearch-parser';
 
 const styles = {
+  spinner: {
+    padding: '50px 0'
+  },
   wrapper: {
     background: '#342f2e',
     position: 'relative',
@@ -14,13 +18,17 @@ const styles = {
 };
 
 class OpenSeadragonContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.itemTitle = getESTitle(props.item);
+  }
+
   static propTypes = {
-    id: PropTypes.string,
     item: PropTypes.object
   };
 
   state = {
-    showOpenSeadragon: false,
+    loading: true,
     tileSources: []
   };
 
@@ -37,39 +45,25 @@ class OpenSeadragonContainer extends Component {
     }
     // Get the sources for OpenSeadragon viewer from the manifest
     let tileSources = getTileSources(response);
-    this.setState({ tileSources });
+    this.setState({ loading: false, tileSources });
   }
 
-  handleImageClick = () => {
-    if (!this.state.showOpenSeadragon) {
-      this.setState({ showOpenSeadragon: true });
-    }
-  };
-
   render() {
-    const { item } = this.props;
-    const imgUrl = this.props.item.representative_file_url;
-    const { showOpenSeadragon, tileSources } = this.state;
+    const { loading, tileSources } = this.state;
 
-    if (item) {
-      return (
-        <section style={styles.wrapper}>
-          {!showOpenSeadragon && (
-            <img
-              src={`${imgUrl}${IIIF_LARGE_IMAGE_REGION}`}
-              alt="NUL"
-              onClick={this.handleImageClick}
+    return (
+      <div>
+        <LoadingSpinner loading={loading} />
+        {tileSources.length > 0 && (
+          <section style={styles.wrapper}>
+            <OpenSeadragonViewer
+              tileSources={tileSources}
+              itemTitle={this.itemTitle}
             />
-          )}
-
-          {showOpenSeadragon && (
-            <OpenSeadragonViewer tileSources={tileSources} />
-          )}
-        </section>
-      );
-    }
-
-    return null;
+          </section>
+        )}
+      </div>
+    );
   }
 }
 

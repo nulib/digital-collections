@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 const override = css`
   display: block;
-  margin: 0 auto;
+  margin: 20px auto;
 `;
 
 const LoadingSpinner = props => {

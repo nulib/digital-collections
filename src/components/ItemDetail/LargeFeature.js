@@ -5,7 +5,6 @@ import Permalink from './DetailSummary/Permalink';
 import SocialLinks from './DetailSummary/SocialLinks';
 import DownloadRow from './DetailSummary/DownloadRow';
 import PropTypes from 'prop-types';
-import * as globalVars from '../../services/global-vars';
 import { chopString } from '../../services/helpers';
 
 const LargeFeature = props => {
@@ -13,10 +12,6 @@ const LargeFeature = props => {
   const title = elasticSearchParser.getESTitle(item);
   const description =
     elasticSearchParser.getESDescription(item) || 'No description provided.';
-  const imageUrl = elasticSearchParser.getESImagePath(
-    item,
-    globalVars.IIIF_LARGE_FEATURE_REGION
-  );
 
   const styles = {
     contentSide: {
