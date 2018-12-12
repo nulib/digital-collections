@@ -51,7 +51,9 @@ class OpenSeadragonViewer extends Component {
 
     this.openSeadragonInstance = OpenSeadragon({
       id: 'openseadragon1',
-      crossOriginPolicy: 'Anonymous',
+      crossOriginPolicy: 'use-credentials',
+      loadTilesWithAjax: true,
+      ajaxWithCredentials: true,
       prefixUrl: 'images/openseadragon/',
       preserveViewport: true,
       defaultZoomLevel: 0,
