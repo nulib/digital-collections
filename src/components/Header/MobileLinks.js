@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import MobileNav from './MobileNav';
+import { connect } from 'react-redux';
+import { searchToggle } from '../../actions/search';
 import { getAllCollections } from '../../api/elasticsearch-api';
 
 class MobileLinks extends Component {
   state = {
     collections: [],
-    navOpen: false,
-    searchOpen: false
+    navOpen: false
   };
 
   componentDidMount() {
@@ -27,9 +28,10 @@ class MobileLinks extends Component {
     e.preventDefault();
 
     this.setState({
-      navOpen: false,
-      searchOpen: !this.state.searchOpen
+      navOpen: false
     });
+
+    this.props.searchToggle();
   };
 
   async getCollections() {
@@ -44,7 +46,7 @@ class MobileLinks extends Component {
   }
 
   render() {
-    const { collections, navOpen, searchOpen } = this.state;
+    const { collections, navOpen } = this.state;
     const classes = `mobile-link mobile-nav-link ${navOpen ? 'open' : ''}`;
 
     return (
@@ -62,7 +64,11 @@ class MobileLinks extends Component {
           navOpen={navOpen}
           closeMenu={this.handleMenuClick}
         />
-        <a href="#mobile-search" className="mobile-link mobile-search-link">
+        <a
+          href="#mobile-search"
+          className="mobile-link mobile-search-link"
+          onClick={this.handleSearchClick}
+        >
           <span className="hide-label">Search</span>
         </a>
       </div>
@@ -70,4 +76,11 @@ class MobileLinks extends Component {
   }
 }
 
-export default MobileLinks;
+const mapDispatchToProps = dispatch => ({
+  searchToggle: () => dispatch(searchToggle())
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(MobileLinks);

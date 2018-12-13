@@ -34,11 +34,8 @@ class GlobalSearchContainer extends Component {
   }
 
   async getTotalItems() {
-    let response = await getTotalItemCount();
-
-    this.setState({
-      totalItemCount: response.hits.total
-    });
+    let totalItemCount = await getTotalItemCount();
+    this.setState({ totalItemCount });
   }
 
   handleClick = e => {
