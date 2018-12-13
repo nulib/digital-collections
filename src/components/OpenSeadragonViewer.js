@@ -54,7 +54,6 @@ class OpenSeadragonViewer extends Component {
       crossOriginPolicy: 'use-credentials',
       loadTilesWithAjax: true,
       ajaxWithCredentials: true,
-      prefixUrl: 'images/openseadragon/',
       preserveViewport: true,
       defaultZoomLevel: 0,
       referenceStripScroll: 'vertical',
