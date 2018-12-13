@@ -8,9 +8,7 @@ const GlobalLinks = props => {
       <li>
         <Link to="/">library.northwestern.edu</Link>
       </li>
-      <li>
-        <Login />
-      </li>
+      <Login />
     </React.Fragment>
   );
 };

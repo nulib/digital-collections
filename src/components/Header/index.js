@@ -11,7 +11,7 @@ const quickLinks = [
   },
   {
     label: 'Contact Us',
-    url: '/'
+    url: '/contactus'
   }
 ];
 

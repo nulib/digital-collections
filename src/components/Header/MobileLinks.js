@@ -14,27 +14,13 @@ class MobileLinks extends Component {
   }
 
   handleMenuClick = e => {
+    console.log('handleMenuClick');
     e.preventDefault();
 
     this.setState({
       navOpen: !this.state.navOpen,
       searchOpen: false
     });
-  };
-
-  /**
-   * This function handles closing the mobile navigation when a legit link has been clicked
-   */
-  handleNavItemClick = e => {
-    // Check if user clicked or touched the dropdown arrow
-    let isLink = !(e.target.getAttribute('role') === 'button');
-
-    if (isLink) {
-      this.setState({
-        navOpen: false,
-        searchOpen: false
-      });
-    }
   };
 
   handleSearchClick = e => {
@@ -74,7 +60,7 @@ class MobileLinks extends Component {
           {...this.props}
           collections={collections}
           navOpen={navOpen}
-          handleNavItemClick={this.handleNavItemClick}
+          closeMenu={this.handleMenuClick}
         />
         <a href="#mobile-search" className="mobile-link mobile-search-link">
           <span className="hide-label">Search</span>

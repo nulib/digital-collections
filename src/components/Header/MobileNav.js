@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 class MobileNav extends Component {
   static propTypes = {
-    handleNavItemClick: PropTypes.func,
+    closeMenu: PropTypes.func,
     collections: PropTypes.array,
     navOpen: PropTypes.bool,
     quickLinks: PropTypes.array
@@ -22,21 +22,40 @@ class MobileNav extends Component {
     }
   };
 
-  handleClick = () => {
-    console.log('yo yo');
+  /**
+   * This function handles closing the mobile navigation when a legit link has been clicked
+   */
+  handleNavItemClick = e => {
+    const {
+      menu: {
+        collections: { open }
+      }
+    } = this.state;
+    // Check if user clicked or touched the dropdown arrow
+    let isArrowButton = e.target.getAttribute('role') === 'button';
+
+    // Toggle submenu link items
+    if (isArrowButton) {
+      this.setState({ menu: { collections: { open: !open } } });
+    }
+
+    if (!isArrowButton) {
+      this.props.closeMenu(e);
+    }
   };
 
   render() {
-    const { collections, handleNavItemClick } = this.props;
+    const { collections, navOpen } = this.props;
     const { menu } = this.state;
 
     return (
       <nav
         id="mobile-nav"
+        onClick={this.handleNavItemClick}
         aria-label="mobile menu"
-        style={this.props.navOpen ? { display: 'block' } : { display: 'none' }}
+        style={navOpen ? { display: 'block' } : { display: 'none' }}
       >
-        <ul onClick={handleNavItemClick}>
+        <ul>
           <li tabIndex="0">
             <Link to="/">Explore Collections</Link>
             <span className={`arrow ${menu.collections.open ? 'open' : ''}`}>
@@ -46,8 +65,8 @@ class MobileNav extends Component {
               </a>
             </span>
             <ul
-              aria-expanded="false"
-              aria-hidden="true"
+              aria-expanded={menu.collections.open}
+              aria-hidden={!navOpen}
               style={
                 menu.collections.open
                   ? { display: 'block' }
