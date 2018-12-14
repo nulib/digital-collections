@@ -1,7 +1,6 @@
 import React from 'react';
 import * as elasticSearchParser from '../../services/elasticsearch-parser';
 import ButtonRow from './DetailSummary/ButtonRow';
-import Permalink from './DetailSummary/Permalink';
 import SocialLinks from './DetailSummary/SocialLinks';
 import DownloadRow from './DetailSummary/DownloadRow';
 import PropTypes from 'prop-types';
@@ -45,9 +44,6 @@ const LargeFeature = props => {
           <div style={styles.paddedBlock}>
             <span style={styles.subhead}>Identifier</span>
             {item.id}
-          </div>
-          <div className="summary-list" style={styles.paddedBlock}>
-            <Permalink permalink={item.permalink} />
           </div>
           <div stlye={styles.paddedBlock}>
             <SocialLinks item={item} />
