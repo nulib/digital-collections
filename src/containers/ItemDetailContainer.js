@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
 import * as elasticsearchApi from '../api/elasticsearch-api.js';
 import ErrorSection from '../components/ErrorSection';
 import ItemDetail from '../components/ItemDetail/ItemDetail';
@@ -116,13 +117,29 @@ export class ItemDetailContainer extends Component {
   async getItem(id) {
     let itemError = '';
     let itemResponse = await elasticsearchApi.getItem(id);
+    console.log('itemResponse', itemResponse);
 
     // Handle possible errors
+    // Generic error
     if (itemResponse.error) {
       itemError = itemResponse.error.reason;
-    } else if (!itemResponse.found) {
-      itemError = 'Item not found';
     }
+    // Item not found
+    else if (!itemResponse.found) {
+      itemError = 'Item not found.';
+    }
+    // Restricted item
+    else if (itemResponse._source.visibility === 'restricted') {
+      itemError = `The current item's visibility is restricted.`;
+    }
+    // Authenticated
+    else if (
+      itemResponse._source.visibility === 'authenticated' &&
+      !this.props.auth.token
+    ) {
+      itemError = `The current item's visibility is restricted to logged in users.`;
+    }
+
     if (itemError) {
       this.setState(
         {
@@ -149,6 +166,7 @@ export class ItemDetailContainer extends Component {
       adminSetItems,
       loading
     } = this.state;
+    const loggedIn = this.props.auth.token;
 
     // This check ensures that when changing ids (items) on the same route, Universal Viewer embed
     // workaround behaves consistently and displays the correct item
@@ -180,7 +198,7 @@ export class ItemDetailContainer extends Component {
 
     return (
       <div className="landing-page">
-        {idInSync && <OpenSeadragonContainer item={item} />}
+        {item && idInSync && loggedIn && <OpenSeadragonContainer item={item} />}
         <div id="page">
           <main id="main-content" className="content" tabIndex="0">
             {renderDisplay()}
@@ -191,5 +209,9 @@ export class ItemDetailContainer extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
 const withRouterItemDetailContainer = withRouter(ItemDetailContainer);
-export default withRouterItemDetailContainer;
+export default connect(mapStateToProps)(withRouterItemDetailContainer);

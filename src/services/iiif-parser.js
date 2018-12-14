@@ -50,13 +50,12 @@ function getIIIFRootUrl(manifest) {
 
 export function getTileSources(manifest) {
   let tileSources = [];
-  let canvases = manifest.sequences[0].canvases;
 
-  if (!manifest.sequences || !canvases) {
+  if (!manifest.sequences || !manifest.sequences[0].canvases) {
     return tileSources;
   }
 
-  canvases.forEach(canvas => {
+  manifest.sequences[0].canvases.forEach(canvas => {
     if (canvas.images.length > 0 && canvas.images[0].resource) {
       tileSources.push(canvas.images[0].resource.service['@id']);
     }

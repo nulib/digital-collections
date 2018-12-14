@@ -76,6 +76,7 @@ export class HomePageContainer extends Component {
       'Featured',
       8
     );
+
     const collections = elasticsearchParser.prepPhotoGridItems(
       response,
       globalVars.COLLECTION_MODEL

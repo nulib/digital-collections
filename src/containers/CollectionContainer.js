@@ -21,6 +21,7 @@ import {
   COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID,
   imageFilters
 } from '../services/reactive-search';
+import { connect } from 'react-redux';
 
 // 'collection-search' is the Da
 const allFilters = [COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID, ...imageFilters];
@@ -81,10 +82,25 @@ export class CollectionContainer extends Component {
       const response = await elasticsearchApi.getCollection(id);
       let error = null;
 
+      // Handle errors
+      // Generic error
       if (response.error) {
         error = response.error.reason;
-      } else if (!response.found) {
-        error = 'Collection not found';
+      }
+      // Collection not found
+      else if (!response.found) {
+        error = 'Collection not found.';
+      }
+      // Restricted collection
+      else if (response._source.visibility === 'restricted') {
+        error = `The current collection's visibility is restricted.`;
+      }
+      // Authentication problem
+      else if (
+        response._source.visibility === 'authenticated' &&
+        !this.props.auth.token
+      ) {
+        error = `The current collection's visibility is restricted to logged in users.`;
       }
 
       this.setState({ collection: response._source, error, loading: false });
@@ -123,6 +139,7 @@ export class CollectionContainer extends Component {
     const breadCrumbData = collection
       ? this.createBreadcrumbData(collection)
       : [];
+
     const renderDisplay = () => {
       if (error) {
         return <ErrorSection message={error} />;
@@ -196,16 +213,17 @@ export class CollectionContainer extends Component {
     return (
       <div className="standard-page">
         <div id="page" className="collection-items">
-          {loading && (
-            <div style={{ marginBottom: '5rem' }}>
-              <LoadingSpinner loading={loading} />
-            </div>
-          )}
+          {loading && <LoadingSpinner loading={loading} />}
           {renderDisplay()}
         </div>
       </div>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
 const withRouterCollectionContainer = withRouter(CollectionContainer);
-export default withRouterCollectionContainer;
+export default connect(mapStateToProps)(withRouterCollectionContainer);

@@ -15,7 +15,6 @@ import HomePageContainer from './HomePageContainer';
 import ItemsContainer from './ItemsContainer';
 import ItemDetailContainer from './ItemDetailContainer';
 import CollectionContainer from './CollectionContainer';
-import Login from './Login';
 import NavContainer from './NavContainer';
 import Notifications from 'react-notify-toast';
 import ReactivesearchContainer from './ReactivesearchContainer';
@@ -52,7 +51,6 @@ export class Layout extends Component {
           <Switch>
             <Route exact path="/about" component={About} />
             <Route exact path="/contactus" component={ContactUs} />
-            <Route exact path="/login" component={Login} />
             <Route
               exact
               path="/collections/:id"

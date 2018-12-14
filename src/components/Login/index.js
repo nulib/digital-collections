@@ -39,7 +39,7 @@ const Login = props => {
       )}
 
       {!props.isMobile && (
-        <li>
+        <li style={styles.link}>
           {nulApi.currentUser()}
           <span className="dropdown-arrow" />
           <ul>

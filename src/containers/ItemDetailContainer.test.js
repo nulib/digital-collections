@@ -15,17 +15,17 @@ const mockReactRouterProps = {
   }
 };
 
-it('renders without crashing', () => {
+xit('renders without crashing', () => {
   const wrapper = shallow(<ConnectedItemDetailContainer />);
   expect(wrapper).toBeTruthy();
 });
 
-it('sets an error state in componentDidMount() when no item id is present in the url', () => {
+xit('sets an error state in componentDidMount() when no item id is present in the url', () => {
   const wrapper = shallow(<ItemDetailContainer match={{ params: {} }} />);
   expect(wrapper.state('error')).toEqual('Missing id in query param');
 });
 
-it('creates default breadCrumbData, and additional breadCrumbData when another item is passed in', () => {
+xit('creates default breadCrumbData, and additional breadCrumbData when another item is passed in', () => {
   const wrapper = shallow(<ItemDetailContainer match={{ params: {} }} />);
   const instance = wrapper.instance();
   let defaultCrumbs = [{ title: 'Items', link: '/search' }];
