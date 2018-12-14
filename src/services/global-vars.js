@@ -15,7 +15,7 @@ export const IIIF_SMALL_ITEM_REGION =
 
 export const IIIF_MEDIUM_ITEM_REGION =
   process.env.REACT_APP_IIIF_MEDIUM_ITEM_REGION ||
-  '/pct:10,10,60,60/265,265/0/default.jpg';
+  '/square/265,265/0/default.jpg';
 
 export const IIIF_PHOTO_FEATURE_REGION =
   process.env.REACT_APP_IIIF_PHOTO_FEATURE_REGION ||
