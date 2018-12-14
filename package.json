@@ -32,6 +32,7 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.14",
     "react-share": "^2.2.0",
+    "react-sizes": "^1.0.4",
     "react-slidedown": "^2.0.4",
     "react-spinners": "^0.4.7",
     "react-tabs": "^2.2.2",

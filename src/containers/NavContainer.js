@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { searchToggle } from '../actions/search';
 import { getAllCollections } from '../api/elasticsearch-api';
-import { getESTitle } from '../services/elasticsearch-parser';
+import NavCollectionsList from '../components/Nav/NavCollectionsList';
 
 const styles = {
   searchButton: {
@@ -54,14 +54,7 @@ class NavContainer extends Component {
               >
                 <li>
                   <ul>
-                    {collections &&
-                      collections.map(collection => (
-                        <li key={collection._id}>
-                          <Link to={`/collections/${collection._id}`}>
-                            {getESTitle(collection._source)}
-                          </Link>
-                        </li>
-                      ))}
+                    <NavCollectionsList collections={collections} />
                   </ul>
                 </li>
               </ul>

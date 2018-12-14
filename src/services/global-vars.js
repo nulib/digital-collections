@@ -44,3 +44,6 @@ export const HOMEPAGE_COLLECTION_GROUP_KEYWORDS = [
   'Photography',
   'Evanston'
 ];
+
+// Mobile breakpoint
+export const MOBILE_BREAKPOINT = 768;

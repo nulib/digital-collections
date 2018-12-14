@@ -151,11 +151,18 @@ export async function getRecentlyDigitizedItems(numResults = PAGE_SIZE) {
 }
 
 export async function getTotalItemCount() {
-  const response = await client.search({
-    ...getObjBase,
-    body: {
-      size: 0
-    }
-  });
-  return response;
+  try {
+    const response = await client.search({
+      ...getObjBase,
+      body: {
+        query: {
+          match_all: {}
+        }
+      }
+    });
+
+    return response.hits.total;
+  } catch (e) {
+    return Promise.resolve(0);
+  }
 }
