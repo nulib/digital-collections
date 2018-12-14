@@ -21,9 +21,9 @@ export const heroWPA = {
 };
 
 export const heroSecondaryData = {
-  title: 'Historic Postcards',
-  subTitle: 'Browse our collection of Postcards from the University Archives',
+  title: 'James E. "Jimmy" Johnson Scrapbooks',
+  subTitle:
+    'Browse our collection of James E. "Jimmy" Johnson Scrapbooks from the University Archives',
   collectionId: 'qweras888',
-  imageUrl:
-    'https://images.northwestern.edu/image-service/inu-dil-0ec605c7-e63f-4e4f-843d-7b508a2ce1f6/full/,780/0/grey.jpg'
+  heroImage: 'hero-section-northwestern-football-1440x540.jpg'
 };

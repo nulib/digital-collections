@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const HeroSecondarySection = props => {
-  const { title, subTitle, imageUrl } = props.heroData;
+  const { title, subTitle, heroImage } = props.heroData;
+  const bgImage = require(`../../images/${heroImage}`);
   const buttonText = 'See more';
   const styles = {
     heroBg: {
-      backgroundImage: `url(${imageUrl})`,
+      backgroundImage: `url(${bgImage})`,
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
       backgroundPosition: 'center'
@@ -15,34 +16,27 @@ const HeroSecondarySection = props => {
   };
 
   return (
-    <section className="standard-page">
-      <div className="section-top contain-1120">
-        <div className="section background-select">
-          <div className="background-select-image" style={styles.heroBg}>
-            <div className="contain-780">
-              <h3 className="background-select-header">{title}</h3>
-              <p className="select-date">{subTitle}</p>
-              <p />
-              <Link
-                to="/"
-                aria-label="enter descriptive text"
-                className="button"
-              >
-                {buttonText}
-              </Link>
-            </div>
-          </div>
-        </div>
+    <div className="section hero">
+      <div className="hero-image in-page" style={styles.heroBg}>
+        <h3>{title}</h3>
+        <p>{subTitle}</p>
+        <ul className="center-list">
+          <li>
+            <Link className="button" to="/">
+              {buttonText}
+            </Link>
+          </li>
+        </ul>
       </div>
-    </section>
+    </div>
   );
 };
 
 HeroSecondarySection.propTypes = {
   heroData: PropTypes.shape({
-    title: PropTypes.string.isRequired,
+    heroImage: PropTypes.string.isRequired,
     subTitle: PropTypes.string.isRequired,
-    imageUrl: PropTypes.string.isRequired
+    title: PropTypes.string.isRequired
   })
 };
 
