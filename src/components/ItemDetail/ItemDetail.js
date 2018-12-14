@@ -34,7 +34,6 @@ const ItemDetail = props => {
     license = null,
     notes = null,
     nulUseStatement = '',
-    permalink = '',
     physical_description: { material } = null,
     physical_description: { size } = null,
     provenance: [provenance] = '',
@@ -127,7 +126,6 @@ const ItemDetail = props => {
   const citePanel = [
     { label: 'Identifier', value: identifier },
     { label: 'Licenses', value: license },
-    { label: 'Permalink', value: permalink },
     { label: 'Title', value: title },
     { label: 'Use Statement', value: nulUseStatement }
   ];
