@@ -39,7 +39,7 @@ const ItemDetail = props => {
     provenance: [provenance] = '',
     publisher = '',
     related_material: relatedMaterial = null,
-    relatedUrl = null,
+    related_url: relatedUrl = null,
     rightsHolder = '',
     rights_statement: { label: rightsStatementText } = null,
     scope_and_contents: scopeAndContents = null,
