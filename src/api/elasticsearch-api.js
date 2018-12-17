@@ -123,13 +123,24 @@ export async function getCollectionItems(id, numResults = PAGE_SIZE) {
 }
 
 export async function getItem(id) {
-  const response = await client.get({
-    ...getObjBase,
-    ignore: [404],
-    type: '_all',
-    id: id
-  });
-  return response;
+  try {
+    const response = await client.get({
+      ...getObjBase,
+      ignore: [404], // Handle not found errors within the response itself
+      type: '_all',
+      id: id
+    });
+
+    return response;
+  } catch (error) {
+    console.log('Error in getItem() in elasticsearch-api.js: ', error);
+    const errorObject = {
+      error: {
+        reason: 'Unknown error getting Item'
+      }
+    };
+    return Promise.resolve(errorObject);
+  }
 }
 
 /**

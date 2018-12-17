@@ -71,7 +71,7 @@ export function getESImagePath(
  * @return {String} A single title string
  */
 export function getESTitle(_source) {
-  if (!_source.title) {
+  if (!_source || !_source.title) {
     return '';
   }
   const { title } = _source;
