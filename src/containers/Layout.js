@@ -65,6 +65,7 @@ export class Layout extends Component {
             <Route path="/items/" component={ItemsContainer} />
             <Route path="/search/" component={ReactivesearchContainer} />
             <Route exact path="/" component={HomePageContainer} />
+            <Route component={HomePageContainer} />
           </Switch>
           <Footer />
         </div>
