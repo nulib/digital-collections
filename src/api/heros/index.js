@@ -17,7 +17,15 @@ export const heroWPA = {
   subTitle:
     'View more than 300 World War II-era posters issued by various U.S. government agencies.',
   collectionId: 'asdf0986asdf09',
-  heroImage: 'hero-wpa-1440x600.jpg'
+  heroImage: 'hero-wpa2-1440x600.jpg'
+};
+
+export const heroWPA2 = {
+  title: 'World War II Poster Collection at Northwestern University Library',
+  subTitle:
+    'View more than 300 World War II-era posters issued by various U.S. government agencies.',
+  collectionId: 'asdf0986asdf09',
+  heroImage: 'hero-wpa3-1440x600.jpg'
 };
 
 export const heroSecondaryData = {
