@@ -15,7 +15,6 @@ import {
   faSearchPlus,
   faTimes
 } from '@fortawesome/free-solid-svg-icons';
-import { fab } from '@fortawesome/free-brands-svg-icons';
 library.add(
   faAngleDown,
   faAngleUp,
@@ -25,6 +24,5 @@ library.add(
   faExpand,
   faSearchMinus,
   faSearchPlus,
-  faTimes,
-  fab
+  faTimes
 );
