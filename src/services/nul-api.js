@@ -22,6 +22,7 @@ export function login() {
 
 export function logout() {
   localStorage.removeItem(loginKey);
+  localStorage.removeItem('currentUser');
   iiifAuth('');
 }
 
@@ -53,9 +54,16 @@ export async function extractApiToken(cookieStr) {
         { headers: { 'X-OpenAM-SSO-Token': ssoToken } }
       );
       var data = await response.json();
-      await iiifAuth(data.token);
-      localStorage.setItem('currentUser', data.user.mail);
-      return { token: data.token };
+      if (data.token != null) {
+        await iiifAuth(data.token);
+        localStorage.setItem('currentUser', data.user.mail);
+        return { token: data.token };
+      } else {
+        await iiifAuth('');
+        localStorage.removeItem(loginKey);
+        localStorage.removeItem('currentUser');
+        return nullUser;
+      }
     } catch (err) {
       console.log('Error: ', err);
       return nullUser;
