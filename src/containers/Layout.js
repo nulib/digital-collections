@@ -50,7 +50,7 @@ export class Layout extends Component {
           <GlobalSearchContainer />
           <Switch>
             <Route exact path="/about" component={About} />
-            <Route exact path="/contactus" component={ContactUs} />
+            <Route exact path="/contact-us" component={ContactUs} />
             <Route
               exact
               path="/collections/:id"

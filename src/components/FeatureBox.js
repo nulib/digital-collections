@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 import { chopString } from '../services/helpers';
 
 const FeatureBox = props => {
-  const { description, id, imageUrl, label } = props.item;
+  const { description, id, image, label } = props.item;
 
   return (
     <article className="feature-box">
-      <img alt={label} src={imageUrl} />
+      <img alt={label} src={image} />
       <div className="feature-copy">
         <h4>{label}</h4>
         <p>{chopString(description, 15)}</p>
@@ -24,7 +24,7 @@ FeatureBox.propTypes = {
   item: PropTypes.shape({
     description: PropTypes.string,
     id: PropTypes.string,
-    imageUrl: PropTypes.string,
+    image: PropTypes.string,
     label: PropTypes.string
   })
 };
