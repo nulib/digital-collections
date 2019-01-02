@@ -23,7 +23,6 @@ import {
 } from '../services/reactive-search';
 import { connect } from 'react-redux';
 
-// 'collection-search' is the Da
 const allFilters = [COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID, ...imageFilters];
 
 export class CollectionContainer extends Component {
@@ -178,7 +177,7 @@ export class CollectionContainer extends Component {
                   />
                   <SelectedFilters />
                   <ReactiveList
-                    componentId="results"
+                    componentId="collection-items-results"
                     dataField="title"
                     react={{
                       and: allFilters
