@@ -131,7 +131,7 @@ export class CollectionContainer extends Component {
       type: res.model.name
     };
 
-    return <PhotoBox key={item.id} item={item} />;
+    return <PhotoBox key={item.id} item={item} hideDescriptions={true} />;
   }
 
   render() {
