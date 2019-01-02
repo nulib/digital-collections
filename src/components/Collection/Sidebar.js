@@ -32,7 +32,7 @@ const Sidebar = props => {
 
               {/* Filter */}
               <TabPanel>
-                <SidebarFilterTab />
+                <SidebarFilterTab collection={item} />
               </TabPanel>
             </div>
           </Tabs>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { MultiList } from '@appbaseio/reactivesearch';
 import PropTypes from 'prop-types';
+import { COLLECTION_DATA_CONTROLLER_ID } from '../../services/reactive-search';
 
 // Css class name helper
 const multiListInnerClass = {
@@ -11,18 +12,20 @@ const multiListInnerClass = {
 
 const RSMultiList = props => {
   const { allFilters, defaultVal = [], facet, title } = props;
+  const facetNameNoSpaces = facet.name.replace(/\s+/g, '');
+  const filterList = allFilters.filter(entry => {
+    return entry !== facetNameNoSpaces;
+  });
 
   return (
     <MultiList
-      componentId={facet.name.replace(/\s+/g, '')}
+      componentId={facetNameNoSpaces}
       dataField={facet.field}
       defaultSelected={defaultVal}
       innerClass={multiListInnerClass}
       missingLabel="None"
       react={{
-        and: allFilters.filter(entry => {
-          return entry !== facet.name.replace(/\s+/g, '');
-        })
+        and: [COLLECTION_DATA_CONTROLLER_ID, ...filterList]
       }}
       showCheckbox={false}
       showMissing={true}

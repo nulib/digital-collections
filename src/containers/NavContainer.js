@@ -44,7 +44,7 @@ class NavContainer extends Component {
         <div className="contain-1120">
           <ul>
             <li>
-              <Link to="/">
+              <Link to="/collections">
                 Explore Collections
                 <span className="dropdown-arrow" />
               </Link>
