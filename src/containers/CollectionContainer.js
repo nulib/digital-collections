@@ -7,6 +7,7 @@ import Sidebar from '../components/Collection/Sidebar';
 import LoadingSpinner from '../components/LoadingSpinner';
 import {
   DataSearch,
+  DataController,
   ReactiveList,
   SelectedFilters
 } from '@appbaseio/reactivesearch';
@@ -19,6 +20,7 @@ import {
 import searchIcon from '../images/library-search.svg';
 import {
   COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID,
+  COLLECTION_DATA_CONTROLLER_ID,
   imageFilters
 } from '../services/reactive-search';
 import { connect } from 'react-redux';
@@ -51,6 +53,7 @@ export class CollectionContainer extends Component {
       return;
     }
     if (prevProps.location.pathname !== this.props.location.pathname) {
+      this.setState({ loading: true });
       const { id } = this.props.match.params;
       this.getApiData(id);
     }
@@ -143,6 +146,12 @@ export class CollectionContainer extends Component {
       if (error) {
         return <ErrorSection message={error} />;
       }
+
+      // This check ensures that the new collection's data is freshly rendered on a route id change
+      if (loading) {
+        return null;
+      }
+
       if (collection) {
         return (
           <div>
@@ -152,6 +161,20 @@ export class CollectionContainer extends Component {
               {!loading && (
                 <div>
                   <h2>{collection && collection.title.primary[0]}</h2>
+
+                  <DataController
+                    title="DataController"
+                    componentId={COLLECTION_DATA_CONTROLLER_ID}
+                    dataField="collection.id"
+                    customQuery={(item, props) => {
+                      return {
+                        match: {
+                          'collection.id': collection.id
+                        }
+                      };
+                    }}
+                  />
+
                   <DataSearch
                     autosuggest={false}
                     className="datasearch web-form"
@@ -175,21 +198,15 @@ export class CollectionContainer extends Component {
                     showFilter={true}
                     URLParams={false}
                   />
+
                   <SelectedFilters />
+
                   <ReactiveList
                     componentId="collection-items-results"
                     dataField="title"
                     react={{
-                      and: allFilters
+                      and: [COLLECTION_DATA_CONTROLLER_ID, ...allFilters]
                     }}
-                    defaultQuery={(value, props) => ({
-                      bool: {
-                        must: [
-                          { match: { 'model.name': 'Image' } },
-                          { match: { 'collection.id': collection.id } }
-                        ]
-                      }
-                    })}
                     loader={<LoadingSpinner loading={true} />}
                     size={12}
                     pagination={true}

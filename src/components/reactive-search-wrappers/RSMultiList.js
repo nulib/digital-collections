@@ -1,6 +1,7 @@
 import React from 'react';
 import { MultiList } from '@appbaseio/reactivesearch';
 import PropTypes from 'prop-types';
+import { COLLECTION_DATA_CONTROLLER_ID } from '../../services/reactive-search';
 
 // Css class name helper
 const multiListInnerClass = {
@@ -24,7 +25,7 @@ const RSMultiList = props => {
       innerClass={multiListInnerClass}
       missingLabel="None"
       react={{
-        and: filterList
+        and: [COLLECTION_DATA_CONTROLLER_ID, ...filterList]
       }}
       showCheckbox={false}
       showMissing={true}

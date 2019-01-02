@@ -10,35 +10,28 @@ import {
 } from '../../services/reactive-search';
 import RSMultiList from '../reactive-search-wrappers/RSMultiList';
 import PropTypes from 'prop-types';
-import { getESTitle } from '../../services/elasticsearch-parser';
 
 const SidebarFilterTab = props => {
   const allFilters = [
     COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID,
     ...imageFilters
   ];
-  const title = getESTitle(props.collection);
+  const imageFacetsNoCollection = imageFacets.filter(
+    facet => facet.name !== facetValues.COLLECTION
+  );
 
   return (
     <React.Fragment>
       <div className="collapsible-no-side-margins">
         <div className="expander expander1">
-          {imageFacets.map(facet => {
+          {imageFacetsNoCollection.map(facet => {
             return (
               <Collapsible
                 trigger={<CollapsibleHeader label={facet.name} />}
                 open={true}
                 key={facet.name}
               >
-                <RSMultiList
-                  facet={facet}
-                  title=""
-                  allFilters={allFilters}
-                  // Send in Collection title as default applied filter
-                  defaultVal={
-                    facet.name === facetValues.COLLECTION ? [title] : []
-                  }
-                />
+                <RSMultiList facet={facet} title="" allFilters={allFilters} />
               </Collapsible>
             );
           })}
