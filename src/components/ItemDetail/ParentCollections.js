@@ -15,11 +15,11 @@ const ParentCollections = props => {
         adminSetItems && (
           <section className="section">
             <SectionTop
-              sectionTitle="Library Division"
+              sectionTitle="Library Department"
               optionalSubhead={adminSetTitle}
               optionalButtons={[
                 {
-                  label: 'View All Items in Library Division',
+                  label: 'View All Items in Library Department',
                   url: '/search',
                   state: {
                     facetValue: facetValues.LIBRARY_UNIT,
@@ -56,6 +56,7 @@ const ParentCollections = props => {
 
 ParentCollections.propTypes = {
   adminSetItems: PropTypes.array.isRequired,
+  collectionId: PropTypes.string.isRequired,
   collectionItems: PropTypes.array.isRequired,
   item: PropTypes.object.isRequired
 };

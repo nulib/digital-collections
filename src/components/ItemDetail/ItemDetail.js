@@ -67,7 +67,11 @@ const ItemDetail = props => {
     { label: 'Contributor', value: contributor, facet_value: 'Contributor' },
     { label: 'Date', value: date },
     { label: 'Description', value: description },
-    { label: 'Division', value: admin_set, facet_value: 'Library Unit' },
+    {
+      label: 'Department',
+      value: admin_set,
+      facet_value: 'Library Department'
+    },
     { label: 'Genre', value: genre, facet_value: 'Genre' },
     { label: 'Keyword', value: keyword },
     { label: 'Language', value: language, facet_value: 'Language' },

@@ -32,10 +32,10 @@ const ItemDetailCarousels = props => {
 
   return (
     <section className="contain-1120 item-section item-categories-wrapper">
-      <h3>Library Division and Collections with this Item:</h3>
+      <h3>Library Department and Collections with this Item:</h3>
       <div className="expander expander1">
         <Collapsible
-          trigger={<CollapsibleHeader label="Library Division" />}
+          trigger={<CollapsibleHeader label="Library Department" />}
           open={true}
         >
           {/* Admin Sets carousel */}
