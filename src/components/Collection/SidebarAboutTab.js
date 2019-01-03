@@ -70,6 +70,10 @@ const SidebarAboutTab = props => {
 
       <div className="collapsible-no-side-margins">
         <div className="expander expander1">
+          {/*
+          // TODO: Re-enable this once the Created Date field gets indexed:
+          https://github.com/nulib/next-gen-front-end-react/issues/240
+
           <Collapsible
             trigger={<CollapsibleHeader label="Dates / Origin" />}
             open={true}
@@ -78,7 +82,7 @@ const SidebarAboutTab = props => {
             <ul>
               <AboutMetaValues items={aboutMetaMapper.date} />
             </ul>
-          </Collapsible>
+          </Collapsible> */}
 
           <Collapsible
             trigger={<CollapsibleHeader label="Library Locations" />}
