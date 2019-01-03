@@ -1,6 +1,8 @@
 import React from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import TabContent from './TabContent';
+import PropTypes from 'prop-types';
+import CiteTabContent from './CiteTabContent';
 
 const ItemDetail = props => {
   if (!props.item) {
@@ -8,98 +10,104 @@ const ItemDetail = props => {
   }
 
   const {
-    title: { primary: [title] } = '',
-    title: { alternate: [alternate] } = '',
+    accessionNumber = '',
+    admin_set: { title: [admin_set] } = '', // division,
+    based_near = null,
+    bibliographicCitation = '',
+    box: { name: boxName } = null,
+    box: { number: boxNumber } = null,
     abstract: [abstract] = '',
+    callNumber = '',
     caption: [caption] = '',
+    catalogKey = '',
     contributor = null,
+    creator = null,
     date: [date] = '',
     description: [description] = '',
-    admin_set: { title: [admin_set] } = '', // division
-    identifier = null,
-    license = null,
-    nul_use_statement = '',
+    folder: { name: folderName } = null,
+    folder: { number: folderNumber } = null,
+    genre = null,
     keyword = '',
     language = null,
-    location = null,
-    permalink = '',
+    notes = null,
+    physical_description: { material } = null,
+    physical_description: { size } = null,
     provenance: [provenance] = '',
     publisher = '',
-    related_url = null,
-    rights_holder = '',
+    related_material: relatedMaterial = null,
+    related_url: relatedUrl = null,
+    rightsHolder = '',
+    rights_statement: { label: rightsStatementText } = null,
+    scope_and_contents: scopeAndContents = null,
+    series = null,
     source = '',
+    stylePeriod = null,
     subject = '',
-    rights_statement = '',
-    extra_fields: { genre } = null,
-    extra_fields: { physical_description: { material } } = null,
-    extra_fields: { physical_description: { size } } = null,
-    extra_fields: { style_period } = null,
-    extra_fields: { technique } = null,
-    accession_number = '',
-    extra_fields: { box: { name: box_name } } = null,
-    extra_fields: { box: { number: box_number } } = null,
-    extra_fields: { folder: { name: folder_name } } = null,
-    extra_fields: { folder: { number: folder_number } } = null,
-    call_number = '',
-    catalog_key = '',
-    bibliographic_citation = ''
+    table_of_contents: tableOfConents = null,
+    technique = null,
+    title: { primary: title } = '',
+    title: { alternate: alternateTitle } = ''
   } = props.item;
 
+  const subjectTemporal =
+    subject &&
+    subject.filter(entry => entry.role === 'subject_temporal').length > 0
+      ? subject.filter(entry => entry.role === 'subject_temporal')
+      : null;
+
   const metadataPanel = [
-    { label: 'Title', value: title },
-    { label: 'Alternate Title', value: alternate },
+    { label: 'Alternate Title', value: alternateTitle },
     { label: 'Abstract', value: abstract },
     { label: 'Caption', value: caption },
-    { label: 'Contributor', value: contributor },
+    { label: 'Creator', value: creator, facet_value: 'Creator' },
+    { label: 'Contributor', value: contributor, facet_value: 'Contributor' },
     { label: 'Date', value: date },
     { label: 'Description', value: description },
-    { label: 'Division', value: admin_set },
+    {
+      label: 'Department',
+      value: admin_set,
+      facet_value: 'Library Department'
+    },
+    { label: 'Genre', value: genre, facet_value: 'Genre' },
     { label: 'Keyword', value: keyword },
-    { label: 'Language', value: language },
-    { label: 'Location', value: location },
-    { label: 'Provenance', value: provenance },
-    { label: 'Publisher', value: publisher },
-    { label: 'Related Url', value: related_url },
-    { label: 'Rights Holder', value: rights_holder },
-    { label: 'Source', value: source },
-    { label: 'Subject', value: subject },
-    { label: 'Rights Statement', value: rights_statement },
-    { label: 'Genre', value: genre },
+    { label: 'Language', value: language, facet_value: 'Language' },
+    { label: 'Location', value: based_near, facet_value: 'Location' },
+    { label: 'Notes', value: notes },
     { label: 'Physical Description material', value: material },
     { label: 'Physical Description size', value: size },
-    { label: 'Style Period', value: style_period },
-    { label: 'Technique', value: technique }
+    { label: 'Provenance', value: provenance },
+    { label: 'Publisher', value: publisher, facet_value: 'Publisher' },
+    { label: 'Related Material', value: relatedMaterial },
+    { label: 'Related Url', value: relatedUrl },
+    { label: 'Rights Holder', value: rightsHolder },
+    {
+      label: 'Rights Statement',
+      value: rightsStatementText,
+      facet_value: 'Rights Statement'
+    },
+    { label: 'Scope and Contents', value: scopeAndContents },
+    { label: 'Series', value: series },
+    { label: 'Source', value: source },
+    { label: 'Style Period', value: stylePeriod, facet_value: 'Style Period' },
+    { label: 'Subject', value: subject, facet_value: 'Subject' },
+    { label: 'Subject Temporal', value: subjectTemporal },
+    { label: 'Table of Contents', value: tableOfConents },
+    { label: 'Technique', value: technique, facet_value: 'Technique' },
+    { label: 'Title', value: title }
   ];
 
   const findThisItemPanel = [
-    { label: 'Accession', value: accession_number },
-    { label: 'Box Name', value: box_name },
-    { label: 'Box Number', value: box_number },
-    { label: 'Folder Name', value: folder_name },
-    { label: 'Folder Number', value: folder_number },
-    { label: 'Call Number', value: call_number },
-    { label: 'Catalog Key', value: catalog_key },
-    { label: 'Citation', value: bibliographic_citation }
-  ];
-
-  let formatMLA = `${title} here's the rest MLA`;
-  let formatChicago = `${title} chicago format`;
-  let formatAPA = `${title} apa format`;
-  let formatWikipedia = `${title} wikipedia format`;
-
-  const citePanel = [
-    { label: 'Title', value: title },
-    { label: 'Permalink', value: permalink },
-    { label: 'Identifier', value: identifier },
-    { label: 'License', value: license },
-    { label: 'Use Statement', value: nul_use_statement }
-  ];
-
-  const citationFormats = [
-    { label: 'MLA Format', value: formatMLA },
-    { label: 'Chicago/Turabian Format', value: formatChicago },
-    { label: 'APA Format', value: formatAPA },
-    { label: 'Wikipedia Citation', value: formatWikipedia }
+    { label: 'Accession', value: accessionNumber },
+    { label: 'Box Name', value: boxName },
+    { label: 'Box Number', value: boxNumber },
+    { label: 'Call Number', value: callNumber },
+    { label: 'Catalog Key', value: catalogKey },
+    { label: 'Citation', value: bibliographicCitation },
+    { label: 'Folder Name', value: folderName },
+    {
+      label: 'Folder Number',
+      value: folderNumber
+    }
   ];
 
   return (
@@ -125,21 +133,16 @@ const ItemDetail = props => {
             <TabContent items={findThisItemPanel} />
           </TabPanel>
           <TabPanel>
-            <div className="cite-group-col">
-              <div className="cite-group">
-                <TabContent items={citePanel} />
-              </div>
-            </div>
-            <div className="cite-group-col">
-              <div className="cite-group">
-                <TabContent items={citationFormats} />
-              </div>
-            </div>
+            <CiteTabContent item={props.item} />
           </TabPanel>
         </div>
       </Tabs>
     </section>
   );
+};
+
+ItemDetail.propTypes = {
+  item: PropTypes.object
 };
 
 export default ItemDetail;

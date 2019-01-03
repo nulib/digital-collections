@@ -3,8 +3,6 @@
 }
 
 .item-viewer-wrapper {
-  margin: 1.5rem 0;
-
   .item-wrapper {
     text-align: center;
     padding-bottom: 1rem;
@@ -29,9 +27,14 @@
 // Summary of item details underneath the item
 .item-summary-wrapper {
   background: $light-grey;
+  margin-bottom: 5rem;
 
   .item-summary {
     @extend %clearfix;
+
+    @media screen and (max-width: 1100px) {
+      margin-top: 2rem;
+    }
 
     .item-left {
       width: 50%;
@@ -52,30 +55,25 @@
 
       @include mobile-full-width();
     }
-    // Item detail 3 horizontal boxes
+
     .summary-list {
       display: flex;
       flex-wrap: nowrap;
 
       .summary-list-item {
-        width: 33%;
-
         &.social-media {
           display: flex;
           align-items: flex-end;
           justify-content: flex-end;
-          width: 30%;
-          .fa{
+          .fa {
             font-size: 2rem;
           }
         }
         &.permalink {
-          padding-top:.7rem;
-          width: 60%;
+          padding-top: 0.7rem;
         }
         &.download {
-          width: 50%;
-          padding-top:.7rem;
+          padding-top: 0.7rem;
 
           .data-value {
             display: flex;
@@ -108,7 +106,7 @@
 
     .identifier-wrapper {
       .summary-list-item {
-        width:70%;
+        width: 70%;
       }
     }
   }
@@ -174,7 +172,6 @@
       margin-left: 40px;
     }
   }
-
 
   // Timeliny overrides
   .timeliny {

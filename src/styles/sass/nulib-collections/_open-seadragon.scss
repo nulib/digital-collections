@@ -1,0 +1,19 @@
+.toolbar {
+  position: absolute !important;
+  right: 0px;
+  top: 40%;
+  background: $rich-black-50;
+  z-index: 100;
+  opacity: 0.8;
+}
+
+a.toolbar-controls {
+  color: $rich-black-20;
+  display: block !important;
+  font-size: 2rem;
+  padding: 10px;
+
+  &:hover {
+    background: darken($rich-black-50, 10%);
+  }
+}

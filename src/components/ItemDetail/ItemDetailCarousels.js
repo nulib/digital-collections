@@ -22,7 +22,7 @@ const ItemDetailCarousels = props => {
       <CarouselSection
         sectionTitle={item.collection[0].title[0]}
         linkTo=""
-        items={collectionItems.items}
+        items={collectionItems}
         slidesPerView={6}
         loading=""
         error=""
@@ -32,10 +32,10 @@ const ItemDetailCarousels = props => {
 
   return (
     <section className="contain-1120 item-section item-categories-wrapper">
-      <h3>Library Division and Collections with this Item:</h3>
+      <h3>Library Department and Collections with this Item:</h3>
       <div className="expander expander1">
         <Collapsible
-          trigger={<CollapsibleHeader label="Library Division" />}
+          trigger={<CollapsibleHeader label="Library Department" />}
           open={true}
         >
           {/* Admin Sets carousel */}
@@ -44,7 +44,7 @@ const ItemDetailCarousels = props => {
               <CarouselSection
                 sectionTitle={item.admin_set.title[0]}
                 linkTo=""
-                items={adminSetItems.items}
+                items={adminSetItems}
                 slidesPerView={6}
                 loading=""
                 error=""
@@ -66,8 +66,8 @@ const ItemDetailCarousels = props => {
 };
 
 ItemDetailCarousels.propTypes = {
-  adminSetItems: PropTypes.object.isRequired,
-  collectionItems: PropTypes.object.isRequired,
+  adminSetItems: PropTypes.array.isRequired,
+  collectionItems: PropTypes.array.isRequired,
   item: PropTypes.object.isRequired
 };
 

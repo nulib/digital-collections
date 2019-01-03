@@ -12,10 +12,8 @@ const MetadataSummary = props => {
 
   let creators = [];
 
-  if (item.contributor) {
-    creators = item.contributor
-      .filter(entry => entry.type === 'creator')
-      .map(creator => creator.label);
+  if (item.creator) {
+    creators = item.creator.map(creator => creator.label);
   }
 
   return (

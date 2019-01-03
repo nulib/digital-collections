@@ -34,7 +34,8 @@ CarouselItem.propTypes = {
   item: PropTypes.shape({
     id: PropTypes.string.isRequired,
     imageUrl: PropTypes.string.isRequired,
-    label: PropTypes.string
+    label: PropTypes.string,
+    type: PropTypes.string
   })
 };
 

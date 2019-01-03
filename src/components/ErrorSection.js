@@ -1,10 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './ErrorSection.css';
+
+const styles = {
+  color: '#b2292e',
+  padding: '3rem 0',
+  textAlign: 'center'
+};
 
 function ErrorSection(props) {
   const errorMessage = props.message || 'General error';
-  return <div className="ErrorSection">Error: {errorMessage}</div>;
+  return <div style={styles}>Error: {errorMessage}</div>;
 }
 
 ErrorSection.propTypes = {

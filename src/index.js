@@ -1,17 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
-import { createStore, applyMiddleware } from 'redux';
-import thunkMiddleware from 'redux-thunk';
-import rootReducer from './reducers';
 import Root from './Root';
+import store from './store';
+import { HONEYBADGER_API_KEY, HONEYBADGER_ENV } from './services/global-vars';
+import Honeybadger from 'honeybadger-js';
 
-const store = createStore(
-  rootReducer,
-  applyMiddleware(
-    thunkMiddleware // lets us dispatch() functions
-  )
-);
-
+Honeybadger.configure({
+  apiKey: HONEYBADGER_API_KEY,
+  environment: HONEYBADGER_ENV
+});
 ReactDOM.render(<Root store={store} />, document.getElementById('root'));
 registerServiceWorker();

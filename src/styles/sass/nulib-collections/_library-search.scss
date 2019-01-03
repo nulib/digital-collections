@@ -33,12 +33,6 @@
 }
 
 #library-search-dropdown {
-  display: none;
-  // position: absolute;
-  // top: 0;
-  // width: 100%;
-  // z-index: 10;
-
   .advanced-search {
     margin-top: 0.5rem;
   }
@@ -130,7 +124,6 @@
   -webkit-appearance: none;
   border-radius: 0;
   height: 40px;
-  width: 85%;
   background: #fff;
   border: 1px solid #ccc;
   border-right: none;
@@ -169,9 +162,11 @@
 }
 #library-search-dropdown .for-column,
 #library-search .for-column {
-  width: 90%;
-  text-align: right;
-  padding-right: 40px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 #library-search-dropdown.home-search,
 #library-search.home-search {

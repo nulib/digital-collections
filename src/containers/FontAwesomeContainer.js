@@ -9,7 +9,20 @@ import {
   faAngleUp,
   faCaretDown,
   faCopy,
+  faDownload,
+  faExpand,
+  faSearchMinus,
+  faSearchPlus,
   faTimes
 } from '@fortawesome/free-solid-svg-icons';
-import { fab } from '@fortawesome/free-brands-svg-icons';
-library.add(faAngleDown, faAngleUp, faTimes, faCaretDown, faCopy, fab);
+library.add(
+  faAngleDown,
+  faAngleUp,
+  faCaretDown,
+  faCopy,
+  faDownload,
+  faExpand,
+  faSearchMinus,
+  faSearchPlus,
+  faTimes
+);

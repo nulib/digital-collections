@@ -1,0 +1,66 @@
+.rs-facet-title,
+.rs-facet-title > h2 {
+  @extend h4;
+}
+
+.rs-facet-list {
+  margin: 1em 0 !important;
+  overflow-x: none;
+  overflow-y: auto;
+
+  li {
+    height: auto !important;
+
+    &.active {
+      .rs-facet-label {
+        > span {
+          font-weight: normal;
+        }
+      }
+    }
+
+    &:not(.active) {
+      .rs-facet-label {
+        > span {
+          @extend a;
+        }
+      }
+    }
+  }
+}
+
+.rs-search-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url('images/library-search.svg') no-repeat;
+  background-size: contain;
+  text-indent: -9999px;
+}
+
+.rs-search-input {
+  width: 100%;
+}
+
+.rs-result-item {
+  box-shadow: none !important;
+}
+
+.rs-result-title {
+  @extend h4;
+}
+
+.rs-result-item article {
+  max-height: 80px;
+}
+
+.rs-pagination {
+  > .active {
+    background-color: $nu-purple;
+    color: $white;
+    &:hover {
+      background-color: $nu-purple-60;
+    }
+  }
+}
+

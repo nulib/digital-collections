@@ -100,7 +100,9 @@ class Carousel extends Component {
           }}
         >
           <div className="swiper-wrapper">
-            {items.map(item => <CarouselItem key={item.id} item={item} />)}
+            {items.map(item => (
+              <CarouselItem key={item.id} item={item} />
+            ))}
           </div>
           <div className="swiper-button-next" />
           <div className="swiper-button-prev" />
@@ -113,14 +115,6 @@ class Carousel extends Component {
 Carousel.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
   slidesPerView: PropTypes.number.isRequired
-};
-
-CarouselItem.propTypes = {
-  item: PropTypes.shape({
-    description: PropTypes.array,
-    imageUrl: PropTypes.string.isRequired,
-    label: PropTypes.string
-  })
 };
 
 export default Carousel;

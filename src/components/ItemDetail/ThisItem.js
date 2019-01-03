@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
+import { IIIF_LARGE_FEATURE_REGION } from '../../services/global-vars';
 
 const ThisItem = props => {
   const { item } = props;
@@ -8,16 +9,25 @@ const ThisItem = props => {
     caret: {
       fontSize: '6rem',
       color: '#f0f0f0'
+    },
+    wrapper: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      marginBottom: '5rem'
     }
   };
 
   return (
-    <div className="this-item-wrapper">
+    <div className="this-item-wrapper" style={styles.wrapper}>
       <div>
         <FontAwesomeIcon icon="caret-down" style={styles.caret} />
       </div>
       <p>This item</p>
-      <img src={item && item.thumbnail_url} alt={item && item.label} />
+      <img
+        src={item && `${item.thumbnail_url}${IIIF_LARGE_FEATURE_REGION}`}
+        alt={item && item.label}
+      />
     </div>
   );
 };
