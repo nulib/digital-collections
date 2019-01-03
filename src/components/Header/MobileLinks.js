@@ -15,7 +15,6 @@ class MobileLinks extends Component {
   }
 
   handleMenuClick = e => {
-    console.log('handleMenuClick');
     e.preventDefault();
 
     this.setState({

@@ -2,6 +2,7 @@ import React from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import TabContent from './TabContent';
 import PropTypes from 'prop-types';
+import CiteTabContent from './CiteTabContent';
 
 const ItemDetail = props => {
   if (!props.item) {
@@ -19,7 +20,6 @@ const ItemDetail = props => {
     callNumber = '',
     caption: [caption] = '',
     catalogKey = '',
-    collection = null,
     contributor = null,
     creator = null,
     date: [date] = '',
@@ -27,13 +27,9 @@ const ItemDetail = props => {
     folder: { name: folderName } = null,
     folder: { number: folderNumber } = null,
     genre = null,
-    id = '',
-    identifier = null,
     keyword = '',
     language = null,
-    license = null,
     notes = null,
-    nulUseStatement = '',
     physical_description: { material } = null,
     physical_description: { size } = null,
     provenance: [provenance] = '',
@@ -114,33 +110,6 @@ const ItemDetail = props => {
     }
   ];
 
-  const nul = 'Northwestern University Libraries';
-  const item_link = `${window.location.origin}/${id}`;
-  const today = new Date().toDateString();
-  const collection_title =
-    collection && collection.length > 0 ? `${collection[0].title}.` : '';
-
-  const formatMLA = `${admin_set}, ${nul}. "${title}", ${collection_title} ${date}. ${
-    window.location.origin
-  }/${id}`;
-  const formatChicago = `${admin_set}, ${nul}. "${title}", ${collection_title} Accessed ${today}. ${item_link}`;
-  const formatAPA = `${admin_set}, ${nul}. (${date}). ${title}, Retrieved from ${item_link}`;
-  const formatWikipedia = `<ref name=NUL>{{cite web | url=${item_link} | title= ${title} (${date}) }} |author=Digital Collections, ${nul} |accessdate=${today} |publisher=${nul}, ${admin_set}}}</ref>`;
-
-  const citePanel = [
-    { label: 'Identifier', value: identifier },
-    { label: 'Licenses', value: license },
-    { label: 'Title', value: title },
-    { label: 'Use Statement', value: nulUseStatement }
-  ];
-
-  const citationFormats = [
-    { label: 'APA Format', value: formatAPA },
-    { label: 'Chicago/Turabian Format', value: formatChicago },
-    { label: 'MLA Format', value: formatMLA },
-    { label: 'Wikipedia Citation', value: formatWikipedia }
-  ];
-
   return (
     <section className="item-section contain-970 item-categories-wrapper">
       <Tabs selectedTabClassName="active" id="tab-container">
@@ -164,16 +133,7 @@ const ItemDetail = props => {
             <TabContent items={findThisItemPanel} />
           </TabPanel>
           <TabPanel>
-            <div className="cite-group-col">
-              <div className="cite-group">
-                <TabContent items={citePanel} />
-              </div>
-            </div>
-            <div className="cite-group-col">
-              <div className="cite-group">
-                <TabContent items={citationFormats} />
-              </div>
-            </div>
+            <CiteTabContent item={props.item} />
           </TabPanel>
         </div>
       </Tabs>

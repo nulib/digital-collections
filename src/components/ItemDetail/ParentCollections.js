@@ -34,7 +34,7 @@ const ParentCollections = props => {
 
       {item &&
         collectionItems.length > 0 && (
-          <section className="section">
+          <section>
             <SectionTop
               sectionTitle="Collection"
               optionalSubhead={item.collection[0].title[0]}

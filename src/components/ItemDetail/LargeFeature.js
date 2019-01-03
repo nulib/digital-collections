@@ -13,14 +13,8 @@ const LargeFeature = props => {
     elasticSearchParser.getESDescription(item) || 'No description provided.';
 
   const styles = {
-    contentSide: {
-      width: '66%'
-    },
     paddedBlock: {
       marginBottom: '1em'
-    },
-    rightSide: {
-      width: '33%'
     },
     subhead: {
       display: 'block',
@@ -32,14 +26,14 @@ const LargeFeature = props => {
     <div className="section large-feature item-summary-wrapper">
       <h3>Item Details</h3>
       <div className="large-feature-inner">
-        <div className="content-side" style={styles.contentSide}>
+        <div className="content-side">
           <h4>{title}</h4>
           <div className="text">
             <p>{chopString(description, 70)}</p>
           </div>
           <ButtonRow />
         </div>
-        <div className="right-side item-summary" style={styles.rightSide}>
+        <div className="right-side item-summary">
           <h4>Item Metadata</h4>
           <div style={styles.paddedBlock}>
             <span style={styles.subhead}>Identifier</span>
