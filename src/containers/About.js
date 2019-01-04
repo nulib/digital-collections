@@ -7,43 +7,44 @@ import bursarsOffice from '../images/feature-box-collection-bursars-office.jpg';
 import cassas from '../images/feature-box-collection-cassas.jpg';
 import roadTrip from '../images/feature-box-collection-road-trip.jpg';
 import wwII from '../images/feature-box-collection-wwII.jpg';
+import { productionIds } from '../services/global-vars';
 
 const featuredCollections = [
   {
     description: 'Posters depicting the social history of Iranian cinema.',
-    id: 'asdfasdf',
+    id: productionIds.hamidNaficy,
     image: iranianCinema,
     label: 'Hamid Naficy Iranian Movie Posters Collection'
   },
   {
     description: `Photographs representing colonialism in East Africa over the span
     of 100 years.`,
-    id: 'asdfasdfddd',
+    id: productionIds.vernonMcKay,
     image: colonialism,
     label: 'Vernon McKay Photographs'
   },
   {
     description: `Images documenting the 1968 takeover of the Northwestern University Bursar's office.`,
-    id: 'asdfeeeasdf',
+    id: productionIds.bursarsOffice,
     image: bursarsOffice,
     label: 'Records of the Bursar’s Office Takeover, May 1968'
   },
   {
     description: 'US Government posters from WWII.',
-    id: 'asdasdgfasdf',
+    id: productionIds.wpa,
     image: wwII,
     label: 'World War II Poster Collection at Northwestern University Library'
   },
   {
     description: 'Late sketches from modernist artist Ramón Casas.',
-    id: 'asdfertyasdf',
+    id: productionIds.ramonCasas,
     image: cassas,
     label: 'Ramón Casas sketchbooks'
   },
   {
     description: `Photographs from a 1915 road trip from Iowa to the Panama-Pacific
     exposition.`,
-    id: 'asdfacvbsdf',
+    id: productionIds.kateAndLou,
     image: roadTrip,
     label: 'Kate and Lou. Souvenir of auto trip to San Francisco, 1915'
   }

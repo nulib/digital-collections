@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const HeroSecondarySection = props => {
-  const { title, subTitle, heroImage } = props.heroData;
+  const { collectionId, title, subTitle, heroImage } = props.heroData;
   const bgImage = require(`../../images/${heroImage}`);
   const buttonText = 'See more';
   const styles = {
@@ -22,7 +22,7 @@ const HeroSecondarySection = props => {
         <p>{subTitle}</p>
         <ul className="center-list">
           <li>
-            <Link className="button" to="/">
+            <Link className="button" to={`/collections/${collectionId}`}>
               {buttonText}
             </Link>
           </li>
