@@ -47,3 +47,16 @@ export const HOMEPAGE_COLLECTION_GROUP_KEYWORDS = [
 
 // Mobile breakpoint
 export const MOBILE_BREAKPOINT = 768;
+
+// Production ids (needed for hardcoding hero images on homepage and collections on the About page)
+export const productionIds = {
+  berkeley: '18ec4c6b-192a-4ab8-9903-ea0f393c35f7',
+  bursarsOffice: 'c2a8a3e0-af0f-4e04-8721-91698fc14574',
+  fava: 'c373ecd2-2c45-45f2-9f9e-52dc244870bd',
+  hamidNaficy: '4ed2338d-c715-4a86-8ac6-6b4030a42be5',
+  kateAndLou: 'c20483d1-d2d5-459c-aa1b-a605375ac906',
+  jimmyJohnson: 'db98ed75-1810-46d3-a838-176c0685cd01',
+  ramonCasas: 'ba35820a-525a-4cfa-8f23-4891c9f798c4',
+  vernonMcKay: '1d849df1-eb32-43f4-b7b9-e435cff18f7c',
+  wpa: 'c708f479-db91-4585-8267-874c5e7da73f'
+};
