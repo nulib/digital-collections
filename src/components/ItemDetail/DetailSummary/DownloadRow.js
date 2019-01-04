@@ -6,11 +6,17 @@ export function handleDownload(file, width) {
   window.location = path;
 }
 
+const styles = {
+  container: {
+    marginBottom: '1rem'
+  }
+};
+
 const DownloadRow = props => {
   const file = props.item.representative_file_url;
 
   return (
-    <div className="summary-list">
+    <div className="summary-list" style={styles.container}>
       <div className="summary-list-item download">
         <div className="data-label">Download Options</div>
         <div className="data-value">

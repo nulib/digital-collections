@@ -5,6 +5,7 @@ import SocialLinks from './DetailSummary/SocialLinks';
 import DownloadRow from './DetailSummary/DownloadRow';
 import PropTypes from 'prop-types';
 import { chopString } from '../../services/helpers';
+import IIIFDraggable from './IIIFDraggable';
 
 const LargeFeature = props => {
   const { item } = props;
@@ -43,6 +44,7 @@ const LargeFeature = props => {
             <SocialLinks item={item} />
           </div>
           <DownloadRow item={item} />
+          <IIIFDraggable iiifManifest={item.iiif_manifest} />
         </div>
       </div>
     </div>
