@@ -11,7 +11,11 @@ const styles = {
 
 const IIIFDraggable = props => {
   return (
-    <a href={`${window.location.host}?manifest=${props.iiifManifest}`}>
+    <a
+      href={`${props.iiifManifest}?manifest=${props.iiifManifest}`}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <img
         src={iiifLogo}
         alt="IIIF Drag-n-drop"
