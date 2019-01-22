@@ -5,6 +5,8 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import { getAllCollections } from '../api/elasticsearch-api';
 import { prepPhotoGridItems } from '../services/elasticsearch-parser';
 import * as globalVars from '../services/global-vars';
+import { generateTitleTag } from '../services/helpers';
+import { Helmet } from 'react-helmet';
 
 const breadcrumbItems = [
   { title: 'Collections', link: 'collections' },
@@ -37,6 +39,9 @@ class AllCollectionsContainer extends Component {
 
     return (
       <div className="standard-page">
+        <Helmet>
+          <title>{generateTitleTag('All Collections')}</title>
+        </Helmet>
         <div id="page" className="full-width">
           <main id="main-content" className="content" tabIndex="0">
             <Breadcrumbs items={breadcrumbItems} />

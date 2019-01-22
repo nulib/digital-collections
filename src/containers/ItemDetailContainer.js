@@ -11,6 +11,8 @@ import { shuffleArray } from '../services/helpers';
 import ParentCollections from '../components/ItemDetail/ParentCollections';
 import LargeFeature from '../components/ItemDetail/LargeFeature';
 import OpenSeadragonContainer from './OpenSeadragonContainer';
+import { Helmet } from 'react-helmet';
+import { generateTitleTag } from '../services/helpers';
 
 export class ItemDetailContainer extends Component {
   constructor(props) {
@@ -170,6 +172,8 @@ export class ItemDetailContainer extends Component {
     // at this point of execution
     const idInSync = this.props.match.params.id === id;
 
+    const itemTitle = item ? elasticsearchParser.getESTitle(item) : '';
+
     const renderDisplay = () => {
       if (error) {
         return <ErrorSection message={error} />;
@@ -196,6 +200,9 @@ export class ItemDetailContainer extends Component {
 
     return (
       <div className="landing-page">
+        <Helmet>
+          <title>{generateTitleTag(itemTitle)}</title>
+        </Helmet>
         {item && idInSync && !error && <OpenSeadragonContainer item={item} />}
         <div id="page">
           <main id="main-content" className="content" tabIndex="0">

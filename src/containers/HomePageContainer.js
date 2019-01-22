@@ -8,6 +8,8 @@ import * as elasticsearchApi from '../api/elasticsearch-api.js';
 import * as elasticsearchParser from '../services/elasticsearch-parser';
 import * as globalVars from '../services/global-vars';
 import { getRandomInt } from '../services/helpers';
+import { Helmet } from 'react-helmet';
+import { generateTitleTag } from '../services/helpers';
 
 export class HomePageContainer extends Component {
   constructor(props) {
@@ -120,6 +122,9 @@ export class HomePageContainer extends Component {
 
     return (
       <div className="landing-page">
+        <Helmet>
+          <title>{generateTitleTag()}</title>
+        </Helmet>
         <div id="page">
           <main id="main-content" className="content" tabIndex="0">
             <div className="relative-wrapper homepage-hero-wrapper contain-1440">

@@ -1,3 +1,5 @@
+import { titleTagEnd } from './global-vars';
+
 /**
  * Helper function to chop a string into a limited word count, from the start of the text
  *
@@ -45,4 +47,8 @@ export function shuffleArray(array) {
   }
 
   return array;
+}
+
+export function generateTitleTag(title) {
+  return title ? `${title} - ${titleTagEnd}` : titleTagEnd;
 }

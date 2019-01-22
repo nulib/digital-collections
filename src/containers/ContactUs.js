@@ -1,5 +1,7 @@
 import React from 'react';
 import Breadcrumbs from '../components/breadcrumbs/Breadcrumbs';
+import { generateTitleTag } from '../services/helpers';
+import { Helmet } from 'react-helmet';
 
 const breadCrumbs = [
   {
@@ -14,6 +16,9 @@ const breadCrumbs = [
 const ContactUs = props => {
   return (
     <div className="standard-page narrow-page">
+      <Helmet>
+        <title>{generateTitleTag('Contact Us')}</title>
+      </Helmet>
       <div id="page">
         <main id="main-content" className="content" tabIndex="0">
           <Breadcrumbs items={breadCrumbs} />

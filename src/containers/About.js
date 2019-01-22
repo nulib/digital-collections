@@ -8,6 +8,8 @@ import cassas from '../images/feature-box-collection-cassas.jpg';
 import roadTrip from '../images/feature-box-collection-road-trip.jpg';
 import wwII from '../images/feature-box-collection-wwII.jpg';
 import { productionIds } from '../services/global-vars';
+import { generateTitleTag } from '../services/helpers';
+import { Helmet } from 'react-helmet';
 
 const featuredCollections = [
   {
@@ -63,6 +65,9 @@ const About = props => {
 
   return (
     <div className="landing-page">
+      <Helmet>
+        <title>{generateTitleTag('About')}</title>
+      </Helmet>
       <div className="section hero contain-1440">
         <div className="hero-image" style={styles.heroBg}>
           <div className="contain-1120">
