@@ -60,3 +60,7 @@ export const productionIds = {
   vernonMcKay: '1d849df1-eb32-43f4-b7b9-e435cff18f7c',
   wpa: 'c708f479-db91-4585-8267-874c5e7da73f'
 };
+
+// <title> tag ending
+export const titleTagEnd =
+  'Digital Collections - Libraries - Northwestern University';

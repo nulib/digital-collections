@@ -24,6 +24,8 @@ import {
   imageFilters
 } from '../services/reactive-search';
 import { connect } from 'react-redux';
+import { generateTitleTag } from '../services/helpers';
+import { Helmet } from 'react-helmet';
 
 const allFilters = [COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID, ...imageFilters];
 
@@ -141,6 +143,7 @@ export class CollectionContainer extends Component {
     const breadCrumbData = collection
       ? this.createBreadcrumbData(collection)
       : [];
+    const collectionTitle = collection ? getESTitle(collection) : '';
 
     const renderDisplay = () => {
       if (error) {
@@ -228,6 +231,9 @@ export class CollectionContainer extends Component {
 
     return (
       <div className="standard-page">
+        <Helmet>
+          <title>{generateTitleTag(collectionTitle)}</title>
+        </Helmet>
         <div id="page" className="collection-items">
           {loading && <LoadingSpinner loading={loading} />}
           {renderDisplay()}

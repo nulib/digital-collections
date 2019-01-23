@@ -19,6 +19,8 @@ import {
   imageFilters
 } from '../services/reactive-search';
 import RSMultiList from '../components/reactive-search-wrappers/RSMultiList';
+import { generateTitleTag } from '../services/helpers';
+import { Helmet } from 'react-helmet';
 
 class ReactivesearchContainer extends Component {
   constructor(props) {
@@ -65,6 +67,9 @@ class ReactivesearchContainer extends Component {
     //TODO: Break this into components
     return (
       <div className="standard-page">
+        <Helmet>
+          <title>{generateTitleTag('Search')}</title>
+        </Helmet>
         <div id="page" className="search">
           <div id="sidebar" className="left-sidebar content" tabIndex="-1">
             <div className="box">
