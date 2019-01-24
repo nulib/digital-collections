@@ -37,7 +37,8 @@ class OpenSeadragonContainer extends Component {
   }
 
   async getManifest(url) {
-    let response = await getManifest(url);
+    const environtmentUrl = this.getEnvironmentManifestUrl(url);
+    let response = await getManifest(environtmentUrl);
 
     if (response.error) {
       // TODO: Some kind of error handling to the UI here
@@ -46,6 +47,18 @@ class OpenSeadragonContainer extends Component {
     // Get the sources for OpenSeadragon viewer from the manifest
     let tileSources = getTileSources(response);
     this.setState({ loading: false, tileSources });
+  }
+
+  /**
+   * Helper function to update the manifest url with local dev port number
+   */
+  getEnvironmentManifestUrl(url) {
+    if (process.env.NODE_ENV === 'development') {
+      const publicIndex = url.indexOf('/public');
+      return (
+        url.slice(0, publicIndex) + ':3000' + url.slice(publicIndex, url.length)
+      );
+    }
   }
 
   render() {
