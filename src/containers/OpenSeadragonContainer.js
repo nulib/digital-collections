@@ -50,15 +50,24 @@ class OpenSeadragonContainer extends Component {
   }
 
   /**
-   * Helper function to update the manifest url with local dev port number
+   * Helper function to update the manifest url with local dev port number ":3000".
+   * This handles 2 conditions
+   * 1.) Running the local dev environment and;
+   * 2.) Local production build, served via the "devbox.library.northwestern.edu" url
+   *
+   * This also assumes that local DONUT instance is running on port 3000.
    */
   getEnvironmentManifestUrl(url) {
-    if (process.env.NODE_ENV === 'development') {
+    if (
+      process.env.NODE_ENV === 'development' ||
+      url.indexOf('http://devbox.library.northwestern.edu') > -1
+    ) {
       const publicIndex = url.indexOf('/public');
       return (
         url.slice(0, publicIndex) + ':3000' + url.slice(publicIndex, url.length)
       );
     }
+    return url;
   }
 
   render() {
