@@ -115,7 +115,19 @@ class OpenSeadragonViewer extends Component {
           >
             <FontAwesomeIcon icon="download" />
           </a>
+          <a
+            id="previous"
+            href="#previous"
+            className="toolbar-controls"
+            title="Previous"
+          >
+            <FontAwesomeIcon icon="arrow-circle-left" />
+          </a>
+          <a id="next" href="#next" className="toolbar-controls" title="Next">
+            <FontAwesomeIcon icon="arrow-circle-right" />
+          </a>
         </div>
+
         <div id="openseadragon1" style={styles.viewer} />
       </div>
     );
