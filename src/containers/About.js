@@ -218,17 +218,18 @@ class About extends Component {
                 <div className="text">
                   <h4>Rights Statement</h4>
                   <p>
-                    {`All of the content in Digital Collections has a statement
-                    that indicates how it can be used. This is found under
-                    "Rights Statement" for each item. For more information, go
-                    to `}
+                    {`We offer support to the Northwestern community on copyright and fair use in scholarly research, publishing, teaching and other areas. Our Copyright Librarian is available to answer questions regarding clearing permissions for publications, making public domain determinations, copyright registration, publication agreements, and more.`}
+                  </p>
+                  <p>
+                    For more information, visit{' '}
                     <a
-                      href="https://rightsstatements.org/page/1.0/"
+                      href="https://www.library.northwestern.edu/research/scholarly/index.html"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      https://rightsstatements.org/page/1.0/
+                      Scholarly Research Services
                     </a>
+                    .
                   </p>
                 </div>
               </div>
