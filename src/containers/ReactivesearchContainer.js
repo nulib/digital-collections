@@ -64,6 +64,13 @@ class ReactivesearchContainer extends Component {
     const allFilters = [GLOBAL_SEARCH_BAR_COMPONENT_ID, ...imageFilters];
     const { componentLoaded } = this.state;
 
+    const queryStringQuery = (value, props) => ({
+      query_string: {
+        default_field: 'full_text',
+        query: value
+      }
+    });
+
     //TODO: Break this into components
     return (
       <div className="standard-page">
@@ -97,6 +104,7 @@ class ReactivesearchContainer extends Component {
             <div>
               <h2>Search Results</h2>
               <DataSearch
+                customQuery={queryStringQuery}
                 className="datasearch web-form"
                 componentId={GLOBAL_SEARCH_BAR_COMPONENT_ID}
                 dataField={['full_text']}
