@@ -145,6 +145,13 @@ export class CollectionContainer extends Component {
       : [];
     const collectionTitle = collection ? getESTitle(collection) : '';
 
+    const queryStringQuery = (value, props) => ({
+      query_string: {
+        default_field: 'full_text',
+        query: value
+      }
+    });
+
     const renderDisplay = () => {
       if (error) {
         return <ErrorSection message={error} />;
@@ -179,6 +186,7 @@ export class CollectionContainer extends Component {
                   />
 
                   <DataSearch
+                    customQuery={queryStringQuery}
                     autosuggest={false}
                     className="datasearch web-form"
                     componentId={COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID}
