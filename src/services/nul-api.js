@@ -1,4 +1,4 @@
-import * as globalVars from '../services/global-vars';
+import * as globalVars from './global-vars';
 
 const cookies = require('cookie');
 const nullUser = { token: null };

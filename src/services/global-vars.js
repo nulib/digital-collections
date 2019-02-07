@@ -58,7 +58,8 @@ export const productionIds = {
   jimmyJohnson: 'db98ed75-1810-46d3-a838-176c0685cd01',
   ramonCasas: 'ba35820a-525a-4cfa-8f23-4891c9f798c4',
   vernonMcKay: '1d849df1-eb32-43f4-b7b9-e435cff18f7c',
-  wpa: 'c708f479-db91-4585-8267-874c5e7da73f'
+  wpa: 'c708f479-db91-4585-8267-874c5e7da73f',
+  wwII: 'faf4f60e-78e0-4fbf-96ce-4ca8b4df597a'
 };
 
 // <title> tag ending
