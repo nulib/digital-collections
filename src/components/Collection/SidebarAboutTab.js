@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { chopString } from '../../services/helpers';
+import CollectionDescription from './CollectionDescription';
 import { getESDescription } from '../../services/elasticsearch-parser';
 import { Link } from 'react-router-dom';
 import { facetValues } from '../../services/reactive-search';
@@ -36,6 +36,7 @@ const AboutMetaValues = props => {
 const SidebarAboutTab = props => {
   const { collectionItems, item } = props;
   let aboutMetaMapper = {};
+  const description = getESDescription(item);
   const indexKeys = ['admin_set', 'based_near', 'date', 'subject'];
 
   // Initialize empty arrays for each index key
@@ -65,25 +66,10 @@ const SidebarAboutTab = props => {
 
   return (
     <div>
-      <h3>Collection Description</h3>
-      <p>{chopString(getESDescription(item), 70)}</p>
+      <CollectionDescription description={description} />
 
       <div className="collapsible-no-side-margins">
         <div className="expander expander1">
-          {/*
-          // TODO: Re-enable this once the Created Date field gets indexed:
-          https://github.com/nulib/next-gen-front-end-react/issues/240
-
-          <Collapsible
-            trigger={<CollapsibleHeader label="Dates / Origin" />}
-            open={true}
-            key="Dates / Origin"
-          >
-            <ul>
-              <AboutMetaValues items={aboutMetaMapper.date} />
-            </ul>
-          </Collapsible> */}
-
           <Collapsible
             trigger={<CollapsibleHeader label="Library Locations" />}
             open={true}
