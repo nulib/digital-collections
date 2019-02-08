@@ -56,12 +56,11 @@ export function getESImagePath(
   iiifParams = globalVars.IIIF_MEDIUM_ITEM_REGION
 ) {
   const imgUrl =
-    _source.model.name === 'Collection'
+    _source.model.name === globalVars.COLLECTION_MODEL
       ? _source.thumbnail_iiif_url
       : _source.representative_file_url;
 
   const returnUrl = imgUrl === '' ? placeholderImage : `${imgUrl}${iiifParams}`;
-
   return returnUrl;
 }
 
@@ -82,7 +81,7 @@ export function getESTitle(_source) {
   return titleArray.join('');
 }
 
-function getIIIFUrlKey(modelType) {
+export function getIIIFUrlKey(modelType) {
   return modelType === globalVars.COLLECTION_MODEL
     ? 'thumbnail_iiif_url'
     : 'representative_file_url';

@@ -1,4 +1,4 @@
-import { productionIds } from '../../services/global-vars';
+import { productionIds } from './global-vars';
 
 export const heroBerkeley = {
   title: 'Berkeley Folk Festival',
@@ -14,20 +14,28 @@ export const heroFava = {
   heroImage: 'hero-fava-1440x600.jpg'
 };
 
-export const heroWPA = {
+export const heroWWII = {
   title: 'World War II Poster Collection at Northwestern University Library',
   subTitle:
     'View more than 300 World War II-era posters issued by various U.S. government agencies.',
-  collectionId: productionIds.wpa,
-  heroImage: 'hero-wpa2-1440x600.jpg'
+  collectionId: productionIds.wwII,
+  heroImage: 'hero-wwII-1440x600.jpg'
 };
 
-export const heroWPA2 = {
+export const heroWWII_2 = {
   title: 'World War II Poster Collection at Northwestern University Library',
   subTitle:
     'View more than 300 World War II-era posters issued by various U.S. government agencies.',
+  collectionId: productionIds.wwII,
+  heroImage: 'hero-wwII-1440x600-2.jpg'
+};
+
+export const heroWPA = {
+  title: 'WPA Digital Collection, 1935-1943',
+  subTitle:
+    'Images taken from: Narrative report, July 1935 to April 1936. Illinois: Works Progress Administration, Illinois, Women and Professional Division, 1936.',
   collectionId: productionIds.wpa,
-  heroImage: 'hero-wpa3-1440x600.jpg'
+  heroImage: 'hero-wpa-children-1440x600.jpg'
 };
 
 export const heroSecondaryData = {

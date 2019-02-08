@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const HeroSection = props => {
-  const { title, subTitle, heroImage } = props.heroData;
-  // Need this 'require()' for webpack to grab the image
+  const { collectionId, title, subTitle, heroImage } = props.heroData;
   const bgImage = require(`../../images/${heroImage}`);
   const buttonText = 'View Collection';
   const styles = {
@@ -22,7 +21,11 @@ const HeroSection = props => {
         <div className="contain-1120">
           <h2>{title}</h2>
           <p>{subTitle}</p>
-          <Link to="/" className="button" aria-label="enter descriptive text">
+          <Link
+            to={`/collections/${collectionId}`}
+            className="button"
+            aria-label="enter descriptive text"
+          >
             {buttonText}
           </Link>
         </div>
@@ -30,7 +33,11 @@ const HeroSection = props => {
       <div className="mobile-hero-text">
         <h2>{title}</h2>
         <p>{subTitle}</p>
-        <Link to="/" className="button" aria-label="enter descriptive text">
+        <Link
+          to={`/collections/${collectionId}`}
+          className="button"
+          aria-label="enter descriptive text"
+        >
           {buttonText}
         </Link>
       </div>

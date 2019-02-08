@@ -12,7 +12,6 @@ import GlobalSearchContainer from '../containers/GlobalSearchContainer';
 import * as globalVars from '../services/global-vars';
 import Header from '../components/Header/';
 import HomePageContainer from './HomePageContainer';
-import ItemsContainer from './ItemsContainer';
 import ItemDetailContainer from './ItemDetailContainer';
 import CollectionContainer from './CollectionContainer';
 import NavContainer from './NavContainer';
@@ -62,7 +61,6 @@ export class Layout extends Component {
               component={AllCollectionsContainer}
             />
             <Route path="/items/:id" component={ItemDetailContainer} />
-            <Route path="/items/" component={ItemsContainer} />
             <Route path="/search/" component={ReactivesearchContainer} />
             <Route exact path="/" component={HomePageContainer} />
             <Route component={HomePageContainer} />
