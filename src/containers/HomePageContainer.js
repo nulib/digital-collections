@@ -3,8 +3,14 @@ import HeroSection from '../components/Home/HeroSection';
 import HeroSecondarySection from '../components/Home/HeroSecondarySection';
 import PhotoGridSection from '../components/PhotoGridSection';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { heroFava, heroWPA, heroWPA2, heroSecondaryData } from '../api/heros';
-import * as elasticsearchApi from '../api/elasticsearch-api.js';
+import {
+  heroFava,
+  heroWPA,
+  heroWWII,
+  heroWWII_2,
+  heroSecondaryData
+} from '../services/hero-banners';
+import * as elasticsearchApi from '../api/elasticsearch-api';
 import * as elasticsearchParser from '../services/elasticsearch-parser';
 import * as globalVars from '../services/global-vars';
 import { getRandomInt } from '../services/helpers';
@@ -27,7 +33,7 @@ export class HomePageContainer extends Component {
 
     // Randomize hero banner image display
     this.heroRandomNumber = getRandomInt(0, 2);
-    this.heroItems = [heroFava, heroWPA, heroWPA2];
+    this.heroItems = [heroFava, heroWPA, heroWWII, heroWWII_2];
   }
 
   componentDidMount() {
