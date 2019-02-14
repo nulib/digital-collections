@@ -74,16 +74,16 @@ class GlobalSearchContainer extends Component {
                 dataField={['full_text']}
                 filterLabel="Search"
                 icon={
-                  <a
+                  <button
                     tabIndex="0"
                     style={styles.searchIcon}
-                    className="rs-search-icon"
+                    className="rs-search-icon button-link"
                     alt="search icon"
                     onClick={this.handleClick}
                     onKeyPress={this.handleKeyPress}
                   >
                     Search
-                  </a>
+                  </button>
                 }
                 iconPosition="right"
                 innerRef={this.setTextInputRef}

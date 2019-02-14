@@ -11,6 +11,9 @@ const Login = props => {
     link: {
       cursor: 'pointer',
       wordBreak: 'break-word'
+    },
+    subNavLink: {
+      display: 'inline-block'
     }
   };
 
@@ -31,9 +34,13 @@ const Login = props => {
       {props.isMobile && (
         <React.Fragment>
           <li>
-            <a style={styles.link} onClick={props.forceLogout}>
+            <button
+              style={styles.link}
+              className="button-link"
+              onClick={props.forceLogout}
+            >
               {nulApi.currentUser()} - SIGN OUT
-            </a>
+            </button>
           </li>
         </React.Fragment>
       )}
@@ -44,7 +51,13 @@ const Login = props => {
           <span className="dropdown-arrow" />
           <ul>
             <li>
-              <a onClick={props.forceLogout}>SIGN OUT</a>
+              <button
+                style={styles.subNavLink}
+                className="button-link"
+                onClick={props.forceLogout}
+              >
+                SIGN OUT
+              </button>
             </li>
           </ul>
         </li>

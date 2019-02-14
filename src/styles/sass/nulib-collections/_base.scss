@@ -16,7 +16,7 @@ ul.no-style {
 
 // Font awesome
 .fa {
-  font-family: "FontAwesome" !important;
+  font-family: 'FontAwesome' !important;
 }
 
 #page {
@@ -39,7 +39,6 @@ ul.no-style {
 #page {
   &.collection-items,
   &.search {
-    
     // Not sure this looks good anymore
     //max-width: 1440px;
 
@@ -67,7 +66,7 @@ main#main-content {
   .see-more-link {
     margin-left: 1rem;
     small {
-      font-size: .9rem;
+      font-size: 0.9rem;
     }
   }
 }
@@ -101,11 +100,11 @@ main#main-content {
         .detail,
         .num-items {
           display: block;
-          padding: .5rem .75rem .25rem;
+          padding: 0.5rem 0.75rem 0.25rem;
         }
         .num-items {
-          background: rgba(0, 0, 0, .1);
-          padding: .25rem .75rem .5rem;
+          background: rgba(0, 0, 0, 0.1);
+          padding: 0.25rem 0.75rem 0.5rem;
         }
       }
     }
@@ -116,4 +115,11 @@ main#main-content {
 // Reference https://github.com/jesusoterogomez/react-notify-toast
 div#notification-wrapper {
   font-size: 1rem;
+}
+
+// Button as a link style (for accessibility)
+.button-link {
+  @extend a;
+  background: transparent;
+  cursor: pointer;
 }

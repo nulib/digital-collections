@@ -59,6 +59,7 @@ class MobileNav extends Component {
           <li tabIndex="0">
             <Link to="/">Explore Collections</Link>
             <span className={`arrow ${menu.collections.open ? 'open' : ''}`}>
+              {/* eslint-disable-next-line */}
               <a aria-haspopup="true" role="button">
                 <span>Expand</span>
                 Submenu

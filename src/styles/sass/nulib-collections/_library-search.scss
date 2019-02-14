@@ -80,7 +80,6 @@
       display: none;
     }
   }
-
 }
 
 #library-search-dropdown .search-column,
@@ -132,6 +131,8 @@
   color: #342f2e;
   font: 18px/1.5em 'Akkurat Pro Regular', Arial, sans-serif;
 }
+/* These styles provide the purple button.  Maybe re-visit later?
+
 #library-search-dropdown .search-column button,
 #library-search-dropdown .by-column button,
 #library-search-dropdown .for-column button,
@@ -151,6 +152,7 @@
     url('https://common.northwestern.edu/v8/css/images/icons/search-white.svg')
     no-repeat 10px 10px/18px 18px;
 }
+*/
 #library-search-dropdown .search-column,
 #library-search .search-column {
   width: 32%;
