@@ -5,7 +5,6 @@ import {
   ReactiveList
 } from '@appbaseio/reactivesearch';
 import searchIcon from '../images/library-search.svg';
-import PhotoBox from '../components/PhotoBox';
 import {
   getESDescription,
   getESImagePath,
@@ -23,6 +22,7 @@ import {
 import RSMultiList from '../components/reactive-search-wrappers/RSMultiList';
 import { generateTitleTag } from '../services/helpers';
 import { Helmet } from 'react-helmet';
+import RSPhotoBox from '../components/reactive-search-wrappers/RSPhotoBox';
 
 class ReactivesearchContainer extends Component {
   constructor(props) {
@@ -50,7 +50,7 @@ class ReactivesearchContainer extends Component {
    * Helper function to display a custom component to display instead of ReactiveSearch's
    * @param {Object} res - ReactivSearch result object
    */
-  onData(res) {
+  onData = res => {
     let item = {
       description: getESDescription(res),
       id: res.id,
@@ -59,8 +59,8 @@ class ReactivesearchContainer extends Component {
       type: res.model.name
     };
 
-    return <PhotoBox key={item.id} item={item} hideDescriptions={true} />;
-  }
+    return <RSPhotoBox key={item.id} item={item} />;
+  };
 
   render() {
     const allFilters = [GLOBAL_SEARCH_BAR_COMPONENT_ID, ...imageFilters];
