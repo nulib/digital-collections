@@ -5,6 +5,7 @@ import { chopString } from '../services/helpers';
 
 const FeatureBox = props => {
   const { description, id, image, label } = props.item;
+  const urlHelper = props.modelType === 'image' ? '/items' : '/collections';
 
   return (
     <article className="feature-box">
@@ -13,7 +14,7 @@ const FeatureBox = props => {
         <h4>{label}</h4>
         <p>{chopString(description, 15)}</p>
       </div>
-      <Link className="button" to={`/items/${id}`}>
+      <Link className="button" to={`${urlHelper}/${id}`}>
         View Work
       </Link>
     </article>
@@ -26,7 +27,8 @@ FeatureBox.propTypes = {
     id: PropTypes.string,
     image: PropTypes.string,
     label: PropTypes.string
-  })
+  }),
+  modelType: PropTypes.string // 'image' or 'collection'
 };
 
 export default FeatureBox;

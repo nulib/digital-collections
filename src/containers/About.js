@@ -177,22 +177,28 @@ class About extends Component {
 
             <div className="section contain-1120">
               <div className="feature-three-col">
-                {featuredCollections.map(
-                  (feature, index) =>
-                    index < 3 ? (
-                      <FeatureBox key={feature.id} item={feature} />
-                    ) : null
+                {featuredCollections.map((feature, index) =>
+                  index < 3 ? (
+                    <FeatureBox
+                      key={feature.id}
+                      item={feature}
+                      modelType="collection"
+                    />
+                  ) : null
                 )}
               </div>
             </div>
 
             <div className="section contain-1120">
               <div className="feature-three-col">
-                {featuredCollections.map(
-                  (feature, index) =>
-                    index > 2 ? (
-                      <FeatureBox key={feature.id} item={feature} />
-                    ) : null
+                {featuredCollections.map((feature, index) =>
+                  index > 2 ? (
+                    <FeatureBox
+                      key={feature.id}
+                      item={feature}
+                      modelType="collection"
+                    />
+                  ) : null
                 )}
               </div>
               <p>
