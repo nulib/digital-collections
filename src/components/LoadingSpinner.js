@@ -1,22 +1,15 @@
 import React from 'react';
 import { BarLoader } from 'react-spinners';
-import { css } from 'react-emotion';
 import PropTypes from 'prop-types';
 
-const override = css`
-  display: block;
-  margin: 20px auto;
-`;
+const override = `margin: 20px auto;`;
 
 const LoadingSpinner = props => {
-  return (
-    <BarLoader className={override} color={'#4e2a84'} loading={props.loading} />
-  );
+  return <BarLoader css={override} color={'#4e2a84'} loading={props.loading} />;
 };
 
 LoadingSpinner.propTypes = {
-  loading: PropTypes.bool,
-  padding: PropTypes.bool
+  loading: PropTypes.bool
 };
 
 export default LoadingSpinner;
