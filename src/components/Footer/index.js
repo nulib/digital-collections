@@ -152,15 +152,16 @@ const Footer = props => {
       <div className="contain-970" style={styles.disclaimer}>
         <p>
           Northwestern University Libraries is dedicated to the fair and ethical
-          preservation, digitization curation, and use of its collections. The
+          preservation, digitization, curation, and use of its collections. The
           works on this Web site are made available to the public under Fair Use
           (Section 107 of the Copyright Act) for learning and teaching purposes,
           as well as to promote the mission and activities of Northwestern
-          University Libraries (ARL Code of Best Practices in Fair Use).
-          Northwestern University Libraries does not claim the copyright of any
-          materials on this site. If you are the copyright holder of any item(s)
-          in this collection or have questions, comments or concerns about this
-          exhibit, please contact us via email at library@northwestern.edu.
+          University Libraries. Northwestern University Libraries does not claim
+          the copyright of any materials on this site. If you are the copyright
+          holder of any item(s) in this collection or have questions, comments
+          or concerns about this exhibit, please contact us via email at{' '}
+          <a href="mailto:library@northwestern.edu">library@northwestern.edu</a>
+          .
         </p>
       </div>
     </footer>
