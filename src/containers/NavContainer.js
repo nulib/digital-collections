@@ -12,6 +12,7 @@ import { clearValues } from '@appbaseio/reactivecore/lib/actions';
 
 const styles = {
   searchButton: {
+    backgroundColor: 'transparent',
     cursor: 'pointer'
   }
 };
@@ -78,13 +79,14 @@ class NavContainer extends Component {
               </Link>
             </li>
             <li id="library-search-button">
-              <a
+              <button
+                className="button-link"
                 style={styles.searchButton}
                 onClick={this.handleSearchIconClick}
               >
                 &nbsp;
                 <span className="hide-label">Click to open search menu</span>
-              </a>
+              </button>
             </li>
           </ul>
         </div>

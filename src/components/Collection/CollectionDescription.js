@@ -8,6 +8,9 @@ const styles = {
   }
 };
 
+// Number of words to limit the visible description to, until a "More" expansion linke is provided
+const WORD_LIMIT = 70;
+
 class CollectionDescription extends Component {
   static propTypes = {
     description: PropTypes.string
@@ -25,13 +28,13 @@ class CollectionDescription extends Component {
   render() {
     const { expanded } = this.state;
     const { description } = this.props;
-    const tooLong = description.length > 70;
+    const tooLong = description.split(' ').length > WORD_LIMIT;
 
     return (
       <React.Fragment>
         <h3>Collection Description</h3>
         <p>
-          {tooLong && !expanded && chopString(description, 70)}
+          {tooLong && !expanded && chopString(description, WORD_LIMIT)}
           {(!tooLong || expanded) && description}
           {tooLong && (
             <a href="/" onClick={this.handleClick} style={styles.moreLess}>

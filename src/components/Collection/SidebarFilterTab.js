@@ -28,7 +28,7 @@ const SidebarFilterTab = props => {
             return (
               <Collapsible
                 trigger={<CollapsibleHeader label={facet.name} />}
-                open={true}
+                open={false}
                 key={facet.name}
               >
                 <RSMultiList facet={facet} title="" allFilters={allFilters} />
