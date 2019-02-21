@@ -12,7 +12,6 @@ import {
   SelectedFilters
 } from '@appbaseio/reactivesearch';
 import { getESImagePath, getESTitle } from '../services/elasticsearch-parser';
-import searchIcon from '../images/library-search.svg';
 import {
   COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID,
   COLLECTION_DATA_CONTROLLER_ID,
@@ -182,14 +181,6 @@ export class CollectionContainer extends Component {
                     componentId={COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID}
                     dataField={['full_text']}
                     filterLabel="Collections search"
-                    icon={
-                      <img
-                        src={searchIcon}
-                        className="rs-search-icon"
-                        alt="search icon"
-                      />
-                    }
-                    iconPosition="right"
                     innerClass={{
                       input: 'searchbox rs-search-input',
                       list: 'suggestionlist'

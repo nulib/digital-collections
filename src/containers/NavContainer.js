@@ -12,6 +12,7 @@ import { connect as reactiveSearchConnect } from '@appbaseio/reactivesearch/lib/
 import { clearValues } from '@appbaseio/reactivecore/lib/actions';
 */
 
+// eslint-disable-next-line
 const styles = {
   searchButton: {
     backgroundColor: 'transparent',
@@ -79,16 +80,6 @@ class NavContainer extends Component {
               <Link to="/search" onClick={this.handleBrowseItemsClick}>
                 Browse Items
               </Link>
-            </li>
-            <li id="library-search-button">
-              <button
-                className="button-link"
-                style={styles.searchButton}
-                onClick={this.handleSearchIconClick}
-              >
-                &nbsp;
-                <span className="hide-label">Click to open search menu</span>
-              </button>
             </li>
           </ul>
         </div>

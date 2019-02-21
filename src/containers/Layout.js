@@ -8,7 +8,6 @@ import About from './About';
 import AllCollectionsContainer from './AllCollectionsContainer';
 import ContactUs from './ContactUs';
 import Footer from '../components/Footer';
-import GlobalSearchContainer from '../containers/GlobalSearchContainer';
 import * as globalVars from '../services/global-vars';
 import Header from '../components/Header/';
 import HomePageContainer from './HomePageContainer';
@@ -53,7 +52,6 @@ export class Layout extends Component {
         <Header />
         <Notifications />
         <NavContainer />
-        {/*<GlobalSearchContainer />*/}
         <Switch>
           <Route exact path="/about" component={About} />
           <Route exact path="/contact-us" component={ContactUs} />
