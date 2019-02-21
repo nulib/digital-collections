@@ -2,6 +2,8 @@
 export const COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID = 'collection-search';
 export const GLOBAL_SEARCH_BAR_COMPONENT_ID = 'q';
 export const COLLECTION_DATA_CONTROLLER_ID = 'collection-data-controller';
+export const DATASEARCH_PLACEHOLDER =
+  'Search by title, description, or wildcard * (ie. part*)';
 
 export const facetValues = {
   COLLECTION: 'Collection',
@@ -54,3 +56,16 @@ export const imageFilters = [
   facetValues.TECHNIQUE,
   facetValues.VISIBILITY
 ];
+
+// For now, this is the ReactiveSearch DataSearch customQuery function,
+// which is used to do phrase matching with our current ElasticSearch
+// indexing configuration
+export const simpleQueryStringQuery = value => {
+  return {
+    simple_query_string: {
+      query: `${value || '*'}`,
+      fields: ['full_text'],
+      default_operator: 'or'
+    }
+  };
+};
