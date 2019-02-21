@@ -7,8 +7,10 @@ import NavCollectionsList from '../components/Nav/NavCollectionsList';
 import { withRouter } from 'react-router';
 
 // From reactivesearch - we need to hook into their Redux store to get access to the clearValues() action
+/*
 import { connect as reactiveSearchConnect } from '@appbaseio/reactivesearch/lib/utils';
 import { clearValues } from '@appbaseio/reactivecore/lib/actions';
+*/
 
 const styles = {
   searchButton: {
@@ -41,7 +43,7 @@ class NavContainer extends Component {
     // Currently on the Search Results page
     if (this.props.history.location.pathname === '/search') {
       // Clear existing filters on Search Results page
-      this.props.clearValues();
+      //this.props.clearValues();
     }
   };
 
@@ -99,17 +101,18 @@ const mapDispatchToProps = dispatch => ({
   searchToggle: () => dispatch(searchToggle())
 });
 
-const mapRSDispatchToProps = dispatch => ({
-  clearValues: () => dispatch(clearValues())
-});
+// const mapRSDispatchToProps = dispatch => ({
+//   clearValues: () => dispatch(clearValues())
+// });
 
 const NavContainerWithRouter = withRouter(NavContainer);
+/*
 const ConnectedNavContainerWithRouter = reactiveSearchConnect(
   null,
   mapRSDispatchToProps
 )(NavContainerWithRouter);
-
+*/
 export default connect(
   null,
   mapDispatchToProps
-)(ConnectedNavContainerWithRouter);
+)(NavContainerWithRouter);

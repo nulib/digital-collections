@@ -23,6 +23,7 @@ import RSMultiList from '../components/reactive-search-wrappers/RSMultiList';
 import { generateTitleTag } from '../services/helpers';
 import { Helmet } from 'react-helmet';
 import RSPhotoBox from '../components/reactive-search-wrappers/RSPhotoBox';
+import { withRouter } from 'react-router-dom';
 
 class ReactivesearchContainer extends Component {
   constructor(props) {
@@ -159,4 +160,4 @@ class ReactivesearchContainer extends Component {
   }
 }
 
-export default ReactivesearchContainer;
+export default withRouter(ReactivesearchContainer);

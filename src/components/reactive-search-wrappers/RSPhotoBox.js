@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const RSPhotoBox = props => {
   const { item } = props;
@@ -15,7 +16,7 @@ const RSPhotoBox = props => {
   // in our search results pages, ReactiveSearch is rendering multiple history entries
   // that are difficult to work around.
   const handlePhotoboxClick = id => {
-    window.location = `/items/${id}`;
+    //window.location = `/items/${id}`;
   };
 
   return (
@@ -26,7 +27,9 @@ const RSPhotoBox = props => {
       key={item.id}
       style={styles.article}
     >
-      <img alt={item.label} src={item.imageUrl} />
+      <Link to="/about">
+        <img alt={item.label} src={item.imageUrl} />
+      </Link>
       <h4>
         {/* eslint-disable-next-line */}
         <a>{item.label}</a>

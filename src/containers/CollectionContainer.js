@@ -22,7 +22,7 @@ import {
 import { connect } from 'react-redux';
 import { generateTitleTag } from '../services/helpers';
 import { Helmet } from 'react-helmet';
-import RSPhotoBox from '../components/reactive-search-wrappers/RSPhotoBox';
+import PhotoBox from '../components/PhotoBox';
 
 const allFilters = [COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID, ...imageFilters];
 
@@ -126,12 +126,13 @@ export class CollectionContainer extends Component {
   onData(res) {
     let item = {
       id: res.id,
+      //description: getESDescription(res),
       imageUrl: getESImagePath(res),
       label: getESTitle(res),
       type: res.model.name
     };
 
-    return <RSPhotoBox key={item.id} item={item} />;
+    return <PhotoBox key={item.id} item={item} />;
   }
 
   render() {
