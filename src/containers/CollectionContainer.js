@@ -21,7 +21,8 @@ import searchIcon from '../images/library-search.svg';
 import {
   COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID,
   COLLECTION_DATA_CONTROLLER_ID,
-  imageFilters
+  imageFilters,
+  simpleQueryStringQuery
 } from '../services/reactive-search';
 import { connect } from 'react-redux';
 import { generateTitleTag } from '../services/helpers';
@@ -145,13 +146,6 @@ export class CollectionContainer extends Component {
       : [];
     const collectionTitle = collection ? getESTitle(collection) : '';
 
-    const queryStringQuery = (value, props) => ({
-      query_string: {
-        default_field: 'full_text',
-        query: value
-      }
-    });
-
     const renderDisplay = () => {
       if (error) {
         return <ErrorSection message={error} />;
@@ -186,7 +180,7 @@ export class CollectionContainer extends Component {
                   />
 
                   <DataSearch
-                    customQuery={queryStringQuery}
+                    customQuery={simpleQueryStringQuery}
                     autosuggest={false}
                     className="datasearch web-form"
                     componentId={COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID}

@@ -4,7 +4,11 @@ import { withRouter } from 'react-router';
 import { DataSearch } from '@appbaseio/reactivesearch';
 import * as actions from '../actions/search';
 import { SlideDown } from 'react-slidedown';
-import { GLOBAL_SEARCH_BAR_COMPONENT_ID } from '../services/reactive-search';
+import {
+  DATASEARCH_PLACEHOLDER,
+  GLOBAL_SEARCH_BAR_COMPONENT_ID,
+  simpleQueryStringQuery
+} from '../services/reactive-search';
 import 'react-slidedown/lib/slidedown.css';
 import { getTotalItemCount } from '../api/elasticsearch-api';
 
@@ -66,11 +70,13 @@ class GlobalSearchContainer extends Component {
             </div>
             <div className="for-column">
               <span>for</span>
+
               <DataSearch
                 autosuggest={false}
                 style={styles.inputWrapper}
                 className="datasearch web-form"
                 componentId={GLOBAL_SEARCH_BAR_COMPONENT_ID}
+                customQuery={simpleQueryStringQuery}
                 dataField={['full_text']}
                 filterLabel="Search"
                 icon={
@@ -94,7 +100,7 @@ class GlobalSearchContainer extends Component {
                 onClick={this.handleClick}
                 onKeyPress={this.handleKeyPress}
                 queryFormat="or"
-                placeholder="Search for an item"
+                placeholder={DATASEARCH_PLACEHOLDER}
                 showFilter={true}
                 URLParams={false}
               />

@@ -14,9 +14,11 @@ import {
 import LoadingSpinner from '../components/LoadingSpinner';
 import YearSlider from '../components/reactive-search-wrappers/YearSlider';
 import {
+  DATASEARCH_PLACEHOLDER,
   GLOBAL_SEARCH_BAR_COMPONENT_ID,
   imageFacets,
-  imageFilters
+  imageFilters,
+  simpleQueryStringQuery
 } from '../services/reactive-search';
 import RSMultiList from '../components/reactive-search-wrappers/RSMultiList';
 import { generateTitleTag } from '../services/helpers';
@@ -64,14 +66,6 @@ class ReactivesearchContainer extends Component {
     const allFilters = [GLOBAL_SEARCH_BAR_COMPONENT_ID, ...imageFilters];
     const { componentLoaded } = this.state;
 
-    const queryStringQuery = (value, props) => ({
-      query_string: {
-        default_field: 'full_text',
-        query: value
-      }
-    });
-
-    //TODO: Break this into components
     return (
       <div className="standard-page">
         <Helmet>
@@ -104,12 +98,13 @@ class ReactivesearchContainer extends Component {
             <div>
               <h2>Search Results</h2>
               <DataSearch
-                customQuery={queryStringQuery}
+                customQuery={simpleQueryStringQuery}
                 className="datasearch web-form"
                 componentId={GLOBAL_SEARCH_BAR_COMPONENT_ID}
                 dataField={['full_text']}
+                debounce={1000}
                 queryFormat="or"
-                placeholder="Search for an item"
+                placeholder={DATASEARCH_PLACEHOLDER}
                 innerClass={{
                   input: 'searchbox rs-search-input',
                   list: 'suggestionlist'

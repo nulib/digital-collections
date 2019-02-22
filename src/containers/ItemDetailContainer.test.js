@@ -56,7 +56,6 @@ xit('fetches item data from the api and sets the item on component state', async
 
   // Get derived state after all mocked network requests
   let wrapperState = wrapper.state();
-  console.log('wrapperState', wrapperState);
 
   expect(wrapperState).toHaveProperty('error');
   expect(wrapperState).toHaveProperty('collectionItems');
