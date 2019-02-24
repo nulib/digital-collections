@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
 import MobileNav from './MobileNav';
-import { connect } from 'react-redux';
-import { searchToggle } from '../../actions/search';
 import { getAllCollections } from '../../api/elasticsearch-api';
+import { withRouter } from 'react-router-dom';
 
 class MobileLinks extends Component {
   state = {
     collections: [],
-    navOpen: false
+    navOpen: false,
+    searchOpen: false,
+    searchValue: ''
   };
 
   componentDidMount() {
     this.getCollections();
   }
+
+  handleChange = e => {
+    this.setState({ searchValue: e.target.value });
+  };
 
   handleMenuClick = e => {
     e.preventDefault();
@@ -27,10 +32,23 @@ class MobileLinks extends Component {
     e.preventDefault();
 
     this.setState({
-      navOpen: false
+      navOpen: false,
+      searchOpen: !this.state.searchOpen
+    });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.history.push({
+      pathname: '/search',
+      state: {
+        globalSearch: this.state.searchValue
+      }
     });
 
-    this.props.searchToggle();
+    this.setState({
+      searchOpen: false
+    });
   };
 
   async getCollections() {
@@ -45,7 +63,7 @@ class MobileLinks extends Component {
   }
 
   render() {
-    const { collections, navOpen } = this.state;
+    const { collections, navOpen, searchOpen } = this.state;
     const classes = `mobile-link mobile-nav-link ${navOpen ? 'open' : ''}`;
 
     return (
@@ -63,23 +81,41 @@ class MobileLinks extends Component {
           navOpen={navOpen}
           closeMenu={this.handleMenuClick}
         />
+
         <a
           href="#mobile-search"
-          className="mobile-link mobile-search-link"
+          className={`mobile-link mobile-search-link ${
+            searchOpen ? 'open' : ''
+          }`}
           onClick={this.handleSearchClick}
         >
           <span className="hide-label">Search</span>
         </a>
+
+        {this.state.searchOpen && (
+          <div id="mobile-search">
+            <div className="search-form group">
+              {/* TODO: convert this to a higher order component for both search forms (desktop / mobile) */}
+              <form onSubmit={this.handleSubmit} role="search">
+                <label className="hide-label" htmlFor="mobile-search-input">
+                  Search this site
+                </label>
+                <input
+                  id="mobile-search-input"
+                  placeholder="Search this site"
+                  type="text"
+                  onChange={e => this.handleChange(e)}
+                />
+                <button type="submit">
+                  <span className="hide-label">Search</span>
+                </button>
+              </form>
+            </div>
+          </div>
+        )}
       </div>
     );
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  searchToggle: () => dispatch(searchToggle())
-});
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(MobileLinks);
+export default withRouter(MobileLinks);

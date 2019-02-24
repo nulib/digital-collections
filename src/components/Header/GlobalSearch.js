@@ -3,8 +3,7 @@ import { withRouter } from 'react-router-dom';
 
 class GlobalSearch extends Component {
   state = {
-    searchValue: '',
-    totalItemCount: null
+    searchValue: ''
   };
 
   handleSubmit = e => {
