@@ -7,6 +7,9 @@ import { titleTagEnd } from './global-vars';
  * @param {Number} chopLength How many words to restrict the sentence to
  */
 export function chopString(str, chopLength) {
+  if (!str) {
+    return '';
+  }
   const extraText = str.split(' ').length > chopLength ? '...' : '';
   let chopped = str
     .split(' ')

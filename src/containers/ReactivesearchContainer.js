@@ -4,13 +4,7 @@ import {
   SelectedFilters,
   ReactiveList
 } from '@appbaseio/reactivesearch';
-import searchIcon from '../images/library-search.svg';
-import PhotoBox from '../components/PhotoBox';
-import {
-  getESDescription,
-  getESImagePath,
-  getESTitle
-} from '../services/elasticsearch-parser';
+import { getESImagePath, getESTitle } from '../services/elasticsearch-parser';
 import LoadingSpinner from '../components/LoadingSpinner';
 import YearSlider from '../components/reactive-search-wrappers/YearSlider';
 import {
@@ -23,6 +17,8 @@ import {
 import RSMultiList from '../components/reactive-search-wrappers/RSMultiList';
 import { generateTitleTag } from '../services/helpers';
 import { Helmet } from 'react-helmet';
+import PhotoBox from '../components/PhotoBox';
+import { withRouter } from 'react-router-dom';
 
 class ReactivesearchContainer extends Component {
   constructor(props) {
@@ -50,21 +46,25 @@ class ReactivesearchContainer extends Component {
    * Helper function to display a custom component to display instead of ReactiveSearch's
    * @param {Object} res - ReactivSearch result object
    */
-  onData(res) {
+  onData = res => {
     let item = {
-      description: getESDescription(res),
       id: res.id,
       imageUrl: getESImagePath(res),
       label: getESTitle(res),
       type: res.model.name
     };
 
-    return <PhotoBox key={item.id} item={item} hideDescriptions={true} />;
-  }
+    return <PhotoBox key={item.id} item={item} />;
+  };
 
   render() {
     const allFilters = [GLOBAL_SEARCH_BAR_COMPONENT_ID, ...imageFilters];
     const { componentLoaded } = this.state;
+    const { location } = this.props;
+    const globalSearchValue =
+      location.state && location.state.globalSearch
+        ? location.state.globalSearch
+        : null;
 
     return (
       <div className="standard-page">
@@ -103,6 +103,7 @@ class ReactivesearchContainer extends Component {
                 componentId={GLOBAL_SEARCH_BAR_COMPONENT_ID}
                 dataField={['full_text']}
                 debounce={1000}
+                defaultSelected={globalSearchValue || null}
                 queryFormat="or"
                 placeholder={DATASEARCH_PLACEHOLDER}
                 innerClass={{
@@ -110,14 +111,6 @@ class ReactivesearchContainer extends Component {
                   list: 'suggestionlist'
                 }}
                 autosuggest={false}
-                icon={
-                  <img
-                    src={searchIcon}
-                    className="rs-search-icon"
-                    alt="search icon"
-                  />
-                }
-                iconPosition="right"
                 filterLabel="Search"
                 URLParams={true}
               />
@@ -159,4 +152,4 @@ class ReactivesearchContainer extends Component {
   }
 }
 
-export default ReactivesearchContainer;
+export default withRouter(ReactivesearchContainer);

@@ -8,7 +8,6 @@ import About from './About';
 import AllCollectionsContainer from './AllCollectionsContainer';
 import ContactUs from './ContactUs';
 import Footer from '../components/Footer';
-import GlobalSearchContainer from '../containers/GlobalSearchContainer';
 import * as globalVars from '../services/global-vars';
 import Header from '../components/Header/';
 import HomePageContainer from './HomePageContainer';
@@ -20,6 +19,18 @@ import ReactivesearchContainer from './ReactivesearchContainer';
 import '../Layout.css';
 import '../libs/nuwebcomm-scripts.js';
 import { fetchApiToken } from '../actions/auth';
+
+const ReactiveBaseWrapper = props => {
+  return (
+    <ReactiveBase
+      app="common"
+      url={globalVars.ELASTICSEARCH_PROXY_BASE + '/search/'}
+      headers={{ 'X-API-Token': props.apiToken }}
+    >
+      {props.children}
+    </ReactiveBase>
+  );
+};
 
 export class Layout extends Component {
   componentDidMount() {
@@ -37,37 +48,34 @@ export class Layout extends Component {
     }
 
     return (
-      <ReactiveBase
-        app="common"
-        url={globalVars.ELASTICSEARCH_PROXY_BASE + '/search/'}
-        headers={{ 'X-API-Token': apiToken }}
-      >
-        <div>
-          <Header />
-          <Notifications />
-          <NavContainer />
-          <GlobalSearchContainer />
-          <Switch>
-            <Route exact path="/about" component={About} />
-            <Route exact path="/contact-us" component={ContactUs} />
-            <Route
-              exact
-              path="/collections/:id"
-              component={CollectionContainer}
-            />
-            <Route
-              exact
-              path="/collections"
-              component={AllCollectionsContainer}
-            />
-            <Route path="/items/:id" component={ItemDetailContainer} />
-            <Route path="/search/" component={ReactivesearchContainer} />
-            <Route exact path="/" component={HomePageContainer} />
-            <Route component={HomePageContainer} />
-          </Switch>
-          <Footer />
-        </div>
-      </ReactiveBase>
+      <div>
+        <Header />
+        <Notifications />
+        <NavContainer />
+        <Switch>
+          <Route exact path="/about" component={About} />
+          <Route exact path="/contact-us" component={ContactUs} />
+          <Route exact path="/collections/:id">
+            <ReactiveBaseWrapper apiToken={apiToken}>
+              <CollectionContainer />
+            </ReactiveBaseWrapper>
+          </Route>
+          <Route
+            exact
+            path="/collections"
+            component={AllCollectionsContainer}
+          />
+          <Route path="/items/:id" component={ItemDetailContainer} />
+          <Route path="/search/">
+            <ReactiveBaseWrapper apiToken={apiToken}>
+              <ReactivesearchContainer />
+            </ReactiveBaseWrapper>
+          </Route>
+          <Route exact path="/" component={HomePageContainer} />
+          <Route component={HomePageContainer} />
+        </Switch>
+        <Footer />
+      </div>
     );
   }
 }

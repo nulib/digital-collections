@@ -30,7 +30,9 @@ const PhotoBox = props => {
           {label}
         </Link>
       </h4>
-      {!props.hideDescriptions && <p>{chopString(description, 15)}</p>}
+      {!props.hideDescriptions && description && (
+        <p>{chopString(description, 15)}</p>
+      )}
     </article>
   );
 };
@@ -39,10 +41,10 @@ PhotoBox.propTypes = {
   hideDescriptions: PropTypes.bool,
   item: PropTypes.shape({
     description: PropTypes.string,
-    id: PropTypes.string,
-    imageUrl: PropTypes.string,
-    label: PropTypes.string,
-    type: PropTypes.string
+    id: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired
   })
 };
 

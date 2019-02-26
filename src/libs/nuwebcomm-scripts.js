@@ -43,7 +43,9 @@ import $ from 'jquery';
     var i = n.states[this._index()];
     0 === i
       ? this.close(!0)
-      : this.$summary.is('.open') || 1 === i ? this.open(!0) : this.close(!0);
+      : this.$summary.is('.open') || 1 === i
+      ? this.open(!0)
+      : this.close(!0);
   }
   (n.prototype = {
     handleClick: function(t, n) {
@@ -460,17 +462,6 @@ $(document).ready(function() {
   $('.searchblox input').each(function(i) {
     // Undo any previous encoding
     $(this).val(decodeURIComponent($(this).val()));
-  });
-
-  $('.searchblox form').submit(function(e) {
-    // Encode filter field on submit
-    var filterField = $(this).find("input[name='filter']");
-    if (!filterField.val().startsWith('url')) {
-      // If filter doesn't have url: prefix, add it and wrap in quotes
-      filterField.val('url:"' + filterField.val() + '*"');
-    }
-    filterField.val(encodeURIComponent(filterField.val()));
-    return true;
   });
 }); // end ready event
 

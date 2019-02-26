@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import GlobalSearch from './GlobalSearch';
 
 const BottomBar = props => {
   return (
@@ -9,6 +10,7 @@ const BottomBar = props => {
           <Link to="/">LIBRARIES | DIGITAL COLLECTIONS</Link>
         </h1>
       </div>
+      <GlobalSearch />
     </div>
   );
 };
