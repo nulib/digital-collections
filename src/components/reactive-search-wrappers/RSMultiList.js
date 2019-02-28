@@ -30,6 +30,7 @@ const RSMultiList = props => {
       showCheckbox={false}
       showMissing={true}
       showSearch={false}
+      size={200}
       title={title}
       URLParams={true}
     />
