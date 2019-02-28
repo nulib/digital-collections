@@ -32,7 +32,6 @@ class CollectionDescription extends Component {
 
     return (
       <React.Fragment>
-        <h3>Collection Description</h3>
         <p>
           {tooLong && !expanded && chopString(description, WORD_LIMIT)}
           {(!tooLong || expanded) && description}

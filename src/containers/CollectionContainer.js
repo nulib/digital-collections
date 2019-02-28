@@ -11,7 +11,11 @@ import {
   ReactiveList,
   SelectedFilters
 } from '@appbaseio/reactivesearch';
-import { getESImagePath, getESTitle } from '../services/elasticsearch-parser';
+import {
+  getESDescription,
+  getESImagePath,
+  getESTitle
+} from '../services/elasticsearch-parser';
 import {
   COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID,
   COLLECTION_DATA_CONTROLLER_ID,
@@ -22,6 +26,9 @@ import { connect } from 'react-redux';
 import { generateTitleTag } from '../services/helpers';
 import { Helmet } from 'react-helmet';
 import PhotoBox from '../components/PhotoBox';
+import { MOBILE_BREAKPOINT } from '../services/global-vars';
+import withSizes from 'react-sizes';
+import CollectionDescription from '../components/Collection/CollectionDescription';
 
 const allFilters = [COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID, ...imageFilters];
 
@@ -136,6 +143,7 @@ export class CollectionContainer extends Component {
 
   render() {
     const { collection, collectionItems, error, loading } = this.state;
+    const { isMobile } = this.props;
     const breadCrumbData = collection
       ? this.createBreadcrumbData(collection)
       : [];
@@ -154,12 +162,20 @@ export class CollectionContainer extends Component {
       if (collection) {
         return (
           <div>
-            <Sidebar item={collection} collectionItems={collectionItems} />
+            {!isMobile && (
+              <Sidebar item={collection} collectionItems={collectionItems} />
+            )}
             <main id="main-content" className="content" tabIndex="-1">
               <Breadcrumbs items={breadCrumbData} />
               {!loading && (
                 <div>
                   <h2>{collection && collection.title.primary[0]}</h2>
+
+                  {isMobile && (
+                    <CollectionDescription
+                      description={getESDescription(collection)}
+                    />
+                  )}
 
                   <DataController
                     title="DataController"
@@ -236,5 +252,10 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-const withRouterCollectionContainer = withRouter(CollectionContainer);
+const mapSizeToProps = ({ width }) => ({
+  isMobile: width <= MOBILE_BREAKPOINT
+});
+
+const SizedCollectionContainer = withSizes(mapSizeToProps)(CollectionContainer);
+const withRouterCollectionContainer = withRouter(SizedCollectionContainer);
 export default connect(mapStateToProps)(withRouterCollectionContainer);
