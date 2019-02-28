@@ -24,7 +24,7 @@ const CiteTabContent = props => {
   } = props.item;
 
   const nul = 'Northwestern University Libraries';
-  const item_link = `${window.location.origin}/${id}`;
+  const item_link = `${window.location.origin}/items/${id}`;
   const today = new Date().toDateString();
   const collection_title =
     collection && collection.length > 0 ? `${collection[0].title}.` : '';
@@ -46,12 +46,10 @@ const CiteTabContent = props => {
       <div className="cite-group-col">
         <div className="cite-group" style={styles.tabContent}>
           <h4>APA Format</h4>
-          <p
-          >{`${admin_set}, ${nul}. (${date}). ${title}, Retrieved from ${item_link}`}</p>
+          <p>{`${admin_set}, ${nul}. (${date}). ${title}, Retrieved from ${item_link}`}</p>
 
           <h4>Chicago/Turabian Format</h4>
-          <p
-          >{`${admin_set}, ${nul}. "${title}", ${collection_title} Accessed ${today}. ${item_link}`}</p>
+          <p>{`${admin_set}, ${nul}. "${title}", ${collection_title} Accessed ${today}. ${item_link}`}</p>
 
           <h4>MLA Format</h4>
           <p>{`${admin_set}, ${nul}. "${title}", ${collection_title} ${date}. ${
