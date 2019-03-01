@@ -19,6 +19,8 @@ import { generateTitleTag } from '../services/helpers';
 import { Helmet } from 'react-helmet';
 import PhotoBox from '../components/PhotoBox';
 import { withRouter } from 'react-router-dom';
+import { MOBILE_BREAKPOINT } from '../services/global-vars';
+import withSizes from 'react-sizes';
 
 class ReactivesearchContainer extends Component {
   constructor(props) {
@@ -72,28 +74,31 @@ class ReactivesearchContainer extends Component {
           <title>{generateTitleTag('Search')}</title>
         </Helmet>
         <div id="page" className="search">
-          <div id="sidebar" className="left-sidebar content" tabIndex="-1">
-            <div className="box">
-              {componentLoaded &&
-                imageFacets.map(facet => {
-                  let defaultVal =
-                    this.facetValue && this.facetValue === facet.name
-                      ? [this.searchValue]
-                      : [];
+          {!this.props.isMobile && (
+            <div id="sidebar" className="left-sidebar content" tabIndex="-1">
+              <div className="box">
+                {componentLoaded &&
+                  imageFacets.map(facet => {
+                    let defaultVal =
+                      this.facetValue && this.facetValue === facet.name
+                        ? [this.searchValue]
+                        : [];
 
-                  return (
-                    <RSMultiList
-                      key={facet.name}
-                      allFilters={allFilters}
-                      defaultVal={defaultVal}
-                      facet={facet}
-                      title={facet.name}
-                    />
-                  );
-                })}
-              <YearSlider title="Date" />
+                    return (
+                      <RSMultiList
+                        key={facet.name}
+                        allFilters={allFilters}
+                        defaultVal={defaultVal}
+                        facet={facet}
+                        title={facet.name}
+                      />
+                    );
+                  })}
+                <YearSlider title="Date" />
+              </div>
             </div>
-          </div>
+          )}
+
           <main id="main-content" className="content" tabIndex="-1">
             <div>
               <h2>Search Results</h2>
@@ -152,4 +157,12 @@ class ReactivesearchContainer extends Component {
   }
 }
 
-export default withRouter(ReactivesearchContainer);
+const mapSizeToProps = ({ width }) => ({
+  isMobile: width <= MOBILE_BREAKPOINT
+});
+
+const SizedReactiveSearchContainer = withSizes(mapSizeToProps)(
+  ReactivesearchContainer
+);
+
+export default withRouter(SizedReactiveSearchContainer);
