@@ -78,7 +78,7 @@ const ItemDetail = props => {
     { label: 'Physical Description material', value: material },
     { label: 'Physical Description size', value: size },
     { label: 'Provenance', value: provenance },
-    { label: 'Publisher', value: publisher, facet_value: 'Publisher' },
+    { label: 'Publisher', value: publisher },
     { label: 'Related Material', value: relatedMaterial },
     { label: 'Related Url', value: relatedUrl },
     { label: 'Rights Holder', value: rightsHolder },
