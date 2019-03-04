@@ -3,7 +3,7 @@ import { withRouter } from 'react-router';
 import * as elasticsearchApi from '../api/elasticsearch-api.js';
 import Breadcrumbs from '../components/breadcrumbs/Breadcrumbs';
 import ErrorSection from '../components/ErrorSection';
-import Sidebar from '../components/Collection/Sidebar';
+import FacetsSidebar from '../components/Collection/FacetsSidebar';
 import LoadingSpinner from '../components/LoadingSpinner';
 import {
   DataSearch,
@@ -132,7 +132,6 @@ export class CollectionContainer extends Component {
   onData(res) {
     let item = {
       id: res.id,
-      //description: getESDescription(res),
       imageUrl: getESImagePath(res),
       label: getESTitle(res),
       type: res.model.name
@@ -142,7 +141,7 @@ export class CollectionContainer extends Component {
   }
 
   render() {
-    const { collection, collectionItems, error, loading } = this.state;
+    const { collection, error, loading } = this.state;
     const { isMobile } = this.props;
     const breadCrumbData = collection
       ? this.createBreadcrumbData(collection)
@@ -162,20 +161,21 @@ export class CollectionContainer extends Component {
       if (collection) {
         return (
           <div>
-            {!isMobile && (
-              <Sidebar item={collection} collectionItems={collectionItems} />
-            )}
+            {!isMobile && <FacetsSidebar />}
             <main id="main-content" className="content" tabIndex="-1">
               <Breadcrumbs items={breadCrumbData} />
               {!loading && (
                 <div>
-                  <h2>{collection && collection.title.primary[0]}</h2>
+                  <div id="sidebar">
+                    <div className="box">
+                      <h3>Collection Description</h3>
+                      <CollectionDescription
+                        description={getESDescription(collection)}
+                      />
+                    </div>
+                  </div>
 
-                  {isMobile && (
-                    <CollectionDescription
-                      description={getESDescription(collection)}
-                    />
-                  )}
+                  <h2>{collection && collectionTitle}</h2>
 
                   <DataController
                     title="DataController"
