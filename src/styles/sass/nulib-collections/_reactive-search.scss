@@ -38,6 +38,11 @@
   text-indent: -9999px;
 }
 
+svg.search-icon {
+  fill: $nu-purple !important;
+  margin-bottom: 3px;
+}
+
 .rs-search-input {
   width: 100%;
 }
@@ -63,4 +68,3 @@
     }
   }
 }
-

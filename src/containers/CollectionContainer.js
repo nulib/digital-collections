@@ -11,21 +11,24 @@ import {
   ReactiveList,
   SelectedFilters
 } from '@appbaseio/reactivesearch';
-import PhotoBox from '../components/PhotoBox';
 import {
   getESDescription,
   getESImagePath,
   getESTitle
 } from '../services/elasticsearch-parser';
-import searchIcon from '../images/library-search.svg';
 import {
   COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID,
   COLLECTION_DATA_CONTROLLER_ID,
-  imageFilters
+  imageFilters,
+  simpleQueryStringQuery
 } from '../services/reactive-search';
 import { connect } from 'react-redux';
 import { generateTitleTag } from '../services/helpers';
 import { Helmet } from 'react-helmet';
+import PhotoBox from '../components/PhotoBox';
+import { MOBILE_BREAKPOINT } from '../services/global-vars';
+import withSizes from 'react-sizes';
+import CollectionDescription from '../components/Collection/CollectionDescription';
 
 const allFilters = [COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID, ...imageFilters];
 
@@ -128,29 +131,23 @@ export class CollectionContainer extends Component {
    */
   onData(res) {
     let item = {
-      description: getESDescription(res),
       id: res.id,
+      //description: getESDescription(res),
       imageUrl: getESImagePath(res),
       label: getESTitle(res),
       type: res.model.name
     };
 
-    return <PhotoBox key={item.id} item={item} hideDescriptions={true} />;
+    return <PhotoBox key={item.id} item={item} />;
   }
 
   render() {
     const { collection, collectionItems, error, loading } = this.state;
+    const { isMobile } = this.props;
     const breadCrumbData = collection
       ? this.createBreadcrumbData(collection)
       : [];
     const collectionTitle = collection ? getESTitle(collection) : '';
-
-    const queryStringQuery = (value, props) => ({
-      query_string: {
-        default_field: 'full_text',
-        query: value
-      }
-    });
 
     const renderDisplay = () => {
       if (error) {
@@ -165,12 +162,20 @@ export class CollectionContainer extends Component {
       if (collection) {
         return (
           <div>
-            <Sidebar item={collection} collectionItems={collectionItems} />
+            {!isMobile && (
+              <Sidebar item={collection} collectionItems={collectionItems} />
+            )}
             <main id="main-content" className="content" tabIndex="-1">
               <Breadcrumbs items={breadCrumbData} />
               {!loading && (
                 <div>
                   <h2>{collection && collection.title.primary[0]}</h2>
+
+                  {isMobile && (
+                    <CollectionDescription
+                      description={getESDescription(collection)}
+                    />
+                  )}
 
                   <DataController
                     title="DataController"
@@ -186,20 +191,12 @@ export class CollectionContainer extends Component {
                   />
 
                   <DataSearch
-                    customQuery={queryStringQuery}
+                    customQuery={simpleQueryStringQuery}
                     autosuggest={false}
                     className="datasearch web-form"
                     componentId={COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID}
                     dataField={['full_text']}
                     filterLabel="Collections search"
-                    icon={
-                      <img
-                        src={searchIcon}
-                        className="rs-search-icon"
-                        alt="search icon"
-                      />
-                    }
-                    iconPosition="right"
                     innerClass={{
                       input: 'searchbox rs-search-input',
                       list: 'suggestionlist'
@@ -255,5 +252,10 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-const withRouterCollectionContainer = withRouter(CollectionContainer);
+const mapSizeToProps = ({ width }) => ({
+  isMobile: width <= MOBILE_BREAKPOINT
+});
+
+const SizedCollectionContainer = withSizes(mapSizeToProps)(CollectionContainer);
+const withRouterCollectionContainer = withRouter(SizedCollectionContainer);
 export default connect(mapStateToProps)(withRouterCollectionContainer);

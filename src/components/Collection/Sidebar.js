@@ -15,6 +15,7 @@ const Sidebar = props => {
     >
       <div className="box">
         <div id="tab-container">
+          <h3>Collection Description</h3>
           <CollectionDescription description={getESDescription(item)} />
           <SidebarFilterTab collection={item} />
         </div>

@@ -31,6 +31,10 @@ class OpenSeadragonViewer extends Component {
     this.loadOpenSeadragon(tileSources);
   }
 
+  componentWillUnmount() {
+    this.openSeadragonInstance.removeHandler('open');
+  }
+
   buildDownloadLink = obj => {
     // TODO: Figure out a better way to find the event which fires when this is ready
     setTimeout(() => {

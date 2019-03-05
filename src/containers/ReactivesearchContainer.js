@@ -4,23 +4,23 @@ import {
   SelectedFilters,
   ReactiveList
 } from '@appbaseio/reactivesearch';
-import searchIcon from '../images/library-search.svg';
-import PhotoBox from '../components/PhotoBox';
-import {
-  getESDescription,
-  getESImagePath,
-  getESTitle
-} from '../services/elasticsearch-parser';
+import { getESImagePath, getESTitle } from '../services/elasticsearch-parser';
 import LoadingSpinner from '../components/LoadingSpinner';
 import YearSlider from '../components/reactive-search-wrappers/YearSlider';
 import {
+  DATASEARCH_PLACEHOLDER,
   GLOBAL_SEARCH_BAR_COMPONENT_ID,
   imageFacets,
-  imageFilters
+  imageFilters,
+  simpleQueryStringQuery
 } from '../services/reactive-search';
 import RSMultiList from '../components/reactive-search-wrappers/RSMultiList';
 import { generateTitleTag } from '../services/helpers';
 import { Helmet } from 'react-helmet';
+import PhotoBox from '../components/PhotoBox';
+import { withRouter } from 'react-router-dom';
+import { MOBILE_BREAKPOINT } from '../services/global-vars';
+import withSizes from 'react-sizes';
 
 class ReactivesearchContainer extends Component {
   constructor(props) {
@@ -48,81 +48,74 @@ class ReactivesearchContainer extends Component {
    * Helper function to display a custom component to display instead of ReactiveSearch's
    * @param {Object} res - ReactivSearch result object
    */
-  onData(res) {
+  onData = res => {
     let item = {
-      description: getESDescription(res),
       id: res.id,
       imageUrl: getESImagePath(res),
       label: getESTitle(res),
       type: res.model.name
     };
 
-    return <PhotoBox key={item.id} item={item} hideDescriptions={true} />;
-  }
+    return <PhotoBox key={item.id} item={item} />;
+  };
 
   render() {
     const allFilters = [GLOBAL_SEARCH_BAR_COMPONENT_ID, ...imageFilters];
     const { componentLoaded } = this.state;
+    const { location } = this.props;
+    const globalSearchValue =
+      location.state && location.state.globalSearch
+        ? location.state.globalSearch
+        : null;
 
-    const queryStringQuery = (value, props) => ({
-      query_string: {
-        default_field: 'full_text',
-        query: value
-      }
-    });
-
-    //TODO: Break this into components
     return (
       <div className="standard-page">
         <Helmet>
           <title>{generateTitleTag('Search')}</title>
         </Helmet>
         <div id="page" className="search">
-          <div id="sidebar" className="left-sidebar content" tabIndex="-1">
-            <div className="box">
-              {componentLoaded &&
-                imageFacets.map(facet => {
-                  let defaultVal =
-                    this.facetValue && this.facetValue === facet.name
-                      ? [this.searchValue]
-                      : [];
+          {!this.props.isMobile && (
+            <div id="sidebar" className="left-sidebar content" tabIndex="-1">
+              <div className="box">
+                {componentLoaded &&
+                  imageFacets.map(facet => {
+                    let defaultVal =
+                      this.facetValue && this.facetValue === facet.name
+                        ? [this.searchValue]
+                        : [];
 
-                  return (
-                    <RSMultiList
-                      key={facet.name}
-                      allFilters={allFilters}
-                      defaultVal={defaultVal}
-                      facet={facet}
-                      title={facet.name}
-                    />
-                  );
-                })}
-              <YearSlider title="Date" />
+                    return (
+                      <RSMultiList
+                        key={facet.name}
+                        allFilters={allFilters}
+                        defaultVal={defaultVal}
+                        facet={facet}
+                        title={facet.name}
+                      />
+                    );
+                  })}
+                <YearSlider title="Date" />
+              </div>
             </div>
-          </div>
+          )}
+
           <main id="main-content" className="content" tabIndex="-1">
             <div>
               <h2>Search Results</h2>
               <DataSearch
-                customQuery={queryStringQuery}
+                customQuery={simpleQueryStringQuery}
                 className="datasearch web-form"
                 componentId={GLOBAL_SEARCH_BAR_COMPONENT_ID}
                 dataField={['full_text']}
+                debounce={1000}
+                defaultSelected={globalSearchValue || null}
                 queryFormat="or"
-                placeholder="Search for an item"
+                placeholder={DATASEARCH_PLACEHOLDER}
                 innerClass={{
                   input: 'searchbox rs-search-input',
                   list: 'suggestionlist'
                 }}
                 autosuggest={false}
-                icon={
-                  <img
-                    src={searchIcon}
-                    className="rs-search-icon"
-                    alt="search icon"
-                  />
-                }
-                iconPosition="right"
                 filterLabel="Search"
                 URLParams={true}
               />
@@ -164,4 +157,12 @@ class ReactivesearchContainer extends Component {
   }
 }
 
-export default ReactivesearchContainer;
+const mapSizeToProps = ({ width }) => ({
+  isMobile: width <= MOBILE_BREAKPOINT
+});
+
+const SizedReactiveSearchContainer = withSizes(mapSizeToProps)(
+  ReactivesearchContainer
+);
+
+export default withRouter(SizedReactiveSearchContainer);
