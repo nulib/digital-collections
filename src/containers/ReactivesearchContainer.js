@@ -15,12 +15,15 @@ import {
   simpleQueryStringQuery
 } from '../services/reactive-search';
 import RSMultiList from '../components/reactive-search-wrappers/RSMultiList';
+import Breadcrumbs from '../components/breadcrumbs/Breadcrumbs';
 import { generateTitleTag } from '../services/helpers';
 import { Helmet } from 'react-helmet';
 import PhotoBox from '../components/PhotoBox';
 import { withRouter } from 'react-router-dom';
 import { MOBILE_BREAKPOINT } from '../services/global-vars';
 import withSizes from 'react-sizes';
+
+const breadCrumbData = [{ title: 'Home', link: '/' }, { title: 'Search' }];
 
 class ReactivesearchContainer extends Component {
   constructor(props) {
@@ -75,31 +78,35 @@ class ReactivesearchContainer extends Component {
         </Helmet>
         <div id="page" className="search">
           {!this.props.isMobile && (
-            <div id="sidebar" className="left-sidebar content" tabIndex="-1">
-              <div className="box">
-                {componentLoaded &&
-                  imageFacets.map(facet => {
-                    let defaultVal =
-                      this.facetValue && this.facetValue === facet.name
-                        ? [this.searchValue]
-                        : [];
+            <div
+              aria-label="section navigation menu"
+              className="facets-sidebar"
+              tabIndex="-1"
+            >
+              <h2>Filter By</h2>
+              {componentLoaded &&
+                imageFacets.map(facet => {
+                  let defaultVal =
+                    this.facetValue && this.facetValue === facet.name
+                      ? [this.searchValue]
+                      : [];
 
-                    return (
-                      <RSMultiList
-                        key={facet.name}
-                        allFilters={allFilters}
-                        defaultVal={defaultVal}
-                        facet={facet}
-                        title={facet.name}
-                      />
-                    );
-                  })}
-                <YearSlider title="Date" />
-              </div>
+                  return (
+                    <RSMultiList
+                      key={facet.name}
+                      allFilters={allFilters}
+                      defaultVal={defaultVal}
+                      facet={facet}
+                      title={facet.name}
+                    />
+                  );
+                })}
+              <YearSlider title="Date" />
             </div>
           )}
 
           <main id="main-content" className="content" tabIndex="-1">
+            <Breadcrumbs items={breadCrumbData} />
             <div>
               <h2>Search Results</h2>
               <DataSearch
