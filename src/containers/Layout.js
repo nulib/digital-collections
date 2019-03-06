@@ -3,7 +3,6 @@ import { withRouter } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
 import { ReactiveBase } from '@appbaseio/reactivesearch';
 import { connect } from 'react-redux';
-
 import About from './About';
 import AllCollectionsContainer from './AllCollectionsContainer';
 import ContactUs from './ContactUs';
@@ -19,6 +18,7 @@ import ReactivesearchContainer from './ReactivesearchContainer';
 import '../Layout.css';
 import '../libs/nuwebcomm-scripts.js';
 import { fetchApiToken } from '../actions/auth';
+import { loadDataLayer } from '../services/google-tag-manager';
 
 const ReactiveBaseWrapper = props => {
   return (
@@ -39,12 +39,18 @@ export class Layout extends Component {
 
   render() {
     const apiToken = this.props.authToken;
+    const { pathname } = this.props.location;
 
     // Delay rendering of component until the authToken has processed
     // This avoids 'double' rendering of the entire app's components
-    // TODO: Look into an alternate way to wrap ReactiveBase around only the components which need it?
     if (typeof apiToken === 'undefined') {
       return null;
+    }
+
+    // Update default Google Tag Manager DataLayer for
+    // all pages which are not Item Details page
+    if (pathname.indexOf('/items/') === -1) {
+      loadDataLayer({ isLoggedIn: apiToken !== null });
     }
 
     return (

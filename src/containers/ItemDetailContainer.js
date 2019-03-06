@@ -13,6 +13,7 @@ import LargeFeature from '../components/ItemDetail/LargeFeature';
 import OpenSeadragonContainer from './OpenSeadragonContainer';
 import { Helmet } from 'react-helmet';
 import { generateTitleTag } from '../services/helpers';
+import { loadDataLayer } from '../services/google-tag-manager';
 
 export class ItemDetailContainer extends Component {
   constructor(props) {
@@ -80,6 +81,8 @@ export class ItemDetailContainer extends Component {
     if (!item) {
       return;
     }
+
+    this.populateGTMDataLayer(item);
 
     let adminSetItems = await this.getAdminSets(item.admin_set.id);
     let collectionItems = await this.getCollections(item);
@@ -155,6 +158,32 @@ export class ItemDetailContainer extends Component {
     }
 
     return itemResponse._source;
+  }
+
+  populateGTMDataLayer(item) {
+    let environment = '';
+    const origin = window.location.origin;
+
+    if (origin.indexOf('rdc-staging') > -1) {
+      environment = 'staging';
+    } else if (origin.indexOf('dc.library.northwestern.edu') > -1) {
+      environment = 'production';
+    } else {
+      environment = 'local dev';
+    }
+
+    const dataLayer = {
+      isLoggedIn: this.props.auth.token != null,
+      environment,
+      visibility: item.visibility,
+      adminset: item.admin_set.title.map(title => title).join(', '),
+      collections: item.collection.map(collection =>
+        collection.title.map(title => title).join(', ')
+      ),
+      subjects: item.subject.map(subject => subject.label),
+      creators: item.creator.map(creator => creator.label)
+    };
+    loadDataLayer(dataLayer);
   }
 
   render() {
