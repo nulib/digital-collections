@@ -35,31 +35,6 @@ ul.no-style {
   }
 }
 
-// Update sidebar and main content widths for Collection Items page
-#page {
-  &.collection-items,
-  &.search {
-    // Not sure this looks good anymore
-    //max-width: 1440px;
-
-    #left-nav {
-      width: 30%;
-      @extend #main-content;
-      font-family: $AkkuratProRegular;
-      font-size: 14px;
-    }
-    #main-content {
-      &.content {
-        width: 67%;
-
-        @media screen and (max-width: 768px) {
-          width: 100%;
-        }
-      }
-    }
-  }
-}
-
 main#main-content {
   position: relative;
   // Extra see more link in homepage

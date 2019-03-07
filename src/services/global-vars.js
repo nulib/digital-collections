@@ -65,3 +65,6 @@ export const productionIds = {
 // <title> tag ending
 export const titleTagEnd =
   'Digital Collections - Libraries - Northwestern University';
+
+// Google Tag Manager
+export const GOOGLE_TAG_MANAGER_ID = 'GTM-MJ7RNV3';

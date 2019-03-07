@@ -1,5 +1,5 @@
 import React from 'react';
-import { MultiList } from '@appbaseio/reactivesearch';
+import { MultiDropdownList } from '@appbaseio/reactivesearch';
 import PropTypes from 'prop-types';
 import { COLLECTION_DATA_CONTROLLER_ID } from '../../services/reactive-search';
 
@@ -7,7 +7,8 @@ import { COLLECTION_DATA_CONTROLLER_ID } from '../../services/reactive-search';
 const multiListInnerClass = {
   title: 'rs-facet-title',
   list: 'rs-facet-list',
-  label: 'rs-facet-label'
+  label: 'rs-facet-label',
+  icon: 'rs-facet-icon'
 };
 
 const RSMultiList = props => {
@@ -18,7 +19,7 @@ const RSMultiList = props => {
   });
 
   return (
-    <MultiList
+    <MultiDropdownList
       componentId={facetNameNoSpaces}
       dataField={facet.field}
       defaultSelected={defaultVal}
@@ -27,7 +28,6 @@ const RSMultiList = props => {
       react={{
         and: [COLLECTION_DATA_CONTROLLER_ID, ...filterList]
       }}
-      showCheckbox={false}
       showMissing={true}
       showSearch={false}
       size={200}
