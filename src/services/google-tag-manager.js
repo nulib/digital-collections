@@ -1,17 +1,27 @@
-import { GOOGLE_TAG_MANAGER_ID } from '../services/global-vars';
-
 const dataLayer = window.dataLayer;
 
 /**
  * This function is called between route changes, so the DataLayer always contains
- * accurate data.
- * @param {obj} values New, incoming DataLayer values
+ * accurate data. We provide default values of 'undefined' as a way of flushing
+ * stale entries when changing routes.  Only 'isLoggedIn' is sent for all pages.
+ * The remaining DataLayer properties are only sent from the Item Details Page.
  */
-export function loadDataLayer(values) {
-  const instance = window.google_tag_manager[GOOGLE_TAG_MANAGER_ID].dataLayer;
-
-  // Reset dataLayer values
-  instance.reset();
+export function loadDataLayer({
+  isLoggedIn = undefined,
+  visibility = undefined,
+  adminset = undefined,
+  collections = undefined,
+  subjects = undefined,
+  creators = undefined
+}) {
+  const values = {
+    isLoggedIn,
+    visibility,
+    adminset,
+    collections,
+    subjects,
+    creators
+  };
 
   // Add new values
   dataLayer.push(values);
