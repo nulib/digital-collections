@@ -161,20 +161,8 @@ export class ItemDetailContainer extends Component {
   }
 
   populateGTMDataLayer(item) {
-    let environment = '';
-    const origin = window.location.origin;
-
-    if (origin.indexOf('rdc-staging') > -1) {
-      environment = 'staging';
-    } else if (origin.indexOf('dc.library.northwestern.edu') > -1) {
-      environment = 'production';
-    } else {
-      environment = 'local dev';
-    }
-
     const dataLayer = {
       isLoggedIn: this.props.auth.token != null,
-      environment,
       visibility: item.visibility,
       adminset: item.admin_set.title.map(title => title).join(', '),
       collections: item.collection.map(collection =>
@@ -183,6 +171,7 @@ export class ItemDetailContainer extends Component {
       subjects: item.subject.map(subject => subject.label),
       creators: item.creator.map(creator => creator.label)
     };
+
     loadDataLayer(dataLayer);
   }
 
