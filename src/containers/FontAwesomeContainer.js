@@ -13,6 +13,8 @@ import {
   faCopy,
   faDownload,
   faExpand,
+  faEye,
+  faEyeSlash,
   faSearchMinus,
   faSearchPlus,
   faTimes
@@ -26,6 +28,8 @@ library.add(
   faCopy,
   faDownload,
   faExpand,
+  faEye,
+  faEyeSlash,
   faSearchMinus,
   faSearchPlus,
   faTimes
