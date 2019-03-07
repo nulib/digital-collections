@@ -192,6 +192,7 @@ export class ItemDetailContainer extends Component {
                 collectionId={collectionId}
               />
               <ItemDetail item={item} />
+              <h2>Test addition</h2>
             </div>
           )}
         </div>
