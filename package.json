@@ -74,5 +74,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "resolutions": {
+    "jest-util": "v24.2.0-alpha.0"
+  }
 }
