@@ -20,7 +20,8 @@ export function loadDataLayer({
     adminset,
     collections,
     subjects,
-    creators
+    creators,
+    event: 'react-route-change'
   };
 
   // Add new values
