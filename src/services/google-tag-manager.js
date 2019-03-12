@@ -7,21 +7,23 @@ const dataLayer = window.dataLayer;
  * The remaining DataLayer properties are only sent from the Item Details Page.
  */
 export function loadDataLayer({
-  isLoggedIn = undefined,
-  visibility = undefined,
   adminset = undefined,
   collections = undefined,
+  creatorsContributors = undefined,
+  isLoggedIn = undefined,
+  rightsStatement = undefined,
   subjects = undefined,
-  creators = undefined
+  visibility = undefined
 }) {
   const values = {
-    isLoggedIn,
-    visibility,
     adminset,
     collections,
+    creatorsContributors,
+    event: 'react-route-change',
+    isLoggedIn,
+    rightsStatement,
     subjects,
-    creators,
-    event: 'react-route-change'
+    visibility
   };
 
   // Add new values
