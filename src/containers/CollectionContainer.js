@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import * as elasticsearchApi from '../api/elasticsearch-api.js';
-import Breadcrumbs from '../components/breadcrumbs/Breadcrumbs';
 import ErrorSection from '../components/ErrorSection';
-import FacetsSidebar from '../components/Collection/FacetsSidebar';
+import FacetsSidebar from '../components/FacetsSidebar';
+import FacetsBreadcrumbs from '../components/breadcrumbs/FacetsBreadcrumbs';
 import LoadingSpinner from '../components/LoadingSpinner';
 import {
   DataSearch,
@@ -19,6 +19,8 @@ import {
 import {
   COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID,
   COLLECTION_DATA_CONTROLLER_ID,
+  facetValues,
+  imageFacets,
   imageFilters,
   simpleQueryStringQuery
 } from '../services/reactive-search';
@@ -31,15 +33,14 @@ import withSizes from 'react-sizes';
 import CollectionDescription from '../components/Collection/CollectionDescription';
 import { loadDataLayer } from '../services/google-tag-manager';
 
-const allFilters = [COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID, ...imageFilters];
-
 export class CollectionContainer extends Component {
   state = {
     collection: null,
     collectionItems: [],
     error: null,
     items: null,
-    loading: true
+    loading: true,
+    showSidebar: false
   };
 
   componentDidMount() {
@@ -132,6 +133,11 @@ export class CollectionContainer extends Component {
     }
   }
 
+  handleDisplaySidebarClick = e => {
+    e.preventDefault();
+    this.setState({ showSidebar: !this.state.showSidebar });
+  };
+
   /**
    * Helper function to display a custom component to display instead of ReactiveSearch's
    * @param {Object} res - ReactivSearch result object
@@ -156,12 +162,23 @@ export class CollectionContainer extends Component {
   }
 
   render() {
-    const { collection, error, loading } = this.state;
+    const { collection, error, loading, showSidebar } = this.state;
     const { isMobile } = this.props;
     const breadCrumbData = collection
       ? this.createBreadcrumbData(collection)
       : [];
     const collectionTitle = collection ? getESTitle(collection) : '';
+    const collectionDescription = collection
+      ? getESDescription(collection)
+      : '';
+
+    const allFilters = [
+      COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID,
+      ...imageFilters
+    ];
+    const imageFacetsNoCollection = imageFacets.filter(
+      facet => facet.name !== facetValues.COLLECTION
+    );
 
     const renderDisplay = () => {
       if (error) {
@@ -176,20 +193,37 @@ export class CollectionContainer extends Component {
       if (collection) {
         return (
           <div>
-            {!isMobile && <FacetsSidebar />}
-            <main id="main-content" className="content" tabIndex="-1">
-              <Breadcrumbs items={breadCrumbData} />
+            <FacetsSidebar
+              facets={imageFacetsNoCollection}
+              filters={allFilters}
+              isMobile={isMobile}
+              showSidebar={showSidebar}
+            />
+            <main
+              id="main-content"
+              className={`content ${!showSidebar ? 'extended' : ''}`}
+              tabIndex="-1"
+            >
+              <FacetsBreadcrumbs
+                breadcrumbs={breadCrumbData}
+                isMobile={isMobile}
+                showSidebar={showSidebar}
+                handleDisplayClick={this.handleDisplaySidebarClick}
+              />
               {!loading && (
                 <div>
                   <div id="sidebar">
                     <div className="box">
                       <h3>Collection Description</h3>
-                      <CollectionDescription
-                        description={getESDescription(collection)}
-                      />
+
+                      {isMobile && (
+                        <CollectionDescription
+                          description={collectionDescription}
+                        />
+                      )}
+                      {!isMobile && <p>{collectionDescription}</p>}
                     </div>
                   </div>
-
                   <h2>{collection && collectionTitle}</h2>
 
                   <DataController
