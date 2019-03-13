@@ -22,6 +22,7 @@ const FacetsBreadcrumbs = props => {
               href="#"
               onClick={handleDisplayClick}
               className="facet-sidebar-collapse-link"
+              aria-expanded={showSidebar}
             >
               <FontAwesomeIcon
                 icon={showSidebar ? 'eye-slash' : 'eye'}

@@ -168,6 +168,9 @@ export class CollectionContainer extends Component {
       ? this.createBreadcrumbData(collection)
       : [];
     const collectionTitle = collection ? getESTitle(collection) : '';
+    const collectionDescription = collection
+      ? getESDescription(collection)
+      : '';
 
     const allFilters = [
       COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID,
@@ -212,7 +215,13 @@ export class CollectionContainer extends Component {
                   <div id="sidebar">
                     <div className="box">
                       <h3>Collection Description</h3>
-                      <p>{getESDescription(collection)}</p>
+
+                      {isMobile && (
+                        <CollectionDescription
+                          description={collectionDescription}
+                        />
+                      )}
+                      {!isMobile && <p>{collectionDescription}</p>}
                     </div>
                   </div>
                   <h2>{collection && collectionTitle}</h2>

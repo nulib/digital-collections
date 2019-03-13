@@ -19,6 +19,7 @@ class FacetsSidebar extends Component {
         {!isMobile && (
           <div
             aria-label="section navigation menu"
+            aria-hidden={!showSidebar}
             className={`facets-sidebar ${!showSidebar ? 'collapsed' : ''}`}
             tabIndex="-1"
           >
