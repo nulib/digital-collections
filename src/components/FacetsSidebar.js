@@ -6,13 +6,22 @@ import YearSlider from './reactive-search-wrappers/YearSlider';
 class FacetsSidebar extends Component {
   static propTypes = {
     facets: PropTypes.array,
+    facetValue: PropTypes.string,
     filters: PropTypes.array,
     isMobile: PropTypes.bool.isRequired,
+    searchValue: PropTypes.string,
     showSidebar: PropTypes.bool
   };
 
   render() {
-    const { facets, filters, isMobile, showSidebar } = this.props;
+    const {
+      facets,
+      facetValue,
+      filters,
+      isMobile,
+      searchValue,
+      showSidebar
+    } = this.props;
 
     return (
       <>
@@ -31,9 +40,7 @@ class FacetsSidebar extends Component {
               <h2>Filter By</h2>
               {facets.map(facet => {
                 let defaultVal =
-                  this.facetValue && this.facetValue === facet.name
-                    ? [this.searchValue]
-                    : [];
+                  facetValue && facetValue === facet.name ? [searchValue] : [];
 
                 return (
                   <RSMultiList

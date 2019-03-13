@@ -88,8 +88,10 @@ class ReactivesearchContainer extends Component {
           {componentLoaded && (
             <FacetsSidebar
               facets={imageFacets}
+              facetValue={this.facetValue}
               filters={allFilters}
               isMobile={isMobile}
+              searchValue={this.searchValue}
               showSidebar={showSidebar}
             />
           )}
@@ -109,23 +111,25 @@ class ReactivesearchContainer extends Component {
             <div className={!showSidebar ? 'contain-1120' : ''}>
               <h2>Search Results</h2>
               <DataSearch
-                customQuery={simpleQueryStringQuery}
+                autosuggest={false}
                 className="datasearch web-form"
+                customQuery={simpleQueryStringQuery}
                 componentId={GLOBAL_SEARCH_BAR_COMPONENT_ID}
                 dataField={['full_text']}
                 debounce={1000}
                 defaultSelected={globalSearchValue || null}
-                queryFormat="or"
-                placeholder={DATASEARCH_PLACEHOLDER}
+                filterLabel="Search"
                 innerClass={{
                   input: 'searchbox rs-search-input',
                   list: 'suggestionlist'
                 }}
-                autosuggest={false}
-                filterLabel="Search"
+                queryFormat="or"
+                placeholder={DATASEARCH_PLACEHOLDER}
                 URLParams={true}
               />
+
               <SelectedFilters />
+
               <ReactiveList
                 componentId="results"
                 dataField="title"
