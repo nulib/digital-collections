@@ -13,7 +13,10 @@ import LargeFeature from '../components/ItemDetail/LargeFeature';
 import OpenSeadragonContainer from './OpenSeadragonContainer';
 import { Helmet } from 'react-helmet';
 import { generateTitleTag } from '../services/helpers';
-import { loadDataLayer } from '../services/google-tag-manager';
+import {
+  createPipedString,
+  loadDataLayer
+} from '../services/google-tag-manager';
 
 export class ItemDetailContainer extends Component {
   constructor(props) {
@@ -168,14 +171,16 @@ export class ItemDetailContainer extends Component {
     const contributors = item.contributor.map(contributor => contributor.label);
 
     const dataLayer = {
-      adminset: item.admin_set.title.map(title => title).join(', '),
-      collections: item.collection.map(collection =>
-        collection.title.map(title => title).join(', ')
+      adminset: createPipedString(item.admin_set.title.map(title => title)),
+      collections: createPipedString(
+        item.collection.map(collection =>
+          collection.title.map(title => title).join(', ')
+        )
       ),
-      creatorsContributors: [...creators, ...contributors],
+      creatorsContributors: createPipedString([...creators, ...contributors]),
       isLoggedIn: this.props.auth.token != null,
       rightsStatement,
-      subjects: item.subject.map(subject => subject.label),
+      subjects: createPipedString(item.subject.map(subject => subject.label)),
       visibility: item.visibility
     };
 

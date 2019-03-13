@@ -36,3 +36,18 @@ export function loadDataLayer({
  * Quick way to access a key value in DataLayer
  * > window.google_tag_manager['GTM-XXXXX'].dataLayer.get('keyNameHere')
  */
+
+/**
+ * Helper function to prepare multi values we need to parse in Google Tag Manager / UA
+ * @param {Array} arr Values to convert to a piped string
+ * @returns {String}
+ */
+export function createPipedString(arr) {
+  if (arr.length === 0) {
+    return '';
+  }
+
+  const trimmedArray = arr.map(value => value.trim());
+
+  return trimmedArray.join('|');
+}

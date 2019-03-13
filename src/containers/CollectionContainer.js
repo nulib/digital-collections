@@ -29,7 +29,10 @@ import PhotoBox from '../components/PhotoBox';
 import { MOBILE_BREAKPOINT } from '../services/global-vars';
 import withSizes from 'react-sizes';
 import CollectionDescription from '../components/Collection/CollectionDescription';
-import { loadDataLayer } from '../services/google-tag-manager';
+import {
+  createPipedString,
+  loadDataLayer
+} from '../services/google-tag-manager';
 
 const allFilters = [COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID, ...imageFilters];
 
@@ -148,10 +151,16 @@ export class CollectionContainer extends Component {
   }
 
   populateGTMDataLayer(collection) {
+    const collectionTitles = getESTitle(collection).split(',');
+    const collections =
+      collectionTitles.length > 1
+        ? createPipedString(collectionTitles)
+        : collectionTitles[0];
     const dataLayer = {
-      collections: getESTitle(collection),
+      collections,
       isLoggedIn: this.props.auth.token != null
     };
+
     loadDataLayer(dataLayer);
   }
 
