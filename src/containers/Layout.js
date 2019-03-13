@@ -49,7 +49,10 @@ export class Layout extends Component {
 
     // Update default Google Tag Manager DataLayer for
     // all pages which are not Item Details page
-    if (pathname.indexOf('/items/') === -1) {
+    if (
+      pathname.indexOf('/items/') === -1 &&
+      pathname.indexOf('/collections/') === -1
+    ) {
       loadDataLayer({ isLoggedIn: apiToken !== null });
     }
 
