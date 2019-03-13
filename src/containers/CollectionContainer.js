@@ -29,6 +29,7 @@ import PhotoBox from '../components/PhotoBox';
 import { MOBILE_BREAKPOINT } from '../services/global-vars';
 import withSizes from 'react-sizes';
 import CollectionDescription from '../components/Collection/CollectionDescription';
+import { loadDataLayer } from '../services/google-tag-manager';
 
 const allFilters = [COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID, ...imageFilters];
 
@@ -110,7 +111,13 @@ export class CollectionContainer extends Component {
         error = `The current collection's visibility is restricted to logged in users.`;
       }
 
-      this.setState({ collection: response._source, error, loading: false });
+      this.populateGTMDataLayer(response._source);
+
+      this.setState({
+        collection: response._source,
+        error,
+        loading: false
+      });
     };
     request();
   }
@@ -138,6 +145,14 @@ export class CollectionContainer extends Component {
     };
 
     return <PhotoBox key={item.id} item={item} />;
+  }
+
+  populateGTMDataLayer(collection) {
+    const dataLayer = {
+      collections: getESTitle(collection),
+      isLoggedIn: this.props.auth.token != null
+    };
+    loadDataLayer(dataLayer);
   }
 
   render() {

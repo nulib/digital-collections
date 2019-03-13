@@ -161,15 +161,22 @@ export class ItemDetailContainer extends Component {
   }
 
   populateGTMDataLayer(item) {
+    const rightsStatement = item.rights_statement
+      ? item.rights_statement.label
+      : '';
+    const creators = item.creator.map(creator => creator.label);
+    const contributors = item.contributor.map(contributor => contributor.label);
+
     const dataLayer = {
-      isLoggedIn: this.props.auth.token != null,
-      visibility: item.visibility,
       adminset: item.admin_set.title.map(title => title).join(', '),
       collections: item.collection.map(collection =>
         collection.title.map(title => title).join(', ')
       ),
+      creatorsContributors: [...creators, ...contributors],
+      isLoggedIn: this.props.auth.token != null,
+      rightsStatement,
       subjects: item.subject.map(subject => subject.label),
-      creators: item.creator.map(creator => creator.label)
+      visibility: item.visibility
     };
 
     loadDataLayer(dataLayer);
