@@ -173,7 +173,7 @@ export class ItemDetailContainer extends Component {
         collection.title.map(title => title).join(', ')
       ),
       creatorsContributors: [...creators, ...contributors],
-      isLoggedIn: this.props.auth.token != null,
+      pageTitle: elasticsearchParser.getESTitle(item),
       rightsStatement,
       subjects: item.subject.map(subject => subject.label),
       visibility: item.visibility

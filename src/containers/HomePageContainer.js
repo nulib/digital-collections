@@ -16,6 +16,7 @@ import * as globalVars from '../services/global-vars';
 import { getRandomInt } from '../services/helpers';
 import { Helmet } from 'react-helmet';
 import { generateTitleTag } from '../services/helpers';
+import { loadDataLayer } from '../services/google-tag-manager';
 
 export class HomePageContainer extends Component {
   constructor(props) {
@@ -38,6 +39,8 @@ export class HomePageContainer extends Component {
 
   componentDidMount() {
     let promises = [];
+
+    loadDataLayer({ pageTitle: globalVars.ROUTES.HOME.title });
 
     // Combine async network requests
     promises.push(this.getGalleryItems());

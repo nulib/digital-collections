@@ -154,9 +154,10 @@ export class CollectionContainer extends Component {
   }
 
   populateGTMDataLayer(collection) {
+    const title = getESTitle(collection);
     const dataLayer = {
-      collections: getESTitle(collection),
-      isLoggedIn: this.props.auth.token != null
+      collections: title,
+      pageTitle: title
     };
     loadDataLayer(dataLayer);
   }
