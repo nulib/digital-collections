@@ -3,6 +3,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import TabContent from './TabContent';
 import PropTypes from 'prop-types';
 import CiteTabContent from './CiteTabContent';
+import { ADMIN_SET_CONTACTS } from '../../services/global-vars';
 
 const ItemDetail = props => {
   if (!props.item) {
@@ -49,6 +50,25 @@ const ItemDetail = props => {
     title: { primary: title } = '',
     title: { alternate: alternateTitle } = ''
   } = props.item;
+
+  const getAdminSetEmail = () => {
+    let email = '';
+    try {
+      let results = ADMIN_SET_CONTACTS.filter(
+        obj => obj.id === props.item.admin_set.id
+      );
+      email = results[0].email;
+    } catch (e) {}
+
+    if (!email) {
+      return;
+    }
+
+    return {
+      label: 'More Information',
+      value: `For more information on this item or collection, please contact ${email}`
+    };
+  };
 
   const subjectTemporal =
     subject &&
@@ -111,6 +131,11 @@ const ItemDetail = props => {
       value: folderNumber
     }
   ];
+
+  const adminSetEmail = getAdminSetEmail();
+  if (adminSetEmail) {
+    findThisItemPanel.push(adminSetEmail);
+  }
 
   return (
     <section className="item-section contain-970 item-categories-wrapper">
