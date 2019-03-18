@@ -17,10 +17,11 @@ import { generateTitleTag } from '../services/helpers';
 import { Helmet } from 'react-helmet';
 import PhotoBox from '../components/PhotoBox';
 import { withRouter } from 'react-router-dom';
-import { MOBILE_BREAKPOINT } from '../services/global-vars';
+import { MOBILE_BREAKPOINT, ROUTES } from '../services/global-vars';
 import withSizes from 'react-sizes';
 import FacetsSidebar from '../components/FacetsSidebar';
 import FacetsBreadcrumbs from '../components/breadcrumbs/FacetsBreadcrumbs';
+import { loadDataLayer } from '../services/google-tag-manager';
 
 const breadcrumbs = [
   { link: '/', title: 'Home' },
@@ -40,6 +41,8 @@ class ReactivesearchContainer extends Component {
   };
 
   componentDidMount() {
+    loadDataLayer({ pageTitle: ROUTES.SEARCH.title });
+
     this.searchValue = this.props.location.state
       ? this.props.location.state.searchValue
       : '';

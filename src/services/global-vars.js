@@ -68,3 +68,35 @@ export const titleTagEnd =
 
 // Google Tag Manager
 export const GOOGLE_TAG_MANAGER_ID = 'GTM-MJ7RNV3';
+
+// React-router route config values
+export const ROUTES = {
+  ABOUT: {
+    title: 'About',
+    path: '/about'
+  },
+  COLLECTION: {
+    title: '',
+    path: '/collections/:id'
+  },
+  COLLECTIONS_ALL: {
+    title: 'All Collections',
+    path: '/collections'
+  },
+  CONTACT: {
+    title: 'Contact Us',
+    path: '/contact-us'
+  },
+  HOME: {
+    title: 'Home',
+    path: '/'
+  },
+  ITEM_DETAIL: {
+    title: '',
+    path: '/items/:id'
+  },
+  SEARCH: {
+    title: 'Search',
+    path: '/search/'
+  }
+};

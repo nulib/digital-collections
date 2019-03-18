@@ -18,7 +18,6 @@ import ReactivesearchContainer from './ReactivesearchContainer';
 import '../Layout.css';
 import '../libs/nuwebcomm-scripts.js';
 import { fetchApiToken } from '../actions/auth';
-import { loadDataLayer } from '../services/google-tag-manager';
 
 const ReactiveBaseWrapper = props => {
   return (
@@ -39,21 +38,12 @@ export class Layout extends Component {
 
   render() {
     const apiToken = this.props.authToken;
-    const { pathname } = this.props.location;
+    const { ROUTES } = globalVars;
 
     // Delay rendering of component until the authToken has processed
     // This avoids 'double' rendering of the entire app's components
     if (typeof apiToken === 'undefined') {
       return null;
-    }
-
-    // Update default Google Tag Manager DataLayer for
-    // all pages which are not Item Details page
-    if (
-      pathname.indexOf('/items/') === -1 &&
-      pathname.indexOf('/collections/') === -1
-    ) {
-      loadDataLayer({ isLoggedIn: apiToken !== null });
     }
 
     return (
@@ -62,25 +52,28 @@ export class Layout extends Component {
         <Notifications />
         <NavContainer />
         <Switch>
-          <Route exact path="/about" component={About} />
-          <Route exact path="/contact-us" component={ContactUs} />
-          <Route exact path="/collections/:id">
+          <Route exact path={ROUTES.ABOUT.path} component={About} />
+          <Route exact path={ROUTES.CONTACT.path} component={ContactUs} />
+          <Route exact path={ROUTES.COLLECTION.path}>
             <ReactiveBaseWrapper apiToken={apiToken}>
               <CollectionContainer />
             </ReactiveBaseWrapper>
           </Route>
           <Route
             exact
-            path="/collections"
+            path={ROUTES.COLLECTIONS_ALL.path}
             component={AllCollectionsContainer}
           />
-          <Route path="/items/:id" component={ItemDetailContainer} />
-          <Route path="/search/">
+          <Route
+            path={ROUTES.ITEM_DETAIL.path}
+            component={ItemDetailContainer}
+          />
+          <Route path={ROUTES.SEARCH.path}>
             <ReactiveBaseWrapper apiToken={apiToken}>
               <ReactivesearchContainer />
             </ReactiveBaseWrapper>
           </Route>
-          <Route exact path="/" component={HomePageContainer} />
+          <Route exact path={ROUTES.HOME.path} component={HomePageContainer} />
           <Route component={HomePageContainer} />
         </Switch>
         <Footer />

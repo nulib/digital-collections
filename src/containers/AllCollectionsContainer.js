@@ -7,6 +7,7 @@ import { prepPhotoGridItems } from '../services/elasticsearch-parser';
 import * as globalVars from '../services/global-vars';
 import { generateTitleTag } from '../services/helpers';
 import { Helmet } from 'react-helmet';
+import { loadDataLayer } from '../services/google-tag-manager';
 
 const breadcrumbItems = [
   { title: 'Collections', link: 'collections' },
@@ -21,6 +22,7 @@ class AllCollectionsContainer extends Component {
 
   componentDidMount() {
     this.getAllCollections();
+    loadDataLayer({ pageTitle: globalVars.ROUTES.COLLECTIONS_ALL.title });
   }
 
   async getAllCollections() {
@@ -36,17 +38,18 @@ class AllCollectionsContainer extends Component {
 
   render() {
     const { allCollections, loading } = this.state;
+    const { title } = globalVars.ROUTES.COLLECTIONS_ALL.title;
 
     return (
       <div className="standard-page">
         <Helmet>
-          <title>{generateTitleTag('All Collections')}</title>
+          <title>{generateTitleTag(title)}</title>
         </Helmet>
         <div id="page" className="full-width">
           <main id="main-content" className="content" tabIndex="0">
             <Breadcrumbs items={breadcrumbItems} />
             <div className="contain-1120">
-              <h2>All Collections</h2>
+              <h2>{title}</h2>
               <LoadingSpinner loading={loading} />
               <PhotoGrid items={allCollections} cols={4} />
             </div>
