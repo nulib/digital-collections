@@ -2,6 +2,7 @@
 export const COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID = 'collection-search';
 export const GLOBAL_SEARCH_BAR_COMPONENT_ID = 'q';
 export const COLLECTION_DATA_CONTROLLER_ID = 'collection-data-controller';
+export const SEARCH_DATA_CONTROLLER_ID = 'search-data-controller';
 export const DATASEARCH_PLACEHOLDER =
   'Search by title, description, or wildcard (ie. Picass*)';
 

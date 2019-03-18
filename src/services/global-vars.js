@@ -97,7 +97,7 @@ export const ROUTES = {
   },
   SEARCH: {
     title: 'Search',
-    path: '/search/'
+    path: '/search'
   }
 };
 
