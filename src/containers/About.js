@@ -11,7 +11,6 @@ import { productionIds, ROUTES } from '../services/global-vars';
 import { generateTitleTag } from '../services/helpers';
 import { Helmet } from 'react-helmet';
 import { shuffleArray } from '../services/helpers';
-import { getTotalItemCount } from '../api/elasticsearch-api';
 import lizPic from '../images/liz__O8A9903_final.jpg';
 import druPic from '../images/dru__O8A9937_final.jpg';
 import curtPic from '../images/curt__O8A9877_final.jpg';
@@ -84,13 +83,7 @@ class About extends Component {
   };
 
   componentDidMount() {
-    this.getTotalItems();
     loadDataLayer({ pageTitle: ROUTES.ABOUT.title });
-  }
-
-  async getTotalItems() {
-    let totalItemCount = await getTotalItemCount();
-    this.setState({ totalItemCount });
   }
 
   render() {
@@ -112,9 +105,7 @@ class About extends Component {
           <main id="main-content" className="content" tabIndex="0">
             <div className="section contain-1120">
               <p>
-                {`Digital Collections contains ${
-                  this.state.totalItemCount
-                } items from Northwestern
+                {`Digital Collections contains thousands of items from Northwestern
                 University Libraries. While only a fraction of materials from the
                 Libraries' collections are represented, the site is representative
                 of the distinction and diversity of collections from the `}
