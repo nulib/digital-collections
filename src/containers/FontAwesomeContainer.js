@@ -6,6 +6,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 // Import all icons used in the application here
 import {
   faAngleDown,
+  faAngleRight,
   faAngleUp,
   faArrowCircleLeft,
   faArrowCircleRight,
@@ -21,6 +22,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 library.add(
   faAngleDown,
+  faAngleRight,
   faAngleUp,
   faArrowCircleLeft,
   faArrowCircleRight,
