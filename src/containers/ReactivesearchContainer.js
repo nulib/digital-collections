@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  DataController,
   DataSearch,
   SelectedFilters,
   ReactiveList
@@ -11,6 +12,7 @@ import {
   GLOBAL_SEARCH_BAR_COMPONENT_ID,
   imageFacets,
   imageFilters,
+  SEARCH_DATA_CONTROLLER_ID,
   simpleQueryStringQuery
 } from '../services/reactive-search';
 import { generateTitleTag } from '../services/helpers';
@@ -74,7 +76,11 @@ class ReactivesearchContainer extends Component {
   };
 
   render() {
-    const allFilters = [GLOBAL_SEARCH_BAR_COMPONENT_ID, ...imageFilters];
+    const allFilters = [
+      GLOBAL_SEARCH_BAR_COMPONENT_ID,
+      SEARCH_DATA_CONTROLLER_ID,
+      ...imageFilters
+    ];
     const { componentLoaded, showSidebar } = this.state;
     const { isMobile, location } = this.props;
     const globalSearchValue =
@@ -113,6 +119,19 @@ class ReactivesearchContainer extends Component {
 
             <div className={!showSidebar ? 'contain-1120' : ''}>
               <h2>Search Results</h2>
+
+              <DataController
+                componentId={SEARCH_DATA_CONTROLLER_ID}
+                dataField="title"
+                customQuery={(item, props) => {
+                  return {
+                    match: {
+                      'model.name': 'Image'
+                    }
+                  };
+                }}
+              />
+
               <DataSearch
                 autosuggest={false}
                 className="datasearch web-form"
@@ -135,19 +154,7 @@ class ReactivesearchContainer extends Component {
 
               <ReactiveList
                 componentId="results"
-                dataField="title"
-                defaultQuery={(value, props) => ({
-                  match: {
-                    'model.name': 'Image'
-                  },
-                  sort: [
-                    {
-                      'title.primary.keyword': {
-                        order: 'asc'
-                      }
-                    }
-                  ]
-                })}
+                dataField="title.primary.keyword"
                 innerClass={{
                   list: 'rs-result-list photo-grid four-grid',
                   pagination: 'rs-pagination',
@@ -160,6 +167,7 @@ class ReactivesearchContainer extends Component {
                 react={{
                   and: allFilters
                 }}
+                sortBy="asc"
                 size={12}
               />
             </div>
