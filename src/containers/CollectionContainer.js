@@ -3,7 +3,7 @@ import { withRouter } from 'react-router';
 import * as elasticsearchApi from '../api/elasticsearch-api.js';
 import ErrorSection from '../components/ErrorSection';
 import FacetsSidebar from '../components/FacetsSidebar';
-import FacetsBreadcrumbs from '../components/breadcrumbs/FacetsBreadcrumbs';
+import Breadcrumbs from '../components/breadcrumbs/Breadcrumbs';
 import LoadingSpinner from '../components/LoadingSpinner';
 import {
   DataSearch,
@@ -32,6 +32,7 @@ import { MOBILE_BREAKPOINT } from '../services/global-vars';
 import withSizes from 'react-sizes';
 import CollectionDescription from '../components/Collection/CollectionDescription';
 import { loadDataLayer } from '../services/google-tag-manager';
+import FiltersShowHideButton from '../components/FiltersShowHideButton';
 
 export class CollectionContainer extends Component {
   state = {
@@ -210,12 +211,7 @@ export class CollectionContainer extends Component {
               className={`content ${!showSidebar ? 'extended' : ''}`}
               tabIndex="-1"
             >
-              <FacetsBreadcrumbs
-                breadcrumbs={breadCrumbData}
-                isMobile={isMobile}
-                showSidebar={showSidebar}
-                handleDisplayClick={this.handleDisplaySidebarClick}
-              />
+              <Breadcrumbs items={breadCrumbData} />
               {!loading && (
                 <div>
                   <div id="sidebar">
@@ -230,7 +226,8 @@ export class CollectionContainer extends Component {
                       {!isMobile && descriptionDisplay}
                     </div>
                   </div>
-                  <h2>{collection && collectionTitle}</h2>
+
+                  <h2>{collectionTitle}</h2>
 
                   <DataController
                     title="DataController"
@@ -263,6 +260,13 @@ export class CollectionContainer extends Component {
                   />
 
                   <SelectedFilters />
+
+                  {!isMobile && (
+                    <FiltersShowHideButton
+                      showSidebar={showSidebar}
+                      handleToggleFiltersClick={this.handleDisplaySidebarClick}
+                    />
+                  )}
 
                   <ReactiveList
                     componentId="collection-items-results"
