@@ -9,6 +9,10 @@
 .facets-sidebar {
   @extend #left-nav;
 
+  position: relative;
+  transition: opacity 0.25s ease-in-out;
+  opacity: 1;
+
   ul {
     border: 1px solid $rich-black-10;
   }
@@ -17,6 +21,39 @@
     font-family: $AkkuratProRegular;
     font-size: 14px;
     line-height: 1em;
+  }
+
+  // Collapsed state
+  &.collapsed {
+    width: 0;
+    opacity: 0;
+  }
+
+  .facet-sidebar-collapse-icon {
+    color: $nu-purple;
+    cursor: pointer;
+  }
+
+  .facet-sidebar-content-wrapper {
+    visibility: visible;
+
+    &.hidden {
+      visibility: hidden;
+    }
+  }
+}
+
+a.facet-sidebar-collapse-link {
+  color: $nu-purple !important;
+  background: $light-grey;
+  padding: 3px 6px;
+}
+
+// This applies an extended style to a collapsed sidebar
+.standard-page .content {
+  &.extended {
+    width: 100%;
+    float: none;
   }
 }
 

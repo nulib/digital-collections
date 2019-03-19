@@ -52,6 +52,11 @@ export function shuffleArray(array) {
   return array;
 }
 
+/**
+ * Construct the html page <title> string
+ * @param {string} title
+ * @returns {string}
+ */
 export function generateTitleTag(title) {
   return title ? `${title} - ${titleTagEnd}` : titleTagEnd;
 }

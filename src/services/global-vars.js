@@ -68,3 +68,76 @@ export const titleTagEnd =
 
 // Google Tag Manager
 export const GOOGLE_TAG_MANAGER_ID = 'GTM-MJ7RNV3';
+
+// React-router route config values
+export const ROUTES = {
+  ABOUT: {
+    title: 'About',
+    path: '/about'
+  },
+  COLLECTION: {
+    title: '',
+    path: '/collections/:id'
+  },
+  COLLECTIONS_ALL: {
+    title: 'All Collections',
+    path: '/collections'
+  },
+  CONTACT: {
+    title: 'Contact Us',
+    path: '/contact-us'
+  },
+  HOME: {
+    title: 'Home',
+    path: '/'
+  },
+  ITEM_DETAIL: {
+    title: '',
+    path: '/items/:id'
+  },
+  SEARCH: {
+    title: 'Search',
+    path: '/search'
+  }
+};
+
+// Admin Set contact emails
+export const ADMIN_SET_CONTACTS = [
+  {
+    id: 'b3771d7c-5117-4b48-a237-a0a6f02bc048',
+    email: 'special.collections@northwestern.edu',
+    title: 'Charles Deering McCormick Library of Special Collections'
+  },
+  {
+    id: 'ce79271f-aeeb-42a0-bb7b-d945223aadce',
+    email: 'govinfo@northwestern.edu',
+    title: 'Government & Geographic Information Collection'
+  },
+  {
+    id: 'fb560cc3-ea2b-41b0-bc0f-5e495c4f3f7f',
+    email: 'africana@northwestern.edu',
+    title: 'Herskovits Library of African Studies'
+  },
+  {
+    id: '4d090cfa-f802-4ac3-9fe4-b5adc0294e80',
+    email: 'transportationlibrary@northwestern.edu',
+    title: 'Transportation Library'
+  },
+  {
+    id: '810fb25f-bc4a-47f9-9de3-d57f6513699f',
+    email: 'archives@northwestern.edu',
+    title: 'University Archives'
+  }
+];
+// Extras not currently in production yet:
+/**
+Art Library artlibrary@northwestern.edu
+Charles Deering McCormick Library of Special Collections special.collections@northwestern.edu
+Faculty Collections repository@northwestern.edu
+Government & Geographic Information Collection govinfo@northwestern.edu
+Herskovits Library of African Studies africana@northwestern.edu
+Music Library musiclibrary@northwestern.edu
+Transportation Library transportationlibrary@northwestern.edu
+University (MAIN) Library library@northwestern.edu
+University Archives archives@northwestern.edu
+ */

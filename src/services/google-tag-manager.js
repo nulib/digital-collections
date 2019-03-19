@@ -1,3 +1,5 @@
+import store from '../store';
+
 const dataLayer = window.dataLayer;
 
 /**
@@ -10,7 +12,7 @@ export function loadDataLayer({
   adminset = undefined,
   collections = undefined,
   creatorsContributors = undefined,
-  isLoggedIn = undefined,
+  pageTitle = undefined,
   rightsStatement = undefined,
   subjects = undefined,
   visibility = undefined
@@ -20,7 +22,8 @@ export function loadDataLayer({
     collections,
     creatorsContributors,
     event: 'react-route-change',
-    isLoggedIn,
+    isLoggedIn: !!store.getState().auth.token,
+    pageTitle,
     rightsStatement,
     subjects,
     visibility

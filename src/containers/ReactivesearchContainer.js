@@ -1,29 +1,34 @@
 import React, { Component } from 'react';
 import {
+  DataController,
   DataSearch,
   SelectedFilters,
   ReactiveList
 } from '@appbaseio/reactivesearch';
 import { getESImagePath, getESTitle } from '../services/elasticsearch-parser';
 import LoadingSpinner from '../components/LoadingSpinner';
-import YearSlider from '../components/reactive-search-wrappers/YearSlider';
 import {
   DATASEARCH_PLACEHOLDER,
   GLOBAL_SEARCH_BAR_COMPONENT_ID,
   imageFacets,
   imageFilters,
+  SEARCH_DATA_CONTROLLER_ID,
   simpleQueryStringQuery
 } from '../services/reactive-search';
-import RSMultiList from '../components/reactive-search-wrappers/RSMultiList';
-import Breadcrumbs from '../components/breadcrumbs/Breadcrumbs';
 import { generateTitleTag } from '../services/helpers';
 import { Helmet } from 'react-helmet';
 import PhotoBox from '../components/PhotoBox';
 import { withRouter } from 'react-router-dom';
-import { MOBILE_BREAKPOINT } from '../services/global-vars';
+import { MOBILE_BREAKPOINT, ROUTES } from '../services/global-vars';
 import withSizes from 'react-sizes';
+import FacetsSidebar from '../components/FacetsSidebar';
+import FacetsBreadcrumbs from '../components/breadcrumbs/FacetsBreadcrumbs';
+import { loadDataLayer } from '../services/google-tag-manager';
 
-const breadCrumbData = [{ title: 'Home', link: '/' }, { title: 'Search' }];
+const breadcrumbs = [
+  { link: '/', title: 'Home' },
+  { link: '', title: 'Search Results' }
+];
 
 class ReactivesearchContainer extends Component {
   constructor(props) {
@@ -33,10 +38,13 @@ class ReactivesearchContainer extends Component {
   }
 
   state = {
-    componentLoaded: false
+    componentLoaded: false,
+    showSidebar: false
   };
 
   componentDidMount() {
+    loadDataLayer({ pageTitle: ROUTES.SEARCH.title });
+
     this.searchValue = this.props.location.state
       ? this.props.location.state.searchValue
       : '';
@@ -46,6 +54,11 @@ class ReactivesearchContainer extends Component {
 
     this.setState({ componentLoaded: true });
   }
+
+  handleSidebarClick = e => {
+    e.preventDefault();
+    this.setState({ showSidebar: !this.state.showSidebar });
+  };
 
   /**
    * Helper function to display a custom component to display instead of ReactiveSearch's
@@ -63,9 +76,13 @@ class ReactivesearchContainer extends Component {
   };
 
   render() {
-    const allFilters = [GLOBAL_SEARCH_BAR_COMPONENT_ID, ...imageFilters];
-    const { componentLoaded } = this.state;
-    const { location } = this.props;
+    const allFilters = [
+      GLOBAL_SEARCH_BAR_COMPONENT_ID,
+      SEARCH_DATA_CONTROLLER_ID,
+      ...imageFilters
+    ];
+    const { componentLoaded, showSidebar } = this.state;
+    const { isMobile, location } = this.props;
     const globalSearchValue =
       location.state && location.state.globalSearch
         ? location.state.globalSearch
@@ -77,86 +94,83 @@ class ReactivesearchContainer extends Component {
           <title>{generateTitleTag('Search')}</title>
         </Helmet>
         <div id="page" className="search">
-          {!this.props.isMobile && (
-            <div
-              aria-label="section navigation menu"
-              className="facets-sidebar"
-              tabIndex="-1"
-            >
-              <h2>Filter By</h2>
-              {componentLoaded &&
-                imageFacets.map(facet => {
-                  let defaultVal =
-                    this.facetValue && this.facetValue === facet.name
-                      ? [this.searchValue]
-                      : [];
-
-                  return (
-                    <RSMultiList
-                      key={facet.name}
-                      allFilters={allFilters}
-                      defaultVal={defaultVal}
-                      facet={facet}
-                      title={facet.name}
-                    />
-                  );
-                })}
-              <YearSlider title="Date" />
-            </div>
+          {componentLoaded && (
+            <FacetsSidebar
+              facets={imageFacets}
+              facetValue={this.facetValue}
+              filters={allFilters}
+              isMobile={isMobile}
+              searchValue={this.searchValue}
+              showSidebar={showSidebar}
+            />
           )}
 
-          <main id="main-content" className="content" tabIndex="-1">
-            <Breadcrumbs items={breadCrumbData} />
-            <div>
+          <main
+            id="main-content"
+            className={`content ${!showSidebar ? 'extended' : ''}`}
+            tabIndex="-1"
+          >
+            <FacetsBreadcrumbs
+              breadcrumbs={breadcrumbs}
+              isMobile={isMobile}
+              showSidebar={showSidebar}
+              handleDisplayClick={this.handleSidebarClick}
+            />
+
+            <div className={!showSidebar ? 'contain-1120' : ''}>
               <h2>Search Results</h2>
+
+              <DataController
+                componentId={SEARCH_DATA_CONTROLLER_ID}
+                dataField="title"
+                customQuery={(item, props) => {
+                  return {
+                    match: {
+                      'model.name': 'Image'
+                    }
+                  };
+                }}
+              />
+
               <DataSearch
-                customQuery={simpleQueryStringQuery}
+                autosuggest={false}
                 className="datasearch web-form"
+                customQuery={simpleQueryStringQuery}
                 componentId={GLOBAL_SEARCH_BAR_COMPONENT_ID}
                 dataField={['full_text']}
                 debounce={1000}
                 defaultSelected={globalSearchValue || null}
-                queryFormat="or"
-                placeholder={DATASEARCH_PLACEHOLDER}
+                filterLabel="Search"
                 innerClass={{
                   input: 'searchbox rs-search-input',
                   list: 'suggestionlist'
                 }}
-                autosuggest={false}
-                filterLabel="Search"
+                queryFormat="or"
+                placeholder={DATASEARCH_PLACEHOLDER}
                 URLParams={true}
               />
+
+              <SelectedFilters />
+
+              <ReactiveList
+                componentId="results"
+                dataField="title.primary.keyword"
+                innerClass={{
+                  list: 'rs-result-list photo-grid four-grid',
+                  pagination: 'rs-pagination',
+                  resultsInfo: 'rs-results-info'
+                }}
+                loader={<LoadingSpinner loading={true} />}
+                onData={this.onData}
+                pagination={true}
+                paginationAt="bottom"
+                react={{
+                  and: allFilters
+                }}
+                sortBy="asc"
+                size={12}
+              />
             </div>
-            <SelectedFilters />
-            <ReactiveList
-              componentId="results"
-              dataField="title"
-              defaultQuery={(value, props) => ({
-                match: {
-                  'model.name': 'Image'
-                },
-                sort: [
-                  {
-                    'title.primary.keyword': {
-                      order: 'asc'
-                    }
-                  }
-                ]
-              })}
-              innerClass={{
-                list: 'rs-result-list photo-grid three-grid',
-                pagination: 'rs-pagination',
-                resultsInfo: 'rs-results-info'
-              }}
-              loader={<LoadingSpinner loading={true} />}
-              onData={this.onData}
-              pagination={true}
-              paginationAt="bottom"
-              react={{
-                and: allFilters
-              }}
-              size={12}
-            />
           </main>
         </div>
       </div>

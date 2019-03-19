@@ -7,16 +7,16 @@ import bursarsOffice from '../images/feature-box-collection-bursars-office.jpg';
 import cassas from '../images/feature-box-collection-cassas.jpg';
 import roadTrip from '../images/feature-box-collection-road-trip.jpg';
 import wwII from '../images/feature-box-collection-wwII.jpg';
-import { productionIds } from '../services/global-vars';
+import { productionIds, ROUTES } from '../services/global-vars';
 import { generateTitleTag } from '../services/helpers';
 import { Helmet } from 'react-helmet';
 import { shuffleArray } from '../services/helpers';
-import { getTotalItemCount } from '../api/elasticsearch-api';
 import lizPic from '../images/liz__O8A9903_final.jpg';
 import druPic from '../images/dru__O8A9937_final.jpg';
 import curtPic from '../images/curt__O8A9877_final.jpg';
 import joshPic from '../images/josh__O8A9915_final.jpg';
 import iiifLogo from '../images/IIIF-logo.png';
+import { loadDataLayer } from '../services/google-tag-manager';
 
 const featuredCollections = [
   {
@@ -83,19 +83,14 @@ class About extends Component {
   };
 
   componentDidMount() {
-    this.getTotalItems();
-  }
-
-  async getTotalItems() {
-    let totalItemCount = await getTotalItemCount();
-    this.setState({ totalItemCount });
+    loadDataLayer({ pageTitle: ROUTES.ABOUT.title });
   }
 
   render() {
     return (
       <div className="landing-page">
         <Helmet>
-          <title>{generateTitleTag('About')}</title>
+          <title>{generateTitleTag(ROUTES.ABOUT.title)}</title>
         </Helmet>
         <div className="section hero contain-1440">
           <div className="hero-image" style={this.styles.heroBg}>
@@ -110,9 +105,7 @@ class About extends Component {
           <main id="main-content" className="content" tabIndex="0">
             <div className="section contain-1120">
               <p>
-                {`Digital Collections contains ${
-                  this.state.totalItemCount
-                } items from Northwestern
+                {`Digital Collections contains thousands of items from Northwestern
                 University Libraries. While only a fraction of materials from the
                 Libraries' collections are represented, the site is representative
                 of the distinction and diversity of collections from the `}
