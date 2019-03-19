@@ -173,6 +173,11 @@ export class CollectionContainer extends Component {
       ? getESDescription(collection)
       : '';
 
+    // Split the description by line breaks, so it displays properly
+    const descriptionDisplay = collectionDescription
+      .split('\n')
+      .map((i, key) => <p key={key}>{i}</p>);
+
     const allFilters = [
       COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID,
       ...imageFilters
@@ -219,10 +224,10 @@ export class CollectionContainer extends Component {
 
                       {isMobile && (
                         <CollectionDescription
-                          description={collectionDescription}
+                          description={descriptionDisplay}
                         />
                       )}
-                      {!isMobile && <p>{collectionDescription}</p>}
+                      {!isMobile && descriptionDisplay}
                     </div>
                   </div>
                   <h2>{collection && collectionTitle}</h2>
