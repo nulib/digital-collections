@@ -22,8 +22,9 @@ import { withRouter } from 'react-router-dom';
 import { MOBILE_BREAKPOINT, ROUTES } from '../services/global-vars';
 import withSizes from 'react-sizes';
 import FacetsSidebar from '../components/FacetsSidebar';
-import FacetsBreadcrumbs from '../components/breadcrumbs/FacetsBreadcrumbs';
+import Breadcrumbs from '../components/breadcrumbs/Breadcrumbs';
 import { loadDataLayer } from '../services/google-tag-manager';
+import HeadlineLinkWrapper from '../components/HeadlineLinkWrapper';
 
 const breadcrumbs = [
   { link: '/', title: 'Home' },
@@ -55,7 +56,7 @@ class ReactivesearchContainer extends Component {
     this.setState({ componentLoaded: true });
   }
 
-  handleSidebarClick = e => {
+  handleDisplaySidebarClick = e => {
     e.preventDefault();
     this.setState({ showSidebar: !this.state.showSidebar });
   };
@@ -110,15 +111,15 @@ class ReactivesearchContainer extends Component {
             className={`content ${!showSidebar ? 'extended' : ''}`}
             tabIndex="-1"
           >
-            <FacetsBreadcrumbs
-              breadcrumbs={breadcrumbs}
-              isMobile={isMobile}
-              showSidebar={showSidebar}
-              handleDisplayClick={this.handleSidebarClick}
-            />
+            <Breadcrumbs items={breadcrumbs} />
 
             <div className={!showSidebar ? 'contain-1120' : ''}>
-              <h2>Search Results</h2>
+              <HeadlineLinkWrapper
+                headline="Search Results"
+                isMobile={isMobile}
+                showSidebar={showSidebar}
+                handleToggleFiltersClick={this.handleDisplaySidebarClick}
+              />
 
               <DataController
                 componentId={SEARCH_DATA_CONTROLLER_ID}

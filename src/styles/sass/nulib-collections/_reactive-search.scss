@@ -86,3 +86,9 @@ svg.search-icon {
     }
   }
 }
+
+@media screen and (max-width: 768px) {
+  .web-form input.rs-search-input {
+    width: 100%;
+  }
+}

@@ -98,3 +98,21 @@ div#notification-wrapper {
   background: transparent;
   cursor: pointer;
 }
+
+.headline-link-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  h2 {
+    margin-bottom: 0;
+  }
+
+  button {
+    margin-left: 20px;
+
+    svg {
+      margin: 0 8px;
+    }
+  }
+}
