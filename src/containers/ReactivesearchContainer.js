@@ -24,7 +24,7 @@ import withSizes from 'react-sizes';
 import FacetsSidebar from '../components/FacetsSidebar';
 import Breadcrumbs from '../components/breadcrumbs/Breadcrumbs';
 import { loadDataLayer } from '../services/google-tag-manager';
-import HeadlineLinkWrapper from '../components/HeadlineLinkWrapper';
+import FiltersShowHideButton from '../components/FiltersShowHideButton';
 
 const breadcrumbs = [
   { link: '/', title: 'Home' },
@@ -114,12 +114,7 @@ class ReactivesearchContainer extends Component {
             <Breadcrumbs items={breadcrumbs} />
 
             <div className={!showSidebar ? 'contain-1120' : ''}>
-              <HeadlineLinkWrapper
-                headline="Search Results"
-                isMobile={isMobile}
-                showSidebar={showSidebar}
-                handleToggleFiltersClick={this.handleDisplaySidebarClick}
-              />
+              <h2>Search Results</h2>
 
               <DataController
                 componentId={SEARCH_DATA_CONTROLLER_ID}
@@ -152,6 +147,13 @@ class ReactivesearchContainer extends Component {
               />
 
               <SelectedFilters />
+
+              {!isMobile && (
+                <FiltersShowHideButton
+                  showSidebar={showSidebar}
+                  handleToggleFiltersClick={this.handleDisplaySidebarClick}
+                />
+              )}
 
               <ReactiveList
                 componentId="results"
