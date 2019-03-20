@@ -29,19 +29,17 @@ class CollectionDescription extends Component {
 
     return (
       <React.Fragment>
-        <p>
-          {tooLong && !expanded && description[0]}
-          {(!tooLong || expanded) && description}
-          {tooLong && (
-            <a href="/" onClick={this.handleClick}>
-              <FontAwesomeIcon
-                icon={expanded ? 'angle-up' : 'angle-right'}
-                style={styles.moreLess}
-              />
-              {expanded ? 'Less' : 'More'}
-            </a>
-          )}
-        </p>
+        {tooLong && !expanded && description[0]}
+        {(!tooLong || expanded) && description}
+        {tooLong && (
+          <a href="/" onClick={this.handleClick}>
+            <FontAwesomeIcon
+              icon={expanded ? 'angle-up' : 'angle-right'}
+              style={styles.moreLess}
+            />
+            {expanded ? 'Less' : 'More'}
+          </a>
+        )}
       </React.Fragment>
     );
   }
