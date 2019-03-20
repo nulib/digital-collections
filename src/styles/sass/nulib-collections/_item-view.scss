@@ -110,6 +110,22 @@
       }
     }
   }
+
+  @media screen and (max-width: 768px) {
+    &.large-feature {
+      h3 {
+        display: none;
+      }
+
+      .large-feature-inner {
+        margin-top: 0;
+
+        .content-side h4 {
+          margin-bottom: 1rem;
+        }
+      }
+    }
+  }
 }
 
 .download-option-box {
