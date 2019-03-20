@@ -84,11 +84,8 @@ class MobileNav extends Component {
         <div id="mobile-nav-bottom">
           {/* from #global-links */}
           <ul id="mobile-nav-bottom-left">
-            <GlobalLinks />
-          </ul>
-          {/* from #quick-links */}
-          <ul id="mobile-nav-bottom-right">
             <QuickLinksItems quickLinks={this.props.quickLinks} />
+            <GlobalLinks />
           </ul>
         </div>
       </nav>

@@ -26,6 +26,9 @@
 
 @media screen and (max-width: 768px) {
   .mobile-link {
+    // Because we're using a <button> instead of <a>, for accessibility
+    padding: 0;
+
     &.mobile-nav-link {
       background: url('images/hamburger-purple.svg') no-repeat center/20px 20px;
     }
@@ -36,6 +39,13 @@
         background: #401f68 url('images/alert-x-white-home.svg') no-repeat
           center/20px 20px;
       }
+    }
+  }
+
+  #mobile-nav-bottom {
+    #mobile-nav-bottom-left {
+      width: 100%;
+      display: block;
     }
   }
 }

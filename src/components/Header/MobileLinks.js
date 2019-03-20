@@ -20,8 +20,6 @@ class MobileLinks extends Component {
   };
 
   handleMenuClick = e => {
-    e.preventDefault();
-
     this.setState({
       navOpen: !this.state.navOpen,
       searchOpen: false
@@ -68,13 +66,9 @@ class MobileLinks extends Component {
 
     return (
       <div id="mobile-links">
-        <a
-          href="#mobile-nav"
-          className={classes}
-          onClick={this.handleMenuClick}
-        >
+        <button className={classes} onClick={this.handleMenuClick}>
           <span className="hide-label">Menu</span>
-        </a>
+        </button>
         <MobileNav
           {...this.props}
           collections={collections}
@@ -82,15 +76,14 @@ class MobileLinks extends Component {
           closeMenu={this.handleMenuClick}
         />
 
-        <a
-          href="#mobile-search"
+        <button
           className={`mobile-link mobile-search-link ${
             searchOpen ? 'open' : ''
           }`}
           onClick={this.handleSearchClick}
         >
           <span className="hide-label">Search</span>
-        </a>
+        </button>
 
         {this.state.searchOpen && (
           <div id="mobile-search">
