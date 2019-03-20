@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import OpenSeadragon from 'openseadragon';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { MOBILE_BREAKPOINT } from '../services/global-vars';
+import withSizes from 'react-sizes';
 
 class OpenSeadragonViewer extends Component {
   constructor(props) {
@@ -75,6 +77,7 @@ class OpenSeadragonViewer extends Component {
   render() {
     const { downloadLink } = this.state;
     const downloadTitle = `${this.props.itemTitle.split(' ').join('-')}.png`;
+    const { isMobile } = this.props;
 
     return (
       <div>
@@ -103,14 +106,17 @@ class OpenSeadragonViewer extends Component {
           >
             <FontAwesomeIcon icon="expand" />
           </a>
-          <a
-            href={downloadLink || `#`}
-            className="toolbar-controls"
-            download={downloadTitle}
-            title="Download Image"
-          >
-            <FontAwesomeIcon icon="download" />
-          </a>
+
+          {!isMobile && (
+            <a
+              href={downloadLink || `#`}
+              className="toolbar-controls"
+              download={downloadTitle}
+              title="Download Image"
+            >
+              <FontAwesomeIcon icon="download" />
+            </a>
+          )}
           <a
             id="previous"
             href="#previous"
@@ -130,4 +136,8 @@ class OpenSeadragonViewer extends Component {
   }
 }
 
-export default OpenSeadragonViewer;
+const mapSizeToProps = ({ width }) => ({
+  isMobile: width <= MOBILE_BREAKPOINT
+});
+
+export default withSizes(mapSizeToProps)(OpenSeadragonViewer);
