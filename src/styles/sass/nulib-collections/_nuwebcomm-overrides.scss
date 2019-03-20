@@ -49,3 +49,10 @@
     }
   }
 }
+
+@media screen and (max-width: 475px) {
+  .landing-page .photo-grid article {
+    max-width: 100%;
+    margin-right: 0;
+  }
+}
