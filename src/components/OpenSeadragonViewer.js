@@ -2,14 +2,8 @@ import React, { Component } from 'react';
 import OpenSeadragon from 'openseadragon';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-const styles = {
-  viewer: {
-    display: 'inline-block',
-    width: '100%',
-    height: '700px'
-  }
-};
+import { MOBILE_BREAKPOINT } from '../services/global-vars';
+import withSizes from 'react-sizes';
 
 class OpenSeadragonViewer extends Component {
   constructor(props) {
@@ -83,10 +77,11 @@ class OpenSeadragonViewer extends Component {
   render() {
     const { downloadLink } = this.state;
     const downloadTitle = `${this.props.itemTitle.split(' ').join('-')}.png`;
+    const { isMobile } = this.props;
 
     return (
       <div>
-        <div id="toolbarDiv" className="toolbar" style={styles.toolbar}>
+        <div id="toolbarDiv" className="toolbar">
           <a
             id="zoom-in"
             href="#zoom-in"
@@ -111,14 +106,17 @@ class OpenSeadragonViewer extends Component {
           >
             <FontAwesomeIcon icon="expand" />
           </a>
-          <a
-            href={downloadLink || `#`}
-            className="toolbar-controls"
-            download={downloadTitle}
-            title="Download Image"
-          >
-            <FontAwesomeIcon icon="download" />
-          </a>
+
+          {!isMobile && (
+            <a
+              href={downloadLink || `#`}
+              className="toolbar-controls"
+              download={downloadTitle}
+              title="Download Image"
+            >
+              <FontAwesomeIcon icon="download" />
+            </a>
+          )}
           <a
             id="previous"
             href="#previous"
@@ -132,10 +130,14 @@ class OpenSeadragonViewer extends Component {
           </a>
         </div>
 
-        <div id="openseadragon1" style={styles.viewer} />
+        <div id="openseadragon1" className="open-seadragon-container" />
       </div>
     );
   }
 }
 
-export default OpenSeadragonViewer;
+const mapSizeToProps = ({ width }) => ({
+  isMobile: width <= MOBILE_BREAKPOINT
+});
+
+export default withSizes(mapSizeToProps)(OpenSeadragonViewer);

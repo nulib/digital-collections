@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { chopString } from '../../services/helpers';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const styles = {
   moreLess: {
@@ -8,12 +8,9 @@ const styles = {
   }
 };
 
-// Number of words to limit the visible description to, until a "More" expansion linke is provided
-const WORD_LIMIT = 70;
-
 class CollectionDescription extends Component {
   static propTypes = {
-    description: PropTypes.string
+    description: PropTypes.array
   };
 
   state = {
@@ -28,19 +25,21 @@ class CollectionDescription extends Component {
   render() {
     const { expanded } = this.state;
     const { description } = this.props;
-    const tooLong = description.split(' ').length > WORD_LIMIT;
+    const tooLong = description.length > 1;
 
     return (
       <React.Fragment>
-        <p>
-          {tooLong && !expanded && chopString(description, WORD_LIMIT)}
-          {(!tooLong || expanded) && description}
-          {tooLong && (
-            <a href="/" onClick={this.handleClick} style={styles.moreLess}>
-              {expanded ? 'Less' : 'More'}
-            </a>
-          )}
-        </p>
+        {tooLong && !expanded && description[0]}
+        {(!tooLong || expanded) && description}
+        {tooLong && (
+          <a href="/" onClick={this.handleClick}>
+            <FontAwesomeIcon
+              icon={expanded ? 'angle-up' : 'angle-right'}
+              style={styles.moreLess}
+            />
+            {expanded ? 'Less' : 'More'}
+          </a>
+        )}
       </React.Fragment>
     );
   }
