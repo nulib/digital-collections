@@ -3,14 +3,6 @@ import OpenSeadragon from 'openseadragon';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const styles = {
-  viewer: {
-    display: 'inline-block',
-    width: '100%',
-    height: '700px'
-  }
-};
-
 class OpenSeadragonViewer extends Component {
   constructor(props) {
     super(props);
@@ -86,7 +78,7 @@ class OpenSeadragonViewer extends Component {
 
     return (
       <div>
-        <div id="toolbarDiv" className="toolbar" style={styles.toolbar}>
+        <div id="toolbarDiv" className="toolbar">
           <a
             id="zoom-in"
             href="#zoom-in"
@@ -132,7 +124,7 @@ class OpenSeadragonViewer extends Component {
           </a>
         </div>
 
-        <div id="openseadragon1" style={styles.viewer} />
+        <div id="openseadragon1" className="open-seadragon-container" />
       </div>
     );
   }
