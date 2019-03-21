@@ -26,11 +26,7 @@ PhotoGridSection.propTypes = {
   headline: PropTypes.string,
   items: PropTypes.array,
   linkTo: PropTypes.string,
-  linkToText: PropTypes.string
-};
-
-PhotoGridSection.propTypes = {
-  items: PropTypes.array,
+  linkToText: PropTypes.string,
   hideDescriptions: PropTypes.bool
 };
 
