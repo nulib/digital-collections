@@ -34,6 +34,12 @@ import CollectionDescription from '../components/Collection/CollectionDescriptio
 import { loadDataLayer } from '../services/google-tag-manager';
 import FiltersShowHideButton from '../components/FiltersShowHideButton';
 
+const styles = {
+  mobileDescription: {
+    marginBottom: '2rem'
+  }
+};
+
 export class CollectionContainer extends Component {
   state = {
     collection: null,
@@ -214,20 +220,22 @@ export class CollectionContainer extends Component {
               <Breadcrumbs items={breadCrumbData} />
               {!loading && (
                 <div>
-                  <div id="sidebar">
-                    <div className="box">
-                      <h3>Collection Description</h3>
-
-                      {isMobile && (
-                        <CollectionDescription
-                          description={descriptionDisplay}
-                        />
-                      )}
-                      {!isMobile && descriptionDisplay}
+                  {!isMobile && (
+                    <div id="sidebar">
+                      <div className="box">
+                        <h3>Collection Description</h3>
+                        {descriptionDisplay}
+                      </div>
                     </div>
-                  </div>
+                  )}
 
                   <h2>{collectionTitle}</h2>
+
+                  {isMobile && (
+                    <div style={styles.mobileDescription}>
+                      <CollectionDescription description={descriptionDisplay} />
+                    </div>
+                  )}
 
                   <DataController
                     title="DataController"

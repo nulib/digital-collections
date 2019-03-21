@@ -9,9 +9,10 @@ import { generateTitleTag } from '../services/helpers';
 import { Helmet } from 'react-helmet';
 import { loadDataLayer } from '../services/google-tag-manager';
 
+const { title } = globalVars.ROUTES.COLLECTIONS_ALL;
 const breadcrumbItems = [
   { title: 'Collections', link: 'collections' },
-  { title: 'All Collections', link: '/' }
+  { title, link: '/' }
 ];
 
 class AllCollectionsContainer extends Component {
@@ -38,15 +39,14 @@ class AllCollectionsContainer extends Component {
 
   render() {
     const { allCollections, loading } = this.state;
-    const { title } = globalVars.ROUTES.COLLECTIONS_ALL.title;
 
     return (
       <div className="standard-page">
         <Helmet>
           <title>{generateTitleTag(title)}</title>
         </Helmet>
-        <div id="page" className="full-width">
-          <main id="main-content" className="content" tabIndex="0">
+        <div id="page">
+          <main id="main-content" className="content extended" tabIndex="0">
             <Breadcrumbs items={breadcrumbItems} />
             <div className="contain-1120">
               <h2>{title}</h2>

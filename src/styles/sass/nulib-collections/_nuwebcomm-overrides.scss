@@ -50,9 +50,25 @@
   }
 }
 
+// Makes photobox items full-width on mobile display
 @media screen and (max-width: 475px) {
-  .landing-page .photo-grid article {
+  %mobile-article {
     max-width: 100%;
     margin-right: 0;
+  }
+  .landing-page,
+  .standard-page {
+    .photo-grid {
+      &.three-grid,
+      &.four-grid {
+        article {
+          @extend %mobile-article;
+        }
+      }
+
+      article {
+        @extend %mobile-article;
+      }
+    }
   }
 }

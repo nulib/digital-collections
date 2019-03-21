@@ -1,8 +1,3 @@
-.standard-page .full-width .content {
-  float: none;
-  width: 100%;
-}
-
 // Unstyled lists
 ul.no-style {
   @include ul-no-style();
@@ -26,12 +21,6 @@ ul.no-style {
     margin: 2rem auto 0 auto;
     max-width: 1120px;
     @extend %clearfix;
-  }
-
-  // Full width standard page
-  &.full-width {
-    width: 100%;
-    max-width: 100%;
   }
 }
 
