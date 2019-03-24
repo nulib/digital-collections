@@ -83,7 +83,7 @@ class ReactivesearchContainer extends Component {
       ...imageFilters
     ];
     const { componentLoaded, showSidebar } = this.state;
-    const { isMobile, location } = this.props;
+    const { location } = this.props;
     const globalSearchValue =
       location.state && location.state.globalSearch
         ? location.state.globalSearch
@@ -100,7 +100,6 @@ class ReactivesearchContainer extends Component {
               facets={imageFacets}
               facetValue={this.facetValue}
               filters={allFilters}
-              isMobile={isMobile}
               searchValue={this.searchValue}
               showSidebar={showSidebar}
             />
@@ -113,67 +112,63 @@ class ReactivesearchContainer extends Component {
           >
             <Breadcrumbs items={breadcrumbs} />
 
-            <div className={!showSidebar ? 'contain-1120' : ''}>
-              <h2>Search Results</h2>
+            <h2>Search Results</h2>
 
-              <DataController
-                componentId={SEARCH_DATA_CONTROLLER_ID}
-                dataField="title"
-                customQuery={(item, props) => {
-                  return {
-                    match: {
-                      'model.name': 'Image'
-                    }
-                  };
-                }}
-              />
+            <DataController
+              componentId={SEARCH_DATA_CONTROLLER_ID}
+              dataField="title"
+              customQuery={(item, props) => {
+                return {
+                  match: {
+                    'model.name': 'Image'
+                  }
+                };
+              }}
+            />
 
-              <DataSearch
-                autosuggest={false}
-                className="datasearch web-form"
-                customQuery={simpleQueryStringQuery}
-                componentId={GLOBAL_SEARCH_BAR_COMPONENT_ID}
-                dataField={['full_text']}
-                debounce={1000}
-                defaultSelected={globalSearchValue || null}
-                filterLabel="Search"
-                innerClass={{
-                  input: 'searchbox rs-search-input',
-                  list: 'suggestionlist'
-                }}
-                queryFormat="or"
-                placeholder={DATASEARCH_PLACEHOLDER}
-                URLParams={true}
-              />
+            <DataSearch
+              autosuggest={false}
+              className="datasearch web-form"
+              customQuery={simpleQueryStringQuery}
+              componentId={GLOBAL_SEARCH_BAR_COMPONENT_ID}
+              dataField={['full_text']}
+              debounce={1000}
+              defaultSelected={globalSearchValue || null}
+              filterLabel="Search"
+              innerClass={{
+                input: 'searchbox rs-search-input',
+                list: 'suggestionlist'
+              }}
+              queryFormat="or"
+              placeholder={DATASEARCH_PLACEHOLDER}
+              URLParams={true}
+            />
 
-              <SelectedFilters />
+            <SelectedFilters />
 
-              {!isMobile && (
-                <FiltersShowHideButton
-                  showSidebar={showSidebar}
-                  handleToggleFiltersClick={this.handleDisplaySidebarClick}
-                />
-              )}
+            <FiltersShowHideButton
+              showSidebar={showSidebar}
+              handleToggleFiltersClick={this.handleDisplaySidebarClick}
+            />
 
-              <ReactiveList
-                componentId="results"
-                dataField="title.primary.keyword"
-                innerClass={{
-                  list: 'rs-result-list photo-grid four-grid',
-                  pagination: 'rs-pagination',
-                  resultsInfo: 'rs-results-info'
-                }}
-                loader={<LoadingSpinner loading={true} />}
-                onData={this.onData}
-                pagination={true}
-                paginationAt="bottom"
-                react={{
-                  and: allFilters
-                }}
-                sortBy="asc"
-                size={12}
-              />
-            </div>
+            <ReactiveList
+              componentId="results"
+              dataField="title.primary.keyword"
+              innerClass={{
+                list: 'rs-result-list photo-grid four-grid',
+                pagination: 'rs-pagination',
+                resultsInfo: 'rs-results-info'
+              }}
+              loader={<LoadingSpinner loading={true} />}
+              onData={this.onData}
+              pagination={true}
+              paginationAt="bottom"
+              react={{
+                and: allFilters
+              }}
+              sortBy="asc"
+              size={12}
+            />
           </main>
         </div>
       </div>
