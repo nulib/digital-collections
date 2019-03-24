@@ -6,9 +6,11 @@ import DownloadRow from './DetailSummary/DownloadRow';
 import PropTypes from 'prop-types';
 import { chopString } from '../../services/helpers';
 import IIIFDraggable from './IIIFDraggable';
+import { MOBILE_BREAKPOINT } from '../../services/global-vars';
+import withSizes from 'react-sizes';
 
 const LargeFeature = props => {
-  const { item } = props;
+  const { isMobile, item } = props;
   const title = elasticSearchParser.getESTitle(item);
   const description =
     elasticSearchParser.getESDescription(item) || 'No description provided.';
@@ -43,7 +45,9 @@ const LargeFeature = props => {
           <div stlye={styles.paddedBlock}>
             <SocialLinks item={item} />
           </div>
-          <DownloadRow item={item} />
+
+          {!isMobile && <DownloadRow item={item} />}
+
           <IIIFDraggable iiifManifest={item.iiif_manifest} />
         </div>
       </div>
@@ -55,4 +59,8 @@ LargeFeature.propTypes = {
   item: PropTypes.object
 };
 
-export default LargeFeature;
+const mapSizeToProps = ({ width }) => ({
+  isMobile: width <= MOBILE_BREAKPOINT
+});
+
+export default withSizes(mapSizeToProps)(LargeFeature);
