@@ -95,6 +95,10 @@ export const ROUTES = {
     title: '',
     path: '/items/:id'
   },
+  PAGE_NOT_FOUND: {
+    title: '404 Page Not Found',
+    path: '/'
+  },
   SEARCH: {
     title: 'Search',
     path: '/search'
