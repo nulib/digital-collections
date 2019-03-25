@@ -76,6 +76,8 @@ const ItemDetail = props => {
       ? subject.filter(entry => entry.role === 'subject_temporal')
       : null;
 
+  const primoLink = `https://search.library.northwestern.edu/primo-explore/search?field=any&query=any,contains,${catalogKey}&query=&institution=01NWU&vid=NULVNEW&search_scope=NWU`;
+
   const metadataPanel = [
     { label: 'Alternate Title', value: alternateTitle },
     { label: 'Abstract', value: abstract },
@@ -123,7 +125,7 @@ const ItemDetail = props => {
     { label: 'Box Name', value: boxName },
     { label: 'Box Number', value: boxNumber },
     { label: 'Call Number', value: callNumber },
-    { label: 'Catalog Key', value: catalogKey },
+    { label: 'Catalog Key', value: catalogKey, external_url: primoLink },
     { label: 'Citation', value: bibliographicCitation },
     { label: 'Folder Name', value: folderName },
     {
