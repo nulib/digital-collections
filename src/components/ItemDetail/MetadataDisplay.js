@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 // Array of metadata items which are urls and should link externally
-const externalUrlLabels = ['Related Url'];
+const externalUrlLabels = ['Related Url', 'Catalog Key'];
 
 const MetadataDisplay = props => {
-  const { title, items, facet_value = '' } = props;
+  const { title, items, facet_value = '', external_url = '' } = props;
 
   let itemText = item => {
     return item.label ? item.label : item;
@@ -35,7 +35,11 @@ const MetadataDisplay = props => {
     } else if (externalUrlLabels.indexOf(title) > -1) {
       return (
         <li key={text}>
-          <a href={text} target="_blank" rel="noopener noreferrer">
+          <a
+            href={external_url ? external_url : text}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             {text}
           </a>
         </li>
