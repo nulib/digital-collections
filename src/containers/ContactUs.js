@@ -29,7 +29,6 @@ class ContactUs extends Component {
         <div id="page">
           <main id="main-content" className="content" tabIndex="0">
             <Breadcrumbs items={breadCrumbs} />
-            <h2>Contact Us</h2>
             <p>
               Northwestern University Libraries' Repository and Digital Curation
               department is located in the main library on our Evanston campus.

@@ -139,26 +139,25 @@ export class HomePageContainer extends Component {
             <div className="relative-wrapper homepage-hero-wrapper contain-1440">
               <HeroSection heroData={this.heroItems[this.heroRandomNumber]} />
             </div>
-            <div className="standard-page contain-1120">
-              <LoadingSpinner loading={loading} />
-              {!loading && (
-                <div>
-                  <PhotoGridSection
-                    headline="Recently Added and Updated Items"
-                    linkTo="/search"
-                    linkToText="View All Items"
-                    items={galleryItems}
-                    hideDescriptions={true}
-                  />
-                  <PhotoGridSection
-                    headline="Featured Collections"
-                    linkTo="/collections"
-                    linkToText="View All Collections"
-                    items={galleryCollections}
-                  />
-                </div>
-              )}
-
+            <LoadingSpinner loading={loading} />
+            {!loading && (
+              <div>
+                <PhotoGridSection
+                  headline="Recently Added and Updated Items"
+                  linkTo="/search"
+                  linkToText="View All Items"
+                  items={galleryItems}
+                  hideDescriptions={true}
+                />
+                <PhotoGridSection
+                  headline="Featured Collections"
+                  linkTo="/collections"
+                  linkToText="View All Collections"
+                  items={galleryCollections}
+                />
+              </div>
+            )}
+            <div className="contain-1120">
               <HeroSecondarySection heroData={heroSecondaryData} />
               {!loading && this.renderAdditionalGalleries()}
             </div>
