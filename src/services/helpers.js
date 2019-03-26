@@ -60,3 +60,12 @@ export function shuffleArray(array) {
 export function generateTitleTag(title) {
   return title ? `${title} - ${titleTagEnd}` : titleTagEnd;
 }
+
+/**
+ * Return the link to primo search results
+ * @param {string} catalogKey
+ * @returns {string}
+ */
+export function getPrimoLink(catalogKey) {
+  return `https://search.library.northwestern.edu/primo-explore/search?field=any&query=any,contains,${catalogKey}&query=&institution=01NWU&vid=NULVNEW&search_scope=NWU`;
+}
