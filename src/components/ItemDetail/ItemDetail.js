@@ -4,6 +4,7 @@ import TabContent from './TabContent';
 import PropTypes from 'prop-types';
 import CiteTabContent from './CiteTabContent';
 import { ADMIN_SET_CONTACTS } from '../../services/global-vars';
+import { getPrimoLink } from '../../services/helpers';
 
 const ItemDetail = props => {
   if (!props.item) {
@@ -70,8 +71,6 @@ const ItemDetail = props => {
     };
   };
 
-  const primoLink = `https://search.library.northwestern.edu/primo-explore/search?field=any&query=any,contains,${catalogKey}&query=&institution=01NWU&vid=NULVNEW&search_scope=NWU`;
-
   const subjectTemporal =
     subject &&
     subject.filter(entry => entry.role === 'subject_temporal').length > 0
@@ -125,7 +124,11 @@ const ItemDetail = props => {
     { label: 'Box Name', value: boxName },
     { label: 'Box Number', value: boxNumber },
     { label: 'Call Number', value: callNumber },
-    { label: 'Catalog Key', value: catalogKey, external_url: primoLink },
+    {
+      label: 'Catalog Key',
+      value: catalogKey,
+      external_url: getPrimoLink(catalogKey)
+    },
     { label: 'Citation', value: bibliographicCitation },
     { label: 'Folder Name', value: folderName },
     {
