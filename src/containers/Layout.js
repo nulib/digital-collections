@@ -75,6 +75,7 @@ export class Layout extends Component {
             </ReactiveBaseWrapper>
           </Route>
           <Route exact path={ROUTES.HOME.path} component={HomePageContainer} />
+          <Route path={ROUTES.PAGE_NOT_FOUND.path} component={Default404} />
           <Route component={Default404} />
         </Switch>
         <Footer />

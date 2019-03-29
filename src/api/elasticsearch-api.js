@@ -80,6 +80,7 @@ export async function getCollection(id) {
     type: '_all',
     id: id
   });
+
   return response;
 }
 

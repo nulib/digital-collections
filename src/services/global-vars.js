@@ -97,7 +97,7 @@ export const ROUTES = {
   },
   PAGE_NOT_FOUND: {
     title: '404 Page Not Found',
-    path: '/'
+    path: '/notfound'
   },
   SEARCH: {
     title: 'Search',
