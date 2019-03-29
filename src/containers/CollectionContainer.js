@@ -209,7 +209,6 @@ export class CollectionContainer extends Component {
             <FacetsSidebar
               facets={imageFacetsNoCollection}
               filters={allFilters}
-              isMobile={isMobile}
               showSidebar={showSidebar}
             />
             <main
@@ -269,12 +268,10 @@ export class CollectionContainer extends Component {
 
                   <SelectedFilters />
 
-                  {!isMobile && (
-                    <FiltersShowHideButton
-                      showSidebar={showSidebar}
-                      handleToggleFiltersClick={this.handleDisplaySidebarClick}
-                    />
-                  )}
+                  <FiltersShowHideButton
+                    showSidebar={showSidebar}
+                    handleToggleFiltersClick={this.handleDisplaySidebarClick}
+                  />
 
                   <ReactiveList
                     componentId="collection-items-results"
