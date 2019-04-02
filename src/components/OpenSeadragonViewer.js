@@ -13,6 +13,7 @@ class OpenSeadragonViewer extends Component {
 
   static propTypes = {
     itemTitle: PropTypes.string,
+    rightsStatement: PropTypes.object,
     tileSources: PropTypes.array
   };
 
@@ -36,6 +37,15 @@ class OpenSeadragonViewer extends Component {
       this.setState({ downloadLink: img });
     }, 3000);
   };
+
+  canDownloadFullSize() {
+    const { rightsStatement } = this.props;
+
+    return (
+      rightsStatement.hasOwnProperty('uri') &&
+      rightsStatement.uri === 'http://rightsstatements.org/vocab/NoC-US/1.0/'
+    );
+  }
 
   loadOpenSeadragon(tileSources = []) {
     const customControlIds = {
@@ -107,7 +117,7 @@ class OpenSeadragonViewer extends Component {
             <FontAwesomeIcon icon="expand" />
           </a>
 
-          {!isMobile && (
+          {!isMobile && this.canDownloadFullSize() && (
             <a
               href={downloadLink || `#`}
               className="toolbar-controls"
