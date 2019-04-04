@@ -12,6 +12,7 @@ import Header from '../components/Header/';
 import HomePageContainer from './HomePageContainer';
 import ItemDetailContainer from './ItemDetailContainer';
 import CollectionContainer from './CollectionContainer';
+import Default404 from './Default404';
 import NavContainer from './NavContainer';
 import Notifications from 'react-notify-toast';
 import ReactivesearchContainer from './ReactivesearchContainer';
@@ -74,7 +75,8 @@ export class Layout extends Component {
             </ReactiveBaseWrapper>
           </Route>
           <Route exact path={ROUTES.HOME.path} component={HomePageContainer} />
-          <Route component={HomePageContainer} />
+          <Route path={ROUTES.PAGE_NOT_FOUND.path} component={Default404} />
+          <Route component={Default404} />
         </Switch>
         <Footer />
       </div>

@@ -21,6 +21,7 @@ const TabContent = props => {
           title={item.label}
           items={item.value}
           facet_value={item.facet_value}
+          external_url={item.external_url}
         />
       ))}
     </div>

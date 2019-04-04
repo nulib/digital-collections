@@ -28,7 +28,7 @@ import { connect } from 'react-redux';
 import { generateTitleTag } from '../services/helpers';
 import { Helmet } from 'react-helmet';
 import PhotoBox from '../components/PhotoBox';
-import { MOBILE_BREAKPOINT } from '../services/global-vars';
+import { MOBILE_BREAKPOINT, ROUTES } from '../services/global-vars';
 import withSizes from 'react-sizes';
 import CollectionDescription from '../components/Collection/CollectionDescription';
 import { loadDataLayer } from '../services/google-tag-manager';
@@ -51,15 +51,7 @@ export class CollectionContainer extends Component {
   };
 
   componentDidMount() {
-    const { id } = this.props.match.params;
-
-    if (!id) {
-      return this.setState({
-        error: 'Missing id in query param',
-        loading: false
-      });
-    }
-    this.getApiData(id);
+    this.getApiData(this.props.match.params.id);
   }
 
   componentDidUpdate(prevProps) {
@@ -101,11 +93,11 @@ export class CollectionContainer extends Component {
       // Handle errors
       // Generic error
       if (response.error) {
-        error = response.error.reason;
+        return this.handle404redirect(response.error.reason);
       }
       // Collection not found
       else if (!response.found) {
-        error = 'Collection not found.';
+        return this.handle404redirect();
       }
       // Restricted collection
       else if (response._source.visibility === 'restricted') {
@@ -144,6 +136,14 @@ export class CollectionContainer extends Component {
     e.preventDefault();
     this.setState({ showSidebar: !this.state.showSidebar });
   };
+
+  handle404redirect(
+    message = 'There was an error retrieving the collection, or the collection id does not exist.'
+  ) {
+    this.props.history.push(ROUTES.PAGE_NOT_FOUND.path, {
+      message
+    });
+  }
 
   /**
    * Helper function to display a custom component to display instead of ReactiveSearch's
@@ -209,7 +209,6 @@ export class CollectionContainer extends Component {
             <FacetsSidebar
               facets={imageFacetsNoCollection}
               filters={allFilters}
-              isMobile={isMobile}
               showSidebar={showSidebar}
             />
             <main
@@ -269,12 +268,10 @@ export class CollectionContainer extends Component {
 
                   <SelectedFilters />
 
-                  {!isMobile && (
-                    <FiltersShowHideButton
-                      showSidebar={showSidebar}
-                      handleToggleFiltersClick={this.handleDisplaySidebarClick}
-                    />
-                  )}
+                  <FiltersShowHideButton
+                    showSidebar={showSidebar}
+                    handleToggleFiltersClick={this.handleDisplaySidebarClick}
+                  />
 
                   <ReactiveList
                     componentId="collection-items-results"

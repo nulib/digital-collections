@@ -31,16 +31,7 @@ export class ItemDetailContainer extends Component {
   }
 
   async componentDidMount() {
-    const { match } = this.props;
-
-    if (!match.params.id) {
-      return this.setState({
-        error: 'Missing id in query param',
-        loading: false
-      });
-    }
-
-    this.getApiData(match.params.id);
+    this.getApiData(this.props.match.params.id);
   }
 
   componentDidUpdate(prevProps) {
@@ -126,11 +117,11 @@ export class ItemDetailContainer extends Component {
     // Handle possible errors
     // Generic error
     if (itemResponse.error) {
-      itemError = itemResponse.error.reason;
+      return this.handle404redirect(itemResponse.error.reason);
     }
     // Item not found
     else if (!itemResponse.found) {
-      itemError = 'Item not found.';
+      return this.handle404redirect();
     }
     // Restricted item
     else if (itemResponse._source.visibility === 'restricted') {
@@ -158,6 +149,14 @@ export class ItemDetailContainer extends Component {
     }
 
     return itemResponse._source;
+  }
+
+  handle404redirect(
+    message = 'There was an error retrieving the item, or the item id does not exist.'
+  ) {
+    this.props.history.push(globalVars.ROUTES.PAGE_NOT_FOUND.path, {
+      message
+    });
   }
 
   populateGTMDataLayer(item) {

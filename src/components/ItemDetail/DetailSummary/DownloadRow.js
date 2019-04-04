@@ -14,6 +14,8 @@ const styles = {
 
 const DownloadRow = props => {
   const file = props.item.representative_file_url;
+  const smallSize = 760;
+  const bigSize = 1500;
 
   return (
     <div className="summary-list" style={styles.container}>
@@ -23,18 +25,18 @@ const DownloadRow = props => {
           <button
             className="download-option-box"
             onClick={() => {
-              handleDownload(file, 300);
+              handleDownload(file, smallSize);
             }}
           >
-            300px
+            {`${smallSize}px`}
           </button>
           <button
             className="download-option-box big"
             onClick={() => {
-              handleDownload(file, 760);
+              handleDownload(file, bigSize);
             }}
           >
-            760px
+            {`${bigSize}px`}
           </button>
         </div>
       </div>

@@ -9,6 +9,8 @@
 .facets-sidebar {
   @extend #left-nav;
 
+  display: inline-block;
+  float: none;
   position: relative;
   transition: opacity 0.25s ease-in-out;
   opacity: 1;
@@ -27,6 +29,7 @@
   &.collapsed {
     width: 0;
     opacity: 0;
+    display: none;
   }
 
   .facet-sidebar-collapse-icon {
@@ -40,6 +43,10 @@
     &.hidden {
       visibility: hidden;
     }
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
   }
 }
 

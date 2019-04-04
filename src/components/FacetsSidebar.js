@@ -14,7 +14,6 @@ class FacetsSidebar extends Component {
     facets: PropTypes.array,
     facetValue: PropTypes.string,
     filters: PropTypes.array,
-    isMobile: PropTypes.bool.isRequired,
     searchValue: PropTypes.string,
     showSidebar: PropTypes.bool
   };
@@ -24,7 +23,6 @@ class FacetsSidebar extends Component {
       facets,
       facetValue,
       filters,
-      isMobile,
       location,
       searchValue,
       showSidebar
@@ -36,40 +34,36 @@ class FacetsSidebar extends Component {
         : COLLECTION_DATA_CONTROLLER_ID;
 
     return (
-      <>
-        {!isMobile && (
-          <div
-            aria-label="section navigation menu"
-            aria-hidden={!showSidebar}
-            className={`facets-sidebar ${!showSidebar ? 'collapsed' : ''}`}
-            tabIndex="-1"
-          >
-            <div
-              className={`facet-sidebar-content-wrapper ${
-                !showSidebar ? 'hidden' : ''
-              }`}
-            >
-              <h2>Filter By</h2>
-              {facets.map(facet => {
-                let defaultVal =
-                  facetValue && facetValue === facet.name ? [searchValue] : [];
+      <div
+        aria-label="section navigation menu"
+        aria-hidden={!showSidebar}
+        className={`facets-sidebar ${!showSidebar ? 'collapsed' : ''}`}
+        tabIndex="-1"
+      >
+        <div
+          className={`facet-sidebar-content-wrapper ${
+            !showSidebar ? 'hidden' : ''
+          }`}
+        >
+          <h2>Filter By</h2>
+          {facets.map(facet => {
+            let defaultVal =
+              facetValue && facetValue === facet.name ? [searchValue] : [];
 
-                return (
-                  <RSMultiList
-                    key={facet.name}
-                    allFilters={filters}
-                    defaultVal={defaultVal}
-                    facet={facet}
-                    multiDropdownListId={multiDropdownListId}
-                    title={facet.name}
-                  />
-                );
-              })}
-              <YearSlider title="Date" />
-            </div>
-          </div>
-        )}
-      </>
+            return (
+              <RSMultiList
+                key={facet.name}
+                allFilters={filters}
+                defaultVal={defaultVal}
+                facet={facet}
+                multiDropdownListId={multiDropdownListId}
+                title={facet.name}
+              />
+            );
+          })}
+          <YearSlider title="Date" />
+        </div>
+      </div>
     );
   }
 }

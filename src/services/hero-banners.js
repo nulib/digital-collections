@@ -39,7 +39,7 @@ export const heroWPA = {
 };
 
 export const heroSecondaryData = {
-  title: 'James E. "Jimmy" Johnson Scrapbooks',
+  title: 'James E. "Jimmy" Johnson (1879-1942) Scrapbooks and Miscellanea',
   subTitle:
     'Browse our collection of James E. "Jimmy" Johnson Scrapbooks from the University Archives',
   collectionId: productionIds.jimmyJohnson,
