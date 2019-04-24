@@ -52,6 +52,7 @@ export class Layout extends Component {
         <Header />
         <Notifications />
         <NavContainer />
+        <h1>Testing</h1>
         <Switch>
           <Route exact path={ROUTES.ABOUT.path} component={About} />
           <Route exact path={ROUTES.CONTACT.path} component={ContactUs} />
