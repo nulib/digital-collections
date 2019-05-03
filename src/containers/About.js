@@ -5,7 +5,7 @@ import iranianCinema from '../images/feature-box-collection-iranian-cinema-550x3
 import colonialism from '../images/feature-box-collection-colonialism-550x310.jpg';
 import bursarsOffice from '../images/feature-box-collection-bursars-office-550x310.jpg';
 import cassas from '../images/feature-box-collection-cassas-550x310.jpg';
-import roadTrip from '../images/feature-box-collection-road-trip-550x310.jpg';
+import roadTrip from '../images/feature-box-collection-road-trip2-550x310.png';
 import wwII from '../images/feature-box-collection-wwII-550x310.jpg';
 import { productionIds, ROUTES } from '../services/global-vars';
 import { generateTitleTag } from '../services/helpers';
