@@ -1,6 +1,7 @@
 import React from 'react';
 import FooterSocial from './FooterSocial';
 import FooterLink from './FooterLink';
+import Mailto from 'react-protected-mailto';
 
 const year = new Date().getFullYear();
 
@@ -120,9 +121,7 @@ const Footer = props => {
               <span className="hide-label">Email address</span>
             </li>
             <li>
-              <a href="mailto:library@northwestern.edu">
-                library@northwestern.edu
-              </a>
+              <Mailto email="library@northwestern.edu" />
             </li>
           </ul>
         </div>
@@ -160,8 +159,7 @@ const Footer = props => {
           the copyright of any materials on this site. If you are the copyright
           holder of any item(s) in this collection or have questions, comments
           or concerns about this exhibit, please contact us via email at{' '}
-          <a href="mailto:library@northwestern.edu">library@northwestern.edu</a>
-          .
+          <Mailto email="library@northwestern.edu" />.
         </p>
       </div>
     </footer>
