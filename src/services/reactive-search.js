@@ -65,7 +65,7 @@ export const simpleQueryStringQuery = value => {
   return {
     simple_query_string: {
       query: `${value || '*'}`,
-      fields: ['full_text'],
+      fields: ['all_titles^5', 'description^2', 'all_subjects^2', 'full_text'],
       default_operator: 'or'
     }
   };
