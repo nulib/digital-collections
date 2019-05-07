@@ -19,6 +19,7 @@
     "openseadragon": "^2.4.0",
     "prop-types": "^15.6.1",
     "react": "^16.8.2",
+    "react-app-polyfill": "^1.0.0",
     "react-collapsible": "^2.3.0",
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.8.2",
