@@ -4,6 +4,7 @@ import { generateTitleTag } from '../services/helpers';
 import { Helmet } from 'react-helmet';
 import { loadDataLayer } from '../services/google-tag-manager';
 import { ROUTES } from '../services/global-vars';
+import Mailto from 'react-protected-mailto';
 
 const breadCrumbs = [
   {
@@ -40,9 +41,7 @@ class ContactUs extends Component {
             <p>
               Questions about digitization, description of items, or software
               can be directed here.{' '}
-              <a href="mailto:repository@northwestern.edu">
-                repository@northwestern.edu
-              </a>
+              <Mailto email="repository@northwestern.edu" />
             </p>
 
             <p>
