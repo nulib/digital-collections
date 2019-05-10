@@ -131,7 +131,12 @@ class ReactivesearchContainer extends Component {
               className="datasearch web-form"
               customQuery={simpleQueryStringQuery}
               componentId={GLOBAL_SEARCH_BAR_COMPONENT_ID}
-              dataField={['full_text']}
+              dataField={[
+                'full_text',
+                'all_titles',
+                'description',
+                'all_subjects'
+              ]}
               debounce={1000}
               defaultSelected={globalSearchValue || null}
               filterLabel="Search"

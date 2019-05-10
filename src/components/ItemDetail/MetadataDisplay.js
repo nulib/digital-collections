@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import Mailto from 'react-protected-mailto';
 
 // Array of metadata items which are urls and should link externally
 const externalUrlLabels = ['Related Url', 'Catalog Key'];
@@ -58,11 +59,28 @@ const MetadataDisplay = props => {
     }
   };
 
+  let moreInformation = item => {
+    const contactIndex = items.indexOf('contact') + 7;
+    const email = items.substr(contactIndex).trim();
+    return (
+      <p key={itemText(items)}>
+        {`${items.substr(0, contactIndex)}`} <Mailto email={email} />
+      </p>
+    );
+  };
+
   let display;
 
-  if (typeof items === 'string') display = singleItem(items);
-  else if (Array.isArray(items))
+  if (typeof items === 'string') {
+    // More Information metadata field, need to obfuscate email address
+    if (title === 'More Information') {
+      display = moreInformation(items);
+    } else {
+      display = singleItem(items);
+    }
+  } else if (Array.isArray(items)) {
     display = items.map(item => multipleItems(item));
+  }
 
   if (items && items.length > 0) {
     return (
