@@ -54,7 +54,7 @@ export const productionIds = {
   bursarsOffice: 'c2a8a3e0-af0f-4e04-8721-91698fc14574',
   fava: 'c373ecd2-2c45-45f2-9f9e-52dc244870bd',
   hamidNaficy: '4ed2338d-c715-4a86-8ac6-6b4030a42be5',
-  kateAndLou: 'c20483d1-d2d5-459c-aa1b-a605375ac906',
+  kateAndLou: '81061b51-1ed0-4495-bf37-30d46f35c63b',
   jimmyJohnson: 'db98ed75-1810-46d3-a838-176c0685cd01',
   ramonCasas: 'ba35820a-525a-4cfa-8f23-4891c9f798c4',
   vernonMcKay: '1d849df1-eb32-43f4-b7b9-e435cff18f7c',
