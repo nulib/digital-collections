@@ -69,7 +69,7 @@ export class Layout extends Component {
             path={ROUTES.ITEM_DETAIL.path}
             component={ItemDetailContainer}
           />
-          <Route path={ROUTES.SEARCH.path}>
+          <Route exact path={ROUTES.SEARCH.path}>
             <ReactiveBaseWrapper apiToken={apiToken}>
               <ReactivesearchContainer />
             </ReactiveBaseWrapper>

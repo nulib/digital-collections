@@ -32,12 +32,6 @@ const breadcrumbs = [
 ];
 
 class ReactivesearchContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.searchValue = null;
-    this.facetValue = null;
-  }
-
   state = {
     componentLoaded: false,
     showSidebar: false
@@ -45,14 +39,6 @@ class ReactivesearchContainer extends Component {
 
   componentDidMount() {
     loadDataLayer({ pageTitle: ROUTES.SEARCH.title });
-
-    this.searchValue = this.props.location.state
-      ? this.props.location.state.searchValue
-      : '';
-    this.facetValue = this.props.location.state
-      ? this.props.location.state.facetValue
-      : '';
-
     this.setState({ componentLoaded: true });
   }
 
@@ -83,11 +69,6 @@ class ReactivesearchContainer extends Component {
       ...imageFilters
     ];
     const { componentLoaded, showSidebar } = this.state;
-    const { location } = this.props;
-    const globalSearchValue =
-      location.state && location.state.globalSearch
-        ? location.state.globalSearch
-        : null;
 
     return (
       <div className="standard-page">
@@ -138,7 +119,6 @@ class ReactivesearchContainer extends Component {
                 'all_subjects'
               ]}
               debounce={1000}
-              defaultSelected={globalSearchValue || null}
               filterLabel="Search"
               innerClass={{
                 input: 'searchbox rs-search-input',
@@ -173,6 +153,7 @@ class ReactivesearchContainer extends Component {
               }}
               sortBy="asc"
               size={12}
+              URLParams={true}
             />
           </main>
         </div>

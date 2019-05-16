@@ -14,19 +14,13 @@ const MetadataDisplay = props => {
   };
 
   let linkElement = (facetValue, searchValue) => {
-    return (
-      <Link
-        to={{
-          pathname: '/search',
-          state: {
-            facetValue: facetValue,
-            searchValue: searchValue
-          }
-        }}
-      >
-        {searchValue}
-      </Link>
+    // TODO: create a map object for 'facetValue' in globals, so it's not just assumed that it's camelCased
+    const adjustedFacetValue = facetValue.split(' ').join('');
+    const adjustedSearchValue = searchValue.split(' ').join('+');
+    const encoded = encodeURI(
+      `${adjustedFacetValue}=["${adjustedSearchValue}"]`
     );
+    return <Link to={`/search?${encoded}`}>{searchValue}</Link>;
   };
 
   let multipleItems = item => {
