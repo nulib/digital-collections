@@ -34,8 +34,20 @@ store.subscribe(() => {
   getObjBase.headers = authHeader();
 });
 
+async function search(query_hash, retries = 8) {
+  try {
+    return await client.search(query_hash);
+  } catch (err) {
+    if (err instanceof elasticsearch.errors.NoConnections) {
+      return await search(query_hash, retries - 1);
+    } else {
+      throw err;
+    }
+  }
+}
+
 export async function getAdminSetItems(id, numResults = PAGE_SIZE) {
-  const response = await client.search({
+  const response = await search({
     ...getObjBase,
     body: {
       size: numResults,
@@ -54,7 +66,7 @@ export async function getAdminSetItems(id, numResults = PAGE_SIZE) {
 }
 
 export async function getAllCollections(numResults = PAGE_SIZE) {
-  const response = await client.search({
+  const response = await search({
     ...getObjBase,
     body: {
       size: numResults,
@@ -85,7 +97,7 @@ export async function getCollection(id) {
 }
 
 export async function getCollectionsByKeyword(keyword, numResults = PAGE_SIZE) {
-  const response = await client.search({
+  const response = await search({
     ...getObjBase,
     body: {
       size: numResults,
@@ -105,7 +117,7 @@ export async function getCollectionsByKeyword(keyword, numResults = PAGE_SIZE) {
 }
 
 export async function getCollectionItems(id, numResults = PAGE_SIZE) {
-  const response = await client.search({
+  const response = await search({
     ...getObjBase,
     body: {
       size: numResults,
@@ -149,7 +161,7 @@ export async function getItem(id) {
  * @param {Number} numResults - Function caller can specify how many results they want back
  */
 export async function getRecentlyDigitizedItems(numResults = PAGE_SIZE) {
-  const response = await client.search({
+  const response = await search({
     ...getObjBase,
     body: {
       size: numResults,
@@ -164,7 +176,7 @@ export async function getRecentlyDigitizedItems(numResults = PAGE_SIZE) {
 
 export async function getTotalItemCount() {
   try {
-    const response = await client.search({
+    const response = await search({
       ...getObjBase,
       body: {
         query: {
