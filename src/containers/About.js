@@ -175,39 +175,42 @@ class About extends Component {
             </p>
 
             <div className="feature-two-col">
-              {featuredCollections.map((feature, index) =>
-                index < 2 ? (
-                  <FeatureBox
-                    key={feature.id}
-                    item={feature}
-                    modelType="collection"
-                  />
-                ) : null
-              )}
+              <FeatureBox
+                key={featuredCollections[0].id}
+                item={featuredCollections[0]}
+                modelType="collection"
+              />
+              <FeatureBox
+                key={featuredCollections[1].id}
+                item={featuredCollections[1]}
+                modelType="collection"
+              />
             </div>
 
             <div className="feature-two-col">
-              {featuredCollections.map((feature, index) =>
-                index > 1 && index < 4 ? (
-                  <FeatureBox
-                    key={feature.id}
-                    item={feature}
-                    modelType="collection"
-                  />
-                ) : null
-              )}
+              <FeatureBox
+                key={featuredCollections[2].id}
+                item={featuredCollections[2]}
+                modelType="collection"
+              />
+              <FeatureBox
+                key={featuredCollections[3].id}
+                item={featuredCollections[3]}
+                modelType="collection"
+              />
             </div>
 
             <div className="feature-two-col">
-              {featuredCollections.map((feature, index) =>
-                index > 3 ? (
-                  <FeatureBox
-                    key={feature.id}
-                    item={feature}
-                    modelType="collection"
-                  />
-                ) : null
-              )}
+              <FeatureBox
+                key={featuredCollections[4].id}
+                item={featuredCollections[4]}
+                modelType="collection"
+              />
+              <FeatureBox
+                key={featuredCollections[5].id}
+                item={featuredCollections[5]}
+                modelType="image"
+              />
             </div>
 
             <p>
