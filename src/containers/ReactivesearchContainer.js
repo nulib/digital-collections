@@ -24,6 +24,8 @@ import FacetsSidebar from '../components/FacetsSidebar';
 import Breadcrumbs from '../components/breadcrumbs/Breadcrumbs';
 import { loadDataLayer } from '../services/google-tag-manager';
 import FiltersShowHideButton from '../components/FiltersShowHideButton';
+import { connect } from 'react-redux';
+import { searchValueChange } from '../actions/search';
 
 const breadcrumbs = [
   { link: '/', title: 'Home' },
@@ -44,6 +46,10 @@ class ReactivesearchContainer extends Component {
   handleDisplaySidebarClick = e => {
     e.preventDefault();
     this.setState({ showSidebar: !this.state.showSidebar });
+  };
+
+  onValueChange = value => {
+    this.props.searchValueChange(value);
   };
 
   /**
@@ -110,6 +116,7 @@ class ReactivesearchContainer extends Component {
               queryFormat="or"
               placeholder={DATASEARCH_PLACEHOLDER}
               URLParams={true}
+              onValueChange={this.onValueChange}
             />
 
             <SelectedFilters />
@@ -154,4 +161,13 @@ const SizedReactiveSearchContainer = withSizes(mapSizeToProps)(
   ReactivesearchContainer
 );
 
-export default withRouter(SizedReactiveSearchContainer);
+const mapDispatchToProps = dispatch => ({
+  searchValueChange: value => dispatch(searchValueChange(value))
+});
+
+const ConnectedSizedReactiveSearchContainer = connect(
+  null,
+  mapDispatchToProps
+)(SizedReactiveSearchContainer);
+
+export default withRouter(ConnectedSizedReactiveSearchContainer);

@@ -30,7 +30,8 @@ const RSMultiList = props => {
       }}
       showMissing={true}
       showSearch={false}
-      size={200}
+      size={250}
+      //sortBy={'asc'}
       title={title}
       URLParams={true}
     />
