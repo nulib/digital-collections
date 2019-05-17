@@ -11,13 +11,7 @@ const multiListInnerClass = {
 };
 
 const RSMultiList = props => {
-  const {
-    allFilters,
-    defaultVal = [],
-    facet,
-    multiDropdownListId,
-    title
-  } = props;
+  const { allFilters, defaultVal = [], defaultQuery, facet, title } = props;
   const facetNameNoSpaces = facet.name.replace(/\s+/g, '');
   const filterList = allFilters.filter(entry => {
     return entry !== facetNameNoSpaces;
@@ -27,11 +21,12 @@ const RSMultiList = props => {
     <MultiDropdownList
       componentId={facetNameNoSpaces}
       dataField={facet.field}
-      defaultSelected={defaultVal}
+      defaultVal={defaultVal}
+      defaultQuery={defaultQuery}
       innerClass={multiListInnerClass}
       missingLabel="None"
       react={{
-        and: [multiDropdownListId, ...filterList]
+        and: [...filterList]
       }}
       showMissing={true}
       showSearch={false}
@@ -45,8 +40,8 @@ const RSMultiList = props => {
 RSMultiList.propTypes = {
   allFilters: PropTypes.array,
   defaultVal: PropTypes.array,
+  defaultQuery: PropTypes.func,
   facet: PropTypes.object,
-  multiDropdownListId: PropTypes.string,
   title: PropTypes.string
 };
 

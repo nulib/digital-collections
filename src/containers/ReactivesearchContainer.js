@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-  DataController,
   DataSearch,
   SelectedFilters,
   ReactiveList
@@ -12,7 +11,7 @@ import {
   GLOBAL_SEARCH_BAR_COMPONENT_ID,
   imageFacets,
   imageFilters,
-  SEARCH_DATA_CONTROLLER_ID,
+  imagesOnlyDefaultQuery,
   simpleQueryStringQuery
 } from '../services/reactive-search';
 import { generateTitleTag } from '../services/helpers';
@@ -51,7 +50,7 @@ class ReactivesearchContainer extends Component {
    * Helper function to display a custom component to display instead of ReactiveSearch's
    * @param {Object} res - ReactivSearch result object
    */
-  onData = res => {
+  renderItem = res => {
     let item = {
       id: res.id,
       imageUrl: getESImagePath(res),
@@ -63,11 +62,7 @@ class ReactivesearchContainer extends Component {
   };
 
   render() {
-    const allFilters = [
-      GLOBAL_SEARCH_BAR_COMPONENT_ID,
-      SEARCH_DATA_CONTROLLER_ID,
-      ...imageFilters
-    ];
+    const allFilters = [GLOBAL_SEARCH_BAR_COMPONENT_ID, ...imageFilters];
     const { componentLoaded, showSidebar } = this.state;
 
     return (
@@ -94,18 +89,6 @@ class ReactivesearchContainer extends Component {
             <Breadcrumbs items={breadcrumbs} />
 
             <h2>Search Results</h2>
-
-            <DataController
-              componentId={SEARCH_DATA_CONTROLLER_ID}
-              dataField="title"
-              customQuery={(item, props) => {
-                return {
-                  match: {
-                    'model.name': 'Image'
-                  }
-                };
-              }}
-            />
 
             <DataSearch
               autosuggest={false}
@@ -144,8 +127,9 @@ class ReactivesearchContainer extends Component {
                 pagination: 'rs-pagination',
                 resultsInfo: 'rs-results-info'
               }}
+              defaultQuery={imagesOnlyDefaultQuery}
               loader={<LoadingSpinner loading={true} />}
-              onData={this.onData}
+              renderItem={this.renderItem}
               pagination={true}
               paginationAt="bottom"
               react={{

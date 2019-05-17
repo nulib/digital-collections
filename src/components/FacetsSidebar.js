@@ -4,8 +4,8 @@ import RSMultiList from './reactive-search-wrappers/RSMultiList';
 import { withRouter } from 'react-router-dom';
 import { ROUTES } from '../services/global-vars';
 import {
-  COLLECTION_DATA_CONTROLLER_ID,
-  SEARCH_DATA_CONTROLLER_ID
+  imagesOnlyDefaultQuery,
+  collectionDefaultQuery
 } from '../services/reactive-search';
 
 class FacetsSidebar extends Component {
@@ -13,9 +13,18 @@ class FacetsSidebar extends Component {
     facets: PropTypes.array,
     facetValue: PropTypes.string,
     filters: PropTypes.array,
-    location: PropTypes.object,
+    location: PropTypes.object, // provided by { withRouter }
+    match: PropTypes.object, // provided by { withRouter }
     searchValue: PropTypes.string,
     showSidebar: PropTypes.bool
+  };
+
+  isSearchPage = () => {
+    return this.props.location.pathname.indexOf(ROUTES.SEARCH.path) > -1;
+  };
+
+  collectionsQuery = () => {
+    return collectionDefaultQuery(this.props.match.params.id);
   };
 
   render() {
@@ -23,15 +32,9 @@ class FacetsSidebar extends Component {
       facets,
       facetValue,
       filters,
-      location,
       searchValue,
       showSidebar
     } = this.props;
-
-    let multiDropdownListId =
-      location.pathname === ROUTES.SEARCH.path
-        ? SEARCH_DATA_CONTROLLER_ID
-        : COLLECTION_DATA_CONTROLLER_ID;
 
     return (
       <div
@@ -55,8 +58,12 @@ class FacetsSidebar extends Component {
                 key={facet.name}
                 allFilters={filters}
                 defaultVal={defaultVal}
+                defaultQuery={
+                  this.isSearchPage()
+                    ? imagesOnlyDefaultQuery
+                    : this.collectionsQuery
+                }
                 facet={facet}
-                multiDropdownListId={multiDropdownListId}
                 title={facet.name}
               />
             );
