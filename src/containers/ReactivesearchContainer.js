@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-  DataController,
   DataSearch,
   SelectedFilters,
   ReactiveList
@@ -12,7 +11,7 @@ import {
   GLOBAL_SEARCH_BAR_COMPONENT_ID,
   imageFacets,
   imageFilters,
-  SEARCH_DATA_CONTROLLER_ID,
+  imagesOnlyDefaultQuery,
   simpleQueryStringQuery
 } from '../services/reactive-search';
 import { generateTitleTag } from '../services/helpers';
@@ -25,6 +24,8 @@ import FacetsSidebar from '../components/FacetsSidebar';
 import Breadcrumbs from '../components/breadcrumbs/Breadcrumbs';
 import { loadDataLayer } from '../services/google-tag-manager';
 import FiltersShowHideButton from '../components/FiltersShowHideButton';
+import { connect } from 'react-redux';
+import { searchValueChange } from '../actions/search';
 
 const breadcrumbs = [
   { link: '/', title: 'Home' },
@@ -47,11 +48,15 @@ class ReactivesearchContainer extends Component {
     this.setState({ showSidebar: !this.state.showSidebar });
   };
 
+  onValueChange = value => {
+    this.props.searchValueChange(value);
+  };
+
   /**
    * Helper function to display a custom component to display instead of ReactiveSearch's
    * @param {Object} res - ReactivSearch result object
    */
-  onData = res => {
+  renderItem = res => {
     let item = {
       id: res.id,
       imageUrl: getESImagePath(res),
@@ -63,11 +68,7 @@ class ReactivesearchContainer extends Component {
   };
 
   render() {
-    const allFilters = [
-      GLOBAL_SEARCH_BAR_COMPONENT_ID,
-      SEARCH_DATA_CONTROLLER_ID,
-      ...imageFilters
-    ];
+    const allFilters = [GLOBAL_SEARCH_BAR_COMPONENT_ID, ...imageFilters];
     const { componentLoaded, showSidebar } = this.state;
 
     return (
@@ -95,18 +96,6 @@ class ReactivesearchContainer extends Component {
 
             <h2>Search Results</h2>
 
-            <DataController
-              componentId={SEARCH_DATA_CONTROLLER_ID}
-              dataField="title"
-              customQuery={(item, props) => {
-                return {
-                  match: {
-                    'model.name': 'Image'
-                  }
-                };
-              }}
-            />
-
             <DataSearch
               autosuggest={false}
               className="datasearch web-form"
@@ -127,6 +116,7 @@ class ReactivesearchContainer extends Component {
               queryFormat="or"
               placeholder={DATASEARCH_PLACEHOLDER}
               URLParams={true}
+              onValueChange={this.onValueChange}
             />
 
             <SelectedFilters />
@@ -144,8 +134,9 @@ class ReactivesearchContainer extends Component {
                 pagination: 'rs-pagination',
                 resultsInfo: 'rs-results-info'
               }}
+              defaultQuery={imagesOnlyDefaultQuery}
               loader={<LoadingSpinner loading={true} />}
-              onData={this.onData}
+              renderItem={this.renderItem}
               pagination={true}
               paginationAt="bottom"
               react={{
@@ -170,4 +161,13 @@ const SizedReactiveSearchContainer = withSizes(mapSizeToProps)(
   ReactivesearchContainer
 );
 
-export default withRouter(SizedReactiveSearchContainer);
+const mapDispatchToProps = dispatch => ({
+  searchValueChange: value => dispatch(searchValueChange(value))
+});
+
+const ConnectedSizedReactiveSearchContainer = connect(
+  null,
+  mapDispatchToProps
+)(SizedReactiveSearchContainer);
+
+export default withRouter(ConnectedSizedReactiveSearchContainer);

@@ -1,8 +1,6 @@
 // ReactiveSearch component Ids
 export const COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID = 'collection-search';
 export const GLOBAL_SEARCH_BAR_COMPONENT_ID = 'q';
-export const COLLECTION_DATA_CONTROLLER_ID = 'collection-data-controller';
-export const SEARCH_DATA_CONTROLLER_ID = 'search-data-controller';
 export const DATASEARCH_PLACEHOLDER =
   'Search by title, description, or wildcard (ie. Picass*)';
 
@@ -61,10 +59,37 @@ export const imageFilters = [
 // indexing configuration
 export const simpleQueryStringQuery = value => {
   return {
-    simple_query_string: {
-      query: `${value || '*'}`,
-      fields: ['all_titles^5', 'description^2', 'all_subjects^2', 'full_text'],
-      default_operator: 'or'
+    query: {
+      simple_query_string: {
+        query: `${value || '*'}`,
+        fields: [
+          'all_titles^5',
+          'description^2',
+          'all_subjects^2',
+          'full_text'
+        ],
+        default_operator: 'or'
+      }
+    }
+  };
+};
+
+export const imagesOnlyDefaultQuery = () => {
+  return {
+    query: {
+      match: {
+        'model.name': 'Image'
+      }
+    }
+  };
+};
+
+export const collectionDefaultQuery = collectionId => {
+  return {
+    query: {
+      match: {
+        'collection.id': collectionId
+      }
     }
   };
 };
