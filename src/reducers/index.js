@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import auth from './auth';
-import carousels from './carousels';
 import collections from './collections';
+import search from './search';
 
 const general = (state = {}, action) => {
   switch (action.type) {
@@ -12,9 +12,9 @@ const general = (state = {}, action) => {
 
 const rootReducer = combineReducers({
   general,
-  carousels,
   collections,
-  auth
+  auth,
+  search
 });
 
 export default rootReducer;

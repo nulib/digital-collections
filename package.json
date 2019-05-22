@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@appbaseio/reactivesearch": "^2.8.1",
+    "@appbaseio/reactivesearch": "^3.0.0-rc.9",
     "@emotion/core": "^10.0.10",
     "@fortawesome/fontawesome-svg-core": "^1.2.0-14",
     "@fortawesome/free-solid-svg-icons": "^5.1.0-11",

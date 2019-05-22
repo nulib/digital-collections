@@ -7,7 +7,6 @@ import Breadcrumbs from '../components/breadcrumbs/Breadcrumbs';
 import LoadingSpinner from '../components/LoadingSpinner';
 import {
   DataSearch,
-  DataController,
   ReactiveList,
   SelectedFilters
 } from '@appbaseio/reactivesearch';
@@ -18,7 +17,7 @@ import {
 } from '../services/elasticsearch-parser';
 import {
   COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID,
-  COLLECTION_DATA_CONTROLLER_ID,
+  collectionDefaultQuery,
   facetValues,
   imageFacets,
   imageFilters,
@@ -76,6 +75,11 @@ export class CollectionContainer extends Component {
     }
     return crumbs;
   }
+
+  defaultQuery = () => {
+    const { collection } = this.state;
+    return collection ? collectionDefaultQuery(collection.id) : null;
+  };
 
   getApiData(id) {
     // Grab collection data from ElasticSearch
@@ -149,7 +153,7 @@ export class CollectionContainer extends Component {
    * Helper function to display a custom component to display instead of ReactiveSearch's
    * @param {Object} res - ReactivSearch result object
    */
-  onData(res) {
+  renderItem(res) {
     let item = {
       id: res.id,
       imageUrl: getESImagePath(res),
@@ -236,19 +240,6 @@ export class CollectionContainer extends Component {
                     </div>
                   )}
 
-                  <DataController
-                    title="DataController"
-                    componentId={COLLECTION_DATA_CONTROLLER_ID}
-                    dataField="collection.id"
-                    customQuery={(item, props) => {
-                      return {
-                        match: {
-                          'collection.id': collection.id
-                        }
-                      };
-                    }}
-                  />
-
                   <DataSearch
                     customQuery={simpleQueryStringQuery}
                     autosuggest={false}
@@ -277,13 +268,14 @@ export class CollectionContainer extends Component {
                     componentId="collection-items-results"
                     dataField="title"
                     react={{
-                      and: [COLLECTION_DATA_CONTROLLER_ID, ...allFilters]
+                      and: [...allFilters]
                     }}
+                    defaultQuery={this.defaultQuery}
                     loader={<LoadingSpinner loading={true} />}
                     size={12}
                     pagination={true}
                     paginationAt="bottom"
-                    onData={this.onData}
+                    renderItem={this.renderItem}
                     innerClass={{
                       list: 'rs-result-list photo-grid three-grid',
                       pagination: 'rs-pagination',

@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class GlobalSearch extends Component {
   state = {
     searchValue: ''
   };
 
+  componentDidUpdate(prevProps) {
+    const searchValue = this.props.search.searchValue;
+    if (prevProps.search.searchValue !== searchValue) {
+      this.setState({ searchValue });
+    }
+  }
+
   handleSubmit = e => {
     e.preventDefault();
     this.props.history.push({
-      pathname: '/search',
-      state: {
-        globalSearch: this.state.searchValue
-      }
+      pathname: `/search`,
+      search: `?q="${this.state.searchValue.split(' ').join('+')}"`
     });
   };
 
@@ -47,4 +53,10 @@ class GlobalSearch extends Component {
   }
 }
 
-export default withRouter(GlobalSearch);
+const mapStateToProps = state => ({
+  search: state.search
+});
+
+const ConnectedGlobalSearch = connect(mapStateToProps)(GlobalSearch);
+
+export default withRouter(ConnectedGlobalSearch);
