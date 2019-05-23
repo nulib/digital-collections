@@ -18,6 +18,7 @@ import joshPic from '../images/josh__O8A9915_final.jpg';
 import iiifLogo from '../images/IIIF-logo.png';
 import { loadDataLayer } from '../services/google-tag-manager';
 import Breadcrumbs from '../components/breadcrumbs/Breadcrumbs';
+import { loadDefaultStructuredData } from '../services/google-structured-data';
 
 const featuredCollections = [
   {
@@ -98,6 +99,9 @@ class About extends Component {
       <div className="standard-page narrow-page">
         <Helmet>
           <title>{generateTitleTag(ROUTES.ABOUT.title)}</title>
+          <script type="application/ld+json">
+            {JSON.stringify(loadDefaultStructuredData())}
+          </script>
         </Helmet>
         <div className="section hero contain-1440">
           <div className="hero-image" style={this.styles.heroBg}>

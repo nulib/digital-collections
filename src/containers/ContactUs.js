@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet';
 import { loadDataLayer } from '../services/google-tag-manager';
 import { ROUTES } from '../services/global-vars';
 import Mailto from 'react-protected-mailto';
+import { loadDefaultStructuredData } from '../services/google-structured-data';
 
 const breadCrumbs = [
   {
@@ -26,6 +27,9 @@ class ContactUs extends Component {
       <div className="standard-page narrow-page">
         <Helmet>
           <title>{generateTitleTag(ROUTES.CONTACT.title)}</title>
+          <script type="application/ld+json">
+            {JSON.stringify(loadDefaultStructuredData())}
+          </script>
         </Helmet>
         <div id="page">
           <main id="main-content" className="content" tabIndex="0">

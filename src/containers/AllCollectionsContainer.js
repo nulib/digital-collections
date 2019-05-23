@@ -8,6 +8,7 @@ import * as globalVars from '../services/global-vars';
 import { generateTitleTag } from '../services/helpers';
 import { Helmet } from 'react-helmet';
 import { loadDataLayer } from '../services/google-tag-manager';
+import { loadDefaultStructuredData } from '../services/google-structured-data';
 
 const { title } = globalVars.ROUTES.COLLECTIONS_ALL;
 const breadcrumbItems = [
@@ -44,6 +45,9 @@ class AllCollectionsContainer extends Component {
       <div className="standard-page">
         <Helmet>
           <title>{generateTitleTag(title)}</title>
+          <script type="application/ld+json">
+            {JSON.stringify(loadDefaultStructuredData())}
+          </script>
         </Helmet>
         <div id="page">
           <main id="main-content" className="content extended" tabIndex="0">

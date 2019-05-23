@@ -32,6 +32,7 @@ import withSizes from 'react-sizes';
 import CollectionDescription from '../components/Collection/CollectionDescription';
 import { loadDataLayer } from '../services/google-tag-manager';
 import FiltersShowHideButton from '../components/FiltersShowHideButton';
+import { loadCollectionStructuredData } from '../services/google-structured-data';
 
 const styles = {
   mobileDescription: {
@@ -46,7 +47,8 @@ export class CollectionContainer extends Component {
     error: null,
     items: null,
     loading: true,
-    showSidebar: false
+    showSidebar: false,
+    structuredData: null
   };
 
   componentDidMount() {
@@ -120,7 +122,11 @@ export class CollectionContainer extends Component {
       this.setState({
         collection: response._source,
         error,
-        loading: false
+        loading: false,
+        structuredData: loadCollectionStructuredData(
+          response._source,
+          this.props.location.pathname
+        )
       });
     };
     request();
@@ -174,7 +180,13 @@ export class CollectionContainer extends Component {
   }
 
   render() {
-    const { collection, error, loading, showSidebar } = this.state;
+    const {
+      collection,
+      error,
+      loading,
+      showSidebar,
+      structuredData
+    } = this.state;
     const { isMobile } = this.props;
     const breadCrumbData = collection
       ? this.createBreadcrumbData(collection)
@@ -294,6 +306,11 @@ export class CollectionContainer extends Component {
       <div className="standard-page">
         <Helmet>
           <title>{generateTitleTag(collectionTitle)}</title>
+          {structuredData && (
+            <script type="application/ld+json">
+              {JSON.stringify(structuredData)}
+            </script>
+          )}
         </Helmet>
         <div id="page" className="collection-items">
           {loading && <LoadingSpinner loading={loading} />}
