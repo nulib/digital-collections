@@ -14,6 +14,7 @@ import OpenSeadragonContainer from './OpenSeadragonContainer';
 import { Helmet } from 'react-helmet';
 import { generateTitleTag } from '../services/helpers';
 import { loadDataLayer } from '../services/google-tag-manager';
+import { loadItemStructuredData } from '../services/google-structured-data';
 
 export class ItemDetailContainer extends Component {
   constructor(props) {
@@ -26,7 +27,8 @@ export class ItemDetailContainer extends Component {
       error: null,
       id: null,
       item: null,
-      loading: true
+      loading: true,
+      structuredData: null
     };
   }
 
@@ -83,7 +85,8 @@ export class ItemDetailContainer extends Component {
       collectionItems,
       id,
       item,
-      loading: false
+      loading: false,
+      structuredData: loadItemStructuredData(item, this.props.location.pathname)
     });
   }
 
@@ -189,7 +192,8 @@ export class ItemDetailContainer extends Component {
       collectionId,
       collectionItems,
       adminSetItems,
-      loading
+      loading,
+      structuredData
     } = this.state;
 
     // This check ensures that when changing ids (items) on the same route, the "id" is different
@@ -226,6 +230,11 @@ export class ItemDetailContainer extends Component {
       <div className="landing-page">
         <Helmet>
           <title>{generateTitleTag(itemTitle)}</title>
+          {structuredData && (
+            <script type="application/ld+json">
+              {JSON.stringify(structuredData)}
+            </script>
+          )}
         </Helmet>
         {item && idInSync && !error && <OpenSeadragonContainer item={item} />}
         <div id="page">
