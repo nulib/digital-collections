@@ -54,7 +54,7 @@ const CiteTabContent = props => {
           <h4>MLA Format</h4>
           <p>{`${admin_set}, ${nul}. "${title}", ${collection_title} ${date}. ${
             window.location.origin
-          }/${id}`}</p>
+          }/items/${id}`}</p>
 
           <h4>Wikipedia Citation</h4>
           <p>
