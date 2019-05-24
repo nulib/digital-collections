@@ -42,10 +42,17 @@ describe('work structured data', () => {
   let anotherMock = {
     creator: [{ label: 'john' }],
     contributor: [{ label: 'bob' }],
+    iiif_manifest:
+      'https://iiif.stack.rdc.library.northwestern.edu/public/c7/86/33/6b',
+    representative_file_url: 'http://location.com/xyz',
+    thumbnail_url:
+      'https://iiif.stack.rdc.library.northwestern.edu/iiif/2/fe%2F1c%2F30%2F0',
+    subject: [{ label: 'Smith, John' }, { label: 'Ben' }],
     ...mockObj
   };
   it('returns the expected work structured data ', () => {
     const obj = gsd.loadItemStructuredData(anotherMock, pathName);
+
     expect(obj['@type']).toEqual('ImageObject');
     expect(obj).toHaveProperty('@context');
     expect(obj).toHaveProperty('name');
@@ -53,5 +60,15 @@ describe('work structured data', () => {
     expect(obj).toHaveProperty('image');
     expect(obj).toHaveProperty('thumbnail');
     expect(obj).toHaveProperty('url');
+  });
+
+  it('returns a quoted value when a comma is present in a metadata value', () => {
+    const obj = gsd.loadItemStructuredData(anotherMock, pathName);
+    expect(obj.about).toContain('"Smith, John"');
+
+    anotherMock.subject = [{ label: 'Smith John' }, { label: 'Ben' }];
+    const obj2 = gsd.loadItemStructuredData(anotherMock, pathName);
+    expect(obj2.about).toContain('Smith John');
+    expect(obj2.about).not.toContain('"Smith, John"');
   });
 });
