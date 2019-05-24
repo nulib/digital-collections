@@ -29,14 +29,14 @@ export function loadCollectionStructuredData(collection, pathname) {
   let obj = {
     '@context': 'https://schema.org/',
     '@type': 'Collection',
+    name: collection.title.primary.join(', '),
+    url: `${productionUrl}${pathname}`,
     ...(collection.description && {
       description: collection.description.join(' ')
     }),
-    name: collection.title.primary.join(', '),
     ...(collection.thumbnail_iiif_url && {
       thumbnail: collection.thumbnail_iiif_url
-    }),
-    url: `${productionUrl}${pathname}`
+    })
   };
 
   return obj;
@@ -51,34 +51,58 @@ export function loadItemStructuredData(item, pathname) {
   let obj = {
     '@context': 'http://schema.org',
     '@type': 'ImageObject',
+    image: item.representative_file_url,
+    contentUrl: item.iiif_manifest,
+    name: item.title.primary.join(', '),
+    thumbnail: item.thumbnail_url,
+    url: `${productionUrl}${pathname}`,
+    ...(item.subject && {
+      about: item.subject
+        // If there is a comma in the value, wrap value in double quotes
+        .map(x => accountForCommas(x.label))
+        .join(', ')
+    }),
     ...(item.creator.length > 0 && { author: item.creator[0].label }),
     ...(item.subject && {
       contentLocation: item.subject
         .filter(x => x.role === 'geographical')
-        .map(x => x.label)
+        .map(x => accountForCommas(x.label))
         .join(', ')
     }),
-    contentUrl: item.iiif_manifest,
+
     ...(item.contributor.length > 0 && {
-      contributor: item.contributor.map(x => x.label).join(', ')
+      contributor: item.contributor
+        .map(x => accountForCommas(x.label))
+        .join(', ')
     }),
     ...(item.create_date && { dateCreated: item.create_date }),
     ...(item.modified_date && { dateModified: item.modified_date }),
     ...(item.description && { description: item.description.join(' ') }),
-    ...(item.genre && { genre: item.genre.map(x => x.label).join(', ') }),
+    ...(item.genre && {
+      genre: item.genre.map(x => accountForCommas(x.label)).join(', ')
+    }),
 
-    image: item.representative_file_url,
-    ...(item.subject && {
-      keywords: item.subject.map(x => x.label).join(', ')
+    ...(item.keyword && {
+      keywords: item.keyword.map(x => accountForCommas(x)).join(', ')
     }),
     ...(item.rights_statement && { license: item.rights_statement.label }),
     ...(item.physical_description && {
-      material: item.physical_description.material.map(x => x.label).join(', ')
-    }),
-    name: item.title.primary.join(', '),
-    thumbnail: item.thumbnail_url,
-    url: `${productionUrl}${pathname}`
+      material: item.physical_description.material
+        .map(x => accountForCommas(x.label))
+        .join(', ')
+    })
   };
 
   return obj;
+}
+
+/**
+ * Helper function to wrap any values which include a comman, with double quotes to retain context
+ * @param {string} label label value which could be something like "a label value", or "Smith, John"
+ */
+function accountForCommas(label) {
+  if (!label) {
+    return '';
+  }
+  return label.indexOf(',') > -1 ? `"${label}"` : label;
 }
