@@ -68,9 +68,7 @@ export function loadItemStructuredData(item, pathname) {
     }),
 
     ...(item.contributor.length > 0 && {
-      contributor: item.contributor
-        .map(x => accountForCommas(x.label))
-        .join(', ')
+      contributor: item.contributor.map(x => x.label)
     }),
     ...(item.create_date && { dateCreated: item.create_date }),
     ...(item.modified_date && { dateModified: item.modified_date }),
