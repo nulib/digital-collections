@@ -71,12 +71,6 @@ const ItemDetail = props => {
     };
   };
 
-  const subjectTemporal =
-    subject &&
-    subject.filter(entry => entry.role === 'subject_temporal').length > 0
-      ? subject.filter(entry => entry.role === 'subject_temporal')
-      : null;
-
   const metadataPanel = [
     { label: 'Alternate Title', value: alternateTitle },
     { label: 'Abstract', value: abstract },
@@ -113,7 +107,6 @@ const ItemDetail = props => {
     { label: 'Source', value: source },
     { label: 'Style Period', value: stylePeriod, facet_value: 'Style Period' },
     { label: 'Subject', value: subject, facet_value: 'Subject' },
-    { label: 'Subject Temporal', value: subjectTemporal },
     { label: 'Table of Contents', value: tableOfConents },
     { label: 'Technique', value: technique, facet_value: 'Technique' },
     { label: 'Title', value: title }
