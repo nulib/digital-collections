@@ -118,7 +118,7 @@ const ItemDetail = props => {
     { label: 'Box Number', value: boxNumber },
     { label: 'Call Number', value: callNumber },
     {
-      label: 'Catalog Key',
+      label: 'NUsearch',
       value: catalogKey,
       external_url: getPrimoLink(catalogKey)
     },
