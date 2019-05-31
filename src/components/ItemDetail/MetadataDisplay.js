@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Mailto from 'react-protected-mailto';
 
 // Array of metadata items which are urls and should link externally
-const externalUrlLabels = ['Related Url', 'Catalog Key'];
+const externalUrlLabels = ['Related Url', 'NUsearch'];
 
 const MetadataDisplay = props => {
   const { title, items, facet_value = '', external_url = '' } = props;
