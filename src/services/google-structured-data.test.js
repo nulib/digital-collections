@@ -64,7 +64,7 @@ describe('work structured data', () => {
 
   it('returns a quoted value when a comma is present in a metadata value', () => {
     const obj = gsd.loadItemStructuredData(anotherMock, pathName);
-    expect(obj.contributor).toContain('"Rush, Otis"');
+    expect(obj.contributor).toContain('Rush, Otis');
 
     anotherMock.contributor = [{ label: 'Smith John' }, { label: 'Ben' }];
     const obj2 = gsd.loadItemStructuredData(anotherMock, pathName);
