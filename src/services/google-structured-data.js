@@ -57,12 +57,9 @@ export function loadItemStructuredData(item, pathname) {
     thumbnail: item.thumbnail_url,
     url: `${productionUrl}${pathname}`,
     ...(item.subject && {
-      about: item.subject
-        // If there is a comma in the value, wrap value in double quotes
-        .map(x => accountForCommas(x.label))
-        .join(', ')
+      about: item.subject.map(x => x.label)
     }),
-    ...(item.creator.length > 0 && { author: item.creator[0].label }),
+    ...(item.creator.length > 0 && { author: item.creator.map(x => x.label) }),
     ...(item.subject && {
       contentLocation: item.subject
         .filter(x => x.role === 'geographical')
@@ -79,7 +76,7 @@ export function loadItemStructuredData(item, pathname) {
     ...(item.modified_date && { dateModified: item.modified_date }),
     ...(item.description && { description: item.description.join(' ') }),
     ...(item.genre && {
-      genre: item.genre.map(x => accountForCommas(x.label)).join(', ')
+      genre: item.genre.map(x => x.label)
     }),
 
     ...(item.keyword && {
