@@ -190,3 +190,30 @@ export async function getTotalItemCount() {
     return Promise.resolve(0);
   }
 }
+
+export async function getMemberIdsForImages(id) {
+  try {
+    const response = await search({
+      ...getObjBase,
+      body: {
+        query: [
+          { match: { 'model.name': 'Image' } },
+          { match: { 'collection.id': id } }
+        ],
+        size: 0,
+        aggs: {
+          members: {
+            terms: { field: 'member_ids.keyword', size: 10000 }
+          }
+        }
+      }
+    });
+    const members = response.aggregations.members.buckets.map(
+      member => member.key
+    );
+
+    return members;
+  } catch (e) {
+    return Promise.resolve(0);
+  }
+}

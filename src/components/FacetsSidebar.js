@@ -16,7 +16,8 @@ class FacetsSidebar extends Component {
     location: PropTypes.object, // provided by { withRouter }
     match: PropTypes.object, // provided by { withRouter }
     searchValue: PropTypes.string,
-    showSidebar: PropTypes.bool
+    showSidebar: PropTypes.bool,
+    excludes: PropTypes.array
   };
 
   isSearchPage = () => {
@@ -24,7 +25,10 @@ class FacetsSidebar extends Component {
   };
 
   collectionsQuery = () => {
-    return collectionDefaultQuery(this.props.match.params.id);
+    return collectionDefaultQuery(
+      this.props.match.params.id,
+      this.props.excludes
+    );
   };
 
   render() {
