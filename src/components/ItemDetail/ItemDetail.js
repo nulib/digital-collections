@@ -71,12 +71,6 @@ const ItemDetail = props => {
     };
   };
 
-  const subjectTemporal =
-    subject &&
-    subject.filter(entry => entry.role === 'subject_temporal').length > 0
-      ? subject.filter(entry => entry.role === 'subject_temporal')
-      : null;
-
   const metadataPanel = [
     { label: 'Alternate Title', value: alternateTitle },
     { label: 'Abstract', value: abstract },
@@ -90,14 +84,14 @@ const ItemDetail = props => {
       value: admin_set,
       facet_value: 'Library Department'
     },
+    { label: 'Dimensions', value: size },
     { label: 'Genre', value: genre, facet_value: 'Genre' },
     { label: 'Keyword', value: keyword },
     { label: 'Language', value: language, facet_value: 'Language' },
     { label: 'Location', value: based_near, facet_value: 'Location' },
+    { label: 'Materials', value: material },
     { label: 'Notes', value: notes },
     { label: 'NUL Use Statement', value: nulUseStatement },
-    { label: 'Physical Description material', value: material },
-    { label: 'Physical Description size', value: size },
     { label: 'Provenance', value: provenance },
     { label: 'Publisher', value: publisher },
     { label: 'Related Material', value: relatedMaterial },
@@ -113,7 +107,6 @@ const ItemDetail = props => {
     { label: 'Source', value: source },
     { label: 'Style Period', value: stylePeriod, facet_value: 'Style Period' },
     { label: 'Subject', value: subject, facet_value: 'Subject' },
-    { label: 'Subject Temporal', value: subjectTemporal },
     { label: 'Table of Contents', value: tableOfConents },
     { label: 'Technique', value: technique, facet_value: 'Technique' },
     { label: 'Title', value: title }
@@ -125,7 +118,7 @@ const ItemDetail = props => {
     { label: 'Box Number', value: boxNumber },
     { label: 'Call Number', value: callNumber },
     {
-      label: 'Catalog Key',
+      label: 'NUsearch',
       value: catalogKey,
       external_url: getPrimoLink(catalogKey)
     },

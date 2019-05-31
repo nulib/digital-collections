@@ -66,6 +66,9 @@ export const productionIds = {
 export const titleTagEnd =
   'Digital Collections - Libraries - Northwestern University';
 
+export const productionUrl =
+  'https://digitalcollections.library.northwestern.edu';
+
 // Google Tag Manager
 export const GOOGLE_TAG_MANAGER_ID = 'GTM-MJ7RNV3';
 

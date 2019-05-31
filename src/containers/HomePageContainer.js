@@ -17,6 +17,7 @@ import { getRandomInt } from '../services/helpers';
 import { Helmet } from 'react-helmet';
 import { generateTitleTag } from '../services/helpers';
 import { loadDataLayer } from '../services/google-tag-manager';
+import { loadDefaultStructuredData } from '../services/google-structured-data';
 
 export class HomePageContainer extends Component {
   constructor(props) {
@@ -133,6 +134,9 @@ export class HomePageContainer extends Component {
       <div className="landing-page">
         <Helmet>
           <title>{generateTitleTag()}</title>
+          <script type="application/ld+json">
+            {JSON.stringify(loadDefaultStructuredData())}
+          </script>
         </Helmet>
         <div id="page">
           <main id="main-content" className="content" tabIndex="0">
