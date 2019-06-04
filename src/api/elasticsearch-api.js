@@ -149,7 +149,11 @@ export async function getItem(id) {
     console.log('Error in getItem() in elasticsearch-api.js: ', error);
     const errorObject = {
       error: {
-        reason: 'Unknown error getting Item'
+        reason:
+          error.statusCode === 403
+            ? 'Authorized access only.'
+            : 'Unknown error getting Item',
+        statusCode: error.statusCode || -1
       }
     };
     return Promise.resolve(errorObject);
