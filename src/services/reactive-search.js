@@ -84,11 +84,18 @@ export const imagesOnlyDefaultQuery = () => {
   };
 };
 
-export const collectionDefaultQuery = collectionId => {
+export const collectionDefaultQuery = (collectionId, excludes = []) => {
   return {
     query: {
-      match: {
-        'collection.id': collectionId
+      bool: {
+        must: {
+          match: { 'collection.id': collectionId }
+        },
+        must_not: {
+          terms: {
+            _id: excludes
+          }
+        }
       }
     }
   };

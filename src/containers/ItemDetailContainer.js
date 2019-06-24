@@ -116,11 +116,16 @@ export class ItemDetailContainer extends Component {
   async getItem(id) {
     let itemError = '';
     let itemResponse = await elasticsearchApi.getItem(id);
+    const { error } = itemResponse;
 
     // Handle possible errors
     // Generic error
-    if (itemResponse.error) {
-      return this.handle404redirect(itemResponse.error.reason);
+    if (error) {
+      if (error.statusCode === 403) {
+        itemError = error.reason;
+      } else {
+        return this.handle404redirect(itemResponse.error.reason);
+      }
     }
     // Item not found
     else if (!itemResponse.found) {

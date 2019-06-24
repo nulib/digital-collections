@@ -149,7 +149,11 @@ export async function getItem(id) {
     console.log('Error in getItem() in elasticsearch-api.js: ', error);
     const errorObject = {
       error: {
-        reason: 'Unknown error getting Item'
+        reason:
+          error.statusCode === 403
+            ? 'Authorized access only.'
+            : 'Unknown error getting Item',
+        statusCode: error.statusCode || -1
       }
     };
     return Promise.resolve(errorObject);
@@ -186,6 +190,33 @@ export async function getTotalItemCount() {
     });
 
     return response.hits.total;
+  } catch (e) {
+    return Promise.resolve(0);
+  }
+}
+
+export async function getMemberIdsForImages(id) {
+  try {
+    const response = await search({
+      ...getObjBase,
+      body: {
+        query: [
+          { match: { 'model.name': 'Image' } },
+          { match: { 'collection.id': id } }
+        ],
+        size: 0,
+        aggs: {
+          members: {
+            terms: { field: 'member_ids.keyword', size: 10000 }
+          }
+        }
+      }
+    });
+    const members = response.aggregations.members.buckets.map(
+      member => member.key
+    );
+
+    return members;
   } catch (e) {
     return Promise.resolve(0);
   }
