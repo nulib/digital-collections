@@ -71,7 +71,14 @@ export async function getAllCollections(numResults = PAGE_SIZE) {
     body: {
       size: numResults,
       query: {
-        match: { 'model.name': 'Collection' }
+        bool: {
+          must: [
+            { match: { 'model.name': 'Collection' } },
+            {
+              match: { 'collection_type_idd.title.keyword': 'NUL Collection' }
+            }
+          ]
+        }
       },
       sort: [
         {
@@ -105,6 +112,9 @@ export async function getCollectionsByKeyword(keyword, numResults = PAGE_SIZE) {
         bool: {
           must: [
             { match: { 'model.name': 'Collection' } },
+            {
+              match: { 'collection_type_idd.title.keyword': 'NUL Collection' }
+            },
             { match: { keyword: keyword } }
           ]
         }
