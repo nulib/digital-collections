@@ -3,7 +3,7 @@ import { withRouter } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
 import { ReactiveBase } from '@appbaseio/reactivesearch';
 import { connect } from 'react-redux';
-import About from './About';
+import AboutScreen from './About/About';
 import AllCollectionsContainer from './AllCollectionsContainer';
 import ContactUs from './ContactUs';
 import Footer from '../components/Footer';
@@ -53,7 +53,7 @@ export class Layout extends Component {
         <Notifications />
         <NavContainer />
         <Switch>
-          <Route exact path={ROUTES.ABOUT.path} component={About} />
+          <Route exact path={ROUTES.ABOUT.path} component={AboutScreen} />
           <Route exact path={ROUTES.CONTACT.path} component={ContactUs} />
           <Route exact path={ROUTES.COLLECTION.path}>
             <ReactiveBaseWrapper apiToken={apiToken}>
