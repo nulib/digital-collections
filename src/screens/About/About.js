@@ -1,72 +1,26 @@
 import React, { Component } from 'react';
-import FeatureBox from '../components/FeatureBox';
+import FeatureBox from '../../components/FeatureBox';
 import { Link } from 'react-router-dom';
-import iranianCinema from '../images/feature-box-collection-iranian-cinema-550x310.jpg';
-import colonialism from '../images/feature-box-collection-colonialism-550x310.jpg';
-import bursarsOffice from '../images/feature-box-collection-bursars-office-550x310.jpg';
-import cassas from '../images/feature-box-collection-cassas-550x310.jpg';
-import roadTrip from '../images/feature-box-collection-road-trip2-550x310.png';
-import wwII from '../images/feature-box-collection-wwII-550x310.jpg';
-import { productionIds, ROUTES } from '../services/global-vars';
-import { generateTitleTag } from '../services/helpers';
+import { ROUTES } from '../../services/global-vars';
+import { generateTitleTag } from '../../services/helpers';
 import { Helmet } from 'react-helmet';
-import { shuffleArray } from '../services/helpers';
-import lizPic from '../images/liz__O8A9903_final.jpg';
-import druPic from '../images/dru__O8A9937_final.jpg';
-import curtPic from '../images/curt__O8A9877_final.jpg';
-import joshPic from '../images/josh__O8A9915_final.jpg';
-import iiifLogo from '../images/IIIF-logo.png';
-import { loadDataLayer } from '../services/google-tag-manager';
-import Breadcrumbs from '../components/breadcrumbs/Breadcrumbs';
-import { loadDefaultStructuredData } from '../services/google-structured-data';
-
-const featuredCollections = [
-  {
-    description: 'Posters depicting the social history of Iranian cinema.',
-    id: productionIds.hamidNaficy,
-    image: iranianCinema,
-    label: 'Hamid Naficy Iranian Movie Posters Collection'
-  },
-  {
-    description: `Photographs representing colonialism in East Africa over the span
-    of 100 years.`,
-    id: productionIds.vernonMcKay,
-    image: colonialism,
-    label: 'Vernon McKay Photographs'
-  },
-  {
-    description: `Images documenting the 1968 takeover of the Northwestern University Bursar's office.`,
-    id: productionIds.bursarsOffice,
-    image: bursarsOffice,
-    label: 'Records of the Bursar’s Office Takeover, May 1968'
-  },
-  {
-    description: 'US Government posters from WWII.',
-    id: productionIds.wpa,
-    image: wwII,
-    label: 'World War II Poster Collection at Northwestern University Library'
-  },
-  {
-    description: 'Late sketches from modernist artist Ramón Casas.',
-    id: productionIds.ramonCasas,
-    image: cassas,
-    label: 'Ramón Casas sketchbooks'
-  },
-  {
-    description: `Photographs from a 1915 road trip from Iowa to the Panama-Pacific
-    exposition.`,
-    id: productionIds.kateAndLou,
-    image: roadTrip,
-    label: 'Kate and Lou. Souvenir of auto trip to San Francisco, 1915'
-  }
-];
+import { shuffleArray } from '../../services/helpers';
+import lizPic from '../../images/liz__O8A9903_final.jpg';
+import druPic from '../../images/dru__O8A9937_final.jpg';
+import curtPic from '../../images/curt__O8A9877_final.jpg';
+import joshPic from '../../images/josh__O8A9915_final.jpg';
+import iiifLogo from '../../images/IIIF-logo.png';
+import { loadDataLayer } from '../../services/google-tag-manager';
+import Breadcrumbs from '../../components/breadcrumbs/Breadcrumbs';
+import { loadDefaultStructuredData } from '../../services/google-structured-data';
+import { featuredCollections } from './featured-collections';
 
 const breadcrumbs = [
   { link: '/', title: 'Home' },
   { link: '/about', title: 'About' }
 ];
 
-class About extends Component {
+class AboutScreen extends Component {
   state = {
     totalItemCount: null
   };
@@ -357,4 +311,4 @@ class About extends Component {
   }
 }
 
-export default About;
+export default AboutScreen;
