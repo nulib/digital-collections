@@ -11,9 +11,7 @@ import PropTypes from 'prop-types';
 
 const SocialLinks = props => {
   const currentLocation = String(window.location);
-  const imgUrl = `${
-    props.item.representative_file_url
-  }/full/full/0/default.jpg`;
+  const imgUrl = `${props.item.representative_file_url}/full/full/0/default.jpg`;
   const iconBgStyleObj = { fill: '#4e2a84' };
   const styles = {
     shareButton: {

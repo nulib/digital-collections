@@ -2,10 +2,8 @@ jest.mock('../api/elasticsearch-api.js');
 
 import React from 'react';
 import { shallow } from 'enzyme';
-import ConnectedItemDetailContainer, {
-  ItemDetailContainer
-} from './ItemDetailContainer';
-import * as elasticsearchApi from '../api/elasticsearch-api.js';
+import ConnectedItemDetailContainer, { ItemDetailContainer } from './Work';
+import * as elasticsearchApi from '../../api/elasticsearch-api.js';
 
 const mockReactRouterProps = {
   match: {

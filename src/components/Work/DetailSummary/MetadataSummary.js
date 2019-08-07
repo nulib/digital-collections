@@ -21,13 +21,9 @@ const MetadataSummary = props => {
       {creators.length > 0 && (
         <SummaryListItem header="Creators" items={creators} />
       )}
-      {item.resource_type &&
-        item.resource_type.length > 0 && (
-          <SummaryListItem
-            header="Type of Resource"
-            items={item.resource_type}
-          />
-        )}
+      {item.resource_type && item.resource_type.length > 0 && (
+        <SummaryListItem header="Type of Resource" items={item.resource_type} />
+      )}
     </div>
   );
 };
