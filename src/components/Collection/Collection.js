@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
-import * as elasticsearchApi from '../api/elasticsearch-api.js';
-import ErrorSection from '../components/ErrorSection';
-import FacetsSidebar from '../components/FacetsSidebar';
-import Breadcrumbs from '../components/breadcrumbs/Breadcrumbs';
-import LoadingSpinner from '../components/LoadingSpinner';
+import * as elasticsearchApi from '../../api/elasticsearch-api.js';
+import ErrorSection from '../../components/ErrorSection';
+import FacetsSidebar from '../../components/FacetsSidebar';
+import Breadcrumbs from '../../components/breadcrumbs/Breadcrumbs';
+import LoadingSpinner from '../../components/LoadingSpinner';
 import {
   DataSearch,
   ReactiveList,
@@ -14,7 +14,7 @@ import {
   getESDescription,
   getESImagePath,
   getESTitle
-} from '../services/elasticsearch-parser';
+} from '../../services/elasticsearch-parser';
 import {
   COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID,
   collectionDefaultQuery,
@@ -22,17 +22,14 @@ import {
   imageFacets,
   imageFilters,
   simpleQueryStringQuery
-} from '../services/reactive-search';
+} from '../../services/reactive-search';
 import { connect } from 'react-redux';
-import { generateTitleTag } from '../services/helpers';
-import { Helmet } from 'react-helmet';
-import PhotoBox from '../components/PhotoBox';
-import { MOBILE_BREAKPOINT, ROUTES } from '../services/global-vars';
+import PhotoBox from '../../components/PhotoBox';
+import { MOBILE_BREAKPOINT, ROUTES } from '../../services/global-vars';
 import withSizes from 'react-sizes';
-import CollectionDescription from '../components/Collection/CollectionDescription';
-import { loadDataLayer } from '../services/google-tag-manager';
-import FiltersShowHideButton from '../components/FiltersShowHideButton';
-import { loadCollectionStructuredData } from '../services/google-structured-data';
+import CollectionDescription from './CollectionDescription';
+import FiltersShowHideButton from '../../components/FiltersShowHideButton';
+import PropTypes from 'prop-types';
 
 const styles = {
   mobileDescription: {
@@ -40,7 +37,23 @@ const styles = {
   }
 };
 
-export class CollectionContainer extends Component {
+export class Collection extends Component {
+  static propTypes = {
+    auth: PropTypes.shape({
+      token: PropTypes.string
+    }),
+    history: PropTypes.object,
+    isMobile: PropTypes.bool,
+    location: PropTypes.shape({
+      pathname: PropTypes.string.isRequired
+    }),
+    match: PropTypes.shape({
+      params: PropTypes.shape({
+        id: PropTypes.node
+      }).isRequired
+    }).isRequired
+  };
+
   state = {
     collection: null,
     collectionItems: [],
@@ -48,7 +61,6 @@ export class CollectionContainer extends Component {
     items: null,
     loading: true,
     showSidebar: false,
-    structuredData: null,
     excludes: null
   };
 
@@ -120,17 +132,11 @@ export class CollectionContainer extends Component {
         error = `The current collection's visibility is restricted to logged in users.`;
       }
 
-      this.populateGTMDataLayer(response._source);
-
       this.setState({
         collection: response._source,
         excludes: member_ids,
         error,
-        loading: false,
-        structuredData: loadCollectionStructuredData(
-          response._source,
-          this.props.location.pathname
-        )
+        loading: false
       });
     };
     request();
@@ -174,24 +180,8 @@ export class CollectionContainer extends Component {
     return <PhotoBox key={item.id} item={item} />;
   }
 
-  populateGTMDataLayer(collection) {
-    const title = getESTitle(collection);
-    const dataLayer = {
-      collections: title,
-      pageTitle: title
-    };
-    loadDataLayer(dataLayer);
-  }
-
   render() {
-    const {
-      collection,
-      error,
-      loading,
-      showSidebar,
-      structuredData,
-      excludes
-    } = this.state;
+    const { collection, error, loading, showSidebar, excludes } = this.state;
     const { isMobile } = this.props;
     const breadCrumbData = collection
       ? this.createBreadcrumbData(collection)
@@ -309,20 +299,10 @@ export class CollectionContainer extends Component {
     };
 
     return (
-      <div className="standard-page">
-        <Helmet>
-          <title>{generateTitleTag(collectionTitle)}</title>
-          {structuredData && (
-            <script type="application/ld+json">
-              {JSON.stringify(structuredData)}
-            </script>
-          )}
-        </Helmet>
-        <div id="page" className="collection-items">
-          {loading && <LoadingSpinner loading={loading} />}
-          {renderDisplay()}
-        </div>
-      </div>
+      <>
+        {loading && <LoadingSpinner loading={loading} />}
+        {renderDisplay()}
+      </>
     );
   }
 }
@@ -335,6 +315,6 @@ const mapSizeToProps = ({ width }) => ({
   isMobile: width <= MOBILE_BREAKPOINT
 });
 
-const SizedCollectionContainer = withSizes(mapSizeToProps)(CollectionContainer);
-const withRouterCollectionContainer = withRouter(SizedCollectionContainer);
-export default connect(mapStateToProps)(withRouterCollectionContainer);
+const SizedCollection = withSizes(mapSizeToProps)(Collection);
+const withRouterCollection = withRouter(SizedCollection);
+export default connect(mapStateToProps)(withRouterCollection);
