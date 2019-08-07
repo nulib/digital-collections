@@ -10,7 +10,7 @@ import Footer from '../components/Footer';
 import * as globalVars from '../services/global-vars';
 import Header from '../components/Header/';
 import ScreensHome from './Home/Home';
-import ItemDetailContainer from './ItemDetailContainer';
+import ScreensWork from './Work/Work';
 import ScreensCollection from './Collection/Collection';
 import Default404 from './Default404';
 import NavContainer from './NavContainer';
@@ -65,10 +65,7 @@ export class Layout extends Component {
             path={ROUTES.COLLECTIONS_ALL.path}
             component={ScreensCollectionList}
           />
-          <Route
-            path={ROUTES.ITEM_DETAIL.path}
-            component={ItemDetailContainer}
-          />
+          <Route path={ROUTES.ITEM_DETAIL.path} component={ScreensWork} />
           <Route path={ROUTES.SEARCH.path}>
             <ReactiveBaseWrapper apiToken={apiToken}>
               <ReactivesearchContainer />

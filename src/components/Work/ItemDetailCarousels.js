@@ -39,17 +39,16 @@ const ItemDetailCarousels = props => {
           open={true}
         >
           {/* Admin Sets carousel */}
-          {item &&
-            adminSetItems && (
-              <CarouselSection
-                sectionTitle={item.admin_set.title[0]}
-                linkTo=""
-                items={adminSetItems}
-                slidesPerView={6}
-                loading=""
-                error=""
-              />
-            )}
+          {item && adminSetItems && (
+            <CarouselSection
+              sectionTitle={item.admin_set.title[0]}
+              linkTo=""
+              items={adminSetItems}
+              slidesPerView={6}
+              loading=""
+              error=""
+            />
+          )}
         </Collapsible>
         <Collapsible
           trigger={<CollapsibleHeader label="Collection" />}

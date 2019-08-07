@@ -1,22 +1,19 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import * as elasticsearchApi from '../api/elasticsearch-api.js';
-import ErrorSection from '../components/ErrorSection';
-import ItemDetail from '../components/ItemDetail/ItemDetail';
-import * as elasticsearchParser from '../services/elasticsearch-parser';
-import * as globalVars from '../../src/services/global-vars';
-import LoadingSpinner from '../components/LoadingSpinner';
-import { shuffleArray } from '../services/helpers';
-import ParentCollections from '../components/ItemDetail/ParentCollections';
-import LargeFeature from '../components/ItemDetail/LargeFeature';
-import OpenSeadragonContainer from './OpenSeadragonContainer';
-import { Helmet } from 'react-helmet';
-import { generateTitleTag } from '../services/helpers';
-import { loadDataLayer } from '../services/google-tag-manager';
-import { loadItemStructuredData } from '../services/google-structured-data';
+import * as elasticsearchApi from '../../api/elasticsearch-api.js';
+import ErrorSection from '../../components/ErrorSection';
+import ItemDetail from '../../components/Work/ItemDetail';
+import * as elasticsearchParser from '../../services/elasticsearch-parser';
+import * as globalVars from '../../services/global-vars';
+import LoadingSpinner from '../../components/LoadingSpinner';
+import { shuffleArray } from '../../services/helpers';
+import ParentCollections from '../../components/Work/ParentCollections';
+import LargeFeature from '../../components/Work/LargeFeature';
+import { loadDataLayer } from '../../services/google-tag-manager';
+import { loadItemStructuredData } from '../../services/google-structured-data';
 
-export class ItemDetailContainer extends Component {
+export class Work extends Component {
   constructor(props) {
     super(props);
 
@@ -191,62 +188,33 @@ export class ItemDetailContainer extends Component {
 
   render() {
     const {
-      id,
       item,
       error,
       collectionId,
       collectionItems,
       adminSetItems,
-      loading,
-      structuredData
+      loading
     } = this.state;
 
-    // This check ensures that when changing ids (items) on the same route, the "id" is different
-    // at this point of execution
-    const idInSync = this.props.match.params.id === id;
-
-    const itemTitle = item ? elasticsearchParser.getESTitle(item) : '';
-
-    const renderDisplay = () => {
-      if (error) {
-        return <ErrorSection message={error} />;
-      }
-      return (
-        <div>
-          <LoadingSpinner loading={loading} />
-
-          {!loading && (
-            <div>
-              <LargeFeature item={item} />
-              <ParentCollections
-                item={item}
-                adminSetItems={adminSetItems}
-                collectionItems={collectionItems}
-                collectionId={collectionId}
-              />
-              <ItemDetail item={item} />
-            </div>
-          )}
-        </div>
-      );
-    };
-
+    if (error) {
+      return <ErrorSection message={error} />;
+    }
     return (
-      <div className="landing-page">
-        <Helmet>
-          <title>{generateTitleTag(itemTitle)}</title>
-          {structuredData && (
-            <script type="application/ld+json">
-              {JSON.stringify(structuredData)}
-            </script>
-          )}
-        </Helmet>
-        {item && idInSync && !error && <OpenSeadragonContainer item={item} />}
-        <div id="page">
-          <main id="main-content" className="content" tabIndex="0">
-            {renderDisplay()}
-          </main>
-        </div>
+      <div>
+        <LoadingSpinner loading={loading} />
+
+        {!loading && (
+          <div>
+            <LargeFeature item={item} />
+            <ParentCollections
+              item={item}
+              adminSetItems={adminSetItems}
+              collectionItems={collectionItems}
+              collectionId={collectionId}
+            />
+            <ItemDetail item={item} />
+          </div>
+        )}
       </div>
     );
   }
@@ -256,5 +224,5 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-const withRouterItemDetailContainer = withRouter(ItemDetailContainer);
-export default connect(mapStateToProps)(withRouterItemDetailContainer);
+const withRouterWork = withRouter(Work);
+export default connect(mapStateToProps)(withRouterWork);

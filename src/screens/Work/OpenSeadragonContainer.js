@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import OpenSeadragonViewer from '../components/OpenSeadragonViewer';
+import OpenSeadragonViewer from '../../components/OpenSeadragonViewer';
 import PropTypes from 'prop-types';
-import { getTileSources } from '../services/iiif-parser';
-import { getManifest } from '../api';
-import LoadingSpinner from '../components/LoadingSpinner';
-import { getESTitle } from '../services/elasticsearch-parser';
+import { getTileSources } from '../../services/iiif-parser';
+import { getManifest } from '../../api';
+import LoadingSpinner from '../../components/LoadingSpinner';
+import { getESTitle } from '../../services/elasticsearch-parser';
 
 const styles = {
   spinner: {
