@@ -4,14 +4,14 @@ import { Route, Switch } from 'react-router-dom';
 import { ReactiveBase } from '@appbaseio/reactivesearch';
 import { connect } from 'react-redux';
 import AboutScreen from './About/About';
-import AllCollectionsContainer from './AllCollectionsContainer';
+import ScreensCollectionList from './Collection/List';
 import ContactUs from './ContactUs';
 import Footer from '../components/Footer';
 import * as globalVars from '../services/global-vars';
 import Header from '../components/Header/';
-import HomePageContainer from './HomePageContainer';
+import ScreensHome from './Home/Home';
 import ItemDetailContainer from './ItemDetailContainer';
-import CollectionContainer from './CollectionContainer';
+import ScreensCollection from './Collection/Collection';
 import Default404 from './Default404';
 import NavContainer from './NavContainer';
 import Notifications from 'react-notify-toast';
@@ -57,13 +57,13 @@ export class Layout extends Component {
           <Route exact path={ROUTES.CONTACT.path} component={ContactUs} />
           <Route exact path={ROUTES.COLLECTION.path}>
             <ReactiveBaseWrapper apiToken={apiToken}>
-              <CollectionContainer />
+              <ScreensCollection />
             </ReactiveBaseWrapper>
           </Route>
           <Route
             exact
             path={ROUTES.COLLECTIONS_ALL.path}
-            component={AllCollectionsContainer}
+            component={ScreensCollectionList}
           />
           <Route
             path={ROUTES.ITEM_DETAIL.path}
@@ -74,7 +74,7 @@ export class Layout extends Component {
               <ReactivesearchContainer />
             </ReactiveBaseWrapper>
           </Route>
-          <Route exact path={ROUTES.HOME.path} component={HomePageContainer} />
+          <Route exact path={ROUTES.HOME.path} component={ScreensHome} />
           <Route path={ROUTES.PAGE_NOT_FOUND.path} component={Default404} />
           <Route component={Default404} />
         </Switch>

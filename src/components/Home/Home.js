@@ -1,25 +1,21 @@
 import React, { Component } from 'react';
-import HeroSection from '../components/Home/HeroSection';
-import HeroSecondarySection from '../components/Home/HeroSecondarySection';
-import PhotoGridSection from '../components/PhotoGridSection';
-import LoadingSpinner from '../components/LoadingSpinner';
+import HeroSection from '../../components/Home/HeroSection';
+import HeroSecondarySection from '../../components/Home/HeroSecondarySection';
+import PhotoGridSection from '../../components/PhotoGridSection';
+import LoadingSpinner from '../../components/LoadingSpinner';
 import {
   heroFava,
   heroWPA,
   heroWWII,
   heroWWII_2,
   heroSecondaryData
-} from '../services/hero-banners';
-import * as elasticsearchApi from '../api/elasticsearch-api';
-import * as elasticsearchParser from '../services/elasticsearch-parser';
-import * as globalVars from '../services/global-vars';
-import { getRandomInt } from '../services/helpers';
-import { Helmet } from 'react-helmet';
-import { generateTitleTag } from '../services/helpers';
-import { loadDataLayer } from '../services/google-tag-manager';
-import { loadDefaultStructuredData } from '../services/google-structured-data';
+} from '../../services/hero-banners';
+import * as elasticsearchApi from '../../api/elasticsearch-api';
+import * as elasticsearchParser from '../../services/elasticsearch-parser';
+import * as globalVars from '../../services/global-vars';
+import { getRandomInt } from '../../services/helpers';
 
-export class HomePageContainer extends Component {
+export class Home extends Component {
   constructor(props) {
     super(props);
 
@@ -40,8 +36,6 @@ export class HomePageContainer extends Component {
 
   componentDidMount() {
     let promises = [];
-
-    loadDataLayer({ pageTitle: globalVars.ROUTES.HOME.title });
 
     // Combine async network requests
     promises.push(this.getGalleryItems());
@@ -131,45 +125,35 @@ export class HomePageContainer extends Component {
     const { galleryCollections, galleryItems, loading } = this.state;
 
     return (
-      <div className="landing-page">
-        <Helmet>
-          <title>{generateTitleTag()}</title>
-          <script type="application/ld+json">
-            {JSON.stringify(loadDefaultStructuredData())}
-          </script>
-        </Helmet>
-        <div id="page">
-          <main id="main-content" className="content" tabIndex="0">
-            <div className="relative-wrapper homepage-hero-wrapper contain-1440">
-              <HeroSection heroData={this.heroItems[this.heroRandomNumber]} />
-            </div>
-            <LoadingSpinner loading={loading} />
-            {!loading && (
-              <div>
-                <PhotoGridSection
-                  headline="Recently Added and Updated Items"
-                  linkTo="/search"
-                  linkToText="View All Items"
-                  items={galleryItems}
-                  hideDescriptions={true}
-                />
-                <PhotoGridSection
-                  headline="Featured Collections"
-                  linkTo="/collections"
-                  linkToText="View All Collections"
-                  items={galleryCollections}
-                />
-              </div>
-            )}
-            <div className="contain-1120">
-              <HeroSecondarySection heroData={heroSecondaryData} />
-              {!loading && this.renderAdditionalGalleries()}
-            </div>
-          </main>
+      <>
+        <div className="relative-wrapper homepage-hero-wrapper contain-1440">
+          <HeroSection heroData={this.heroItems[this.heroRandomNumber]} />
         </div>
-      </div>
+        <LoadingSpinner loading={loading} />
+        {!loading && (
+          <div>
+            <PhotoGridSection
+              headline="Recently Added and Updated Items"
+              linkTo="/search"
+              linkToText="View All Items"
+              items={galleryItems}
+              hideDescriptions={true}
+            />
+            <PhotoGridSection
+              headline="Featured Collections"
+              linkTo="/collections"
+              linkToText="View All Collections"
+              items={galleryCollections}
+            />
+          </div>
+        )}
+        <div className="contain-1120">
+          <HeroSecondarySection heroData={heroSecondaryData} />
+          {!loading && this.renderAdditionalGalleries()}
+        </div>
+      </>
     );
   }
 }
 
-export default HomePageContainer;
+export default Home;
