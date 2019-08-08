@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Breadcrumbs from '../components/breadcrumbs/Breadcrumbs';
+import Breadcrumbs from '../components/UI/Breadcrumbs/Breadcrumbs';
 import { generateTitleTag } from '../services/helpers';
 import { Helmet } from 'react-helmet';
 import { loadDataLayer } from '../services/google-tag-manager';

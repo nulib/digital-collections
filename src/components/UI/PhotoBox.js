@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import * as globalVars from '../services/global-vars';
-import placeholderImage from '../images/book_placeholder.png';
-import { chopString } from '../services/helpers';
+import * as globalVars from '../../services/global-vars';
+import placeholderImage from '../../images/book_placeholder.png';
+import { chopString } from '../../services/helpers';
 
 const styles = {
   title: {

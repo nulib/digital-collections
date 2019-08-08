@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import withSizes from 'react-sizes';
-import { forceLogout } from '../../actions/auth';
-import * as nulApi from '../../services/nul-api.js';
-import { MOBILE_BREAKPOINT } from '../../services/global-vars';
+import { forceLogout } from '../../../actions/auth';
+import * as nulApi from '../../../services/nul-api.js';
+import { MOBILE_BREAKPOINT } from '../../../services/global-vars';
 
 const Login = props => {
   const authToken = props.authToken || '';

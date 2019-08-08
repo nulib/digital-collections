@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import OpenSeadragon from 'openseadragon';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { MOBILE_BREAKPOINT } from '../services/global-vars';
+import { MOBILE_BREAKPOINT } from '../../services/global-vars';
 import withSizes from 'react-sizes';
 
 class OpenSeadragonViewer extends Component {

@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import AboutScreen from './About/About';
 import ScreensCollectionList from './Collection/List';
 import ContactUs from './ContactUs';
-import Footer from '../components/Footer';
+import Footer from '../components/UI/Footer';
 import * as globalVars from '../services/global-vars';
 import Header from '../components/Header/';
 import ScreensHome from './Home/Home';

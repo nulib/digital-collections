@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Breadcrumbs from '../../components/breadcrumbs/Breadcrumbs';
-import PhotoGrid from '../../components/PhotoGrid';
-import LoadingSpinner from '../../components/LoadingSpinner';
+import Breadcrumbs from '../UI/Breadcrumbs/Breadcrumbs';
+import PhotoGrid from '../UI/PhotoGrid';
+import LoadingSpinner from '../UI/LoadingSpinner';
 import { getAllCollections } from '../../api/elasticsearch-api';
 import { prepPhotoGridItems } from '../../services/elasticsearch-parser';
 import * as globalVars from '../../services/global-vars';
