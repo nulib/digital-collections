@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import * as elasticsearchApi from '../../api/elasticsearch-api.js';
-import ErrorSection from '../../components/ErrorSection';
-import FacetsSidebar from '../../components/FacetsSidebar';
-import Breadcrumbs from '../../components/breadcrumbs/Breadcrumbs';
-import LoadingSpinner from '../../components/LoadingSpinner';
+import ErrorSection from '../UI/ErrorSection';
+import FacetsSidebar from '../UI/FacetsSidebar';
+import Breadcrumbs from '../UI/Breadcrumbs/Breadcrumbs';
+import LoadingSpinner from '../UI/LoadingSpinner';
 import {
   DataSearch,
   ReactiveList,
@@ -24,11 +24,11 @@ import {
   simpleQueryStringQuery
 } from '../../services/reactive-search';
 import { connect } from 'react-redux';
-import PhotoBox from '../../components/PhotoBox';
+import PhotoBox from '../UI/PhotoBox';
 import { MOBILE_BREAKPOINT, ROUTES } from '../../services/global-vars';
 import withSizes from 'react-sizes';
 import CollectionDescription from './CollectionDescription';
-import FiltersShowHideButton from '../../components/FiltersShowHideButton';
+import FiltersShowHideButton from '../UI/FiltersShowHideButton';
 import PropTypes from 'prop-types';
 
 const styles = {

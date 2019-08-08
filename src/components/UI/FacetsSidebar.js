@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import RSMultiList from './reactive-search-wrappers/RSMultiList';
+import RSMultiList from './ReactiveSearchWrappers/RSMultiList';
 import { withRouter } from 'react-router-dom';
-import { ROUTES } from '../services/global-vars';
+import { ROUTES } from '../../services/global-vars';
 import {
   imagesOnlyDefaultQuery,
   collectionDefaultQuery
-} from '../services/reactive-search';
+} from '../../services/reactive-search';
 
 class FacetsSidebar extends Component {
   static propTypes = {

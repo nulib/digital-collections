@@ -8,7 +8,7 @@ import {
   getESImagePath,
   getESTitle
 } from '../../services/elasticsearch-parser';
-import LoadingSpinner from '../../components/LoadingSpinner';
+import LoadingSpinner from '../UI/LoadingSpinner';
 import {
   DATASEARCH_PLACEHOLDER,
   GLOBAL_SEARCH_BAR_COMPONENT_ID,
@@ -17,13 +17,13 @@ import {
   imagesOnlyDefaultQuery,
   simpleQueryStringQuery
 } from '../../services/reactive-search';
-import PhotoBox from '../../components/PhotoBox';
+import PhotoBox from '../UI/PhotoBox';
 import { withRouter } from 'react-router-dom';
 import { ROUTES } from '../../services/global-vars';
-import FacetsSidebar from '../../components/FacetsSidebar';
-import Breadcrumbs from '../../components/breadcrumbs/Breadcrumbs';
+import FacetsSidebar from '../UI/FacetsSidebar';
+import Breadcrumbs from '../UI/Breadcrumbs/Breadcrumbs';
 import { loadDataLayer } from '../../services/google-tag-manager';
-import FiltersShowHideButton from '../../components/FiltersShowHideButton';
+import FiltersShowHideButton from '../UI/FiltersShowHideButton';
 import { connect } from 'react-redux';
 import { searchValueChange } from '../../actions/search';
 import PropTypes from 'prop-types';

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import HeroSection from '../../components/Home/HeroSection';
 import HeroSecondarySection from '../../components/Home/HeroSecondarySection';
-import PhotoGridSection from '../../components/PhotoGridSection';
-import LoadingSpinner from '../../components/LoadingSpinner';
+import PhotoGridSection from '../UI/PhotoGridSection';
+import LoadingSpinner from '../UI/LoadingSpinner';
 import {
   heroFava,
   heroWPA,

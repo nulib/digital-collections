@@ -1,7 +1,7 @@
 import React from 'react';
 import PhotoBox from './PhotoBox';
 import { shallow } from 'enzyme';
-import { IMAGE_MODEL, COLLECTION_MODEL } from '../services/global-vars';
+import { IMAGE_MODEL, COLLECTION_MODEL } from '../../services/global-vars';
 
 let props = {
   hideDescriptions: false,

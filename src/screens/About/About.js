@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import FeatureBox from '../../components/FeatureBox';
+import FeatureBox from '../../components/UI/FeatureBox';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../services/global-vars';
 import { generateTitleTag } from '../../services/helpers';
@@ -11,7 +11,7 @@ import curtPic from '../../images/curt__O8A9877_final.jpg';
 import joshPic from '../../images/josh__O8A9915_final.jpg';
 import iiifLogo from '../../images/IIIF-logo.png';
 import { loadDataLayer } from '../../services/google-tag-manager';
-import Breadcrumbs from '../../components/breadcrumbs/Breadcrumbs';
+import Breadcrumbs from '../../components/UI/Breadcrumbs/Breadcrumbs';
 import { loadDefaultStructuredData } from '../../services/google-structured-data';
 import { featuredCollections } from './featured-collections';
 

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import OpenSeadragonViewer from '../../components/OpenSeadragonViewer';
+import OpenSeadragonViewer from '../../components/Work/OpenSeadragonViewer';
 import PropTypes from 'prop-types';
 import { getTileSources } from '../../services/iiif-parser';
 import { getManifest } from '../../api';
-import LoadingSpinner from '../../components/LoadingSpinner';
+import LoadingSpinner from '../../components/UI/LoadingSpinner';
 import { getESTitle } from '../../services/elasticsearch-parser';
 
 const styles = {

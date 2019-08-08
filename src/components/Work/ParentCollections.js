@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import PhotoGrid from '../PhotoGrid';
+import PhotoGrid from '../UI/PhotoGrid';
 import PropTypes from 'prop-types';
 import ThisItem from './ThisItem';
-import SectionTop from '../SectionTop';
+import SectionTop from '../UI/SectionTop';
 import { facetValues } from '../../services/reactive-search';
 import { getCollection } from '../../api/elasticsearch-api';
 import { getESTitle } from '../../services/elasticsearch-parser';
