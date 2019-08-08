@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { getAllCollections } from '../api/elasticsearch-api';
-import NavCollectionsList from '../components/Nav/NavCollectionsList';
+import { getAllCollections } from '../../../api/elasticsearch-api';
+import NavCollectionsList from './NavCollectionsList';
 
 class NavContainer extends Component {
   state = {

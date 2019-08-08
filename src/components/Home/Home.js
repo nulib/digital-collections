@@ -9,7 +9,7 @@ import {
   heroWWII,
   heroWWII_2,
   heroSecondaryData
-} from '../../services/hero-banners';
+} from './hero-banners';
 import * as elasticsearchApi from '../../api/elasticsearch-api';
 import * as elasticsearchParser from '../../services/elasticsearch-parser';
 import * as globalVars from '../../services/global-vars';

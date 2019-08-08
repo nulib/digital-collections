@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { getESTitle } from '../../services/elasticsearch-parser';
+import { getESTitle } from '../../../services/elasticsearch-parser';
 import PropTypes from 'prop-types';
 
 const NavCollectionList = props => {

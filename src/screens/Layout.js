@@ -8,12 +8,12 @@ import ScreensCollectionList from './Collection/List';
 import ContactUs from './ContactUs';
 import Footer from '../components/UI/Footer';
 import * as globalVars from '../services/global-vars';
-import Header from '../components/Header/';
+import Header from '../components/UI/Header/';
 import ScreensHome from './Home/Home';
 import ScreensWork from './Work/Work';
 import ScreensCollection from './Collection/Collection';
 import Default404 from './Default404';
-import NavContainer from './NavContainer';
+import NavContainer from '../components/UI/Nav/NavContainer';
 import Notifications from 'react-notify-toast';
 import ScreensSearch from './Search/Search';
 import '../Layout.css';
@@ -40,7 +40,7 @@ ReactiveBaseWrapper.propTypes = {
 
 export class Layout extends Component {
   static propTypes = {
-    authToken: PropTypes.object,
+    authToken: PropTypes.string,
     fetchApiToken: PropTypes.func.isRequired
   };
 
