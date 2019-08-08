@@ -11,8 +11,6 @@
     "cookie": "^0.4.0",
     "cross-fetch": "^3.0.3",
     "elasticsearch": "^16.1.0",
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.13.2",
     "honeybadger-js": "^1.0.3",
     "jest-util": "24.8.0",
     "jquery": "^3.3.1",
@@ -61,12 +59,12 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "@nulib/prettier-config": "^1.2.0",
     "eslint-config-prettier": "^4.3.0",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.10.0",
     "husky": "2.3.0",
     "lint-staged": "^8.1.7",
-    "@nulib/prettier-config": "^1.2.0",
     "prettier": "^1.17.1"
   },
   "prettier": "@nulib/prettier-config",
