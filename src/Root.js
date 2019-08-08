@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Layout from './containers/Layout';
-import ScrollToTop from './components/ScrollToTop';
+import Layout from './screens/Layout';
+import ScrollToTop from './components/UI/ScrollToTop';
 // eslint-disable-next-line
-import FontAwesomeContainer from './containers/FontAwesomeContainer';
+import FontAwesome from './components/UI/FontAwesome';
 
 const Root = ({ store }) => (
   <Provider store={store}>
