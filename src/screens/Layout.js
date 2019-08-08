@@ -15,10 +15,11 @@ import ScreensCollection from './Collection/Collection';
 import Default404 from './Default404';
 import NavContainer from './NavContainer';
 import Notifications from 'react-notify-toast';
-import ReactivesearchContainer from './ReactivesearchContainer';
+import ScreensSearch from './Search/Search';
 import '../Layout.css';
 import '../libs/nuwebcomm-scripts.js';
 import { fetchApiToken } from '../actions/auth';
+import PropTypes from 'prop-types';
 
 const ReactiveBaseWrapper = props => {
   return (
@@ -32,7 +33,17 @@ const ReactiveBaseWrapper = props => {
   );
 };
 
+ReactiveBaseWrapper.propTypes = {
+  apiToken: PropTypes.string,
+  children: PropTypes.node.isRequired
+};
+
 export class Layout extends Component {
+  static propTypes = {
+    authToken: PropTypes.object,
+    fetchApiToken: PropTypes.func.isRequired
+  };
+
   componentDidMount() {
     this.props.fetchApiToken();
   }
@@ -68,7 +79,7 @@ export class Layout extends Component {
           <Route path={ROUTES.ITEM_DETAIL.path} component={ScreensWork} />
           <Route path={ROUTES.SEARCH.path}>
             <ReactiveBaseWrapper apiToken={apiToken}>
-              <ReactivesearchContainer />
+              <ScreensSearch />
             </ReactiveBaseWrapper>
           </Route>
           <Route exact path={ROUTES.HOME.path} component={ScreensHome} />

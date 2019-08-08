@@ -9,6 +9,7 @@ import { generateTitleTag } from '../../services/helpers';
 import { loadDataLayer } from '../../services/google-tag-manager';
 import { loadItemStructuredData } from '../../services/google-structured-data';
 import Work from '../../components/Work/Work';
+import PropTypes from 'prop-types';
 
 export class ScreensWork extends Component {
   constructor(props) {
@@ -22,6 +23,17 @@ export class ScreensWork extends Component {
       structuredData: null
     };
   }
+
+  static propTypes = {
+    match: PropTypes.shape({
+      params: PropTypes.shape({
+        id: PropTypes.string.isRequired
+      }).isRequired
+    }).isRequired,
+    location: PropTypes.shape({
+      pathname: PropTypes.string.isRequired
+    }).isRequired
+  };
 
   async componentDidMount() {
     this.getApiData(this.props.match.params.id);
