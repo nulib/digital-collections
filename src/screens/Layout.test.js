@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Layout from './Layout';
-import Header from '../components/Header';
-import NavContainer from '../containers/NavContainer';
+import Header from '../components/UI/Header';
+import NavContainer from '../components/UI/Nav/NavContainer';
 import { Switch, Route } from 'react-router-dom';
 
 xit('renders without crashing', () => {

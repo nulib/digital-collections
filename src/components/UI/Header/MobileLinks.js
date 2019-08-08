@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import MobileNav from './MobileNav';
-import { getAllCollections } from '../../api/elasticsearch-api';
+import { getAllCollections } from '../../../api/elasticsearch-api';
 import { withRouter } from 'react-router-dom';
 
 class MobileLinks extends Component {

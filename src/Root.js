@@ -5,7 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Layout from './screens/Layout';
 import ScrollToTop from './components/UI/ScrollToTop';
 // eslint-disable-next-line
-import FontAwesomeContainer from './screens/FontAwesomeContainer';
+import FontAwesome from './components/UI/FontAwesome';
 
 const Root = ({ store }) => (
   <Provider store={store}>

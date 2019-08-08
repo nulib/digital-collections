@@ -1,4 +1,4 @@
-jest.mock('../api/elasticsearch-api.js');
+jest.mock('../../api/elasticsearch-api.js');
 
 import React from 'react';
 import { shallow } from 'enzyme';

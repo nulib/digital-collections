@@ -1,4 +1,4 @@
-import { productionIds } from './global-vars';
+import { productionIds } from '../../services/global-vars';
 
 export const heroBerkeley = {
   title: 'Berkeley Folk Festival',
