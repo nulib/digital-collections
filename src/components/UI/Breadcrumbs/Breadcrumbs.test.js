@@ -1,39 +1,35 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 import Breadcrumbs from './Breadcrumbs';
+import { renderWithRouter } from '../../../services/@testing-library-helpers';
 
-let items = [
-  {
-    title: 'Grandparent',
-    link: '/grandparent'
-  },
-  {
-    title: 'Parent',
-    link: '/grandparent/parent'
-  },
-  {
-    title: 'Child',
-    link: '/grandparent/parent/:id'
-  }
-];
+test('Breadcrumbs displays correct amount of crumbs', () => {
+  let crumbs = [
+    { title: 'Crumb1', link: '/crumb1' },
+    { title: 'Crumb2', link: '/crumb2' }
+  ];
+  const { getByTestId, debug } = renderWithRouter(
+    <Breadcrumbs items={crumbs} />
+  );
 
-it('renders without crashing', () => {
-  const wrapper = shallow(<Breadcrumbs items={items} />);
-  expect(wrapper.length).toEqual(1);
+  expect(getByTestId(/breadcrumbs/)).toBeInTheDocument();
+  expect(getByTestId(/breadcrumbs/).children.length).toEqual(2);
 });
 
-it('should return an empty array if no items are passed in', () => {
-  const wrapper = shallow(<Breadcrumbs />);
-  expect(wrapper.find('#breadcrumbs')).toHaveLength(0);
+test('Breadcrumbs do not display if no items passed in', () => {
+  const { queryByTestId } = renderWithRouter(<Breadcrumbs />);
+  expect(queryByTestId(/breadcrumbs/)).not.toBeInTheDocument();
 });
 
-it('should return three breadcrumbs when passed in three items', () => {
-  const wrapper = shallow(<Breadcrumbs items={items} />);
-  expect(wrapper.find('#breadcrumbs')).toHaveLength(1);
-  expect(wrapper.find('#breadcrumbs').children()).toHaveLength(3);
-
-  // Number of Crumblinks should be total items - 1
-  expect(wrapper.find('CrumbLink')).toHaveLength(2);
-  // There should only be one active link
-  expect(wrapper.find('li[className="active"]')).toHaveLength(1);
+test('All breadcrumbs have links except the final breadcrumb', () => {
+  let crumbs = [
+    { title: 'Crumb1', link: '/crumb1' },
+    { title: 'Crumb2', link: '/crumb2' }
+  ];
+  const { container, getByTestId, debug } = renderWithRouter(
+    <Breadcrumbs items={crumbs} />
+  );
+  expect(container.querySelectorAll('a').length).toEqual(crumbs.length - 1);
+  expect(
+    getByTestId(/breadcrumbs/).lastChild.querySelectorAll('a').length
+  ).toEqual(0);
 });

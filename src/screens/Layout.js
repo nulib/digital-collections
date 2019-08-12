@@ -5,7 +5,7 @@ import { ReactiveBase } from '@appbaseio/reactivesearch';
 import { connect } from 'react-redux';
 import AboutScreen from './About/About';
 import ScreensCollectionList from './Collection/List';
-import ContactUs from './ContactUs';
+import ScreensContactUs from './ContactUs';
 import Footer from '../components/UI/Footer';
 import * as globalVars from '../services/global-vars';
 import Header from '../components/UI/Header/';
@@ -65,7 +65,11 @@ export class Layout extends Component {
         <NavContainer />
         <Switch>
           <Route exact path={ROUTES.ABOUT.path} component={AboutScreen} />
-          <Route exact path={ROUTES.CONTACT.path} component={ContactUs} />
+          <Route
+            exact
+            path={ROUTES.CONTACT.path}
+            component={ScreensContactUs}
+          />
           <Route exact path={ROUTES.COLLECTION.path}>
             <ReactiveBaseWrapper apiToken={apiToken}>
               <ScreensCollection />
