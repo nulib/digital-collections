@@ -18,7 +18,9 @@ const Breadcrumbs = props => {
 
   return (
     <section className="contain-1120">
-      <ul id="breadcrumbs">{crumbs}</ul>
+      <ul id="breadcrumbs" data-testid="breadcrumbs">
+        {crumbs}
+      </ul>
     </section>
   );
 };

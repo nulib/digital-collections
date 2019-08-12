@@ -17,14 +17,14 @@ const breadCrumbs = [
   }
 ];
 
-class ContactUs extends Component {
+class ScreensContactUs extends Component {
   componentDidMount() {
     loadDataLayer({ pageTitle: ROUTES.CONTACT.title });
   }
 
   render() {
     return (
-      <div className="standard-page narrow-page">
+      <div className="standard-page narrow-page" data-testid="contact-us">
         <Helmet>
           <title>{generateTitleTag(ROUTES.CONTACT.title)}</title>
           <script type="application/ld+json">
@@ -68,4 +68,4 @@ class ContactUs extends Component {
   }
 }
 
-export default ContactUs;
+export default ScreensContactUs;
