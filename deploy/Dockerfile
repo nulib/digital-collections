@@ -1,4 +1,4 @@
-FROM node:12-slim
+FROM node:10.16.2-slim
 MAINTAINER Michael B. Klein
 RUN apt-get update -qq && \
   apt-get install -y libyaml-dev python3-pip jq rsync && \
