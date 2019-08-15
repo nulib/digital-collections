@@ -1,0 +1,62 @@
+---
+version: '3.4'
+services:
+  cantaloupe:
+    image: nulib/cantaloupe
+    ports:
+    - 8183:8182
+    volumes:
+    - "${HOME}/.nuldata/derivatives:/var/lib/cantaloupe/images"
+    healthcheck:
+      test:
+      - CMD
+      - curl
+      - "-f"
+      - http://localhost:8182/iiif/2/
+      interval: 30s
+      timeout: 5s
+      retries: 3
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.2
+    ports:
+    - 9201:9200
+    volumes:
+    - ${HOME}/.nuldata/index:/usr/share/elasticsearch/data
+    environment:
+      discovery.type: single-node
+      http.cors.enabled: "true"
+      http.cors.allow-origin: "*"
+      http.cors.allow-methods: OPTIONS, HEAD, GET, POST, PUT, DELETE
+      http.cors.allow-headers: "X-Requested-With,X-Auth-Token,Content-Type, Content-Length, Authorization"
+    healthcheck:
+      test:
+      - CMD
+      - curl
+      - "-f"
+      - http://localhost:9200/
+      interval: 30s
+      timeout: 5s
+      retries: 3
+  elasticproxy:
+    image: nulib/elasticproxy:latest
+    ports:
+    - 3334:3334
+    environment:
+      UPSTREAM: http://elasticsearch:9200/
+      API_TOKEN_HEADER: Authorization
+      API_TOKEN_SECRET: ab00ffc725da64fa07b20f42ed8bbcf0fda5779aa55c90cedf3a81e09e3a2b14
+      OPENAM_SERVER: https://websso.it.northwestern.edu/amserver/
+      OPENAM_COOKIE: openAMssoToken
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.3.2
+    ports:
+    - 5602:5601
+    healthcheck:
+      test:
+      - CMD
+      - curl
+      - "-f"
+      - http://localhost:5601/
+      interval: 30s
+      timeout: 5s
+      retries: 3

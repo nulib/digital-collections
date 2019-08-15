@@ -7,8 +7,5 @@ S3_BUCKET=$(aws ssm get-parameter --name /stack-glaze/s3_bucket | jq -r '.Parame
 
 echo "REACT_APP_ELASTICSEARCH_PROXY_BASE=$REACT_APP_ELASTICSEARCH_PROXY_BASE REACT_APP_DONUT_URL=$REACT_APP_DONUT_URL REACT_APP_IIIF_LOGIN_URL=$REACT_APP_IIIF_LOGIN_URL S3_BUCKET=$S3_BUCKET"
 
-rsync -ar --exclude "node_modules/*" ${SOURCE}/ deploy
-cd deploy
-yarn install
 yarn build
 aws s3 sync --delete --acl public-read ./build/ s3://${S3_BUCKET}/

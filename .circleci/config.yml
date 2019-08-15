@@ -1,0 +1,64 @@
+---
+version: 2.1
+orbs:
+  aws-cli: circleci/aws-cli@0.1
+jobs:
+  test:
+    working_directory: ~/glaze
+    docker:
+      - image: circleci/node:12
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install JS Dependencies
+          command: yarn install
+      - save_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/glaze/node_modules
+      - run:
+          name: JS Static Analysis
+          command: yarn prettier
+      - run:
+          name: JS Tests
+          command: |
+            yarn ci --coverageReporters=text-lcov | yarn run coveralls ~/glaze
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: tests
+  deploy:
+    docker: 
+      - image: circleci/python:3.7.1
+    steps:
+    - run:
+        name: Set DEPLOY_TAG from branch name
+        command: |
+          if [[ $CIRCLE_BRANCH == "master" ]]; then
+            echo "export DEPLOY_TAG=production" >> $BASH_ENV
+          else
+            echo "export DEPLOY_TAG=$(echo $CIRCLE_BRANCH | awk -F/ '{print $NF}')" >> $BASH_ENV
+          fi
+    - run:
+        name: Set AWS credentials
+        command: |
+          echo "export AWS_ACCESS_KEY_ID=\$${DEPLOY_TAG}_AWS_ACCESS_KEY_ID" >> $BASH_ENV
+          echo "export AWS_SECRET_ACCESS_KEY=\$${DEPLOY_TAG}_AWS_SECRET_ACCESS_KEY" >> $BASH_ENV
+    - aws-cli/install
+    - aws-cli/configure
+    - run:
+        name: Build and Deploy
+        command: deploy/build
+workflows:
+  ci:
+    jobs:
+      - test
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - master
+                - /^deploy\/.+/
