@@ -56,12 +56,16 @@
     "build-js": "react-scripts build",
     "build": "npm-run-all build-css build-js",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prettier": "prettier --single-quote --check src/**/*.js* src/**/*.css ./*.js ./*.json",
+    "prettier-fix": "prettier --single-quote --write src/**/*.js* src/**/*.css ./*.js ./*.json",
+    "ci": "react-scripts test --watchAll=false --coverage"
   },
   "devDependencies": {
     "@nulib/prettier-config": "^1.2.0",
     "@testing-library/jest-dom": "^4.0.0",
     "@testing-library/react": "^8.0.8",
+    "coveralls": "^3.0.5",
     "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.10.0",
