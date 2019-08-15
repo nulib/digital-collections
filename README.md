@@ -1,5 +1,7 @@
 # Next Generation Presentation Layer
 
+[![CircleCI](https://circleci.com/gh/nulib/next-gen-front-end-react.svg?style=svg)](https://circleci.com/gh/nulib/next-gen-front-end-react) [![Coverage Status](https://coveralls.io/repos/github/nulib/next-gen-front-end-react/badge.svg?branch=deploy/staging)](https://coveralls.io/github/nulib/next-gen-front-end-react?branch=deploy/staging)
+
 This ReactJS application serves as the presentation layer for Northwestern's Next Generation Repository. It contains discovery UI components for searching, filtering, browsing and navigation of items ingested through Hyrax.
 
 ## Getting Started
