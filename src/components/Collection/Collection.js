@@ -60,8 +60,7 @@ export class Collection extends Component {
     error: null,
     items: null,
     loading: true,
-    showSidebar: false,
-    excludes: null
+    showSidebar: false
   };
 
   componentDidMount() {
@@ -92,8 +91,8 @@ export class Collection extends Component {
   }
 
   defaultQuery = () => {
-    const { collection, excludes } = this.state;
-    return collection ? collectionDefaultQuery(collection.id, excludes) : null;
+    const { collection } = this.state;
+    return collection ? collectionDefaultQuery(collection.id) : null;
   };
 
   getApiData(id) {
@@ -108,8 +107,6 @@ export class Collection extends Component {
     const request = async () => {
       const response = await elasticsearchApi.getCollection(id);
       let error = null;
-
-      const member_ids = await elasticsearchApi.getMemberIdsForImages(id);
 
       // Handle errors
       // Generic error
@@ -134,7 +131,6 @@ export class Collection extends Component {
 
       this.setState({
         collection: response._source,
-        excludes: member_ids,
         error,
         loading: false
       });
@@ -181,7 +177,7 @@ export class Collection extends Component {
   }
 
   render() {
-    const { collection, error, loading, showSidebar, excludes } = this.state;
+    const { collection, error, loading, showSidebar } = this.state;
     const { isMobile } = this.props;
     const breadCrumbData = collection
       ? this.createBreadcrumbData(collection)
@@ -214,14 +210,13 @@ export class Collection extends Component {
         return null;
       }
 
-      if (collection && excludes) {
+      if (collection) {
         return (
           <div>
             <FacetsSidebar
               facets={imageFacetsNoCollection}
               filters={allFilters}
               showSidebar={showSidebar}
-              excludes={excludes}
             />
             <main
               id="main-content"

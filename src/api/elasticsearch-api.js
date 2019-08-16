@@ -55,7 +55,8 @@ export async function getAdminSetItems(id, numResults = PAGE_SIZE) {
         bool: {
           must: [
             { match: { 'model.name': 'Image' } },
-            { match: { 'admin_set.id': id } }
+            { match: { 'admin_set.id': id } },
+            { match: { 'collection.top_level': true } }
           ]
         }
       },
@@ -145,7 +146,8 @@ export async function getCollectionItems(id, numResults = PAGE_SIZE) {
         bool: {
           must: [
             { match: { 'model.name': 'Image' } },
-            { match: { 'collection.id': id } }
+            { match: { 'collection.id': id } },
+            { match: { 'collection.top_level': true } }
           ]
         }
       },
@@ -210,33 +212,6 @@ export async function getTotalItemCount() {
     });
 
     return response.hits.total;
-  } catch (e) {
-    return Promise.resolve(0);
-  }
-}
-
-export async function getMemberIdsForImages(id) {
-  try {
-    const response = await search({
-      ...getObjBase,
-      body: {
-        query: [
-          { match: { 'model.name': 'Image' } },
-          { match: { 'collection.id': id } }
-        ],
-        size: 0,
-        aggs: {
-          members: {
-            terms: { field: 'member_ids.keyword', size: 10000 }
-          }
-        }
-      }
-    });
-    const members = response.aggregations.members.buckets.map(
-      member => member.key
-    );
-
-    return members;
   } catch (e) {
     return Promise.resolve(0);
   }
