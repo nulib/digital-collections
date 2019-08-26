@@ -37,22 +37,19 @@ devstack up donut glaze
 
 - In another terminal tab, navigate to your local `next-gen-front-end-react` repository directory, and run
 
+### Run with local DONUT data
+
 ```
 yarn start
 ```
 
-The React app will be available at: http://devbox.library.northwestern.edu:3333/
-
-### Run with live data (instead of locally ingested data)
-
-To run the local application with live data in our AWS Elasticsearch index instead of local data, execute the following commands in terminal before starting the application:
+### Run with live staging data (instead of locally ingested data)
 
 ```bash
-$ export REACT_APP_DONUT_URL=https://donut.library.northwestern.edu/
-$ export REACT_APP_ELASTICSEARCH_PROXY_BASE=https://5et90kbva4.execute-api.us-east-1.amazonaws.com/latest/
-$ export REACT_APP_LIVE_IIIF=true
-$ yarn start
+start:use-real-data
 ```
+
+The React app will be available at: http://devbox.library.northwestern.edu:3333/
 
 ## Running the tests
 
