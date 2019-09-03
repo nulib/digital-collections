@@ -1,4 +1,4 @@
-import { titleTagEnd } from './global-vars';
+import { titleTagEnd } from "./global-vars";
 
 /**
  * Helper function to chop a string into a limited word count, from the start of the text
@@ -8,20 +8,20 @@ import { titleTagEnd } from './global-vars';
  */
 export function chopString(str, chopLength) {
   if (!str) {
-    return '';
+    return "";
   }
-  const extraText = str.split(' ').length > chopLength ? '...' : '';
+  const extraText = str.split(" ").length > chopLength ? "..." : "";
   let chopped = str
-    .split(' ')
+    .split(" ")
     .splice(0, chopLength)
-    .join(' ');
+    .join(" ");
   return `${chopped}${extraText}`;
 }
 
 // TODO: might be able to delete this
 export function getLinkPath(item) {
   const linkPath =
-    item._source.model.name === 'Collection' ? 'collections' : 'items';
+    item._source.model.name === "Collection" ? "collections" : "items";
   return `/${linkPath}/${item._id}`;
 }
 

@@ -20,14 +20,12 @@ $ yarn install
 ### Prerequisites for Development:
 
 - Running a local NULib `devstack` environment for Hyrax and the front-end:
-
-```
-devstack up donut glaze
-```
-
-- You must have collections and images (works + filesets) created in your local Hyrax instance **with visibility set to public**
+- Running a local instance of Hyrax (we call it Donut)
+  - You must have collections and images (works + filesets) created in your local Hyrax instance **with visibility set to public**
 
 ## Running a local development environment
+
+### Start Docker containers
 
 - Open a terminal tab, navigate to your local `donut` (https://github.com/nulib/donut) repository directory, and on the `deploy/staging` branch run
 
@@ -35,15 +33,25 @@ devstack up donut glaze
 devstack up donut glaze
 ```
 
-- In another terminal tab, navigate to your local `next-gen-front-end-react` repository directory, and run
+### Start Rails application
 
-### Run with local DONUT data
+- In another terminal tab, in the same `donut` repository and branch as above, run
+
+```
+bundle exec rails s
+```
+
+### Start the React front-end application
+
+- Open another terminal tab, navigate to your local `next-gen-front-end-react` repository directory, `checkout` the `deploy/staging` branch and run
+
+#### ...using local Donut data
 
 ```
 yarn start
 ```
 
-### Run with live staging data (instead of locally ingested data)
+#### ...using live data (instead of locally ingested data)
 
 ```bash
 start:use-real-data

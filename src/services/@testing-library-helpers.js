@@ -1,14 +1,14 @@
-import { render } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
-import { Router } from 'react-router-dom';
-import React from 'react';
+import { render } from "@testing-library/react";
+import { createMemoryHistory } from "history";
+import { Router } from "react-router-dom";
+import React from "react";
 
 // this is a handy function that I would utilize for any component
 // that relies on the router being in context
 export function renderWithRouter(
   ui,
   {
-    route = '/',
+    route = "/",
     history = createMemoryHistory({ initialEntries: [route] })
   } = {}
 ) {

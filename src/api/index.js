@@ -5,7 +5,7 @@ export async function getManifest(url) {
 
     return manifest;
   } catch (err) {
-    console.log('Error fetching manifest:', err);
+    console.log("Error fetching manifest:", err);
     return Promise.resolve({ error: err });
   }
 }

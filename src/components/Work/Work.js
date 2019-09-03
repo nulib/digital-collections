@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router';
-import { connect } from 'react-redux';
-import * as elasticsearchApi from '../../api/elasticsearch-api.js';
-import ErrorSection from '../UI/ErrorSection';
-import ItemDetail from '../../components/Work/ItemDetail';
-import * as elasticsearchParser from '../../services/elasticsearch-parser';
-import * as globalVars from '../../services/global-vars';
-import LoadingSpinner from '../UI/LoadingSpinner';
-import { shuffleArray } from '../../services/helpers';
-import ParentCollections from '../../components/Work/ParentCollections';
-import LargeFeature from '../../components/Work/LargeFeature';
-import { loadDataLayer } from '../../services/google-tag-manager';
-import { loadItemStructuredData } from '../../services/google-structured-data';
+import React, { Component } from "react";
+import { withRouter } from "react-router";
+import { connect } from "react-redux";
+import * as elasticsearchApi from "../../api/elasticsearch-api.js";
+import ErrorSection from "../UI/ErrorSection";
+import ItemDetail from "../../components/Work/ItemDetail";
+import * as elasticsearchParser from "../../services/elasticsearch-parser";
+import * as globalVars from "../../services/global-vars";
+import LoadingSpinner from "../UI/LoadingSpinner";
+import { shuffleArray } from "../../services/helpers";
+import ParentCollections from "../../components/Work/ParentCollections";
+import LargeFeature from "../../components/Work/LargeFeature";
+import { loadDataLayer } from "../../services/google-tag-manager";
+import { loadItemStructuredData } from "../../services/google-structured-data";
 
 export class Work extends Component {
   constructor(props) {
@@ -43,12 +43,12 @@ export class Work extends Component {
   }
 
   createBreadcrumbData(item) {
-    let crumbs = [{ title: 'Items', link: '/search' }];
+    let crumbs = [{ title: "Items", link: "/search" }];
 
     if (item) {
       crumbs.push({
         title: elasticsearchParser.getESTitle(item),
-        link: ''
+        link: ""
       });
     }
     return crumbs;
@@ -59,6 +59,7 @@ export class Work extends Component {
       adminSetId,
       4
     );
+
     return elasticsearchParser.prepPhotoGridItems(
       adminSetResponse,
       globalVars.IMAGE_MODEL
@@ -89,6 +90,7 @@ export class Work extends Component {
 
   async getCollections(item) {
     const { collection } = item;
+
     if (collection.length === 0) {
       return [];
     }
@@ -111,7 +113,7 @@ export class Work extends Component {
   }
 
   async getItem(id) {
-    let itemError = '';
+    let itemError = "";
     let itemResponse = await elasticsearchApi.getItem(id);
     const { error } = itemResponse;
 
@@ -129,12 +131,12 @@ export class Work extends Component {
       return this.handle404redirect();
     }
     // Restricted item
-    else if (itemResponse._source.visibility === 'restricted') {
+    else if (itemResponse._source.visibility === "restricted") {
       itemError = `The current item's visibility is restricted.`;
     }
     // Authenticated
     else if (
-      itemResponse._source.visibility === 'authenticated' &&
+      itemResponse._source.visibility === "authenticated" &&
       !this.props.auth.token
     ) {
       itemError = `The current item's visibility is restricted to logged in users.`;
@@ -157,7 +159,7 @@ export class Work extends Component {
   }
 
   handle404redirect(
-    message = 'There was an error retrieving the item, or the item id does not exist.'
+    message = "There was an error retrieving the item, or the item id does not exist."
   ) {
     this.props.history.push(globalVars.ROUTES.PAGE_NOT_FOUND.path, {
       message
@@ -167,14 +169,14 @@ export class Work extends Component {
   populateGTMDataLayer(item) {
     const rightsStatement = item.rights_statement
       ? item.rights_statement.label
-      : '';
+      : "";
     const creators = item.creator.map(creator => creator.label);
     const contributors = item.contributor.map(contributor => contributor.label);
 
     const dataLayer = {
-      adminset: item.admin_set.title.map(title => title).join(', '),
+      adminset: item.admin_set.title.map(title => title).join(", "),
       collections: item.collection.map(collection =>
-        collection.title.map(title => title).join(', ')
+        collection.title.map(title => title).join(", ")
       ),
       creatorsContributors: [...creators, ...contributors],
       pageTitle: elasticsearchParser.getESTitle(item),

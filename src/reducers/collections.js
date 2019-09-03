@@ -1,4 +1,4 @@
-import * as actionTypes from '../actions/types';
+import * as actionTypes from "../actions/types";
 
 export default function collections(state = {}, action) {
   switch (action.type) {

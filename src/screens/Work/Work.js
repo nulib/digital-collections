@@ -1,15 +1,16 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router';
-import { connect } from 'react-redux';
-import * as elasticsearchApi from '../../api/elasticsearch-api.js';
-import * as elasticsearchParser from '../../services/elasticsearch-parser';
-import OpenSeadragonContainer from './OpenSeadragonContainer';
-import { Helmet } from 'react-helmet';
-import { generateTitleTag } from '../../services/helpers';
-import { loadDataLayer } from '../../services/google-tag-manager';
-import { loadItemStructuredData } from '../../services/google-structured-data';
-import Work from '../../components/Work/Work';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import { withRouter } from "react-router";
+import { connect } from "react-redux";
+import * as elasticsearchApi from "../../api/elasticsearch-api.js";
+import * as elasticsearchParser from "../../services/elasticsearch-parser";
+import OpenSeadragonContainer from "./OpenSeadragonContainer";
+import { Helmet } from "react-helmet";
+import { generateTitleTag } from "../../services/helpers";
+import { loadDataLayer } from "../../services/google-tag-manager";
+import { loadItemStructuredData } from "../../services/google-structured-data";
+import Work from "../../components/Work/Work";
+import PropTypes from "prop-types";
+import ErrorBoundary from "../../components/UI/ErrorBoundary";
 
 export class ScreensWork extends Component {
   constructor(props) {
@@ -80,14 +81,14 @@ export class ScreensWork extends Component {
   populateGTMDataLayer(item) {
     const rightsStatement = item.rights_statement
       ? item.rights_statement.label
-      : '';
+      : "";
     const creators = item.creator.map(creator => creator.label);
     const contributors = item.contributor.map(contributor => contributor.label);
 
     const dataLayer = {
-      adminset: item.admin_set.title.map(title => title).join(', '),
+      adminset: item.admin_set.title.map(title => title).join(", "),
       collections: item.collection.map(collection =>
-        collection.title.map(title => title).join(', ')
+        collection.title.map(title => title).join(", ")
       ),
       creatorsContributors: [...creators, ...contributors],
       pageTitle: elasticsearchParser.getESTitle(item),
@@ -106,7 +107,7 @@ export class ScreensWork extends Component {
     // at this point of execution
     const idInSync = this.props.match.params.id === id;
 
-    const itemTitle = item ? elasticsearchParser.getESTitle(item) : '';
+    const itemTitle = item ? elasticsearchParser.getESTitle(item) : "";
 
     return (
       <div className="landing-page">
@@ -118,12 +119,14 @@ export class ScreensWork extends Component {
             </script>
           )}
         </Helmet>
-        {item && idInSync && !error && <OpenSeadragonContainer item={item} />}
-        <div id="page">
-          <main id="main-content" className="content" tabIndex="0">
-            <Work />
-          </main>
-        </div>
+        <ErrorBoundary>
+          {item && idInSync && !error && <OpenSeadragonContainer item={item} />}
+          <div id="page">
+            <main id="main-content" className="content" tabIndex="0">
+              <Work />
+            </main>
+          </div>
+        </ErrorBoundary>
       </div>
     );
   }

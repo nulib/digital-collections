@@ -1,5 +1,5 @@
-import * as actionTypes from './types';
-import * as elasticsearchApi from '../api/elasticsearch-api.js';
+import * as actionTypes from "./types";
+import * as elasticsearchApi from "../api/elasticsearch-api.js";
 
 /*
   Action creators

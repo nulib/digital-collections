@@ -1,32 +1,32 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router';
-import { Route, Switch } from 'react-router-dom';
-import { ReactiveBase } from '@appbaseio/reactivesearch';
-import { connect } from 'react-redux';
-import AboutScreen from './About/About';
-import ScreensCollectionList from './Collection/List';
-import ScreensContactUs from './ContactUs';
-import Footer from '../components/UI/Footer';
-import * as globalVars from '../services/global-vars';
-import Header from '../components/UI/Header/';
-import ScreensHome from './Home/Home';
-import ScreensWork from './Work/Work';
-import ScreensCollection from './Collection/Collection';
-import Default404 from './Default404';
-import NavContainer from '../components/UI/Nav/NavContainer';
-import Notifications from 'react-notify-toast';
-import ScreensSearch from './Search/Search';
-import '../Layout.css';
-import '../libs/nuwebcomm-scripts.js';
-import { fetchApiToken } from '../actions/auth';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import { withRouter } from "react-router";
+import { Route, Switch } from "react-router-dom";
+import { ReactiveBase } from "@appbaseio/reactivesearch";
+import { connect } from "react-redux";
+import AboutScreen from "./About/About";
+import ScreensCollectionList from "./Collection/List";
+import ScreensContactUs from "./ContactUs";
+import Footer from "../components/UI/Footer";
+import * as globalVars from "../services/global-vars";
+import Header from "../components/UI/Header/";
+import ScreensHome from "./Home/Home";
+import ScreensWork from "./Work/Work";
+import ScreensCollection from "./Collection/Collection";
+import Default404 from "./Default404";
+import NavContainer from "../components/UI/Nav/NavContainer";
+import Notifications from "react-notify-toast";
+import ScreensSearch from "./Search/Search";
+import "../Layout.css";
+import "../libs/nuwebcomm-scripts.js";
+import { fetchApiToken } from "../actions/auth";
+import PropTypes from "prop-types";
 
 const ReactiveBaseWrapper = props => {
   return (
     <ReactiveBase
       app="common"
-      url={globalVars.ELASTICSEARCH_PROXY_BASE + '/search/'}
-      headers={{ 'X-API-Token': props.apiToken }}
+      url={globalVars.ELASTICSEARCH_PROXY_BASE + "/search/"}
+      headers={{ "X-API-Token": props.apiToken }}
     >
       {props.children}
     </ReactiveBase>
@@ -54,7 +54,7 @@ export class Layout extends Component {
 
     // Delay rendering of component until the authToken has processed
     // This avoids 'double' rendering of the entire app's components
-    if (typeof apiToken === 'undefined') {
+    if (typeof apiToken === "undefined") {
       return null;
     }
 

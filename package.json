@@ -43,7 +43,7 @@
   },
   "lint-staged": {
     "src/**/*.{js,jsx,json,css}": [
-      "prettier --single-quote --write",
+      "prettier --write",
       "git add"
     ]
   },
@@ -58,8 +58,8 @@
     "build": "npm-run-all build-css build-js",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prettier": "prettier --single-quote --check src/**/*.js* src/**/*.css ./*.js ./*.json",
-    "prettier-fix": "prettier --single-quote --write src/**/*.js* src/**/*.css ./*.js ./*.json",
+    "prettier": "prettier --check src/**/*.js* src/**/*.css ./*.js ./*.json",
+    "prettier-fix": "prettier --write src/**/*.js* src/**/*.css ./*.js ./*.json",
     "ci": "react-scripts test --watchAll=false --coverage"
   },
   "devDependencies": {
