@@ -1,21 +1,21 @@
-import { ELASTICSEARCH_PROXY_BASE } from '../services/global-vars';
-import store from '../store';
+import { ELASTICSEARCH_PROXY_BASE } from "../services/global-vars";
+import store from "../store";
 
-const elasticsearch = require('elasticsearch');
+const elasticsearch = require("elasticsearch");
 const client = new elasticsearch.Client({
-  host: ELASTICSEARCH_PROXY_BASE + '/search'
+  host: ELASTICSEARCH_PROXY_BASE + "/search"
   //log: 'trace'
 });
 const PAGE_SIZE = 500;
 const getObjBase = {
-  index: 'common',
+  index: "common",
   headers: authHeader()
 };
 const sortKey = {
   sort: [
     {
       modified_date: {
-        order: 'desc'
+        order: "desc"
       }
     }
   ]
@@ -25,7 +25,7 @@ function authHeader(headers = {}) {
   let result = {};
   let state = store.getState();
   if (state.auth.token) {
-    result['Authorization'] = 'Bearer ' + state.auth.token;
+    result["Authorization"] = "Bearer " + state.auth.token;
   }
   return { ...headers, ...result };
 }
@@ -54,9 +54,9 @@ export async function getAdminSetItems(id, numResults = PAGE_SIZE) {
       query: {
         bool: {
           must: [
-            { match: { 'model.name': 'Image' } },
-            { match: { 'admin_set.id': id } },
-            { match: { 'collection.top_level': true } }
+            { match: { "model.name": "Image" } },
+            { match: { "admin_set.id": id } },
+            { match: { "collection.top_level": true } }
           ]
         }
       },
@@ -74,12 +74,12 @@ export async function getAllCollections(numResults = PAGE_SIZE) {
       query: {
         bool: {
           must: [
-            { match: { 'model.name': 'Collection' } },
+            { match: { "model.name": "Collection" } },
             {
               terms: {
-                'collection_type_idd.title.keyword': [
-                  'NUL Collection',
-                  'NUL Collections'
+                "collection_type_idd.title.keyword": [
+                  "NUL Collection",
+                  "NUL Collections"
                 ]
               }
             }
@@ -88,8 +88,8 @@ export async function getAllCollections(numResults = PAGE_SIZE) {
       },
       sort: [
         {
-          'title.primary.keyword': {
-            order: 'asc'
+          "title.primary.keyword": {
+            order: "asc"
           }
         }
       ]
@@ -99,14 +99,19 @@ export async function getAllCollections(numResults = PAGE_SIZE) {
 }
 
 export async function getCollection(id) {
-  const response = await client.get({
-    ...getObjBase,
-    ignore: [404],
-    type: '_all',
-    id: id
-  });
+  try {
+    const response = await client.get({
+      ...getObjBase,
+      ignore: [404],
+      type: "_all",
+      id: id
+    });
 
-  return response;
+    return response;
+  } catch (error) {
+    console.log("Error in elasticsearch-api.js > getCollection", error);
+    return Promise.resolve({ error });
+  }
 }
 
 export async function getCollectionsByKeyword(keyword, numResults = PAGE_SIZE) {
@@ -117,13 +122,13 @@ export async function getCollectionsByKeyword(keyword, numResults = PAGE_SIZE) {
       query: {
         bool: {
           must: [
-            { match: { 'model.name': 'Collection' } },
+            { match: { "model.name": "Collection" } },
             { match: { keyword: keyword } },
             {
               terms: {
-                'collection_type_idd.title.keyword': [
-                  'NUL Collection',
-                  'NUL Collections'
+                "collection_type_idd.title.keyword": [
+                  "NUL Collection",
+                  "NUL Collections"
                 ]
               }
             }
@@ -145,9 +150,9 @@ export async function getCollectionItems(id, numResults = PAGE_SIZE) {
       query: {
         bool: {
           must: [
-            { match: { 'model.name': 'Image' } },
-            { match: { 'collection.id': id } },
-            { match: { 'collection.top_level': true } }
+            { match: { "model.name": "Image" } },
+            { match: { "collection.id": id } },
+            { match: { "collection.top_level": true } }
           ]
         }
       },
@@ -162,19 +167,19 @@ export async function getItem(id) {
     const response = await client.get({
       ...getObjBase,
       ignore: [404], // Handle not found errors within the response itself
-      type: '_all',
+      type: "_all",
       id: id
     });
 
     return response;
   } catch (error) {
-    console.log('Error in getItem() in elasticsearch-api.js: ', error);
+    console.log("Error in getItem() in elasticsearch-api.js: ", error);
     const errorObject = {
       error: {
         reason:
           error.statusCode === 403
-            ? 'Authorized access only.'
-            : 'Unknown error getting Item',
+            ? "Authorized access only."
+            : "Unknown error getting Item",
         statusCode: error.statusCode || -1
       }
     };
@@ -192,7 +197,7 @@ export async function getRecentlyDigitizedItems(numResults = PAGE_SIZE) {
     body: {
       size: numResults,
       query: {
-        match: { 'model.name': 'Image' }
+        match: { "model.name": "Image" }
       },
       ...sortKey
     }
