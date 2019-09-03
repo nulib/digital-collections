@@ -1,4 +1,4 @@
-import store from '../store';
+import store from "../store";
 
 const dataLayer = window.dataLayer;
 
@@ -21,7 +21,7 @@ export function loadDataLayer({
     adminset,
     collections,
     creatorsContributors,
-    event: 'react-route-change',
+    event: "react-route-change",
     isLoggedIn: !!store.getState().auth.token,
     pageTitle,
     rightsStatement,

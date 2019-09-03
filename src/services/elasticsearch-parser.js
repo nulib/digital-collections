@@ -1,11 +1,11 @@
-import * as globalVars from './global-vars';
-import placeholderImage from '../images/book_placeholder.jpg';
+import * as globalVars from "./global-vars";
+import placeholderImage from "../images/book_placeholder.jpg";
 
 function constructCarouselItems(docs, modelType) {
   const iiifUrlKey =
     modelType === globalVars.COLLECTION_MODEL
-      ? 'thumbnail_iiif_url'
-      : 'representative_file_url'; // this may not hold true as we get other types...
+      ? "thumbnail_iiif_url"
+      : "representative_file_url"; // this may not hold true as we get other types...
 
   const items = docs.map(doc => {
     let obj = {
@@ -13,7 +13,7 @@ function constructCarouselItems(docs, modelType) {
       type: modelType,
       imageUrl: doc._source[iiifUrlKey]
         ? `${doc._source[iiifUrlKey]}${globalVars.IIIF_MEDIUM_ITEM_REGION}`
-        : '',
+        : "",
       label: getESTitle(doc._source),
       description: getESDescription(doc._source)
     };
@@ -43,7 +43,7 @@ export function extractCarouselData(elasticsearchResponse, modelType) {
 export function getESDescription(_source) {
   return _source.description && _source.description.length > 0
     ? _source.description[0]
-    : '';
+    : "";
 }
 
 /**
@@ -60,7 +60,7 @@ export function getESImagePath(
       ? _source.thumbnail_iiif_url
       : _source.representative_file_url;
 
-  const returnUrl = imgUrl === '' ? placeholderImage : `${imgUrl}${iiifParams}`;
+  const returnUrl = imgUrl === "" ? placeholderImage : `${imgUrl}${iiifParams}`;
   return returnUrl;
 }
 
@@ -71,20 +71,20 @@ export function getESImagePath(
  */
 export function getESTitle(_source) {
   if (!_source || !_source.title) {
-    return '';
+    return "";
   }
   const { title } = _source;
   let titleArray = title.primary.map((title, i) => {
     return i > 0 ? `, ${title}` : title;
   });
 
-  return titleArray.join('');
+  return titleArray.join("");
 }
 
 export function getIIIFUrlKey(modelType) {
   return modelType === globalVars.COLLECTION_MODEL
-    ? 'thumbnail_iiif_url'
-    : 'representative_file_url';
+    ? "thumbnail_iiif_url"
+    : "representative_file_url";
 }
 
 /**
@@ -107,7 +107,7 @@ export function prepPhotoGridItems(
     type: modelType,
     imageUrl: hit._source[iiifUrlKey]
       ? `${hit._source[iiifUrlKey]}${iiifParams}`
-      : '',
+      : "",
     label: getESTitle(hit._source),
     description: getESDescription(hit._source)
   }));
@@ -120,7 +120,7 @@ export function prepPhotoGridItems(
  */
 function getModelUriMap() {
   let modelUriMap = new Map();
-  modelUriMap.set('Image', 'images');
+  modelUriMap.set("Image", "images");
   return modelUriMap;
 }
 

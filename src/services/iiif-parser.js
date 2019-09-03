@@ -1,7 +1,7 @@
-import * as globalVars from './global-vars';
+import * as globalVars from "./global-vars";
 
 function buildDisplayIIIFUrl(rootUrl, iiifRegion) {
-  return rootUrl ? `${rootUrl}${iiifRegion}` : '';
+  return rootUrl ? `${rootUrl}${iiifRegion}` : "";
 }
 
 /**
@@ -20,7 +20,7 @@ export function constructCarouselItems(manifests) {
     };
     const iiifRootUrl = getIIIFRootUrl(manifest);
 
-    obj.id = manifest['@id'];
+    obj.id = manifest["@id"];
     obj.imageUrl = buildDisplayIIIFUrl(
       iiifRootUrl,
       globalVars.IIIF_SMALL_ITEM_REGION
@@ -41,9 +41,9 @@ function getIIIFRootUrl(manifest) {
 
   try {
     iiifRootUrl =
-      manifest.sequences[0].canvases[0].images[0].resource.service['@id'];
+      manifest.sequences[0].canvases[0].images[0].resource.service["@id"];
   } catch (err) {
-    iiifRootUrl = '';
+    iiifRootUrl = "";
   }
   return iiifRootUrl;
 }
@@ -57,7 +57,7 @@ export function getTileSources(manifest) {
 
   manifest.sequences[0].canvases.forEach(canvas => {
     if (canvas.images.length > 0 && canvas.images[0].resource) {
-      tileSources.push(canvas.images[0].resource.service['@id']);
+      tileSources.push(canvas.images[0].resource.service["@id"]);
     }
   });
 

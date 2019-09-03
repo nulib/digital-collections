@@ -1,19 +1,19 @@
-import React, { Component } from 'react';
-import Breadcrumbs from '../components/UI/Breadcrumbs/Breadcrumbs';
-import { generateTitleTag } from '../services/helpers';
-import { Helmet } from 'react-helmet';
-import { loadDataLayer } from '../services/google-tag-manager';
-import { ROUTES } from '../services/global-vars';
-import Mailto from 'react-protected-mailto';
-import { loadDefaultStructuredData } from '../services/google-structured-data';
+import React, { Component } from "react";
+import Breadcrumbs from "../components/UI/Breadcrumbs/Breadcrumbs";
+import { generateTitleTag } from "../services/helpers";
+import { Helmet } from "react-helmet";
+import { loadDataLayer } from "../services/google-tag-manager";
+import { ROUTES } from "../services/global-vars";
+import Mailto from "react-protected-mailto";
+import { loadDefaultStructuredData } from "../services/google-structured-data";
 
 const breadCrumbs = [
   {
-    title: 'Home',
-    link: '/'
+    title: "Home",
+    link: "/"
   },
   {
-    title: 'Contact Us'
+    title: "Contact Us"
   }
 ];
 
@@ -44,20 +44,20 @@ class ScreensContactUs extends Component {
 
             <p>
               Questions about digitization, description of items, or software
-              can be directed here.{' '}
+              can be directed here.{" "}
               <Mailto email="repository@northwestern.edu" />
             </p>
 
             <p>
               The content on the site comes from multiple library collections,
-              departments and units. Please visit{' '}
+              departments and units. Please visit{" "}
               <a
                 href="https://www.library.northwestern.edu/research/research-support/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 Research Support
-              </a>{' '}
+              </a>{" "}
               to find the contact information for the library department that
               can best offer research assistance.
             </p>

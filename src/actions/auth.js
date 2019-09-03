@@ -1,5 +1,5 @@
-import * as actionTypes from './types';
-import * as nulApi from '../services/nul-api.js';
+import * as actionTypes from "./types";
+import * as nulApi from "../services/nul-api.js";
 
 export function fetchApiTokenSuccess(payload) {
   return {

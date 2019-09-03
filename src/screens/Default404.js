@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import Breadcrumbs from '../components/UI/Breadcrumbs/Breadcrumbs';
-import { generateTitleTag } from '../services/helpers';
-import { Helmet } from 'react-helmet';
-import { loadDataLayer } from '../services/google-tag-manager';
-import { ROUTES } from '../services/global-vars';
-import { withRouter } from 'react-router-dom';
+import React, { Component } from "react";
+import Breadcrumbs from "../components/UI/Breadcrumbs/Breadcrumbs";
+import { generateTitleTag } from "../services/helpers";
+import { Helmet } from "react-helmet";
+import { loadDataLayer } from "../services/google-tag-manager";
+import { ROUTES } from "../services/global-vars";
+import { withRouter } from "react-router-dom";
 
 const breadCrumbs = [
   {
-    title: 'Home',
-    link: '/'
+    title: "Home",
+    link: "/"
   },
   {
     title: ROUTES.PAGE_NOT_FOUND.title
