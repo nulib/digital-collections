@@ -14,11 +14,19 @@ class GlobalSearch extends Component {
     }
   }
 
+  escapeDoubleQuotes(str) {
+    return str.replace(/["]+/g, '%5C"');
+  }
+
   handleSubmit = e => {
+    const { searchValue } = this.state;
+
     e.preventDefault();
     this.props.history.push({
       pathname: `/search`,
-      search: `?q="${this.state.searchValue.split(' ').join('+')}"`
+      search: `?q="${this.escapeDoubleQuotes(searchValue)
+        .split(' ')
+        .join('+')}"`
     });
   };
 
