@@ -1,18 +1,18 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { withRouter } from 'react-router';
-import { getESTitle } from '../../services/elasticsearch-parser';
-import { Helmet } from 'react-helmet';
-import { loadDataLayer } from '../../services/google-tag-manager';
-import Collection from '../../components/Collection/Collection';
-import * as elasticsearchApi from '../../api/elasticsearch-api.js';
-import { generateTitleTag } from '../../services/helpers';
-import { loadCollectionStructuredData } from '../../services/google-structured-data';
-import PropTypes from 'prop-types';
+import React, { useEffect, useRef, useState } from "react";
+import { withRouter } from "react-router";
+import { getESTitle } from "../../services/elasticsearch-parser";
+import { Helmet } from "react-helmet";
+import { loadDataLayer } from "../../services/google-tag-manager";
+import Collection from "../../components/Collection/Collection";
+import * as elasticsearchApi from "../../api/elasticsearch-api.js";
+import { generateTitleTag } from "../../services/helpers";
+import { loadCollectionStructuredData } from "../../services/google-structured-data";
+import PropTypes from "prop-types";
 
 const ScreensCollection = ({ location, match }) => {
-  const [collection, setCollection] = useState({});
+  const [collection, setCollection] = useState();
   const [structuredData, setStructuredData] = useState({});
-  const collectionTitle = useRef('');
+  const collectionTitle = useRef("");
 
   useEffect(() => {
     let mounted = true;
@@ -39,7 +39,7 @@ const ScreensCollection = ({ location, match }) => {
     return () => {
       mounted = false;
     };
-  }, [collection, match.params.id, location.pathname]);
+  }, [match.params.id, location.pathname]);
 
   function populateGTMDataLayer() {
     const dataLayer = {
