@@ -88,10 +88,8 @@ export const collectionDefaultQuery = collectionId => {
   return {
     query: {
       bool: {
-        must: [
-          { match: { "collection.id": collectionId } },
-          { match: { "collection.top_level": true } }
-        ]
+        must: { match: { "collection.id": collectionId } },
+        must_not: { match: { "collection.top_level": false } }
       }
     }
   };
