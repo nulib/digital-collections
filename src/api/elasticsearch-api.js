@@ -55,9 +55,9 @@ export async function getAdminSetItems(id, numResults = PAGE_SIZE) {
         bool: {
           must: [
             { match: { "model.name": "Image" } },
-            { match: { "admin_set.id": id } },
-            { match: { "collection.top_level": true } }
-          ]
+            { match: { "admin_set.id": id } }
+          ],
+          must_not: [{ match: { "collection.top_level": false } }]
         }
       },
       ...sortKey
@@ -151,9 +151,9 @@ export async function getCollectionItems(id, numResults = PAGE_SIZE) {
         bool: {
           must: [
             { match: { "model.name": "Image" } },
-            { match: { "collection.id": id } },
-            { match: { "collection.top_level": true } }
-          ]
+            { match: { "collection.id": id } }
+          ],
+          must_not: { match: { "collection.top_level": false } }
         }
       },
       ...sortKey
