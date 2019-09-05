@@ -10,7 +10,6 @@ import { loadCollectionStructuredData } from "../../services/google-structured-d
 import PropTypes from "prop-types";
 
 const ScreensCollection = ({ location, match }) => {
-  const [collection, setCollection] = useState();
   const [structuredData, setStructuredData] = useState({});
   const collectionTitle = useRef("");
 
@@ -24,11 +23,10 @@ const ScreensCollection = ({ location, match }) => {
         return;
       }
 
-      collectionTitle.current = getESTitle(collection);
+      collectionTitle.current = getESTitle(response._source);
       populateGTMDataLayer(response._source);
 
       if (mounted) {
-        setCollection(response._source);
         setStructuredData(
           loadCollectionStructuredData(response._source, location.pathname)
         );
