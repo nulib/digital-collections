@@ -1,14 +1,14 @@
-import React from 'react';
-import { BarLoader } from 'react-spinners';
-import { css } from '@emotion/core';
-import PropTypes from 'prop-types';
+import React from "react";
+import BarLoader from "react-spinners/BarLoader";
+import { css } from "@emotion/core";
+import PropTypes from "prop-types";
 
 const override = css`
   margin: 20px auto;
 `;
 
 const LoadingSpinner = props => {
-  return <BarLoader css={override} color={'#4e2a84'} loading={props.loading} />;
+  return <BarLoader css={override} color={"#4e2a84"} loading={props.loading} />;
 };
 
 LoadingSpinner.propTypes = {
