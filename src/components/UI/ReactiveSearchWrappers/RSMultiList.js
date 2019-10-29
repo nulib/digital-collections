@@ -1,18 +1,18 @@
-import React from 'react';
-import { MultiDropdownList } from '@appbaseio/reactivesearch';
-import PropTypes from 'prop-types';
+import React from "react";
+import { MultiDropdownList } from "@appbaseio/reactivesearch";
+import PropTypes from "prop-types";
 
 // Css class name helper
 const multiListInnerClass = {
-  title: 'rs-facet-title',
-  list: 'rs-facet-list',
-  label: 'rs-facet-label',
-  icon: 'rs-facet-icon'
+  title: "rs-facet-title",
+  list: "rs-facet-list",
+  label: "rs-facet-label",
+  icon: "rs-facet-icon"
 };
 
 const RSMultiList = props => {
-  const { allFilters, defaultVal = [], defaultQuery, facet, title } = props;
-  const facetNameNoSpaces = facet.name.replace(/\s+/g, '');
+  const { allFilters, defaultValue = [], defaultQuery, facet, title } = props;
+  const facetNameNoSpaces = facet.name.replace(/\s+/g, "");
   const filterList = allFilters.filter(entry => {
     return entry !== facetNameNoSpaces;
   });
@@ -21,7 +21,7 @@ const RSMultiList = props => {
     <MultiDropdownList
       componentId={facetNameNoSpaces}
       dataField={facet.field}
-      defaultVal={defaultVal}
+      defaultValue={defaultValue}
       defaultQuery={defaultQuery}
       innerClass={multiListInnerClass}
       missingLabel="None"
@@ -40,7 +40,7 @@ const RSMultiList = props => {
 
 RSMultiList.propTypes = {
   allFilters: PropTypes.array,
-  defaultVal: PropTypes.array,
+  defaultValue: PropTypes.array,
   defaultQuery: PropTypes.func,
   facet: PropTypes.object,
   title: PropTypes.string

@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   DataSearch,
   SelectedFilters,
   ReactiveList
-} from '@appbaseio/reactivesearch';
+} from "@appbaseio/reactivesearch";
 import {
   getESImagePath,
   getESTitle
-} from '../../services/elasticsearch-parser';
-import LoadingSpinner from '../UI/LoadingSpinner';
+} from "../../services/elasticsearch-parser";
+import LoadingSpinner from "../UI/LoadingSpinner";
 import {
   DATASEARCH_PLACEHOLDER,
   GLOBAL_SEARCH_BAR_COMPONENT_ID,
@@ -16,37 +16,60 @@ import {
   imageFilters,
   imagesOnlyDefaultQuery,
   simpleQueryStringQuery
-} from '../../services/reactive-search';
-import PhotoBox from '../UI/PhotoBox';
-import { withRouter } from 'react-router-dom';
-import { ROUTES } from '../../services/global-vars';
-import FacetsSidebar from '../UI/FacetsSidebar';
-import Breadcrumbs from '../UI/Breadcrumbs/Breadcrumbs';
-import { loadDataLayer } from '../../services/google-tag-manager';
-import FiltersShowHideButton from '../UI/FiltersShowHideButton';
-import { connect } from 'react-redux';
-import { searchValueChange } from '../../actions/search';
-import PropTypes from 'prop-types';
+} from "../../services/reactive-search";
+import PhotoBox from "../UI/PhotoBox";
+import { withRouter } from "react-router-dom";
+import { ROUTES } from "../../services/global-vars";
+import FacetsSidebar from "../UI/FacetsSidebar";
+import Breadcrumbs from "../UI/Breadcrumbs/Breadcrumbs";
+import { loadDataLayer } from "../../services/google-tag-manager";
+import FiltersShowHideButton from "../UI/FiltersShowHideButton";
+import { connect } from "react-redux";
+import { searchValueChange } from "../../actions/search";
+import PropTypes from "prop-types";
+import ReactRouterPropTypes from "react-router-prop-types";
 
 const breadcrumbs = [
-  { link: '/', title: 'Home' },
-  { link: '', title: 'Search Results' }
+  { link: "/", title: "Home" },
+  { link: "", title: "Search Results" }
 ];
 
 class Search extends Component {
+  constructor(props) {
+    super(props);
+    this.facetValue = "";
+    this.searchValue = "";
+  }
   static propTypes = {
+    location: ReactRouterPropTypes.location,
     searchValueChange: PropTypes.func.isRequired
   };
 
   state = {
     componentLoaded: false,
+    locationState: null,
     showSidebar: false
   };
 
   componentDidMount() {
     loadDataLayer({ pageTitle: ROUTES.SEARCH.title });
+    this.handleLocationState();
     this.setState({ componentLoaded: true });
   }
+
+  /**
+   * Runs when React Router "state" is sent into this component packaged with a link,
+   * or "history.push()" action into this component.  This info is then passed into
+   * the sidebar for some intro filtering.
+   */
+  handleLocationState = () => {
+    const { location } = this.props;
+
+    if (location.state) {
+      this.facetValue = location.state.facetValue;
+      this.searchValue = location.state.searchValue;
+    }
+  };
 
   handleDisplaySidebarClick = e => {
     e.preventDefault();
@@ -90,7 +113,7 @@ class Search extends Component {
 
         <main
           id="main-content"
-          className={`content ${!showSidebar ? 'extended' : ''}`}
+          className={`content ${!showSidebar ? "extended" : ""}`}
           tabIndex="-1"
         >
           <Breadcrumbs items={breadcrumbs} />
@@ -103,16 +126,16 @@ class Search extends Component {
             customQuery={simpleQueryStringQuery}
             componentId={GLOBAL_SEARCH_BAR_COMPONENT_ID}
             dataField={[
-              'full_text',
-              'all_titles',
-              'description',
-              'all_subjects'
+              "full_text",
+              "all_titles",
+              "description",
+              "all_subjects"
             ]}
             debounce={1000}
             filterLabel="Search"
             innerClass={{
-              input: 'searchbox rs-search-input',
-              list: 'suggestionlist'
+              input: "searchbox rs-search-input",
+              list: "suggestionlist"
             }}
             queryFormat="or"
             placeholder={DATASEARCH_PLACEHOLDER}
@@ -131,9 +154,9 @@ class Search extends Component {
             componentId="results"
             dataField="title.primary.keyword"
             innerClass={{
-              list: 'rs-result-list photo-grid four-grid',
-              pagination: 'rs-pagination',
-              resultsInfo: 'rs-results-info'
+              list: "rs-result-list photo-grid four-grid",
+              pagination: "rs-pagination",
+              resultsInfo: "rs-results-info"
             }}
             defaultQuery={imagesOnlyDefaultQuery}
             loader={<LoadingSpinner loading={true} />}
@@ -157,7 +180,7 @@ const mapDispatchToProps = dispatch => ({
   searchValueChange: value => dispatch(searchValueChange(value))
 });
 
-const ConnectedSearch = connect(
+export const ConnectedSearch = connect(
   null,
   mapDispatchToProps
 )(Search);
