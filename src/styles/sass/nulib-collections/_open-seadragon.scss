@@ -29,6 +29,48 @@ a.toolbar-controls {
   }
 }
 
+// Thumbnails
+.bottom-panel {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 110px;
+  z-index: 4;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+.thumbnail-view {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+.panel-listing-thumbs {
+  clear: both;
+  list-style: none;
+  padding: 0;
+  white-space: nowrap;
+  margin-top: 10px;
+  margin-bottom: 4px;
+
+  li {
+    box-sizing: border-box;
+    padding: 0 10px 0 10px;
+    display: inline-block;
+  }
+
+  img {
+    margin: 3px;
+    &:hover {
+      outline: 3px solid $nu-purple-30;
+      cursor: pointer;
+    }
+  }
+}
+
 @media screen and (max-width: 768px) {
   a.toolbar-controls {
     font-size: 1.25rem;

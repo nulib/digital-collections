@@ -1,19 +1,19 @@
-import React, { Component } from 'react';
-import OpenSeadragonViewer from '../../components/Work/OpenSeadragonViewer';
-import PropTypes from 'prop-types';
-import { getTileSources } from '../../services/iiif-parser';
-import { getManifest } from '../../api';
-import LoadingSpinner from '../../components/UI/LoadingSpinner';
-import { getESTitle } from '../../services/elasticsearch-parser';
+import React, { Component } from "react";
+import OpenSeadragonViewer from "../../components/Work/OpenSeadragon/Viewer";
+import PropTypes from "prop-types";
+import { getTileSources } from "../../services/iiif-parser";
+import { getManifest } from "../../api";
+import LoadingSpinner from "../../components/UI/LoadingSpinner";
+import { getESTitle } from "../../services/elasticsearch-parser";
 
 const styles = {
   spinner: {
-    padding: '50px 0'
+    padding: "50px 0"
   },
   wrapper: {
-    background: '#342f2e',
-    position: 'relative',
-    textAlign: 'center'
+    background: "#342f2e",
+    position: "relative",
+    textAlign: "center"
   }
 };
 
@@ -58,17 +58,17 @@ class OpenSeadragonContainer extends Component {
    * This also assumes that local DONUT instance is running on port 3000.
    */
   getEnvironmentManifestUrl(url) {
-    if (process.env.REACT_APP_LIVE_IIIF === 'true') {
+    if (process.env.REACT_APP_LIVE_IIIF === "true") {
       return url;
     }
 
     if (
-      process.env.NODE_ENV === 'development' ||
-      url.indexOf('http://devbox.library.northwestern.edu') > -1
+      process.env.NODE_ENV === "development" ||
+      url.indexOf("http://devbox.library.northwestern.edu") > -1
     ) {
-      const publicIndex = url.indexOf('/public');
+      const publicIndex = url.indexOf("/public");
       return (
-        url.slice(0, publicIndex) + ':3000' + url.slice(publicIndex, url.length)
+        url.slice(0, publicIndex) + ":3000" + url.slice(publicIndex, url.length)
       );
     }
     return url;

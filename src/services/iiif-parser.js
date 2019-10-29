@@ -48,6 +48,11 @@ function getIIIFRootUrl(manifest) {
   return iiifRootUrl;
 }
 
+/**
+ * Extract tile source urls from a IIIF manifest
+ * @param {object} manifest
+ * @returns {array}
+ */
 export function getTileSources(manifest) {
   let tileSources = [];
 
@@ -57,7 +62,10 @@ export function getTileSources(manifest) {
 
   manifest.sequences[0].canvases.forEach(canvas => {
     if (canvas.images.length > 0 && canvas.images[0].resource) {
-      tileSources.push(canvas.images[0].resource.service["@id"]);
+      tileSources.push({
+        id: canvas.images[0].resource.service["@id"],
+        label: canvas.label
+      });
     }
   });
 

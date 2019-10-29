@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
-import OpenSeadragon from 'openseadragon';
-import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { MOBILE_BREAKPOINT } from '../../services/global-vars';
-import withSizes from 'react-sizes';
+import React, { Component } from "react";
+import OpenSeadragon from "openseadragon";
+import PropTypes from "prop-types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { MOBILE_BREAKPOINT } from "../../../services/global-vars";
+import withSizes from "react-sizes";
+import WorkOpenSeadragonThumbnails from "./Thumbnails";
 
 class OpenSeadragonViewer extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class OpenSeadragonViewer extends Component {
   }
 
   static propTypes = {
+    isMobile: PropTypes.bool,
     itemTitle: PropTypes.string,
     rightsStatement: PropTypes.object,
     tileSources: PropTypes.array
@@ -23,17 +25,17 @@ class OpenSeadragonViewer extends Component {
 
   componentDidMount() {
     let { tileSources } = this.props;
-    this.loadOpenSeadragon(tileSources);
+    this.loadOpenSeadragon(tileSources.map(t => t.id));
   }
 
   componentWillUnmount() {
-    this.openSeadragonInstance.removeHandler('open');
+    this.openSeadragonInstance.removeHandler("open");
   }
 
   buildDownloadLink = obj => {
     // TODO: Figure out a better way to find the event which fires when this is ready
     setTimeout(() => {
-      let img = this.openSeadragonInstance.drawer.canvas.toDataURL('image/png');
+      let img = this.openSeadragonInstance.drawer.canvas.toDataURL("image/png");
       this.setState({ downloadLink: img });
     }, 3000);
   };
@@ -42,33 +44,33 @@ class OpenSeadragonViewer extends Component {
     const { rightsStatement } = this.props;
 
     return (
-      rightsStatement.hasOwnProperty('uri') &&
-      rightsStatement.uri === 'http://rightsstatements.org/vocab/NoC-US/1.0/'
+      rightsStatement.hasOwnProperty("uri") &&
+      rightsStatement.uri === "http://rightsstatements.org/vocab/NoC-US/1.0/"
     );
   }
 
   loadOpenSeadragon(tileSources = []) {
     const customControlIds = {
-      zoomInButton: 'zoom-in',
-      zoomOutButton: 'zoom-out',
-      homeButton: 'home',
-      fullPageButton: 'full-page',
-      nextButton: 'next',
-      previousButton: 'previous'
+      zoomInButton: "zoom-in",
+      zoomOutButton: "zoom-out",
+      homeButton: "home",
+      fullPageButton: "full-page",
+      nextButton: "next",
+      previousButton: "previous"
     };
 
     this.openSeadragonInstance = OpenSeadragon({
-      id: 'openseadragon1',
-      crossOriginPolicy: 'use-credentials',
+      id: "openseadragon1",
+      crossOriginPolicy: "use-credentials",
       loadTilesWithAjax: true,
       ajaxWithCredentials: true,
       preserveViewport: true,
       defaultZoomLevel: 0,
-      referenceStripScroll: 'vertical',
+      referenceStripScroll: "vertical",
       sequenceMode: true,
       showNavigator: true,
-      showReferenceStrip: true,
-      toolbar: 'toolbarDiv',
+      showReferenceStrip: false,
+      toolbar: "toolbarDiv",
       tileSources,
       visibilityRatio: 1,
       gestureSettingsMouse: {
@@ -81,13 +83,20 @@ class OpenSeadragonViewer extends Component {
     });
 
     // Event listener for when OpenSeadragon's file are 'ready'
-    this.openSeadragonInstance.addHandler('open', this.buildDownloadLink);
+    this.openSeadragonInstance.addHandler("open", this.buildDownloadLink);
   }
+
+  handleThumbClick = id => {
+    const clickedIndex = this.props.tileSources.findIndex(
+      element => element.id === id
+    );
+    this.openSeadragonInstance.goToPage(clickedIndex);
+  };
 
   render() {
     const { downloadLink } = this.state;
-    const downloadTitle = `${this.props.itemTitle.split(' ').join('-')}.png`;
-    const { isMobile } = this.props;
+    const downloadTitle = `${this.props.itemTitle.split(" ").join("-")}.png`;
+    const { isMobile, tileSources } = this.props;
 
     return (
       <div>
@@ -141,6 +150,13 @@ class OpenSeadragonViewer extends Component {
         </div>
 
         <div id="openseadragon1" className="open-seadragon-container" />
+
+        {tileSources.length > 1 && (
+          <WorkOpenSeadragonThumbnails
+            onThumbClick={this.handleThumbClick}
+            tileSources={tileSources}
+          />
+        )}
       </div>
     );
   }
