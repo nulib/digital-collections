@@ -1,27 +1,27 @@
-import React from 'react';
-import * as elasticSearchParser from '../../services/elasticsearch-parser';
-import ButtonRow from './DetailSummary/ButtonRow';
-import SocialLinks from './DetailSummary/SocialLinks';
-import DownloadRow from './DetailSummary/DownloadRow';
-import PropTypes from 'prop-types';
-import { chopString } from '../../services/helpers';
-import IIIFDraggable from './IIIFDraggable';
-import { MOBILE_BREAKPOINT } from '../../services/global-vars';
-import withSizes from 'react-sizes';
+import React from "react";
+import * as elasticSearchParser from "../../services/elasticsearch-parser";
+import ButtonRow from "./DetailSummary/ButtonRow";
+import SocialLinks from "./DetailSummary/SocialLinks";
+import DownloadRow from "./DetailSummary/DownloadRow";
+import PropTypes from "prop-types";
+import { chopString } from "../../services/helpers";
+import IIIFDraggable from "./IIIFDraggable";
+import { MOBILE_BREAKPOINT } from "../../services/global-vars";
+import withSizes from "react-sizes";
 
 const LargeFeature = props => {
   const { isMobile, item } = props;
   const title = elasticSearchParser.getESTitle(item);
   const description =
-    elasticSearchParser.getESDescription(item) || 'No description provided.';
+    elasticSearchParser.getESDescription(item) || "No description provided.";
 
   const styles = {
     paddedBlock: {
-      marginBottom: '1em'
+      marginBottom: "1em"
     },
     subhead: {
-      display: 'block',
-      fontFamily: 'Akkurat Pro Bold,Arial Black,sans-serif'
+      display: "block",
+      fontFamily: "Akkurat Pro Bold,Arial Black,sans-serif"
     }
   };
 
@@ -46,7 +46,8 @@ const LargeFeature = props => {
             <SocialLinks item={item} />
           </div>
 
-          {!isMobile && <DownloadRow item={item} />}
+          {/* Removing this until we support a "Download All" feature which downloads all filesets in a work, and not just the first fileset */}
+          {/* {!isMobile && <DownloadRow item={item} />} */}
 
           <IIIFDraggable iiifManifest={item.iiif_manifest} />
         </div>
