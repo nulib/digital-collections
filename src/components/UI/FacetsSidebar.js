@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import RSMultiList from './ReactiveSearchWrappers/RSMultiList';
-import { withRouter } from 'react-router-dom';
-import { ROUTES } from '../../services/global-vars';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import RSMultiList from "./ReactiveSearchWrappers/RSMultiList";
+import { withRouter } from "react-router-dom";
+import { ROUTES } from "../../services/global-vars";
 import {
   imagesOnlyDefaultQuery,
   collectionDefaultQuery
-} from '../../services/reactive-search';
+} from "../../services/reactive-search";
 
 class FacetsSidebar extends Component {
   static propTypes = {
@@ -40,24 +40,24 @@ class FacetsSidebar extends Component {
       <div
         aria-label="section navigation menu"
         aria-hidden={!showSidebar}
-        className={`facets-sidebar ${!showSidebar ? 'collapsed' : ''}`}
+        className={`facets-sidebar ${!showSidebar ? "collapsed" : ""}`}
         tabIndex="-1"
       >
         <div
           className={`facet-sidebar-content-wrapper ${
-            !showSidebar ? 'hidden' : ''
+            !showSidebar ? "hidden" : ""
           }`}
         >
           <h2>Filter By</h2>
           {facets.map(facet => {
-            let defaultVal =
+            let defaultValue =
               facetValue && facetValue === facet.name ? [searchValue] : [];
 
             return (
               <RSMultiList
                 key={facet.name}
                 allFilters={filters}
-                defaultVal={defaultVal}
+                defaultValue={defaultValue}
                 defaultQuery={
                   this.isSearchPage()
                     ? imagesOnlyDefaultQuery

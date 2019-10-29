@@ -69,3 +69,12 @@ export function generateTitleTag(title) {
 export function getPrimoLink(catalogKey) {
   return `https://search.library.northwestern.edu/primo-explore/search?field=any&query=any,contains,${catalogKey}&query=&institution=01NWU&vid=NULVNEW&search_scope=NWU`;
 }
+
+/**
+ * Escape double quotes (which may interfere with Search queries)
+ * @param {string} str
+ * @returns {string}
+ */
+export function escapeDoubleQuotes(str) {
+  return str.replace(/["]+/g, '%5C"');
+}

@@ -1,10 +1,18 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { escapeDoubleQuotes } from "../../../services/helpers";
+import PropTypes from "prop-types";
+import ReactRouterPropTypes from "react-router-prop-types";
 
 class GlobalSearch extends Component {
+  static propTypes = {
+    history: ReactRouterPropTypes.history,
+    search: PropTypes.object
+  };
+
   state = {
-    searchValue: ''
+    searchValue: ""
   };
 
   componentDidUpdate(prevProps) {
@@ -14,19 +22,15 @@ class GlobalSearch extends Component {
     }
   }
 
-  escapeDoubleQuotes(str) {
-    return str.replace(/["]+/g, '%5C"');
-  }
-
   handleSubmit = e => {
     const { searchValue } = this.state;
 
     e.preventDefault();
     this.props.history.push({
       pathname: `/search`,
-      search: `?q="${this.escapeDoubleQuotes(searchValue)
-        .split(' ')
-        .join('+')}"`
+      search: `?q="${escapeDoubleQuotes(searchValue)
+        .split(" ")
+        .join("+")}"`
     });
   };
 
