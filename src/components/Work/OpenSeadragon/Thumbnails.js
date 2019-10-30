@@ -1,7 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const WorkOpenSeadragonThumbnails = ({ tileSources = [], onThumbClick }) => {
+const WorkOpenSeadragonThumbnails = ({
+  currentTileSource,
+  tileSources = [],
+  onThumbClick
+}) => {
   return (
     <div
       data-testid="open-seadragon-thumbnails-container"
@@ -15,6 +19,11 @@ const WorkOpenSeadragonThumbnails = ({ tileSources = [], onThumbClick }) => {
               data-testid="fileset-thumbnail"
               onClick={() => onThumbClick(t.id)}
               aria-label="Thumbnail"
+              className={
+                currentTileSource && currentTileSource.id === t.id
+                  ? "active"
+                  : ""
+              }
             >
               <img
                 src={`${t.id}/square/70,70/0/default.jpg`}
@@ -30,6 +39,7 @@ const WorkOpenSeadragonThumbnails = ({ tileSources = [], onThumbClick }) => {
 };
 
 WorkOpenSeadragonThumbnails.propTypes = {
+  currentTileSource: PropTypes.object,
   onThumbClick: PropTypes.func,
   tileSources: PropTypes.array
 };
