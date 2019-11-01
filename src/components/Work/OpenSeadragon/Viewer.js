@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MOBILE_BREAKPOINT } from "../../../services/global-vars";
 import withSizes from "react-sizes";
 import WorkOpenSeadragonThumbnails from "./Thumbnails";
+import WorkOpenSeadragonTopBar from "./TopBar";
 
 class OpenSeadragonViewer extends Component {
   constructor(props) {
@@ -20,11 +21,13 @@ class OpenSeadragonViewer extends Component {
   };
 
   state = {
+    currentTileSource: null,
     downloadLink: null
   };
 
   componentDidMount() {
     let { tileSources } = this.props;
+    this.setState({ currentTileSource: tileSources[0] });
     this.loadOpenSeadragon(tileSources.map(t => t.id));
   }
 
@@ -64,11 +67,16 @@ class OpenSeadragonViewer extends Component {
       crossOriginPolicy: "use-credentials",
       loadTilesWithAjax: true,
       ajaxWithCredentials: true,
-      preserveViewport: true,
       defaultZoomLevel: 0,
+      navigatorPosition: "ABSOLUTE",
+      navigatorTop: "30px",
+      navigatorLeft: "40px",
+      navigatorHeight: "200px",
+      navigatorWidth: "260px",
+      preserveViewport: true,
       referenceStripScroll: "vertical",
       sequenceMode: true,
-      showNavigator: true,
+      showNavigator: !this.props.isMobile,
       showReferenceStrip: false,
       toolbar: "toolbarDiv",
       tileSources,
@@ -86,15 +94,25 @@ class OpenSeadragonViewer extends Component {
     this.openSeadragonInstance.addHandler("open", this.buildDownloadLink);
   }
 
-  handleThumbClick = id => {
-    const clickedIndex = this.props.tileSources.findIndex(
-      element => element.id === id
-    );
-    this.openSeadragonInstance.goToPage(clickedIndex);
+  handleFilesetSelectChange = e => {
+    console.log("e.target.value", e.target.value);
+    this.loadNewFileset(e.target.value);
   };
 
+  handleThumbClick = id => {
+    this.loadNewFileset(id);
+  };
+
+  loadNewFileset(id) {
+    const { tileSources } = this.props;
+    const index = tileSources.findIndex(element => element.id === id);
+
+    this.setState({ currentTileSource: tileSources[index] });
+    this.openSeadragonInstance.goToPage(index);
+  }
+
   render() {
-    const { downloadLink } = this.state;
+    const { currentTileSource, downloadLink } = this.state;
     const downloadTitle = `${this.props.itemTitle.split(" ").join("-")}.png`;
     const { isMobile, tileSources } = this.props;
 
@@ -149,10 +167,19 @@ class OpenSeadragonViewer extends Component {
           </a>
         </div>
 
+        {tileSources.length > 1 && (
+          <WorkOpenSeadragonTopBar
+            currentTileSource={currentTileSource}
+            onFileSetChange={this.handleFilesetSelectChange}
+            tileSources={tileSources}
+          />
+        )}
+
         <div id="openseadragon1" className="open-seadragon-container" />
 
         {tileSources.length > 1 && (
           <WorkOpenSeadragonThumbnails
+            currentTileSource={currentTileSource}
             onThumbClick={this.handleThumbClick}
             tileSources={tileSources}
           />
