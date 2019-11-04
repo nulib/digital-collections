@@ -1,7 +1,8 @@
 import React from "react";
-import { render } from "@testing-library/react";
-import WorkOpenSeadragonTopBar from "./TopBar";
+import { render, fireEvent } from "@testing-library/react";
+import WorkOpenSeadragonFilesetSelect from "./FilesetSelect";
 
+const mockOnFileSetChange = jest.fn();
 const tileSources = [
   {
     id: "https://iiif.stack.rdc.library.northwestern.edu/1",
@@ -17,20 +18,19 @@ const tileSources = [
   }
 ];
 
-const mockOnFileSetChange = jest.fn();
-
-describe("WorkOpenSeadragonTopBar component", () => {
-  function setUpTest() {
-    return render(
-      <WorkOpenSeadragonTopBar
-        tileSources={tileSources}
-        onFileSetChange={mockOnFileSetChange}
-        currentTileSource={tileSources[1]}
-      />
-    );
+describe("WorkOpenSeadragonFilesetSelect", () => {
+  function setUpTest(
+    props = {
+      currentTileSource: tileSources[1],
+      onFileSetChange: mockOnFileSetChange,
+      tileSources
+    }
+  ) {
+    return render(<WorkOpenSeadragonFilesetSelect {...props} />);
   }
+
   it("renders without crashing", () => {
-    const { container } = setUpTest();
+    const { container } = render(<WorkOpenSeadragonFilesetSelect />);
     expect(container).toBeTruthy();
   });
 
@@ -46,10 +46,9 @@ describe("WorkOpenSeadragonTopBar component", () => {
     expect(select.children.length).toEqual(3);
   });
 
-  it("renders tile source label for currently selecred tile source", () => {
+  it("calls back a function when select value changes", () => {
     const { getByTestId } = setUpTest();
-    const labelEl = getByTestId("fileset-label");
-    expect(labelEl).toBeInTheDocument();
-    expect(labelEl.innerHTML).toEqual("Fileset 2");
+    fireEvent.change(getByTestId("filesets-select"));
+    expect(mockOnFileSetChange).toHaveBeenCalled();
   });
 });
