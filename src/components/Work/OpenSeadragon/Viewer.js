@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import OpenSeadragon from "openseadragon";
 import PropTypes from "prop-types";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MOBILE_BREAKPOINT } from "../../../services/global-vars";
 import withSizes from "react-sizes";
 import WorkOpenSeadragonThumbnails from "./Thumbnails";
-import WorkOpenSeadragonTopBar from "./TopBar";
+import WorkOpenSeadragonToolBar from "./Toolbar";
+import WorkOpenSeadragonFilesetSelect from "./FilesetSelect";
 
 class OpenSeadragonViewer extends Component {
   constructor(props) {
@@ -27,15 +27,17 @@ class OpenSeadragonViewer extends Component {
 
   componentDidMount() {
     let { tileSources } = this.props;
+
     this.setState({ currentTileSource: tileSources[0] });
     this.loadOpenSeadragon(tileSources.map(t => t.id));
   }
 
   componentWillUnmount() {
     this.openSeadragonInstance.removeHandler("open");
+    this.openSeadragonInstance.removeHandler("page");
   }
 
-  buildDownloadLink = obj => {
+  buildDownloadLink = () => {
     // TODO: Figure out a better way to find the event which fires when this is ready
     setTimeout(() => {
       let img = this.openSeadragonInstance.drawer.canvas.toDataURL("image/png");
@@ -63,13 +65,19 @@ class OpenSeadragonViewer extends Component {
     };
 
     this.openSeadragonInstance = OpenSeadragon({
-      id: "openseadragon1",
-      crossOriginPolicy: "use-credentials",
-      loadTilesWithAjax: true,
       ajaxWithCredentials: true,
+      crossOriginPolicy: "use-credentials",
       defaultZoomLevel: 0,
+      gestureSettingsMouse: {
+        scrollToZoom: false,
+        clickToZoom: true,
+        dblClickToZoom: true,
+        pinchToZoom: true
+      },
+      id: "openseadragon1",
+      loadTilesWithAjax: true,
       navigatorPosition: "ABSOLUTE",
-      navigatorTop: "30px",
+      navigatorTop: "100px",
       navigatorLeft: "40px",
       navigatorHeight: "200px",
       navigatorWidth: "260px",
@@ -81,26 +89,25 @@ class OpenSeadragonViewer extends Component {
       toolbar: "toolbarDiv",
       tileSources,
       visibilityRatio: 1,
-      gestureSettingsMouse: {
-        scrollToZoom: false,
-        clickToZoom: true,
-        dblClickToZoom: true,
-        pinchToZoom: true
-      },
       ...customControlIds
     });
 
     // Event listener for when OpenSeadragon's file are 'ready'
     this.openSeadragonInstance.addHandler("open", this.buildDownloadLink);
+
+    this.openSeadragonInstance.addHandler("page", this.handleToolbarPageClick);
   }
 
   handleFilesetSelectChange = e => {
-    console.log("e.target.value", e.target.value);
     this.loadNewFileset(e.target.value);
   };
 
   handleThumbClick = id => {
     this.loadNewFileset(id);
+  };
+
+  handleToolbarPageClick = ({ page }) => {
+    this.setState({ currentTileSource: this.props.tileSources[page] });
   };
 
   loadNewFileset(id) {
@@ -112,70 +119,31 @@ class OpenSeadragonViewer extends Component {
   }
 
   render() {
-    const { currentTileSource, downloadLink } = this.state;
-    const downloadTitle = `${this.props.itemTitle.split(" ").join("-")}.png`;
-    const { isMobile, tileSources } = this.props;
+    const { currentTileSource } = this.state;
+    const { isMobile, itemTitle, tileSources } = this.props;
 
     return (
       <div>
-        <div id="toolbarDiv" className="toolbar">
-          <a
-            id="zoom-in"
-            href="#zoom-in"
-            className="toolbar-controls"
-            title="Zoom In"
-          >
-            <FontAwesomeIcon icon="search-plus" />
-          </a>
-          <a
-            id="zoom-out"
-            href="#zoom-out"
-            className="toolbar-controls"
-            title="Zoom Out"
-          >
-            <FontAwesomeIcon icon="search-minus" />
-          </a>
-          <a
-            id="full-page"
-            href="#full-page"
-            className="toolbar-controls"
-            title="Full Screen"
-          >
-            <FontAwesomeIcon icon="expand" />
-          </a>
+        <div className="open-seadgragon-top-bar-wrapper">
+          <div className="open-seadgragon-top-bar">
+            <WorkOpenSeadragonFilesetSelect
+              currentTileSource={currentTileSource}
+              onFileSetChange={this.handleFilesetSelectChange}
+              tileSources={tileSources}
+            />
 
-          {!isMobile && this.canDownloadFullSize() && (
-            <a
-              href={downloadLink || `#`}
-              className="toolbar-controls"
-              download={downloadTitle}
-              title="Download Image"
-            >
-              <FontAwesomeIcon icon="download" />
-            </a>
-          )}
-          <a
-            id="previous"
-            href="#previous"
-            className="toolbar-controls"
-            title="Previous"
-          >
-            <FontAwesomeIcon icon="arrow-circle-left" />
-          </a>
-          <a id="next" href="#next" className="toolbar-controls" title="Next">
-            <FontAwesomeIcon icon="arrow-circle-right" />
-          </a>
+            <div id="toolbarDiv" className="toolbar">
+              <WorkOpenSeadragonToolBar
+                canDownloadFullSize={this.canDownloadFullSize()}
+                downloadLink={this.buildDownloadLink()}
+                isMobile={isMobile}
+                itemTitle={itemTitle}
+              />
+            </div>
+          </div>
         </div>
 
-        {tileSources.length > 1 && (
-          <WorkOpenSeadragonTopBar
-            currentTileSource={currentTileSource}
-            onFileSetChange={this.handleFilesetSelectChange}
-            tileSources={tileSources}
-          />
-        )}
-
-        <div id="openseadragon1" className="open-seadragon-container" />
+        <div id="openseadragon1" className="open-seadragon-container"></div>
 
         {tileSources.length > 1 && (
           <WorkOpenSeadragonThumbnails
