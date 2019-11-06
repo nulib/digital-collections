@@ -6,7 +6,7 @@ const WorkOpenSeadragonFilesetSelect = ({
   onFileSetChange,
   tileSources = []
 }) => {
-  if (!currentTileSource) return null;
+  if (!currentTileSource || tileSources.length < 2) return null;
 
   return (
     <form className="web-form open-seadgragon-fileset-select-form">

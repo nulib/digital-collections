@@ -97,6 +97,10 @@ a.toolbar-controls {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    &.centered {
+      justify-content: center;
+    }
   }
 
   @media screen and (max-width: 768px) {
