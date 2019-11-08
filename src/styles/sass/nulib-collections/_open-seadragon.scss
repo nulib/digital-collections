@@ -53,8 +53,9 @@ a.toolbar-controls {
   margin-bottom: 4px;
 
   .active-thumb {
-    outline: 3px solid $nu-purple-30;
+    outline: 8px solid $light-grey;
     cursor: pointer;
+    transition: outline 0.2s ease-in-out;
   }
 
   li {
@@ -70,7 +71,7 @@ a.toolbar-controls {
   }
 
   img {
-    margin: 3px;
+    margin: 8px;
     &:hover {
       @extend .active-thumb;
     }
@@ -80,7 +81,7 @@ a.toolbar-controls {
 // Top bar which contains fileset title and select element
 .open-seadgragon-top-bar-wrapper {
   font-size: 1rem;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.5);
   color: $light-grey2;
   position: absolute;
   z-index: 10;
