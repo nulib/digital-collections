@@ -6,7 +6,9 @@ const WorkOpenSeadragonFilesetSelect = ({
   onFileSetChange,
   tileSources = []
 }) => {
-  if (!currentTileSource || tileSources.length < 2) return null;
+  const tileSourcesCount = tileSources.length;
+
+  if (!currentTileSource || tileSourcesCount < 2) return null;
 
   return (
     <form className="web-form open-seadgragon-fileset-select-form">
@@ -17,7 +19,7 @@ const WorkOpenSeadragonFilesetSelect = ({
       >
         {tileSources.map((t, index) => (
           <option key={t.id} value={t.id}>
-            {`page ${index + 1}: ${t.label}`}
+            {`${index + 1} of ${tileSourcesCount}: ${t.label}`}
           </option>
         ))}
       </select>

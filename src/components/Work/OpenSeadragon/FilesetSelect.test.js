@@ -46,6 +46,18 @@ describe("WorkOpenSeadragonFilesetSelect", () => {
     expect(select.children.length).toEqual(3);
   });
 
+  it("renders the right information in select options", () => {
+    const { getByTestId } = setUpTest();
+    const select = getByTestId("filesets-select");
+    const options = select.children;
+
+    expect(options[1].value).toEqual(tileSources[1].id);
+    expect(options[1].innerHTML).toEqual(`2 of 3: ${tileSources[1].label}`);
+
+    expect(options[2].value).toEqual(tileSources[2].id);
+    expect(options[2].innerHTML).toEqual(`3 of 3: ${tileSources[2].label}`);
+  });
+
   it("calls back a function when select value changes", () => {
     const { getByTestId } = setUpTest();
     fireEvent.change(getByTestId("filesets-select"));
