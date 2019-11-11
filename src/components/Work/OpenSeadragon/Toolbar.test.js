@@ -24,16 +24,9 @@ describe("WorkOpenSeadragonToolbar component", () => {
     expect(getByTestId("zoom-in")).toBeInTheDocument();
     expect(getByTestId("zoom-out")).toBeInTheDocument();
     expect(getByTestId("full-page")).toBeInTheDocument();
-    expect(queryByTestId("full-size-download")).not.toBeInTheDocument();
+    expect(queryByTestId("download")).toBeInTheDocument();
     expect(getByTestId("previous")).toBeInTheDocument();
     expect(getByTestId("next")).toBeInTheDocument();
-  });
-
-  it("renders a conditional full size download link", () => {
-    const { getByTestId } = setUpTest({
-      canDownloadFullSize: true
-    });
-    expect(getByTestId("full-size-download")).toBeInTheDocument();
   });
 
   it("Does not render a download link on mobile", () => {
