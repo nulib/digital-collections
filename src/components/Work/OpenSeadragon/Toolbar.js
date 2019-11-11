@@ -4,11 +4,13 @@ import PropTypes from "prop-types";
 
 const WorkOpenSeadragonToolbar = ({
   canDownloadFullSize,
-  downloadLink = "",
   isMobile,
-  itemTitle = ""
+  onDownloadClick
 }) => {
-  const downloadTitle = `${itemTitle.split(" ").join("-")}.png`;
+  function handleDownloadClick(e) {
+    e.preventDefault();
+    onDownloadClick();
+  }
 
   return (
     <>
@@ -40,13 +42,13 @@ const WorkOpenSeadragonToolbar = ({
         <FontAwesomeIcon icon="expand" />
       </a>
 
-      {!isMobile && canDownloadFullSize && (
+      {!isMobile && (
         <a
-          data-testid="full-size-download"
-          href={downloadLink || `#`}
+          data-testid="download"
+          href={`#nothing`}
           className="toolbar-controls"
-          download={downloadTitle}
           title="Download Image"
+          onClick={handleDownloadClick}
         >
           <FontAwesomeIcon icon="download" />
         </a>
@@ -75,9 +77,8 @@ const WorkOpenSeadragonToolbar = ({
 
 WorkOpenSeadragonToolbar.propTypes = {
   canDownloadFullSize: PropTypes.bool,
-  downloadLink: PropTypes.string,
   isMobile: PropTypes.bool,
-  itemTitle: PropTypes.string
+  onDownloadClick: PropTypes.func
 };
 
 export default WorkOpenSeadragonToolbar;

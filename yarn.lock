@@ -1222,6 +1222,11 @@
   resolved "https://registry.yarnpkg.com/@nulib/prettier-config/-/prettier-config-1.2.0.tgz#c514ba973b18876935036a1998e5663b761cad2e"
   integrity sha512-TvNrkmyaqKiN2dkpkQG302qE0v91NPprFs+By3GpOyGHJ8cZHFKUDanhuSlt35pxvt40Bdb8ZnSLV7SsiVlS4w==
 
+"@reglendo/canvas2image@^1.0.5-2":
+  version "1.0.5-2"
+  resolved "https://registry.yarnpkg.com/@reglendo/canvas2image/-/canvas2image-1.0.5-2.tgz#57b50017d1a4914ff687fb65eb7aef341762d20d"
+  integrity sha512-nt9QaZPwJxZdPZall2GuxpTLyZwSXwHlL35K8uJjpl29uCYVlWJAMa8JZ8vAXIhHSJ8e5a1tbiOqDBWX5JxVvA==
+
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@samverschueren/stream-to-observable/-/stream-to-observable-0.3.0.tgz#ecdf48d532c58ea477acfcab80348424f8d0662f"

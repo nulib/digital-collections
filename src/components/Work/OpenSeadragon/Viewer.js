@@ -6,6 +6,7 @@ import withSizes from "react-sizes";
 import WorkOpenSeadragonThumbnails from "./Thumbnails";
 import WorkOpenSeadragonToolBar from "./Toolbar";
 import WorkOpenSeadragonFilesetSelect from "./FilesetSelect";
+import Canvas2Image from "@reglendo/canvas2image";
 
 class OpenSeadragonViewer extends Component {
   constructor(props) {
@@ -21,8 +22,7 @@ class OpenSeadragonViewer extends Component {
   };
 
   state = {
-    currentTileSource: null,
-    downloadLink: null
+    currentTileSource: null
   };
 
   componentDidMount() {
@@ -33,17 +33,8 @@ class OpenSeadragonViewer extends Component {
   }
 
   componentWillUnmount() {
-    this.openSeadragonInstance.removeHandler("open");
     this.openSeadragonInstance.removeHandler("page");
   }
-
-  buildDownloadLink = () => {
-    // TODO: Figure out a better way to find the event which fires when this is ready
-    setTimeout(() => {
-      let img = this.openSeadragonInstance.drawer.canvas.toDataURL("image/png");
-      this.setState({ downloadLink: img });
-    }, 3000);
-  };
 
   canDownloadFullSize() {
     const { rightsStatement } = this.props;
@@ -92,10 +83,7 @@ class OpenSeadragonViewer extends Component {
       ...customControlIds
     });
 
-    // Event listener for when OpenSeadragon's file are 'ready'
-    this.openSeadragonInstance.addHandler("open", this.buildDownloadLink);
-
-    this.openSeadragonInstance.addHandler("page", this.handleToolbarPageClick);
+    this.openSeadragonInstance.addHandler("page", this.handlePageChange);
   }
 
   handleFilesetSelectChange = e => {
@@ -106,8 +94,48 @@ class OpenSeadragonViewer extends Component {
     this.loadNewFileset(id);
   };
 
-  handleToolbarPageClick = ({ page }) => {
-    this.setState({ currentTileSource: this.props.tileSources[page] });
+  handlePageChange = ({ page }) => {
+    this.setState({
+      currentTileSource: this.props.tileSources[page]
+    });
+  };
+
+  handleDownloadClick = () => {
+    const noCopyrightRightsStatements = [
+      "No Copyright - United States",
+      "No Copyright - Non Commercial Use Only"
+    ];
+
+    try {
+      let height,
+        width,
+        defaultWidth =
+          noCopyrightRightsStatements.indexOf(
+            this.props.rightsStatement.label
+          ) > -1
+            ? 3000
+            : 1500,
+        canvasHeight = this.openSeadragonInstance.drawer.canvas.height,
+        canvasWidth = this.openSeadragonInstance.drawer.canvas.width,
+        proportionRatio = canvasHeight / canvasWidth;
+
+      if (canvasWidth > defaultWidth) {
+        width = defaultWidth;
+      }
+      width = canvasWidth > defaultWidth ? defaultWidth : canvasWidth;
+      height = canvasHeight * proportionRatio;
+
+      Canvas2Image.saveAsJPEG(
+        this.openSeadragonInstance.drawer.canvas,
+        this.props.itemTitle.split(" ").join("-"),
+        width,
+        height
+      );
+    } catch {
+      console.log(
+        "Error in handling download click for a fileset in OpenSeadragon viewer"
+      );
+    }
   };
 
   loadNewFileset(id) {
@@ -120,7 +148,7 @@ class OpenSeadragonViewer extends Component {
 
   render() {
     const { currentTileSource } = this.state;
-    const { isMobile, itemTitle, tileSources = [] } = this.props;
+    const { isMobile, tileSources = [] } = this.props;
 
     return (
       <div>
@@ -139,9 +167,8 @@ class OpenSeadragonViewer extends Component {
             <div id="toolbarDiv" className="toolbar">
               <WorkOpenSeadragonToolBar
                 canDownloadFullSize={this.canDownloadFullSize()}
-                downloadLink={this.buildDownloadLink()}
                 isMobile={isMobile}
-                itemTitle={itemTitle}
+                onDownloadClick={this.handleDownloadClick}
               />
             </div>
           </div>
