@@ -17,6 +17,7 @@ class OpenSeadragonViewer extends Component {
   static propTypes = {
     isMobile: PropTypes.bool,
     itemTitle: PropTypes.string,
+    fileUrl: PropTypes.string,
     rightsStatement: PropTypes.object,
     tileSources: PropTypes.array
   };
@@ -36,13 +37,41 @@ class OpenSeadragonViewer extends Component {
     this.openSeadragonInstance.removeHandler("page");
   }
 
-  canDownloadFullSize() {
-    const { rightsStatement } = this.props;
+  calculateDownloadDimensions() {
+    const noCopyrightRightsStatements = [
+      "No Copyright - United States",
+      "No Copyright - Non Commercial Use Only"
+    ];
+    let returnObj = {};
 
-    return (
-      rightsStatement.hasOwnProperty("uri") &&
-      rightsStatement.uri === "http://rightsstatements.org/vocab/NoC-US/1.0/"
-    );
+    try {
+      let height,
+        width,
+        defaultWidth =
+          noCopyrightRightsStatements.indexOf(
+            this.props.rightsStatement.label
+          ) > -1
+            ? 3000
+            : 1500,
+        canvasHeight = this.openSeadragonInstance.drawer.canvas.height,
+        canvasWidth = this.openSeadragonInstance.drawer.canvas.width,
+        proportionRatio = canvasHeight / canvasWidth;
+
+      if (canvasWidth > defaultWidth) {
+        width = defaultWidth;
+      }
+      width = canvasWidth > defaultWidth ? defaultWidth : canvasWidth;
+      height = width * proportionRatio;
+
+      returnObj = { width, height };
+    } catch {
+      console.log(
+        "Error in handling download click for a fileset in OpenSeadragon viewer"
+      );
+      returnObj = {};
+    }
+
+    return returnObj;
   }
 
   loadOpenSeadragon(tileSources = []) {
@@ -100,42 +129,23 @@ class OpenSeadragonViewer extends Component {
     });
   };
 
-  handleDownloadClick = () => {
-    const noCopyrightRightsStatements = [
-      "No Copyright - United States",
-      "No Copyright - Non Commercial Use Only"
-    ];
+  handleDownloadCropClick = () => {
+    const { width, height } = this.calculateDownloadDimensions();
 
-    try {
-      let height,
-        width,
-        defaultWidth =
-          noCopyrightRightsStatements.indexOf(
-            this.props.rightsStatement.label
-          ) > -1
-            ? 3000
-            : 1500,
-        canvasHeight = this.openSeadragonInstance.drawer.canvas.height,
-        canvasWidth = this.openSeadragonInstance.drawer.canvas.width,
-        proportionRatio = canvasHeight / canvasWidth;
-
-      if (canvasWidth > defaultWidth) {
-        width = defaultWidth;
-      }
-      width = canvasWidth > defaultWidth ? defaultWidth : canvasWidth;
-      height = canvasHeight * proportionRatio;
-
+    if (width && height) {
       Canvas2Image.saveAsJPEG(
         this.openSeadragonInstance.drawer.canvas,
         this.props.itemTitle.split(" ").join("-"),
         width,
         height
       );
-    } catch {
-      console.log(
-        "Error in handling download click for a fileset in OpenSeadragon viewer"
-      );
     }
+  };
+
+  handleDownloadFullSize = () => {
+    const { width } = this.calculateDownloadDimensions();
+    const path = `${this.props.fileUrl}/full/${width},/0/default.jpg`;
+    window.open(path, "_blank");
   };
 
   loadNewFileset(id) {
@@ -166,9 +176,9 @@ class OpenSeadragonViewer extends Component {
 
             <div id="toolbarDiv" className="toolbar">
               <WorkOpenSeadragonToolBar
-                canDownloadFullSize={this.canDownloadFullSize()}
                 isMobile={isMobile}
-                onDownloadClick={this.handleDownloadClick}
+                onDownloadCropClick={this.handleDownloadCropClick}
+                onDownloadFullSize={this.handleDownloadFullSize}
               />
             </div>
           </div>

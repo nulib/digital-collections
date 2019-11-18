@@ -1,19 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
 
 const WorkOpenSeadragonToolbar = ({
-  canDownloadFullSize,
   isMobile,
-  onDownloadClick
+  onDownloadCropClick,
+  onDownloadFullSize
 }) => {
+  const [dropDownOpen, setDropDownOpen] = useState(false);
+
   function handleDownloadClick(e) {
     e.preventDefault();
-    onDownloadClick();
+    setDropDownOpen(!dropDownOpen);
+  }
+
+  function handleDownloadCropClick(e) {
+    e.preventDefault();
+    onDownloadCropClick();
+    setDropDownOpen(false);
+  }
+
+  function handleDownloadFullSize(e) {
+    e.preventDefault();
+    onDownloadFullSize();
+    setDropDownOpen(false);
   }
 
   return (
-    <>
+    <nav>
       <a
         id="zoom-in"
         data-testid="zoom-in"
@@ -43,15 +57,41 @@ const WorkOpenSeadragonToolbar = ({
       </a>
 
       {!isMobile && (
-        <a
-          data-testid="download"
-          href={`#nothing`}
-          className="toolbar-controls"
-          title="Download Image"
-          onClick={handleDownloadClick}
-        >
-          <FontAwesomeIcon icon="download" />
-        </a>
+        <div className="openseadragon-toolbar-dropdown-wrapper">
+          <a
+            href={`#nothing`}
+            data-testid="download"
+            onClick={handleDownloadClick}
+            className="toolbar-controls"
+            aria-haspopup="true"
+            aria-expanded={dropDownOpen}
+          >
+            <FontAwesomeIcon icon="download" />
+          </a>
+          {dropDownOpen && (
+            <ul className={`openseadragon-toolbar-dropdown`}>
+              <li>
+                <a
+                  href={`#nothing`}
+                  data-testid="download-crop"
+                  title="Download Crop"
+                  onClick={handleDownloadCropClick}
+                >
+                  Download crop
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#nothing"
+                  data-testid="download-full"
+                  onClick={handleDownloadFullSize}
+                >
+                  Download full size
+                </a>
+              </li>
+            </ul>
+          )}
+        </div>
       )}
       <a
         id="previous"
@@ -71,14 +111,14 @@ const WorkOpenSeadragonToolbar = ({
       >
         <FontAwesomeIcon icon="arrow-circle-right" />
       </a>
-    </>
+    </nav>
   );
 };
 
 WorkOpenSeadragonToolbar.propTypes = {
-  canDownloadFullSize: PropTypes.bool,
   isMobile: PropTypes.bool,
-  onDownloadClick: PropTypes.func
+  onDownloadCropClick: PropTypes.func,
+  onDownloadFullSize: PropTypes.func
 };
 
 export default WorkOpenSeadragonToolbar;
