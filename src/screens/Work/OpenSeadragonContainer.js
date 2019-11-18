@@ -78,6 +78,7 @@ class OpenSeadragonContainer extends Component {
     const { loading, tileSources } = this.state;
     const { item } = this.props;
     const rightsStatement = item ? item.rights_statement : null;
+    const fileUrl = item ? item.representative_file_url : null;
 
     return (
       <div>
@@ -88,6 +89,7 @@ class OpenSeadragonContainer extends Component {
               tileSources={tileSources}
               itemTitle={this.itemTitle}
               rightsStatement={rightsStatement}
+              fileUrl={fileUrl}
             />
           </section>
         )}
