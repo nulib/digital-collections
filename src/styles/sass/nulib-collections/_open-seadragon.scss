@@ -14,7 +14,7 @@
   margin: 0 2rem 0 0;
 }
 
-a.toolbar-controls {
+.toolbar-controls {
   color: $rich-black-20;
   font-size: 2rem;
   padding: 10px;
@@ -113,6 +113,36 @@ a.toolbar-controls {
     }
     .toolbar {
       margin-right: 0;
+    }
+  }
+}
+
+// Toolbar dropdown
+.openseadragon-toolbar-dropdown-wrapper {
+  position: relative;
+  display: inline-block;
+
+  .openseadragon-toolbar-dropdown {
+    position: absolute;
+    top: 50px;
+    left: -65px;
+    background: $rich-black-80;
+    color: $light-grey2;
+    width: 200px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid $rich-black-50;
+    a {
+      padding: 0.75rem 1rem;
+      color: $light-grey;
+      display: inline-block;
+      width: 100%;
+
+      &:hover {
+        background: $rich-black-50;
+        transition: all 0.25s ease-in-out;
+      }
     }
   }
 }
