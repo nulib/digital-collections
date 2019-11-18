@@ -28,89 +28,90 @@ const WorkOpenSeadragonToolbar = ({
 
   return (
     <nav>
-      <a
+      <button
         id="zoom-in"
         data-testid="zoom-in"
         href="#zoom-in"
-        className="toolbar-controls"
+        className="toolbar-controls button-link"
         title="Zoom In"
       >
         <FontAwesomeIcon icon="search-plus" />
-      </a>
-      <a
+      </button>
+      <button
         id="zoom-out"
         data-testid="zoom-out"
         href="#zoom-out"
-        className="toolbar-controls"
+        className="toolbar-controls button-link"
         title="Zoom Out"
       >
         <FontAwesomeIcon icon="search-minus" />
-      </a>
-      <a
+      </button>
+      <button
         id="full-page"
         data-testid="full-page"
         href="#full-page"
-        className="toolbar-controls"
+        className="toolbar-controls button-link"
         title="Full Screen"
       >
         <FontAwesomeIcon icon="expand" />
-      </a>
+      </button>
 
       {!isMobile && (
         <div className="openseadragon-toolbar-dropdown-wrapper">
-          <a
-            href={`#nothing`}
+          <button
             data-testid="download"
             onClick={handleDownloadClick}
-            className="toolbar-controls"
+            className="toolbar-controls button-link"
             aria-haspopup="true"
             aria-expanded={dropDownOpen}
+            title="Download"
           >
             <FontAwesomeIcon icon="download" />
-          </a>
+          </button>
           {dropDownOpen && (
             <ul className={`openseadragon-toolbar-dropdown`}>
               <li>
-                <a
-                  href={`#nothing`}
+                <button
                   data-testid="download-crop"
-                  title="Download Crop"
+                  title="Download cropped canvas"
                   onClick={handleDownloadCropClick}
+                  className="button-link"
                 >
                   Download crop
-                </a>
+                </button>
               </li>
               <li>
-                <a
-                  href="#nothing"
+                <button
                   data-testid="download-full"
                   onClick={handleDownloadFullSize}
+                  className="button-link"
+                  title="Download full size image"
                 >
                   Download full size
-                </a>
+                </button>
               </li>
             </ul>
           )}
         </div>
       )}
-      <a
+      <button
         id="previous"
         data-testid="previous"
         href="#previous"
-        className="toolbar-controls"
+        className="toolbar-controls button-link"
         title="Previous"
       >
         <FontAwesomeIcon icon="arrow-circle-left" />
-      </a>
-      <a
+      </button>
+      <button
         id="next"
         data-testid="next"
         href="#next"
-        className="toolbar-controls"
+        className="toolbar-controls button-link"
         title="Next"
       >
         <FontAwesomeIcon icon="arrow-circle-right" />
-      </a>
+      </button>
     </nav>
   );
 };
