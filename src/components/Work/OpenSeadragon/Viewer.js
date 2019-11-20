@@ -144,7 +144,7 @@ class OpenSeadragonViewer extends Component {
 
   handleDownloadFullSize = () => {
     const { width } = this.calculateDownloadDimensions();
-    const path = `${this.props.fileUrl}/full/${width},/0/default.jpg`;
+    const path = `${this.state.currentTileSource.id}/full/${width},/0/default.jpg`;
     window.open(path, "_blank");
   };
 
