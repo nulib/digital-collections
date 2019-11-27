@@ -2,14 +2,11 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import GlobalLinks from "../Nav/GlobalLinks";
 import QuickLinksItems from "./QuickLinksItems";
-import NavSubmenu from "../Nav/Submenu";
 import PropTypes from "prop-types";
-import { getESTitle } from "../../../services/elasticsearch-parser";
 
 class MobileNav extends Component {
   static propTypes = {
     closeMenu: PropTypes.func,
-    collections: PropTypes.array,
     navOpen: PropTypes.bool,
     quickLinks: PropTypes.array
   };
@@ -22,18 +19,6 @@ class MobileNav extends Component {
       }
     }
   };
-
-  buildSubmenu(items = []) {
-    const subMenuItems = items.map(item => {
-      return {
-        id: item._id,
-        url: `/collections/${item._id}`,
-        label: getESTitle(item._source)
-      };
-    });
-
-    return subMenuItems;
-  }
 
   /**
    * This function handles closing the mobile navigation when a legit link has been clicked
@@ -58,8 +43,7 @@ class MobileNav extends Component {
   };
 
   render() {
-    const { collections, navOpen } = this.props;
-    const { menu } = this.state;
+    const { navOpen } = this.props;
 
     return (
       <nav
@@ -70,32 +54,13 @@ class MobileNav extends Component {
       >
         <ul>
           <li tabIndex="0">
-            <Link to="/">Explore Collections</Link>
-            <span className={`arrow ${menu.collections.open ? "open" : ""}`}>
-              {/* eslint-disable-next-line */}
-              <a aria-haspopup="true" role="button">
-                <span>Expand</span>
-                Submenu
-              </a>
-            </span>
-            <ul
-              aria-expanded={menu.collections.open}
-              aria-hidden={!navOpen}
-              style={
-                menu.collections.open
-                  ? { display: "block" }
-                  : { display: "none" }
-              }
-            >
-              <NavSubmenu items={this.buildSubmenu(collections)} />
-            </ul>
+            <Link to="/collections">Explore Collections</Link>
           </li>
           <li>
             <Link to="/search">Browse Items</Link>
           </li>
         </ul>
         <div id="mobile-nav-bottom">
-          {/* from #global-links */}
           <ul id="mobile-nav-bottom-left">
             <QuickLinksItems quickLinks={this.props.quickLinks} />
             <GlobalLinks />

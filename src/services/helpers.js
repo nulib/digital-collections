@@ -1,8 +1,8 @@
 import { titleTagEnd } from "./global-vars";
+import { getESTitle } from "./elasticsearch-parser";
 
 /**
  * Helper function to chop a string into a limited word count, from the start of the text
- *
  * @param {String} str - The string to chop
  * @param {Number} chopLength How many words to restrict the sentence to
  */
@@ -27,7 +27,6 @@ export function getLinkPath(item) {
 
 /**
  * Get a random integer between `min` and `max`.
- *
  * @param {number} min - min number
  * @param {number} max - max number
  * @return {number} a random integer
@@ -39,7 +38,6 @@ export function getRandomInt(min, max) {
 /**
  * Shuffle an array
  * https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
- *
  * @param {Array} array
  * @return {Array}
  */
@@ -77,4 +75,21 @@ export function getPrimoLink(catalogKey) {
  */
 export function escapeDoubleQuotes(str) {
   return str.replace(/["]+/g, '%5C"');
+}
+
+/**
+ * Build an array of submenu items for main navigation dropdown nav
+ * @param {Array} items - array of ElasticSearch items
+ * @returns {Array}
+ */
+export function buildSubmenu(items = []) {
+  const subMenuItems = items.map(item => {
+    return {
+      id: item._id,
+      url: `/collections/${item._id}`,
+      label: getESTitle(item._source)
+    };
+  });
+
+  return subMenuItems;
 }

@@ -1,19 +1,14 @@
-import React, { Component } from 'react';
-import MobileNav from './MobileNav';
-import { getAllCollections } from '../../../api/elasticsearch-api';
-import { withRouter } from 'react-router-dom';
+import React, { Component } from "react";
+import MobileNav from "./MobileNav";
+import { withRouter } from "react-router-dom";
+import ReactRouterPropTypes from "react-router-prop-types";
 
 class MobileLinks extends Component {
   state = {
-    collections: [],
     navOpen: false,
     searchOpen: false,
-    searchValue: ''
+    searchValue: ""
   };
-
-  componentDidMount() {
-    this.getCollections();
-  }
 
   handleChange = e => {
     this.setState({ searchValue: e.target.value });
@@ -38,7 +33,7 @@ class MobileLinks extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.history.push({
-      pathname: '/search',
+      pathname: "/search",
       state: {
         globalSearch: this.state.searchValue
       }
@@ -49,20 +44,9 @@ class MobileLinks extends Component {
     });
   };
 
-  async getCollections() {
-    let response = await getAllCollections();
-    let collections = response.hits.hits;
-
-    if (collections && collections.length > 0) {
-      this.setState({
-        collections
-      });
-    }
-  }
-
   render() {
-    const { collections, navOpen, searchOpen } = this.state;
-    const classes = `mobile-link mobile-nav-link ${navOpen ? 'open' : ''}`;
+    const { navOpen, searchOpen } = this.state;
+    const classes = `mobile-link mobile-nav-link ${navOpen ? "open" : ""}`;
 
     return (
       <div id="mobile-links">
@@ -71,14 +55,13 @@ class MobileLinks extends Component {
         </button>
         <MobileNav
           {...this.props}
-          collections={collections}
           navOpen={navOpen}
           closeMenu={this.handleMenuClick}
         />
 
         <button
           className={`mobile-link mobile-search-link ${
-            searchOpen ? 'open' : ''
+            searchOpen ? "open" : ""
           }`}
           onClick={this.handleSearchClick}
         >
@@ -110,5 +93,9 @@ class MobileLinks extends Component {
     );
   }
 }
+
+MobileLinks.propTypes = {
+  history: ReactRouterPropTypes.history
+};
 
 export default withRouter(MobileLinks);
