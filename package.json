@@ -3,15 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@appbaseio/reactivesearch": "^3.0.0-rc.12",
-    "@emotion/core": "^10.0.10",
+    "@appbaseio/reactivesearch": "^3.1.1",
+    "@emotion/core": "^10.0.22",
     "@fortawesome/fontawesome-svg-core": "^1.2.18",
     "@fortawesome/free-solid-svg-icons": "^5.8.2",
     "@fortawesome/react-fontawesome": "^0.1.0-11",
     "@reglendo/canvas2image": "^1.0.5-2",
     "cookie": "^0.4.0",
     "cross-fetch": "^3.0.3",
-    "elasticsearch": "^16.1.0",
+    "elasticsearch": "^16.5.0",
     "honeybadger-js": "^2.0.0",
     "jest-util": "24.8.0",
     "jquery": "^3.3.1",
@@ -32,14 +32,14 @@
     "react-share": "^3.0.0",
     "react-sizes": "^2.0.0",
     "react-slidedown": "^2.4.1",
-    "react-spinners": "^0.5.1",
+    "react-spinners": "^0.6.1",
     "react-tabs": "^3.0.0",
     "react-test-renderer": "^16.8.2",
     "redux": "^4.0.1",
     "redux-mock-store": "^1.5.1",
     "redux-thunk": "^2.2.0",
     "source-map-explorer": "^2.0.0",
-    "swiper": "^4.2.0"
+    "swiper": "^5.2.1"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,json,css}": [
@@ -65,7 +65,7 @@
   "devDependencies": {
     "@nulib/prettier-config": "^1.2.0",
     "@testing-library/jest-dom": "^4.0.0",
-    "@testing-library/react": "^8.0.8",
+    "@testing-library/react": "^9.3.2",
     "@types/jest": "^24.0.20",
     "coveralls": "^3.0.5",
     "eslint-config-prettier": "^6.0.0",

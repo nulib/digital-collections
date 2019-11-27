@@ -125,12 +125,7 @@ class Search extends Component {
             className="datasearch web-form"
             customQuery={simpleQueryStringQuery}
             componentId={GLOBAL_SEARCH_BAR_COMPONENT_ID}
-            dataField={[
-              "full_text",
-              "all_titles",
-              "description",
-              "all_subjects"
-            ]}
+            dataField={[]}
             debounce={1000}
             filterLabel="Search"
             innerClass={{
@@ -166,7 +161,6 @@ class Search extends Component {
             react={{
               and: allFilters
             }}
-            sortBy="asc"
             size={12}
             URLParams={true}
           />
@@ -180,9 +174,6 @@ const mapDispatchToProps = dispatch => ({
   searchValueChange: value => dispatch(searchValueChange(value))
 });
 
-export const ConnectedSearch = connect(
-  null,
-  mapDispatchToProps
-)(Search);
+export const ConnectedSearch = connect(null, mapDispatchToProps)(Search);
 
 export default withRouter(ConnectedSearch);
