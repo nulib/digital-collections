@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import GlobalLinks from '../Nav/GlobalLinks';
-import QuickLinksItems from './QuickLinksItems';
-import NavCollectionsList from '../Nav/NavCollectionsList';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import GlobalLinks from "../Nav/GlobalLinks";
+import QuickLinksItems from "./QuickLinksItems";
+import PropTypes from "prop-types";
 
 class MobileNav extends Component {
   static propTypes = {
     closeMenu: PropTypes.func,
-    collections: PropTypes.array,
     navOpen: PropTypes.bool,
     quickLinks: PropTypes.array
   };
@@ -32,7 +30,7 @@ class MobileNav extends Component {
       }
     } = this.state;
     // Check if user clicked or touched the dropdown arrow
-    let isArrowButton = e.target.getAttribute('role') === 'button';
+    let isArrowButton = e.target.getAttribute("role") === "button";
 
     // Toggle submenu link items
     if (isArrowButton) {
@@ -45,44 +43,24 @@ class MobileNav extends Component {
   };
 
   render() {
-    const { collections, navOpen } = this.props;
-    const { menu } = this.state;
+    const { navOpen } = this.props;
 
     return (
       <nav
         id="mobile-nav"
         onClick={this.handleNavItemClick}
         aria-label="mobile menu"
-        style={navOpen ? { display: 'block' } : { display: 'none' }}
+        style={navOpen ? { display: "block" } : { display: "none" }}
       >
         <ul>
           <li tabIndex="0">
-            <Link to="/">Explore Collections</Link>
-            <span className={`arrow ${menu.collections.open ? 'open' : ''}`}>
-              {/* eslint-disable-next-line */}
-              <a aria-haspopup="true" role="button">
-                <span>Expand</span>
-                Submenu
-              </a>
-            </span>
-            <ul
-              aria-expanded={menu.collections.open}
-              aria-hidden={!navOpen}
-              style={
-                menu.collections.open
-                  ? { display: 'block' }
-                  : { display: 'none' }
-              }
-            >
-              <NavCollectionsList collections={collections} />
-            </ul>
+            <Link to="/collections">Explore Collections</Link>
           </li>
           <li>
             <Link to="/search">Browse Items</Link>
           </li>
         </ul>
         <div id="mobile-nav-bottom">
-          {/* from #global-links */}
           <ul id="mobile-nav-bottom-left">
             <QuickLinksItems quickLinks={this.props.quickLinks} />
             <GlobalLinks />
