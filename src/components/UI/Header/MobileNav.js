@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import GlobalLinks from '../Nav/GlobalLinks';
-import QuickLinksItems from './QuickLinksItems';
-import NavCollectionsList from '../Nav/NavCollectionsList';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import GlobalLinks from "../Nav/GlobalLinks";
+import QuickLinksItems from "./QuickLinksItems";
+import NavSubmenu from "../Nav/Submenu";
+import PropTypes from "prop-types";
+import { getESTitle } from "../../../services/elasticsearch-parser";
 
 class MobileNav extends Component {
   static propTypes = {
@@ -22,6 +23,18 @@ class MobileNav extends Component {
     }
   };
 
+  buildSubmenu(items = []) {
+    const subMenuItems = items.map(item => {
+      return {
+        id: item._id,
+        url: `/collections/${item._id}`,
+        label: getESTitle(item._source)
+      };
+    });
+
+    return subMenuItems;
+  }
+
   /**
    * This function handles closing the mobile navigation when a legit link has been clicked
    */
@@ -32,7 +45,7 @@ class MobileNav extends Component {
       }
     } = this.state;
     // Check if user clicked or touched the dropdown arrow
-    let isArrowButton = e.target.getAttribute('role') === 'button';
+    let isArrowButton = e.target.getAttribute("role") === "button";
 
     // Toggle submenu link items
     if (isArrowButton) {
@@ -53,12 +66,12 @@ class MobileNav extends Component {
         id="mobile-nav"
         onClick={this.handleNavItemClick}
         aria-label="mobile menu"
-        style={navOpen ? { display: 'block' } : { display: 'none' }}
+        style={navOpen ? { display: "block" } : { display: "none" }}
       >
         <ul>
           <li tabIndex="0">
             <Link to="/">Explore Collections</Link>
-            <span className={`arrow ${menu.collections.open ? 'open' : ''}`}>
+            <span className={`arrow ${menu.collections.open ? "open" : ""}`}>
               {/* eslint-disable-next-line */}
               <a aria-haspopup="true" role="button">
                 <span>Expand</span>
@@ -70,11 +83,11 @@ class MobileNav extends Component {
               aria-hidden={!navOpen}
               style={
                 menu.collections.open
-                  ? { display: 'block' }
-                  : { display: 'none' }
+                  ? { display: "block" }
+                  : { display: "none" }
               }
             >
-              <NavCollectionsList collections={collections} />
+              <NavSubmenu items={this.buildSubmenu(collections)} />
             </ul>
           </li>
           <li>
