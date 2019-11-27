@@ -93,3 +93,12 @@ export function buildSubmenu(items = []) {
 
   return subMenuItems;
 }
+
+export function prepGlobalSearchInput(searchValue) {
+  return {
+    pathname: `/search`,
+    search: `?q="${escapeDoubleQuotes(searchValue)
+      .split(" ")
+      .join("+")}"`
+  };
+}
