@@ -88,8 +88,10 @@ svg.search-icon {
   > .active {
     background-color: $nu-purple;
     color: $white;
-    &:hover {
+    &:hover,
+    &:focus {
       background-color: $nu-purple-60;
+      border-color: $nu-purple-60;
     }
   }
 }
