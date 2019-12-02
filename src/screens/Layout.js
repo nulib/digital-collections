@@ -104,9 +104,6 @@ const mapDispatchToProps = dispatch => ({
   fetchApiToken: () => dispatch(fetchApiToken())
 });
 
-const ConnectedLayout = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Layout);
+const ConnectedLayout = connect(mapStateToProps, mapDispatchToProps)(Layout);
 
 export default withRouter(ConnectedLayout);

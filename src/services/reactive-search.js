@@ -57,11 +57,14 @@ export const imageFilters = [
 // For now, this is the ReactiveSearch DataSearch customQuery function,
 // which is used to do phrase matching with our current ElasticSearch
 // indexing configuration
-export const simpleQueryStringQuery = value => {
+export const simpleQueryStringQuery = (value = "*") => {
+  // Add fuzziness and substring matches to the query value
+  let queryValue = value !== "*" ? `${value}~1 | ${value}*` : value;
+
   return {
     query: {
       simple_query_string: {
-        query: `${value || "*"}`,
+        query: queryValue,
         fields: [
           "all_titles^5",
           "description^2",
