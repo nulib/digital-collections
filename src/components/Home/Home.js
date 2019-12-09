@@ -1,19 +1,29 @@
-import React, { Component } from 'react';
-import HeroSection from '../../components/Home/HeroSection';
-import HeroSecondarySection from '../../components/Home/HeroSecondarySection';
-import PhotoGridSection from '../UI/PhotoGridSection';
-import LoadingSpinner from '../UI/LoadingSpinner';
+import React, { Component } from "react";
+import HeroSection from "../../components/Home/HeroSection";
+import HeroSecondarySection from "../../components/Home/HeroSecondarySection";
+import PhotoGridSection from "../UI/PhotoGridSection";
+import LoadingSpinner from "../UI/LoadingSpinner";
 import {
   heroFava,
   heroWPA,
   heroWWII,
   heroWWII_2,
   heroSecondaryData
-} from './hero-banners';
-import * as elasticsearchApi from '../../api/elasticsearch-api';
-import * as elasticsearchParser from '../../services/elasticsearch-parser';
-import * as globalVars from '../../services/global-vars';
-import { getRandomInt } from '../../services/helpers';
+} from "./hero-banners";
+import * as elasticsearchApi from "../../api/elasticsearch-api";
+import * as elasticsearchParser from "../../services/elasticsearch-parser";
+import * as globalVars from "../../services/global-vars";
+import { getRandomInt } from "../../services/helpers";
+
+const quickStyles = {
+  msgBox: {
+    backgroundColor: "rgb(228, 224, 238)",
+    textAlign: "center",
+    padding: "3rem 0",
+    marginBottom: "3rem",
+    fontWeight: "bold"
+  }
+};
 
 export class Home extends Component {
   constructor(props) {
@@ -54,7 +64,7 @@ export class Home extends Component {
           loading: false
         });
       })
-      .catch(error => console.log('Error grabbing data', error));
+      .catch(error => console.log("Error grabbing data", error));
   }
 
   renderAdditionalGalleries() {
@@ -81,7 +91,7 @@ export class Home extends Component {
 
   async getFeaturedCollections() {
     let response = await elasticsearchApi.getCollectionsByKeyword(
-      'Featured',
+      "Featured",
       8
     );
 
@@ -132,7 +142,10 @@ export class Home extends Component {
         <LoadingSpinner loading={loading} />
         {!loading && (
           <div>
-            <PhotoGridSection
+            <p style={quickStyles.msgBox}>
+              The site is undergoing maintenance. Data will be restored shortly.
+            </p>
+            {/* <PhotoGridSection
               headline="Recently Added and Updated Items"
               linkTo="/search"
               linkToText="View All Items"
@@ -144,7 +157,7 @@ export class Home extends Component {
               linkTo="/collections"
               linkToText="View All Collections"
               items={galleryCollections}
-            />
+            /> */}
           </div>
         )}
         <div className="contain-1120">
