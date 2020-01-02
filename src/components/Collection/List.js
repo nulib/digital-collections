@@ -36,13 +36,13 @@ const CollectionList = () => {
   }
 
   const handleFilterChange = e => {
-    const filterValue = e.target.value;
+    const filterValue = e.target.value.toUpperCase();
 
     if (!filterValue) {
       return setFilteredCollections(allCollections);
     }
     const filteredList = filteredCollections.filter(collection => {
-      return collection.label.indexOf(filterValue) > -1;
+      return collection.label.toUpperCase().indexOf(filterValue) > -1;
     });
     setFilteredCollections(filteredList);
   };

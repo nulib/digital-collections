@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import PhotoBox from './PhotoBox';
+import React from "react";
+import PropTypes from "prop-types";
+import PhotoBox from "./PhotoBox";
 
 function PhotoGrid(props) {
-  let className = 'photo-grid contain-1120';
+  let className = "photo-grid contain-1120";
   if (props.cols) {
     switch (props.cols) {
       case 2:
