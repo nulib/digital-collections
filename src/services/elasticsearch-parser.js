@@ -74,8 +74,9 @@ export function getESTitle(_source) {
     return "";
   }
   const { title } = _source;
-  let titleArray = title.primary.map((title, i) => {
-    return i > 0 ? `, ${title}` : title;
+  const titles = title.primary || title;
+  let titleArray = titles.map((item, i) => {
+    return i > 0 ? `, ${item}` : item;
   });
 
   return titleArray.join("");
