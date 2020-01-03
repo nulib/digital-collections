@@ -32,7 +32,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 110px;
+  height: 130px;
   z-index: 4;
   overflow: hidden;
   transition: transform 0.3s ease;
@@ -43,13 +43,14 @@
   width: 100%;
   overflow-x: scroll;
   overflow-y: hidden;
+  @include scrollbar;
 }
 .panel-listing-thumbs {
   clear: both;
   list-style: none;
   padding: 0;
   white-space: nowrap;
-  margin-top: 10px;
+  margin-top: 13px;
   margin-bottom: 4px;
 
   .active-thumb {
