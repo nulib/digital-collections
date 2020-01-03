@@ -9,8 +9,11 @@ import { generateTitleTag } from "../../services/helpers";
 import { loadDataLayer } from "../../services/google-tag-manager";
 import { loadItemStructuredData } from "../../services/google-structured-data";
 import Work from "../../components/Work/Work";
-import PropTypes from "prop-types";
 import ErrorBoundary from "../../components/UI/ErrorBoundary";
+import ReactRouterPropTypes from "react-router-prop-types";
+import ErrorSection from "../../components/UI/ErrorSection";
+import * as globalVars from "../../services/global-vars";
+import LoadingSpinner from "../../components/UI/LoadingSpinner";
 
 export class ScreensWork extends Component {
   constructor(props) {
@@ -26,14 +29,9 @@ export class ScreensWork extends Component {
   }
 
   static propTypes = {
-    match: PropTypes.shape({
-      params: PropTypes.shape({
-        id: PropTypes.string.isRequired
-      }).isRequired
-    }).isRequired,
-    location: PropTypes.shape({
-      pathname: PropTypes.string.isRequired
-    }).isRequired
+    match: ReactRouterPropTypes.match,
+    location: ReactRouterPropTypes.location,
+    history: ReactRouterPropTypes.history
   };
 
   async componentDidMount() {
@@ -51,7 +49,6 @@ export class ScreensWork extends Component {
 
   async getApiData(id) {
     let item = await this.getItem(id);
-
     if (!item) {
       return;
     }
@@ -67,15 +64,50 @@ export class ScreensWork extends Component {
   }
 
   async getItem(id) {
+    let itemError = "";
     let itemResponse = await elasticsearchApi.getItem(id);
     const { error } = itemResponse;
 
     // Handle possible errors
-    if (error || !itemResponse.found) {
-      return;
+    // Generic error
+    if (error) {
+      if (error.statusCode === 403) {
+        itemError = error.reason;
+      } else {
+        return this.handle404redirect(itemResponse.error.reason);
+      }
+    }
+    // Item not found
+    else if (!itemResponse.found) {
+      return this.handle404redirect();
+    }
+    // Restricted item
+    else if (itemResponse._source.visibility === "restricted") {
+      itemError = `The current item's visibility is restricted.`;
+    }
+    // Authenticated
+    else if (
+      itemResponse._source.visibility === "authenticated" &&
+      !this.props.auth.token
+    ) {
+      itemError = `The current item's visibility is restricted to logged in users.`;
+    }
+
+    if (itemError) {
+      return this.setState({
+        error: itemError
+      });
     }
 
     return itemResponse._source;
+  }
+
+  handle404redirect(
+    message = "There was an error retrieving the item, or the item id does not exist."
+  ) {
+    this.props.history.push(globalVars.ROUTES.PAGE_NOT_FOUND.path, {
+      message
+    });
   }
 
   populateGTMDataLayer(item) {
@@ -101,13 +133,17 @@ export class ScreensWork extends Component {
   }
 
   render() {
-    const { id, item, error, structuredData } = this.state;
+    const { id, item, error, loading, structuredData } = this.state;
 
     // This check ensures that when changing ids (items) on the same route, the "id" is different
     // at this point of execution
     const idInSync = this.props.match.params.id === id;
 
     const itemTitle = item ? elasticsearchParser.getESTitle(item) : "";
+
+    if (loading) {
+      return <LoadingSpinner loading={loading} />;
+    }
 
     return (
       <div className="landing-page">
@@ -120,10 +156,11 @@ export class ScreensWork extends Component {
           )}
         </Helmet>
         <ErrorBoundary>
+          {error && <ErrorSection message={error} />}
           {item && idInSync && !error && <OpenSeadragonContainer item={item} />}
           <div id="page">
             <main id="main-content" className="content" tabIndex="0">
-              <Work />
+              {item && item.hasOwnProperty("id") && <Work work={item} />}
             </main>
           </div>
         </ErrorBoundary>
