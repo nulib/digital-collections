@@ -78,6 +78,10 @@ export class Work extends Component {
     let adminSetItems = await this.getAdminSets(item.admin_set.id);
     let collectionItems = await this.getCollections(item);
 
+    // Ensure current work is not also included in related works
+    adminSetItems = adminSetItems.filter(item => item.id !== id);
+    collectionItems = collectionItems.filter(item => item.id !== id);
+
     this.setState({
       adminSetItems: shuffleArray(adminSetItems),
       collectionItems,
