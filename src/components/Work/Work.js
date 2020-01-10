@@ -23,8 +23,17 @@ const Work = ({ work }) => {
       if (!work) {
         return;
       }
+      const { id } = work;
       let adminSetItems = await getAdminSets(work.admin_set.id);
       let collectionResponse = await getCollections(work);
+
+      // Ensure current work is not also included in related works
+      adminSetItems = adminSetItems.filter(item => item.id !== id);
+      if (collectionResponse.items) {
+        collectionResponse.items = collectionResponse.items.filter(
+          item => item.id !== id
+        );
+      }
 
       setAdminSetItems(shuffleArray(adminSetItems));
       setCollection({ ...collectionResponse });
@@ -47,7 +56,7 @@ const Work = ({ work }) => {
 
   async function getCollections(work) {
     if (work.collection.length === 0) {
-      return [];
+      return {};
     }
 
     let response = await elasticsearchApi.getCollectionItems(
