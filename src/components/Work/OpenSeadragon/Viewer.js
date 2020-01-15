@@ -5,7 +5,7 @@ import { MOBILE_BREAKPOINT } from "../../../services/global-vars";
 import withSizes from "react-sizes";
 import WorkOpenSeadragonThumbnails from "./Thumbnails";
 import WorkOpenSeadragonToolBar from "./Toolbar";
-import WorkOpenSeadragonFilesetSelect from "./FilesetSelect";
+import WorkOpenSeadragonFilesetReactSelect from "./FilesetReactSelect";
 import Canvas2Image from "@reglendo/canvas2image";
 
 class OpenSeadragonViewer extends Component {
@@ -115,8 +115,8 @@ class OpenSeadragonViewer extends Component {
     this.openSeadragonInstance.addHandler("page", this.handlePageChange);
   }
 
-  handleFilesetSelectChange = e => {
-    this.loadNewFileset(e.target.value);
+  handleFilesetSelectChange = id => {
+    this.loadNewFileset(id);
   };
 
   handleThumbClick = id => {
@@ -168,7 +168,12 @@ class OpenSeadragonViewer extends Component {
               tileSources.length < 2 ? "centered" : ""
             }`}
           >
-            <WorkOpenSeadragonFilesetSelect
+            {/* <WorkOpenSeadragonFilesetSelect
+              currentTileSource={currentTileSource}
+              onFileSetChange={this.handleFilesetSelectChange}
+              tileSources={tileSources}
+            /> */}
+            <WorkOpenSeadragonFilesetReactSelect
               currentTileSource={currentTileSource}
               onFileSetChange={this.handleFilesetSelectChange}
               tileSources={tileSources}
