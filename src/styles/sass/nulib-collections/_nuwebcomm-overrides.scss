@@ -24,19 +24,25 @@
   display: block;
 }
 
+// Make tabs display a little nicer on mobile
+#tabs {
+  display: flex;
+  justify-content: center;
+}
+
 @media screen and (max-width: 768px) {
   .mobile-link {
     // Because we're using a <button> instead of <a>, for accessibility
     padding: 0;
 
     &.mobile-nav-link {
-      background: url('images/hamburger-purple.svg') no-repeat center/20px 20px;
+      background: url("images/hamburger-purple.svg") no-repeat center/20px 20px;
     }
     &.mobile-search-link {
-      background: url('images/search-purple.svg') no-repeat center/20px 20px;
+      background: url("images/search-purple.svg") no-repeat center/20px 20px;
 
       &.open {
-        background: #401f68 url('images/alert-x-white-home.svg') no-repeat
+        background: #401f68 url("images/alert-x-white-home.svg") no-repeat
           center/20px 20px;
       }
     }
