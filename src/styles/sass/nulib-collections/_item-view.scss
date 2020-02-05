@@ -181,6 +181,12 @@
   .cite-group-col {
     float: left;
     width: 50%;
+    word-break: break-word;
+
+    @media screen and (max-width: 768px) {
+      float: none;
+      width: 100%;
+    }
   }
   .cite-group {
     > p {
