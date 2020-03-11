@@ -29,3 +29,6 @@ yarn-error.log*
 
 # IDEs
 /.vscode
+
+# Cypress End to End Testing
+/cypress/integration/examples

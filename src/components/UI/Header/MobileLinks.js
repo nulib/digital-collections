@@ -33,7 +33,7 @@ const MobileLinks = props => {
   const classes = `mobile-link mobile-nav-link ${navOpen ? "open" : ""}`;
 
   return (
-    <div id="mobile-links">
+    <div id="mobile-links" data-testid="mobile-links">
       <button className={classes} onClick={handleMenuClick}>
         <span className="hide-label">Menu</span>
       </button>
@@ -47,7 +47,7 @@ const MobileLinks = props => {
       </button>
 
       {searchOpen && (
-        <div id="mobile-search">
+        <div id="mobile-search" data-testid="mobile-search-wrapper">
           <div className="search-form group">
             <form onSubmit={handleSubmit} role="search">
               <label className="hide-label" htmlFor="mobile-search-input">

@@ -1,19 +1,19 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import withSizes from 'react-sizes';
-import { forceLogout } from '../../../actions/auth';
-import * as nulApi from '../../../services/nul-api.js';
-import { MOBILE_BREAKPOINT } from '../../../services/global-vars';
+import React from "react";
+import { connect } from "react-redux";
+import withSizes from "react-sizes";
+import { forceLogout } from "../../../actions/auth";
+import * as nulApi from "../../../services/nul-api.js";
+import { MOBILE_BREAKPOINT } from "../../../services/global-vars";
 
 const Login = props => {
-  const authToken = props.authToken || '';
+  const authToken = props.authToken || "";
   const styles = {
     link: {
-      cursor: 'pointer',
-      wordBreak: 'break-word'
+      cursor: "pointer",
+      wordBreak: "break-word"
     },
     subNavLink: {
-      display: 'inline-block'
+      display: "inline-block"
     }
   };
 
@@ -21,7 +21,11 @@ const Login = props => {
   if (!authToken) {
     return (
       <li>
-        <a href={nulApi.loginLink()} onClick={nulApi.login}>
+        <a
+          href={nulApi.loginLink()}
+          onClick={nulApi.login}
+          data-testid="sign-in"
+        >
           Sign in
         </a>
       </li>
@@ -82,7 +86,4 @@ const mapSizeToProps = ({ width }) => ({
 
 const SizedLogin = withSizes(mapSizeToProps)(Login);
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SizedLogin);
+export default connect(mapStateToProps, mapDispatchToProps)(SizedLogin);

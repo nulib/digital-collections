@@ -23,7 +23,11 @@ const GlobalSearch = () => {
   };
 
   return (
-    <div id="search" className="hide-mobile">
+    <div
+      id="search"
+      data-testid="global-search-desktop-wrapper"
+      className="hide-mobile"
+    >
       <div className="search-form searchblox">
         <form role="search" onSubmit={handleSubmit}>
           <label className="hide-label" htmlFor="q-desktop">
