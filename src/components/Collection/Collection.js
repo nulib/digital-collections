@@ -1,39 +1,37 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router';
-import * as elasticsearchApi from '../../api/elasticsearch-api.js';
-import ErrorSection from '../UI/ErrorSection';
-import FacetsSidebar from '../UI/FacetsSidebar';
-import Breadcrumbs from '../UI/Breadcrumbs/Breadcrumbs';
-import LoadingSpinner from '../UI/LoadingSpinner';
+import React, { Component } from "react";
+import { withRouter } from "react-router";
+import * as elasticsearchApi from "../../api/elasticsearch-api.js";
+import ErrorSection from "../UI/ErrorSection";
+import FacetsSidebar from "../UI/FacetsSidebar";
+import Breadcrumbs from "../UI/Breadcrumbs/Breadcrumbs";
+import LoadingSpinner from "../UI/LoadingSpinner";
 import {
   DataSearch,
   ReactiveList,
   SelectedFilters
-} from '@appbaseio/reactivesearch';
+} from "@appbaseio/reactivesearch";
 import {
   getESDescription,
   getESImagePath,
   getESTitle
-} from '../../services/elasticsearch-parser';
+} from "../../services/elasticsearch-parser";
 import {
   COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID,
   collectionDefaultQuery,
-  facetValues,
-  imageFacets,
-  imageFilters,
+  reactiveSearchFacets,
   simpleQueryStringQuery
-} from '../../services/reactive-search';
-import { connect } from 'react-redux';
-import PhotoBox from '../UI/PhotoBox';
-import { MOBILE_BREAKPOINT, ROUTES } from '../../services/global-vars';
-import withSizes from 'react-sizes';
-import CollectionDescription from './CollectionDescription';
-import FiltersShowHideButton from '../UI/FiltersShowHideButton';
-import PropTypes from 'prop-types';
+} from "../../services/reactive-search";
+import { connect } from "react-redux";
+import PhotoBox from "../UI/PhotoBox";
+import { MOBILE_BREAKPOINT, ROUTES } from "../../services/global-vars";
+import withSizes from "react-sizes";
+import CollectionDescription from "./CollectionDescription";
+import FiltersShowHideButton from "../UI/FiltersShowHideButton";
+import PropTypes from "prop-types";
 
 const styles = {
   mobileDescription: {
-    marginBottom: '2rem'
+    marginBottom: "2rem"
   }
 };
 
@@ -79,12 +77,12 @@ export class Collection extends Component {
   }
 
   createBreadcrumbData(collection) {
-    let crumbs = [{ title: 'Collections', link: '/collections' }];
+    let crumbs = [{ title: "Collections", link: "/collections" }];
 
     if (collection) {
       crumbs.push({
         title: getESTitle(collection),
-        link: ''
+        link: ""
       });
     }
     return crumbs;
@@ -118,12 +116,12 @@ export class Collection extends Component {
         return this.handle404redirect();
       }
       // Restricted collection
-      else if (response._source.visibility === 'restricted') {
+      else if (response._source.visibility === "restricted") {
         error = `The current collection's visibility is restricted.`;
       }
       // Authentication problem
       else if (
-        response._source.visibility === 'authenticated' &&
+        response._source.visibility === "authenticated" &&
         !this.props.auth.token
       ) {
         error = `The current collection's visibility is restricted to logged in users.`;
@@ -154,7 +152,7 @@ export class Collection extends Component {
   };
 
   handle404redirect(
-    message = 'There was an error retrieving the collection, or the collection id does not exist.'
+    message = "There was an error retrieving the collection, or the collection id does not exist."
   ) {
     this.props.history.push(ROUTES.PAGE_NOT_FOUND.path, {
       message
@@ -182,22 +180,22 @@ export class Collection extends Component {
     const breadCrumbData = collection
       ? this.createBreadcrumbData(collection)
       : [];
-    const collectionTitle = collection ? getESTitle(collection) : '';
+    const collectionTitle = collection ? getESTitle(collection) : "";
     const collectionDescription = collection
       ? getESDescription(collection)
-      : '';
+      : "";
 
     // Split the description by line breaks, so it displays properly
     const descriptionDisplay = collectionDescription
-      .split('\n')
+      .split("\n")
       .map((i, key) => <p key={key}>{i}</p>);
 
     const allFilters = [
       COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID,
-      ...imageFilters
+      ...reactiveSearchFacets.map(facet => facet.value)
     ];
-    const imageFacetsNoCollection = imageFacets.filter(
-      facet => facet.name !== facetValues.COLLECTION
+    const imageFacetsNoCollection = reactiveSearchFacets.filter(
+      facet => facet.value !== "Collection"
     );
 
     const renderDisplay = () => {
@@ -220,7 +218,7 @@ export class Collection extends Component {
             />
             <main
               id="main-content"
-              className={`content ${!showSidebar ? 'extended' : ''}`}
+              className={`content ${!showSidebar ? "extended" : ""}`}
               tabIndex="-1"
             >
               <Breadcrumbs items={breadCrumbData} />
@@ -248,11 +246,11 @@ export class Collection extends Component {
                     autosuggest={false}
                     className="datasearch web-form"
                     componentId={COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID}
-                    dataField={['full_text']}
+                    dataField={["full_text"]}
                     filterLabel="Collections search"
                     innerClass={{
-                      input: 'searchbox rs-search-input',
-                      list: 'suggestionlist'
+                      input: "searchbox rs-search-input",
+                      list: "suggestionlist"
                     }}
                     queryFormat="or"
                     placeholder="Search within collection"
@@ -280,9 +278,9 @@ export class Collection extends Component {
                     paginationAt="bottom"
                     renderItem={this.renderItem}
                     innerClass={{
-                      list: 'rs-result-list photo-grid three-grid',
-                      pagination: 'rs-pagination',
-                      resultsInfo: 'rs-results-info'
+                      list: "rs-result-list photo-grid three-grid",
+                      pagination: "rs-pagination",
+                      resultsInfo: "rs-results-info"
                     }}
                   />
                 </div>

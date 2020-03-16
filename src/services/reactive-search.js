@@ -4,10 +4,86 @@ export const GLOBAL_SEARCH_BAR_COMPONENT_ID = "q";
 export const DATASEARCH_PLACEHOLDER =
   "Search by title, description, or wildcard (ie. Picass*)";
 
-export const facetValues = {
+export const reactiveSearchFacets = [
+  {
+    elasticSearchField: "box.number.keyword",
+    label: "Box",
+    value: "Box"
+  },
+  {
+    elasticSearchField: "collection.title.keyword",
+    label: "Collection",
+    value: "Collection"
+  },
+  {
+    elasticSearchField: "contributor.label.keyword",
+    label: "Contributor",
+    value: "Contributor"
+  },
+  {
+    elasticSearchField: "creator.label.keyword",
+    label: "Creator",
+    value: "Creator"
+  },
+  {
+    elasticSearchField: "folder.number.keyword",
+    label: "Folder",
+    value: "Folder"
+  },
+  {
+    elasticSearchField: "genre.label.keyword",
+    label: "Genre",
+    value: "Genre"
+  },
+  {
+    elasticSearchField: "language.label.keyword",
+    label: "Language",
+    value: "Language"
+  },
+  {
+    elasticSearchField: "admin_set.title.keyword",
+    label: "Library Department",
+    value: "LibraryDepartment"
+  },
+  {
+    elasticSearchField: "based_near.label.keyword",
+    label: "Location",
+    value: "Location"
+  },
+  {
+    elasticSearchField: "rights_statement.label.keyword",
+    label: "Rights Statement",
+    value: "RightsStatement"
+  },
+  {
+    elasticSearchField: "style_period.label.keyword",
+    label: "Style Period",
+    value: "StylePeriod"
+  },
+  {
+    elasticSearchField: "subject.label.keyword",
+    label: "Subject",
+    value: "Subject"
+  },
+  {
+    elasticSearchField: "technique.label.keyword",
+    label: "Technique",
+    value: "Technique"
+  },
+  {
+    elasticSearchField: "visibility.keyword",
+    label: "Visibility",
+    value: "Visibility"
+  }
+];
+
+// TODO: Delete this before commit
+export const facetLabels = {
+  BOX: "Box",
   COLLECTION: "Collection",
   CONTRIBUTOR: "Contributor",
   CREATOR: "Creator",
+  FOLDER: "Folder",
   GENRE: "Genre",
   LANGUAGE: "Language",
   LIBRARY_DEPARTMENT: "Library Department",
@@ -19,39 +95,45 @@ export const facetValues = {
   VISIBILITY: "Visibility"
 };
 
+// TODO: Delete this before commit
 // These are common facets used for an Image in ReactivSearch components
 export const imageFacets = [
-  { name: facetValues.COLLECTION, field: "collection.title.keyword" },
-  { name: facetValues.CONTRIBUTOR, field: "contributor.label.keyword" },
-  { name: facetValues.CREATOR, field: "creator.label.keyword" },
-  { name: facetValues.GENRE, field: "genre.label.keyword" },
-  { name: facetValues.LANGUAGE, field: "language.label.keyword" },
-  { name: facetValues.LIBRARY_DEPARTMENT, field: "admin_set.title.keyword" },
-  { name: facetValues.LOCATION, field: "based_near.label.keyword" },
+  { name: facetLabels.BOX, field: "box.number.keyword" },
+  { name: facetLabels.COLLECTION, field: "collection.title.keyword" },
+  { name: facetLabels.CONTRIBUTOR, field: "contributor.label.keyword" },
+  { name: facetLabels.CREATOR, field: "creator.label.keyword" },
+  { name: facetLabels.FOLDER, field: "folder.number.keyword" },
+  { name: facetLabels.GENRE, field: "genre.label.keyword" },
+  { name: facetLabels.LANGUAGE, field: "language.label.keyword" },
+  { name: facetLabels.LIBRARY_DEPARTMENT, field: "admin_set.title.keyword" },
+  { name: facetLabels.LOCATION, field: "based_near.label.keyword" },
   {
-    name: facetValues.RIGHTS_STATEMENT,
+    name: facetLabels.RIGHTS_STATEMENT,
     field: "rights_statement.label.keyword"
   },
-  { name: facetValues.STYLE_PERIOD, field: "style_period.label.keyword" },
-  { name: facetValues.SUBJECT, field: "subject.label.keyword" },
-  { name: facetValues.TECHNIQUE, field: "technique.label.keyword" },
-  { name: facetValues.VISIBILITY, field: "visibility.keyword" }
+  { name: facetLabels.STYLE_PERIOD, field: "style_period.label.keyword" },
+  { name: facetLabels.SUBJECT, field: "subject.label.keyword" },
+  { name: facetLabels.TECHNIQUE, field: "technique.label.keyword" },
+  { name: facetLabels.VISIBILITY, field: "visibility.keyword" }
 ];
 
+// TODO: Delete this before commit
 // These are common filters used for an Image in ReactivSearch components
 export const imageFilters = [
-  facetValues.COLLECTION,
-  facetValues.CONTRIBUTOR,
-  facetValues.CREATOR,
-  facetValues.GENRE,
-  facetValues.LANGUAGE,
-  facetValues.LOCATION,
+  facetLabels.BOX,
+  facetLabels.COLLECTION,
+  facetLabels.CONTRIBUTOR,
+  facetLabels.CREATOR,
+  facetLabels.FOLDER,
+  facetLabels.GENRE,
+  facetLabels.LANGUAGE,
+  facetLabels.LOCATION,
   "LibraryDepartment",
   "RightsStatement",
   "StylePeriod",
-  facetValues.SUBJECT,
-  facetValues.TECHNIQUE,
-  facetValues.VISIBILITY
+  facetLabels.SUBJECT,
+  facetLabels.TECHNIQUE,
+  facetLabels.VISIBILITY
 ];
 
 // For now, this is the ReactiveSearch DataSearch customQuery function,

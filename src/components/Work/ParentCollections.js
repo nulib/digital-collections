@@ -3,7 +3,7 @@ import PhotoGrid from "../UI/PhotoGrid";
 import PropTypes from "prop-types";
 import ThisItem from "./ThisItem";
 import SectionTop from "../UI/SectionTop";
-import { facetValues } from "../../services/reactive-search";
+import { facetLabels } from "../../services/reactive-search";
 
 const ParentCollections = ({ adminSetItems = [], collection, item }) => {
   const adminSetTitle = item.admin_set ? item.admin_set.title[0] : "";
@@ -20,7 +20,7 @@ const ParentCollections = ({ adminSetItems = [], collection, item }) => {
                 label: "View All Items in Library Department",
                 url: "/search",
                 state: {
-                  facetValue: facetValues.LIBRARY_DEPARTMENT,
+                  facetValue: facetLabels.LIBRARY_DEPARTMENT,
                   searchValue: adminSetTitle
                 }
               }

@@ -1,62 +1,62 @@
-import React from 'react';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import TabContent from './TabContent';
-import PropTypes from 'prop-types';
-import CiteTabContent from './CiteTabContent';
-import { ADMIN_SET_CONTACTS } from '../../services/global-vars';
-import { getPrimoLink } from '../../services/helpers';
+import React from "react";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import TabContent from "./TabContent";
+import PropTypes from "prop-types";
+import CiteTabContent from "./CiteTabContent";
+import { ADMIN_SET_CONTACTS } from "../../services/global-vars";
+import { getPrimoLink } from "../../services/helpers";
 
-const ItemDetail = props => {
-  if (!props.item) {
+const WorkItemDetail = ({ item }) => {
+  if (!item) {
     return [];
   }
 
   const {
-    accession_number: accessionNumber = '',
-    admin_set: { title: [admin_set] } = '', // division,
+    accession_number: accessionNumber = "",
+    admin_set: { title: [admin_set] } = "", // division,
     based_near = null,
-    bibliographic_citation: bibliographicCitation = '',
+    bibliographic_citation: bibliographicCitation = "",
     box: { name: boxName } = null,
     box: { number: boxNumber } = null,
-    abstract: [abstract] = '',
-    call_number: callNumber = '',
-    caption: [caption] = '',
-    catalog_key: catalogKey = '',
+    abstract: [abstract] = "",
+    call_number: callNumber = "",
+    caption: [caption] = "",
+    catalog_key: catalogKey = "",
     contributor = null,
     creator = null,
-    date: [date] = '',
-    description: [description] = '',
+    date: [date] = "",
+    description: [description] = "",
     folder: { name: folderName } = null,
     folder: { number: folderNumber } = null,
     genre = null,
-    keyword = '',
+    keyword = "",
     language = null,
     notes = null,
     nul_use_statement: nulUseStatement = null,
     physical_description: { material } = null,
     physical_description: { size } = null,
-    provenance: [provenance] = '',
-    publisher = '',
+    provenance: [provenance] = "",
+    publisher = "",
     related_material: relatedMaterial = null,
     related_url: relatedUrl = null,
-    rights_holder: rightsHolder = '',
+    rights_holder: rightsHolder = "",
     rights_statement: { label: rightsStatementText } = null,
     scope_and_contents: scopeAndContents = null,
     series = null,
-    source = '',
+    source = "",
     style_period: stylePeriod = null,
-    subject = '',
+    subject = "",
     table_of_contents: tableOfConents = null,
     technique = null,
-    title: { primary: title } = '',
-    title: { alternate: alternateTitle } = ''
-  } = props.item;
+    title: { primary: title } = "",
+    title: { alternate: alternateTitle } = ""
+  } = item;
 
   const getAdminSetEmail = () => {
-    let email = '';
+    let email = "";
     try {
       let results = ADMIN_SET_CONTACTS.filter(
-        obj => obj.id === props.item.admin_set.id
+        obj => obj.id === item.admin_set.id
       );
       email = results[0].email;
     } catch (e) {}
@@ -66,66 +66,67 @@ const ItemDetail = props => {
     }
 
     return {
-      label: 'More Information',
+      label: "More Information",
       value: `For more information on this item or collection, please contact ${email}`
     };
   };
 
   const metadataPanel = [
-    { label: 'Alternate Title', value: alternateTitle },
-    { label: 'Abstract', value: abstract },
-    { label: 'Caption', value: caption },
-    { label: 'Creator', value: creator, facet_value: 'Creator' },
-    { label: 'Contributor', value: contributor, facet_value: 'Contributor' },
-    { label: 'Date', value: date },
-    { label: 'Description', value: description },
+    { label: "Alternate Title", value: alternateTitle },
+    { label: "Abstract", value: abstract },
+    { label: "Caption", value: caption },
+    { label: "Creator", value: creator, facet_value: "Creator" },
+    { label: "Contributor", value: contributor, facet_value: "Contributor" },
+    { label: "Date", value: date },
+    { label: "Description", value: description },
     {
-      label: 'Department',
+      label: "Department",
       value: admin_set,
-      facet_value: 'Library Department'
+      facet_value: "Library Department"
     },
-    { label: 'Dimensions', value: size },
-    { label: 'Genre', value: genre, facet_value: 'Genre' },
-    { label: 'Keyword', value: keyword },
-    { label: 'Language', value: language, facet_value: 'Language' },
-    { label: 'Location', value: based_near, facet_value: 'Location' },
-    { label: 'Materials', value: material },
-    { label: 'Notes', value: notes },
-    { label: 'NUL Use Statement', value: nulUseStatement },
-    { label: 'Provenance', value: provenance },
-    { label: 'Publisher', value: publisher },
-    { label: 'Related Material', value: relatedMaterial },
-    { label: 'Related Url', value: relatedUrl },
-    { label: 'Rights Holder', value: rightsHolder },
+    { label: "Dimensions", value: size },
+    { label: "Genre", value: genre, facet_value: "Genre" },
+    { label: "Keyword", value: keyword },
+    { label: "Language", value: language, facet_value: "Language" },
+    { label: "Location", value: based_near, facet_value: "Location" },
+    { label: "Materials", value: material },
+    { label: "Notes", value: notes },
+    { label: "NUL Use Statement", value: nulUseStatement },
+    { label: "Provenance", value: provenance },
+    { label: "Publisher", value: publisher },
+    { label: "Related Material", value: relatedMaterial },
+    { label: "Related Url", value: relatedUrl },
+    { label: "Rights Holder", value: rightsHolder },
     {
-      label: 'Rights Statement',
+      label: "Rights Statement",
       value: rightsStatementText,
-      facet_value: 'Rights Statement'
+      facet_value: "Rights Statement"
     },
-    { label: 'Scope and Contents', value: scopeAndContents },
-    { label: 'Series', value: series },
-    { label: 'Source', value: source },
-    { label: 'Style Period', value: stylePeriod, facet_value: 'Style Period' },
-    { label: 'Subject', value: subject, facet_value: 'Subject' },
-    { label: 'Table of Contents', value: tableOfConents },
-    { label: 'Technique', value: technique, facet_value: 'Technique' },
-    { label: 'Title', value: title }
+    { label: "Scope and Contents", value: scopeAndContents },
+    { label: "Series", value: series },
+    { label: "Source", value: source },
+    { label: "Style Period", value: stylePeriod, facet_value: "Style Period" },
+    { label: "Subject", value: subject, facet_value: "Subject" },
+    { label: "Table of Contents", value: tableOfConents },
+    { label: "Technique", facet_value: "Technique", value: technique },
+    { label: "Title", value: title }
   ];
 
   const findThisItemPanel = [
-    { label: 'Accession', value: accessionNumber },
-    { label: 'Box Name', value: boxName },
-    { label: 'Box Number', value: boxNumber },
-    { label: 'Call Number', value: callNumber },
+    { label: "Accession", value: accessionNumber },
+    { label: "Box Name", value: boxName },
+    { label: "Box Number", facet_value: "Box", value: boxNumber },
+    { label: "Call Number", value: callNumber },
     {
-      label: 'NUsearch',
+      label: "NUsearch",
       value: catalogKey,
       external_url: getPrimoLink(catalogKey)
     },
-    { label: 'Citation', value: bibliographicCitation },
-    { label: 'Folder Name', value: folderName },
+    { label: "Citation", value: bibliographicCitation },
+    { label: "Folder Name", value: folderName },
     {
-      label: 'Folder Number',
+      label: "Folder Number",
+      facet_value: "Folder",
       value: folderNumber
     }
   ];
@@ -158,7 +159,7 @@ const ItemDetail = props => {
             <TabContent items={findThisItemPanel} />
           </TabPanel>
           <TabPanel>
-            <CiteTabContent item={props.item} />
+            <CiteTabContent item={item} />
           </TabPanel>
         </div>
       </Tabs>
@@ -166,8 +167,8 @@ const ItemDetail = props => {
   );
 };
 
-ItemDetail.propTypes = {
+WorkItemDetail.propTypes = {
   item: PropTypes.object
 };
 
-export default ItemDetail;
+export default WorkItemDetail;

@@ -12,9 +12,8 @@ import LoadingSpinner from "../UI/LoadingSpinner";
 import {
   DATASEARCH_PLACEHOLDER,
   GLOBAL_SEARCH_BAR_COMPONENT_ID,
-  imageFacets,
-  imageFilters,
   imagesOnlyDefaultQuery,
+  reactiveSearchFacets,
   simpleQueryStringQuery
 } from "../../services/reactive-search";
 import PhotoBox from "../UI/PhotoBox";
@@ -96,14 +95,17 @@ class Search extends Component {
   };
 
   render() {
-    const allFilters = [GLOBAL_SEARCH_BAR_COMPONENT_ID, ...imageFilters];
+    const allFilters = [
+      GLOBAL_SEARCH_BAR_COMPONENT_ID,
+      ...reactiveSearchFacets.map(facet => facet.value)
+    ];
     const { componentLoaded, showSidebar } = this.state;
 
     return (
       <>
         {componentLoaded && (
           <FacetsSidebar
-            facets={imageFacets}
+            facets={reactiveSearchFacets}
             facetValue={this.facetValue}
             filters={allFilters}
             searchValue={this.searchValue}

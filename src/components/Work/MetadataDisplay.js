@@ -1,26 +1,39 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import Mailto from 'react-protected-mailto';
+import React from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import Mailto from "react-protected-mailto";
 
 // Array of metadata items which are urls and should link externally
-const externalUrlLabels = ['Related Url', 'NUsearch'];
+const externalUrlLabels = ["Related Url", "NUsearch"];
 
-const MetadataDisplay = props => {
-  const { title, items, facet_value = '', external_url = '' } = props;
-
+const MetadataDisplay = ({
+  title,
+  items,
+  facet_value = "",
+  external_url = ""
+}) => {
   let itemText = item => {
     return item.label ? item.label : item;
   };
 
   let linkElement = (facetValue, searchValue) => {
     // TODO: create a map object for 'facetValue' in globals, so it's not just assumed that it's camelCased
-    const adjustedFacetValue = facetValue.split(' ').join('');
-    const adjustedSearchValue = searchValue.split(' ').join('+');
+    const adjustedFacetValue = facetValue.split(" ").join("");
+    const adjustedSearchValue = searchValue.split(" ").join("+");
     const encoded = encodeURI(
       `${adjustedFacetValue}=["${adjustedSearchValue}"]`
     );
     return <Link to={`/search?${encoded}`}>{searchValue}</Link>;
+  };
+
+  let moreInformation = () => {
+    const contactIndex = items.indexOf("contact") + 7;
+    const email = items.substr(contactIndex).trim();
+    return (
+      <p key={itemText(items)}>
+        {`${items.substr(0, contactIndex)}`} <Mailto email={email} />
+      </p>
+    );
   };
 
   let multipleItems = item => {
@@ -53,21 +66,11 @@ const MetadataDisplay = props => {
     }
   };
 
-  let moreInformation = item => {
-    const contactIndex = items.indexOf('contact') + 7;
-    const email = items.substr(contactIndex).trim();
-    return (
-      <p key={itemText(items)}>
-        {`${items.substr(0, contactIndex)}`} <Mailto email={email} />
-      </p>
-    );
-  };
-
   let display;
 
-  if (typeof items === 'string') {
+  if (typeof items === "string") {
     // More Information metadata field, need to obfuscate email address
-    if (title === 'More Information') {
+    if (title === "More Information") {
       display = moreInformation(items);
     } else {
       display = singleItem(items);
@@ -89,7 +92,10 @@ const MetadataDisplay = props => {
 };
 
 MetadataDisplay.propTypes = {
-  title: PropTypes.string
+  title: PropTypes.string,
+  items: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+  facet_value: PropTypes.string,
+  external_url: PropTypes.string
 };
 
 export default MetadataDisplay;

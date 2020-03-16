@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import MetadataDisplay from "./MetadataDisplay";
+import MetadataDisplay from "../MetadataDisplay";
 
 const styles = {
   tabContent: {
@@ -8,7 +8,7 @@ const styles = {
   }
 };
 
-const TabContent = ({ items = [] }) => {
+const TabsMetadata = ({ item }) => {
   return (
     <div style={styles.tabContent}>
       {items.map((item, i) => (
@@ -24,8 +24,8 @@ const TabContent = ({ items = [] }) => {
   );
 };
 
-TabContent.propTypes = {
-  items: PropTypes.array
+TabsMetadata.propTypes = {
+  item: PropTypes.object
 };
 
-export default TabContent;
+export default TabsMetadata;
