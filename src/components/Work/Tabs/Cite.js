@@ -1,46 +1,54 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import TabContent from './TabContent';
+import React from "react";
+import PropTypes from "prop-types";
+import MetadataDisplay from "../MetadataDisplay";
 
 const styles = {
   monoSpace: {
-    fontFamily: 'monospace'
+    fontFamily: "monospace"
   },
   tabContent: {
-    padding: '0 1rem'
+    padding: "0 1rem"
   }
 };
 
-const CiteTabContent = props => {
+const TabsCite = props => {
   const {
-    admin_set: { title: [admin_set] } = '', // division,
+    admin_set: { title: [admin_set] } = "", // division,
     collection = null,
-    date: [date] = '',
-    id = '',
+    date: [date] = "",
+    id = "",
     identifier = null,
     license = null,
-    nulUseStatement = '',
-    title: { primary: title } = ''
+    nulUseStatement = "",
+    title: { primary: title } = ""
   } = props.item;
 
-  const nul = 'Northwestern University Libraries';
+  const nul = "Northwestern University Libraries";
   const item_link = `${window.location.origin}/items/${id}`;
   const today = new Date().toDateString();
   const collection_title =
-    collection && collection.length > 0 ? `${collection[0].title}.` : '';
+    collection && collection.length > 0 ? `${collection[0].title}.` : "";
 
   const citePanel = [
-    { label: 'Identifier', value: identifier },
-    { label: 'Licenses', value: license },
-    { label: 'Title', value: title },
-    { label: 'Use Statement', value: nulUseStatement }
+    { label: "Identifier", value: identifier },
+    { label: "Licenses", value: license },
+    { label: "Title", value: title },
+    { label: "Use Statement", value: nulUseStatement }
   ];
 
   return (
-    <React.Fragment>
+    <>
       <div className="cite-group-col">
         <div className="cite-group">
-          <TabContent items={citePanel} />
+          <div style={styles.tabContent}>
+            {citePanel.map((item, i) => (
+              <MetadataDisplay
+                key={item.label}
+                title={item.label}
+                items={item.value}
+              />
+            ))}
+          </div>
         </div>
       </div>
       <div className="cite-group-col">
@@ -62,12 +70,12 @@ const CiteTabContent = props => {
           </p>
         </div>
       </div>
-    </React.Fragment>
+    </>
   );
 };
 
-CiteTabContent.propTypes = {
+TabsCite.propTypes = {
   item: PropTypes.object.isRequired
 };
 
-export default CiteTabContent;
+export default TabsCite;

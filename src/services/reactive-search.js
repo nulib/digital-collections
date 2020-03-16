@@ -77,65 +77,6 @@ export const reactiveSearchFacets = [
   }
 ];
 
-// TODO: Delete this before commit
-export const facetLabels = {
-  BOX: "Box",
-  COLLECTION: "Collection",
-  CONTRIBUTOR: "Contributor",
-  CREATOR: "Creator",
-  FOLDER: "Folder",
-  GENRE: "Genre",
-  LANGUAGE: "Language",
-  LIBRARY_DEPARTMENT: "Library Department",
-  LOCATION: "Location",
-  RIGHTS_STATEMENT: "Rights Statement",
-  STYLE_PERIOD: "Style Period",
-  SUBJECT: "Subject",
-  TECHNIQUE: "Technique",
-  VISIBILITY: "Visibility"
-};
-
-// TODO: Delete this before commit
-// These are common facets used for an Image in ReactivSearch components
-export const imageFacets = [
-  { name: facetLabels.BOX, field: "box.number.keyword" },
-  { name: facetLabels.COLLECTION, field: "collection.title.keyword" },
-  { name: facetLabels.CONTRIBUTOR, field: "contributor.label.keyword" },
-  { name: facetLabels.CREATOR, field: "creator.label.keyword" },
-  { name: facetLabels.FOLDER, field: "folder.number.keyword" },
-  { name: facetLabels.GENRE, field: "genre.label.keyword" },
-  { name: facetLabels.LANGUAGE, field: "language.label.keyword" },
-  { name: facetLabels.LIBRARY_DEPARTMENT, field: "admin_set.title.keyword" },
-  { name: facetLabels.LOCATION, field: "based_near.label.keyword" },
-  {
-    name: facetLabels.RIGHTS_STATEMENT,
-    field: "rights_statement.label.keyword"
-  },
-  { name: facetLabels.STYLE_PERIOD, field: "style_period.label.keyword" },
-  { name: facetLabels.SUBJECT, field: "subject.label.keyword" },
-  { name: facetLabels.TECHNIQUE, field: "technique.label.keyword" },
-  { name: facetLabels.VISIBILITY, field: "visibility.keyword" }
-];
-
-// TODO: Delete this before commit
-// These are common filters used for an Image in ReactivSearch components
-export const imageFilters = [
-  facetLabels.BOX,
-  facetLabels.COLLECTION,
-  facetLabels.CONTRIBUTOR,
-  facetLabels.CREATOR,
-  facetLabels.FOLDER,
-  facetLabels.GENRE,
-  facetLabels.LANGUAGE,
-  facetLabels.LOCATION,
-  "LibraryDepartment",
-  "RightsStatement",
-  "StylePeriod",
-  facetLabels.SUBJECT,
-  facetLabels.TECHNIQUE,
-  facetLabels.VISIBILITY
-];
-
 // For now, this is the ReactiveSearch DataSearch customQuery function,
 // which is used to do phrase matching with our current ElasticSearch
 // indexing configuration
