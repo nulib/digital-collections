@@ -4,54 +4,77 @@ export const GLOBAL_SEARCH_BAR_COMPONENT_ID = "q";
 export const DATASEARCH_PLACEHOLDER =
   "Search by title, description, or wildcard (ie. Picass*)";
 
-export const facetValues = {
-  COLLECTION: "Collection",
-  CONTRIBUTOR: "Contributor",
-  CREATOR: "Creator",
-  GENRE: "Genre",
-  LANGUAGE: "Language",
-  LIBRARY_DEPARTMENT: "Library Department",
-  LOCATION: "Location",
-  RIGHTS_STATEMENT: "Rights Statement",
-  STYLE_PERIOD: "Style Period",
-  SUBJECT: "Subject",
-  TECHNIQUE: "Technique",
-  VISIBILITY: "Visibility"
-};
-
-// These are common facets used for an Image in ReactivSearch components
-export const imageFacets = [
-  { name: facetValues.COLLECTION, field: "collection.title.keyword" },
-  { name: facetValues.CONTRIBUTOR, field: "contributor.label.keyword" },
-  { name: facetValues.CREATOR, field: "creator.label.keyword" },
-  { name: facetValues.GENRE, field: "genre.label.keyword" },
-  { name: facetValues.LANGUAGE, field: "language.label.keyword" },
-  { name: facetValues.LIBRARY_DEPARTMENT, field: "admin_set.title.keyword" },
-  { name: facetValues.LOCATION, field: "based_near.label.keyword" },
+export const reactiveSearchFacets = [
   {
-    name: facetValues.RIGHTS_STATEMENT,
-    field: "rights_statement.label.keyword"
+    elasticSearchField: "box.number.keyword",
+    label: "Box",
+    value: "Box"
   },
-  { name: facetValues.STYLE_PERIOD, field: "style_period.label.keyword" },
-  { name: facetValues.SUBJECT, field: "subject.label.keyword" },
-  { name: facetValues.TECHNIQUE, field: "technique.label.keyword" },
-  { name: facetValues.VISIBILITY, field: "visibility.keyword" }
-];
-
-// These are common filters used for an Image in ReactivSearch components
-export const imageFilters = [
-  facetValues.COLLECTION,
-  facetValues.CONTRIBUTOR,
-  facetValues.CREATOR,
-  facetValues.GENRE,
-  facetValues.LANGUAGE,
-  facetValues.LOCATION,
-  "LibraryDepartment",
-  "RightsStatement",
-  "StylePeriod",
-  facetValues.SUBJECT,
-  facetValues.TECHNIQUE,
-  facetValues.VISIBILITY
+  {
+    elasticSearchField: "collection.title.keyword",
+    label: "Collection",
+    value: "Collection"
+  },
+  {
+    elasticSearchField: "contributor.label.keyword",
+    label: "Contributor",
+    value: "Contributor"
+  },
+  {
+    elasticSearchField: "creator.label.keyword",
+    label: "Creator",
+    value: "Creator"
+  },
+  {
+    elasticSearchField: "folder.number.keyword",
+    label: "Folder",
+    value: "Folder"
+  },
+  {
+    elasticSearchField: "genre.label.keyword",
+    label: "Genre",
+    value: "Genre"
+  },
+  {
+    elasticSearchField: "language.label.keyword",
+    label: "Language",
+    value: "Language"
+  },
+  {
+    elasticSearchField: "admin_set.title.keyword",
+    label: "Library Department",
+    value: "LibraryDepartment"
+  },
+  {
+    elasticSearchField: "based_near.label.keyword",
+    label: "Location",
+    value: "Location"
+  },
+  {
+    elasticSearchField: "rights_statement.label.keyword",
+    label: "Rights Statement",
+    value: "RightsStatement"
+  },
+  {
+    elasticSearchField: "style_period.label.keyword",
+    label: "Style Period",
+    value: "StylePeriod"
+  },
+  {
+    elasticSearchField: "subject.label.keyword",
+    label: "Subject",
+    value: "Subject"
+  },
+  {
+    elasticSearchField: "technique.label.keyword",
+    label: "Technique",
+    value: "Technique"
+  },
+  {
+    elasticSearchField: "visibility.keyword",
+    label: "Visibility",
+    value: "Visibility"
+  }
 ];
 
 // For now, this is the ReactiveSearch DataSearch customQuery function,

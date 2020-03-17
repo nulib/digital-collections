@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as elasticsearchApi from "../../api/elasticsearch-api.js";
-import ItemDetail from "../../components/Work/ItemDetail";
+import WorkItemDetail from "../../components/Work/ItemDetail";
 import * as elasticsearchParser from "../../services/elasticsearch-parser";
 import * as globalVars from "../../services/global-vars";
 import LoadingSpinner from "../UI/LoadingSpinner";
@@ -84,7 +84,7 @@ const Work = ({ work }) => {
         adminSetItems={adminSetItems}
         collection={collection}
       />
-      <ItemDetail item={work} />
+      <WorkItemDetail item={work} />
     </div>
   );
 };

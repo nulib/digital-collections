@@ -41,7 +41,7 @@ async function search(query_hash, retries = 8) {
     if (err instanceof elasticsearch.errors.NoConnections) {
       return await search(query_hash, retries - 1);
     } else {
-      throw err;
+      throw `Error in elasticsearch-api.js: ${err}`;
     }
   }
 }

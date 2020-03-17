@@ -10,17 +10,21 @@ const multiListInnerClass = {
   icon: "rs-facet-icon"
 };
 
-const RSMultiList = props => {
-  const { allFilters, defaultValue = [], defaultQuery, facet, title } = props;
-  const facetNameNoSpaces = facet.name.replace(/\s+/g, "");
-  const filterList = allFilters.filter(entry => {
-    return entry !== facetNameNoSpaces;
+const RSMultiList = ({
+  allFilters,
+  defaultValue = [],
+  defaultQuery,
+  facet,
+  title
+}) => {
+  const filterList = allFilters.filter(filterItem => {
+    return filterItem !== facet.value;
   });
 
   return (
     <MultiDropdownList
-      componentId={facetNameNoSpaces}
-      dataField={facet.field}
+      componentId={facet.value}
+      dataField={facet.elasticSearchField}
       defaultValue={defaultValue}
       defaultQuery={defaultQuery}
       innerClass={multiListInnerClass}
