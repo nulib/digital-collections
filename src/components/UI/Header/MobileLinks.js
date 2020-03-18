@@ -33,7 +33,11 @@ const MobileLinks = props => {
   const classes = `mobile-link mobile-nav-link ${navOpen ? "open" : ""}`;
 
   return (
-    <div id="mobile-links" data-testid="mobile-links">
+    <div
+      id="mobile-links"
+      data-testid="mobile-links"
+      aria-label="mobile links navigation"
+    >
       <button className={classes} onClick={handleMenuClick}>
         <span className="hide-label">Menu</span>
       </button>
