@@ -20,6 +20,8 @@ describe("Layout elements (header, footer, etc.)", () => {
       cy.get("@quickLinks").contains("contact us", { matchCase: false });
     });
 
+    //TODO: Test logged in / out link display, mess with interacting with redux store through cypress window?
+
     it("should display bottom bar content", () => {
       cy.get("h1").contains("LIBRARIES | DIGITAL COLLECTIONS");
     });
@@ -106,7 +108,8 @@ describe("Layout elements (header, footer, etc.)", () => {
 
         // cy.get() will only search for elements within footer,
         // not within the entire document
-        // Check random footer elements to ensure it's displaying
+
+        // Check random footer elements to ensure they're displaying
         cy.get("img").should("have.attr", "alt", "Northwestern University");
         cy.contains("Contact Northwestern University");
         cy.contains("1970 Campus Drive");

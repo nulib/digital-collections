@@ -1,9 +1,9 @@
-import React from 'react';
-import Login from '../Login';
+import React from "react";
+import Login from "./Login";
 
-const GlobalLinks = props => {
+const GlobalLinks = () => {
   return (
-    <React.Fragment>
+    <>
       <li>
         <a
           href="https://www.library.northwestern.edu/"
@@ -14,7 +14,7 @@ const GlobalLinks = props => {
         </a>
       </li>
       <Login />
-    </React.Fragment>
+    </>
   );
 };
 
