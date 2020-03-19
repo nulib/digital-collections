@@ -56,6 +56,7 @@ const CollectionList = () => {
           <input
             onChange={handleFilterChange}
             placeholder="Filter collections"
+            data-testid="input-collection-filter"
           />
         </form>
         <LoadingSpinner loading={loading} />
