@@ -12,7 +12,7 @@ const MetadataDisplay = ({
   facet,
   external_url = "",
   collection,
-  folderNumber
+  boxNumber
 }) => {
   if (!items) return null;
 
@@ -23,21 +23,21 @@ const MetadataDisplay = ({
     let encoded = encodeURI(`${facet.value}=["${adjustedSearchValue}"]`);
     const collectionTitle = getESTitle(collection);
 
-    // Account for Folder
+    // Folder should filter on "collection", "box", and "folder" facets
     if (facet.value === "Folder") {
       encoded = encodeURI(
-        `Folder=["${adjustedSearchValue}"]&Collection=["${collectionTitle
-          .split(" ")
-          .join("+")}"]`
+        `Folder=["${adjustedSearchValue}"]&Box=["${
+          boxNumber[0]
+        }"]&Collection=["${collectionTitle.split(" ").join("+")}"]`
       );
     }
 
-    // Account for Box
+    // Box should only filter on "collection" and "box" facets
     if (facet.value === "Box") {
       encoded = encodeURI(
-        `Box=["${adjustedSearchValue}"]&Folder=["${
-          folderNumber[0]
-        }"]&Collection=["${collectionTitle.split(" ").join("+")}"]`
+        `Box=["${adjustedSearchValue}"]&Collection=["${collectionTitle
+          .split(" ")
+          .join("+")}"]`
       );
     }
 
@@ -101,7 +101,7 @@ MetadataDisplay.propTypes = {
   facet: PropTypes.object,
   external_url: PropTypes.string,
   collection: PropTypes.object,
-  folderNumber: PropTypes.array
+  boxNumber: PropTypes.array
 };
 
 export default MetadataDisplay;
