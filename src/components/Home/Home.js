@@ -120,12 +120,14 @@ const Home = () => {
             linkToText="View All Items"
             items={galleryItems}
             hideDescriptions={true}
+            data-testid="section-recent-items"
           />
           <PhotoGridSection
             headline="Featured Collections"
             linkTo="/collections"
             linkToText="View All Collections"
             items={galleryCollections}
+            data-testid="section-featured-collections"
           />
         </div>
       )}
