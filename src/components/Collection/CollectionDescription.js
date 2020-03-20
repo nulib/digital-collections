@@ -1,48 +1,41 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const styles = {
   moreLess: {
-    margin: '0 5px'
+    margin: "0 5px"
   }
 };
 
-class CollectionDescription extends Component {
-  static propTypes = {
-    description: PropTypes.array
-  };
+const CollectionDescription = ({ description }) => {
+  const [expanded, setExpanded] = useState();
+  const tooLong = description.length > 1;
 
-  state = {
-    expanded: false
-  };
-
-  handleClick = e => {
+  const handleClick = e => {
     e.preventDefault();
-    this.setState({ expanded: !this.state.expanded });
+    setExpanded(!expanded);
   };
 
-  render() {
-    const { expanded } = this.state;
-    const { description } = this.props;
-    const tooLong = description.length > 1;
+  return (
+    <>
+      {tooLong && !expanded && description[0]}
+      {(!tooLong || expanded) && description}
+      {tooLong && (
+        <a href="/" onClick={handleClick}>
+          <FontAwesomeIcon
+            icon={expanded ? "angle-up" : "angle-right"}
+            style={styles.moreLess}
+          />
+          {expanded ? "Less" : "More"}
+        </a>
+      )}
+    </>
+  );
+};
 
-    return (
-      <React.Fragment>
-        {tooLong && !expanded && description[0]}
-        {(!tooLong || expanded) && description}
-        {tooLong && (
-          <a href="/" onClick={this.handleClick}>
-            <FontAwesomeIcon
-              icon={expanded ? 'angle-up' : 'angle-right'}
-              style={styles.moreLess}
-            />
-            {expanded ? 'Less' : 'More'}
-          </a>
-        )}
-      </React.Fragment>
-    );
-  }
-}
+CollectionDescription.propTypes = {
+  description: PropTypes.string
+};
 
 export default CollectionDescription;

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import {
   DataSearch,
   SelectedFilters,
@@ -17,73 +17,54 @@ import {
   simpleQueryStringQuery
 } from "../../services/reactive-search";
 import PhotoBox from "../UI/PhotoBox";
-import { withRouter } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { ROUTES } from "../../services/global-vars";
 import FacetsSidebar from "../UI/FacetsSidebar";
 import Breadcrumbs from "../UI/Breadcrumbs/Breadcrumbs";
 import { loadDataLayer } from "../../services/google-tag-manager";
 import FiltersShowHideButton from "../UI/FiltersShowHideButton";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { searchValueChange } from "../../actions/search";
 import PropTypes from "prop-types";
-import ReactRouterPropTypes from "react-router-prop-types";
 
-const breadcrumbs = [
-  { link: "/", title: "Home" },
-  { link: "", title: "Search Results" }
-];
+const Search = ({ breadcrumbs = [] }) => {
+  const [facetValue, setFacetValue] = useState();
+  const [searchValue, setSearchValue] = useState();
+  const [componentLoaded, setComponentLoaded] = useState();
+  const [showSidebar, setShowSidebar] = useState();
 
-class Search extends Component {
-  constructor(props) {
-    super(props);
-    this.facetValue = "";
-    this.searchValue = "";
-  }
-  static propTypes = {
-    location: ReactRouterPropTypes.location,
-    searchValueChange: PropTypes.func.isRequired
-  };
+  const location = useLocation();
+  const dispatch = useDispatch();
 
-  state = {
-    componentLoaded: false,
-    locationState: null,
-    showSidebar: false
-  };
+  useEffect(() => {
+    const handleLocationState = () => {
+      if (location.state) {
+        // this.facetValue = location.state.facetValue;
+        // this.searchValue = location.state.searchValue;
+        setFacetValue(location.state.facetValue);
+        setSearchValue(location.state.searchValue);
+      }
+    };
 
-  componentDidMount() {
     loadDataLayer({ pageTitle: ROUTES.SEARCH.title });
-    this.handleLocationState();
-    this.setState({ componentLoaded: true });
-  }
+    handleLocationState();
+    setComponentLoaded(true);
+  }, [location]);
 
-  /**
-   * Runs when React Router "state" is sent into this component packaged with a link,
-   * or "history.push()" action into this component.  This info is then passed into
-   * the sidebar for some intro filtering.
-   */
-  handleLocationState = () => {
-    const { location } = this.props;
-
-    if (location.state) {
-      this.facetValue = location.state.facetValue;
-      this.searchValue = location.state.searchValue;
-    }
-  };
-
-  handleDisplaySidebarClick = e => {
+  const handleDisplaySidebarClick = e => {
     e.preventDefault();
-    this.setState({ showSidebar: !this.state.showSidebar });
+    setShowSidebar(!showSidebar);
   };
 
-  onValueChange = value => {
-    this.props.searchValueChange(value);
+  const onValueChange = value => {
+    dispatch(() => searchValueChange(value));
   };
 
   /**
    * Helper function to display a custom component to display instead of ReactiveSearch's
    * @param {Object} res - ReactivSearch result object
    */
-  renderItem = res => {
+  const renderItem = res => {
     let item = {
       id: res.id,
       imageUrl: getESImagePath(res),
@@ -94,88 +75,88 @@ class Search extends Component {
     return <PhotoBox key={item.id} item={item} />;
   };
 
-  render() {
-    const allFilters = [
-      GLOBAL_SEARCH_BAR_COMPONENT_ID,
-      ...reactiveSearchFacets.map(facet => facet.value)
-    ];
-    const { componentLoaded, showSidebar } = this.state;
+  const allFilters = [
+    GLOBAL_SEARCH_BAR_COMPONENT_ID,
+    ...reactiveSearchFacets.map(facet => facet.value)
+  ];
 
-    return (
-      <>
-        {componentLoaded && (
-          <FacetsSidebar
-            facets={reactiveSearchFacets}
-            facetValue={this.facetValue}
-            filters={allFilters}
-            searchValue={this.searchValue}
-            showSidebar={showSidebar}
-          />
-        )}
+  return (
+    <>
+      {componentLoaded && (
+        <FacetsSidebar
+          facets={reactiveSearchFacets}
+          facetValue={facetValue}
+          filters={allFilters}
+          searchValue={searchValue}
+          showSidebar={showSidebar}
+        />
+      )}
 
-        <main
-          id="main-content"
-          className={`content ${!showSidebar ? "extended" : ""}`}
-          tabIndex="-1"
-        >
-          <Breadcrumbs items={breadcrumbs} />
+      <main
+        id="main-content"
+        className={`content ${!showSidebar ? "extended" : ""}`}
+        tabIndex="-1"
+      >
+        <Breadcrumbs items={breadcrumbs} />
 
-          <h2>Search Results</h2>
+        <h2>Search Results</h2>
 
-          <DataSearch
-            autosuggest={false}
-            className="datasearch web-form"
-            customQuery={simpleQueryStringQuery}
-            componentId={GLOBAL_SEARCH_BAR_COMPONENT_ID}
-            dataField={[]}
-            debounce={1000}
-            filterLabel="Search"
-            innerClass={{
-              input: "searchbox rs-search-input",
-              list: "suggestionlist"
-            }}
-            queryFormat="or"
-            placeholder={DATASEARCH_PLACEHOLDER}
-            URLParams={true}
-            onValueChange={this.onValueChange}
-          />
+        <DataSearch
+          autosuggest={false}
+          className="datasearch web-form"
+          customQuery={simpleQueryStringQuery}
+          componentId={GLOBAL_SEARCH_BAR_COMPONENT_ID}
+          dataField={[]}
+          debounce={1000}
+          filterLabel="Search"
+          innerClass={{
+            input: "searchbox rs-search-input",
+            list: "suggestionlist"
+          }}
+          queryFormat="or"
+          placeholder={DATASEARCH_PLACEHOLDER}
+          URLParams={true}
+          onValueChange={onValueChange}
+        />
 
-          <SelectedFilters />
+        <SelectedFilters />
 
-          <FiltersShowHideButton
-            showSidebar={showSidebar}
-            handleToggleFiltersClick={this.handleDisplaySidebarClick}
-          />
+        <FiltersShowHideButton
+          showSidebar={showSidebar}
+          handleToggleFiltersClick={handleDisplaySidebarClick}
+        />
 
-          <ReactiveList
-            componentId="results"
-            dataField="title.primary.keyword"
-            innerClass={{
-              list: "rs-result-list photo-grid four-grid",
-              pagination: "rs-pagination",
-              resultsInfo: "rs-results-info"
-            }}
-            defaultQuery={imagesOnlyDefaultQuery}
-            loader={<LoadingSpinner loading={true} />}
-            renderItem={this.renderItem}
-            pagination={true}
-            paginationAt="bottom"
-            react={{
-              and: allFilters
-            }}
-            size={12}
-            URLParams={true}
-          />
-        </main>
-      </>
-    );
-  }
-}
+        <ReactiveList
+          componentId="results"
+          dataField="title.primary.keyword"
+          innerClass={{
+            list: "rs-result-list photo-grid four-grid",
+            pagination: "rs-pagination",
+            resultsInfo: "rs-results-info"
+          }}
+          defaultQuery={imagesOnlyDefaultQuery}
+          loader={<LoadingSpinner loading={true} />}
+          renderItem={renderItem}
+          pagination={true}
+          paginationAt="bottom"
+          react={{
+            and: allFilters
+          }}
+          size={12}
+          URLParams={true}
+        />
+      </main>
+    </>
+  );
+};
 
-const mapDispatchToProps = dispatch => ({
-  searchValueChange: value => dispatch(searchValueChange(value))
-});
+Search.propTypes = {
+  breadcrumbs: PropTypes.arrayOf(
+    PropTypes.shape({
+      link: PropTypes.string,
+      title: PropTypes.string
+    })
+  )
+};
 
-export const ConnectedSearch = connect(null, mapDispatchToProps)(Search);
-
-export default withRouter(ConnectedSearch);
+export default Search;

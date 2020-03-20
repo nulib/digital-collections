@@ -168,11 +168,6 @@ class OpenSeadragonViewer extends Component {
               tileSources.length < 2 ? "centered" : ""
             }`}
           >
-            {/* <WorkOpenSeadragonFilesetSelect
-              currentTileSource={currentTileSource}
-              onFileSetChange={this.handleFilesetSelectChange}
-              tileSources={tileSources}
-            /> */}
             <WorkOpenSeadragonFilesetReactSelect
               currentTileSource={currentTileSource}
               onFileSetChange={this.handleFilesetSelectChange}
