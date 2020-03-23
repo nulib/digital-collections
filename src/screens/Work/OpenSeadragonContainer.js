@@ -84,7 +84,7 @@ class OpenSeadragonContainer extends Component {
       <div>
         <LoadingSpinner loading={loading} />
         {tileSources.length > 0 && (
-          <section style={styles.wrapper}>
+          <section style={styles.wrapper} data-testid="section-open-seadragon">
             <OpenSeadragonViewer
               tileSources={tileSources}
               itemTitle={this.itemTitle}

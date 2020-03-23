@@ -123,7 +123,7 @@ const TabsMetadata = ({ item }) => {
   ];
 
   return (
-    <div style={styles.tabContent}>
+    <div style={styles.tabContent} data-testid="tab-content-metadata">
       {metadataItems.map((metadataItem, i) => (
         <MetadataDisplay
           key={metadataItem.label}

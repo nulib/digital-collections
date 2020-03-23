@@ -11,7 +11,10 @@ const WorkItemDetail = ({ item }) => {
   }
 
   return (
-    <section className="item-section contain-970 item-categories-wrapper">
+    <section
+      data-testid="section-tabs-metadata"
+      className="item-section contain-970 item-categories-wrapper"
+    >
       <Tabs selectedTabClassName="active" id="tab-container">
         <TabList id="tabs" role="tablist">
           <Tab role="tab" data-tab-id="about">

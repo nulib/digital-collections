@@ -37,7 +37,7 @@ const TabsCite = props => {
   ];
 
   return (
-    <>
+    <div data-testid="tab-content-cite">
       <div className="cite-group-col">
         <div className="cite-group">
           <div style={styles.tabContent}>
@@ -70,7 +70,7 @@ const TabsCite = props => {
           </p>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

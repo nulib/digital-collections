@@ -11,7 +11,7 @@ const ParentCollections = ({ adminSetItems = [], collection, item }) => {
   return (
     <div>
       {item && adminSetItems && (
-        <section className="section">
+        <section className="section" data-testid="section-library-department">
           <SectionTop
             sectionTitle="Library Department"
             optionalSubhead={adminSetTitle}
@@ -33,7 +33,7 @@ const ParentCollections = ({ adminSetItems = [], collection, item }) => {
       )}
 
       {item && collection.items.length > 0 && (
-        <section>
+        <section data-testid="section-collection">
           <SectionTop
             sectionTitle="Collection"
             optionalSubhead={collection.title}
