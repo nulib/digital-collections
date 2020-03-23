@@ -50,7 +50,8 @@ class MobileNav extends Component {
         id="mobile-nav"
         data-testid="mobile-nav"
         onClick={this.handleNavItemClick}
-        aria-label={`mobile menu ${navOpen ? "expanded" : "collapsed"}`}
+        aria-expanded={navOpen ? true : false}
+        aria-hidden={navOpen ? false : false}
         style={navOpen ? { display: "block" } : { display: "none" }}
       >
         <ul>
