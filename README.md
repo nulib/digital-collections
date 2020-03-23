@@ -8,58 +8,68 @@ This ReactJS application serves as the presentation layer for Northwestern's Nex
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
+### Prerequisites
+
+- NULib `devstack` environment installed and running
+- https://github.com/nulib/devstack
+
 ### Installing
 
 ```bash
-$ git clone git@github.com:nulib/next-gen-front-end-react.git
-$ cd next-gen-front-end-react
-$ git checkout deploy/staging
-$ yarn install
+git clone git@github.com:nulib/next-gen-front-end-react.git
+cd next-gen-front-end-react
+git checkout deploy/staging
+yarn install
 ```
-
-### Prerequisites for Development:
-
-- Running a local NULib `devstack` environment for Hyrax and the front-end:
-- Running a local instance of Hyrax (we call it Donut)
-  - You must have collections and images (works + filesets) created in your local Hyrax instance **with visibility set to public**
 
 ## Running a local development environment
 
 ### Start Docker containers
 
-- Open a terminal tab, navigate to your local `donut` (https://github.com/nulib/donut) repository directory, and on the `deploy/staging` branch run
+- Open a terminal tab, navigate to your `donut` (https://github.com/nulib/donut) repository directory and start the Docker environment.
 
 ```
+checkout deploy/staging
 devstack up donut glaze
-```
-
-### Start Rails application
-
-- In another terminal tab, in the same `donut` repository and branch as above, run
-
-```
-bundle exec rails s
 ```
 
 ### Start the React front-end application
 
-- Open another terminal tab, navigate to your local `next-gen-front-end-react` repository directory, `checkout` the `deploy/staging` branch and run
+Open another terminal tab, navigate to your local `next-gen-front-end-react` repository directory, `checkout` the `deploy/staging` branch and run:
 
-#### ...using local Donut data
-
-```
-yarn start
-```
-
-#### ...using live data (instead of locally ingested data)
+#### (Recommended): Using production data
 
 ```bash
 start:use-real-data
 ```
 
+#### (No longer fully supported): Using local Donut data
+
+```
+yarn start
+```
+
 The React app will be available at: http://devbox.library.northwestern.edu:3333/
 
+### (optional) Start Rails application
+
+In another terminal tab, within the `donut` repository run:
+
+```
+bundle exec rails s
+```
+
 ## Running the tests
+
+### End to end tests
+
+We use [Cypress](https://www.cypress.io/) for end to end tests. To start end to end tests, run:
+
+```
+yarn cypress open
+```
+
+### Unit Tests
 
 Unit tests are handled via Jest and @testing-library:
 https://facebook.github.io/jest/
@@ -70,7 +80,7 @@ If your dev environment is Mac OSX, you'll need to install `watchman` to run the
 brew install watchman
 ```
 
-Then to run tests:
+Then to run unit tests:
 
 ```
 yarn test

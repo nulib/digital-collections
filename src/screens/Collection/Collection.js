@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { withRouter } from "react-router";
+import { useLocation, useParams } from "react-router";
 import { getESTitle } from "../../services/elasticsearch-parser";
 import { Helmet } from "react-helmet";
 import { loadDataLayer } from "../../services/google-tag-manager";
@@ -7,17 +7,18 @@ import Collection from "../../components/Collection/Collection";
 import * as elasticsearchApi from "../../api/elasticsearch-api.js";
 import { generateTitleTag } from "../../services/helpers";
 import { loadCollectionStructuredData } from "../../services/google-structured-data";
-import PropTypes from "prop-types";
 
-const ScreensCollection = ({ location, match }) => {
+const ScreensCollection = () => {
   const [structuredData, setStructuredData] = useState({});
   const collectionTitle = useRef("");
+  const location = useLocation();
+  const params = useParams();
 
   useEffect(() => {
     let mounted = true;
 
     const request = async () => {
-      const response = await elasticsearchApi.getCollection(match.params.id);
+      const response = await elasticsearchApi.getCollection(params.id);
 
       if (response.error) {
         return;
@@ -37,7 +38,7 @@ const ScreensCollection = ({ location, match }) => {
     return () => {
       mounted = false;
     };
-  }, [match.params.id, location.pathname]);
+  }, [params.id, location.pathname]);
 
   function populateGTMDataLayer() {
     const dataLayer = {
@@ -65,15 +66,4 @@ const ScreensCollection = ({ location, match }) => {
   );
 };
 
-ScreensCollection.propTypes = {
-  location: PropTypes.shape({
-    pathname: PropTypes.string.isRequired
-  }).isRequired,
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      id: PropTypes.string
-    }).isRequired
-  })
-};
-
-export default withRouter(ScreensCollection);
+export default ScreensCollection;

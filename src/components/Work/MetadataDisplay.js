@@ -1,33 +1,68 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import Mailto from 'react-protected-mailto';
+import React from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import Mailto from "react-protected-mailto";
+import { getESTitle } from "../../services/elasticsearch-parser";
 
-// Array of metadata items which are urls and should link externally
-const externalUrlLabels = ['Related Url', 'NUsearch'];
+const externalUrlLabels = ["Related Url", "NUsearch"];
 
-const MetadataDisplay = props => {
-  const { title, items, facet_value = '', external_url = '' } = props;
+const MetadataDisplay = ({
+  title,
+  items,
+  facet,
+  external_url = "",
+  collection,
+  boxNumber
+}) => {
+  if (!items) return null;
 
-  let itemText = item => {
-    return item.label ? item.label : item;
-  };
+  const itemText = item => item.label || item;
 
-  let linkElement = (facetValue, searchValue) => {
-    // TODO: create a map object for 'facetValue' in globals, so it's not just assumed that it's camelCased
-    const adjustedFacetValue = facetValue.split(' ').join('');
-    const adjustedSearchValue = searchValue.split(' ').join('+');
-    const encoded = encodeURI(
-      `${adjustedFacetValue}=["${adjustedSearchValue}"]`
-    );
+  const linkElement = (facet, searchValue) => {
+    let adjustedSearchValue = searchValue.split(" ").join("+");
+    let encoded = encodeURI(`${facet.value}=["${adjustedSearchValue}"]`);
+    const collectionTitle = getESTitle(collection);
+
+    // Folder should filter on "collection", "box", and "folder" facets
+    if (facet.value === "Folder") {
+      encoded = encodeURI(
+        `Folder=["${adjustedSearchValue}"]&Box=["${
+          boxNumber[0]
+        }"]&Collection=["${collectionTitle.split(" ").join("+")}"]`
+      );
+    }
+
+    // Box should only filter on "collection" and "box" facets
+    if (facet.value === "Box") {
+      encoded = encodeURI(
+        `Box=["${adjustedSearchValue}"]&Collection=["${collectionTitle
+          .split(" ")
+          .join("+")}"]`
+      );
+    }
+
     return <Link to={`/search?${encoded}`}>{searchValue}</Link>;
   };
 
-  let multipleItems = item => {
+  const moreInformation = () => {
+    const contactIndex = items.indexOf("contact") + 7;
+
+    return (
+      <p>
+        {`${items.substr(0, contactIndex)}`}{" "}
+        <Mailto email={items.substr(contactIndex).trim()} />
+      </p>
+    );
+  };
+
+  const multipleItems = item => {
     let text = itemText(item);
-    if (facet_value) {
-      return <li key={text}>{linkElement(facet_value, text)}</li>;
-    } else if (externalUrlLabels.indexOf(title) > -1) {
+
+    if (facet) {
+      return <li key={text}>{linkElement(facet, text)}</li>;
+    }
+
+    if (externalUrlLabels.indexOf(title) > -1) {
       return (
         <li key={text}>
           <a
@@ -39,57 +74,34 @@ const MetadataDisplay = props => {
           </a>
         </li>
       );
-    } else {
-      return <li key={text}>{text}</li>;
     }
+
+    return <li key={text}>{text}</li>;
   };
 
-  let singleItem = item => {
-    let text = itemText(item);
-    if (facet_value) {
-      return <p key={text}>{linkElement(facet_value, text)}</p>;
-    } else {
-      return <p key={text}>{text}</p>;
-    }
-  };
-
-  let moreInformation = item => {
-    const contactIndex = items.indexOf('contact') + 7;
-    const email = items.substr(contactIndex).trim();
-    return (
-      <p key={itemText(items)}>
-        {`${items.substr(0, contactIndex)}`} <Mailto email={email} />
-      </p>
-    );
-  };
-
-  let display;
-
-  if (typeof items === 'string') {
-    // More Information metadata field, need to obfuscate email address
-    if (title === 'More Information') {
-      display = moreInformation(items);
-    } else {
-      display = singleItem(items);
-    }
-  } else if (Array.isArray(items)) {
-    display = items.map(item => multipleItems(item));
-  }
-
-  if (items && items.length > 0) {
-    return (
-      <div>
-        <h4>{title}</h4>
-        <ul>{display}</ul>
-      </div>
-    );
-  } else {
-    return null;
-  }
+  return items.length > 0 ? (
+    <>
+      <h4>{title}</h4>
+      {typeof items === "string" ? (
+        title === "More Information" ? (
+          moreInformation(items)
+        ) : (
+          <p>{facet ? linkElement(facet, itemText(items)) : itemText(items)}</p>
+        )
+      ) : (
+        <ul>{items.map(item => multipleItems(item))}</ul>
+      )}
+    </>
+  ) : null;
 };
 
 MetadataDisplay.propTypes = {
-  title: PropTypes.string
+  title: PropTypes.string,
+  items: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+  facet: PropTypes.object,
+  external_url: PropTypes.string,
+  collection: PropTypes.object,
+  boxNumber: PropTypes.array
 };
 
 export default MetadataDisplay;
