@@ -23,23 +23,26 @@ const LargeFeature = props => {
   };
 
   return (
-    <div className="section large-feature item-summary-wrapper">
+    <div
+      data-testid="section-item-details"
+      className="section large-feature item-summary-wrapper"
+    >
       <h3>Item Details</h3>
       <div className="large-feature-inner">
         <div className="content-side">
-          <h4>{title}</h4>
+          <h4 data-testid="item-title">{title}</h4>
           <div className="text">
-            <p>{chopString(description, 70)}</p>
+            <p data-testid="item-description">{chopString(description, 70)}</p>
           </div>
           <ButtonRow />
         </div>
-        <div className="right-side item-summary">
+        <div data-testid="item-summary" className="right-side item-summary">
           <h4>Item Metadata</h4>
           <div style={styles.paddedBlock}>
             <span style={styles.subhead}>Identifier</span>
-            {item.id}
+            <span data-testid="identifier">{item.id}</span>
           </div>
-          <div stlye={styles.paddedBlock}>
+          <div style={styles.paddedBlock}>
             <SocialLinks item={item} />
           </div>
 
