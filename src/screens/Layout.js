@@ -1,12 +1,13 @@
-import React, { useEffect } from "react";
+import React, { Component } from "react";
+import { withRouter } from "react-router";
 import { Route, Switch } from "react-router-dom";
 import { ReactiveBase } from "@appbaseio/reactivesearch";
-import { useSelector, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 import AboutScreen from "./About/About";
 import ScreensCollectionList from "./Collection/List";
 import ScreensContactUs from "./ContactUs";
 import Footer from "../components/UI/Footer";
-import { ELASTICSEARCH_PROXY_BASE, ROUTES } from "../services/global-vars";
+import * as globalVars from "../services/global-vars";
 import Header from "../components/UI/Header/";
 import ScreensHome from "./Home/Home";
 import ScreensWork from "./Work/Work";
@@ -20,14 +21,14 @@ import "../libs/nuwebcomm-scripts.js";
 import { fetchApiToken } from "../actions/auth";
 import PropTypes from "prop-types";
 
-const ReactiveBaseWrapper = ({ apiToken, children }) => {
+const ReactiveBaseWrapper = props => {
   return (
     <ReactiveBase
       app="common"
-      url={ELASTICSEARCH_PROXY_BASE + "/search/"}
-      headers={{ "X-API-Token": apiToken }}
+      url={globalVars.ELASTICSEARCH_PROXY_BASE + "/search/"}
+      headers={{ "X-API-Token": props.apiToken }}
     >
-      {children}
+      {props.children}
     </ReactiveBase>
   );
 };
@@ -37,45 +38,72 @@ ReactiveBaseWrapper.propTypes = {
   children: PropTypes.node.isRequired
 };
 
-const Layout = () => {
-  const dispatch = useDispatch();
-  const apiToken = useSelector(state => state.token);
+export class Layout extends Component {
+  static propTypes = {
+    authToken: PropTypes.string,
+    fetchApiToken: PropTypes.func.isRequired
+  };
 
-  useEffect(() => {
-    dispatch(fetchApiToken());
-  }, [dispatch]);
+  componentDidMount() {
+    this.props.fetchApiToken();
+  }
 
-  return (
-    <>
-      <Header />
-      <Notifications />
-      <NavContainer />
-      <Switch>
-        <Route exact path={ROUTES.ABOUT.path} component={AboutScreen} />
-        <Route exact path={ROUTES.CONTACT.path} component={ScreensContactUs} />
-        <Route exact path={ROUTES.COLLECTION.path}>
-          <ReactiveBaseWrapper apiToken={apiToken}>
-            <ScreensCollection />
-          </ReactiveBaseWrapper>
-        </Route>
-        <Route
-          exact
-          path={ROUTES.COLLECTIONS_ALL.path}
-          component={ScreensCollectionList}
-        />
-        <Route path={ROUTES.ITEM_DETAIL.path} component={ScreensWork} />
-        <Route path={ROUTES.SEARCH.path}>
-          <ReactiveBaseWrapper apiToken={apiToken}>
-            <ScreensSearch />
-          </ReactiveBaseWrapper>
-        </Route>
-        <Route exact path={ROUTES.HOME.path} component={ScreensHome} />
-        <Route path={ROUTES.PAGE_NOT_FOUND.path} component={Default404} />
-        <Route component={Default404} />
-      </Switch>
-      <Footer />
-    </>
-  );
-};
+  render() {
+    const apiToken = this.props.authToken;
+    const { ROUTES } = globalVars;
 
-export default Layout;
+    // Delay rendering of component until the authToken has processed
+    // This avoids 'double' rendering of the entire app's components
+    if (typeof apiToken === "undefined") {
+      return null;
+    }
+
+    return (
+      <div>
+        <Header />
+        <Notifications />
+        <NavContainer />
+        <Switch>
+          <Route exact path={ROUTES.ABOUT.path} component={AboutScreen} />
+          <Route
+            exact
+            path={ROUTES.CONTACT.path}
+            component={ScreensContactUs}
+          />
+          <Route exact path={ROUTES.COLLECTION.path}>
+            <ReactiveBaseWrapper apiToken={apiToken}>
+              <ScreensCollection />
+            </ReactiveBaseWrapper>
+          </Route>
+          <Route
+            exact
+            path={ROUTES.COLLECTIONS_ALL.path}
+            component={ScreensCollectionList}
+          />
+          <Route path={ROUTES.ITEM_DETAIL.path} component={ScreensWork} />
+          <Route path={ROUTES.SEARCH.path}>
+            <ReactiveBaseWrapper apiToken={apiToken}>
+              <ScreensSearch />
+            </ReactiveBaseWrapper>
+          </Route>
+          <Route exact path={ROUTES.HOME.path} component={ScreensHome} />
+          <Route path={ROUTES.PAGE_NOT_FOUND.path} component={Default404} />
+          <Route component={Default404} />
+        </Switch>
+        <Footer />
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  authToken: state.auth.token
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchApiToken: () => dispatch(fetchApiToken())
+});
+
+const ConnectedLayout = connect(mapStateToProps, mapDispatchToProps)(Layout);
+
+export default withRouter(ConnectedLayout);
