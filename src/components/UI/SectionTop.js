@@ -13,8 +13,10 @@ const SectionTop = props => {
   return (
     <div className="section">
       <div className="section-top contain-970">
-        <h3>{sectionTitle}</h3>
-        <p className="subhead">{optionalSubhead}</p>
+        <h3 data-testid="section-title">{sectionTitle}</h3>
+        <p data-testid="subhead" className="subhead">
+          {optionalSubhead}
+        </p>
         <p>{optionalContent}</p>
         <ul className="center-list">
           {optionalButtons.map(optionalButton => (

@@ -73,7 +73,7 @@ const TabsFind = ({ item }) => {
   }
 
   return (
-    <div style={styles.tabContent}>
+    <div data-testid="tab-content-find" style={styles.tabContent}>
       {findItems.map((findItem, i) => (
         <MetadataDisplay
           key={findItem.label}

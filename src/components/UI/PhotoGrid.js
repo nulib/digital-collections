@@ -21,7 +21,7 @@ function PhotoGrid(props) {
   }
 
   return (
-    <div className={className}>
+    <div className={className} data-testid="photo-grid">
       {props.items.length > 0 &&
         props.items.map(item => (
           <PhotoBox

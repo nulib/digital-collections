@@ -22,7 +22,7 @@ const SocialLinks = props => {
   };
 
   return (
-    <div className="summary-list-item social-media">
+    <div data-testid="social-links" className="summary-list-item social-media">
       <FacebookShareButton url={currentLocation} style={styles.shareButton}>
         <FacebookIcon size={32} round={false} bgStyle={iconBgStyleObj} />
       </FacebookShareButton>

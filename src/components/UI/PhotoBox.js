@@ -21,7 +21,11 @@ const PhotoBox = props => {
   let imgSrc = imageUrl ? imageUrl : placeholderImage;
 
   return (
-    <article aria-labelledby="grid1" className="photo-box">
+    <article
+      aria-labelledby="grid1"
+      className="photo-box"
+      data-testid="photo-box"
+    >
       <Link to={linkPath}>
         <img alt={label} src={imgSrc} data-testid="img-photo-box" />
       </Link>

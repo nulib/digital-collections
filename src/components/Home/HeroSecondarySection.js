@@ -1,28 +1,32 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import React from "react";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const HeroSecondarySection = props => {
   const { collectionId, title, subTitle, heroImage } = props.heroData;
   const bgImage = require(`../../images/${heroImage}`);
-  const buttonText = 'See more';
+  const buttonText = "See more";
   const styles = {
     heroBg: {
       backgroundImage: `url(${bgImage})`,
-      backgroundRepeat: 'no-repeat',
-      backgroundSize: 'cover',
-      backgroundPosition: 'center'
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover",
+      backgroundPosition: "center"
     }
   };
 
   return (
-    <div className="section hero">
+    <div className="section hero" data-testid="hero-in-page">
       <div className="hero-image in-page" style={styles.heroBg}>
-        <h3>{title}</h3>
-        <p>{subTitle}</p>
+        <h3 data-testid="hero-in-page-title">{title}</h3>
+        <p data-testid="hero-in-page-subtitle">{subTitle}</p>
         <ul className="center-list">
           <li>
-            <Link className="button" to={`/collections/${collectionId}`}>
+            <Link
+              className="button"
+              to={`/collections/${collectionId}`}
+              data-testid="hero-in-page-link"
+            >
               {buttonText}
             </Link>
           </li>

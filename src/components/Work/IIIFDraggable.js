@@ -1,17 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import iiifLogo from '../../images/IIIF-logo.png';
+import React from "react";
+import PropTypes from "prop-types";
+import iiifLogo from "../../images/IIIF-logo.png";
 
 const styles = {
   iiifLogo: {
-    width: '75px',
-    height: 'auto'
+    width: "75px",
+    height: "auto"
   }
 };
 
 const IIIFDraggable = props => {
   return (
     <a
+      data-testid="iiif-draggable"
       href={`${props.iiifManifest}?manifest=${props.iiifManifest}`}
       target="_blank"
       rel="noopener noreferrer"

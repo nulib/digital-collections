@@ -1,19 +1,19 @@
-import React from 'react';
-import $ from 'jquery';
+import React from "react";
+import $ from "jquery";
 
 const ButtonRow = () => {
   function handleButtonClick(e) {
     const buttonId = e.target.id;
-    let dataTabId = 'about';
+    let dataTabId = "about";
 
-    if (buttonId === 'item-cite') {
-      dataTabId = 'cite';
+    if (buttonId === "item-cite") {
+      dataTabId = "cite";
     }
 
-    const $targetTab = $('#tabs').find(`[data-tab-id="${dataTabId}"]`);
+    const $targetTab = $("#tabs").find(`[data-tab-id="${dataTabId}"]`);
 
-    $targetTab.trigger('click');
-    $('html, body').animate(
+    $targetTab.trigger("click");
+    $("html, body").animate(
       {
         scrollTop: $targetTab.offset().top - 60
       },
@@ -25,12 +25,18 @@ const ButtonRow = () => {
     <div>
       <button
         id="item-more-details"
+        data-testid="item-more-details"
         className="button"
         onClick={handleButtonClick}
       >
         More Details
       </button>
-      <button id="item-cite" className="button" onClick={handleButtonClick}>
+      <button
+        id="item-cite"
+        data-testid="item-cite"
+        className="button"
+        onClick={handleButtonClick}
+      >
         Cite This Item
       </button>
     </div>

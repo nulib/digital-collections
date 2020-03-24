@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 describe("Layout elements (header, footer, etc.)", () => {
   beforeEach(() => {
     cy.visit("/");

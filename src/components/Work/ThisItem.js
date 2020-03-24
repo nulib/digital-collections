@@ -1,25 +1,29 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import PropTypes from 'prop-types';
-import { IIIF_LARGE_FEATURE_REGION } from '../../services/global-vars';
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import PropTypes from "prop-types";
+import { IIIF_LARGE_FEATURE_REGION } from "../../services/global-vars";
 
 const ThisItem = props => {
   const { item } = props;
   const styles = {
     caret: {
-      fontSize: '6rem',
-      color: '#f0f0f0'
+      fontSize: "6rem",
+      color: "#f0f0f0"
     },
     wrapper: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      marginBottom: '5rem'
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      marginBottom: "5rem"
     }
   };
 
   return (
-    <div className="this-item-wrapper" style={styles.wrapper}>
+    <div
+      data-testid="this-item"
+      className="this-item-wrapper"
+      style={styles.wrapper}
+    >
       <div>
         <FontAwesomeIcon icon="caret-down" style={styles.caret} />
       </div>
