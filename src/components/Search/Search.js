@@ -28,7 +28,7 @@ import { searchValueChange } from "../../actions/search";
 import PropTypes from "prop-types";
 
 const Search = ({ breadcrumbs = [] }) => {
-  const [facetValue, setFacetValue] = useState();
+  const [externalFacet, setExternalFacet] = useState();
   const [searchValue, setSearchValue] = useState();
   const [componentLoaded, setComponentLoaded] = useState();
   const [showSidebar, setShowSidebar] = useState();
@@ -39,9 +39,7 @@ const Search = ({ breadcrumbs = [] }) => {
   useEffect(() => {
     const handleLocationState = () => {
       if (location.state) {
-        // this.facetValue = location.state.facetValue;
-        // this.searchValue = location.state.searchValue;
-        setFacetValue(location.state.facetValue);
+        setExternalFacet(location.state.facet);
         setSearchValue(location.state.searchValue);
       }
     };
@@ -77,7 +75,7 @@ const Search = ({ breadcrumbs = [] }) => {
 
   const allFilters = [
     GLOBAL_SEARCH_BAR_COMPONENT_ID,
-    ...reactiveSearchFacets.map(facet => facet.value)
+    ...reactiveSearchFacets.map(f => f.value)
   ];
 
   return (
@@ -85,7 +83,7 @@ const Search = ({ breadcrumbs = [] }) => {
       {componentLoaded && (
         <FacetsSidebar
           facets={reactiveSearchFacets}
-          facetValue={facetValue}
+          externalFacet={externalFacet}
           filters={allFilters}
           searchValue={searchValue}
           showSidebar={showSidebar}

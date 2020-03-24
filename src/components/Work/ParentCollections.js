@@ -20,7 +20,7 @@ const ParentCollections = ({ adminSetItems = [], collection, item }) => {
                 label: "View All Items in Library Department",
                 url: "/search",
                 state: {
-                  facetValue: reactiveSearchFacets.find(
+                  facet: reactiveSearchFacets.find(
                     facet => facet.value === "LibraryDepartment"
                   ),
                   searchValue: adminSetTitle

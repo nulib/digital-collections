@@ -10,7 +10,7 @@ import {
 
 const FacetsSidebar = ({
   facets,
-  facetValue,
+  externalFacet,
   filters,
   searchValue,
   showSidebar
@@ -39,20 +39,22 @@ const FacetsSidebar = ({
         }`}
       >
         <h2>Filter By</h2>
-        {facets.map(facet => {
+        {facets.map(f => {
           let defaultValue =
-            facetValue && facetValue === facet.label ? [searchValue] : [];
+            externalFacet && externalFacet.label === f.label
+              ? [searchValue]
+              : [];
 
           return (
             <RSMultiList
-              key={facet.value}
+              key={f.value}
               allFilters={filters}
               defaultValue={defaultValue}
               defaultQuery={
                 isSearchPage() ? imagesOnlyDefaultQuery : collectionsQuery
               }
-              facet={facet}
-              title={facet.label}
+              facet={f}
+              title={f.label}
             />
           );
         })}
@@ -63,7 +65,7 @@ const FacetsSidebar = ({
 
 FacetsSidebar.propTypes = {
   facets: PropTypes.array,
-  facetValue: PropTypes.string,
+  externalFacet: PropTypes.object,
   filters: PropTypes.array,
   searchValue: PropTypes.string,
   showSidebar: PropTypes.bool
