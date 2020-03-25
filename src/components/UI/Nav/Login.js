@@ -3,9 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { isMobile } from "react-device-detect";
 import { forceLogout } from "../../../actions/auth";
 import * as nulApi from "../../../services/nul-api.js";
+import { useLocation, useHistory, useParams } from "react-router-dom";
 
 const Login = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const location = useLocation();
   const authToken = useSelector(state => state.auth.token);
   const styles = {
     link: {
@@ -14,6 +17,31 @@ const Login = () => {
     },
     subNavLink: {
       display: "inline-block"
+    }
+  };
+
+  const handleLogout = () => {
+    dispatch(forceLogout());
+
+    try {
+      // Current screen is either Collection landing, or Work
+      // On logout, gracefully route back to homepage instead of an
+      // unauthorized message
+      const pathnameArray = location.pathname.slice(1).split("/");
+      const isCollectionScreen =
+        pathnameArray[0] === "collections" && pathnameArray[1];
+      const isItems = pathnameArray[0] === "items";
+
+      if (isCollectionScreen || isItems) {
+        history.push("/");
+      }
+
+      // Collection list screen.  Reload the page
+      if (pathnameArray[0] === "collections" && !pathnameArray[1]) {
+        window.location.reload(false);
+      }
+    } catch (error) {
+      console.log("Error in handleLogout in Login.js: ", error);
     }
   };
 
@@ -56,7 +84,7 @@ const Login = () => {
               <button
                 style={styles.subNavLink}
                 className="button-link"
-                onClick={() => dispatch(forceLogout())}
+                onClick={handleLogout}
               >
                 SIGN OUT
               </button>

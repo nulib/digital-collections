@@ -2,14 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const SectionTop = props => {
-  const {
-    sectionTitle,
-    optionalSubhead,
-    optionalContent,
-    optionalButtons = []
-  } = props;
-
+const SectionTop = ({
+  sectionTitle,
+  optionalSubhead,
+  optionalContent,
+  optionalButtons = []
+}) => {
   return (
     <div className="section">
       <div className="section-top contain-970">
@@ -42,7 +40,20 @@ SectionTop.propTypes = {
   sectionTitle: PropTypes.string,
   optionalSubhead: PropTypes.string,
   optionalContent: PropTypes.string,
-  optionalButtons: PropTypes.array
+  optionalButtons: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string,
+      state: PropTypes.shape({
+        facet: PropTypes.shape({
+          elasticSearchField: PropTypes.string,
+          label: PropTypes.string,
+          value: PropTypes.string
+        }),
+        searchValue: PropTypes.string
+      }),
+      url: PropTypes.string
+    })
+  )
 };
 
 export default SectionTop;
