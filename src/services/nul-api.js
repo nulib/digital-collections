@@ -2,7 +2,7 @@ import * as globalVars from "./global-vars";
 
 const cookies = require("cookie");
 const nullUser = { token: null };
-const loginKey = "loggedIn";
+export const loginKey = "loggedIn";
 
 export function anonymous() {
   return !localStorage.getItem(loginKey);
@@ -42,11 +42,14 @@ async function iiifAuth(token) {
 }
 
 export async function extractApiToken(cookieStr) {
+  console.log("cookieStr", cookieStr);
   if (anonymous()) {
+    console.log("is anonymous()");
     return nullUser;
   }
 
   let ssoToken = cookies.parse(cookieStr).openAMssoToken;
+  console.log("ssoToken", ssoToken);
   if (ssoToken === null) return nullUser;
 
   try {
