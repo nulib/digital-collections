@@ -33,7 +33,7 @@ const ScreensContactUs = () => {
       <div id="page">
         <main id="main-content" className="content" tabIndex="0">
           <Breadcrumbs items={breadCrumbs} />
-          <p>
+          <p data-testid="location-text">
             Northwestern University Libraries' Repository and Digital Curation
             department is located in the main library on our Evanston campus.
             The department is responsible for digitization of library
@@ -41,12 +41,12 @@ const ScreensContactUs = () => {
             this website.
           </p>
 
-          <p>
+          <p data-testid="questions-text">
             Questions about digitization, description of items, or software can
             be directed here. <Mailto email="repository@northwestern.edu" />
           </p>
 
-          <p>
+          <p data-testid="content-text">
             The content on the site comes from multiple library collections,
             departments and units. Please visit{" "}
             <a

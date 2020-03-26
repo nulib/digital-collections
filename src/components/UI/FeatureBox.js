@@ -1,14 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { chopString } from '../../services/helpers';
+import React from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import { chopString } from "../../services/helpers";
 
 const FeatureBox = props => {
   const { description, id, image, label } = props.item;
-  const urlHelper = props.modelType === 'image' ? '/items' : '/collections';
+  const urlHelper = props.modelType === "image" ? "/items" : "/collections";
 
   return (
-    <article className="feature-box">
+    <article className="feature-box" data-testid={`feature-box-${id}`}>
       <img alt={label} src={image} />
       <div className="feature-copy">
         <h4>{label}</h4>

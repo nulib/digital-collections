@@ -52,11 +52,13 @@ const AboutScreen = () => {
           {JSON.stringify(loadDefaultStructuredData())}
         </script>
       </Helmet>
-      <div className="section hero contain-1440">
+      <div className="section hero contain-1440" data-testid="hero-section">
         <div className="hero-image" style={styles.heroBg}>
           <div className="contain-1120">
-            <h2>Repository and Digital Curation</h2>
-            <p>Digitizing Our Distinctive Collections</p>
+            <h2 data-testid="hero-title">Repository and Digital Curation</h2>
+            <p data-testid="hero-subtitle">
+              Digitizing Our Distinctive Collections
+            </p>
           </div>
         </div>
       </div>
@@ -64,7 +66,7 @@ const AboutScreen = () => {
       <div id="page">
         <main id="main-content" className="content" tabIndex="0">
           <Breadcrumbs items={breadcrumbs} />
-          <div style={styles.section}>
+          <div style={styles.section} data-testid="section-collection-summary">
             <p>
               {`Digital Collections contains thousands of items from Northwestern
                 University Libraries. While only a fraction of materials from the
@@ -120,181 +122,190 @@ const AboutScreen = () => {
               .
             </p>
           </div>
+          <section
+            className="section"
+            data-testid="collection-highlights-section"
+          >
+            <h3>Collection Highlights</h3>
+            <p>
+              Our collections are comprised of a range of media covering many
+              topics. Highlights include:
+            </p>
 
-          <h3>Collection Highlights</h3>
-          <p>
-            Our collections are comprised of a range of media covering many
-            topics. Highlights include:
-          </p>
+            <div className="feature-two-col" data-testid="feature-two-col1">
+              <FeatureBox
+                key={featuredCollections[0].id}
+                item={featuredCollections[0]}
+                modelType="collection"
+              />
+              <FeatureBox
+                key={featuredCollections[1].id}
+                item={featuredCollections[1]}
+                modelType="collection"
+              />
+            </div>
 
-          <div className="feature-two-col">
-            <FeatureBox
-              key={featuredCollections[0].id}
-              item={featuredCollections[0]}
-              modelType="collection"
-            />
-            <FeatureBox
-              key={featuredCollections[1].id}
-              item={featuredCollections[1]}
-              modelType="collection"
-            />
-          </div>
+            <div className="feature-two-col" data-testid="feature-two-col2">
+              <FeatureBox
+                key={featuredCollections[2].id}
+                item={featuredCollections[2]}
+                modelType="collection"
+              />
+              <FeatureBox
+                key={featuredCollections[3].id}
+                item={featuredCollections[3]}
+                modelType="collection"
+              />
+            </div>
 
-          <div className="feature-two-col">
-            <FeatureBox
-              key={featuredCollections[2].id}
-              item={featuredCollections[2]}
-              modelType="collection"
-            />
-            <FeatureBox
-              key={featuredCollections[3].id}
-              item={featuredCollections[3]}
-              modelType="collection"
-            />
-          </div>
+            <div className="feature-two-col" data-testid="feature-two-col3">
+              <FeatureBox
+                key={featuredCollections[4].id}
+                item={featuredCollections[4]}
+                modelType="collection"
+              />
+              <FeatureBox
+                key={featuredCollections[5].id}
+                item={featuredCollections[5]}
+                modelType="image"
+              />
+            </div>
+            <p>
+              Not all of our digital collections are available to the public. If
+              you have questions about these collections or the software behind
+              this site, please <Link to="/contact-us">contact us</Link>.
+            </p>
+          </section>
+          <section className="section" data-testid="collections-usage-section">
+            <p></p>
+            <h3>Using the collections</h3>
+            <article data-testid="rights-statement-article">
+              <h4>Rights Statement</h4>
+              <p data-testid="rights-statement-text">
+                {`We offer support to the Northwestern community on copyright and fair use in scholarly research, publishing, teaching and other areas. Our Copyright Librarian is available to answer questions regarding clearing permissions for publications, making public domain determinations, copyright registration, publication agreements, and more.`}
+              </p>
+              <p>
+                For more information, visit{" "}
+                <a
+                  href="https://www.library.northwestern.edu/research/scholarly/index.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Scholarly Research Services
+                </a>
+                .
+              </p>
+            </article>
+            <article data-testid="IIIF-article">
+              <h4>
+                <img src={iiifLogo} alt="IIIF logo" style={styles.iiifLogo} />
+                International Image Interoperability Framework (IIIF)
+              </h4>
+              <p data-testid="IIIF-text">
+                We currently make all content metadata and images available as{" "}
+                <a
+                  href="https://iiif.io/api/presentation/2.1/#manifest"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  IIIF manifests
+                </a>{" "}
+                backed by a IIIF compliant image server. This allows researchers
+                to see detailed, zoomable images on this site as well as use the
+                content in outside tools such as
+                {` `}
+                <a
+                  href="http://projectmirador.org/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Mirador
+                </a>
+                , embed on third-party websites, and programmatically query the
+                data.
+              </p>
 
-          <div className="feature-two-col">
-            <FeatureBox
-              key={featuredCollections[4].id}
-              item={featuredCollections[4]}
-              modelType="collection"
-            />
-            <FeatureBox
-              key={featuredCollections[5].id}
-              item={featuredCollections[5]}
-              modelType="image"
-            />
-          </div>
-
-          <p>
-            Not all of our digital collections are available to the public. If
-            you have questions about these collections or the software behind
-            this site, please <Link to="/contact-us">contact us</Link>.
-          </p>
-
-          <h3>Using the collections</h3>
-          <h4>Rights Statement</h4>
-          <p>
-            {`We offer support to the Northwestern community on copyright and fair use in scholarly research, publishing, teaching and other areas. Our Copyright Librarian is available to answer questions regarding clearing permissions for publications, making public domain determinations, copyright registration, publication agreements, and more.`}
-          </p>
-          <p>
-            For more information, visit{" "}
-            <a
-              href="https://www.library.northwestern.edu/research/scholarly/index.html"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Scholarly Research Services
-            </a>
-            .
-          </p>
-
-          <h4>
-            <img src={iiifLogo} alt="IIIF logo" style={styles.iiifLogo} />
-            International Image Interoperability Framework (IIIF)
-          </h4>
-          <p>
-            We currently make all content metadata and images available as{" "}
-            <a
-              href="https://iiif.io/api/presentation/2.1/#manifest"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              IIIF manifests
-            </a>{" "}
-            backed by a IIIF compliant image server. This allows researchers to
-            see detailed, zoomable images on this site as well as use the
-            content in outside tools such as
-            {` `}
-            <a
-              href="http://projectmirador.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Mirador
-            </a>
-            , embed on third-party websites, and programmatically query the
-            data.
-          </p>
-          <p>
-            More information about IIIF and related projects is available on on
-            the{" "}
-            <a
-              href="https://iiif.io/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              IIIF website
-            </a>
-            .
-          </p>
-
-          <h3>Platform</h3>
-          <h4>Development Tools</h4>
-          <ul>
-            <li>
-              The repository and metadata management software is a{" "}
-              <a
-                href="https://rubyonrails.org/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Ruby on Rails application
-              </a>{" "}
-              built from{" "}
-              <a
-                href="https://samvera.org/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Samvera Community
-              </a>{" "}
-              components.
-            </li>
-            <li>
-              The Digital Collections front end is built using{" "}
-              <a
-                href="https://reactjs.org/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                ReactJS
-              </a>{" "}
-              and{" "}
-              <a
-                href="https://redux.js.org/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Redux
-              </a>
-              .
-            </li>
-            <li>
-              Our zoomable, high-resolution images are are driven by{" "}
-              <a
-                href="https://iiif.io/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                IIIF
-              </a>
-              .
-            </li>
-            <li>
-              {`Northwestern's code
+              <p>
+                More information about IIIF and related projects is available on
+                on the{" "}
+                <a
+                  href="https://iiif.io/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  IIIF website
+                </a>
+                .
+              </p>
+            </article>
+          </section>
+          <section className="section" data-testid="platform-section">
+            <p></p>
+            <h3>Platform</h3>
+            <h4>Development Tools</h4>
+            <ul>
+              <li>
+                The repository and metadata management software is a{" "}
+                <a
+                  href="https://rubyonrails.org/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Ruby on Rails application
+                </a>{" "}
+                built from{" "}
+                <a
+                  href="https://samvera.org/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Samvera Community
+                </a>{" "}
+                components.
+              </li>
+              <li>
+                The Digital Collections front end is built using{" "}
+                <a
+                  href="https://reactjs.org/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  ReactJS
+                </a>{" "}
+                and{" "}
+                <a
+                  href="https://redux.js.org/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Redux
+                </a>
+                .
+              </li>
+              <li>
+                Our zoomable, high-resolution images are are driven by{" "}
+                <a
+                  href="https://iiif.io/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  IIIF
+                </a>
+                .
+              </li>
+              <li>
+                {`Northwestern's code
                 is open by default and published on `}
-              <a
-                href="https://github.com/nulib/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                GitHub.
-              </a>
-            </li>
-            <li />
-            <li />
-          </ul>
+                <a
+                  href="https://github.com/nulib/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  GitHub.
+                </a>
+              </li>
+            </ul>
+          </section>
         </main>
       </div>
     </div>
