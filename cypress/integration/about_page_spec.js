@@ -123,7 +123,6 @@ describe("About page", () => {
     cy.get("[data-testid=platform-section]").within($section => {
       cy.contains("h3", "Platform");
       cy.contains("h4", "Development Tools");
-      cy.get("li");
     });
   });
 });
