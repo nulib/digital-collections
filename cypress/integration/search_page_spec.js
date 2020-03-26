@@ -6,7 +6,7 @@ import * as globalVars from "../../src/services/global-vars";
 const jwt = require("jsonwebtoken");
 
 const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ0ZXN0dXNlciIsIm1haWwiOiJ0ZXN0dXNlckBub3J0aHdlc3Rlcm4uZWR1IiwiaWF0IjoxNTg1MjMxMTQ4fQ.M96J0Nh8VH9zLWUKKSc8xulVfyqk457bgqNcFlVuZjw";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ0ZXN0dXNlciIsIm1haWwiOiJ0ZXN0dXNlckBub3J0aHdlc3Rlcm4uZWR1IiwiaWF0IjoxNTg1MjQ4MzcxfQ.cdQAXYjc_rhcdIthS3m082Plxsep814l0W1LYt96MBo";
 
 const response = {
   token: `${token}`,
