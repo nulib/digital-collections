@@ -1,4 +1,5 @@
 import * as globalVars from "./global-vars";
+import "whatwg-fetch";
 
 const cookies = require("cookie");
 const nullUser = { token: null };
