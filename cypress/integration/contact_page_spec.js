@@ -13,12 +13,12 @@ describe("Contact us page", () => {
   });
 
   it("displays contact summary paragraphs", () => {
-    cy.get("[data-testid=location-text]");
-    cy.get("[data-testid=questions-text]");
-    cy.get("[data-testid=content-text]").within($contenttext => {
+    cy.get("p").contains("Northwestern University Libraries");
+    cy.get("p").within($paragraph => {
       cy.get("a")
         .contains("Research Support")
-        .should("have.attr", "href");
+        .should("have.attr", "href")
+        .and("include", "/research/research-support/");
     });
   });
 });

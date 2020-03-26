@@ -8,7 +8,7 @@ const FeatureBox = props => {
   const urlHelper = props.modelType === "image" ? "/items" : "/collections";
 
   return (
-    <article className="feature-box" data-testid={`feature-box-${id}`}>
+    <article className="feature-box">
       <img alt={label} src={image} />
       <div className="feature-copy">
         <h4>{label}</h4>
