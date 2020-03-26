@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { isMobile } from "react-device-detect";
 import { forceLogout } from "../../../actions/auth";
 import * as nulApi from "../../../services/nul-api.js";
-import { useLocation, useHistory, useParams } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 
 const Login = () => {
   const dispatch = useDispatch();
