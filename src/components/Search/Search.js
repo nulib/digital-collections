@@ -137,10 +137,12 @@ const Search = ({ breadcrumbs = [] }) => {
           renderItem={renderItem}
           pagination={true}
           paginationAt="bottom"
+          pages={10}
           react={{
             and: allFilters
           }}
-          size={12}
+          showEndPage={true}
+          size={24}
           URLParams={true}
         />
       </main>
