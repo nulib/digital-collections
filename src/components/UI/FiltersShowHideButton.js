@@ -1,16 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from "react";
+import PropTypes from "prop-types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const styles = {
   button: {
-    marginTop: '2rem'
+    marginTop: "2rem"
   },
   iconLeft: {
-    marginRight: '8px'
+    marginRight: "8px"
   },
   iconRight: {
-    marginLeft: '8px'
+    marginLeft: "8px"
   }
 };
 
@@ -19,6 +19,7 @@ const FiltersShowHideButton = props => {
 
   return (
     <button
+      data-testid="button-filter-toggle"
       className="button-link"
       aria-expanded={showSidebar}
       onClick={handleToggleFiltersClick}
@@ -27,7 +28,7 @@ const FiltersShowHideButton = props => {
       {showSidebar && (
         <FontAwesomeIcon icon="angle-left" style={styles.iconLeft} />
       )}
-      {showSidebar ? 'Hide Filters' : 'Show Filters'}
+      {showSidebar ? "Hide Filters" : "Show Filters"}
       {!showSidebar && (
         <FontAwesomeIcon icon="angle-right" style={styles.iconRight} />
       )}

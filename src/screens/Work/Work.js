@@ -16,7 +16,6 @@ import LoadingSpinner from "../../components/UI/LoadingSpinner";
 
 const ScreensWork = () => {
   const [error, setError] = useState();
-  const [id, setId] = useState();
   const [item, setItem] = useState();
   const [loading, setLoading] = useState();
   const [structuredData, setStructuredData] = useState();
@@ -30,12 +29,12 @@ const ScreensWork = () => {
   useEffect(() => {
     async function getApiData() {
       let item = await getItem();
+
       if (!item) {
         return;
       }
 
       populateGTMDataLayer(item);
-      setId(params.id);
       setItem(item);
       setLoading(false);
       setStructuredData(loadItemStructuredData(item, location.pathname));
@@ -111,7 +110,7 @@ const ScreensWork = () => {
 
   // This check ensures that when changing ids (items) on the same route, the "id" is different
   // at this point of execution
-  const idInSync = params.id === id;
+  const idInSync = item && params.id === item.id;
 
   const itemTitle = item ? elasticsearchParser.getESTitle(item) : "";
 

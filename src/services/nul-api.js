@@ -1,8 +1,9 @@
 import * as globalVars from "./global-vars";
+import "whatwg-fetch";
 
 const cookies = require("cookie");
 const nullUser = { token: null };
-const loginKey = "loggedIn";
+export const loginKey = "loggedIn";
 
 export function anonymous() {
   return !localStorage.getItem(loginKey);
@@ -47,6 +48,7 @@ export async function extractApiToken(cookieStr) {
   }
 
   let ssoToken = cookies.parse(cookieStr).openAMssoToken;
+
   if (ssoToken === null) return nullUser;
 
   try {
