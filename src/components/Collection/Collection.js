@@ -133,6 +133,7 @@ const Collection = () => {
     return <PhotoBox key={item.id} item={item} />;
   }
 
+<<<<<<< HEAD
   const sortOptions = [
     {
       sortBy: "asc",
@@ -141,13 +142,35 @@ const Collection = () => {
     },
     {
       sortBy: "desc",
+=======
+  const genericSort = [
+    {
+      sortBy: "asc",
+      dataField: "title.primary.keyword",
+      label: "Sort By Title"
+    }
+  ];
+  const searchSort = [
+    {
+      sortBy: "asc",
+>>>>>>> Sorting options added to collections
       dataField: "_score",
       label: "Sort By Relevancy"
     },
     {
       sortBy: "asc",
+<<<<<<< HEAD
       dataField: "title.primary.keyword",
       label: "Sort By Title"
+=======
+      dataField: "modified_date",
+      label: "Sort By Modified Date"
+    },
+    {
+      sortBy: "asc",
+      dataField: "title.primary.keyword",
+      label: "Sort By Title "
+>>>>>>> Sorting options added to collections
     }
   ];
 
@@ -256,7 +279,11 @@ const Collection = () => {
                     resultsInfo: "rs-results-info"
                   }}
                   showEndPage={true}
+<<<<<<< HEAD
                   sortOptions={sortOptions}
+=======
+                  sortOptions={searchVal ? searchSort : genericSort}
+>>>>>>> Sorting options added to collections
                   defaultSortOption={
                     searchVal ? "Sort By Relevancy" : "Sort By Title"
                   }
