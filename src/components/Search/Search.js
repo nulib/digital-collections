@@ -117,7 +117,7 @@ const Search = ({ breadcrumbs = [] }) => {
           onValueChange={onValueChange}
         />
 
-        <SelectedFilters />
+        <SelectedFilters className="rs-selected-filters" />
 
         <FiltersShowHideButton
           showSidebar={showSidebar}
