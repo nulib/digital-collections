@@ -210,7 +210,7 @@ const Collection = () => {
                   URLParams={false}
                 />
 
-                <SelectedFilters />
+                <SelectedFilters className="rs-selected-filters" />
 
                 <FiltersShowHideButton
                   showSidebar={showSidebar}
