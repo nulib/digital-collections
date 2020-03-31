@@ -98,6 +98,10 @@ export const ROUTES = {
     title: "",
     path: "/items/:id"
   },
+  LEGACY_PID: {
+    title: "",
+    path: "/legacy-pid/:pid"
+  },
   PAGE_NOT_FOUND: {
     title: "404 Page Not Found",
     path: "/notfound"
