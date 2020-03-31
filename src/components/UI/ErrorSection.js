@@ -3,7 +3,11 @@ import PropTypes from "prop-types";
 
 function ErrorSection(props) {
   const errorMessage = props.message || "General error";
-  return <div className="error-section">Error: {errorMessage}</div>;
+  return (
+    <div data-testid="error-section" className="error-section">
+      Error: {errorMessage}
+    </div>
+  );
 }
 
 ErrorSection.propTypes = {

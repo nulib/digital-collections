@@ -28,6 +28,7 @@ const FacetsSidebar = ({
 
   return (
     <div
+      data-testid="facets-sidebar"
       aria-label="section navigation menu"
       aria-hidden={!showSidebar}
       className={`facets-sidebar ${!showSidebar ? "collapsed" : ""}`}
