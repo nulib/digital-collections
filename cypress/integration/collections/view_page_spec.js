@@ -1,7 +1,5 @@
 /// <reference types="cypress" />
 
-//const jwt = require("jsonwebtoken");
-
 describe("Collections View page", () => {
   context("Anonymous user", () => {
     beforeEach(() => {
@@ -39,7 +37,7 @@ describe("Collections View page", () => {
     it("should display sidebar", () => {
       cy.get("#sidebar").within($sidebar => {
         cy.contains("h3", "Collection Description");
-        cy.contains("p");
+        cy.contains("p", "113 antique maps of Africa");
       });
     });
 

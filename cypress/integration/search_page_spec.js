@@ -54,7 +54,7 @@ describe("Search page", () => {
     it("should display search results grid", () => {
       cy.get(".rs-result-list.photo-grid").within($grid => {
         // Default page load results
-        cy.get("article").should("have.length", 12);
+        cy.get("article").should("have.length", 24);
         cy.getByTestId("photo-box").within($photoBox => {
           cy.getLinkIncludesPath("/items");
           cy.get("img");
