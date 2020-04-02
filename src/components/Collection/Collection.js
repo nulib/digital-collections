@@ -39,7 +39,7 @@ const Collection = () => {
   const [error, setError] = useState();
   const [loading, setLoading] = useState(true);
   const [showSidebar, setShowSidebar] = useState();
-
+  const [searchVal, setSearchValue] = useState();
   const params = useParams();
   const location = useLocation();
   const history = useHistory();
@@ -133,6 +133,24 @@ const Collection = () => {
     return <PhotoBox key={item.id} item={item} />;
   }
 
+  const sortOptions = [
+    {
+      sortBy: "asc",
+      dataField: "modified_date",
+      label: "Sort By Modified Date"
+    },
+    {
+      sortBy: "desc",
+      dataField: "_score",
+      label: "Sort By Relevancy"
+    },
+    {
+      sortBy: "asc",
+      dataField: "title.primary.keyword",
+      label: "Sort By Title"
+    }
+  ];
+
   const breadCrumbData = collection ? createBreadcrumbData(collection) : [];
   const collectionTitle = collection ? getESTitle(collection) : "";
   const collectionDescription = collection ? getESDescription(collection) : "";
@@ -159,7 +177,6 @@ const Collection = () => {
     if (loading) {
       return null;
     }
-
     if (collection) {
       return (
         <div>
@@ -204,6 +221,9 @@ const Collection = () => {
                     input: "searchbox rs-search-input",
                     list: "suggestionlist"
                   }}
+                  onValueChange={function(value) {
+                    setSearchValue(value);
+                  }}
                   queryFormat="or"
                   placeholder="Search within collection"
                   showFilter={true}
@@ -226,6 +246,7 @@ const Collection = () => {
                   defaultQuery={defaultQuery}
                   loader={<LoadingSpinner loading={true} />}
                   size={12}
+                  pages={10}
                   pagination={true}
                   paginationAt="bottom"
                   renderItem={renderItem}
@@ -234,6 +255,11 @@ const Collection = () => {
                     pagination: "rs-pagination",
                     resultsInfo: "rs-results-info"
                   }}
+                  showEndPage={true}
+                  sortOptions={sortOptions}
+                  defaultSortOption={
+                    searchVal ? "Sort By Relevancy" : "Sort By Title"
+                  }
                 />
               </div>
             )}
