@@ -247,6 +247,32 @@ export async function getItem(id) {
   }
 }
 
+export async function getLegacyPidItem(pid) {
+  try {
+    const response = await search({
+      ...getObjBase,
+      body: {
+        query: {
+          bool: {
+            must: [
+              {
+                match: {
+                  "legacy_identifier.keyword": pid
+                }
+              }
+            ]
+          }
+        }
+      }
+    });
+    const id = response.hits.hits[0]._source.id;
+    return id;
+  } catch (e) {
+    console.log(`Error in getLegacyPidItem(): ${e}`);
+    return Promise.resolve();
+  }
+}
+
 /**
  * Get all Work items from indexer
  * @param {Number} numResults - Function caller can specify how many results they want back
