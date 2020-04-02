@@ -134,6 +134,7 @@ const Collection = () => {
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   const sortOptions = [
     {
       sortBy: "asc",
@@ -144,21 +145,27 @@ const Collection = () => {
       sortBy: "desc",
 =======
   const genericSort = [
+=======
+  const sortOptions = [
+>>>>>>> Bug fix for sorting alphanumerically
     {
       sortBy: "asc",
-      dataField: "title.primary.keyword",
-      label: "Sort By Title"
-    }
-  ];
-  const searchSort = [
+      dataField: "modified_date",
+      label: "Sort By Modified Date"
+    },
     {
+<<<<<<< HEAD
       sortBy: "asc",
 >>>>>>> Sorting options added to collections
+=======
+      sortBy: "desc",
+>>>>>>> Bug fix for sorting alphanumerically
       dataField: "_score",
       label: "Sort By Relevancy"
     },
     {
       sortBy: "asc",
+<<<<<<< HEAD
 <<<<<<< HEAD
       dataField: "title.primary.keyword",
       label: "Sort By Title"
@@ -171,6 +178,10 @@ const Collection = () => {
       dataField: "title.primary.keyword",
       label: "Sort By Title "
 >>>>>>> Sorting options added to collections
+=======
+      dataField: "title.primary.keyword",
+      label: "Sort By Title"
+>>>>>>> Bug fix for sorting alphanumerically
     }
   ];
 
@@ -280,10 +291,14 @@ const Collection = () => {
                   }}
                   showEndPage={true}
 <<<<<<< HEAD
+<<<<<<< HEAD
                   sortOptions={sortOptions}
 =======
                   sortOptions={searchVal ? searchSort : genericSort}
 >>>>>>> Sorting options added to collections
+=======
+                  sortOptions={sortOptions}
+>>>>>>> Bug fix for sorting alphanumerically
                   defaultSortOption={
                     searchVal ? "Sort By Relevancy" : "Sort By Title"
                   }
