@@ -96,21 +96,18 @@ export function getIIIFUrlKey(modelType) {
  * @return {Array} of prepped items
  */
 export function prepPhotoGridItems(
-  elasticsearchResponse,
+  sources,
   modelType,
   iiifParams = globalVars.IIIF_MEDIUM_ITEM_REGION
 ) {
   const iiifUrlKey = getIIIFUrlKey(modelType);
-  const { hits } = elasticsearchResponse.hits;
 
-  return hits.map(hit => ({
-    id: hit._id,
+  return sources.map(source => ({
+    id: source.id,
     type: modelType,
-    imageUrl: hit._source[iiifUrlKey]
-      ? `${hit._source[iiifUrlKey]}${iiifParams}`
-      : "",
-    label: getESTitle(hit._source),
-    description: getESDescription(hit._source)
+    imageUrl: source[iiifUrlKey] ? `${source[iiifUrlKey]}${iiifParams}` : "",
+    label: getESTitle(source),
+    description: getESDescription(source)
   }));
 }
 

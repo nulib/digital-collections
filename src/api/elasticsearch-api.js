@@ -46,56 +46,94 @@ async function search(query_hash, retries = 8) {
   }
 }
 
+/**
+ * Retrieve random admin set items from Elasticsearch index
+ * @param {String} id
+ * @param {Number} numResults
+ * @returns {Array}
+ */
 export async function getAdminSetItems(id, numResults = PAGE_SIZE) {
-  const response = await search({
-    ...getObjBase,
-    body: {
-      size: numResults,
-      query: {
-        bool: {
-          must: [
-            { match: { "model.name": "Image" } },
-            { match: { "admin_set.id": id } }
-          ],
-          must_not: [{ match: { "collection.top_level": false } }]
+  try {
+    const response = await search({
+      ...getObjBase,
+      body: {
+        size: numResults,
+        query: {
+          function_score: {
+            query: {
+              bool: {
+                must: [
+                  {
+                    match: {
+                      "model.name": "Image"
+                    }
+                  },
+                  {
+                    match: {
+                      "admin_set.id": id
+                    }
+                  }
+                ],
+                must_not: [
+                  {
+                    match: {
+                      "collection.top_level": false
+                    }
+                  }
+                ]
+              }
+            },
+            boost: "5",
+            random_score: {},
+            boost_mode: "multiply"
+          }
         }
-      },
-      ...sortKey
-    }
-  });
-  return response;
+      }
+    });
+    const esSources = response.hits.hits.map(hit => hit._source);
+    return esSources;
+  } catch (error) {
+    console.log(`Error in getAdminSetItems()`, error);
+    return Promise.resolve([]);
+  }
 }
 
 export async function getAllCollections(numResults = PAGE_SIZE) {
-  const response = await search({
-    ...getObjBase,
-    body: {
-      size: numResults,
-      query: {
-        bool: {
-          must: [
-            { match: { "model.name": "Collection" } },
-            {
-              terms: {
-                "collection_type_idd.title.keyword": [
-                  "NUL Collection",
-                  "NUL Collections"
-                ]
+  try {
+    const response = await search({
+      ...getObjBase,
+      body: {
+        size: numResults,
+        query: {
+          bool: {
+            must: [
+              { match: { "model.name": "Collection" } },
+              {
+                terms: {
+                  "collection_type_idd.title.keyword": [
+                    "NUL Collection",
+                    "NUL Collections"
+                  ]
+                }
               }
-            }
-          ]
-        }
-      },
-      sort: [
-        {
-          "title.primary.keyword": {
-            order: "asc"
+            ]
           }
-        }
-      ]
-    }
-  });
-  return response;
+        },
+        sort: [
+          {
+            "title.primary.keyword": {
+              order: "asc"
+            }
+          }
+        ]
+      }
+    });
+
+    return response.hits.hits.map(hit => hit._source);
+  } catch (error) {
+    console.log("Error in getAllCollections", error);
+    return Promise.resolve([]);
+  }
 }
 
 export async function getCollection(id) {
@@ -115,51 +153,73 @@ export async function getCollection(id) {
 }
 
 export async function getCollectionsByKeyword(keyword, numResults = PAGE_SIZE) {
-  const response = await search({
-    ...getObjBase,
-    body: {
-      size: numResults,
-      query: {
-        bool: {
-          must: [
-            { match: { "model.name": "Collection" } },
-            { match: { keyword: keyword } },
-            {
-              terms: {
-                "collection_type_idd.title.keyword": [
-                  "NUL Collection",
-                  "NUL Collections"
-                ]
+  try {
+    const response = await search({
+      ...getObjBase,
+      body: {
+        size: numResults,
+        query: {
+          bool: {
+            must: [
+              { match: { "model.name": "Collection" } },
+              { match: { keyword: keyword } },
+              {
+                terms: {
+                  "collection_type_idd.title.keyword": [
+                    "NUL Collection",
+                    "NUL Collections"
+                  ]
+                }
               }
-            }
-          ]
-        }
-      },
-      ...sortKey
-    }
-  });
+            ]
+          }
+        },
+        ...sortKey
+      }
+    });
 
-  return response;
+    return response.hits.hits.map(hit => hit._source);
+  } catch (error) {
+    console.log("Error in getCollectionsByKeyword()", error);
+    return Promise.resolve([]);
+  }
 }
 
+/**
+ * Retrieve random collection items
+ * @param {String} id
+ * @param {Number} numResults
+ * @returns {Array} Array of Elasticsearch hit sources
+ */
 export async function getCollectionItems(id, numResults = PAGE_SIZE) {
-  const response = await search({
-    ...getObjBase,
-    body: {
-      size: numResults,
-      query: {
-        bool: {
-          must: [
-            { match: { "model.name": "Image" } },
-            { match: { "collection.id": id } }
-          ],
-          must_not: { match: { "collection.top_level": false } }
+  try {
+    const response = await search({
+      ...getObjBase,
+      body: {
+        size: numResults,
+        query: {
+          function_score: {
+            query: {
+              bool: {
+                must: [
+                  { match: { "model.name": "Image" } },
+                  { match: { "collection.id": id } }
+                ],
+                must_not: { match: { "collection.top_level": false } }
+              }
+            },
+            boost: "5",
+            random_score: {},
+            boost_mode: "multiply"
+          }
         }
-      },
-      ...sortKey
-    }
-  });
-  return response;
+      }
+    });
+    return response.hits.hits.map(hit => hit._source);
+  } catch (error) {
+    console.log("Error in getCollectionItems()", error);
+    return Promise.resolve([]);
+  }
 }
 
 export async function getItem(id) {
@@ -192,17 +252,21 @@ export async function getItem(id) {
  * @param {Number} numResults - Function caller can specify how many results they want back
  */
 export async function getRecentlyDigitizedItems(numResults = PAGE_SIZE) {
-  const response = await search({
-    ...getObjBase,
-    body: {
-      size: numResults,
-      query: {
-        match: { "model.name": "Image" }
-      },
-      ...sortKey
-    }
-  });
-  return response;
+  try {
+    const response = await search({
+      ...getObjBase,
+      body: {
+        size: numResults,
+        query: {
+          match: { "model.name": "Image" }
+        },
+        ...sortKey
+      }
+    });
+    return response.hits.hits.map(hit => hit._source);
+  } catch (error) {
+    console.log("Error in getRecentlyDigitizedItems()", error);
+  }
 }
 
 export async function getTotalItemCount() {
