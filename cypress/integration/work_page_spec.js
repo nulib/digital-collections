@@ -108,16 +108,30 @@ describe("Work page", () => {
       });
     });
 
-    it("should display a button link to all items in Library Department", () => {
-      cy.get("[data-testid=section-library-department] a.button").contains(
-        "View All Items in Library Department"
+    it("should display a button that links to the Search screen and filters on current Library Department", () => {
+      cy.get("[data-testid=section-library-department] a.button")
+        .contains("View All Items in Library Department")
+        .click();
+
+      // Now on the Search page
+      cy.location("pathname").should("include", "search");
+      cy.contains(
+        "LibraryDepartment: Charles Deering McCormick Library of Special Collections"
       );
     });
 
     it("should display photo grid of Library Department items", () => {
       cy.get("[data-testid=section-library-department]")
-        .find("[data-testid=photo-grid] article")
-        .should("have.length.greaterThan", 1);
+        .find("[data-testid=photo-grid]")
+        .within($photoGrid => {
+          cy.get("article").as("article");
+          cy.get("@article").should("have.length.greaterThan", 1);
+          cy.get("@article")
+            .find("a")
+            .should("have.attr", "href")
+            .and("include", "/items/");
+          cy.get("@article").find("[data-testid=img-photo-box]");
+        });
     });
   });
 
@@ -134,9 +148,18 @@ describe("Work page", () => {
     });
 
     it("should display a button link to all items in Collection", () => {
-      cy.get("[data-testid=section-collection] a.button").contains(
-        "View All Items in Collection"
-      );
+      cy.get("[data-testid=section-collection] a.button").as("button");
+
+      cy.get("@button")
+        .contains("View All Items in Collection")
+        .should("have.attr", "href")
+        .and("include", "/collections/");
+
+      cy.get("@button").click();
+
+      // Now on the Collections page
+      cy.location("pathname").should("include", "collections");
+      cy.contains("h2", "Berkeley Folk Music Festival");
     });
 
     it("should display photo grid of Collection items", () => {
@@ -254,6 +277,22 @@ describe("Work page", () => {
           cy.contains("Wikipedia Citation");
         });
       });
+    });
+  });
+
+  context("Authenticated content", () => {
+    const authenticatedRoute = "/items/27113f17-0175-44a3-82f0-cde1e4865601";
+
+    it("displays authenticated Work content when logged in", () => {
+      cy.setSSOToken();
+      cy.visitRouteLoggedIn(authenticatedRoute);
+      cy.contains("h3", "Item Details");
+    });
+
+    it("redirects an authenticated Work screen when not logged in as authenticated user", () => {
+      cy.visit(authenticatedRoute);
+      cy.contains("Item Details").should("not.exist");
+      cy.get("[data-testid=error-section]").contains("Authorized access only");
     });
   });
 });

@@ -20,6 +20,7 @@ import "../Layout.css";
 import "../libs/nuwebcomm-scripts.js";
 import { fetchApiToken } from "../actions/auth";
 import PropTypes from "prop-types";
+import ScreensLegacyPid from "./LegacyPid";
 
 const ReactiveBaseWrapper = props => {
   return (
@@ -86,6 +87,9 @@ export class Layout extends Component {
               <ScreensSearch />
             </ReactiveBaseWrapper>
           </Route>
+
+          <Route path={ROUTES.LEGACY_PID.path} component={ScreensLegacyPid} />
+
           <Route exact path={ROUTES.HOME.path} component={ScreensHome} />
           <Route path={ROUTES.PAGE_NOT_FOUND.path} component={Default404} />
           <Route component={Default404} />

@@ -123,30 +123,19 @@ describe("ElasticSearch parser module", () => {
   });
 
   describe("Photogrid prep function", () => {
-    const esResponse = {
-      hits: {
-        hits: [
-          {
-            _id: "665115d6",
-            _source: {
-              description: ["asdf"],
-              representative_file_url: "http://localhost:8183/iiif/2",
-              title: {
-                primary: ["Two Poster Work"],
-                alternate: ["Buzzy"]
-              }
-            }
-          }
-        ]
+    const esResponse = [
+      {
+        description: ["asdf"],
+        representative_file_url: "http://localhost:8183/iiif/2",
+        title: {
+          primary: ["Two Poster Work"],
+          alternate: ["Buzzy"]
+        }
       }
-    };
+    ];
 
     test("returns an empty array if no items are present in elastic search response", () => {
-      const emptyResponse = {
-        hits: {
-          hits: []
-        }
-      };
+      const emptyResponse = [];
       const value = prepPhotoGridItems(emptyResponse);
       expect(value).toHaveLength(0);
     });
@@ -167,8 +156,7 @@ describe("ElasticSearch parser module", () => {
       const value = prepPhotoGridItems(esResponse, IMAGE_MODEL);
       expect(value).toHaveLength(1);
 
-      let multiResponse = { ...esResponse };
-      multiResponse.hits.hits.push(esResponse.hits.hits[0]);
+      let multiResponse = [esResponse, esResponse];
       const multiValue = prepPhotoGridItems(multiResponse, IMAGE_MODEL);
       expect(multiValue).toHaveLength(2);
     });

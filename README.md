@@ -1,8 +1,8 @@
-# Next Generation Presentation Layer
+# Digital Collections application
 
 [![CircleCI](https://circleci.com/gh/nulib/next-gen-front-end-react.svg?style=svg)](https://circleci.com/gh/nulib/next-gen-front-end-react) [![Coverage Status](https://coveralls.io/repos/github/nulib/next-gen-front-end-react/badge.svg?branch=deploy/staging)](https://coveralls.io/github/nulib/next-gen-front-end-react?branch=deploy/staging)
 
-This ReactJS application serves as the presentation layer for Northwestern's Next Generation Repository. It contains discovery UI components for searching, filtering, browsing and navigation of items ingested through Hyrax.
+This ReactJS application serves as the presentation layer for Northwestern's Next Generation Repository. It contains discovery UI components for searching, filtering, browsing and navigating of items against an AWS Elasticsearch index.
 
 ## Getting Started
 
@@ -18,6 +18,7 @@ These instructions will get you a copy of the project up and running on your loc
 ```bash
 git clone git@github.com:nulib/next-gen-front-end-react.git
 cd next-gen-front-end-react
+
 git checkout deploy/staging
 yarn install
 ```
@@ -26,12 +27,28 @@ yarn install
 
 ### Start Docker containers
 
-- Open a terminal tab, navigate to your `donut` (https://github.com/nulib/donut) repository directory and start the Docker environment.
+Open a terminal tab, navigate to your `donut` (https://github.com/nulib/donut) repository directory and start the Docker environment.
 
 ```
 checkout deploy/staging
 devstack up donut glaze
 ```
+
+#### Elasticsearch
+
+If you'd like to view the Elasticsearch Production or Staging index while developing, run either of the following commands:
+
+```
+AWS_PROFILE=production es-proxy
+```
+
+or
+
+```
+AWS_PROFILE=staging es-proxy
+```
+
+The command will output a link, which you can copy and paste in your browser to view the Elasticsearch index, via Kibana.
 
 ### Start the React front-end application
 
@@ -63,10 +80,10 @@ bundle exec rails s
 
 ### End to end tests
 
-We use [Cypress](https://www.cypress.io/) for end to end tests. To start end to end tests, run:
+We use [Cypress](https://www.cypress.io/) for end to end tests. To start end to end tests with mock SSO authentication support, run:
 
 ```
-yarn cypress open
+yarn cypress:mock-auth
 ```
 
 ### Unit Tests
@@ -98,7 +115,9 @@ Merging `deploy/staging` branch into `master` will automatically update the prod
 ## Built With
 
 - ReactJS - UI component library
-- Redux - state management
+- ReactiveSearch - Elasticsearch components library package
+- Jest - Unit testing
+- Cypress - End to End testing
 - Northwestern Global Marketing design templates
 
 ## Contributing

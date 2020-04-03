@@ -96,37 +96,17 @@ export function getIIIFUrlKey(modelType) {
  * @return {Array} of prepped items
  */
 export function prepPhotoGridItems(
-  elasticsearchResponse,
+  sources,
   modelType,
   iiifParams = globalVars.IIIF_MEDIUM_ITEM_REGION
 ) {
   const iiifUrlKey = getIIIFUrlKey(modelType);
-  const { hits } = elasticsearchResponse.hits;
 
-  return hits.map(hit => ({
-    id: hit._id,
+  return sources.map(source => ({
+    id: source.id,
     type: modelType,
-    imageUrl: hit._source[iiifUrlKey]
-      ? `${hit._source[iiifUrlKey]}${iiifParams}`
-      : "",
-    label: getESTitle(hit._source),
-    description: getESDescription(hit._source)
+    imageUrl: source[iiifUrlKey] ? `${source[iiifUrlKey]}${iiifParams}` : "",
+    label: getESTitle(source),
+    description: getESDescription(source)
   }));
-}
-
-/**
- * Mapping of all possible work types Solr knows about, to how these work types are represented in a Hyrax URL
- * ie. 'Image' translates into 'images' in the following url: http://devbox.library.northwestern.edu/concern/images/7e2ca0a5-3a2e-4074-a475-944710e07b2f
- * @return {Map} An ES2015 Map, which is like an Object, but better suited here for a key/value store.
- */
-function getModelUriMap() {
-  let modelUriMap = new Map();
-  modelUriMap.set("Image", "images");
-  return modelUriMap;
-}
-
-export function getModelUriSegment(has_model_ssim) {
-  const modelUriMap = getModelUriMap();
-  const segment = modelUriMap.get(has_model_ssim[0]);
-  return segment;
 }

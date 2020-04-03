@@ -4,7 +4,6 @@ import WorkItemDetail from "../../components/Work/ItemDetail";
 import * as elasticsearchParser from "../../services/elasticsearch-parser";
 import * as globalVars from "../../services/global-vars";
 import LoadingSpinner from "../UI/LoadingSpinner";
-import { shuffleArray } from "../../services/helpers";
 import ParentCollections from "../../components/Work/ParentCollections";
 import LargeFeature from "../../components/Work/LargeFeature";
 import PropTypes from "prop-types";
@@ -23,33 +22,25 @@ const Work = ({ work }) => {
       if (!work) {
         return;
       }
-      const { id } = work;
-      let adminSetItems = await getAdminSets(work.admin_set.id);
+
+      const adminSetItems = await getAdminSets(work.admin_set.id);
       let collectionResponse = await getCollections(work);
 
-      // Ensure current work is not also included in related works
-      adminSetItems = adminSetItems.filter(item => item.id !== id);
       if (collectionResponse.items) {
-        collectionResponse.items = collectionResponse.items.filter(
-          item => item.id !== id
-        );
+        setCollection({ ...collectionResponse });
       }
 
-      setAdminSetItems(shuffleArray(adminSetItems));
-      setCollection({ ...collectionResponse });
+      setAdminSetItems(adminSetItems);
       setLoading(false);
     }
     getApiData();
   }, [work]);
 
   async function getAdminSets(adminSetId) {
-    let adminSetResponse = await elasticsearchApi.getAdminSetItems(
-      adminSetId,
-      4
-    );
+    let sources = await elasticsearchApi.getAdminSetItems(adminSetId, 4);
 
     return elasticsearchParser.prepPhotoGridItems(
-      adminSetResponse,
+      sources,
       globalVars.IMAGE_MODEL
     );
   }
@@ -59,12 +50,12 @@ const Work = ({ work }) => {
       return {};
     }
 
-    let response = await elasticsearchApi.getCollectionItems(
+    const sources = await elasticsearchApi.getCollectionItems(
       work.collection[0].id,
       4
     );
     let items = elasticsearchParser.prepPhotoGridItems(
-      response,
+      sources,
       globalVars.IMAGE_MODEL
     );
 
