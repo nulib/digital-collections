@@ -1,5 +1,5 @@
 export const DONUT_URL =
-  process.env.REACT_APP_DONUT_URL || "http://devbox.library.northwestern.edu/";
+  process.env.REACT_APP_DONUT_URL || "https://devbox.library.northwestern.edu/";
 
 export const ELASTICSEARCH_PROXY_BASE =
   process.env.REACT_APP_ELASTICSEARCH_PROXY_BASE || "http://localhost:3334";

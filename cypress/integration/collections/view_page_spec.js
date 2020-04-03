@@ -174,7 +174,7 @@ describe("Collections View page", () => {
 
     it("displays authenticated Work content when logged in", () => {
       cy.setSSOToken();
-      cy.visitRouteLoggedIn(authenticatedRoute);
+      cy.visit(authenticatedRoute);
       cy.contains("h2", "University Theatre Production Photographs");
     });
     it("redirects an authenticated Work screen when not logged in as authenticated user", () => {

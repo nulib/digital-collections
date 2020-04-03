@@ -306,7 +306,7 @@ describe("Work page", () => {
 
     it("displays authenticated Work content when logged in", () => {
       cy.setSSOToken();
-      cy.visitRouteLoggedIn(authenticatedRoute);
+      cy.visit(authenticatedRoute);
       cy.contains("h3", "Item Details");
     });
 

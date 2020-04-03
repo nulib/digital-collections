@@ -30,41 +30,19 @@
 
 import { loginKey } from "../../src/services/nul-api";
 import { ELASTICSEARCH_PROXY_BASE } from "../../src/services/global-vars";
+const jwt = require("jsonwebtoken");
 
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ0ZXN0dXNlciIsIm1haWwiOiJ0ZXN0dXNlckBub3J0aHdlc3Rlcm4uZWR1IiwiaWF0IjoxNTg1MjQ4MzcxfQ.cdQAXYjc_rhcdIthS3m082Plxsep814l0W1LYt96MBo";
+const user = "testuser@northwestern.edu";
+const token = jwt.sign(user, Cypress.env("DC_API_SECRET"));
 
 /**
  * Helper command which sets the cookie and localStorage values
  * indicating an authenticated user
  */
 Cypress.Commands.add("setSSOToken", () => {
-  cy.setCookie("openAMssoToken", token);
+  cy.setCookie("dcApiToken", token);
+  cy.setCookie("dcApiUser", user);
   window.localStorage.setItem(loginKey, "true");
-});
-
-/**
- * Helper command which mocks a SSO user authentication request response
- * @param {string} route ie "/search" or "/collection/abc123"
- */
-Cypress.Commands.add("visitRouteLoggedIn", route => {
-  const response = {
-    token: `${token}`,
-    user: {
-      uid: "testuser",
-      mail: "testuser@northwestern.edu"
-    }
-  };
-
-  cy.server();
-  cy.route(
-    `${Cypress.env("ELASTICSEARCH_PROXY_BASE") ||
-      ELASTICSEARCH_PROXY_BASE}/auth/callback`,
-    response
-  ).as("getToken");
-
-  cy.visit(route);
-  cy.wait("@getToken");
 });
 
 Cypress.Commands.add("getLinkIncludesPath", partialRoute => {
