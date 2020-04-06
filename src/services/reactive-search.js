@@ -56,6 +56,11 @@ export const reactiveSearchFacets = [
     value: "RightsStatement"
   },
   {
+    elasticSearchField: "series.keyword",
+    label: "Series",
+    value: "Series"
+  },
+  {
     elasticSearchField: "style_period.label.keyword",
     label: "Style Period",
     value: "StylePeriod"
