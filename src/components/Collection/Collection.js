@@ -256,9 +256,7 @@ const Collection = () => {
                     resultsInfo: "rs-results-info"
                   }}
                   sortOptions={sortOptions}
-                  defaultSortOption={
-                    searchVal ? "Sort By Relevancy" : "Sort By Title"
-                  }
+                  defaultSortOption={"Sort By Relevancy"}
                 />
               </div>
             )}
