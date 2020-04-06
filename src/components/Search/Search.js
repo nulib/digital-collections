@@ -141,7 +141,6 @@ const Search = ({ breadcrumbs = [] }) => {
           react={{
             and: allFilters
           }}
-          showEndPage={true}
           size={24}
           URLParams={true}
         />

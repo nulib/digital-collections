@@ -255,7 +255,6 @@ const Collection = () => {
                     pagination: "rs-pagination",
                     resultsInfo: "rs-results-info"
                   }}
-                  showEndPage={true}
                   sortOptions={sortOptions}
                   defaultSortOption={
                     searchVal ? "Sort By Relevancy" : "Sort By Title"
