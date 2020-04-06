@@ -257,9 +257,7 @@ const Collection = () => {
                   }}
                   showEndPage={true}
                   sortOptions={sortOptions}
-                  defaultSortOption={
-                    searchVal ? "Sort By Relevancy" : "Sort By Title"
-                  }
+                  defaultSortOption={"Sort By Relevancy"}
                 />
               </div>
             )}
