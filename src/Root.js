@@ -5,6 +5,8 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Layout from "./screens/Layout";
 import ScrollToTop from "./components/UI/ScrollToTop";
 import registerFaIcons from "./registerFaIcons";
+import "./styles/sass/styles.scss";
+import "./libs/nuwebcomm-scripts.js";
 
 registerFaIcons();
 
