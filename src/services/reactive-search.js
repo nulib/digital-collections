@@ -87,7 +87,7 @@ export const reactiveSearchFacets = [
 // indexing configuration
 export const simpleQueryStringQuery = (value = "*") => {
   // Add fuzziness and substring matches to the query value
-  let queryValue = value !== "*" ? `${value}~1 | ${value}*` : value;
+  let queryValue = value !== "*" ? `${value || "*"}~1 | ${value}*` : value;
 
   return {
     query: {
