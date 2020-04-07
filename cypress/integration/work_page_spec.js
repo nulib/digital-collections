@@ -18,8 +18,8 @@ describe("Work page", () => {
         cy.get("#full-page");
 
         // Single file set work doesn't show dropdown selector or thumbnails
-        cy.get("[data-testid=react-select-wrapper]").should("not.exist");
-        cy.get("[data-testid=open-seadragon-thumbnails-container]").should(
+        cy.getByTestId("react-select-wrapper").should("not.exist");
+        cy.getByTestId("open-seadragon-thumbnails-container").should(
           "not.exist"
         );
       });
@@ -38,10 +38,8 @@ describe("Work page", () => {
       cy.get("#previous").should("not.have.attr", "disabled");
       cy.get("#next").should("not.have.attr", "disabled");
 
-      cy.get("[data-testid=react-select-wrapper]").should("exist");
-      cy.get("[data-testid=open-seadragon-thumbnails-container]").should(
-        "exist"
-      );
+      cy.getByTestId("react-select-wrapper").should("exist");
+      cy.getByTestId("open-seadragon-thumbnails-container").should("exist");
     });
   });
 
@@ -51,7 +49,7 @@ describe("Work page", () => {
     });
 
     it("should display title and description", () => {
-      cy.get("[data-testid=section-item-details]").within($itemDetails => {
+      cy.getByTestId("section-item-details").within($itemDetails => {
         cy.get("h3").should("have.text", "Item Details");
         cy.get("[data-testid=item-title]");
         cy.get("[data-testid=item-description]");
@@ -59,8 +57,8 @@ describe("Work page", () => {
     });
 
     it("should display buttons which scroll down to metadata section", () => {
-      cy.get("[data-testid=item-cite]");
-      cy.get("[data-testid=item-more-details]").click();
+      cy.getByTestId("item-cite");
+      cy.getByTestId("item-more-details").click();
 
       // Set a wait time equal to code's animation duration (1 second)
       cy.wait(1000);
@@ -71,14 +69,14 @@ describe("Work page", () => {
     });
 
     it("should display Item Metadata section", () => {
-      cy.get("[data-testid=item-summary]");
-      cy.get("[data-testid=identifier]").contains(
+      cy.getByTestId("item-summary");
+      cy.getByTestId("identifier").contains(
         "0ea41d0d-ad48-4331-9a87-8a55836fb7ca"
       );
     });
 
     it("should display social links", () => {
-      cy.get("[data-testid=social-links]").within($socialLinks => {
+      cy.getByTestId("social-links").within($socialLinks => {
         cy.get("button[aria-label=facebook]");
         cy.get("button[aria-label=twitter]");
         cy.get("button[aria-label=pinterest]");
@@ -86,13 +84,14 @@ describe("Work page", () => {
     });
 
     it("should display IIIF logo and link to IIIF manifest", () => {
-      cy.get("[data-testid=iiif-draggable]")
+      cy.getByTestId("iiif-draggable")
+        .as("iiifDraggable")
         .should("have.attr", "href")
         .and(
           "include",
           "https://iiif.stack.rdc.library.northwestern.edu/public/0e/a4/1d/0d/-a/d4/8-/43/31/-9/a8/7-/8a/55/83/6f/b7/ca-manifest.json?"
         );
-      cy.get("[data-testid=iiif-draggable]").find("img");
+      cy.get("@iiifDraggable").find("img");
     });
   });
 
@@ -102,14 +101,14 @@ describe("Work page", () => {
     });
 
     it("should display Library Department titles", () => {
-      cy.get("[data-testid=section-library-department]").within($section => {
+      cy.getByTestId("section-library-department").within($section => {
         cy.contains("Library Department");
         cy.contains("Charles Deering McCormick Library of Special Collections");
       });
     });
 
     it("should display a button that links to the Search screen and filters on current Library Department", () => {
-      cy.get("[data-testid=section-library-department] a.button")
+      cy.getByTestId("section-library-department")
         .contains("View All Items in Library Department")
         .click();
 
@@ -121,7 +120,7 @@ describe("Work page", () => {
     });
 
     it("should display photo grid of Library Department items", () => {
-      cy.get("[data-testid=section-library-department]")
+      cy.getByTestId("section-library-department")
         .find("[data-testid=photo-grid]")
         .within($photoGrid => {
           cy.get("article").as("article");
@@ -141,7 +140,7 @@ describe("Work page", () => {
     });
 
     it("should display the Collection titles", () => {
-      cy.get("[data-testid=section-collection]").within($section => {
+      cy.getByTestId("section-collection").within($section => {
         cy.contains("Collection");
         cy.contains("Berkeley Folk Music Festival");
       });
@@ -163,7 +162,7 @@ describe("Work page", () => {
     });
 
     it("should display photo grid of Collection items", () => {
-      cy.get("[data-testid=section-collection]")
+      cy.getByTestId("section-collection")
         .find("[data-testid=photo-grid] article")
         .should("have.length.greaterThan", 1);
     });
@@ -171,7 +170,7 @@ describe("Work page", () => {
 
   it("should display This Item section", () => {
     cy.visit(singleFilesetRoute);
-    cy.get("[data-testid=this-item]").within($thisItem => {
+    cy.getByTestId("this-item").within($thisItem => {
       cy.contains("This item");
       cy.get("img");
     });
@@ -192,22 +191,26 @@ describe("Work page", () => {
 
     it("should display different tab content when clicking on tabs", () => {
       // About tab content should appear by default
-      cy.get("[data-testid=tab-content-metadata]");
-      cy.get("[data-testid=tab-content-find]").should("not.exist");
-      cy.get("[data-testid=tab-content-cite]").should("not.exist");
+      cy.getByTestId("tab-content-metadata").as("tabContentMetadata");
+      cy.getByTestId("tab-content-find")
+        .as("tabContentFind")
+        .should("not.exist");
+      cy.getByTestId("tab-content-cite")
+        .as("tabContentCite")
+        .should("not.exist");
 
       cy.contains("Find this Item").click();
-      cy.get("[data-testid=tab-content-metadata]").should("not.exist");
-      cy.get("[data-testid=tab-content-find]");
+      cy.get("@tabContentMetadata").should("not.exist");
+      cy.get("@tabContentFind");
 
       cy.contains("Cite this Item").click();
-      cy.get("[data-testid=tab-content-find]").should("not.exist");
-      cy.get("[data-testid=tab-content-cite]");
+      cy.get("@tabContentFind").should("not.exist");
+      cy.get("@tabContentCite");
     });
 
     context("About tab", () => {
       it("should display key metadata items and display links for metadata items which are facet-able", () => {
-        cy.get("[data-testid=tab-content-metadata]").within($tabContent => {
+        cy.getByTestId("tab-content-metadata").within($tabContent => {
           cy.contains("Contributor");
           cy.contains("Olivier, Barry, 1935- (Photographer)")
             .should("have.attr", "href")
@@ -231,12 +234,30 @@ describe("Work page", () => {
           cy.contains("Cat");
         });
       });
+
+      it("should display links for metadata items which are facet-able", () => {
+        cy.getByTestId("tab-content-metadata").within($tabContent => {
+          cy.contains("a", "Olivier, Barry, 1935- (Photographer)");
+          cy.contains(
+            "a",
+            "Charles Deering McCormick Library of Special Collections"
+          );
+          cy.contains("a", "black-and-white negatives");
+          cy.contains("a", "In Copyright");
+          cy.contains(
+            "a",
+            "Berkeley Folk Music Festival -- 1. Artists' Photo Archive"
+          );
+          cy.contains("a", `Berkeley (Calif.)`);
+          cy.contains("a", "Floating Lotus Magic Opera Company");
+        });
+      });
     });
 
     context("Find tab", () => {
       it("should display key metadata items and display links for metadata items which are facet-able", () => {
         cy.contains("Find this Item").click();
-        cy.get("[data-testid=tab-content-find]").within($tabContent => {
+        cy.getByTestId("tab-content-find").within($tabContent => {
           cy.contains("Box Number");
           cy.contains("a", "4")
             .should("have.attr", "href")
@@ -265,7 +286,7 @@ describe("Work page", () => {
     context("Cite tab", () => {
       it("should display key cite metadata items", () => {
         cy.contains("Cite this Item").click();
-        cy.get("[data-testid=tab-content-cite]").within($tabContent => {
+        cy.getByTestId("tab-content-cite").within($tabContent => {
           cy.contains("Identifier");
           cy.contains("MS 63");
           cy.contains("Title");
@@ -292,7 +313,7 @@ describe("Work page", () => {
     it("redirects an authenticated Work screen when not logged in as authenticated user", () => {
       cy.visit(authenticatedRoute);
       cy.contains("Item Details").should("not.exist");
-      cy.get("[data-testid=error-section]").contains("Authorized access only");
+      cy.getByTestId("error-section").contains("Authorized access only");
     });
   });
 });

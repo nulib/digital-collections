@@ -39,7 +39,6 @@ const Collection = () => {
   const [error, setError] = useState();
   const [loading, setLoading] = useState(true);
   const [showSidebar, setShowSidebar] = useState();
-  const [searchVal, setSearchValue] = useState();
   const params = useParams();
   const location = useLocation();
   const history = useHistory();
@@ -220,9 +219,6 @@ const Collection = () => {
                   innerClass={{
                     input: "searchbox rs-search-input",
                     list: "suggestionlist"
-                  }}
-                  onValueChange={function(value) {
-                    setSearchValue(value);
                   }}
                   queryFormat="or"
                   placeholder="Search within collection"
