@@ -86,6 +86,8 @@ export const reactiveSearchFacets = [
 // which is used to do phrase matching with our current ElasticSearch
 // indexing configuration
 export const simpleQueryStringQuery = (value = "*") => {
+  value = value.trim();
+
   // Add fuzziness and substring matches to the query value
   let queryValue = value !== "*" ? `${value || "*"}~1 | ${value}*` : value;
 
