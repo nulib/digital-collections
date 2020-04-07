@@ -1,12 +1,15 @@
 #library-search-button {
-  background: url('images/library-search.svg') no-repeat center/18px 18px;
+  background: url("../../../images/library-search.svg") no-repeat center/18px
+    18px;
 }
 
 #top-nav .contain-1120 > ul > li#library-search-button {
-  background: url('images/library-search.svg') no-repeat center/18px 18px;
+  background: url("../../../images/library-search.svg") no-repeat center/18px
+    18px;
   &:hover a,
   &.hover a {
-    background: url('images/library-search.svg') no-repeat center/18px 18px;
+    background: url("../../../images/library-search.svg") no-repeat center/18px
+      18px;
     &:hover,
     &:active {
       text-decoration: none;
@@ -27,7 +30,7 @@
 .standard-page .library-news-event:after,
 #staff_directory_wrapper .details-open:after,
 .info-links:after {
-  content: '';
+  content: "";
   display: table;
   clear: both;
 }
@@ -41,7 +44,7 @@
 #library-search-dropdown,
 #library-search {
   margin: 0 auto;
-  background: url('images/purple-polygons.png') repeat-y;
+  background: url("../../../images/purple-polygons.png") repeat-y;
   //background-color: rgba(22,21,20,0.7);
   padding: 1.5rem 1rem 1rem 1rem;
 
@@ -50,7 +53,7 @@
     margin-right: -40px;
 
     a {
-      font: 14px 'Campton Book', Tahoma, sans-serif;
+      font: 14px "Campton Book", Tahoma, sans-serif;
       color: #fff;
       text-transform: uppercase;
       text-decoration: none;
@@ -65,13 +68,13 @@
     -moz-appearance: none;
     -webkit-appearance: none;
     background: #fff
-      url('https://common.northwestern.edu/v8/css/images/icons/arrow-down-dkpurple.svg')
+      url("https://common.northwestern.edu/v8/css/images/icons/arrow-down-dkpurple.svg")
       no-repeat scroll right 1rem top 50%/20px 13px;
     border: none;
     border-radius: 0;
     color: #342f2e;
     display: inline-block;
-    font: 18px/1.5em 'Akkurat Pro Regular', Arial, sans-serif;
+    font: 18px/1.5em "Akkurat Pro Regular", Arial, sans-serif;
     padding: 0.5em 2.5em 0.5em 0.5em;
     height: 40px;
     width: 75%;
@@ -98,7 +101,7 @@
 #library-search .by-column span,
 #library-search .for-column span {
   text-transform: uppercase;
-  font: 18px 'Campton Bold', Impact, sans-serif;
+  font: 18px "Campton Bold", Impact, sans-serif;
   color: #fff;
   margin-right: 0.5rem;
 }
@@ -129,7 +132,7 @@
   padding: 0.5em 2.5em 0.5em 0.5em;
   outline: none;
   color: #342f2e;
-  font: 18px/1.5em 'Akkurat Pro Regular', Arial, sans-serif;
+  font: 18px/1.5em "Akkurat Pro Regular", Arial, sans-serif;
 }
 /* These styles provide the purple button.  Maybe re-visit later?
 
@@ -176,28 +179,28 @@
 }
 #library-search-dropdown.home-search .section-top h3,
 #library-search.home-search .section-top h3 {
-  font: 24px 'Campton Extra Bold', Impact, sans-serif;
+  font: 24px "Campton Extra Bold", Impact, sans-serif;
   color: #fff;
   text-align: center;
 }
 #library-search-dropdown.home-search .section-top h3:before,
 #library-search.home-search .section-top h3:before {
-  background: url('https://common.northwestern.edu/v8/css/images/icons/grey-slash.svg')
+  background: url("https://common.northwestern.edu/v8/css/images/icons/grey-slash.svg")
     no-repeat 50%/17px 21px;
   padding: 0 20px;
-  content: ' ';
+  content: " ";
 }
 #library-search-dropdown.home-search .section-top h3:after,
 #library-search.home-search .section-top h3:after {
-  background: url('https://common.northwestern.edu/v8/css/images/icons/grey-slash.svg')
+  background: url("https://common.northwestern.edu/v8/css/images/icons/grey-slash.svg")
     no-repeat 50%/17px 21px;
   padding: 0 25px;
-  content: ' ';
+  content: " ";
 }
 #library-search-dropdown.home-search .section-top p.subhead,
 #library-search.home-search .section-top p.subhead {
   color: #fff;
-  font: 46px/1.2em 'Campton Book', Tahoma, sans-serif;
+  font: 46px/1.2em "Campton Book", Tahoma, sans-serif;
   margin: 0.5em 0 1em;
   text-align: center;
 }
@@ -317,7 +320,7 @@
     padding: 3rem 1rem;
   }
   #library-search-dropdown.home-search .section-top h3 {
-    font: 20px 'Campton Extra Bold', Impact, sans-serif;
+    font: 20px "Campton Extra Bold", Impact, sans-serif;
     color: #fff;
     text-align: center;
   }
@@ -331,7 +334,7 @@
   }
   #library-search-dropdown.home-search .section-top p.subhead {
     color: #fff;
-    font: 28px/1.2em 'Campton Book', Tahoma, sans-serif;
+    font: 28px/1.2em "Campton Book", Tahoma, sans-serif;
     margin: 0.5em 0 1em;
     text-align: center;
   }
