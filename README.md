@@ -80,10 +80,10 @@ bundle exec rails s
 
 ### End to end tests
 
-We use [Cypress](https://www.cypress.io/) for end to end tests. To start end to end tests with mock SSO authentication support, run:
+This app uses [Cypress](https://www.cypress.io/) for integration tests. To start with mock SSO authentication support, run:
 
 ```
-yarn cypress:mock-auth
+yarn cypress
 ```
 
 ### Unit Tests
