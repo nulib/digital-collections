@@ -5,7 +5,7 @@ describe("Collections View page", () => {
     beforeEach(() => {
       cy.visit("/collections/1c2e2200-c12d-4c7f-8b87-a935c349898a");
     });
-    xit("should display breadcrumbs", () => {
+    it("should display breadcrumbs", () => {
       cy.getByTestId("breadcrumbs").within($breadcrumbs => {
         cy.contains("Collections")
           .should("have.attr", "href")
@@ -14,7 +14,7 @@ describe("Collections View page", () => {
       });
     });
 
-    xit("should display screen title, search box", () => {
+    it("should display screen title, search box", () => {
       cy.get("main").within($main => {
         cy.contains("h2", "16th-Early 20th Century Maps of Africa");
         cy.get("input.searchbox");
@@ -22,7 +22,7 @@ describe("Collections View page", () => {
       });
     });
 
-    xit("should toggle filters/facets on/off", () => {
+    it("should toggle filters/facets on/off", () => {
       cy.getByTestId("button-filter-toggle").as("toggleButton");
       cy.getByTestId("facets-sidebar")
         .as("facetsSidebar")
@@ -34,14 +34,14 @@ describe("Collections View page", () => {
       cy.get("@facetsSidebar").should("not.be.visible");
     });
 
-    xit("should display sidebar", () => {
+    it("should display sidebar", () => {
       cy.get("#sidebar").within($sidebar => {
         cy.contains("h3", "Collection Description");
         cy.contains("p", "113 antique maps of Africa");
       });
     });
 
-    xit("displays only public works in search results", () => {
+    it("displays only public works in search results", () => {
       cy.getByTestId("button-filter-toggle").click();
       cy.contains("Visibility", { timeout: 15000 })
         .siblings()
@@ -56,7 +56,7 @@ describe("Collections View page", () => {
       });
     });
 
-    xit("should display collection items grid", () => {
+    it("should display collection items grid", () => {
       cy.get(".rs-result-list.photo-grid").within($grid => {
         cy.getByTestId("photo-box").within($photoBox => {
           cy.getLinkIncludesPath("/items");
@@ -68,7 +68,7 @@ describe("Collections View page", () => {
       });
     });
 
-    xit("should update content with search within collection", () => {
+    it("should update content with search within collection", () => {
       const searchTerms = ["kingdoms", "Guinea"];
 
       cy.get("input.rs-search-input")
@@ -87,7 +87,7 @@ describe("Collections View page", () => {
       cy.get("@firstResult").contains(searchTerms[1]);
     });
 
-    xit("should open Item Details page from collections grid", () => {
+    it("should open Item Details page from collections grid", () => {
       cy.get(".rs-result-list.photo-grid").within($grid => {
         cy.get("article")
           .first()
@@ -131,7 +131,7 @@ describe("Collections View page", () => {
           .as("resultsTxt");
       });
 
-      xit("should filter on an example facet (based on Location)", function() {
+      it("should filter on an example facet (based on Location)", function() {
         cy.getByTestId("button-filter-toggle").click();
         cy.getByTestId("facets-sidebar").within($sidebar => {
           cy.contains("Location")
@@ -168,12 +168,12 @@ describe("Collections View page", () => {
     const authenticatedRoute =
       "/collections/17a5d121-2bc2-4942-aa48-34ac86f3b83d";
 
-    xit("displays authenticated Work content when logged in", () => {
+    it("displays authenticated Work content when logged in", () => {
       cy.setSSOToken();
       cy.visitRouteLoggedIn(authenticatedRoute);
       cy.contains("h2", "University Theatre Production Photographs");
     });
-    xit("redirects an authenticated Work screen when not logged in as authenticated user", () => {
+    it("redirects an authenticated Work screen when not logged in as authenticated user", () => {
       cy.visit(authenticatedRoute);
       cy.contains("Item Details").should("not.exist");
       cy.get("h2").contains("Page Not Found");
