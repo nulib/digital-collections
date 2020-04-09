@@ -223,7 +223,7 @@ const Collection = () => {
                   queryFormat="or"
                   placeholder="Search within collection"
                   showFilter={true}
-                  URLParams={false}
+                  URLParams={true}
                 />
 
                 <SelectedFilters className="rs-selected-filters" />
@@ -251,6 +251,7 @@ const Collection = () => {
                     pagination: "rs-pagination",
                     resultsInfo: "rs-results-info"
                   }}
+                  URLParams={true}
                   sortOptions={sortOptions}
                   defaultSortOption={"Sort By Relevancy"}
                 />
