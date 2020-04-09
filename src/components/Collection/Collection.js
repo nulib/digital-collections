@@ -39,7 +39,6 @@ const Collection = () => {
   const [error, setError] = useState();
   const [loading, setLoading] = useState(true);
   const [showSidebar, setShowSidebar] = useState();
-  const [searchVal, setSearchValue] = useState();
   const params = useParams();
   const location = useLocation();
   const history = useHistory();
@@ -221,13 +220,10 @@ const Collection = () => {
                     input: "searchbox rs-search-input",
                     list: "suggestionlist"
                   }}
-                  onValueChange={function(value) {
-                    setSearchValue(value);
-                  }}
                   queryFormat="or"
                   placeholder="Search within collection"
                   showFilter={true}
-                  URLParams={false}
+                  URLParams={true}
                 />
 
                 <SelectedFilters className="rs-selected-filters" />
@@ -255,11 +251,9 @@ const Collection = () => {
                     pagination: "rs-pagination",
                     resultsInfo: "rs-results-info"
                   }}
-                  showEndPage={true}
+                  URLParams={true}
                   sortOptions={sortOptions}
-                  defaultSortOption={
-                    searchVal ? "Sort By Relevancy" : "Sort By Title"
-                  }
+                  defaultSortOption={"Sort By Relevancy"}
                 />
               </div>
             )}

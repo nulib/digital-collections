@@ -101,7 +101,11 @@ const TabsMetadata = ({ item }) => {
       )
     },
     { label: "Scope and Contents", value: scopeAndContents },
-    { label: "Series", value: series },
+    {
+      label: "Series",
+      value: series,
+      facet: reactiveSearchFacets.find(facet => facet.value === "Series")
+    },
     { label: "Source", value: source },
     {
       label: "Style Period",
