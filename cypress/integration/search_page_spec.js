@@ -71,7 +71,7 @@ describe("Search page", () => {
       cy.get("input.rs-search-input")
         .as("searchBox")
         .type(searchTerms[0]);
-      cy.wait(3000); // Account for debounce setting
+      cy.wait(5000); // Account for debounce setting
       cy.get(".rs-result-list article")
         .first()
         .as("firstResult")
@@ -80,7 +80,7 @@ describe("Search page", () => {
       cy.get("@searchBox")
         .clear()
         .type(searchTerms[1]);
-      cy.wait(3000);
+      cy.wait(5000);
       cy.get("@firstResult").contains(searchTerms[1]);
     });
 

@@ -34,3 +34,6 @@ yarn-error.log*
 /cypress/integration/examples
 /cypress/screenshots
 /cypress/videos
+
+# Local CircleCI
+process.yml
