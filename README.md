@@ -10,8 +10,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-- NULib `devstack` environment installed and running
-- https://github.com/nulib/devstack
+[Node.js](https://nodejs.org/) must be installed on your system.
 
 ### Installing
 
@@ -25,14 +24,19 @@ yarn install
 
 ## Running a local development environment
 
-### Start Docker containers
+### Against production data
 
-Open a terminal tab, navigate to your `donut` (https://github.com/nulib/donut) repository directory and start the Docker environment.
+```bash
+yarn start:use-real-data
+```
 
+### Against staging data
+
+```bash
+yarn start:use-staging-data
 ```
-checkout deploy/staging
-devstack up donut glaze
-```
+
+The Digital Collections application will be available at: http://localhost:3000/
 
 #### Elasticsearch
 
@@ -49,32 +53,6 @@ AWS_PROFILE=staging es-proxy
 ```
 
 The command will output a link, which you can copy and paste in your browser to view the Elasticsearch index, via Kibana.
-
-### Start the React front-end application
-
-Open another terminal tab, navigate to your local `next-gen-front-end-react` repository directory, `checkout` the `deploy/staging` branch and run:
-
-#### (Recommended): Using production data
-
-```bash
-start:use-real-data
-```
-
-#### (No longer fully supported): Using local Donut data
-
-```
-yarn start
-```
-
-The React app will be available at: http://devbox.library.northwestern.edu:3333/
-
-### (optional) Start Rails application
-
-In another terminal tab, within the `donut` repository run:
-
-```
-bundle exec rails s
-```
 
 ## Running the tests
 
@@ -126,7 +104,11 @@ Please read CONTRIBUTING.md for details on our code of conduct, and the process 
 
 ## Authors
 
-- NU Dev list here
+- Adam J. Arling <aarling@gmail.com>
+- Divya Katpally <katdivyareddy@gmail.com>
+- Karen Shaw <karendid@gmail.com>
+- Brendan Quinn <brendan-quinn@northwestern.edu>
+- Michael B. Klein <mbklein@gmail.com>
 
 ## License
 
