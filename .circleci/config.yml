@@ -63,7 +63,7 @@ workflows:
           requires:
             - cypress/install
           yarn: true
-          start: HOST=localhost PORT=3000 yarn start | tee /var/log/yarn.log 2>&1
+          start: HTTPS=false HOST=localhost PORT=3000 yarn start | tee /var/log/yarn.log 2>&1
           wait-on: "http://localhost:3000"
           command: npx cypress run --config-file false --env host=localhost,port=3000
       - deploy:

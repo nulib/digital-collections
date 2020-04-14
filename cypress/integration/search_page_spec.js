@@ -184,7 +184,10 @@ describe("Search page", () => {
     });
 
     it("displays public and authenticated works in search results", () => {
-      cy.visitRouteLoggedIn("/search");
+      cy.visit("/search");
+      expect(localStorage.getItem("loggedIn")).not.null;
+      expect(cy.getCookie("dcApiUser").should("exist"));
+      expect(cy.getCookie("dcApiToken").should("exist"));
 
       cy.getByTestId("button-filter-toggle").click();
       cy.contains("Visibility", { timeout: 15000 })
