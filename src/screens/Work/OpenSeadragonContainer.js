@@ -58,6 +58,12 @@ class OpenSeadragonContainer extends Component {
    * This also assumes that local DONUT instance is running on port 3000.
    */
   getEnvironmentManifestUrl(url) {
+    if (process.env.REACT_APP_DONUT_URL.includes("staging")) {
+      const url = process.env.REACT_APP_DONUT_URL;
+      const pairtree = this.props.item.id.match(/../g).join("/");
+      return `${url}public/${pairtree}-manifest.json`;
+    }
+
     if (process.env.REACT_APP_LIVE_IIIF === "true") {
       return url;
     }

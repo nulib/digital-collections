@@ -60,7 +60,7 @@
     "start-js": "react-scripts start --no-cache",
     "start": "HTTPS=${HTTPS:-true} HOST=${HOST:-devbox.library.northwestern.edu} PORT=${PORT:-3333} SSL_CRT_FILE=$SSL_CERT SSL_KEY_FILE=$SSL_KEY npm-run-all -p watch-css start-js",
     "start:use-real-data": "REACT_APP_DONUT_URL=https://donut.library.northwestern.edu/ REACT_APP_ELASTICSEARCH_PROXY_BASE=https://dcapi.stack.rdc.library.northwestern.edu REACT_APP_LIVE_IIIF=true npm-run-all -p start",
-    "start:use-staging-data": "REACT_APP_DONUT_URL=https://donut.library.northwestern.edu/ REACT_APP_ELASTICSEARCH_PROXY_BASE=https://dcapi.stack.rdc-staging.library.northwestern.edu REACT_APP_LIVE_IIIF=true npm-run-all -p start",
+    "start:use-staging-data": "REACT_APP_DONUT_URL=https://donut.stack.rdc-staging.library.northwestern.edu/ REACT_APP_ELASTICSEARCH_PROXY_BASE=https://dcapi.stack.rdc-staging.library.northwestern.edu REACT_APP_LIVE_IIIF=true npm-run-all -p start",
     "build-js": "react-scripts build",
     "build": "npm-run-all build-css build-js",
     "test": "react-scripts test",
