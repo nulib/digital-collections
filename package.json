@@ -46,9 +46,11 @@
     "whatwg-fetch": "^3.0.0"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,json,css}": [
-      "prettier --write",
-      "git add"
+    "src/**/*.{js,jsx,json,css,scss,md}": [
+      "prettier --write"
+    ],
+    "cypress/**/*.{js,jsx,json,css,scss,md}": [
+      "prettier --write"
     ]
   },
   "scripts": {
@@ -56,9 +58,9 @@
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "start-js": "react-scripts start --no-cache",
-    "start": "npm-run-all -p watch-css start-js",
-    "start:use-real-data": "export REACT_APP_DONUT_URL=https://donut.library.northwestern.edu/ && export REACT_APP_ELASTICSEARCH_PROXY_BASE=https://5et90kbva4.execute-api.us-east-1.amazonaws.com/latest/ && export REACT_APP_LIVE_IIIF=true && npm-run-all -p watch-css start-js",
-    "start:use-staging-data": "export REACT_APP_DONUT_URL=https://donut.library.northwestern.edu/ && export REACT_APP_ELASTICSEARCH_PROXY_BASE=https://bxzhc8nucl.execute-api.us-east-1.amazonaws.com/latest/ && export REACT_APP_LIVE_IIIF=true && npm-run-all -p watch-css start-js",
+    "start": "HTTPS=${HTTPS:-true} HOST=${HOST:-devbox.library.northwestern.edu} PORT=${PORT:-3333} SSL_CRT_FILE=$SSL_CERT SSL_KEY_FILE=$SSL_KEY npm-run-all -p watch-css start-js",
+    "start:use-real-data": "REACT_APP_DONUT_URL=https://donut.library.northwestern.edu/ REACT_APP_ELASTICSEARCH_PROXY_BASE=https://dcapi.stack.rdc.library.northwestern.edu REACT_APP_LIVE_IIIF=true npm-run-all -p start",
+    "start:use-staging-data": "REACT_APP_DONUT_URL=https://donut.stack.rdc-staging.library.northwestern.edu/ REACT_APP_ELASTICSEARCH_PROXY_BASE=https://dcapi.stack.rdc-staging.library.northwestern.edu REACT_APP_LIVE_IIIF=true npm-run-all -p start",
     "build-js": "react-scripts build",
     "build": "npm-run-all build-css build-js",
     "test": "react-scripts test",
@@ -66,9 +68,7 @@
     "prettier": "prettier --check src/**/*.js* src/**/*.css ./*.js ./*.json",
     "prettier-fix": "prettier --write src/**/*.js* src/**/*.css ./*.js ./*.json",
     "ci": "react-scripts test --watchAll=false --coverage",
-    "cypress": "export CYPRESS_ELASTICSEARCH_PROXY_BASE=https://5et90kbva4.execute-api.us-east-1.amazonaws.com/latest/ && export CYPRESS_BASE_URL=http://devbox.library.northwestern.edu:3000 && cypress open",
-    "cypress:run": "cypress run",
-    "ci:cypress-run": "start-server-and-test start http://localhost:3000 cypress:run"
+    "cypress:mock-auth": "CYPRESS_ELASTICSEARCH_PROXY_BASE=https://dcapi.stack.rdc.library.northwestern.edu cypress open"
   },
   "devDependencies": {
     "@nulib/prettier-config": "^1.2.0",

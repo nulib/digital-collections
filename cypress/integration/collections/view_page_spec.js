@@ -101,6 +101,27 @@ describe("Collections View page", () => {
       });
     });
 
+    it("should display URL params pagination", () => {
+      cy.get(".rs-pagination");
+      cy.get(".rs-pagination > a")
+        .eq(5)
+        .click();
+      // Open page 5 of results
+      cy.location("search").should("include", "?collection-items-results=5");
+
+      cy.get(".rs-pagination > a.active")
+        .invoke("attr", "alt")
+        .should("contain", "Page 5");
+
+      // Visit an item detail page
+      cy.visit("/items/acec9f18-a2aa-424c-b0b8-fcaaaf579ba0", {
+        timeout: 3000
+      });
+      // Go back through browsers history and expect to get to page 5 of results.
+      cy.go("back");
+      cy.location("search").should("include", "?collection-items-results=5");
+    });
+
     context("Facet/filtering", () => {
       beforeEach(function() {
         //Get the first result;
@@ -153,7 +174,7 @@ describe("Collections View page", () => {
 
     it("displays authenticated Work content when logged in", () => {
       cy.setSSOToken();
-      cy.visitRouteLoggedIn(authenticatedRoute);
+      cy.visit(authenticatedRoute);
       cy.contains("h2", "University Theatre Production Photographs");
     });
     it("redirects an authenticated Work screen when not logged in as authenticated user", () => {

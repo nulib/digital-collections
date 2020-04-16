@@ -47,22 +47,16 @@ export async function extractApiToken(cookieStr) {
     return nullUser;
   }
 
-  let ssoToken = cookies.parse(cookieStr).openAMssoToken;
+  let token = cookies.parse(cookieStr).dcApiToken;
+  let user = cookies.parse(cookieStr).dcApiUser;
 
-  if (ssoToken === null) return nullUser;
+  if (token === null) return nullUser;
 
   try {
-    // SSO request
-    const response = await fetch(
-      `${globalVars.ELASTICSEARCH_PROXY_BASE}/auth/callback`,
-      { headers: { "X-OpenAM-SSO-Token": ssoToken } }
-    );
-    const { token, user } = await response.json();
-
     // Current user
     if (token != null) {
       await iiifAuth(token);
-      localStorage.setItem("currentUser", user.mail);
+      localStorage.setItem("currentUser", user);
       return { token };
     }
 
@@ -73,6 +67,6 @@ export async function extractApiToken(cookieStr) {
     return nullUser;
   } catch (err) {
     console.log("Error in extractApiToken: ", err);
-    return Promise.resolve(nullUser);
+    return nullUser;
   }
 }
