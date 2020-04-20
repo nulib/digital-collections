@@ -36,7 +36,7 @@ yarn start:use-real-data
 yarn start:use-staging-data
 ```
 
-The Digital Collections application will be available at: http://localhost:3000/
+The Digital Collections application will be available at: https://devbox.library.northwestern.edu:3333/
 
 #### Elasticsearch
 
