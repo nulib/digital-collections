@@ -99,7 +99,10 @@ export const simpleQueryStringQuery = (value = "*") => {
           "all_titles^5",
           "description^2",
           "all_subjects^2",
-          "full_text"
+          "full_text",
+          "legacy_identifier",
+          "accession_number",
+          "id"
         ],
         default_operator: "or"
       }
