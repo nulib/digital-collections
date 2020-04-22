@@ -8,7 +8,7 @@ const client = new elasticsearch.Client({
 });
 const PAGE_SIZE = 500;
 const getObjBase = {
-  index: "common",
+  index: "meadow",
   headers: authHeader()
 };
 const sortKey = {
@@ -289,7 +289,11 @@ export async function getRecentlyDigitizedItems(numResults = PAGE_SIZE) {
         ...sortKey
       }
     });
-    return response.hits.hits.map(hit => hit._source);
+    console.log("response :", response);
+    return response.hits.hits.map(hit => ({
+      id: hit._id,
+      ...hit._source
+    }));
   } catch (error) {
     console.log("Error in getRecentlyDigitizedItems()", error);
   }
