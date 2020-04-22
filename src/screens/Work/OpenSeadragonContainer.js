@@ -37,8 +37,7 @@ class OpenSeadragonContainer extends Component {
   }
 
   async getManifest(url) {
-    const environtmentUrl = this.getEnvironmentManifestUrl(url);
-    let response = await getManifest(environtmentUrl);
+    let response = await getManifest(url);
 
     if (response.error) {
       // TODO: Some kind of error handling to the UI here
@@ -47,37 +46,6 @@ class OpenSeadragonContainer extends Component {
     // Get the sources for OpenSeadragon viewer from the manifest
     let tileSources = getTileSources(response);
     this.setState({ loading: false, tileSources });
-  }
-
-  /**
-   * Helper function to update the manifest url with local dev port number ":3000".
-   * This handles 2 conditions
-   * 1.) Running the local dev environment and;
-   * 2.) Local production build, served via the "devbox.library.northwestern.edu" url
-   *
-   * This also assumes that local DONUT instance is running on port 3000.
-   */
-  getEnvironmentManifestUrl(url) {
-    if (process.env.REACT_APP_DONUT_URL.includes("staging")) {
-      const url = process.env.REACT_APP_DONUT_URL;
-      const pairtree = this.props.item.id.match(/../g).join("/");
-      return `${url}public/${pairtree}-manifest.json`;
-    }
-
-    if (process.env.REACT_APP_LIVE_IIIF === "true") {
-      return url;
-    }
-
-    if (
-      process.env.NODE_ENV === "development" ||
-      url.indexOf("http://devbox.library.northwestern.edu") > -1
-    ) {
-      const publicIndex = url.indexOf("/public");
-      return (
-        url.slice(0, publicIndex) + ":3000" + url.slice(publicIndex, url.length)
-      );
-    }
-    return url;
   }
 
   render() {
