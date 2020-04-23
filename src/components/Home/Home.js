@@ -67,11 +67,8 @@ const Home = () => {
   }
 
   async function getFeaturedCollections() {
-    let response = await elasticsearchApi.getCollectionsByKeyword(
-      "Featured",
-      8
-    );
-
+    let response = await elasticsearchApi.getAllCollections(4);
+    console.log("getFeaturedCollections()", response);
     const collections = elasticsearchParser.prepPhotoGridItems(
       response,
       globalVars.COLLECTION_MODEL
@@ -124,7 +121,7 @@ const Home = () => {
             data-testid="section-recent-items"
           />
           <PhotoGridSection
-            headline="Featured Collections"
+            headline="Featured Collections (All Collections for now)"
             linkTo="/collections"
             linkToText="View All Collections"
             items={galleryCollections}

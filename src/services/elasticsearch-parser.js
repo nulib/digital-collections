@@ -69,11 +69,11 @@ export function getESImagePath(
  * @param {Object} _source
  * @return {String} A single title string
  */
-export function getESTitle(_source) {
-  if (!_source || !_source.title) {
+export function getESTitle(source) {
+  if (!source || !source.title) {
     return "";
   }
-  const { title } = _source;
+  const { title } = source;
   const titles = title.primary || title;
   let titleArray = titles.map((item, i) => {
     return i > 0 ? `, ${item}` : item;
@@ -82,10 +82,12 @@ export function getESTitle(_source) {
   return titleArray.join("");
 }
 
-export function getIIIFUrlKey(modelType) {
-  return modelType === globalVars.COLLECTION_MODEL
-    ? "thumbnail_iiif_url"
-    : "representative_file_url";
+export function buildImageUrl(source, modelType, iiifParams) {
+  const idKey =
+    modelType === globalVars.IMAGE_MODEL ? "representative_file_set_id" : "";
+  return idKey
+    ? `${process.env.REACT_APP_IIIF_URL}${source[idKey]}${iiifParams}`
+    : "";
 }
 
 /**
@@ -100,13 +102,11 @@ export function prepPhotoGridItems(
   modelType,
   iiifParams = globalVars.IIIF_MEDIUM_ITEM_REGION
 ) {
-  const iiifUrlKey = getIIIFUrlKey(modelType);
-
   return sources.map(source => ({
     id: source.id,
     type: modelType,
-    imageUrl: source[iiifUrlKey] ? `${source[iiifUrlKey]}${iiifParams}` : "",
-    label: getESTitle(source),
-    description: getESDescription(source)
+    imageUrl: buildImageUrl(source, modelType, iiifParams),
+    label: source.title || "",
+    description: source.description || ""
   }));
 }
