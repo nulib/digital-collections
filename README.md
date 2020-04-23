@@ -90,6 +90,14 @@ Merging a feature branch into the `deploy/staging` branch will automatically upd
 
 Merging `deploy/staging` branch into `master` will automatically update the production environment (https://dc.library.northwestern.edu/)
 
+## ADR
+
+To document architecture decisions, we use the [adr-tools](https://github.com/npryce/adr-tools) package. To document a new architecture decision via `adr-tools` markdown template generator, run:
+
+```
+adr new your-text-here
+```
+
 ## Built With
 
 - ReactJS - UI component library
