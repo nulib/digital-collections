@@ -2,7 +2,6 @@ import {
   getESDescription,
   getESImagePath,
   getESTitle,
-  getIIIFUrlKey,
   prepPhotoGridItems
 } from "./elasticsearch-parser";
 import {
@@ -115,11 +114,6 @@ describe("ElasticSearch parser module", () => {
         "Alchemical Properties: 15 Years of Dilettantism, Title 2"
       );
     });
-  });
-
-  describe("Get the proper IIIF image file path key function returns the proper keys", () => {
-    expect(getIIIFUrlKey(COLLECTION_MODEL)).toBe("thumbnail_iiif_url");
-    expect(getIIIFUrlKey(IMAGE_MODEL)).toBe("representative_file_url");
   });
 
   describe("Photogrid prep function", () => {

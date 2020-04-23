@@ -107,29 +107,24 @@ export async function getAllCollections(numResults = PAGE_SIZE) {
         query: {
           bool: {
             must: [
-              { match: { "model.name": "Collection" } },
               {
-                terms: {
-                  "collection_type_idd.title.keyword": [
-                    "NUL Collection",
-                    "NUL Collections"
-                  ]
+                match: {
+                  "model.name": "Collection"
+                }
+              },
+              {
+                match: {
+                  "model.application": "Meadow"
                 }
               }
             ]
           }
-        },
-        sort: [
-          {
-            "title.primary.keyword": {
-              order: "asc"
-            }
-          }
-        ]
+        }
       }
     });
+    console.log("getAllCollections()", response);
 
-    return response.hits.hits.map(hit => hit._source);
+    return response.hits.hits.map(hit => ({ id: hit._id, ...hit._source }));
   } catch (error) {
     console.log("Error in getAllCollections", error);
     return Promise.resolve([]);
@@ -284,12 +279,26 @@ export async function getRecentlyDigitizedItems(numResults = PAGE_SIZE) {
       body: {
         size: numResults,
         query: {
-          match: { "model.name": "Image" }
+          bool: {
+            must: [
+              {
+                match: {
+                  "model.name": "Image"
+                }
+              },
+              {
+                match: {
+                  "model.application": "Meadow"
+                }
+              }
+            ]
+          }
         },
         ...sortKey
       }
     });
-    console.log("response :", response);
+    console.log("getRecentlyDigitizedItems()", response);
+
     return response.hits.hits.map(hit => ({
       id: hit._id,
       ...hit._source
