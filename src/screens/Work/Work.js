@@ -29,6 +29,7 @@ const ScreensWork = () => {
   useEffect(() => {
     async function getApiData() {
       let item = await getItem();
+      console.log("item HERE", item);
 
       if (!item) {
         return;
@@ -44,6 +45,7 @@ const ScreensWork = () => {
       let itemError = "";
       let itemResponse = await elasticsearchApi.getItem(params.id);
       const { error } = itemResponse;
+      console.log("itemResponse", itemResponse);
 
       // Handle possible errors
       // Generic error
@@ -70,7 +72,9 @@ const ScreensWork = () => {
         itemError = `The current item's visibility is restricted to logged in users.`;
       }
 
-      return itemError ? setError(itemError) : itemResponse._source;
+      return itemError
+        ? setError(itemError)
+        : { id: itemResponse._id, ...itemResponse._source };
     }
 
     function handle404redirect(
@@ -90,18 +94,25 @@ const ScreensWork = () => {
     const rightsStatement = item.rights_statement
       ? item.rights_statement.label
       : "";
-    const creators = item.creator.map(creator => creator.label);
-    const contributors = item.contributor.map(contributor => contributor.label);
+    const creators = item.creator
+      ? item.creator.map(creator => creator.label)
+      : [];
+    const contributors = item.contributor
+      ? item.contributor.map(contributor => contributor.label)
+      : [];
 
     const dataLayer = {
-      adminset: item.admin_set.title.map(title => title).join(", "),
-      collections: item.collection.map(collection =>
-        collection.title.map(title => title).join(", ")
-      ),
+      adminset: item.admin_set
+        ? item.admin_set.title.map(title => title).join(", ")
+        : "",
+      // TODO: Will .collection be an object or array?
+      // collections: item.collection.map(collection =>
+      //   collection.title.map(title => title).join(", ")
+      // ),
       creatorsContributors: [...creators, ...contributors],
       pageTitle: elasticsearchParser.getESTitle(item),
       rightsStatement,
-      subjects: item.subject.map(subject => subject.label),
+      subjects: item.subject ? item.subject.map(subject => subject.label) : "",
       visibility: item.visibility
     };
 

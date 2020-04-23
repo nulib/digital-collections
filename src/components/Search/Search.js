@@ -5,6 +5,7 @@ import {
   ReactiveList
 } from "@appbaseio/reactivesearch";
 import {
+  buildImageUrl,
   getESImagePath,
   getESTitle
 } from "../../services/elasticsearch-parser";
@@ -18,10 +19,9 @@ import {
 } from "../../services/reactive-search";
 import PhotoBox from "../UI/PhotoBox";
 import { useLocation } from "react-router-dom";
-import { ROUTES } from "../../services/global-vars";
+import { IMAGE_MODEL } from "../../services/global-vars";
 import FacetsSidebar from "../UI/FacetsSidebar";
 import Breadcrumbs from "../UI/Breadcrumbs/Breadcrumbs";
-import { loadDataLayer } from "../../services/google-tag-manager";
 import FiltersShowHideButton from "../UI/FiltersShowHideButton";
 import { useDispatch } from "react-redux";
 import { searchValueChange } from "../../actions/search";
@@ -44,7 +44,6 @@ const Search = ({ breadcrumbs = [] }) => {
       }
     };
 
-    loadDataLayer({ pageTitle: ROUTES.SEARCH.title });
     handleLocationState();
     setComponentLoaded(true);
   }, [location]);
@@ -64,8 +63,8 @@ const Search = ({ breadcrumbs = [] }) => {
    */
   const renderItem = res => {
     let item = {
-      id: res.id,
-      imageUrl: getESImagePath(res),
+      id: res._id,
+      imageUrl: buildImageUrl(res, IMAGE_MODEL),
       label: getESTitle(res),
       type: res.model.name
     };

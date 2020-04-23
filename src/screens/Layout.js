@@ -25,7 +25,7 @@ import ScreensLegacyPid from "./LegacyPid";
 const ReactiveBaseWrapper = props => {
   return (
     <ReactiveBase
-      app="common"
+      app="meadow"
       url={globalVars.ELASTICSEARCH_PROXY_BASE + "/search/"}
       headers={{ "X-API-Token": props.apiToken }}
     >
