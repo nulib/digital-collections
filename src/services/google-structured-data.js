@@ -47,45 +47,49 @@ export function loadCollectionStructuredData(collection, pathname) {
  * @param {obj} item Item object returned from ElasticSearch
  * @param {string} pathname React router pathname
  */
+
 export function loadItemStructuredData(item, pathname) {
   let obj = {
     "@context": "http://schema.org",
-    "@type": "ImageObject",
-    image: item.representative_file_url,
-    contentUrl: item.iiif_manifest,
-    name: item.title.primary.join(", "),
-    thumbnail: item.thumbnail_url,
-    url: `${productionUrl}${pathname}`,
-    ...(item.subject && {
-      about: item.subject.map(x => x.label)
-    }),
-    ...(item.creator.length > 0 && { author: item.creator.map(x => x.label) }),
-    ...(item.subject && {
-      contentLocation: item.subject
-        .filter(x => x.role === "geographical")
-        .map(x => accountForCommas(x.label))
-        .join(", ")
-    }),
+    "@type": "ImageObject"
 
-    ...(item.contributor.length > 0 && {
-      contributor: item.contributor.map(x => x.label)
-    }),
-    ...(item.create_date && { dateCreated: item.create_date }),
-    ...(item.modified_date && { dateModified: item.modified_date }),
-    ...(item.description && { description: item.description.join(" ") }),
-    ...(item.genre && {
-      genre: item.genre.map(x => x.label)
-    }),
+    // TODO: Wire this up once data in Elasticsearch meadow index firms up
+    //
+    // image: item.representative_file_url,
+    // contentUrl: item.iiif_manifest,
+    // name: item.title.primary.join(", "),
+    // thumbnail: item.thumbnail_url,
+    // url: `${productionUrl}${pathname}`,
+    // ...(item.subject && {
+    //   about: item.subject.map(x => x.label)
+    // }),
+    // ...(item.creator.length > 0 && { author: item.creator.map(x => x.label) }),
+    // ...(item.subject && {
+    //   contentLocation: item.subject
+    //     .filter(x => x.role === "geographical")
+    //     .map(x => accountForCommas(x.label))
+    //     .join(", ")
+    // }),
 
-    ...(item.keyword && {
-      keywords: item.keyword.map(x => accountForCommas(x)).join(", ")
-    }),
-    ...(item.rights_statement && { license: item.rights_statement.label }),
-    ...(item.physical_description && {
-      material: item.physical_description.material
-        .map(x => accountForCommas(x.label))
-        .join(", ")
-    })
+    // ...(item.contributor.length > 0 && {
+    //   contributor: item.contributor.map(x => x.label)
+    // }),
+    // ...(item.create_date && { dateCreated: item.create_date }),
+    // ...(item.modified_date && { dateModified: item.modified_date }),
+    // ...(item.description && { description: item.description.join(" ") }),
+    // ...(item.genre && {
+    //   genre: item.genre.map(x => x.label)
+    // }),
+
+    // ...(item.keyword && {
+    //   keywords: item.keyword.map(x => accountForCommas(x)).join(", ")
+    // }),
+    // ...(item.rights_statement && { license: item.rights_statement.label }),
+    // ...(item.physical_description && {
+    //   material: item.physical_description.material
+    //     .map(x => accountForCommas(x.label))
+    //     .join(", ")
+    // })
   };
 
   return obj;

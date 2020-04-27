@@ -1,6 +1,18 @@
 import * as globalVars from "./global-vars";
 import placeholderImage from "../images/book_placeholder.jpg";
 
+export function buildImageUrl(
+  source,
+  modelType,
+  iiifParams = globalVars.IIIF_MEDIUM_ITEM_REGION
+) {
+  const idKey =
+    modelType === globalVars.IMAGE_MODEL ? "representative_file_set_id" : "";
+  return idKey
+    ? `${process.env.REACT_APP_IIIF_URL}${source[idKey]}${iiifParams}`
+    : placeholderImage;
+}
+
 function constructCarouselItems(docs, modelType) {
   const iiifUrlKey =
     modelType === globalVars.COLLECTION_MODEL
@@ -40,10 +52,8 @@ export function extractCarouselData(elasticsearchResponse, modelType) {
  * @param {Object} _source
  * @return {String} A single description text string
  */
-export function getESDescription(_source) {
-  return _source.description && _source.description.length > 0
-    ? _source.description[0]
-    : "";
+export function getESDescription(source) {
+  return source.description || "No description";
 }
 
 /**
@@ -70,24 +80,7 @@ export function getESImagePath(
  * @return {String} A single title string
  */
 export function getESTitle(source) {
-  if (!source || !source.title) {
-    return "";
-  }
-  const { title } = source;
-  const titles = title.primary || title;
-  let titleArray = titles.map((item, i) => {
-    return i > 0 ? `, ${item}` : item;
-  });
-
-  return titleArray.join("");
-}
-
-export function buildImageUrl(source, modelType, iiifParams) {
-  const idKey =
-    modelType === globalVars.IMAGE_MODEL ? "representative_file_set_id" : "";
-  return idKey
-    ? `${process.env.REACT_APP_IIIF_URL}${source[idKey]}${iiifParams}`
-    : "";
+  return source.title || "No title exists";
 }
 
 /**

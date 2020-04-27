@@ -122,7 +122,6 @@ export async function getAllCollections(numResults = PAGE_SIZE) {
         }
       }
     });
-    console.log("getAllCollections()", response);
 
     return response.hits.hits.map(hit => ({ id: hit._id, ...hit._source }));
   } catch (error) {
