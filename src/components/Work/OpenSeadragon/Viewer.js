@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import OpenSeadragon from "openseadragon";
 import PropTypes from "prop-types";
-import { MOBILE_BREAKPOINT } from "../../../services/global-vars";
-import withSizes from "react-sizes";
+import { isMobile } from "react-device-detect";
+
 import WorkOpenSeadragonThumbnails from "./Thumbnails";
 import WorkOpenSeadragonToolBar from "./Toolbar";
 import WorkOpenSeadragonFilesetReactSelect from "./FilesetReactSelect";
@@ -15,7 +15,6 @@ class OpenSeadragonViewer extends Component {
   }
 
   static propTypes = {
-    isMobile: PropTypes.bool,
     itemTitle: PropTypes.string,
     fileUrl: PropTypes.string,
     rightsStatement: PropTypes.object,
@@ -104,7 +103,7 @@ class OpenSeadragonViewer extends Component {
       preserveViewport: true,
       referenceStripScroll: "vertical",
       sequenceMode: true,
-      showNavigator: !this.props.isMobile,
+      showNavigator: isMobile,
       showReferenceStrip: false,
       toolbar: "toolbarDiv",
       tileSources,
@@ -158,7 +157,7 @@ class OpenSeadragonViewer extends Component {
 
   render() {
     const { currentTileSource } = this.state;
-    const { isMobile, tileSources = [] } = this.props;
+    const { tileSources = [] } = this.props;
 
     return (
       <div>
@@ -198,8 +197,4 @@ class OpenSeadragonViewer extends Component {
   }
 }
 
-const mapSizeToProps = ({ width }) => ({
-  isMobile: width <= MOBILE_BREAKPOINT
-});
-
-export default withSizes(mapSizeToProps)(OpenSeadragonViewer);
+export default OpenSeadragonViewer;

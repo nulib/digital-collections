@@ -1,6 +1,6 @@
 # Digital Collections application
 
-[![CircleCI](https://circleci.com/gh/nulib/next-gen-front-end-react.svg?style=svg)](https://circleci.com/gh/nulib/next-gen-front-end-react) [![Coverage Status](https://coveralls.io/repos/github/nulib/next-gen-front-end-react/badge.svg?branch=deploy/staging)](https://coveralls.io/github/nulib/next-gen-front-end-react?branch=deploy/staging)
+[![CircleCI](https://circleci.com/gh/nulib/digital-collections.svg?style=svg)](https://circleci.com/gh/nulib/digital-collections) [![Coverage Status](https://coveralls.io/repos/github/nulib/digital-collections/badge.svg?branch=deploy/staging)](https://coveralls.io/github/nulib/digital-collections?branch=deploy/staging)
 
 This ReactJS application serves as the presentation layer for Northwestern's Next Generation Repository. It contains discovery UI components for searching, filtering, browsing and navigating of items against an AWS Elasticsearch index.
 
@@ -15,8 +15,8 @@ These instructions will get you a copy of the project up and running on your loc
 ### Installing
 
 ```bash
-git clone git@github.com:nulib/next-gen-front-end-react.git
-cd next-gen-front-end-react
+git clone git@github.com:nulib/digital-collections.git
+cd digital-collections
 
 git checkout deploy/staging
 yarn install
@@ -36,7 +36,7 @@ yarn start:use-real-data
 yarn start:use-staging-data
 ```
 
-The Digital Collections application will be available at: http://localhost:3000/
+The Digital Collections application will be available at: https://devbox.library.northwestern.edu:3333/
 
 #### Elasticsearch
 
@@ -89,6 +89,14 @@ https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/
 Merging a feature branch into the `deploy/staging` branch will automatically update the staging environment (http://dc.stack.rdc-staging.library.northwestern.edu/)
 
 Merging `deploy/staging` branch into `master` will automatically update the production environment (https://dc.library.northwestern.edu/)
+
+## ADR
+
+To document architecture decisions, we use the [adr-tools](https://github.com/npryce/adr-tools) package. To document a new architecture decision via `adr-tools` markdown template generator, run:
+
+```
+adr new your-text-here
+```
 
 ## Built With
 
