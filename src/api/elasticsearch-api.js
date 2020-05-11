@@ -156,15 +156,7 @@ export async function getCollectionsByKeyword(keyword, numResults = PAGE_SIZE) {
           bool: {
             must: [
               { match: { "model.name": "Collection" } },
-              { match: { keyword: keyword } },
-              {
-                terms: {
-                  "collection_type_idd.title.keyword": [
-                    "NUL Collection",
-                    "NUL Collections"
-                  ]
-                }
-              }
+              { match: { keyword: keyword } }
             ]
           }
         },
