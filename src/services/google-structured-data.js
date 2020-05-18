@@ -29,7 +29,7 @@ export function loadCollectionStructuredData(collection, pathname) {
   let obj = {
     "@context": "https://schema.org/",
     "@type": "Collection",
-    name: collection.title.primary.join(", "),
+    name: collection.title,
     url: `${productionUrl}${pathname}`,
     ...(collection.description && {
       description: collection.description.join(" ")

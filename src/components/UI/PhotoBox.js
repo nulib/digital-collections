@@ -18,7 +18,7 @@ const PhotoBox = props => {
     type === globalVars.IMAGE_MODEL ? "items" : "collections"
   }/${props.item.id}`;
 
-  let imgSrc = imageUrl ? imageUrl : placeholderImage;
+  let imgSrc = imageUrl ? placeholderImage : placeholderImage;
 
   return (
     <article
@@ -44,7 +44,7 @@ const PhotoBox = props => {
 PhotoBox.propTypes = {
   hideDescriptions: PropTypes.bool,
   item: PropTypes.shape({
-    description: PropTypes.string,
+    description: PropTypes.array,
     id: PropTypes.string.isRequired,
     imageUrl: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,

@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import MetadataDisplay from "../MetadataDisplay";
 import { reactiveSearchFacets } from "../../../services/reactive-search";
+import { formatDate } from "../../../services/helpers";
 
 const styles = {
   tabContent: {
@@ -11,38 +12,37 @@ const styles = {
 
 const TabsMetadata = ({ item }) => {
   if (!item) return;
-
   const {
-    admin_set: { title: [admin_set] } = "", // = "Library Division"
+    admin_set: { title: [admin_set] = "" } = "", // = "Library Division"
     based_near = null,
     abstract: [abstract] = "",
+    alternate_title: [alternateTitle] = "",
+    title = "",
     caption: [caption] = "",
     contributor = null,
     creator = null,
-    date: [date] = "",
+    create_date = "",
     description: [description] = "",
     genre = null,
-    keyword = "",
+    keywords: [keywords] = "",
     language = null,
     notes = null,
     nul_use_statement: nulUseStatement = null,
-    physical_description: { material } = null,
-    physical_description: { size } = null,
+    physical_description_material: [materials] = null,
+    physical_description_size: [size] = null,
     provenance: [provenance] = "",
     publisher = "",
     related_material: relatedMaterial = null,
     related_url: relatedUrl = null,
     rights_holder: rightsHolder = "",
-    rights_statement: { label: rightsStatementText } = null,
+    rights_statement: { label: rightsStatementText } = {},
     scope_and_contents: scopeAndContents = null,
     series = null,
     source = "",
     style_period: stylePeriod = null,
     subject = "",
-    table_of_contents: tableOfConents = null,
-    technique = null,
-    title: { primary: title } = "",
-    title: { alternate: alternateTitle } = ""
+    table_of_contents: tableOfContents = null,
+    technique = null
   } = item;
 
   const metadataItems = [
@@ -59,14 +59,14 @@ const TabsMetadata = ({ item }) => {
       value: contributor,
       facet: reactiveSearchFacets.find(facet => facet.value === "Contributor")
     },
-    { label: "Date", value: date },
+    { label: "Date", value: formatDate(create_date) },
     { label: "Description", value: description },
     {
       label: "Department",
-      value: admin_set,
-      facet: reactiveSearchFacets.find(
-        facet => facet.value === "LibraryDepartment"
-      )
+      value: admin_set
+      // facet: reactiveSearchFacets.find(
+      //   facet => facet.value === "LibraryDepartment"
+      // )
     },
     { label: "Dimensions", value: size },
     {
@@ -74,18 +74,18 @@ const TabsMetadata = ({ item }) => {
       value: genre,
       facet: reactiveSearchFacets.find(facet => facet.value === "Genre")
     },
-    { label: "Keyword", value: keyword },
+    { label: "Keyword", value: keywords },
     {
       label: "Language",
       value: language,
       facet: reactiveSearchFacets.find(facet => facet.value === "Language")
     },
-    {
-      label: "Location",
-      value: based_near,
-      facet: reactiveSearchFacets.find(facet => facet.value === "Location")
-    },
-    { label: "Materials", value: material },
+    // {
+    //   label: "Location",
+    //   value: based_near,
+    //   facet: reactiveSearchFacets.find(facet => facet.value === "Location")
+    // },
+    { label: "Materials", value: materials },
     { label: "Notes", value: notes },
     { label: "NUL Use Statement", value: nulUseStatement },
     { label: "Provenance", value: provenance },
@@ -103,8 +103,8 @@ const TabsMetadata = ({ item }) => {
     { label: "Scope and Contents", value: scopeAndContents },
     {
       label: "Series",
-      value: series,
-      facet: reactiveSearchFacets.find(facet => facet.value === "Series")
+      value: series
+      //  facet: reactiveSearchFacets.find(facet => facet.value === "Series")
     },
     { label: "Source", value: source },
     {
@@ -117,7 +117,7 @@ const TabsMetadata = ({ item }) => {
       value: subject,
       facet: reactiveSearchFacets.find(facet => facet.value === "Subject")
     },
-    { label: "Table of Contents", value: tableOfConents },
+    { label: "Table of Contents", value: tableOfContents },
     {
       label: "Technique",
       value: technique,
@@ -125,7 +125,6 @@ const TabsMetadata = ({ item }) => {
     },
     { label: "Title", value: title }
   ];
-
   return (
     <div style={styles.tabContent} data-testid="tab-content-metadata">
       {metadataItems.map((metadataItem, i) => (

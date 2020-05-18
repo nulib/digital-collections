@@ -13,16 +13,15 @@ const styles = {
 
 const TabsFind = ({ item }) => {
   if (!item) return;
-
   const {
     accession_number: accessionNumber = "",
     bibliographic_citation: bibliographicCitation = "",
-    box: { name: boxName } = null,
-    box: { number: boxNumber } = null,
+    box_name: boxName = "",
+    box_number: boxNumber = "",
     call_number: callNumber = "",
     catalog_key: catalogKey = "",
-    folder: { name: folderName } = null,
-    folder: { number: folderNumber } = null
+    folder_name: [folderName] = "",
+    folder_number: [folderNumber] = ""
   } = item;
 
   const getAdminSetEmail = () => {
@@ -49,7 +48,7 @@ const TabsFind = ({ item }) => {
     { label: "Box Name", value: boxName },
     {
       label: "Box Number",
-      facet: reactiveSearchFacets.find(facet => facet.value === "Box"),
+      //    facet: reactiveSearchFacets.find(facet => facet.value === "Box"),
       value: boxNumber
     },
     { label: "Call Number", value: callNumber },
@@ -62,7 +61,7 @@ const TabsFind = ({ item }) => {
     { label: "Folder Name", value: folderName },
     {
       label: "Folder Number",
-      facet: reactiveSearchFacets.find(facet => facet.value === "Folder"),
+      //  facet: reactiveSearchFacets.find(facet => facet.value === "Folder"),
       value: folderNumber
     }
   ];

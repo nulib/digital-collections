@@ -7,10 +7,10 @@ export function buildImageUrl(
   iiifParams = globalVars.IIIF_MEDIUM_ITEM_REGION
 ) {
   const idKey =
-    modelType === globalVars.IMAGE_MODEL ? "representative_file_set_id" : "";
-  return idKey
-    ? `${process.env.REACT_APP_IIIF_URL}${source[idKey]}${iiifParams}`
-    : placeholderImage;
+    modelType === globalVars.IMAGE_MODEL
+      ? source.representative_file_set.url
+      : "";
+  return idKey ? `${idKey}${iiifParams}` : "";
 }
 
 function constructCarouselItems(docs, modelType) {
