@@ -2,9 +2,7 @@ import * as gsd from "./google-structured-data";
 
 const mockObj = {
   description: ["description here"],
-  title: {
-    primary: ["Title 1", "Title2"]
-  },
+  title: "Title 1",
   thumbnail_iiif_url: "http://here.com"
 };
 const pathName = "https://nu.com";
@@ -44,7 +42,10 @@ describe("work structured data", () => {
     contributor: [{ label: "bob" }, { label: "Rush, Otis" }],
     iiif_manifest:
       "https://iiif.stack.rdc.library.northwestern.edu/public/c7/86/33/6b",
-    representative_file_url: "http://location.com/xyz",
+    representative_file_set: {
+      url: "http://location.com/xyz",
+      file_set_id: "filesetid1"
+    },
     thumbnail_url:
       "https://iiif.stack.rdc.library.northwestern.edu/iiif/2/fe%2F1c%2F30%2F0",
     subject: [{ label: "Smith, John" }, { label: "Ben" }],
@@ -52,7 +53,6 @@ describe("work structured data", () => {
   };
   it("returns the expected work structured data ", () => {
     const obj = gsd.loadItemStructuredData(anotherMock, pathName);
-
     expect(obj["@type"]).toEqual("ImageObject");
     expect(obj).toHaveProperty("@context");
     expect(obj).toHaveProperty("name");

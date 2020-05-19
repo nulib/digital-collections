@@ -51,15 +51,15 @@ export function loadCollectionStructuredData(collection, pathname) {
 export function loadItemStructuredData(item, pathname) {
   let obj = {
     "@context": "http://schema.org",
-    "@type": "ImageObject"
+    "@type": "ImageObject",
 
     // TODO: Wire this up once data in Elasticsearch meadow index firms up
     //
-    // image: item.representative_file_url,
-    // contentUrl: item.iiif_manifest,
-    // name: item.title.primary.join(", "),
-    // thumbnail: item.thumbnail_url,
-    // url: `${productionUrl}${pathname}`,
+    image: item.representative_file_set ? item.representative_file_set.url : "",
+    contentUrl: item.iiif_manifest,
+    name: item.title,
+    thumbnail: item.thumbnail_url,
+    url: `${productionUrl}${pathname}`,
     // ...(item.subject && {
     //   about: item.subject.map(x => x.label)
     // }),
@@ -71,9 +71,9 @@ export function loadItemStructuredData(item, pathname) {
     //     .join(", ")
     // }),
 
-    // ...(item.contributor.length > 0 && {
-    //   contributor: item.contributor.map(x => x.label)
-    // }),
+    ...(item.contributor.length > 0 && {
+      contributor: item.contributor.map(x => x.label)
+    })
     // ...(item.create_date && { dateCreated: item.create_date }),
     // ...(item.modified_date && { dateModified: item.modified_date }),
     // ...(item.description && { description: item.description.join(" ") }),

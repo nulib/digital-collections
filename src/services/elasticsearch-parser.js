@@ -8,23 +8,25 @@ export function buildImageUrl(
 ) {
   const idKey =
     modelType === globalVars.IMAGE_MODEL
-      ? source.representative_file_set.url
+      ? source.representative_file_set
+        ? source.representative_file_set.url
+        : ""
       : "";
-  return idKey ? `${idKey}${iiifParams}` : "";
+  return idKey ? `${idKey}${iiifParams}` : placeholderImage;
 }
 
 function constructCarouselItems(docs, modelType) {
   const iiifUrlKey =
     modelType === globalVars.COLLECTION_MODEL
       ? "thumbnail_iiif_url"
-      : "representative_file_url"; // this may not hold true as we get other types...
+      : "representative_file_set"; // this may not hold true as we get other types...
 
   const items = docs.map(doc => {
     let obj = {
       id: doc._id,
       type: modelType,
       imageUrl: doc._source[iiifUrlKey]
-        ? `${doc._source[iiifUrlKey]}${globalVars.IIIF_MEDIUM_ITEM_REGION}`
+        ? `${doc._source[iiifUrlKey]["url"]}${globalVars.IIIF_MEDIUM_ITEM_REGION}`
         : "",
       label: getESTitle(doc._source),
       description: getESDescription(doc._source)
@@ -53,6 +55,8 @@ export function extractCarouselData(elasticsearchResponse, modelType) {
  * @return {String} A single description text string
  */
 export function getESDescription(source) {
+  if (source.description && source.description.length > 0)
+    return source.description[0];
   return source.description || "No description";
 }
 
@@ -68,9 +72,9 @@ export function getESImagePath(
   const imgUrl =
     _source.model.name === globalVars.COLLECTION_MODEL
       ? _source.thumbnail_iiif_url
-      : _source.representative_file_url;
+      : _source.representative_file_set.url;
 
-  const returnUrl = imgUrl === "" ? placeholderImage : `${imgUrl}${iiifParams}`;
+  const returnUrl = !imgUrl ? placeholderImage : `${imgUrl}${iiifParams}`;
   return returnUrl;
 }
 
@@ -80,7 +84,7 @@ export function getESImagePath(
  * @return {String} A single title string
  */
 export function getESTitle(source) {
-  return source.title || "No title exists";
+  return source ? source.title : "No title exists";
 }
 
 /**
