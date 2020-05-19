@@ -31,9 +31,8 @@ const ThisItem = props => {
       <p>This item</p>
       <img
         src={
-          placeholderImage
-          // item &&
-          // `${item.representative_file_set.url}${IIIF_LARGE_FEATURE_REGION}`
+          item &&
+          `${item.representative_file_set.url}${IIIF_LARGE_FEATURE_REGION}`
         }
         alt={item && item.label}
       />

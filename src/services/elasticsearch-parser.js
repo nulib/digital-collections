@@ -12,7 +12,7 @@ export function buildImageUrl(
         ? source.representative_file_set.url
         : ""
       : "";
-  return idKey ? `${idKey}${iiifParams}` : placeholderImage;
+  return idKey ? `${idKey}${iiifParams}` : "";
 }
 
 function constructCarouselItems(docs, modelType) {
@@ -69,12 +69,18 @@ export function getESImagePath(
   _source,
   iiifParams = globalVars.IIIF_MEDIUM_ITEM_REGION
 ) {
-  const imgUrl =
-    _source.model.name === globalVars.COLLECTION_MODEL
-      ? _source.thumbnail_iiif_url
-      : _source.representative_file_set.url;
-
-  const returnUrl = !imgUrl ? placeholderImage : `${imgUrl}${iiifParams}`;
+  let imgUrl = "";
+  if (_source.model && _source.model.name === globalVars.COLLECTION_MODEL) {
+    imgUrl = _source.representative_image
+      ? _source.representative_image.url
+      : "";
+  }
+  if (_source.model && _source.model.name === globalVars.IMAGE_MODEL) {
+    imgUrl = _source.representative_file_set
+      ? _source.representative_file_set.url
+      : "";
+  }
+  const returnUrl = imgUrl ? `${imgUrl}${iiifParams}` : "";
   return returnUrl;
 }
 
@@ -102,7 +108,7 @@ export function prepPhotoGridItems(
   return sources.map(source => ({
     id: source.id,
     type: modelType,
-    imageUrl: buildImageUrl(source, modelType, iiifParams),
+    imageUrl: getESImagePath(source),
     label: source.title || "",
     description: source.description || ""
   }));

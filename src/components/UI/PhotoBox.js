@@ -13,12 +13,11 @@ const styles = {
 
 const PhotoBox = props => {
   const { description, imageUrl, label, type } = props.item;
-
   let linkPath = `/${
     type === globalVars.IMAGE_MODEL ? "items" : "collections"
   }/${props.item.id}`;
 
-  let imgSrc = imageUrl ? placeholderImage : placeholderImage;
+  let imgSrc = imageUrl ? imageUrl : placeholderImage;
 
   return (
     <article

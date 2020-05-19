@@ -29,7 +29,9 @@ const CollectionList = () => {
       response,
       globalVars.COLLECTION_MODEL
     );
-
+    allCollections.forEach(collection => {
+      collection.description = collection.description || [];
+    });
     setAllCollections(allCollections);
     setFilteredCollections(allCollections);
     setLoading(false);

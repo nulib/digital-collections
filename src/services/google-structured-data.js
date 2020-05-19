@@ -71,9 +71,10 @@ export function loadItemStructuredData(item, pathname) {
     //     .join(", ")
     // }),
 
-    ...(item.contributor.length > 0 && {
-      contributor: item.contributor.map(x => x.label)
-    })
+    ...(item.contributor &&
+      item.contributor.length > 0 && {
+        contributor: item.contributor.map(x => x.label)
+      })
     // ...(item.create_date && { dateCreated: item.create_date }),
     // ...(item.modified_date && { dateModified: item.modified_date }),
     // ...(item.description && { description: item.description.join(" ") }),

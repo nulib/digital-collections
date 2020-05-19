@@ -35,6 +35,10 @@ describe("ElasticSearch parser module", () => {
         url: "http://localhost:8183/iiif/2/file",
         file_set_id: "filesetid1"
       },
+      representative_image: {
+        url: "http://localhost:8183/iiif/2/image",
+        work_id: "filesetid1"
+      },
       thumbnail_iiif_url: "http://localhost:8183/iiif/thumbnail"
     };
     const imageModel = {
@@ -55,27 +59,25 @@ describe("ElasticSearch parser module", () => {
     test("returns the right image path for a Collection model", () => {
       const source = { ...urls, ...collectionModel };
       const value = getESImagePath(source);
-
-      expect(value).toContain(urls.thumbnail_iiif_url);
+      expect(value).toContain(urls.representative_image.url);
       expect(value).toContain(IIIF_MEDIUM_ITEM_REGION);
     });
 
     test("returns a placeholder image when no image file path is specified", () => {
       const source = {
         representative_file_set: {},
-        thumbnail_url: "",
+        representative_image: {},
         ...imageModel
       };
       const value = getESImagePath(source);
 
-      expect(value).toContain(placeholderImage);
+      expect(value).toContain("");
     });
 
     test("overrides the default IIIF image sizing region", () => {
       const source = { ...urls, ...collectionModel };
       const iiifRegion = "/test/iiif/params/default.jpg";
       const value = getESImagePath(source, iiifRegion);
-
       expect(value).toContain(iiifRegion);
       expect(value).not.toContain(IIIF_MEDIUM_ITEM_REGION);
     });
