@@ -29,7 +29,6 @@ const ScreensWork = () => {
   useEffect(() => {
     async function getApiData() {
       let item = await getItem();
-      console.log("item HERE", item);
 
       if (!item) {
         return;
@@ -45,7 +44,6 @@ const ScreensWork = () => {
       let itemError = "";
       let itemResponse = await elasticsearchApi.getItem(params.id);
       const { error } = itemResponse;
-      console.log("itemResponse", itemResponse);
 
       // Handle possible errors
       // Generic error

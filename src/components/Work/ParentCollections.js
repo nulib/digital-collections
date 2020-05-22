@@ -7,10 +7,9 @@ import { reactiveSearchFacets } from "../../services/reactive-search";
 
 const ParentCollections = ({ adminSetItems = [], collection, item }) => {
   const adminSetTitle = item.admin_set ? item.admin_set.title[0] : "";
-
   return (
     <div>
-      {item && adminSetItems && (
+      {item && adminSetItems.length > 0 && (
         <section className="section" data-testid="section-library-department">
           <SectionTop
             sectionTitle="Library Department"

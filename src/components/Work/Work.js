@@ -22,8 +22,6 @@ const Work = ({ work }) => {
       if (!work) {
         return;
       }
-      console.log("work", work);
-
       // TODO: Make this work
       /*
       const adminSetItems = await getAdminSets(work.admin_set.id);
@@ -34,8 +32,9 @@ const Work = ({ work }) => {
       }
 
       setAdminSetItems(adminSetItems);
-      setLoading(false);
+     
       */
+      setLoading(false);
     }
     getApiData();
   }, [work]);

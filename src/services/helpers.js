@@ -1,5 +1,6 @@
 import { titleTagEnd } from "./global-vars";
 import { getESTitle } from "./elasticsearch-parser";
+import moment from "moment";
 
 /**
  * Helper function to chop a string into a limited word count, from the start of the text
@@ -10,8 +11,9 @@ export function chopString(str, chopLength) {
   if (!str) {
     return "";
   }
-  const extraText = str.split(" ").length > chopLength ? "..." : "";
+  const extraText = str.toString().split(" ").length > chopLength ? "..." : "";
   let chopped = str
+    .toString()
     .split(" ")
     .splice(0, chopLength)
     .join(" ");
@@ -23,6 +25,11 @@ export function getLinkPath(item) {
   const linkPath =
     item._source.model.name === "Collection" ? "collections" : "items";
   return `/${linkPath}/${item._id}`;
+}
+
+export function formatDate(date) {
+  if (!date) return "";
+  return moment.utc(date).format("lll");
 }
 
 /**

@@ -68,12 +68,13 @@ const Home = () => {
 
   async function getFeaturedCollections() {
     let response = await elasticsearchApi.getAllCollections(4);
-    console.log("getFeaturedCollections()", response);
     const collections = elasticsearchParser.prepPhotoGridItems(
       response,
       globalVars.COLLECTION_MODEL
     );
-
+    collections.forEach(collection => {
+      collection.description = collection.description || [];
+    });
     return collections;
   }
 
@@ -100,7 +101,6 @@ const Home = () => {
       response,
       globalVars.IMAGE_MODEL
     );
-
     return items;
   }
 

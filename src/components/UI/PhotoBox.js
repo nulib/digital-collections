@@ -13,7 +13,6 @@ const styles = {
 
 const PhotoBox = props => {
   const { description, imageUrl, label, type } = props.item;
-
   let linkPath = `/${
     type === globalVars.IMAGE_MODEL ? "items" : "collections"
   }/${props.item.id}`;
@@ -44,7 +43,7 @@ const PhotoBox = props => {
 PhotoBox.propTypes = {
   hideDescriptions: PropTypes.bool,
   item: PropTypes.shape({
-    description: PropTypes.string,
+    description: PropTypes.array,
     id: PropTypes.string.isRequired,
     imageUrl: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,

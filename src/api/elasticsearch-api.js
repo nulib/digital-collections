@@ -122,7 +122,6 @@ export async function getAllCollections(numResults = PAGE_SIZE) {
         }
       }
     });
-
     return response.hits.hits.map(hit => ({ id: hit._id, ...hit._source }));
   } catch (error) {
     console.log("Error in getAllCollections", error);

@@ -52,8 +52,11 @@ export function getAdminSetItems(id) {
               "http://localhost:8183/iiif/2/14%2Fe4%2F36%2F99%2F-a%2F7c%2Fa-%2F42%2Fba%2F-a%2Fd6%2Fe-%2F16%2F63%2F25%2F96%2F22%2F14/square/300,/0/default.jpg",
             iiif_manifest:
               "http://localhost:8183/iiif/2/14%2Fe4%2F36%2F99%2F-a%2F7c%2Fa-%2F42%2Fba%2F-a%2Fd6%2Fe-%2F16%2F63%2F25%2F96%2F22%2F14/manifest.json",
-            representative_file_url:
-              "http://localhost:8183/iiif/2/14%2Fe4%2F36%2F99%2F-a%2F7c%2Fa-%2F42%2Fba%2F-a%2Fd6%2Fe-%2F16%2F63%2F25%2F96%2F22%2F14",
+            representative_file_set: {
+              file_set_id: "filesetid1",
+              url:
+                "http://localhost:8183/iiif/2/14%2Fe4%2F36%2F99%2F-a%2F7c%2Fa-%2F42%2Fba%2F-a%2Fd6%2Fe-%2F16%2F63%2F25%2F96%2F22%2F14"
+            },
             resource_type: [],
             related_url: [],
             rights_statement: {

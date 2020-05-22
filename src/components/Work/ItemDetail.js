@@ -30,8 +30,7 @@ const WorkItemDetail = ({ item }) => {
 
         <div id="tab-content">
           <TabPanel>
-            {/* TODO: Fix all the metadata currently supported */}
-            {/* <TabsMetadata item={item} /> */}
+            <TabsMetadata item={item} />
           </TabPanel>
           <TabPanel>
             <TabsFind item={item} />

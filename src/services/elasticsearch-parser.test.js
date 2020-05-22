@@ -25,13 +25,20 @@ describe("ElasticSearch parser module", () => {
       const emptyString = getESDescription(emptySource);
 
       expect(value).toBe("Description 1");
-      expect(emptyString).toBe("");
+      expect(emptyString).toBe("No description");
     });
   });
 
   describe("Get image path function", () => {
     const urls = {
-      representative_file_url: "http://localhost:8183/iiif/2/file",
+      representative_file_set: {
+        url: "http://localhost:8183/iiif/2/file",
+        file_set_id: "filesetid1"
+      },
+      representative_image: {
+        url: "http://localhost:8183/iiif/2/image",
+        work_id: "filesetid1"
+      },
       thumbnail_iiif_url: "http://localhost:8183/iiif/thumbnail"
     };
     const imageModel = {
@@ -45,34 +52,32 @@ describe("ElasticSearch parser module", () => {
       const source = { ...urls, ...imageModel };
       const value = getESImagePath(source);
 
-      expect(value).toContain(urls.representative_file_url);
+      expect(value).toContain(urls.representative_file_set.url);
       expect(value).toContain(IIIF_MEDIUM_ITEM_REGION);
     });
 
     test("returns the right image path for a Collection model", () => {
       const source = { ...urls, ...collectionModel };
       const value = getESImagePath(source);
-
-      expect(value).toContain(urls.thumbnail_iiif_url);
+      expect(value).toContain(urls.representative_image.url);
       expect(value).toContain(IIIF_MEDIUM_ITEM_REGION);
     });
 
     test("returns a placeholder image when no image file path is specified", () => {
       const source = {
-        representative_file_url: "",
-        thumbnail_url: "",
+        representative_file_set: {},
+        representative_image: {},
         ...imageModel
       };
       const value = getESImagePath(source);
 
-      expect(value).toContain(placeholderImage);
+      expect(value).toContain("");
     });
 
     test("overrides the default IIIF image sizing region", () => {
       const source = { ...urls, ...collectionModel };
       const iiifRegion = "/test/iiif/params/default.jpg";
       const value = getESImagePath(source, iiifRegion);
-
       expect(value).toContain(iiifRegion);
       expect(value).not.toContain(IIIF_MEDIUM_ITEM_REGION);
     });
@@ -80,13 +85,7 @@ describe("ElasticSearch parser module", () => {
 
   describe("Get title function", () => {
     const singleTitle = {
-      title: {
-        primary: ["Alchemical Properties: 15 Years of Dilettantism"],
-        alternate: [
-          "This is another alternate_title 10",
-          "This is an alternate title 10"
-        ]
-      }
+      title: "Alchemical Properties: 15 Years of Dilettantism"
     };
     const multiTitle = {
       title: {
@@ -96,35 +95,37 @@ describe("ElasticSearch parser module", () => {
 
     test("returns an empty string if no source supplied", () => {
       const value = getESTitle();
-      expect(value).toEqual("");
+      expect(value).toEqual("No title exists");
     });
 
     test("returns a single title successfully", () => {
       const source = { ...singleTitle };
       const value = getESTitle(source);
 
-      expect(value).toBe(singleTitle.title.primary[0]);
+      expect(value).toBe(singleTitle.title);
     });
 
-    test("combines multiple titles successfully", () => {
-      const source = { ...multiTitle };
-      const value = getESTitle(source);
+    //Multiple titles is not supported
 
-      expect(value).toBe(
-        "Alchemical Properties: 15 Years of Dilettantism, Title 2"
-      );
-    });
+    // test("combines multiple titles successfully", () => {
+    //   const source = { ...multiTitle };
+    //   const value = getESTitle(source);
+
+    //   expect(value).toBe(
+    //     "Alchemical Properties: 15 Years of Dilettantism, Title 2"
+    //   );
+    // });
   });
 
   describe("Photogrid prep function", () => {
     const esResponse = [
       {
         description: ["asdf"],
-        representative_file_url: "http://localhost:8183/iiif/2",
-        title: {
-          primary: ["Two Poster Work"],
-          alternate: ["Buzzy"]
-        }
+        representative_file_set: {
+          url: "http://localhost:8183/iiif/2",
+          file_set_id: "filesetid1"
+        },
+        title: "Two Poster Work"
       }
     ];
 
@@ -137,7 +138,6 @@ describe("ElasticSearch parser module", () => {
     test("returns all necessary items to build a photo grid", () => {
       const value = prepPhotoGridItems(esResponse, IMAGE_MODEL);
       expect(Array.isArray(value)).toBeTruthy();
-
       const valueObj = value[0];
       expect(valueObj).toHaveProperty("description");
       expect(valueObj).toHaveProperty("id");
