@@ -1,4 +1,4 @@
-# Digital Collections application
+# FEN application
 
 [![CircleCI](https://circleci.com/gh/nulib/digital-collections.svg?style=svg)](https://circleci.com/gh/nulib/digital-collections) [![Coverage Status](https://coveralls.io/repos/github/nulib/digital-collections/badge.svg?branch=deploy/staging)](https://coveralls.io/github/nulib/digital-collections?branch=deploy/staging)
 
@@ -24,12 +24,6 @@ yarn install
 
 ## Running a local development environment
 
-### Against production data
-
-```bash
-yarn start:use-real-data
-```
-
 ### Against staging data
 
 ```bash
@@ -40,13 +34,7 @@ The Digital Collections application will be available at: https://devbox.library
 
 #### Elasticsearch
 
-If you'd like to view the Elasticsearch Production or Staging index while developing, run either of the following commands:
-
-```
-AWS_PROFILE=production es-proxy
-```
-
-or
+If you'd like to view the Elasticsearch Staging index while developing, run the following command:
 
 ```
 AWS_PROFILE=staging es-proxy
@@ -55,14 +43,6 @@ AWS_PROFILE=staging es-proxy
 The command will output a link, which you can copy and paste in your browser to view the Elasticsearch index, via Kibana.
 
 ## Running the tests
-
-### End to end tests
-
-This app uses [Cypress](https://www.cypress.io/) for integration tests. To start with mock SSO authentication support, run:
-
-```
-yarn cypress
-```
 
 ### Unit Tests
 
@@ -103,7 +83,6 @@ adr new your-text-here
 - ReactJS - UI component library
 - ReactiveSearch - Elasticsearch components library package
 - Jest - Unit testing
-- Cypress - End to End testing
 - Northwestern Global Marketing design templates
 
 ## Contributing
