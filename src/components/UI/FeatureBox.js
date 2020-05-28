@@ -15,7 +15,7 @@ const FeatureBox = props => {
         <p>{chopString(description, 15)}</p>
       </div>
       <Link className="button" to={`${urlHelper}/${id}`}>
-        View Work
+        View Collection
       </Link>
     </article>
   );
