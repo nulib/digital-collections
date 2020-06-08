@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import OpenSeadragon from "openseadragon";
 import PropTypes from "prop-types";
 import { isMobile } from "react-device-detect";
-
 import WorkOpenSeadragonThumbnails from "./Thumbnails";
 import WorkOpenSeadragonToolBar from "./Toolbar";
 import WorkOpenSeadragonFilesetReactSelect from "./FilesetReactSelect";
@@ -22,14 +21,20 @@ class OpenSeadragonViewer extends Component {
   };
 
   state = {
-    currentTileSource: null
+    currentTileSource: null,
+    currentFileSet: null
   };
 
   componentDidMount() {
     let { tileSources } = this.props;
-
-    this.setState({ currentTileSource: tileSources[0] });
+    const params = new URLSearchParams(window.location.hash);
+    const fileSet = params.get("fileset");
+    this.setState({ currentFileSet: fileSet || 0 });
+    this.setState({ currentTileSource: tileSources[fileSet || 0] });
     this.loadOpenSeadragon(tileSources.map(t => t.id));
+    if (fileSet > 0) {
+      this.openSeadragonInstance.goToPage(fileSet);
+    }
   }
 
   componentWillUnmount() {
@@ -82,7 +87,6 @@ class OpenSeadragonViewer extends Component {
       nextButton: "next",
       previousButton: "previous"
     };
-
     this.openSeadragonInstance = OpenSeadragon({
       ajaxWithCredentials: true,
       crossOriginPolicy: "use-credentials",
@@ -110,8 +114,11 @@ class OpenSeadragonViewer extends Component {
       visibilityRatio: 1,
       ...customControlIds
     });
-
     this.openSeadragonInstance.addHandler("page", this.handlePageChange);
+    this.openSeadragonInstance.addHandler("bookmark-url-change", function(
+      event
+    ) {});
+    this.openSeadragonInstance.bookmarkUrl();
   }
 
   handleFilesetSelectChange = id => {
@@ -123,14 +130,18 @@ class OpenSeadragonViewer extends Component {
   };
 
   handlePageChange = ({ page }) => {
+    let currentUrlParams = new URLSearchParams(window.location.hash.slice(1));
+    currentUrlParams.set("fileset", page);
+    const url = window.location.pathname + "#" + currentUrlParams.toString();
+    window.history.replaceState({}, "", url);
     this.setState({
-      currentTileSource: this.props.tileSources[page]
+      currentTileSource: this.props.tileSources[page],
+      currentFileSet: page
     });
   };
 
   handleDownloadCropClick = () => {
     const { width, height } = this.calculateDownloadDimensions();
-
     if (width && height) {
       Canvas2Image.saveAsJPEG(
         this.openSeadragonInstance.drawer.canvas,
@@ -150,7 +161,6 @@ class OpenSeadragonViewer extends Component {
   loadNewFileset(id) {
     const { tileSources } = this.props;
     const index = tileSources.findIndex(element => element.id === id);
-
     this.setState({ currentTileSource: tileSources[index] });
     this.openSeadragonInstance.goToPage(index);
   }

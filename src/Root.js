@@ -7,6 +7,7 @@ import ScrollToTop from "./components/UI/ScrollToTop";
 import registerFaIcons from "./registerFaIcons";
 import "./styles/sass/styles.scss";
 import "./libs/nuwebcomm-scripts.js";
+import "./libs/openseadragon-url-script";
 
 registerFaIcons();
 
