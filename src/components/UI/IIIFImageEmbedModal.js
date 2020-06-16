@@ -90,6 +90,16 @@ export default function IIIFImageEmbedModal({
     setEmbedCode(buildTag());
   }, [id, color, width, altLabel]);
 
+  function handleClose() {
+    setCopied(false);
+
+    // Reset to defaults
+    setWidth(3000);
+    setColor("bitonal");
+
+    closeModal();
+  }
+
   function handleColorChange(e) {
     setColor(e.target.value);
     setCopied(false);
@@ -205,7 +215,7 @@ export default function IIIFImageEmbedModal({
         </div>
         <div css={footer}>
           {copied ? (
-            <button className="button" onClick={() => closeModal()}>
+            <button className="button" onClick={handleClose}>
               Close
             </button>
           ) : (
