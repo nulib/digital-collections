@@ -22,6 +22,11 @@ const WorkTabsDownload = React.memo(function({ item }) {
   const [currentId, setCurrentId] = useState();
   const [currentLabel, setCurrentLabel] = useState();
 
+  const iiifServerUrl = item.representative_file_url.slice(
+    0,
+    item.representative_file_url.lastIndexOf("/")
+  );
+
   useEffect(() => {
     fetch(item.iiif_manifest)
       .then(response => response.json())
@@ -71,6 +76,7 @@ const WorkTabsDownload = React.memo(function({ item }) {
                       href={`${row.id}/full/3000,/0/default.jpg`}
                       target="_blank"
                       rel="noopener noreferrer"
+                      download
                     >
                       <FontAwesomeIcon icon="download" /> Download
                     </a>
@@ -94,6 +100,7 @@ const WorkTabsDownload = React.memo(function({ item }) {
         altLabel={currentLabel}
         closeModal={closeModal}
         id={currentId}
+        iiifServerUrl={iiifServerUrl}
         modalOpen={modalOpen}
       />
     </div>
