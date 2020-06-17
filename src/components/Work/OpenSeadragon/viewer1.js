@@ -6,8 +6,9 @@ import WorkOpenSeadragonThumbnails from "./Thumbnails";
 import WorkOpenSeadragonToolBar from "./Toolbar";
 import WorkOpenSeadragonFilesetReactSelect from "./FilesetReactSelect";
 import Canvas2Image from "@reglendo/canvas2image";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import { withRouter } from "react-router-dom";
+import { parseHash, updateUrl } from "../../../services/osd-hash-params";
 
 const OpenSeadragonViewer = ({
   tileSources = [],
@@ -18,48 +19,24 @@ const OpenSeadragonViewer = ({
   const [currentFileSet, setCurrentFileSet] = useState(0);
   const [openSeadragonInstance, setOpenSeadragonInstance] = useState();
   const [locationKeys, setLocationKeys] = useState([]);
-  const history = useHistory();
-  console.log("history", history);
-  useEffect(() => {
-    // history.location.hash = "";
-    console.log(history.location.hash, "--Location hash here");
-    history.location.hash = "";
-    history.listen(location => {
-      if (history.action === "PUSH") {
-        console.log("push called");
-        setLocationKeys([location.key]);
-      }
-
-      if (history.action === "POP") {
-        if (locationKeys[1] === location.key) {
-          setLocationKeys(([_, ...keys]) => keys);
-          // history.location.hash = "";
-          history.replace(history.location.pathname, {});
-          // history.replaceState({}, "", history.location.pathname);
-          console.log("Forward called with ", history);
-          console.log("Hash: ", window.location.hash);
-          window.history.replaceState({}, "", window.location.pathname);
-          // Handle forward event
-        } else {
-          setLocationKeys(keys => [location.key, ...keys]);
-          console.log("Back called with ", locationKeys);
-          console.log("Hash: ", window.location.hash);
-
-          history.replace(history.location.pathname, {});
-          // Handle back event
-        }
-      }
-    });
-  }, [locationKeys]);
+  const [initHash, setInitHash] = useState({});
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.hash);
-    const fileSet = params.get("fileset");
+    const urlParams = parseHash();
+    console.log("urlParams", urlParams);
+    const fileSet = urlParams["fileset"];
+    console.log("fileset", fileSet);
+    const pan = { x: urlParams["x"], y: urlParams["y"] };
+    // setInitHash({ pan, tileSourceIndex: fileSet, zoom: urlParams["zoom"] });
+
+    // const params = new URLSearchParams(window.location.hash);
+    // const fileSet = params.get("fileset");
 
     if (fileSet) {
       setCurrentTileSource(tileSources[fileSet]);
       setCurrentFileSet(fileSet);
     }
+    updateUrl({ pan, tileSourceIndex: fileSet, zoom: urlParams["zoom"] });
   }, [tileSources]);
 
   useEffect(() => {
@@ -69,28 +46,35 @@ const OpenSeadragonViewer = ({
   useEffect(() => {
     if (openSeadragonInstance) {
       openSeadragonInstance.addHandler("page", handlePageChange);
-      openSeadragonInstance.addHandler("bookmark-url-change", function(event) {
-        console.log("url changed??", history.location);
-        // history.push(history.location.pathname, {});
-      });
-      openSeadragonInstance.bookmarkUrl();
+      openSeadragonInstance.addHandler("pan", handlePanZoomUpdate);
+      openSeadragonInstance.addHandler("zoom", handlePanZoomUpdate);
+      // openSeadragonInstance.bookmarkUrl();
       if (currentFileSet > 0) {
         openSeadragonInstance.goToPage(currentFileSet);
       }
     }
     return () => {
-      console.log("RETURN CALLED FROM UNMOUNT", openSeadragonInstance);
       if (openSeadragonInstance) {
-        openSeadragonInstance.removeHandler("bookmark-url-change", function(e) {
-          console.log("Removed bookmark handler");
-        });
-        setOpenSeadragonInstance();
-        window.location.hash = "#";
-        window.history.replaceState({}, "", window.location.pathname);
-        // history.replace(history.location.pathname + "#", {});
+        openSeadragonInstance.removeHandler("page");
+        openSeadragonInstance.removeHandler("pan");
+        openSeadragonInstance.removeHandler("zoom");
       }
     };
   }, [openSeadragonInstance]);
+
+  const handlePanZoomUpdate = () => {
+    console.log("handlePanZoomUpdate()");
+    console.log("window.location", window.location);
+    // console.log("this.props.history", this.props.history);
+
+    if (openSeadragonInstance) {
+      const pan = openSeadragonInstance.viewport.getCenter();
+      const zoom = openSeadragonInstance.viewport.getZoom();
+      console.log("pan", pan);
+      console.log("zoom", zoom);
+      updateUrl({ pan, zoom });
+    }
+  };
 
   const calculateDownloadDimensions = () => {
     const noCopyrightRightsStatements = [
