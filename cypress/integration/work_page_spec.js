@@ -324,7 +324,7 @@ describe("Work page", () => {
         cy.contains("HTML Embed").click();
         cy.contains("HTML Tag");
         cy.contains(
-          '<img src="https://iiif.stack.rdc.library.northwestern.edu/iiif/2/c331c48e-0dda-4e4b-a566-b9a5e0129ce3/full/3000,/0/bitonal.jpg" alt="Front cover">'
+          '<img src="https://iiif.stack.rdc.library.northwestern.edu/iiif/2/c331c48e-0dda-4e4b-a566-b9a5e0129ce3/full/3000,/0/default.jpg" alt="Front cover">'
         );
         cy.contains("1800 pixels (500%)").click();
         cy.contains("Gray").click();

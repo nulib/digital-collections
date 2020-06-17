@@ -78,7 +78,6 @@ export default function IIIFImageEmbedModal({
   iiifServerUrl,
   modalOpen
 }) {
-  //const iiifUrl = "https://iiif.stack.rdc.library.northwestern.edu/iiif/2/";
   const [color, setColor] = useState("default");
   const [width, setWidth] = useState(3000);
   const [embedCode, setEmbedCode] = useState();
