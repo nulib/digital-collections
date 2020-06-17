@@ -17,11 +17,12 @@ function ScreensLegacyPid() {
     fn();
   }, [params.pid]);
 
-  return loading ? (
-    <UILoadingSpinner />
-  ) : (
-    <Redirect to={id ? `/items/${id}` : "/"} />
-  );
+  let redirectTo = {
+    pathname: id ? `/items/${id}` : "/",
+    state: { hasCanonical: true }
+  };
+
+  return loading ? <UILoadingSpinner /> : <Redirect to={redirectTo} />;
 }
 
 export default ScreensLegacyPid;

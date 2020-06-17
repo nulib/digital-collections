@@ -127,6 +127,12 @@ const ScreensWork = () => {
             {JSON.stringify(structuredData)}
           </script>
         )}
+        {location.state && location.state.hasCanonical && (
+          <link
+            rel="canonical"
+            href={`${window.location.origin}${location.pathname}`}
+          />
+        )}
       </Helmet>
       <ErrorBoundary>
         {error && <ErrorSection message={error} />}
