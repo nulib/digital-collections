@@ -1,11 +1,13 @@
 import React, { Component } from "react";
-import OpenSeadragon from "openseadragon";
+import OpenSeadragon, { Point } from "openseadragon";
 import PropTypes from "prop-types";
 import { isMobile } from "react-device-detect";
 import WorkOpenSeadragonThumbnails from "./Thumbnails";
 import WorkOpenSeadragonToolBar from "./Toolbar";
 import WorkOpenSeadragonFilesetReactSelect from "./FilesetReactSelect";
 import Canvas2Image from "@reglendo/canvas2image";
+import { withRouter } from "react-router-dom";
+import { parseHash, updateUrl } from "../../../services/osd-hash-params";
 
 class OpenSeadragonViewer extends Component {
   constructor(props) {
@@ -22,23 +24,36 @@ class OpenSeadragonViewer extends Component {
 
   state = {
     currentTileSource: null,
-    currentFileSet: null
+    currentTileSourceIndex: null,
+    currentURLParams: window.location.hash
   };
 
   componentDidMount() {
     let { tileSources } = this.props;
-    const params = new URLSearchParams(window.location.hash);
-    const fileSet = params.get("fileset");
-    this.setState({ currentFileSet: fileSet || 0 });
-    this.setState({ currentTileSource: tileSources[fileSet || 0] });
+    const urlParams = parseHash();
+    const fileSet = urlParams["fileset"];
+
+    this.setState({
+      currentTileSourceIndex: fileSet || 0,
+      currentTileSource: tileSources[fileSet || 0],
+      currentURLParams: urlParams
+    });
+
     this.loadOpenSeadragon(tileSources.map(t => t.id));
+
     if (fileSet > 0) {
       this.openSeadragonInstance.goToPage(fileSet);
     }
   }
 
+  componentDidUpdate() {}
+
   componentWillUnmount() {
     this.openSeadragonInstance.removeHandler("page");
+    this.openSeadragonInstance.removeHandler("pan");
+    this.openSeadragonInstance.removeHandler("zoom");
+    this.openSeadragonInstance.removeHandler("open");
+    this.openSeadragonInstance = undefined;
   }
 
   calculateDownloadDimensions() {
@@ -97,6 +112,7 @@ class OpenSeadragonViewer extends Component {
         dblClickToZoom: true,
         pinchToZoom: true
       },
+
       id: "openseadragon1",
       loadTilesWithAjax: true,
       navigatorPosition: "ABSOLUTE",
@@ -115,11 +131,30 @@ class OpenSeadragonViewer extends Component {
       ...customControlIds
     });
     this.openSeadragonInstance.addHandler("page", this.handlePageChange);
-    this.openSeadragonInstance.addHandler("bookmark-url-change", function(
-      event
-    ) {});
-    this.openSeadragonInstance.bookmarkUrl();
+    this.openSeadragonInstance.addHandler("pan", this.handlePanZoomUpdate);
+    this.openSeadragonInstance.addHandler("zoom", this.handlePanZoomUpdate);
+    this.openSeadragonInstance.addOnceHandler("open", this.handleFullyLoaded);
   }
+
+  handlePanZoomUpdate = () => {
+    if (this.openSeadragonInstance) {
+      const pan = this.openSeadragonInstance.viewport.getCenter();
+      const zoom = this.openSeadragonInstance.viewport.getZoom();
+      updateUrl({ pan, zoom });
+    }
+  };
+
+  handleFullyLoaded = () => {
+    const urlParams = this.state.currentURLParams;
+    const zoom =
+      urlParams["zoom"] || this.openSeadragonInstance.viewport.getZoom();
+
+    const pan = this.openSeadragonInstance.viewport.getCenter();
+    const x = urlParams["x"] || pan.x;
+    const y = urlParams["y"] || pan.y;
+    this.openSeadragonInstance.viewport.panTo(new Point(x, y), true);
+    this.openSeadragonInstance.viewport.zoomTo(zoom, null, true);
+  };
 
   handleFilesetSelectChange = id => {
     this.loadNewFileset(id);
@@ -130,13 +165,12 @@ class OpenSeadragonViewer extends Component {
   };
 
   handlePageChange = ({ page }) => {
-    let currentUrlParams = new URLSearchParams(window.location.hash.slice(1));
-    currentUrlParams.set("fileset", page);
-    const url = window.location.pathname + "#" + currentUrlParams.toString();
-    window.history.replaceState({}, "", url);
+    if (page) {
+      updateUrl({ tileSourceIndex: page });
+    }
     this.setState({
       currentTileSource: this.props.tileSources[page],
-      currentFileSet: page
+      currentTileSourceIndex: page
     });
   };
 
@@ -207,4 +241,4 @@ class OpenSeadragonViewer extends Component {
   }
 }
 
-export default OpenSeadragonViewer;
+export default withRouter(OpenSeadragonViewer);
