@@ -21,11 +21,13 @@ export function parseHash() {
 
 export function updateUrl({ pan, tileSourceIndex, zoom }) {
   let currentUrlParams = new URLSearchParams(window.location.hash.slice(1));
-
-  currentUrlParams.set("zoom", zoom);
-  currentUrlParams.set("x", pan.x);
-  currentUrlParams.set("y", pan.y);
-
+  if (zoom) {
+    currentUrlParams.set("zoom", zoom);
+  }
+  if (pan) {
+    currentUrlParams.set("x", pan.x);
+    currentUrlParams.set("y", pan.y);
+  }
   if (tileSourceIndex && tileSourceIndex > 0) {
     currentUrlParams.set("fileset", tileSourceIndex);
   }

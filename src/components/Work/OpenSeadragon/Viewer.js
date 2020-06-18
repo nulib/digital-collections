@@ -133,7 +133,7 @@ class OpenSeadragonViewer extends Component {
     this.openSeadragonInstance.addHandler("page", this.handlePageChange);
     this.openSeadragonInstance.addHandler("pan", this.handlePanZoomUpdate);
     this.openSeadragonInstance.addHandler("zoom", this.handlePanZoomUpdate);
-    this.openSeadragonInstance.addHandler("open", this.handleOpenViewer);
+    this.openSeadragonInstance.addOnceHandler("open", this.handleFullyLoaded);
   }
 
   handlePanZoomUpdate = () => {
@@ -142,11 +142,6 @@ class OpenSeadragonViewer extends Component {
       const zoom = this.openSeadragonInstance.viewport.getZoom();
       updateUrl({ pan, zoom });
     }
-  };
-
-  handleOpenViewer = () => {
-    const tiledImage = this.openSeadragonInstance.world.getItemAt(0);
-    tiledImage.addOnceHandler("fully-loaded-change", this.handleFullyLoaded);
   };
 
   handleFullyLoaded = () => {
@@ -170,10 +165,9 @@ class OpenSeadragonViewer extends Component {
   };
 
   handlePageChange = ({ page }) => {
-    let currentUrlParams = new URLSearchParams(window.location.hash.slice(1));
-    currentUrlParams.set("fileset", page);
-    const url = window.location.pathname + "#" + currentUrlParams.toString();
-    window.history.replaceState({}, "", url);
+    if (page) {
+      updateUrl({ tileSourceIndex: page });
+    }
     this.setState({
       currentTileSource: this.props.tileSources[page],
       currentTileSourceIndex: page
