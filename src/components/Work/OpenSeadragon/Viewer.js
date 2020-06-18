@@ -1,98 +1,62 @@
-import React, { useState, useEffect } from "react";
-import OpenSeadragon, { Viewer } from "openseadragon";
+import React, { Component } from "react";
+import OpenSeadragon, { Point } from "openseadragon";
 import PropTypes from "prop-types";
 import { isMobile } from "react-device-detect";
 import WorkOpenSeadragonThumbnails from "./Thumbnails";
 import WorkOpenSeadragonToolBar from "./Toolbar";
 import WorkOpenSeadragonFilesetReactSelect from "./FilesetReactSelect";
 import Canvas2Image from "@reglendo/canvas2image";
-import { useHistory } from "react-router-dom";
 import { withRouter } from "react-router-dom";
+import { parseHash, updateUrl } from "../../../services/osd-hash-params";
 
-const OpenSeadragonViewer = ({
-  tileSources = [],
-  rightsStatement = {},
-  itemTitle = ""
-}) => {
-  const [currentTileSource, setCurrentTileSource] = useState(tileSources[0]);
-  const [currentFileSet, setCurrentFileSet] = useState(0);
-  const [openSeadragonInstance, setOpenSeadragonInstance] = useState();
-  const [locationKeys, setLocationKeys] = useState([]);
-  const history = useHistory();
-  console.log("history", history);
-  useEffect(() => {
-    // history.location.hash = "";
-    console.log(history.location.hash, "--Location hash here");
-    history.location.hash = "";
-    history.listen(location => {
-      if (history.action === "PUSH") {
-        console.log("push called");
-        setLocationKeys([location.key]);
-      }
+class OpenSeadragonViewer extends Component {
+  constructor(props) {
+    super(props);
+    this.openSeadragonInstance = null;
+  }
 
-      if (history.action === "POP") {
-        if (locationKeys[1] === location.key) {
-          setLocationKeys(([_, ...keys]) => keys);
-          // history.location.hash = "";
-          history.replace(history.location.pathname, {});
-          // history.replaceState({}, "", history.location.pathname);
-          console.log("Forward called with ", history);
-          console.log("Hash: ", window.location.hash);
-          window.history.replaceState({}, "", window.location.pathname);
-          // Handle forward event
-        } else {
-          setLocationKeys(keys => [location.key, ...keys]);
-          console.log("Back called with ", locationKeys);
-          console.log("Hash: ", window.location.hash);
+  static propTypes = {
+    itemTitle: PropTypes.string,
+    fileUrl: PropTypes.string,
+    rightsStatement: PropTypes.object,
+    tileSources: PropTypes.array
+  };
 
-          history.replace(history.location.pathname, {});
-          // Handle back event
-        }
-      }
+  state = {
+    currentTileSource: null,
+    currentTileSourceIndex: null,
+    currentURLParams: window.location.hash
+  };
+
+  componentDidMount() {
+    let { tileSources } = this.props;
+    const urlParams = parseHash();
+    const fileSet = urlParams["fileset"];
+
+    this.setState({
+      currentTileSourceIndex: fileSet || 0,
+      currentTileSource: tileSources[fileSet || 0],
+      currentURLParams: urlParams
     });
-  }, [locationKeys]);
 
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.hash);
-    const fileSet = params.get("fileset");
+    this.loadOpenSeadragon(tileSources.map(t => t.id));
 
-    if (fileSet) {
-      setCurrentTileSource(tileSources[fileSet]);
-      setCurrentFileSet(fileSet);
+    if (fileSet > 0) {
+      this.openSeadragonInstance.goToPage(fileSet);
     }
-  }, [tileSources]);
+  }
 
-  useEffect(() => {
-    loadOpenSeadragon();
-  }, []);
+  componentDidUpdate() {}
 
-  useEffect(() => {
-    if (openSeadragonInstance) {
-      openSeadragonInstance.addHandler("page", handlePageChange);
-      openSeadragonInstance.addHandler("bookmark-url-change", function(event) {
-        console.log("url changed??", history.location);
-        // history.push(history.location.pathname, {});
-      });
-      openSeadragonInstance.bookmarkUrl();
-      if (currentFileSet > 0) {
-        openSeadragonInstance.goToPage(currentFileSet);
-      }
-    }
-    return () => {
-      console.log("RETURN CALLED FROM UNMOUNT", openSeadragonInstance);
-      if (openSeadragonInstance) {
-        openSeadragonInstance.removeHandler("bookmark-url-change", function(e) {
-          console.log("Removed bookmark handler");
-        });
-        setOpenSeadragonInstance();
-        window.location.hash = "#";
-        window.history.replaceState({}, "", window.location.pathname);
-        // history.replace(history.location.pathname + "#", {});
-      }
-    };
-  }, [openSeadragonInstance]);
+  componentWillUnmount() {
+    this.openSeadragonInstance.removeHandler("page");
+    this.openSeadragonInstance.removeHandler("pan");
+    this.openSeadragonInstance.removeHandler("zoom");
+    this.openSeadragonInstance.removeHandler("open");
+    this.openSeadragonInstance = undefined;
+  }
 
-  const calculateDownloadDimensions = () => {
+  calculateDownloadDimensions() {
     const noCopyrightRightsStatements = [
       "No Copyright - United States",
       "No Copyright - Non Commercial Use Only"
@@ -103,11 +67,13 @@ const OpenSeadragonViewer = ({
       let height,
         width,
         defaultWidth =
-          noCopyrightRightsStatements.indexOf(rightsStatement.label) > -1
+          noCopyrightRightsStatements.indexOf(
+            this.props.rightsStatement.label
+          ) > -1
             ? 3000
             : 1500,
-        canvasHeight = openSeadragonInstance.drawer.canvas.height,
-        canvasWidth = openSeadragonInstance.drawer.canvas.width,
+        canvasHeight = this.openSeadragonInstance.drawer.canvas.height,
+        canvasWidth = this.openSeadragonInstance.drawer.canvas.width,
         proportionRatio = canvasHeight / canvasWidth;
 
       if (canvasWidth > defaultWidth) {
@@ -125,9 +91,9 @@ const OpenSeadragonViewer = ({
     }
 
     return returnObj;
-  };
+  }
 
-  function loadOpenSeadragon() {
+  loadOpenSeadragon(tileSources = []) {
     const customControlIds = {
       zoomInButton: "zoom-in",
       zoomOutButton: "zoom-out",
@@ -136,122 +102,149 @@ const OpenSeadragonViewer = ({
       nextButton: "next",
       previousButton: "previous"
     };
-    setOpenSeadragonInstance(
-      OpenSeadragon({
-        ajaxWithCredentials: true,
-        crossOriginPolicy: "use-credentials",
-        defaultZoomLevel: 0,
-        gestureSettingsMouse: {
-          scrollToZoom: false,
-          clickToZoom: true,
-          dblClickToZoom: true,
-          pinchToZoom: true
-        },
-        id: "openseadragon1",
-        loadTilesWithAjax: true,
-        navigatorPosition: "ABSOLUTE",
-        navigatorTop: "100px",
-        navigatorLeft: "40px",
-        navigatorHeight: "200px",
-        navigatorWidth: "260px",
-        preserveViewport: true,
-        referenceStripScroll: "vertical",
-        sequenceMode: true,
-        showNavigator: isMobile,
-        showReferenceStrip: false,
-        toolbar: "toolbarDiv",
-        tileSources: tileSources.map(t => t.id),
-        visibilityRatio: 1,
-        ...customControlIds
-      })
-    );
+    this.openSeadragonInstance = OpenSeadragon({
+      ajaxWithCredentials: true,
+      crossOriginPolicy: "use-credentials",
+      defaultZoomLevel: 0,
+      gestureSettingsMouse: {
+        scrollToZoom: false,
+        clickToZoom: true,
+        dblClickToZoom: true,
+        pinchToZoom: true
+      },
+
+      id: "openseadragon1",
+      loadTilesWithAjax: true,
+      navigatorPosition: "ABSOLUTE",
+      navigatorTop: "100px",
+      navigatorLeft: "40px",
+      navigatorHeight: "200px",
+      navigatorWidth: "260px",
+      preserveViewport: true,
+      referenceStripScroll: "vertical",
+      sequenceMode: true,
+      showNavigator: isMobile,
+      showReferenceStrip: false,
+      toolbar: "toolbarDiv",
+      tileSources,
+      visibilityRatio: 1,
+      ...customControlIds
+    });
+    this.openSeadragonInstance.addHandler("page", this.handlePageChange);
+    this.openSeadragonInstance.addHandler("pan", this.handlePanZoomUpdate);
+    this.openSeadragonInstance.addHandler("zoom", this.handlePanZoomUpdate);
+    this.openSeadragonInstance.addHandler("open", this.handleOpenViewer);
   }
 
-  const handleFilesetSelectChange = id => {
-    loadNewFileset(id);
+  handlePanZoomUpdate = () => {
+    if (this.openSeadragonInstance) {
+      const pan = this.openSeadragonInstance.viewport.getCenter();
+      const zoom = this.openSeadragonInstance.viewport.getZoom();
+      updateUrl({ pan, zoom });
+    }
   };
 
-  const handleThumbClick = id => {
-    loadNewFileset(id);
+  handleOpenViewer = () => {
+    const tiledImage = this.openSeadragonInstance.world.getItemAt(0);
+    tiledImage.addOnceHandler("fully-loaded-change", this.handleFullyLoaded);
   };
 
-  const handlePageChange = ({ page }) => {
+  handleFullyLoaded = () => {
+    const urlParams = this.state.currentURLParams;
+    const zoom =
+      urlParams["zoom"] || this.openSeadragonInstance.viewport.getZoom();
+
+    const pan = this.openSeadragonInstance.viewport.getCenter();
+    const x = urlParams["x"] || pan.x;
+    const y = urlParams["y"] || pan.y;
+    this.openSeadragonInstance.viewport.panTo(new Point(x, y), true);
+    this.openSeadragonInstance.viewport.zoomTo(zoom, null, true);
+  };
+
+  handleFilesetSelectChange = id => {
+    this.loadNewFileset(id);
+  };
+
+  handleThumbClick = id => {
+    this.loadNewFileset(id);
+  };
+
+  handlePageChange = ({ page }) => {
     let currentUrlParams = new URLSearchParams(window.location.hash.slice(1));
     currentUrlParams.set("fileset", page);
     const url = window.location.pathname + "#" + currentUrlParams.toString();
     window.history.replaceState({}, "", url);
-    // setState({
-    //   currentTileSource: tileSources[page],
-    //   currentFileSet: page
-    // });
+    this.setState({
+      currentTileSource: this.props.tileSources[page],
+      currentTileSourceIndex: page
+    });
   };
 
-  const handleDownloadCropClick = () => {
-    const { width, height } = calculateDownloadDimensions();
+  handleDownloadCropClick = () => {
+    const { width, height } = this.calculateDownloadDimensions();
     if (width && height) {
       Canvas2Image.saveAsJPEG(
-        openSeadragonInstance.drawer.canvas,
-        itemTitle.split(" ").join("-"),
+        this.openSeadragonInstance.drawer.canvas,
+        this.props.itemTitle.split(" ").join("-"),
         width,
         height
       );
     }
   };
 
-  const handleDownloadFullSize = () => {
-    const { width } = calculateDownloadDimensions();
-    const path = `${currentTileSource.id}/full/${width},/0/default.jpg`;
+  handleDownloadFullSize = () => {
+    const { width } = this.calculateDownloadDimensions();
+    const path = `${this.state.currentTileSource.id}/full/${width},/0/default.jpg`;
     window.open(path, "_blank");
   };
 
-  function loadNewFileset(id) {
+  loadNewFileset(id) {
+    const { tileSources } = this.props;
     const index = tileSources.findIndex(element => element.id === id);
-    setCurrentTileSource(tileSources[index]);
-    openSeadragonInstance.goToPage(index);
+    this.setState({ currentTileSource: tileSources[index] });
+    this.openSeadragonInstance.goToPage(index);
   }
 
-  return (
-    <div>
-      <div className="open-seadgragon-top-bar-wrapper">
-        <div
-          className={`open-seadgragon-top-bar ${
-            tileSources.length < 2 ? "centered" : ""
-          }`}
-        >
-          <WorkOpenSeadragonFilesetReactSelect
-            currentTileSource={currentTileSource}
-            onFileSetChange={handleFilesetSelectChange}
-            tileSources={tileSources}
-          />
+  render() {
+    const { currentTileSource } = this.state;
+    const { tileSources = [] } = this.props;
 
-          <div id="toolbarDiv" className="toolbar">
-            <WorkOpenSeadragonToolBar
-              isMobile={isMobile}
-              onDownloadCropClick={handleDownloadCropClick}
-              onDownloadFullSize={handleDownloadFullSize}
+    return (
+      <div>
+        <div className="open-seadgragon-top-bar-wrapper">
+          <div
+            className={`open-seadgragon-top-bar ${
+              tileSources.length < 2 ? "centered" : ""
+            }`}
+          >
+            <WorkOpenSeadragonFilesetReactSelect
+              currentTileSource={currentTileSource}
+              onFileSetChange={this.handleFilesetSelectChange}
+              tileSources={tileSources}
             />
+
+            <div id="toolbarDiv" className="toolbar">
+              <WorkOpenSeadragonToolBar
+                isMobile={isMobile}
+                onDownloadCropClick={this.handleDownloadCropClick}
+                onDownloadFullSize={this.handleDownloadFullSize}
+              />
+            </div>
           </div>
         </div>
+
+        <div id="openseadragon1" className="open-seadragon-container"></div>
+
+        {tileSources.length > 1 && (
+          <WorkOpenSeadragonThumbnails
+            currentTileSource={currentTileSource}
+            onThumbClick={this.handleThumbClick}
+            tileSources={tileSources}
+          />
+        )}
       </div>
-
-      <div id="openseadragon1" className="open-seadragon-container"></div>
-
-      {tileSources.length > 1 && (
-        <WorkOpenSeadragonThumbnails
-          currentTileSource={currentTileSource}
-          onThumbClick={handleThumbClick}
-          tileSources={tileSources}
-        />
-      )}
-    </div>
-  );
-};
-
-Viewer.propTypes = {
-  itemTitle: PropTypes.string,
-  fileUrl: PropTypes.string,
-  rightsStatement: PropTypes.object,
-  tileSources: PropTypes.array
-};
+    );
+  }
+}
 
 export default withRouter(OpenSeadragonViewer);
