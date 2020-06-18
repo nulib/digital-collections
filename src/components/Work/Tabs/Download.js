@@ -85,7 +85,14 @@ const WorkTabsDownload = React.memo(function({ item }) {
                 <td>
                   <DownloadIIIFImage
                     imageUrl={`${row.id}/full/3000,/0/default.jpg`}
-                    label={row.label}
+                    imageTitle={
+                      row.label
+                        ? row.label
+                            .replace(".tif", "")
+                            .split(" ")
+                            .join("_")
+                        : ""
+                    }
                   />
                   <p>
                     <button
