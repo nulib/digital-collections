@@ -4,6 +4,7 @@ import { getTileSources } from "../../../services/iiif-parser";
 import UILoadingSpinner from "../../UI/LoadingSpinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import IIIFImageEmbedModal from "../../UI/IIIFImageEmbedModal";
+import DownloadIIIFImage from "./DownloadIIIFImage";
 
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
@@ -11,8 +12,14 @@ import { css, jsx } from "@emotion/core";
 const downloadWrapper = css`
   max-height: 600px;
   overflow-y: auto;
-  border-top: 1px solid #efefef;
-  border-bottom: 1px solid #efefef;
+`;
+const table = css`
+  td:nth-of-type(1) {
+    width: 175px;
+  }
+  td:nth-of-type(3) {
+    width: 200px;
+  }
 `;
 
 const WorkTabsDownload = React.memo(function({ item }) {
@@ -21,6 +28,11 @@ const WorkTabsDownload = React.memo(function({ item }) {
   const [modalOpen, setModalOpen] = useState();
   const [currentId, setCurrentId] = useState();
   const [currentLabel, setCurrentLabel] = useState();
+
+  const iiifServerUrl = item.representative_file_url.slice(
+    0,
+    item.representative_file_url.lastIndexOf("/")
+  );
 
   useEffect(() => {
     fetch(item.iiif_manifest)
@@ -54,8 +66,13 @@ const WorkTabsDownload = React.memo(function({ item }) {
   return (
     <div css={downloadWrapper} data-testid="tab-content-download">
       <div className="responsive-table">
-        <table className="table-borders">
+        <table css={table}>
           <tbody>
+            <tr className="stripe">
+              <th>Image preview</th>
+              <th>Label</th>
+              <th>Actions</th>
+            </tr>
             {tileSources.map((row, i) => (
               <tr key={row.id} className={`${i % 2 === 0 ? "stripe" : ""}`}>
                 <td>
@@ -66,16 +83,10 @@ const WorkTabsDownload = React.memo(function({ item }) {
                 </td>
                 <td>{row.label}</td>
                 <td>
-                  <p>
-                    <a
-                      href={`${row.id}/full/3000,/0/default.jpg`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <FontAwesomeIcon icon="download" /> Download
-                    </a>
-                  </p>
-
+                  <DownloadIIIFImage
+                    imageUrl={`${row.id}/full/3000,/0/default.jpg`}
+                    label={row.label}
+                  />
                   <p>
                     <button
                       className="button-link"
@@ -94,6 +105,7 @@ const WorkTabsDownload = React.memo(function({ item }) {
         altLabel={currentLabel}
         closeModal={closeModal}
         id={currentId}
+        iiifServerUrl={iiifServerUrl}
         modalOpen={modalOpen}
       />
     </div>

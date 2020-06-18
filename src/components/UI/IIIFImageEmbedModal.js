@@ -75,27 +75,27 @@ export default function IIIFImageEmbedModal({
   altLabel,
   closeModal,
   id,
+  iiifServerUrl,
   modalOpen
 }) {
-  const iiifUrl = "https://iiif.stack.rdc.library.northwestern.edu/iiif/2/";
-  const [color, setColor] = useState("bitonal");
+  const [color, setColor] = useState("default");
   const [width, setWidth] = useState(3000);
   const [embedCode, setEmbedCode] = useState();
   const [copied, setCopied] = useState();
 
   useEffect(() => {
     function buildTag() {
-      return `<img src="${iiifUrl}${id}/full/${width},/0/${color}.jpg" alt="${altLabel}">`;
+      return `<img src="${iiifServerUrl}/${id}/full/${width},/0/${color}.jpg" alt="${altLabel}">`;
     }
     setEmbedCode(buildTag());
-  }, [id, color, width, altLabel]);
+  }, [id, color, iiifServerUrl, width, altLabel]);
 
   function handleClose() {
     setCopied(false);
 
     // Reset to defaults
     setWidth(3000);
-    setColor("bitonal");
+    setColor("default");
 
     closeModal();
   }
@@ -173,6 +173,18 @@ export default function IIIFImageEmbedModal({
                 <strong>Image color</strong>
               </legend>
               <input
+                id="default"
+                name="color"
+                type="radio"
+                value="default"
+                onChange={handleColorChange}
+                checked={color === "default"}
+              />
+              <label className="inline" htmlFor="default">
+                Default
+              </label>
+
+              <input
                 id="bitonal"
                 name="color"
                 type="radio"
@@ -183,6 +195,7 @@ export default function IIIFImageEmbedModal({
               <label className="inline" htmlFor="bitonal">
                 Bitonal
               </label>
+
               <input
                 id="gray"
                 name="color"
@@ -193,17 +206,6 @@ export default function IIIFImageEmbedModal({
               />
               <label className="inline" htmlFor="gray">
                 Gray
-              </label>
-              <input
-                id="color"
-                name="color"
-                type="radio"
-                value="color"
-                onChange={handleColorChange}
-                checked={color === "color"}
-              />
-              <label className="inline" htmlFor="color">
-                Color
               </label>
             </fieldset>
           </div>
@@ -238,5 +240,6 @@ IIIFImageEmbedModal.propTypes = {
   altLabel: PropTypes.string,
   closeModal: PropTypes.func,
   id: PropTypes.string,
+  iiifServerUrl: PropTypes.string,
   modalOpen: PropTypes.bool
 };
