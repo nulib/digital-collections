@@ -1,21 +1,13 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ClipLoader from "react-spinners/ClipLoader";
-
-/** @jsx jsx */
-import { css, jsx } from "@emotion/core";
-
-const errorMessage = css`
-  color: #b2292e;
-`;
+import DownloadIIIFImageButton from "./DownloadIIIFImageButton";
 
 async function makeBlob(imageUrl) {
   if (!imageUrl) {
     return Promise.resolve({ error: true, message: "No image URL provided" });
   }
 
-  const response = fetch(imageUrl)
+  return fetch(imageUrl)
     .then(blobResponse => {
       return blobResponse.blob();
     })
@@ -28,12 +20,21 @@ async function makeBlob(imageUrl) {
         message: "Error creating image from url"
       });
     });
+}
 
-  return response;
+// Create a DOM element anchor to hold the Blog image
+// initiate a click event on it to force the download
+function mimicDownload(blob, imageTitle) {
+  const a = document.createElement("a");
+  a.href = blob;
+  a.download = imageTitle;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
 }
 
 // https://stackoverflow.com/questions/51076581/download-images-using-html-or-javascript
-const DownloadIIIFImage = ({ imageUrl, label }) => {
+const DownloadIIIFImage = ({ imageUrl, imageTitle }) => {
   const [loading, setLoading] = useState();
   const [error, setError] = useState();
 
@@ -54,35 +55,22 @@ const DownloadIIIFImage = ({ imageUrl, label }) => {
       return;
     }
 
-    // Create a DOM element anchor to hold the Blog image
-    // initiate a click event on it to force the download
-    const a = document.createElement("a");
-    a.href = response;
-    a.download = label ? label.split(" ").join("_") : "";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    mimicDownload(response, imageTitle);
     setLoading(false);
   }
 
   return (
-    <div>
-      <button
-        data-testid="download-button"
-        onClick={handleClick}
-        className="button-link"
-      >
-        {!loading && <FontAwesomeIcon icon="download" />}{" "}
-        {loading && <ClipLoader color={"#4e2a84"} size={16} />} Download
-      </button>
-      {error && <p css={errorMessage}>{error}</p>}
-    </div>
+    <DownloadIIIFImageButton
+      handleClick={handleClick}
+      loading={loading}
+      error={error}
+    />
   );
 };
 
 DownloadIIIFImage.propTypes = {
-  imageUrl: PropTypes.string,
-  label: PropTypes.string
+  imageUrl: PropTypes.string.isRequired,
+  imageTitle: PropTypes.string.isRequired
 };
 
 export default DownloadIIIFImage;
