@@ -45,7 +45,7 @@ const TabsCite = props => {
   const formats = [
     {
       id: "permalink",
-      label: "The ARK",
+      label: "Ark",
       text: permalink,
       style: {}
     },

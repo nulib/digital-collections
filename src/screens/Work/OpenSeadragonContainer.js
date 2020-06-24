@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import OpenSeadragonViewer from "../../components/Work/OpenSeadragon/Viewer";
+import { OpenSeadragonViewer } from "openseadragon-react-viewer";
 import PropTypes from "prop-types";
-import { getTileSources } from "../../services/iiif-parser";
 import { getManifest } from "../../api";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
 import { getESTitle } from "../../services/elasticsearch-parser";
@@ -29,7 +28,7 @@ class OpenSeadragonContainer extends Component {
 
   state = {
     loading: true,
-    tileSources: []
+    manifestUrl: ""
   };
 
   componentDidMount() {
@@ -45,8 +44,7 @@ class OpenSeadragonContainer extends Component {
       return;
     }
     // Get the sources for OpenSeadragon viewer from the manifest
-    let tileSources = getTileSources(response);
-    this.setState({ loading: false, tileSources });
+    this.setState({ loading: false, manifestUrl: environtmentUrl });
   }
 
   /**
@@ -81,22 +79,21 @@ class OpenSeadragonContainer extends Component {
   }
 
   render() {
-    const { loading, tileSources } = this.state;
-    const { item } = this.props;
-    const rightsStatement = item ? item.rights_statement : null;
-    const fileUrl = item ? item.representative_file_url : null;
+    const { loading, manifestUrl } = this.state;
+
+    const options = {
+      showDropdown: true,
+      showThumbnails: true,
+      showToolbar: true,
+      deepLinking: true
+    };
 
     return (
       <div>
         <LoadingSpinner loading={loading} />
-        {tileSources.length > 0 && (
+        {manifestUrl && (
           <section style={styles.wrapper} data-testid="section-open-seadragon">
-            <OpenSeadragonViewer
-              tileSources={tileSources}
-              itemTitle={this.itemTitle}
-              rightsStatement={rightsStatement}
-              fileUrl={fileUrl}
-            />
+            <OpenSeadragonViewer manifestUrl={manifestUrl} options={options} />
           </section>
         )}
       </div>
