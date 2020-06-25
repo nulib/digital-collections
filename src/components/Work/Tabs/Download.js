@@ -5,6 +5,7 @@ import UILoadingSpinner from "../../UI/LoadingSpinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import IIIFImageEmbedModal from "../../UI/IIIFImageEmbedModal";
 import DownloadIIIFImage from "./DownloadIIIFImage";
+import { cleanupFilename } from "../../../services/helpers";
 
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
@@ -85,14 +86,7 @@ const WorkTabsDownload = React.memo(function({ item }) {
                 <td>
                   <DownloadIIIFImage
                     imageUrl={`${row.id}/full/3000,/0/default.jpg`}
-                    imageTitle={
-                      row.label
-                        ? row.label
-                            .replace(".tif", "")
-                            .split(" ")
-                            .join("_")
-                        : ""
-                    }
+                    imageTitle={row.label ? cleanupFilename(row.label) : ""}
                   />
                   <p>
                     <button
