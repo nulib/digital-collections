@@ -127,12 +127,10 @@ const ScreensWork = () => {
             {JSON.stringify(structuredData)}
           </script>
         )}
-        {location.state && location.state.hasCanonical && (
-          <link
-            rel="canonical"
-            href={`${window.location.origin}${location.pathname}`}
-          />
-        )}
+        <link
+          rel="canonical"
+          href={`https://digitalcollections.library.northwestern.edu${location.pathname}`}
+        />
       </Helmet>
       <ErrorBoundary>
         {error && <ErrorSection message={error} />}
