@@ -18,7 +18,8 @@ export default function OpenSeadragonContainer({ item }) {
     showDropdown: true,
     showThumbnails: true,
     showToolbar: true,
-    deepLinking: true
+    deepLinking: true,
+    height: 800
   };
 
   return (

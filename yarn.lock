@@ -8915,7 +8915,7 @@ opencollective-postinstall@^2.0.2:
 
 "openseadragon-react-viewer@https://github.com/samvera-labs/openseadragon-react-viewer.git":
   version "1.3.0"
-  resolved "https://github.com/samvera-labs/openseadragon-react-viewer.git#50e6222c3bc984eb893fa415d346ea25d85a003d"
+  resolved "https://github.com/samvera-labs/openseadragon-react-viewer.git#d8e217f7feab60d927ae330b30f7a21918f718c1"
   dependencies:
     "@reglendo/canvas2image" "^1.0.5-2"
     react-device-detect "^1.12.1"
