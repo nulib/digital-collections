@@ -8913,9 +8913,10 @@ opencollective-postinstall@^2.0.2:
   resolved "https://registry.yarnpkg.com/opencollective-postinstall/-/opencollective-postinstall-2.0.3.tgz#7a0fff978f6dbfa4d006238fbac98ed4198c3259"
   integrity sha512-8AV/sCtuzUeTo8gQK5qDZzARrulB3egtLzFgteqB2tcT4Mw7B8Kt7JcDHmltjz6FOAHsvTevk70gZEbhM4ZS9Q==
 
-"openseadragon-react-viewer@https://github.com/samvera-labs/openseadragon-react-viewer.git":
-  version "1.3.0"
-  resolved "https://github.com/samvera-labs/openseadragon-react-viewer.git#d8e217f7feab60d927ae330b30f7a21918f718c1"
+openseadragon-react-viewer@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/openseadragon-react-viewer/-/openseadragon-react-viewer-2.0.0.tgz#cd9bfb44e809106a02c1a154d4e90f93ec810a87"
+  integrity sha512-mgKW2odSvr8jMesHhI8I3MmFmfQhvb90qMG4Y7PVjNyjL3rIIIREBqw3YjM04ON0URZTBnuzNb11sbEGWVuSPQ==
   dependencies:
     "@reglendo/canvas2image" "^1.0.5-2"
     react-device-detect "^1.12.1"
