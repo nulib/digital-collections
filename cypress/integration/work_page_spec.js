@@ -301,6 +301,46 @@ describe("Work page", () => {
     });
   });
 
+  context.only("Tabs download tab", () => {
+    beforeEach(() => {
+      cy.visit(multipleFilesetRoute);
+    });
+
+    it("should display a download tab with a listing of all filesets", () => {
+      cy.contains("Download").click();
+      cy.wait(5000);
+      cy.getByTestId("tab-content-download").within($tabContent => {
+        cy.contains("Front cover");
+        cy.get('[alt="Front cover thumbnail"]')
+          .should("be.visible")
+          .and($img => {
+            // "naturalWidth" and "naturalHeight" are set when the image loads
+            expect($img[0].naturalWidth).to.be.greaterThan(0);
+          });
+        cy.contains("Download");
+      });
+
+      context("HTML Embed feature", () => {
+        cy.contains("HTML Embed").click();
+        cy.contains("HTML Tag");
+        cy.contains(
+          '<img src="https://iiif.stack.rdc.library.northwestern.edu/iiif/2/c331c48e-0dda-4e4b-a566-b9a5e0129ce3/full/3000,/0/default.jpg" alt="Front cover">'
+        );
+        cy.contains("1800 pixels (500%)").click();
+        cy.contains("Gray").click();
+        cy.contains(
+          '<img src="https://iiif.stack.rdc.library.northwestern.edu/iiif/2/c331c48e-0dda-4e4b-a566-b9a5e0129ce3/full/1800,/0/gray.jpg" alt="Front cover">'
+        );
+        cy.contains("Copy Code");
+        // Cant test the copy code click, as Chrome opens an alert window in Cypress
+        // which will hang the tests in CircleCI
+
+        cy.contains("Cancel").click();
+        cy.getByTestId("image-embed-modal").should("not.exist");
+      });
+    });
+  });
+
   context("Authenticated content", () => {
     const authenticatedRoute = "/items/27113f17-0175-44a3-82f0-cde1e4865601";
 

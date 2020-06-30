@@ -18,6 +18,20 @@ export function chopString(str, chopLength) {
   return `${chopped}${extraText}`;
 }
 
+export function cleanupFilename(title) {
+  let cleanTitle = title
+    // Replace .tif file extension
+    .replace(".tif", "")
+    .replace(".tiff", "")
+    // Replace all special characters
+    .replace(/[^\w\s]/gi, "")
+    // Replace white spaces within underscores
+    .split(" ")
+    .join("_");
+
+  return cleanTitle;
+}
+
 // TODO: might be able to delete this
 export function getLinkPath(item) {
   const linkPath =

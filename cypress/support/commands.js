@@ -29,7 +29,6 @@
  */
 
 import { loginKey } from "../../src/services/nul-api";
-import { ELASTICSEARCH_PROXY_BASE } from "../../src/services/global-vars";
 const jwt = require("jsonwebtoken");
 
 const user = "testuser@northwestern.edu";

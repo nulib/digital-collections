@@ -127,6 +127,10 @@ const ScreensWork = () => {
             {JSON.stringify(structuredData)}
           </script>
         )}
+        <link
+          rel="canonical"
+          href={`https://digitalcollections.library.northwestern.edu${location.pathname}`}
+        />
       </Helmet>
       <ErrorBoundary>
         {error && <ErrorSection message={error} />}
