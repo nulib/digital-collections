@@ -32,17 +32,20 @@ describe("Home page", () => {
 
   it("displays section: featured collections section, along with its photo grid", () => {
     cy.get("[data-testid=section-featured-collections]").within($section => {
-      cy.get("[data-testid=headline-photo-grid-section]");
+      cy.get("[data-testid=headline-photo-feature-section]");
       cy.contains("View All Collections");
-      cy.get("[data-testid=photo-box]")
+      cy.get("[data-testid=photo-feature]")
         .should("have.length", 4)
-        .and("have.class", "photo-box");
+        .and("have.class", "photo-feature");
     });
 
-    cy.get("[data-testid=photo-box]").within($photoBox => {
-      cy.get("a > img");
-      cy.get("[data-testid=title-photo-box]").should("contain", "a");
-      cy.get("[data-testid=description-photo-box]");
+    cy.get("[data-testid=photo-feature]").within($photoFeature => {
+      cy.get("[data-testid=front-photo-box]")
+        .should("contain", "p")
+        .and("have.class", "text-over-image");
+      cy.get("[data-testid=back-photo-box]")
+        .should("contain", "p")
+        .and("have.class", "back-text");
     });
   });
 
