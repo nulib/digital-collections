@@ -27,25 +27,6 @@
         width: 100%;
       }
 
-      .back-show {
-        opacity: 1;
-        background-color: $nu-purple-60;
-        width: 100%;
-        height: 350px;
-      }
-      .back-hide {
-        opacity: 0;
-      }
-      .front-show {
-        opacity: 1;
-      }
-      .front-hide {
-        opacity: 0;
-        visibility: hidden;
-        height: 0;
-        transition: visibility 0.5s, opacity 0.5s linear;
-      }
-
       .text-over-image {
         color: $white;
         padding: 0 2em;
@@ -53,7 +34,6 @@
         bottom: 1rem;
         z-index: 31;
         width: 90%;
-        text-align: left;
       }
 
       h4 {

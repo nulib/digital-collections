@@ -10,7 +10,6 @@ const PhotoFeatureSection = ({
   subhead,
   linkTo,
   linkToText,
-  hideDescriptions,
   ...additionalProps
 }) => {
   //Randomize collections array

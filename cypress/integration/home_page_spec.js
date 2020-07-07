@@ -35,8 +35,9 @@ describe("Home page", () => {
       cy.get("[data-testid=headline-photo-feature-section]");
       cy.contains("View All Collections");
       cy.get("[data-testid=photo-feature]")
-        .should("have.length", 3)
-        .and("have.class", "photo-feature");
+        .and("have.class", "photo-feature")
+        .its("length")
+        .should("be.gt", 2);
     });
 
     cy.get("[data-testid=photo-feature]").within($photoFeature => {

@@ -73,7 +73,7 @@ const Home = () => {
       8
     );
 
-    const collections = elasticsearchParser.prepPhotoGridItems(
+    const collections = elasticsearchParser.prepPhotoFeatureItems(
       response,
       globalVars.COLLECTION_MODEL
     );
@@ -87,7 +87,7 @@ const Home = () => {
   async function getGalleryByKeyword(keyword) {
     let response = await elasticsearchApi.getCollectionsByKeyword(keyword);
 
-    const items = elasticsearchParser.prepPhotoGridItems(
+    const items = elasticsearchParser.prepPhotoFeatureItems(
       response,
       globalVars.COLLECTION_MODEL
     );
