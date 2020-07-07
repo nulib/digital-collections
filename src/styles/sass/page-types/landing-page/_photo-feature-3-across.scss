@@ -22,26 +22,28 @@
       }
 
       .back {
-        display: none;
+        opacity: 0;
         background-color: $nu-purple-60;
         width: 100%;
       }
 
       .back-show {
-        display: block;
+        opacity: 1;
         background-color: $nu-purple-60;
         width: 100%;
-        min-height: 350px;
+        height: 350px;
       }
       .back-hide {
-        display: none;
+        opacity: 0;
       }
       .front-show {
-        display: block;
+        opacity: 1;
       }
       .front-hide {
-        display: none;
-        height: auto;
+        opacity: 0;
+        visibility: hidden;
+        height: 0;
+        transition: visibility 0.5s, opacity 0.5s linear;
       }
 
       .text-over-image {
@@ -51,6 +53,7 @@
         bottom: 1rem;
         z-index: 31;
         width: 90%;
+        text-align: left;
       }
 
       h4 {

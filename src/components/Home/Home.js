@@ -62,7 +62,6 @@ const Home = () => {
           key={keyword}
           headline={`${keyword} Collections`}
           items={keywordCollections[i]}
-          itemsPerRow={3}
         />
       );
     });
@@ -125,14 +124,13 @@ const Home = () => {
             linkToText="View All Collections"
             items={galleryCollections}
             data-testid="section-featured-collections"
-            itemsPerRow={3}
           />
         </div>
       )}
       <div className="contain-1120">
         <HeroSecondarySection heroData={heroSecondaryData} />
-        {!loading && renderAdditionalGalleries()}
       </div>
+      {!loading && renderAdditionalGalleries()}
       <PhotoGridSection
         headline="Recently Added and Updated Items"
         linkTo="/search"

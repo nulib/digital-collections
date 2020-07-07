@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 
 const PhotoFeatureSection = ({
   items,
-  itemsPerRow,
   headline,
   subhead,
   linkTo,
@@ -14,10 +13,15 @@ const PhotoFeatureSection = ({
   hideDescriptions,
   ...additionalProps
 }) => {
-  const chunkedItems = _.chunk(items, itemsPerRow);
+  //Randomize collections array
+  items.sort(() => 0.5 - Math.random());
+  //Divide into chunks of 3
+  let chunkedItems = _.chunk(items, 3);
+  //Filter for array of 3 to go into each row
+  chunkedItems = chunkedItems.filter(item => item.length == 3);
   return (
-    <div className="section-top contain-1120" {...additionalProps}>
-      <div className="section">
+    <section className="section" {...additionalProps}>
+      <div className="section-top contain-1440" {...additionalProps}>
         <h3 data-testid="headline-photo-feature-section">{headline}</h3>
         <p className="subhead">{subhead}</p>
         {linkToText && (
@@ -35,7 +39,7 @@ const PhotoFeatureSection = ({
           ))}
         </div>
       ))}
-    </div>
+    </section>
   );
 };
 
