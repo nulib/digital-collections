@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 
 import PropTypes from "prop-types";
 /** @jsx jsx */
@@ -13,8 +14,8 @@ const frontShow = css`
 `;
 const frontHide = css`
   opacity: 0;
-  visibility: hidden;
   height: 0;
+  visibility: hidden;
   transition: visibility 0.5s, opacity 0.2s linear;
 `;
 
@@ -31,21 +32,31 @@ const PhotoFeature = props => {
   `;
   useEffect(() => {
     if (isHover) {
-      setHeight(ref.current.clientHeight);
+      setHeight(ref.current.getBoundingClientRect().height);
     }
   }, [isHover]);
 
-  const addHoverClass = () => setIsHover(!isHover);
+  const addHoverClass = e => {
+    if (!isHover) {
+      e.preventDefault();
+    }
+    setIsHover(!isHover);
+  };
 
   return (
     <article
       className="photo-feature"
       onMouseEnter={addHoverClass}
       onMouseLeave={addHoverClass}
+      onClick={addHoverClass}
       aria-labelledby="photo-feature"
       data-testid="photo-feature"
     >
-      <a href={`/items/${id}`} id="photo-feature">
+      <Link
+        to={`/collections/${id}`}
+        id="photo-feature"
+        onClick={addHoverClass}
+      >
         <div css={!isHover ? frontShow : frontHide}>
           <img alt="image description" src={imageUrl} ref={ref} />
           <div className="text-over-image" data-testid="front-photo-box">
@@ -60,7 +71,7 @@ const PhotoFeature = props => {
             <p className="link">Go to Site</p>
           </div>
         </div>
-      </a>
+      </Link>
     </article>
   );
 };

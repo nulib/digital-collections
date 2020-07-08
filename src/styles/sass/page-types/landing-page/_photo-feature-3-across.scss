@@ -2,6 +2,7 @@
 
 .landing-page {
   .photo-feature-3-across {
+    margin-top: 3rem;
     @extend %clearfix;
 
     .photo-feature {
@@ -17,12 +18,10 @@
 
       img {
         display: block;
-        max-height: 350px;
-        width: 100%;
       }
 
       .back {
-        opacity: 0;
+        display: none;
         background-color: $nu-purple-60;
         width: 100%;
       }
