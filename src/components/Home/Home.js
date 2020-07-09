@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import HeroSection from "../../components/Home/HeroSection";
 import HeroSecondarySection from "../../components/Home/HeroSecondarySection";
 import PhotoGridSection from "../UI/PhotoGridSection";
+import PhotoFeatureSection from "../UI/PhotoFeatureSection";
 import LoadingSpinner from "../UI/LoadingSpinner";
 import {
   heroFava,
@@ -57,7 +58,7 @@ const Home = () => {
       }
 
       return (
-        <PhotoGridSection
+        <PhotoFeatureSection
           key={keyword}
           headline={`${keyword} Collections`}
           items={keywordCollections[i]}
@@ -72,7 +73,7 @@ const Home = () => {
       8
     );
 
-    const collections = elasticsearchParser.prepPhotoGridItems(
+    const collections = elasticsearchParser.prepPhotoFeatureItems(
       response,
       globalVars.COLLECTION_MODEL
     );
@@ -86,7 +87,7 @@ const Home = () => {
   async function getGalleryByKeyword(keyword) {
     let response = await elasticsearchApi.getCollectionsByKeyword(keyword);
 
-    const items = elasticsearchParser.prepPhotoGridItems(
+    const items = elasticsearchParser.prepPhotoFeatureItems(
       response,
       globalVars.COLLECTION_MODEL
     );
@@ -113,18 +114,12 @@ const Home = () => {
         <HeroSection heroData={heroItems[heroRandomNumber]} />
       </div>
       <LoadingSpinner loading={loading} />
+
       {!loading && (
         <div>
-          <PhotoGridSection
-            headline="Recently Added and Updated Items"
-            linkTo="/search"
-            linkToText="View All Items"
-            items={galleryItems}
-            hideDescriptions={true}
-            data-testid="section-recent-items"
-          />
-          <PhotoGridSection
-            headline="Featured Collections"
+          <PhotoFeatureSection
+            subhead="Featured Collections"
+            headline="Collections"
             linkTo="/collections"
             linkToText="View All Collections"
             items={galleryCollections}
@@ -134,8 +129,16 @@ const Home = () => {
       )}
       <div className="contain-1120">
         <HeroSecondarySection heroData={heroSecondaryData} />
-        {!loading && renderAdditionalGalleries()}
       </div>
+      {!loading && renderAdditionalGalleries()}
+      <PhotoGridSection
+        headline="Recently Added and Updated Items"
+        linkTo="/search"
+        linkToText="View All Items"
+        items={galleryItems}
+        hideDescriptions={true}
+        data-testid="section-recent-items"
+      />
     </>
   );
 };

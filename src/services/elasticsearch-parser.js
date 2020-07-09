@@ -110,3 +110,26 @@ export function prepPhotoGridItems(
     description: getESDescription(source)
   }));
 }
+
+/**
+ * Map data from elastic search response, to what the PhotoFeature component needs
+ * @param {Object} elasticsearchResponse Raw elastic search response object
+ * @param {String} modelType // Item or Collection?
+ * @param {String} iiifParams /// IIIF image sizing params to use - defaults to a medium region
+ * @return {Array} of prepped items
+ */
+export function prepPhotoFeatureItems(
+  sources,
+  modelType,
+  iiifParams = globalVars.IIIF_PHOTO_FEATURE_REGION
+) {
+  const iiifUrlKey = getIIIFUrlKey(modelType);
+
+  return sources.map(source => ({
+    id: source.id,
+    type: modelType,
+    imageUrl: source[iiifUrlKey] ? `${source[iiifUrlKey]}${iiifParams}` : "",
+    label: getESTitle(source),
+    description: getESDescription(source)
+  }));
+}
