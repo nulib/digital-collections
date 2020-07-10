@@ -3,6 +3,8 @@ import HeroSection from "../../components/Home/HeroSection";
 import HeroSecondarySection from "../../components/Home/HeroSecondarySection";
 import PhotoGridSection from "../UI/PhotoGridSection";
 import PhotoFeatureSection from "../UI/PhotoFeatureSection";
+import PhotoFeature from "../UI/PhotoFeature";
+import { Link } from "react-router-dom";
 import LoadingSpinner from "../UI/LoadingSpinner";
 import {
   heroFava,
@@ -15,7 +17,17 @@ import * as elasticsearchApi from "../../api/elasticsearch-api";
 import * as elasticsearchParser from "../../services/elasticsearch-parser";
 import * as globalVars from "../../services/global-vars";
 import { getRandomInt } from "../../services/helpers";
+import { isMobile } from "react-device-detect";
+// Import Swiper React components
+import SwiperCore, { Navigation, Pagination, Scrollbar } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 
+// Import Swiper styles
+import "swiper/swiper.scss";
+import "swiper/components/pagination/pagination.scss";
+import "swiper/components/scrollbar/scrollbar.scss";
+
+SwiperCore.use([Navigation, Pagination, Scrollbar]);
 const Home = () => {
   const numResults = 8;
   const heroRandomNumber = getRandomInt(0, 2);
@@ -40,7 +52,7 @@ const Home = () => {
     Promise.all(promises)
       .then(([galleryItems, galleryCollections, ...keywordCollections]) => {
         setGalleryItems(galleryItems);
-        setGalleryCollections(galleryCollections);
+        setGalleryCollections(galleryCollections.concat(keywordCollections[2]));
         setKeywordCollections(keywordCollections);
         setLoading(false);
       })
@@ -116,16 +128,50 @@ const Home = () => {
       <LoadingSpinner loading={loading} />
 
       {!loading && (
-        <div>
-          <PhotoFeatureSection
-            subhead="Featured Collections"
-            headline="Collections"
-            linkTo="/collections"
-            linkToText="View All Collections"
-            items={galleryCollections}
-            data-testid="section-featured-collections"
-          />
-        </div>
+        <>
+          <div>
+            <PhotoFeatureSection
+              subhead="Featured Collections"
+              headline="Collections"
+              linkTo="/collections"
+              linkToText="View All Collections"
+              items={galleryCollections}
+              data-testid="section-featured-collections"
+            />
+          </div>
+          <section className="section">
+            <div className="section-top contain-1440">
+              <h3 data-testid="headline-photo-feature-section">Collections</h3>
+              <p className="subhead">Featured Collections</p>
+              <p>
+                <Link
+                  data-testid="link-photo-feature-section"
+                  to="/collections"
+                >
+                  View All Collections
+                </Link>
+              </p>
+            </div>
+            <Swiper
+              spaceBetween={0}
+              slidesPerView={isMobile ? 1 : 3}
+              onSlideChange={() => console.log("slide change")}
+              onSwiper={swiper => console.log(swiper)}
+              navigation
+            >
+              {galleryCollections.map((item, index) => (
+                <SwiperSlide key={index}>
+                  <div
+                    className="photo-feature-3-across"
+                    style={{ marginTop: 0 }}
+                  >
+                    <PhotoFeature item={item} styles={{ width: "100%" }} />
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </section>
+        </>
       )}
       <div className="contain-1120">
         <HeroSecondarySection heroData={heroSecondaryData} />

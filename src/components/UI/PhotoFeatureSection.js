@@ -17,7 +17,7 @@ const PhotoFeatureSection = ({
   //Divide into chunks of 3
   let chunkedItems = _.chunk(items, 3);
   //Filter for array of 3 to go into each row
-  chunkedItems = chunkedItems.filter(item => item.length == 3);
+  chunkedItems = chunkedItems.filter(item => item.length === 3);
   return (
     <section className="section" {...additionalProps}>
       <div className="section-top contain-1440" {...additionalProps}>
@@ -32,7 +32,11 @@ const PhotoFeatureSection = ({
         )}
       </div>
       {chunkedItems.map((chunkedItem, index) => (
-        <div className="photo-feature-3-across" key={index}>
+        <div
+          className="photo-feature-3-across"
+          key={index}
+          style={{ marginTop: 0 }}
+        >
           {chunkedItem.map(item => (
             <PhotoFeature key={item.id} item={item} />
           ))}
