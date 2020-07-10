@@ -59,7 +59,15 @@ const PhotoFeature = props => {
         onClick={addHoverClass}
       >
         <div css={!isHover ? frontShow : frontHide}>
-          <img alt="image description" src={imageUrl} ref={ref} />
+          <img
+            alt="image description"
+            src={
+              imageUrl
+                ? imageUrl
+                : "https://bulma.io/images/placeholders/480x480.png"
+            }
+            ref={ref}
+          />
           <div className="text-over-image" data-testid="front-photo-box">
             <h4>{label}</h4>
             <p className="link">Learn more</p>
