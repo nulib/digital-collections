@@ -46,6 +46,7 @@ const PhotoFeature = props => {
   return (
     <article
       className="photo-feature"
+      style={props.styles}
       onMouseEnter={addHoverClass}
       onMouseLeave={addHoverClass}
       onClick={addHoverClass}

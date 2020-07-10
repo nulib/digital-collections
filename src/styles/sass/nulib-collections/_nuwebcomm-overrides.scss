@@ -30,6 +30,19 @@
   justify-content: center;
 }
 
+.landing-page {
+  .swiper-button-next,
+  .swiper-button-prev {
+    position: absolute;
+    top: 50%;
+    z-index: 10;
+  }
+
+  .swiper-button-disabled {
+    opacity: 0.5;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .mobile-link {
     // Because we're using a <button> instead of <a>, for accessibility
