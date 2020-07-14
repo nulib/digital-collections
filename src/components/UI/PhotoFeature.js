@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import placeholderImage from "../../images/book_placeholder.png";
 
 import PropTypes from "prop-types";
 /** @jsx jsx */
@@ -42,6 +43,9 @@ const PhotoFeature = props => {
     }
     setIsHover(!isHover);
   };
+  const loadPlaceholderImage = e => {
+    e.target.src = placeholderImage;
+  };
 
   return (
     <article
@@ -61,16 +65,12 @@ const PhotoFeature = props => {
         <div css={!isHover ? frontShow : frontHide}>
           <img
             alt="image description"
-            src={
-              imageUrl
-                ? imageUrl
-                : "https://bulma.io/images/placeholders/480x480.png"
-            }
+            src={imageUrl}
+            onError={loadPlaceholderImage}
             ref={ref}
           />
           <div className="text-over-image" data-testid="front-photo-box">
             <h4>{label}</h4>
-            <p className="link">Learn more</p>
           </div>
         </div>
         <div css={isHover ? backShow : backHide}>

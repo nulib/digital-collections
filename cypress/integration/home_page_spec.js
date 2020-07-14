@@ -49,12 +49,4 @@ describe("Home page", () => {
         .and("have.class", "back-text");
     });
   });
-
-  it("displays in-page hero section with an image, title, subtitle and link to the collection", () => {
-    cy.get("[data-testid=hero-in-page]").within($hero => {
-      cy.get("[data-testid=hero-in-page-title]");
-      cy.get("[data-testid=hero-in-page-subtitle]");
-      cy.get("[data-testid=hero-in-page-link]").should("have.length.gte", 1);
-    });
-  });
 });

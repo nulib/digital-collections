@@ -41,6 +41,37 @@
   .swiper-button-disabled {
     opacity: 0.5;
   }
+
+  .content {
+    .no-bottom-margin {
+      margin-bottom: 0;
+      h3 {
+        margin-bottom: 2rem;
+      }
+    }
+  }
+
+  // For works
+  .photobox-swiper {
+    .swiper-button-next,
+    .swiper-button-prev {
+      top: 40%;
+    }
+  }
+  .photo-box {
+    h4 {
+      font: 16px $AkkuratProBold;
+      color: $rich-black-80;
+      margin: 1rem 0 0 0;
+    }
+  }
+  // For overlay contrast
+  .text-over-image {
+    h4 {
+      background-color: rgba($color: #000000, $alpha: 0.5);
+      padding: 0.5rem;
+    }
+  }
 }
 
 @media screen and (max-width: 768px) {

@@ -19,6 +19,9 @@ const PhotoBox = props => {
   }/${props.item.id}`;
 
   let imgSrc = imageUrl ? imageUrl : placeholderImage;
+  const loadPlaceholderImage = e => {
+    e.target.src = placeholderImage;
+  };
 
   return (
     <article
@@ -27,7 +30,12 @@ const PhotoBox = props => {
       data-testid="photo-box"
     >
       <Link to={linkPath}>
-        <img alt={label} src={imgSrc} data-testid="img-photo-box" />
+        <img
+          alt={label}
+          src={imgSrc}
+          data-testid="img-photo-box"
+          onError={loadPlaceholderImage}
+        />
       </Link>
       <h4 data-testid="title-photo-box">
         <Link to={linkPath} style={styles.title}>
