@@ -18,7 +18,7 @@ describe("Home page", () => {
     cy.get("[data-testid=section-recent-items]").within($section => {
       cy.get("[data-testid=headline-photo-grid-section]");
       //cy.get("[data-testid=link-photo-grid-section]");
-      cy.contains("View All Items");
+      cy.contains("View All Works");
       cy.get("[data-testid=photo-box]")
         .should("have.length", 8)
         .and("have.class", "photo-box");

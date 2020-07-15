@@ -61,10 +61,8 @@ const Home = () => {
 
       return (
         <section className="section" key={keyword}>
-          <div className="section-top no-bottom-margin contain-1440">
-            <h3 data-testid="headline-photo-feature-section ">
-              {keyword} Collections
-            </h3>
+          <div className="section-top contain-1440">
+            <p className="subhead"> {keyword} Collections</p>
           </div>
           <Swiper spaceBetween={0} slidesPerView={isMobile ? 1 : 3} navigation>
             {keywordCollections[i].map(item => (
@@ -159,12 +157,11 @@ const Home = () => {
       {!loading && renderAdditionalGalleries()}
       <section className="section" data-testid="section-recent-items">
         <div className="section-top contain-970">
-          <h3 data-testid="headline-photo-grid-section">
-            Recently Added and Updated Items
-          </h3>
+          <h3 data-testid="headline-photo-grid-section">Works</h3>
+          <p className="subhead">Recently Added and Updated Works</p>
           <p>
             <Link data-testid="link-photo-grid-section" to="/search">
-              View All Items
+              View All Works
             </Link>
           </p>
         </div>
