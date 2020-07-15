@@ -70,7 +70,6 @@ const PhotoFeature = props => {
           />
           <div className="text-over-image" data-testid="front-photo-box">
             <h4>{label}</h4>
-            <p className="link">Learn more</p>
           </div>
         </div>
         <div css={isHover ? backShow : backHide}>
