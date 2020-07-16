@@ -37,6 +37,9 @@
     top: 50%;
     z-index: 10;
   }
+  img {
+    margin: 0 auto;
+  }
 
   .swiper-button-disabled {
     opacity: 0.5;
@@ -55,12 +58,17 @@
       color: $rich-black-80;
       margin: 1rem 0 0 0;
     }
+    img {
+      margin: 0 auto;
+    }
   }
   // For overlay contrast
   .text-over-image {
     h4 {
       background-color: rgba($color: #000000, $alpha: 0.5);
       padding: 0.5rem;
+      max-width: 350px;
+      margin: 0 auto; //center content in the container
     }
   }
 }

@@ -9,7 +9,7 @@ import * as elasticsearchApi from "../../api/elasticsearch-api";
 import * as elasticsearchParser from "../../services/elasticsearch-parser";
 import * as globalVars from "../../services/global-vars";
 import { getRandomInt } from "../../services/helpers";
-import { isMobile } from "react-device-detect";
+import { isMobileOnly, isTablet } from "react-device-detect";
 // Import Swiper React components
 import SwiperCore, { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -64,7 +64,11 @@ const Home = () => {
           <div className="section-top contain-1440">
             <p className="subhead"> {keyword} Collections</p>
           </div>
-          <Swiper spaceBetween={0} slidesPerView={isMobile ? 1 : 3} navigation>
+          <Swiper
+            spaceBetween={isMobileOnly ? 0 : isTablet ? 10 : 0}
+            slidesPerView={isMobileOnly ? 1 : isTablet ? 2 : 3}
+            navigation
+          >
             {keywordCollections[i].map(item => (
               <SwiperSlide key={item.id}>
                 <div
@@ -140,7 +144,11 @@ const Home = () => {
               </Link>
             </p>
           </div>
-          <Swiper spaceBetween={0} slidesPerView={isMobile ? 1 : 3} navigation>
+          <Swiper
+            spaceBetween={isMobileOnly ? 0 : isTablet ? 10 : 0}
+            slidesPerView={isMobileOnly ? 1 : isTablet ? 2 : 3}
+            navigation
+          >
             {galleryCollections.map(item => (
               <SwiperSlide key={item.id}>
                 <div
@@ -167,13 +175,13 @@ const Home = () => {
         </div>
         <Swiper
           spaceBetween={30}
-          slidesPerView={isMobile ? 2 : 4}
+          slidesPerView={isMobileOnly ? 1 : isTablet ? 2 : 4}
           navigation
           className="photobox-swiper"
         >
           {galleryItems.map(item => (
             <SwiperSlide key={item.id}>
-              <div>
+              <div align="center">
                 <PhotoBox hideDescriptions={true} item={item} />
               </div>
             </SwiperSlide>
