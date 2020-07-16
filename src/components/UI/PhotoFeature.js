@@ -77,7 +77,7 @@ const PhotoFeature = props => {
           <div className="back-text" data-testid="back-photo-box">
             <h4>{label}</h4>
             <p>{description.substr(0, 200)}...</p>
-            <p className="link">Go to Site</p>
+            <p className="link">View Collection</p>
           </div>
         </div>
       </Link>
