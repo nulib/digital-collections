@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from "react";
 import HeroSection from "../../components/Home/HeroSection";
-import HeroSecondarySection from "../../components/Home/HeroSecondarySection";
-import PhotoGridSection from "../UI/PhotoGridSection";
+import PhotoBox from "../UI/PhotoBox";
+import PhotoFeature from "../UI/PhotoFeature";
+import { Link } from "react-router-dom";
 import LoadingSpinner from "../UI/LoadingSpinner";
-import {
-  heroFava,
-  heroWPA,
-  heroWWII,
-  heroWWII_2,
-  heroSecondaryData
-} from "./hero-banners";
+import { heroFava, heroWPA, heroWWII, heroWWII_2 } from "./hero-banners";
 import * as elasticsearchApi from "../../api/elasticsearch-api";
 import * as elasticsearchParser from "../../services/elasticsearch-parser";
 import * as globalVars from "../../services/global-vars";
 import { getRandomInt } from "../../services/helpers";
+import { isMobileOnly, isTablet } from "react-device-detect";
+// Import Swiper React components
+import SwiperCore, { Navigation } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 
+// Import Swiper styles
+import "swiper/swiper.scss";
+
+SwiperCore.use([Navigation]);
 const Home = () => {
   const numResults = 8;
   const heroRandomNumber = getRandomInt(0, 2);
@@ -57,11 +60,27 @@ const Home = () => {
       }
 
       return (
-        <PhotoGridSection
-          key={keyword}
-          headline={`${keyword} Collections`}
-          items={keywordCollections[i]}
-        />
+        <section className="section" key={keyword}>
+          <div className="section-top contain-1440">
+            <p className="subhead"> {keyword} Collections</p>
+          </div>
+          <Swiper
+            spaceBetween={isMobileOnly ? 0 : isTablet ? 10 : 0}
+            slidesPerView={isMobileOnly ? 1 : isTablet ? 2 : 3}
+            navigation
+          >
+            {keywordCollections[i].map(item => (
+              <SwiperSlide key={item.id}>
+                <div
+                  className="photo-feature-3-across"
+                  style={{ marginTop: 0 }}
+                >
+                  <PhotoFeature item={item} styles={{ width: "100%" }} />
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </section>
       );
     });
   }
@@ -72,7 +91,7 @@ const Home = () => {
       8
     );
 
-    const collections = elasticsearchParser.prepPhotoGridItems(
+    const collections = elasticsearchParser.prepPhotoFeatureItems(
       response,
       globalVars.COLLECTION_MODEL
     );
@@ -86,7 +105,7 @@ const Home = () => {
   async function getGalleryByKeyword(keyword) {
     let response = await elasticsearchApi.getCollectionsByKeyword(keyword);
 
-    const items = elasticsearchParser.prepPhotoGridItems(
+    const items = elasticsearchParser.prepPhotoFeatureItems(
       response,
       globalVars.COLLECTION_MODEL
     );
@@ -113,29 +132,62 @@ const Home = () => {
         <HeroSection heroData={heroItems[heroRandomNumber]} />
       </div>
       <LoadingSpinner loading={loading} />
+
       {!loading && (
-        <div>
-          <PhotoGridSection
-            headline="Recently Added and Updated Items"
-            linkTo="/search"
-            linkToText="View All Items"
-            items={galleryItems}
-            hideDescriptions={true}
-            data-testid="section-recent-items"
-          />
-          <PhotoGridSection
-            headline="Featured Collections"
-            linkTo="/collections"
-            linkToText="View All Collections"
-            items={galleryCollections}
-            data-testid="section-featured-collections"
-          />
-        </div>
+        <section className="section" data-testid="section-featured-collections">
+          <div className="section-top contain-1440">
+            <h3 data-testid="headline-photo-feature-section">Collections</h3>
+            <p className="subhead">Featured Collections</p>
+            <p>
+              <Link data-testid="link-photo-feature-section" to="/collections">
+                View All Collections
+              </Link>
+            </p>
+          </div>
+          <Swiper
+            spaceBetween={isMobileOnly ? 0 : isTablet ? 10 : 0}
+            slidesPerView={isMobileOnly ? 1 : isTablet ? 2 : 3}
+            navigation
+          >
+            {galleryCollections.map(item => (
+              <SwiperSlide key={item.id}>
+                <div
+                  className="photo-feature-3-across"
+                  style={{ marginTop: 0 }}
+                >
+                  <PhotoFeature item={item} styles={{ width: "100%" }} />
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </section>
       )}
-      <div className="contain-1120">
-        <HeroSecondarySection heroData={heroSecondaryData} />
-        {!loading && renderAdditionalGalleries()}
-      </div>
+      {!loading && renderAdditionalGalleries()}
+      <section className="section" data-testid="section-recent-items">
+        <div className="section-top contain-970">
+          <h3 data-testid="headline-photo-grid-section">Works</h3>
+          <p className="subhead">Recently Added and Updated Works</p>
+          <p>
+            <Link data-testid="link-photo-grid-section" to="/search">
+              View All Works
+            </Link>
+          </p>
+        </div>
+        <Swiper
+          spaceBetween={30}
+          slidesPerView={isMobileOnly ? 1 : isTablet ? 2 : 4}
+          navigation
+          className="photobox-swiper"
+        >
+          {galleryItems.map(item => (
+            <SwiperSlide key={item.id}>
+              <div align="center">
+                <PhotoBox hideDescriptions={true} item={item} />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </section>
     </>
   );
 };
