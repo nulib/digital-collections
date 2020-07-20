@@ -60,7 +60,11 @@ const Home = () => {
       }
 
       return (
-        <section className="section" key={keyword}>
+        <section
+          className="section"
+          key={keyword}
+          data-testid="section-additional-collection-gallery"
+        >
           <div className="section-top contain-1440">
             <p className="subhead"> {keyword} Collections</p>
           </div>

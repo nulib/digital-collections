@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+import { HOMEPAGE_COLLECTION_GROUP_KEYWORDS } from "../../src/services/global-vars";
 
 describe("Home page", () => {
   beforeEach(() => {
@@ -48,5 +49,15 @@ describe("Home page", () => {
         .should("contain", "p")
         .and("have.class", "back-text");
     });
+  });
+
+  it("renders additional Collection galleries", () => {
+    cy.getByTestId("section-additional-collection-gallery")
+      .its("length")
+      .should("be.eq", 3);
+
+    for (let keyword of HOMEPAGE_COLLECTION_GROUP_KEYWORDS) {
+      cy.contains(`${keyword} Collections`);
+    }
   });
 });
