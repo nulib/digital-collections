@@ -317,7 +317,7 @@ describe("Work page", () => {
             // "naturalWidth" and "naturalHeight" are set when the image loads
             expect($img[0].naturalWidth).to.be.greaterThan(0);
           });
-        cy.contains("Download");
+        cy.contains("Download JPEG");
       });
 
       context("HTML Embed feature", () => {
