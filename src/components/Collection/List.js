@@ -54,6 +54,7 @@ const CollectionList = () => {
         <h2>{title}</h2>
         <form className="web-form">
           <input
+            aria-label="Filter collections"
             onChange={handleFilterChange}
             placeholder="Filter collections"
             data-testid="input-collection-filter"

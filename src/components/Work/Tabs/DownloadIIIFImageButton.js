@@ -24,7 +24,7 @@ const DownloadIIIFImageButton = ({ handleClick, loading, error }) => {
             <ClipLoader color={"#4e2a84"} size={16} />
           </span>
         )}{" "}
-        Download
+        Download JPEG
       </button>
       {error && (
         <p css={errorMessage} data-testid="error-message">

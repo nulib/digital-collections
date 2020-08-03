@@ -24,24 +24,21 @@ const PhotoBox = props => {
   };
 
   return (
-    <article
-      aria-labelledby="grid1"
-      className="photo-box"
-      data-testid="photo-box"
-    >
+    <article className="photo-box" data-testid="photo-box">
       <Link to={linkPath}>
         <img
-          alt={label}
+          alt={`${label} description`}
           src={imgSrc}
           data-testid="img-photo-box"
           onError={loadPlaceholderImage}
         />
+        <h4 data-testid="title-photo-box">
+          <span style={styles.title} className="button-link">
+            {label}
+          </span>
+        </h4>
       </Link>
-      <h4 data-testid="title-photo-box">
-        <Link to={linkPath} style={styles.title}>
-          {label}
-        </Link>
-      </h4>
+
       {!props.hideDescriptions && description && (
         <p data-testid="description-photo-box">{chopString(description, 15)}</p>
       )}

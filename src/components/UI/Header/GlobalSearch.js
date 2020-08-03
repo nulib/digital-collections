@@ -30,10 +30,8 @@ const GlobalSearch = () => {
     >
       <div className="search-form searchblox">
         <form role="search" onSubmit={handleSubmit}>
-          <label className="hide-label" htmlFor="q-desktop">
-            Search this website
-          </label>
           <input
+            aria-label="Search this website"
             placeholder="Search this site"
             type="text"
             value={searchValue}

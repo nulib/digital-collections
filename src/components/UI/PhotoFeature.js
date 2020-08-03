@@ -64,7 +64,7 @@ const PhotoFeature = props => {
       >
         <div css={!isHover ? frontShow : frontHide}>
           <img
-            alt="image description"
+            alt={`${label} description`}
             src={imageUrl}
             onError={loadPlaceholderImage}
             ref={ref}

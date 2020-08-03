@@ -27,9 +27,6 @@ describe("Collections landing page", () => {
         cy.get("a")
           .should("have.attr", "href")
           .and("contain", "/collections/");
-        cy.get("[data-testid=title-photo-box] a")
-          .should("have.attr", "href")
-          .and("contain", "/collections/");
       });
   });
 

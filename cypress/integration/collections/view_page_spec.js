@@ -91,7 +91,7 @@ describe("Collections View page", () => {
       cy.get(".rs-result-list.photo-grid").within($grid => {
         cy.get("article")
           .first()
-          .find("h4 a")
+          .find(" a")
           .then($a => {
             const txt = $a.text();
             cy.contains(txt).click();
