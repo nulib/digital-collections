@@ -14,7 +14,7 @@ const getObjBase = {
 const sortKey = {
   sort: [
     {
-      modified_date: {
+      modifiedDate: {
         order: "desc"
       }
     }
@@ -122,6 +122,7 @@ export async function getAllCollections(numResults = PAGE_SIZE) {
         }
       }
     });
+    console.log("getAllCollections() response", response);
     return response.hits.hits.map(hit => ({ id: hit._id, ...hit._source }));
   } catch (error) {
     console.log("Error in getAllCollections", error);
@@ -154,7 +155,7 @@ export async function getCollectionsByKeyword(keyword, numResults = PAGE_SIZE) {
         query: {
           bool: {
             must: [
-              { match: { "model.name": "Collection" } },
+              { match: { "model.title": "Collection" } },
               { match: { keyword: keyword } }
             ]
           }
@@ -162,7 +163,7 @@ export async function getCollectionsByKeyword(keyword, numResults = PAGE_SIZE) {
         ...sortKey
       }
     });
-
+    console.log("getCollectionsByKeyword() response", response);
     return response.hits.hits.map(hit => hit._source);
   } catch (error) {
     console.log("Error in getCollectionsByKeyword()", error);
@@ -203,6 +204,31 @@ export async function getCollectionItems(id, numResults = PAGE_SIZE) {
     return response.hits.hits.map(hit => hit._source);
   } catch (error) {
     console.log("Error in getCollectionItems()", error);
+    return Promise.resolve([]);
+  }
+}
+
+export async function getFeaturedCollections(numResults = PAGE_SIZE) {
+  try {
+    const response = await search({
+      ...getObjBase,
+      body: {
+        size: numResults,
+        query: {
+          bool: {
+            must: [
+              { match: { "model.title": "Collection" } },
+              { match: { featured: true } }
+            ]
+          }
+        },
+        ...sortKey
+      }
+    });
+
+    return response.hits.hits.map(hit => hit._source);
+  } catch (error) {
+    console.log("Error in getCollectionsByKeyword()", error);
     return Promise.resolve([]);
   }
 }
@@ -283,11 +309,10 @@ export async function getRecentlyDigitizedItems(numResults = PAGE_SIZE) {
               }
             ]
           }
-        },
-        ...sortKey
+        }
       }
     });
-    console.log("getRecentlyDigitizedItems()", response);
+    console.log("getRecentlyDigitizedItems() HERE", response);
 
     return response.hits.hits.map(hit => ({
       id: hit._id,

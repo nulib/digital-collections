@@ -1,26 +1,30 @@
 import React, { useState, useEffect } from "react";
 import HeroSection from "../../components/Home/HeroSection";
-import HeroSecondarySection from "../../components/Home/HeroSecondarySection";
-import PhotoGridSection from "../UI/PhotoGridSection";
+import PhotoBox from "../UI/PhotoBox";
+import PhotoFeature from "../UI/PhotoFeature";
+import { Link } from "react-router-dom";
 import LoadingSpinner from "../UI/LoadingSpinner";
-import {
-  heroFava,
-  heroWPA,
-  heroWWII,
-  heroWWII_2,
-  heroSecondaryData
-} from "./hero-banners";
+import { heroFava, heroWPA, heroWWII, heroWWII_2 } from "./hero-banners";
 import * as elasticsearchApi from "../../api/elasticsearch-api";
 import * as elasticsearchParser from "../../services/elasticsearch-parser";
 import * as globalVars from "../../services/global-vars";
 import { getRandomInt } from "../../services/helpers";
+import { isMobileOnly, isTablet } from "react-device-detect";
+// Import Swiper React components
+import SwiperCore, { Navigation } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/swiper.scss";
+
+SwiperCore.use([Navigation]);
 
 const Home = () => {
   const numResults = 8;
   const heroRandomNumber = getRandomInt(0, 2);
   const heroItems = [heroFava, heroWPA, heroWWII, heroWWII_2];
 
-  const [galleryCollections, setGalleryCollections] = useState([]);
+  const [featuredCollections, setFeaturedCollections] = useState([]);
   const [galleryItems, setGalleryItems] = useState([]);
   const [keywordCollections, setKeywordCollections] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -31,16 +35,16 @@ const Home = () => {
     // Combine async network requests
     promises.push(getGalleryItems());
     promises.push(getFeaturedCollections());
-    globalVars.HOMEPAGE_COLLECTION_GROUP_KEYWORDS.forEach(keyword =>
-      promises.push(getGalleryByKeyword(keyword))
-    );
+    // globalVars.HOMEPAGE_COLLECTION_GROUP_KEYWORDS.forEach(keyword =>
+    //   promises.push(getGalleryByKeyword(keyword))
+    // );
 
     // Put results on component state
     Promise.all(promises)
-      .then(([galleryItems, galleryCollections, ...keywordCollections]) => {
+      .then(([galleryItems, featuredCollections, ...keywordCollections]) => {
         setGalleryItems(galleryItems);
-        setGalleryCollections(galleryCollections);
-        setKeywordCollections(keywordCollections);
+        setFeaturedCollections(featuredCollections);
+        //setKeywordCollections(keywordCollections);
         setLoading(false);
       })
       .catch(error => console.log("Error grabbing data", error));
@@ -57,24 +61,43 @@ const Home = () => {
       }
 
       return (
-        <PhotoGridSection
+        <section
+          className="section"
           key={keyword}
-          headline={`${keyword} Collections`}
-          items={keywordCollections[i]}
-        />
+          data-testid="section-additional-collection-gallery"
+        >
+          <div className="section-top contain-1440">
+            <p className="subhead"> {keyword} Collections</p>
+          </div>
+          <Swiper
+            spaceBetween={isMobileOnly ? 0 : isTablet ? 10 : 0}
+            slidesPerView={isMobileOnly ? 1 : isTablet ? 2 : 3}
+            navigation
+          >
+            {keywordCollections[i].map(item => (
+              <SwiperSlide key={item.id}>
+                <div
+                  className="photo-feature-3-across"
+                  style={{ marginTop: 0 }}
+                >
+                  <PhotoFeature item={item} styles={{ width: "100%" }} />
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </section>
       );
     });
   }
 
   async function getFeaturedCollections() {
-    let response = await elasticsearchApi.getAllCollections(4);
-    const collections = elasticsearchParser.prepPhotoGridItems(
+    let response = await elasticsearchApi.getFeaturedCollections(8);
+    console.log("getFeaturedCollections() response", response);
+    const collections = elasticsearchParser.prepPhotoFeatureItems(
       response,
       globalVars.COLLECTION_MODEL
     );
-    collections.forEach(collection => {
-      collection.description = collection.description || [];
-    });
+
     return collections;
   }
 
@@ -101,6 +124,7 @@ const Home = () => {
       response,
       globalVars.IMAGE_MODEL
     );
+
     return items;
   }
 
@@ -110,29 +134,62 @@ const Home = () => {
         <HeroSection heroData={heroItems[heroRandomNumber]} />
       </div>
       <LoadingSpinner loading={loading} />
+
       {!loading && (
-        <div>
-          <PhotoGridSection
-            headline="Recently Added and Updated Items"
-            linkTo="/search"
-            linkToText="View All Items"
-            items={galleryItems}
-            hideDescriptions={true}
-            data-testid="section-recent-items"
-          />
-          <PhotoGridSection
-            headline="Featured Collections (All Collections for now)"
-            linkTo="/collections"
-            linkToText="View All Collections"
-            items={galleryCollections}
-            data-testid="section-featured-collections"
-          />
-        </div>
+        <section className="section" data-testid="section-featured-collections">
+          <div className="section-top contain-1440">
+            <h3 data-testid="headline-photo-feature-section">Collections</h3>
+            <p className="subhead">Featured Collections</p>
+            <p>
+              <Link data-testid="link-photo-feature-section" to="/collections">
+                View All Collections
+              </Link>
+            </p>
+          </div>
+          <Swiper
+            spaceBetween={isMobileOnly ? 0 : isTablet ? 10 : 0}
+            slidesPerView={isMobileOnly ? 1 : isTablet ? 2 : 3}
+            navigation
+          >
+            {featuredCollections.map((item, i) => (
+              <SwiperSlide key={item.id || i}>
+                <div
+                  className="photo-feature-3-across"
+                  style={{ marginTop: 0 }}
+                >
+                  <PhotoFeature item={item} styles={{ width: "100%" }} />
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </section>
       )}
-      <div className="contain-1120">
-        <HeroSecondarySection heroData={heroSecondaryData} />
-        {!loading && renderAdditionalGalleries()}
-      </div>
+      {!loading && renderAdditionalGalleries()}
+      <section className="section" data-testid="section-recent-items">
+        <div className="section-top contain-970">
+          <h3 data-testid="headline-photo-grid-section">Works</h3>
+          <p className="subhead">Recently Added and Updated Works</p>
+          <p>
+            <Link data-testid="link-photo-grid-section" to="/search">
+              View All Works
+            </Link>
+          </p>
+        </div>
+        <Swiper
+          spaceBetween={30}
+          slidesPerView={isMobileOnly ? 1 : isTablet ? 2 : 4}
+          navigation
+          className="photobox-swiper"
+        >
+          {galleryItems.map(item => (
+            <SwiperSlide key={item.id}>
+              <div align="center">
+                <PhotoBox hideDescriptions={true} item={item} />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </section>
     </>
   );
 };
