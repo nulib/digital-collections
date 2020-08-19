@@ -76,8 +76,8 @@ export function getESImagePath(
       : "";
   }
   if (_source.model && _source.model.name === globalVars.IMAGE_MODEL) {
-    imgUrl = _source.representative_file_set
-      ? _source.representative_file_set.url
+    imgUrl = _source.representativeFileSet
+      ? _source.representativeFileSet.url
       : "";
   }
   const returnUrl = imgUrl ? `${imgUrl}${iiifParams}` : "";
@@ -91,6 +91,37 @@ export function getESImagePath(
  */
 export function getESTitle(source) {
   return source ? source.title : "No title exists";
+}
+
+export function getIIIFUrlKey(modelType) {
+  return modelType === globalVars.COLLECTION_MODEL
+    ? "representativeImage"
+    : "representativeFileSet";
+}
+
+/**
+ * Map data from elastic search response, to what the PhotoFeature component needs
+ * @param {Object} elasticsearchResponse Raw elastic search response object
+ * @param {String} modelType // Item or Collection?
+ * @param {String} iiifParams /// IIIF image sizing params to use - defaults to a medium region
+ * @return {Array} of prepped items
+ */
+export function prepPhotoFeatureItems(
+  sources,
+  modelType,
+  iiifParams = globalVars.IIIF_PHOTO_FEATURE_REGION
+) {
+  const iiifUrlKey = getIIIFUrlKey(modelType);
+
+  return sources.map(source => ({
+    id: source.id,
+    type: modelType,
+    imageUrl: source[iiifUrlKey]
+      ? `${source[iiifUrlKey].url}${iiifParams}`
+      : "",
+    label: getESTitle(source),
+    description: getESDescription(source)
+  }));
 }
 
 /**
@@ -109,7 +140,7 @@ export function prepPhotoGridItems(
     id: source.id,
     type: modelType,
     imageUrl: getESImagePath(source),
-    label: source.title || "",
-    description: source.description || ""
+    label: source.descriptiveMetadata.title || "",
+    description: source.descriptiveMetadata.description
   }));
 }
