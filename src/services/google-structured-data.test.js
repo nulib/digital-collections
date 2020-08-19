@@ -42,7 +42,7 @@ describe("work structured data", () => {
     contributor: [{ label: "bob" }, { label: "Rush, Otis" }],
     iiif_manifest:
       "https://iiif.stack.rdc.library.northwestern.edu/public/c7/86/33/6b",
-    representative_file_set: {
+    representativeFileSet: {
       url: "http://location.com/xyz",
       file_set_id: "filesetid1"
     },

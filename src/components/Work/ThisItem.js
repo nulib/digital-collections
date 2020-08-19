@@ -32,7 +32,7 @@ const ThisItem = props => {
       <img
         src={
           item &&
-          `${item.representative_file_set.url}${IIIF_LARGE_FEATURE_REGION}`
+          `${item.representativeFileSet.url}${IIIF_LARGE_FEATURE_REGION}`
         }
         alt={item && item.label}
       />
