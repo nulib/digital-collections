@@ -24,7 +24,7 @@ const ScreensWork = () => {
   const location = useLocation();
   const params = useParams();
 
-  const auth = useSelector(state => state.auth);
+  const auth = useSelector((state) => state.auth);
 
   useEffect(() => {
     async function getApiData() {
@@ -34,10 +34,10 @@ const ScreensWork = () => {
         return;
       }
 
-      populateGTMDataLayer(item);
+      //populateGTMDataLayer(item);
       setItem(item);
       setLoading(false);
-      setStructuredData(loadItemStructuredData(item, location.pathname));
+      //setStructuredData(loadItemStructuredData(item, location.pathname));
     }
 
     async function getItem() {
@@ -79,7 +79,7 @@ const ScreensWork = () => {
       message = "There was an error retrieving the item, or the item id does not exist."
     ) {
       history.push(globalVars.ROUTES.PAGE_NOT_FOUND.path, {
-        message
+        message,
       });
     }
 
@@ -93,15 +93,15 @@ const ScreensWork = () => {
       ? item.rights_statement.label
       : "";
     const creators = item.creator
-      ? item.creator.map(creator => creator.label)
+      ? item.creator.map((creator) => creator.label)
       : [];
     const contributors = item.contributor
-      ? item.contributor.map(contributor => contributor.label)
+      ? item.contributor.map((contributor) => contributor.label)
       : [];
 
     const dataLayer = {
       adminset: item.admin_set
-        ? item.admin_set.title.map(title => title).join(", ")
+        ? item.admin_set.title.map((title) => title).join(", ")
         : "",
       // TODO: Will .collection be an object or array?
       // collections: item.collection.map(collection =>
@@ -110,8 +110,10 @@ const ScreensWork = () => {
       creatorsContributors: [...creators, ...contributors],
       pageTitle: elasticsearchParser.getESTitle(item),
       rightsStatement,
-      subjects: item.subject ? item.subject.map(subject => subject.label) : "",
-      visibility: item.visibility
+      subjects: item.subject
+        ? item.subject.map((subject) => subject.label)
+        : "",
+      visibility: item.visibility,
     };
 
     loadDataLayer(dataLayer);
@@ -129,14 +131,14 @@ const ScreensWork = () => {
 
   return (
     <div className="landing-page">
-      <Helmet>
+      {/* <Helmet>
         <title>{generateTitleTag(itemTitle)}</title>
         {structuredData && (
           <script type="application/ld+json">
             {JSON.stringify(structuredData)}
           </script>
         )}
-      </Helmet>
+      </Helmet> */}
       <ErrorBoundary>
         {error && <ErrorSection message={error} />}
         {item && idInSync && !error && <OpenSeadragonContainer item={item} />}
