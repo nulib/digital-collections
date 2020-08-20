@@ -13,7 +13,7 @@ const Work = ({ work }) => {
   const [collection, setCollection] = useState({
     id: "",
     title: "",
-    items: []
+    items: [],
   });
   const [loading, setLoading] = useState(true);
 
@@ -32,7 +32,7 @@ const Work = ({ work }) => {
       }
 
       setAdminSetItems(adminSetItems);
-     
+
       */
       setLoading(false);
     }
@@ -65,7 +65,7 @@ const Work = ({ work }) => {
     return {
       id: work.collection[0].id,
       title: elasticsearchParser.getESTitle(work.collection[0]),
-      items
+      items,
     };
   }
 
@@ -78,13 +78,13 @@ const Work = ({ work }) => {
         adminSetItems={adminSetItems}
         collection={collection}
       />
-      <WorkItemDetail item={work} />
+      {/* <WorkItemDetail item={work} /> */}
     </div>
   );
 };
 
 Work.propTypes = {
-  work: PropTypes.object.isRequired
+  work: PropTypes.object.isRequired,
 };
 
 export default Work;
