@@ -89,11 +89,6 @@
     "start-server-and-test": "^1.10.11"
   },
   "prettier": "@nulib/prettier-config",
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "browserslist": [
     ">0.2%",
     "not dead",
