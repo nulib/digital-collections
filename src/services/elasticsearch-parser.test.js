@@ -31,7 +31,7 @@ describe("ElasticSearch parser module", () => {
 
   describe("Get image path function", () => {
     const urls = {
-      representative_file_set: {
+      representativeFileSet: {
         url: "http://localhost:8183/iiif/2/file",
         file_set_id: "filesetid1"
       },
@@ -52,7 +52,7 @@ describe("ElasticSearch parser module", () => {
       const source = { ...urls, ...imageModel };
       const value = getESImagePath(source);
 
-      expect(value).toContain(urls.representative_file_set.url);
+      expect(value).toContain(urls.representativeFileSet.url);
       expect(value).toContain(IIIF_MEDIUM_ITEM_REGION);
     });
 
@@ -65,7 +65,7 @@ describe("ElasticSearch parser module", () => {
 
     test("returns a placeholder image when no image file path is specified", () => {
       const source = {
-        representative_file_set: {},
+        representativeFileSet: {},
         representative_image: {},
         ...imageModel
       };
@@ -118,25 +118,24 @@ describe("ElasticSearch parser module", () => {
   });
 
   describe("Photogrid prep function", () => {
-    const esResponse = [
-      {
+    const esResponse = {
+      descriptiveMetadata: {
         description: ["asdf"],
-        representative_file_set: {
-          url: "http://localhost:8183/iiif/2",
-          file_set_id: "filesetid1"
-        },
         title: "Two Poster Work"
+      },
+      representativeFileSet: {
+        url: "http://localhost:8183/iiif/2",
+        file_set_id: "filesetid1"
       }
-    ];
+    };
 
     test("returns an empty array if no items are present in elastic search response", () => {
-      const emptyResponse = [];
-      const value = prepPhotoGridItems(emptyResponse);
+      const value = prepPhotoGridItems([]);
       expect(value).toHaveLength(0);
     });
 
     test("returns all necessary items to build a photo grid", () => {
-      const value = prepPhotoGridItems(esResponse, IMAGE_MODEL);
+      const value = prepPhotoGridItems([esResponse], IMAGE_MODEL);
       expect(Array.isArray(value)).toBeTruthy();
       const valueObj = value[0];
       expect(valueObj).toHaveProperty("description");
@@ -147,7 +146,7 @@ describe("ElasticSearch parser module", () => {
     });
 
     test("returns the correct number of photogrid objects", () => {
-      const value = prepPhotoGridItems(esResponse, IMAGE_MODEL);
+      const value = prepPhotoGridItems([esResponse], IMAGE_MODEL);
       expect(value).toHaveLength(1);
 
       let multiResponse = [esResponse, esResponse];
@@ -156,7 +155,7 @@ describe("ElasticSearch parser module", () => {
     });
 
     test("returns the right type when passed a Collection type", () => {
-      const value = prepPhotoGridItems(esResponse, COLLECTION_MODEL);
+      const value = prepPhotoGridItems([esResponse], COLLECTION_MODEL);
       const valueObj = value[0];
       expect(valueObj).toHaveProperty("type", COLLECTION_MODEL);
     });

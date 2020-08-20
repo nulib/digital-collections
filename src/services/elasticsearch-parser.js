@@ -8,8 +8,8 @@ export function buildImageUrl(
 ) {
   const idKey =
     modelType === globalVars.IMAGE_MODEL
-      ? source.representative_file_set
-        ? source.representative_file_set.url
+      ? source.representativeFileSet
+        ? source.representativeImage.url
         : ""
       : "";
   return idKey ? `${idKey}${iiifParams}` : "";
@@ -19,7 +19,7 @@ function constructCarouselItems(docs, modelType) {
   const iiifUrlKey =
     modelType === globalVars.COLLECTION_MODEL
       ? "thumbnail_iiif_url"
-      : "representative_file_set"; // this may not hold true as we get other types...
+      : "representativeFileSet"; // this may not hold true as we get other types...
 
   const items = docs.map(doc => {
     let obj = {
@@ -126,7 +126,7 @@ export function prepPhotoFeatureItems(
 
 /**
  * Map data from elastic search response, to what the PhotoGrid component needs
- * @param {Object} elasticsearchResponse Raw elastic search response object
+ * @param {Array} sources Array of elasticsearch response objects
  * @param {String} modelType // Item or Collection?
  * @param {String} iiifParams /// IIIF image sizing params to use - defaults to a medium region
  * @return {Array} of prepped items
@@ -141,6 +141,6 @@ export function prepPhotoGridItems(
     type: modelType,
     imageUrl: getESImagePath(source),
     label: source.descriptiveMetadata.title || "",
-    description: source.descriptiveMetadata.description
+    description: source.descriptiveMetadata.description[0]
   }));
 }
