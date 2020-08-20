@@ -7,32 +7,38 @@ import { chopString } from "../../services/helpers";
 
 const styles = {
   title: {
-    lineHeight: "1.5rem"
-  }
+    lineHeight: "1.5rem",
+  },
 };
 
-const PhotoBox = props => {
+const PhotoBox = (props) => {
   const { description, imageUrl, label, type } = props.item;
+
   let linkPath = `/${
     type === globalVars.IMAGE_MODEL ? "items" : "collections"
   }/${props.item.id}`;
 
   let imgSrc = imageUrl ? imageUrl : placeholderImage;
+  const loadPlaceholderImage = (e) => {
+    e.target.src = placeholderImage;
+  };
 
   return (
-    <article
-      aria-labelledby="grid1"
-      className="photo-box"
-      data-testid="photo-box"
-    >
+    <article className="photo-box" data-testid="photo-box">
       <Link to={linkPath}>
-        <img alt={label} src={imgSrc} data-testid="img-photo-box" />
+        <img
+          alt={`${label} description`}
+          src={imgSrc}
+          data-testid="img-photo-box"
+          onError={loadPlaceholderImage}
+        />
+        <h4 data-testid="title-photo-box">
+          <span style={styles.title} className="button-link">
+            {label}
+          </span>
+        </h4>
       </Link>
-      <h4 data-testid="title-photo-box">
-        <Link to={linkPath} style={styles.title}>
-          {label}
-        </Link>
-      </h4>
+
       {!props.hideDescriptions && description && (
         <p data-testid="description-photo-box">{chopString(description, 15)}</p>
       )}
@@ -43,12 +49,12 @@ const PhotoBox = props => {
 PhotoBox.propTypes = {
   hideDescriptions: PropTypes.bool,
   item: PropTypes.shape({
-    description: PropTypes.array,
+    description: PropTypes.string,
     id: PropTypes.string.isRequired,
     imageUrl: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired
-  })
+    type: PropTypes.string.isRequired,
+  }),
 };
 
 export default PhotoBox;

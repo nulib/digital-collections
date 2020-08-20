@@ -16,13 +16,12 @@ import Default404 from "./Default404";
 import NavContainer from "../components/UI/Nav/NavContainer";
 import Notifications from "react-notify-toast";
 import ScreensSearch from "./Search/Search";
-//import "../Layout.css";
-// import "../libs/nuwebcomm-scripts.js";
+import ScreensSharedItem from "./SharedItem";
 import { fetchApiToken } from "../actions/auth";
 import PropTypes from "prop-types";
 import ScreensLegacyPid from "./LegacyPid";
 
-const ReactiveBaseWrapper = props => {
+const ReactiveBaseWrapper = (props) => {
   return (
     <ReactiveBase
       app="meadow"
@@ -36,13 +35,13 @@ const ReactiveBaseWrapper = props => {
 
 ReactiveBaseWrapper.propTypes = {
   apiToken: PropTypes.string,
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 };
 
 export class Layout extends Component {
   static propTypes = {
     authToken: PropTypes.string,
-    fetchApiToken: PropTypes.func.isRequired
+    fetchApiToken: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
@@ -89,6 +88,7 @@ export class Layout extends Component {
           </Route>
 
           <Route path={ROUTES.LEGACY_PID.path} component={ScreensLegacyPid} />
+          <Route path={ROUTES.SHARED.path} component={ScreensSharedItem} />
 
           <Route exact path={ROUTES.HOME.path} component={ScreensHome} />
           <Route path={ROUTES.PAGE_NOT_FOUND.path} component={Default404} />
@@ -100,12 +100,12 @@ export class Layout extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  authToken: state.auth.token
+const mapStateToProps = (state) => ({
+  authToken: state.auth.token,
 });
 
-const mapDispatchToProps = dispatch => ({
-  fetchApiToken: () => dispatch(fetchApiToken())
+const mapDispatchToProps = (dispatch) => ({
+  fetchApiToken: () => dispatch(fetchApiToken()),
 });
 
 const ConnectedLayout = connect(mapStateToProps, mapDispatchToProps)(Layout);
