@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
   general,
   collections,
   auth,
-  search
+  search,
 });
 
 export default rootReducer;

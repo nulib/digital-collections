@@ -2,12 +2,12 @@ import {
   getESDescription,
   getESImagePath,
   getESTitle,
-  prepPhotoGridItems
+  prepPhotoGridItems,
 } from "./elasticsearch-parser";
 import {
   COLLECTION_MODEL,
   IIIF_MEDIUM_ITEM_REGION,
-  IMAGE_MODEL
+  IMAGE_MODEL,
 } from "./global-vars";
 import placeholderImage from "../images/book_placeholder.jpg";
 
@@ -15,11 +15,11 @@ describe("ElasticSearch parser module", () => {
   describe("Get description function", () => {
     test("returns the right description from a source result", () => {
       const _source = {
-        description: ["Description 1", "Description2"]
+        description: ["Description 1", "Description2"],
       };
       const emptySource = {
         accession_number: "12345",
-        full_text: ["some full text"]
+        full_text: ["some full text"],
       };
       const value = getESDescription(_source);
       const emptyString = getESDescription(emptySource);
@@ -33,19 +33,19 @@ describe("ElasticSearch parser module", () => {
     const urls = {
       representativeFileSet: {
         url: "http://localhost:8183/iiif/2/file",
-        file_set_id: "filesetid1"
+        file_set_id: "filesetid1",
       },
       representative_image: {
         url: "http://localhost:8183/iiif/2/image",
-        work_id: "filesetid1"
+        work_id: "filesetid1",
       },
-      thumbnail_iiif_url: "http://localhost:8183/iiif/thumbnail"
+      thumbnail_iiif_url: "http://localhost:8183/iiif/thumbnail",
     };
     const imageModel = {
-      model: { application: "Nextgen", name: "Image" }
+      model: { application: "Nextgen", name: "Image" },
     };
     const collectionModel = {
-      model: { application: "Nextgen", name: "Collection" }
+      model: { application: "Nextgen", name: "Collection" },
     };
 
     test("returns the right image path for an Image model", () => {
@@ -67,7 +67,7 @@ describe("ElasticSearch parser module", () => {
       const source = {
         representativeFileSet: {},
         representative_image: {},
-        ...imageModel
+        ...imageModel,
       };
       const value = getESImagePath(source);
 
@@ -85,12 +85,12 @@ describe("ElasticSearch parser module", () => {
 
   describe("Get title function", () => {
     const singleTitle = {
-      title: "Alchemical Properties: 15 Years of Dilettantism"
+      title: "Alchemical Properties: 15 Years of Dilettantism",
     };
     const multiTitle = {
       title: {
-        primary: ["Alchemical Properties: 15 Years of Dilettantism", "Title 2"]
-      }
+        primary: ["Alchemical Properties: 15 Years of Dilettantism", "Title 2"],
+      },
     };
 
     test("returns an empty string if no source supplied", () => {
@@ -121,12 +121,12 @@ describe("ElasticSearch parser module", () => {
     const esResponse = {
       descriptiveMetadata: {
         description: ["asdf"],
-        title: "Two Poster Work"
+        title: "Two Poster Work",
       },
       representativeFileSet: {
         url: "http://localhost:8183/iiif/2",
-        file_set_id: "filesetid1"
-      }
+        file_set_id: "filesetid1",
+      },
     };
 
     test("returns an empty array if no items are present in elastic search response", () => {

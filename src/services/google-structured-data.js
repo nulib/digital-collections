@@ -15,8 +15,8 @@ export function loadDefaultStructuredData() {
       "@type": "SearchAction",
       target:
         "https://digitalcollections.library.northwestern.edu/search?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
+      "query-input": "required name=search_term_string",
+    },
   };
 }
 
@@ -32,11 +32,11 @@ export function loadCollectionStructuredData(collection, pathname) {
     name: collection.title,
     url: `${productionUrl}${pathname}`,
     ...(collection.description && {
-      description: collection.description.join(" ")
+      description: collection.description.join(" "),
     }),
     ...(collection.thumbnail_iiif_url && {
-      thumbnail: collection.thumbnail_iiif_url
-    })
+      thumbnail: collection.thumbnail_iiif_url,
+    }),
   };
 
   return obj;
@@ -73,8 +73,8 @@ export function loadItemStructuredData(item, pathname) {
 
     ...(item.contributor &&
       item.contributor.length > 0 && {
-        contributor: item.contributor.map(x => x.label)
-      })
+        contributor: item.contributor.map((x) => x.label),
+      }),
     // ...(item.create_date && { dateCreated: item.create_date }),
     // ...(item.modified_date && { dateModified: item.modified_date }),
     // ...(item.description && { description: item.description.join(" ") }),

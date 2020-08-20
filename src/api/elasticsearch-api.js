@@ -3,22 +3,22 @@ import store from "../store";
 
 const elasticsearch = require("elasticsearch");
 const client = new elasticsearch.Client({
-  host: ELASTICSEARCH_PROXY_BASE + "/search"
+  host: ELASTICSEARCH_PROXY_BASE + "/search",
   //log: 'trace'
 });
 const PAGE_SIZE = 500;
 const getObjBase = {
   index: "meadow",
-  headers: authHeader()
+  headers: authHeader(),
 };
 const sortKey = {
   sort: [
     {
       modifiedDate: {
-        order: "desc"
-      }
-    }
-  ]
+        order: "desc",
+      },
+    },
+  ],
 };
 
 function authHeader(headers = {}) {
@@ -65,32 +65,32 @@ export async function getAdminSetItems(id, numResults = PAGE_SIZE) {
                 must: [
                   {
                     match: {
-                      "model.name": "Image"
-                    }
+                      "model.name": "Image",
+                    },
                   },
                   {
                     match: {
-                      "admin_set.id": id
-                    }
-                  }
+                      "admin_set.id": id,
+                    },
+                  },
                 ],
                 must_not: [
                   {
                     match: {
-                      "collection.top_level": false
-                    }
-                  }
-                ]
-              }
+                      "collection.top_level": false,
+                    },
+                  },
+                ],
+              },
             },
             boost: "5",
             random_score: {},
-            boost_mode: "multiply"
-          }
-        }
-      }
+            boost_mode: "multiply",
+          },
+        },
+      },
     });
-    const esSources = response.hits.hits.map(hit => hit._source);
+    const esSources = response.hits.hits.map((hit) => hit._source);
     return esSources;
   } catch (error) {
     console.log(`Error in getAdminSetItems()`, error);
@@ -109,21 +109,21 @@ export async function getAllCollections(numResults = PAGE_SIZE) {
             must: [
               {
                 match: {
-                  "model.name": "Collection"
-                }
+                  "model.name": "Collection",
+                },
               },
               {
                 match: {
-                  "model.application": "Meadow"
-                }
-              }
-            ]
-          }
-        }
-      }
+                  "model.application": "Meadow",
+                },
+              },
+            ],
+          },
+        },
+      },
     });
     console.log("getAllCollections() response", response);
-    return response.hits.hits.map(hit => ({ id: hit._id, ...hit._source }));
+    return response.hits.hits.map((hit) => ({ id: hit._id, ...hit._source }));
   } catch (error) {
     console.log("Error in getAllCollections", error);
     return Promise.resolve([]);
@@ -136,7 +136,7 @@ export async function getCollection(id) {
       ...getObjBase,
       ignore: [404],
       type: "_all",
-      id: id
+      id: id,
     });
 
     return response;
@@ -156,15 +156,15 @@ export async function getCollectionsByKeyword(keyword, numResults = PAGE_SIZE) {
           bool: {
             must: [
               { match: { "model.title": "Collection" } },
-              { match: { keyword: keyword } }
-            ]
-          }
+              { match: { keyword: keyword } },
+            ],
+          },
         },
-        ...sortKey
-      }
+        ...sortKey,
+      },
     });
     console.log("getCollectionsByKeyword() response", response);
-    return response.hits.hits.map(hit => hit._source);
+    return response.hits.hits.map((hit) => hit._source);
   } catch (error) {
     console.log("Error in getCollectionsByKeyword()", error);
     return Promise.resolve([]);
@@ -189,19 +189,19 @@ export async function getCollectionItems(id, numResults = PAGE_SIZE) {
               bool: {
                 must: [
                   { match: { "model.name": "Image" } },
-                  { match: { "collection.id": id } }
+                  { match: { "collection.id": id } },
                 ],
-                must_not: { match: { "collection.top_level": false } }
-              }
+                must_not: { match: { "collection.top_level": false } },
+              },
             },
             boost: "5",
             random_score: {},
-            boost_mode: "multiply"
-          }
-        }
-      }
+            boost_mode: "multiply",
+          },
+        },
+      },
     });
-    return response.hits.hits.map(hit => hit._source);
+    return response.hits.hits.map((hit) => hit._source);
   } catch (error) {
     console.log("Error in getCollectionItems()", error);
     return Promise.resolve([]);
@@ -218,15 +218,15 @@ export async function getFeaturedCollections(numResults = PAGE_SIZE) {
           bool: {
             must: [
               { match: { "model.title": "Collection" } },
-              { match: { featured: true } }
-            ]
-          }
+              { match: { featured: true } },
+            ],
+          },
         },
-        ...sortKey
-      }
+        ...sortKey,
+      },
     });
 
-    return response.hits.hits.map(hit => hit._source);
+    return response.hits.hits.map((hit) => hit._source);
   } catch (error) {
     console.log("Error in getCollectionsByKeyword()", error);
     return Promise.resolve([]);
@@ -239,7 +239,7 @@ export async function getItem(id) {
       ...getObjBase,
       ignore: [404], // Handle not found errors within the response itself
       type: "_all",
-      id: id
+      id: id,
     });
 
     return response;
@@ -251,8 +251,8 @@ export async function getItem(id) {
           error.statusCode === 403
             ? "Authorized access only."
             : "Unknown error getting Item",
-        statusCode: error.statusCode || -1
-      }
+        statusCode: error.statusCode || -1,
+      },
     };
     return Promise.resolve(errorObject);
   }
@@ -268,13 +268,13 @@ export async function getLegacyPidItem(pid) {
             must: [
               {
                 match: {
-                  "legacy_identifier.keyword": pid
-                }
-              }
-            ]
-          }
-        }
-      }
+                  "legacy_identifier.keyword": pid,
+                },
+              },
+            ],
+          },
+        },
+      },
     });
     const id = response.hits.hits[0]._source.id;
     return id;
@@ -299,24 +299,24 @@ export async function getRecentlyDigitizedItems(numResults = PAGE_SIZE) {
             must: [
               {
                 match: {
-                  "model.name": "Image"
-                }
+                  "model.name": "Image",
+                },
               },
               {
                 match: {
-                  "model.application": "Meadow"
-                }
-              }
-            ]
-          }
-        }
-      }
+                  "model.application": "Meadow",
+                },
+              },
+            ],
+          },
+        },
+      },
     });
     console.log("getRecentlyDigitizedItems() HERE", response);
 
-    return response.hits.hits.map(hit => ({
+    return response.hits.hits.map((hit) => ({
       id: hit._id,
-      ...hit._source
+      ...hit._source,
     }));
   } catch (error) {
     console.log("Error in getRecentlyDigitizedItems()", error);
@@ -329,9 +329,9 @@ export async function getTotalItemCount() {
       ...getObjBase,
       body: {
         query: {
-          match_all: {}
-        }
-      }
+          match_all: {},
+        },
+      },
     });
 
     return response.hits.total;

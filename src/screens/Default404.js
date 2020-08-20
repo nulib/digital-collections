@@ -9,11 +9,11 @@ import { withRouter, useLocation } from "react-router-dom";
 const breadCrumbs = [
   {
     title: "Home",
-    link: "/"
+    link: "/",
   },
   {
-    title: ROUTES.PAGE_NOT_FOUND.title
-  }
+    title: ROUTES.PAGE_NOT_FOUND.title,
+  },
 ];
 
 const Default404 = () => {

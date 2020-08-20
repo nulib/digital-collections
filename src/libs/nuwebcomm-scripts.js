@@ -5,7 +5,7 @@
 import $ from "jquery";
 
 // jquery collapse - http://github.com/danielstocks/jQuery-Collapse/
-!(function(e, t) {
+!(function (e, t) {
   function n(t, n) {
     n = n || {};
     var i = this,
@@ -15,13 +15,13 @@ import $ from "jquery";
       options: n,
       sections: [],
       isAccordion: n.accordion || !1,
-      db: n.persist ? jQueryCollapseStorage(t.get(0).id) : !1
+      db: n.persist ? jQueryCollapseStorage(t.get(0).id) : !1,
     }),
       (i.states = i.db ? i.db.read() : []),
-      i.$el.find(o).each(function() {
+      i.$el.find(o).each(function () {
         new jQueryCollapseSection(e(this), i);
       }),
-      (function(t) {
+      (function (t) {
         i.$el.on(
           "click",
           "[data-collapse-summary] " + (t.options.clickQuery || ""),
@@ -37,7 +37,7 @@ import $ from "jquery";
         $summary: t.attr("data-collapse-summary", ""),
         $details: t.next(),
         options: n.options,
-        parent: n
+        parent: n,
       }),
       n.sections.push(this);
     var i = n.states[this._index()];
@@ -48,7 +48,7 @@ import $ from "jquery";
       : this.close(!0);
   }
   (n.prototype = {
-    handleClick: function(t, n) {
+    handleClick: function (t, n) {
       t.preventDefault(), (n = n || "toggle");
       for (var i = this.sections, o = i.length; o--; )
         if (e.contains(i[o].$summary[0], t.target)) {
@@ -56,48 +56,48 @@ import $ from "jquery";
           break;
         }
     },
-    handleEvent: function(e) {
+    handleEvent: function (e) {
       return e.target == this.$el.get(0)
         ? this[e.type]()
         : void this.handleClick(e, e.type);
     },
-    open: function(e) {
+    open: function (e) {
       this._change("open", e);
     },
-    close: function(e) {
+    close: function (e) {
       this._change("close", e);
     },
-    toggle: function(e) {
+    toggle: function (e) {
       this._change("toggle", e);
     },
-    _change: function(t, n) {
+    _change: function (t, n) {
       return isFinite(n)
         ? this.sections[n][t]()
-        : void e.each(this.sections, function(e, n) {
+        : void e.each(this.sections, function (e, n) {
             n[t]();
           });
-    }
+    },
   }),
     (i.prototype = {
-      toggle: function() {
+      toggle: function () {
         this.isOpen ? this.close() : this.open();
       },
-      close: function(e) {
+      close: function (e) {
         this._changeState("close", e);
       },
-      open: function(t) {
+      open: function (t) {
         var n = this;
         n.options.accordion &&
           !t &&
-          e.each(n.parent.sections, function(e, t) {
+          e.each(n.parent.sections, function (e, t) {
             t.close();
           }),
           n._changeState("open", t);
       },
-      _index: function() {
+      _index: function () {
         return e.inArray(this, this.parent.sections);
       },
-      _changeState: function(t, n) {
+      _changeState: function (t, n) {
         var i = this;
         (i.isOpen = "open" == t),
           e.isFunction(i.options[t]) && !n
@@ -108,35 +108,35 @@ import $ from "jquery";
           i.$summary.attr("aria-expanded", "open" === t),
           i.$summary.trigger("open" === t ? "opened" : "closed", i),
           i.parent.db && i.parent.db.write(i._index(), i.isOpen);
-      }
+      },
     }),
     e.fn.extend({
-      collapse: function(t, i) {
+      collapse: function (t, i) {
         var o = i ? e("body").find("[data-collapse]") : e(this);
-        return o.each(function() {
+        return o.each(function () {
           var o = i ? {} : t,
             s = e(this).attr("data-collapse") || "";
-          e.each(s.split(" "), function(e, t) {
+          e.each(s.split(" "), function (e, t) {
             t && (o[t] = !0);
           }),
             new n(e(this), o);
         });
-      }
+      },
     }),
     (t.jQueryCollapse = n),
     (t.jQueryCollapseSection = i),
-    e(function() {
+    e(function () {
       e.fn.collapse(!1, !0);
     });
 })($, window);
 
 // skip to main content - https://gist.github.com/Zegnat/1900563
-(function(a, b, c, d) {
+(function (a, b, c, d) {
   for (c in a)
     (d = a[c].hash) &&
       a[c].href == b + d &&
       a[c].addEventListener &&
-      a[c].addEventListener("click", function(a, b, c, d) {
+      a[c].addEventListener("click", function (a, b, c, d) {
         if (
           (a =
             (b = document).getElementById((c = this.hash.slice(1))) ||
@@ -148,23 +148,23 @@ import $ from "jquery";
       });
 })(document.links, window.location.href.split("#")[0]);
 
-$(document).ready(function() {
+$(document).ready(function () {
   // adds .responsive-table wrapper to table classes
-  $("table").each(function() {
+  $("table").each(function () {
     $(this).wrap('<div class="responsive-table"></div>');
   });
 
   // adds .responsive-container wrapper to iframes
-  $("iframe").each(function() {
+  $("iframe").each(function () {
     $(this).wrap('<div class="responsive-container"></div>');
   });
 
   // zebra striping for tables
   $("table tr")
-    .mouseover(function() {
+    .mouseover(function () {
       $(this).addClass("hover");
     })
-    .mouseout(function() {
+    .mouseout(function () {
       $(this).removeClass("hover");
     });
   $("tr:nth-child(odd)").addClass("stripe");
@@ -172,14 +172,12 @@ $(document).ready(function() {
   // tabs (single instance)
   function switchTab(target) {
     $("#tab-content>div").hide();
-    $("#tabs a")
-      .removeClass("active")
-      .attr("aria-selected", "false");
+    $("#tabs a").removeClass("active").attr("aria-selected", "false");
     $(target.attr("href")).show();
     target.addClass("active").attr("aria-selected", "true");
   }
 
-  $("#tabs a[aria-controls]").click(function(e) {
+  $("#tabs a[aria-controls]").click(function (e) {
     // handle clicks
     switchTab($(this));
     e.preventDefault();
@@ -192,10 +190,7 @@ $(document).ready(function() {
 
   // multiple sets of tabs (classes instead of id's)
   function switchTab2(target) {
-    target
-      .parents("div.tab-container")
-      .find('div[role="tabpanel"]')
-      .hide();
+    target.parents("div.tab-container").find('div[role="tabpanel"]').hide();
     target
       .parents("ul")
       .find("a")
@@ -205,13 +200,13 @@ $(document).ready(function() {
     target.addClass("active").attr("aria-selected", "true");
   }
 
-  $(".tabs a[aria-controls]").click(function(e) {
+  $(".tabs a[aria-controls]").click(function (e) {
     // handle clicks
     switchTab2($(this));
     e.preventDefault();
   });
 
-  $(".tabs li:first-child a[aria-controls]").each(function() {
+  $(".tabs li:first-child a[aria-controls]").each(function () {
     // select first in each set when page loads
     switchTab2($(this));
   });
@@ -220,21 +215,17 @@ $(document).ready(function() {
   $(".photo-feature")
     .has(".back")
     .hover(
-      function() {
+      function () {
         flipCard($(this));
       },
-      function() {
+      function () {
         unflipCard($(this));
       }
     );
   $(".photo-feature")
     .has(".back")
-    .click(function(e) {
-      if (
-        $(this)
-          .find(".front")
-          .is(":visible")
-      ) {
+    .click(function (e) {
+      if ($(this).find(".front").is(":visible")) {
         flipCard($(this)); // hover was not triggered, so flip on click
         e.preventDefault();
       } // else goodbye!
@@ -255,22 +246,18 @@ $(document).ready(function() {
   }
 
   // remove border on image anchors
-  $("a img")
-    .parent()
-    .css("border", "none");
+  $("a img").parent().css("border", "none");
 
   // expandable mobile elements
   var _time = 100; // transition time
 
   // open search
-  $(".mobile-search-link").click(function(e) {
+  $(".mobile-search-link").click(function (e) {
     // close menu
-    $("#mobile-nav")
-      .slideUp(_time)
-      .attr({
-        "aria-expanded": "false",
-        "aria-hidden": "true"
-      });
+    $("#mobile-nav").slideUp(_time).attr({
+      "aria-expanded": "false",
+      "aria-hidden": "true",
+    });
     $(".mobile-nav-link")
       .removeClass("open")
       .children(":first")
@@ -282,12 +269,10 @@ $(document).ready(function() {
 
     // open search
     if ($(el).is(":hidden")) {
-      $(el)
-        .slideDown(_time)
-        .attr({
-          "aria-expanded": "true",
-          "aria-hidden": "false"
-        });
+      $(el).slideDown(_time).attr({
+        "aria-expanded": "true",
+        "aria-hidden": "false",
+      });
       $(".mobile-search-link")
         .addClass("open")
         .children(":first")
@@ -296,12 +281,10 @@ $(document).ready(function() {
 
       // close search
     } else {
-      $(el)
-        .slideUp(_time)
-        .attr({
-          "aria-expanded": "false",
-          "aria-hidden": "true"
-        });
+      $(el).slideUp(_time).attr({
+        "aria-expanded": "false",
+        "aria-hidden": "true",
+      });
       $(".mobile-search-link")
         .removeClass("open")
         .children(":first")
@@ -313,20 +296,18 @@ $(document).ready(function() {
   // mobile nav hidden
   $("#mobile-nav").attr({
     "aria-expanded": "false",
-    "aria-hidden": "true"
+    "aria-hidden": "true",
   });
 
   // open menu
-  $(".mobile-nav-link").click(function(e) {
+  $(".mobile-nav-link").click(function (e) {
     e.preventDefault();
 
     // close search
-    $("#mobile-search")
-      .slideUp(_time)
-      .attr({
-        "aria-expanded": "false",
-        "aria-hidden": "true"
-      });
+    $("#mobile-search").slideUp(_time).attr({
+      "aria-expanded": "false",
+      "aria-hidden": "true",
+    });
     $(".mobile-search-link")
       .removeClass("open")
       .children(":first")
@@ -334,7 +315,7 @@ $(document).ready(function() {
     var el = $("#mobile-nav");
     // open menu
     if ($(el).is(":hidden")) {
-      $(el).slideDown(_time, function() {
+      $(el).slideDown(_time, function () {
         $("#mobile-nav")
           .children("ul:first-child")
           .children("li:first-child")
@@ -343,7 +324,7 @@ $(document).ready(function() {
       });
       $(el).attr({
         "aria-expanded": "true",
-        "aria-hidden": "false"
+        "aria-hidden": "false",
       });
       $(".mobile-nav-link")
         .addClass("open")
@@ -351,12 +332,10 @@ $(document).ready(function() {
         .html("Close Menu");
       // close menu
     } else {
-      $(el)
-        .slideUp(_time)
-        .attr({
-          "aria-expanded": "false",
-          "aria-hidden": "true"
-        });
+      $(el).slideUp(_time).attr({
+        "aria-expanded": "false",
+        "aria-hidden": "true",
+      });
       $(".mobile-nav-link")
         .removeClass("open")
         .children(":first")
@@ -365,7 +344,7 @@ $(document).ready(function() {
   });
 
   // close mobile search, nav on window resize
-  $(window).on("resize", function() {
+  $(window).on("resize", function () {
     if ($("#mobile-links").is(":hidden")) {
       $("#mobile-search").hide();
       $("#mobile-nav").hide();
@@ -375,48 +354,36 @@ $(document).ready(function() {
   });
 
   // mobile drill down navigation
-  $(".arrow a").click(function(e) {
+  $(".arrow a").click(function (e) {
     e.preventDefault();
     var clicked = $(this);
     // hide all
     var parents = $(clicked).parentsUntil("#mobile-nav", "ul");
-    var lists = $(".arrow a")
-      .parent()
-      .next("ul")
-      .not(parents);
+    var lists = $(".arrow a").parent().next("ul").not(parents);
 
-    $.each(lists, function(index, obj) {
-      $(obj)
-        .parent()
-        .find(".open")
-        .removeClass("open");
+    $.each(lists, function (index, obj) {
+      $(obj).parent().find(".open").removeClass("open");
       $(obj).slideUp("fast");
     });
     // open the clicked item
     var item = clicked.parent().next("ul");
     if (item.is(":hidden")) {
-      item.slideDown("fast", function() {
-        item
-          .children("li:first-child")
-          .children("a")
-          .focus();
+      item.slideDown("fast", function () {
+        item.children("li:first-child").children("a").focus();
       });
       item.attr({
         "aria-hidden": "false",
-        "aria-expanded": "true"
+        "aria-expanded": "true",
       });
       clicked.parent().addClass("open");
       clicked.find("span").html("Collapse");
     } else {
-      item.slideUp("fast", function() {
-        clicked
-          .closest("li")
-          .children(":first-child")
-          .focus();
+      item.slideUp("fast", function () {
+        clicked.closest("li").children(":first-child").focus();
       });
       item.attr({
         "aria-hidden": "true",
-        "aria-expanded": "false"
+        "aria-expanded": "false",
       });
       clicked.parent().removeClass("open");
       clicked.find("span").html("Expand");
@@ -428,17 +395,17 @@ $(document).ready(function() {
     '<a href="#top-bar" id="scrollup" aria-label="Return to the top of the page">Back to Top</a>'
   );
   var amountScrolled = 200; // pixels scrolled before button appears
-  $(window).scroll(function() {
+  $(window).scroll(function () {
     if ($(window).scrollTop() > amountScrolled) {
       $("a#scrollup").fadeIn("slow");
     } else {
       $("a#scrollup").fadeOut("slow");
     }
   });
-  $("a#scrollup").click(function() {
+  $("a#scrollup").click(function () {
     $("html, body").animate(
       {
-        scrollTop: 0
+        scrollTop: 0,
       },
       400
     ); // speed
@@ -446,10 +413,8 @@ $(document).ready(function() {
   });
 
   // remove broken breadcrumb links ending in index with no file extension
-  $('#breadcrumbs li a[href$="index"]').each(function() {
-    $(this)
-      .parent()
-      .remove();
+  $('#breadcrumbs li a[href$="index"]').each(function () {
+    $(this).parent().remove();
   });
 
   // accessible #top-nav dropdown
@@ -459,41 +424,33 @@ $(document).ready(function() {
   $("#global-links").accessibleGlobalLinksDropDown();
 
   // SearchBlox form prep
-  $(".searchblox input").each(function(i) {
+  $(".searchblox input").each(function (i) {
     // Undo any previous encoding
     $(this).val(decodeURIComponent($(this).val()));
   });
 }); // end ready event
 
 // accessible #top-nav dropdown
-$.fn.accessibleTopNavDropDown = function() {
+$.fn.accessibleTopNavDropDown = function () {
   var el = $(this);
   $("a", el)
-    .focus(function() {
-      $(this)
-        .parents("li")
-        .addClass("hover");
+    .focus(function () {
+      $(this).parents("li").addClass("hover");
     })
-    .blur(function() {
-      $(this)
-        .parents("li")
-        .removeClass("hover");
+    .blur(function () {
+      $(this).parents("li").removeClass("hover");
     });
 };
 
 // accessible #global-links dropdown
-$.fn.accessibleGlobalLinksDropDown = function() {
+$.fn.accessibleGlobalLinksDropDown = function () {
   var el = $(this);
   $("a", el)
-    .focus(function() {
-      $(this)
-        .parents("li")
-        .addClass("hover");
+    .focus(function () {
+      $(this).parents("li").addClass("hover");
     })
-    .blur(function() {
-      $(this)
-        .parents("li")
-        .removeClass("hover");
+    .blur(function () {
+      $(this).parents("li").removeClass("hover");
     });
 };
 

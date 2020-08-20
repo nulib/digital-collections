@@ -47,10 +47,10 @@
     "whatwg-fetch": "^3.0.0"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,json,css,scss,md}": [
+    "./src/**/*.{js,jsx,json,css,scss,md}": [
       "prettier --write"
     ],
-    "cypress/**/*.{js,jsx,json,css,scss,md}": [
+    "./cypress/**/*.{js,jsx,json,css,scss,md}": [
       "prettier --write"
     ]
   },
