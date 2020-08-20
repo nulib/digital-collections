@@ -11,12 +11,12 @@ function buildDisplayIIIFUrl(rootUrl, iiifRegion) {
  */
 export function constructCarouselItems(manifests) {
   // Create helper object from each manifest listing out the (label, description, metadata, and imageUrl) from IIIF manifest
-  const items = manifests.map(manifest => {
+  const items = manifests.map((manifest) => {
     const { label, description, metadata } = manifest;
     let obj = {
       label,
       description,
-      metadata
+      metadata,
     };
     const iiifRootUrl = getIIIFRootUrl(manifest);
 
@@ -60,11 +60,11 @@ export function getTileSources(manifest) {
     return tileSources;
   }
 
-  manifest.sequences[0].canvases.forEach(canvas => {
+  manifest.sequences[0].canvases.forEach((canvas) => {
     if (canvas.images.length > 0 && canvas.images[0].resource) {
       tileSources.push({
         id: canvas.images[0].resource.service["@id"],
-        label: canvas.label
+        label: canvas.label,
       });
     }
   });

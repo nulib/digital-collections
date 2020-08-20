@@ -10,15 +10,16 @@ export function renderWithRouter(
   ui,
   {
     route = "/",
-    history = createMemoryHistory({ initialEntries: [route] })
+    history = createMemoryHistory({ initialEntries: [route] }),
   } = {}
 ) {
+  const Wrapper = ({ children }) => (
+    <Router history={history}>{children}</Router>
+  );
+
   return {
-    ...render(<Router history={history}>{ui}</Router>),
-    // adding `history` to the returned utilities to allow us
-    // to reference it in our tests (just try to avoid using
-    // this to test implementation details).
-    history
+    ...render(ui, { wrapper: Wrapper }),
+    history,
   };
 }
 
@@ -31,7 +32,7 @@ export function renderWithRedux(
     // adding `store` to the returned utilities to allow us
     // to reference it in our tests (just try to avoid using
     // this to test implementation details).
-    store
+    store,
   };
 }
 
@@ -41,7 +42,7 @@ export function renderWithReduxAndRouter(
     initialState = {},
     store = createStore(rootReducer, initialState),
     route = "/",
-    history = createMemoryHistory({ initialEntries: [route] })
+    history = createMemoryHistory({ initialEntries: [route] }),
   } = {}
 ) {
   return {
@@ -51,6 +52,6 @@ export function renderWithReduxAndRouter(
       </Provider>
     ),
     store,
-    history
+    history,
   };
 }

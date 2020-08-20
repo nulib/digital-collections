@@ -1,74 +1,77 @@
 // buttons
 
-.content a.button, 
-.content p.button a, 
-.hero a.button, 
-#top-nav .contain-1120 > ul > li a.button, 
-.tl-slideshow a.button, button.button,
+.content a.button,
+.content p.button a,
+.hero a.button,
+#top-nav .contain-1120 > ul > li a.button,
+.tl-slideshow a.button,
+button.button,
 input[type="submit"] {
-    background: $nu-purple;
-    border: none;
-    color: $white;
-    cursor: pointer;
-    display: inline-block;
-    font: 16px $AkkuratProBold;
-    margin: 0 .5em .5em 0;
-    padding: .8em 1em .7em 1em;
-    position: relative;
-    text-transform: uppercase;
+  background: $nu-purple;
+  border: none;
+  color: $white;
+  cursor: pointer;
+  display: inline-block;
+  font: 16px $AkkuratProBold;
+  margin: 0 0.5em 0.5em 0;
+  padding: 0.8em 1em 0.7em 1em;
+  position: relative;
+  text-transform: uppercase;
+  transition: all 0.3s ease 0s;
+  text-decoration: none;
+
+  &:after {
+    content: "";
+    position: absolute;
     transition: all 0.3s ease 0s;
-    text-decoration: none;
-    
-    &:after {
-        content: "";
-        position: absolute;
-        transition: all 0.3s ease 0s;
-        z-index: -1;
-    }
-    
-    &:hover, &:active {
-        background: $nu-purple-30;
-    }
-    
-    &:focus {
-        border: 1px dashed $white;
-        outline: none;
-    }
-    
-    &.normal-case { // for normal case buttons anchors
-        text-transform: none;
-    }
+    z-index: -1;
+  }
+
+  &:hover,
+  &:active {
+    background: $nu-purple-30;
+  }
+
+  &:focus {
+    border: 1px dashed $white;
+    outline: none;
+  }
+
+  &.normal-case {
+    // for normal case buttons anchors
+    text-transform: none;
+  }
 }
 
 // special overrides
-.feature-box a.button{
-    width: 100%;
-    text-align: center;
-    margin-bottom: 0;
-    position: absolute;
-    bottom: 0;
+.feature-box a.button {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 0;
+  position: absolute;
+  bottom: 0;
 }
 
-.purple-slashes a.button, 
-#map-feature a.button, 
+.purple-slashes a.button,
+#map-feature a.button,
 .standard-page .background-select a.button {
-    background: $nu-purple-10; // lightens purple over dark backgrounds
-    color: $nu-purple;
+  background: $nu-purple-10; // lightens purple over dark backgrounds
+  color: $nu-purple;
 
-    &:hover {
-        background: $nu-purple-30;
-        color: $white;
-    }
+  &:hover {
+    background: $nu-purple-30;
+    color: $white;
+  }
 }
 
 .standard-plus a.button {
-    margin: 1.5rem 0;
+  margin: 1.5rem 0;
 }
 
 @media screen and (max-width: 768px) {
-    // top level slideshow for tablet/mobile
-    .caption a.button {
-        background: $nu-purple-30; // lightens purple over dark backgrounds
-        margin: 0;
-    }
+  // top level slideshow for tablet/mobile
+  .caption a.button {
+    background: $nu-purple-30; // lightens purple over dark backgrounds
+    margin: 0;
+  }
 }
