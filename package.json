@@ -66,8 +66,8 @@
     "build": "npm-run-all build-css build-js",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prettier": "prettier --check src/**/*.js* src/**/*.css",
-    "prettier-fix": "prettier --write src/**/*.js* src/**/*.css",
+    "prettier": "prettier --check src/**/*.js* src/**/*.scss",
+    "prettier-fix": "prettier --write src/**/*.js* src/**/*.scss",
     "ci": "react-scripts test --watchAll=false --coverage",
     "cypress:mock-auth": "CYPRESS_ELASTICSEARCH_PROXY_BASE=https://dcapi.stack.rdc.library.northwestern.edu cypress open"
   },
