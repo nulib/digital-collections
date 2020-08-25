@@ -28,11 +28,25 @@ import { isMobile } from "react-device-detect";
 import CollectionDescription from "./CollectionDescription";
 import FiltersShowHideButton from "../UI/FiltersShowHideButton";
 
-const styles = {
-  mobileDescription: {
-    marginBottom: "2rem"
+/** @jsx jsx */
+/** @jsxFrag React.Fragment **/
+
+import { css, jsx } from "@emotion/core";
+
+const mobileDescriptionCss = css`
+  margin-bottom: 2rem;
+`;
+const boxDescriptionCss = css`
+  background: #e4e0ee;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  font-size: 14px;
+  line-height: 1.4em;
+  h3 {
+    font: 18px/1.2em "Campton Bold", Impact, sans-serif;
+    color: #342f2e;
   }
-};
+`;
 
 const Collection = () => {
   const [collection, setCollection] = useState();
@@ -190,25 +204,24 @@ const Collection = () => {
             tabIndex="-1"
           >
             <Breadcrumbs items={breadCrumbData} />
+            <h2>{collectionTitle}</h2>
+            {!isMobile && (
+              <div
+                className="box"
+                css={boxDescriptionCss}
+                data-testid="collection-description"
+              >
+                <h3>Collection Description</h3>
+                {descriptionDisplay}
+              </div>
+            )}
+            {isMobile && (
+              <div css={mobileDescriptionCss}>
+                <CollectionDescription description={collectionDescription} />
+              </div>
+            )}
             {!loading && (
               <div>
-                {!isMobile && (
-                  <div id="sidebar">
-                    <div className="box">
-                      <h3>Collection Description</h3>
-                      {descriptionDisplay}
-                    </div>
-                  </div>
-                )}
-
-                <h2>{collectionTitle}</h2>
-
-                {isMobile && (
-                  <div style={styles.mobileDescription}>
-                    <CollectionDescription description={descriptionDisplay} />
-                  </div>
-                )}
-
                 <DataSearch
                   customQuery={simpleQueryStringQuery}
                   autosuggest={false}
@@ -217,7 +230,7 @@ const Collection = () => {
                   dataField={["full_text"]}
                   filterLabel="Collections search"
                   innerClass={{
-                    input: "searchbox rs-search-input",
+                    input: "searchbox rs-search-input is-fullwidth",
                     list: "suggestionlist"
                   }}
                   queryFormat="or"
