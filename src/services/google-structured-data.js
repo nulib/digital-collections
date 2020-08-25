@@ -51,10 +51,10 @@ export function loadItemStructuredData(item, pathname) {
   let obj = {
     "@context": "http://schema.org",
     "@type": "ImageObject",
-    image: item.representative_file_url,
-    contentUrl: item.iiif_manifest,
+    image: `${item.representative_file_url}/full/1500,1500/0/default.jpg`,
+    contentUrl: `${item.representative_file_url}/full/1500,1500/0/default.jpg`,
     name: item.title.primary.join(", "),
-    thumbnail: item.thumbnail_url,
+    thumbnail: `${item.thumbnail_url}/full/500,500/0/default.jpg`,
     url: `${productionUrl}${pathname}`,
     ...(item.subject && {
       about: item.subject.map(x => x.label)
@@ -80,7 +80,7 @@ export function loadItemStructuredData(item, pathname) {
     ...(item.keyword && {
       keywords: item.keyword.map(x => accountForCommas(x)).join(", ")
     }),
-    ...(item.rights_statement && { license: item.rights_statement.label }),
+    ...(item.rights_statement && { license: item.rights_statement.uri }),
     ...(item.physical_description && {
       material: item.physical_description.material
         .map(x => accountForCommas(x.label))
