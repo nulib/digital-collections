@@ -43,6 +43,32 @@ export function loadCollectionStructuredData(collection, pathname) {
 }
 
 /**
+ * Load Carousel Data for a Collection
+ * @param {obj} itemList Collection Items array returned from ElasticSearch
+ */
+export function loadCollectionCarouselData(itemList) {
+  let obj = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: []
+  };
+
+  itemList.forEach((item, index) => {
+    obj.itemListElement.push({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "Movie",
+        url: `${productionUrl}/items/${item.id}`,
+        name: item.title.primary[0],
+        image: `${item.thumbnail_url}/full/500,500/0/default.jpg`
+      }
+    });
+  });
+  return obj;
+}
+
+/**
  * Load Structured Data for a Work
  * @param {obj} item Item object returned from ElasticSearch
  * @param {string} pathname React router pathname

@@ -6,10 +6,14 @@ import { loadDataLayer } from "../../services/google-tag-manager";
 import Collection from "../../components/Collection/Collection";
 import * as elasticsearchApi from "../../api/elasticsearch-api.js";
 import { generateTitleTag } from "../../services/helpers";
-import { loadCollectionStructuredData } from "../../services/google-structured-data";
+import {
+  loadCollectionStructuredData,
+  loadCollectionCarouselData
+} from "../../services/google-structured-data";
 
 const ScreensCollection = () => {
   const [structuredData, setStructuredData] = useState({});
+  const [carouselData, setCarouselData] = useState({});
   const collectionTitle = useRef("");
   const location = useLocation();
   const params = useParams();
@@ -19,14 +23,11 @@ const ScreensCollection = () => {
 
     const request = async () => {
       const response = await elasticsearchApi.getCollection(params.id);
-
       if (response.error) {
         return;
       }
-
       collectionTitle.current = getESTitle(response._source);
       populateGTMDataLayer(response._source);
-
       if (mounted) {
         setStructuredData(
           loadCollectionStructuredData(response._source, location.pathname)
@@ -34,6 +35,17 @@ const ScreensCollection = () => {
       }
     };
     request();
+
+    const getCollectionItems = async () => {
+      const items = await elasticsearchApi.getCollectionItems(params.id, 25);
+      if (items.error) {
+        return;
+      }
+      if (mounted) {
+        setCarouselData(loadCollectionCarouselData(items));
+      }
+    };
+    getCollectionItems();
 
     return () => {
       mounted = false;
@@ -56,6 +68,12 @@ const ScreensCollection = () => {
         {structuredData && (
           <script type="application/ld+json">
             {JSON.stringify(structuredData)}
+          </script>
+        )}
+
+        {carouselData && (
+          <script type="application/ld+json">
+            {JSON.stringify(carouselData)}
           </script>
         )}
       </Helmet>
