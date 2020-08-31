@@ -7,7 +7,7 @@ function constructCarouselItems(docs, modelType) {
       ? "thumbnail_iiif_url"
       : "representative_file_url"; // this may not hold true as we get other types...
 
-  const items = docs.map(doc => {
+  const items = docs.map((doc) => {
     let obj = {
       id: doc._id,
       type: modelType,
@@ -15,7 +15,7 @@ function constructCarouselItems(docs, modelType) {
         ? `${doc._source[iiifUrlKey]}${globalVars.IIIF_MEDIUM_ITEM_REGION}`
         : "",
       label: getESTitle(doc._source),
-      description: getESDescription(doc._source)
+      description: getESDescription(doc._source),
     };
 
     return obj;
@@ -102,12 +102,12 @@ export function prepPhotoGridItems(
 ) {
   const iiifUrlKey = getIIIFUrlKey(modelType);
 
-  return sources.map(source => ({
+  return sources.map((source) => ({
     id: source.id,
     type: modelType,
     imageUrl: source[iiifUrlKey] ? `${source[iiifUrlKey]}${iiifParams}` : "",
     label: getESTitle(source),
-    description: getESDescription(source)
+    description: getESDescription(source),
   }));
 }
 
@@ -125,11 +125,11 @@ export function prepPhotoFeatureItems(
 ) {
   const iiifUrlKey = getIIIFUrlKey(modelType);
 
-  return sources.map(source => ({
+  return sources.map((source) => ({
     id: source.id,
     type: modelType,
     imageUrl: source[iiifUrlKey] ? `${source[iiifUrlKey]}${iiifParams}` : "",
     label: getESTitle(source),
-    description: getESDescription(source)
+    description: getESDescription(source),
   }));
 }

@@ -22,7 +22,7 @@ import { fetchApiToken } from "../actions/auth";
 import PropTypes from "prop-types";
 import ScreensLegacyPid from "./LegacyPid";
 
-const ReactiveBaseWrapper = props => {
+const ReactiveBaseWrapper = (props) => {
   return (
     <ReactiveBase
       app="common"
@@ -36,13 +36,13 @@ const ReactiveBaseWrapper = props => {
 
 ReactiveBaseWrapper.propTypes = {
   apiToken: PropTypes.string,
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 };
 
 export class Layout extends Component {
   static propTypes = {
     authToken: PropTypes.string,
-    fetchApiToken: PropTypes.func.isRequired
+    fetchApiToken: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
@@ -100,12 +100,12 @@ export class Layout extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  authToken: state.auth.token
+const mapStateToProps = (state) => ({
+  authToken: state.auth.token,
 });
 
-const mapDispatchToProps = dispatch => ({
-  fetchApiToken: () => dispatch(fetchApiToken())
+const mapDispatchToProps = (dispatch) => ({
+  fetchApiToken: () => dispatch(fetchApiToken()),
 });
 
 const ConnectedLayout = connect(mapStateToProps, mapDispatchToProps)(Layout);

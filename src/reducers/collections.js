@@ -6,7 +6,7 @@ export default function collections(state = {}, action) {
       return state;
     case actionTypes.COLLECTIONS_SUCCESS:
       return Object.assign({}, state, {
-        items: action.items
+        items: action.items,
       });
     case actionTypes.COLLECTIONS_FAILURE:
       return state;

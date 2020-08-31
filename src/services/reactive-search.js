@@ -8,78 +8,78 @@ export const reactiveSearchFacets = [
   {
     elasticSearchField: "box.number.keyword",
     label: "Box",
-    value: "Box"
+    value: "Box",
   },
   {
     elasticSearchField: "collection.title.keyword",
     label: "Collection",
-    value: "Collection"
+    value: "Collection",
   },
   {
     elasticSearchField: "contributor.label.keyword",
     label: "Contributor",
-    value: "Contributor"
+    value: "Contributor",
   },
   {
     elasticSearchField: "creator.label.keyword",
     label: "Creator",
-    value: "Creator"
+    value: "Creator",
   },
   {
     elasticSearchField: "folder.number.keyword",
     label: "Folder",
-    value: "Folder"
+    value: "Folder",
   },
   {
     elasticSearchField: "genre.label.keyword",
     label: "Genre",
-    value: "Genre"
+    value: "Genre",
   },
   {
     elasticSearchField: "language.label.keyword",
     label: "Language",
-    value: "Language"
+    value: "Language",
   },
   {
     elasticSearchField: "admin_set.title.keyword",
     label: "Library Department",
-    value: "LibraryDepartment"
+    value: "LibraryDepartment",
   },
   {
     elasticSearchField: "based_near.label.keyword",
     label: "Location",
-    value: "Location"
+    value: "Location",
   },
   {
     elasticSearchField: "rights_statement.label.keyword",
     label: "Rights Statement",
-    value: "RightsStatement"
+    value: "RightsStatement",
   },
   {
     elasticSearchField: "series.keyword",
     label: "Series",
-    value: "Series"
+    value: "Series",
   },
   {
     elasticSearchField: "style_period.label.keyword",
     label: "Style Period",
-    value: "StylePeriod"
+    value: "StylePeriod",
   },
   {
     elasticSearchField: "subject.label.keyword",
     label: "Subject",
-    value: "Subject"
+    value: "Subject",
   },
   {
     elasticSearchField: "technique.label.keyword",
     label: "Technique",
-    value: "Technique"
+    value: "Technique",
   },
   {
     elasticSearchField: "visibility.keyword",
     label: "Visibility",
-    value: "Visibility"
-  }
+    value: "Visibility",
+  },
 ];
 
 // For now, this is the ReactiveSearch DataSearch customQuery function,
@@ -102,11 +102,11 @@ export const simpleQueryStringQuery = (value = "*") => {
           "full_text",
           "legacy_identifier",
           "accession_number",
-          "id"
+          "id",
         ],
-        default_operator: "or"
-      }
-    }
+        default_operator: "or",
+      },
+    },
   };
 };
 
@@ -114,19 +114,19 @@ export const imagesOnlyDefaultQuery = () => {
   return {
     query: {
       match: {
-        "model.name": "Image"
-      }
-    }
+        "model.name": "Image",
+      },
+    },
   };
 };
 
-export const collectionDefaultQuery = collectionId => {
+export const collectionDefaultQuery = (collectionId) => {
   return {
     query: {
       bool: {
         must: { match: { "collection.id": collectionId } },
-        must_not: { match: { "collection.top_level": false } }
-      }
-    }
+        must_not: { match: { "collection.top_level": false } },
+      },
+    },
   };
 };

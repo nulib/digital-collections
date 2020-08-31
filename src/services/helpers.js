@@ -11,10 +11,7 @@ export function chopString(str, chopLength) {
     return "";
   }
   const extraText = str.split(" ").length > chopLength ? "..." : "";
-  let chopped = str
-    .split(" ")
-    .splice(0, chopLength)
-    .join(" ");
+  let chopped = str.split(" ").splice(0, chopLength).join(" ");
   return `${chopped}${extraText}`;
 }
 
@@ -97,11 +94,11 @@ export function escapeDoubleQuotes(str) {
  * @returns {Array}
  */
 export function buildSubmenu(items = []) {
-  const subMenuItems = items.map(item => {
+  const subMenuItems = items.map((item) => {
     return {
       id: item._id,
       url: `/collections/${item._id}`,
-      label: getESTitle(item._source)
+      label: getESTitle(item._source),
     };
   });
 
@@ -111,8 +108,6 @@ export function buildSubmenu(items = []) {
 export function prepGlobalSearchInput(searchValue) {
   return {
     pathname: `/search`,
-    search: `?q="${escapeDoubleQuotes(searchValue)
-      .split(" ")
-      .join("+")}"`
+    search: `?q="${escapeDoubleQuotes(searchValue).split(" ").join("+")}"`,
   };
 }

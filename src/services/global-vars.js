@@ -42,7 +42,7 @@ export const HONEYBADGER_ENV = process.env.REACT_APP_HONEYBADGER_ENV;
 export const HOMEPAGE_COLLECTION_GROUP_KEYWORDS = [
   "Poster",
   "Photography",
-  "Evanston"
+  "Evanston",
 ];
 
 // Mobile breakpoint
@@ -59,7 +59,7 @@ export const productionIds = {
   ramonCasas: "ba35820a-525a-4cfa-8f23-4891c9f798c4",
   vernonMcKay: "1d849df1-eb32-43f4-b7b9-e435cff18f7c",
   wpa: "c708f479-db91-4585-8267-874c5e7da73f",
-  wwII: "faf4f60e-78e0-4fbf-96ce-4ca8b4df597a"
+  wwII: "faf4f60e-78e0-4fbf-96ce-4ca8b4df597a",
 };
 
 // <title> tag ending
@@ -76,40 +76,40 @@ export const GOOGLE_TAG_MANAGER_ID = "GTM-MJ7RNV3";
 export const ROUTES = {
   ABOUT: {
     title: "About",
-    path: "/about"
+    path: "/about",
   },
   COLLECTION: {
     title: "",
-    path: "/collections/:id"
+    path: "/collections/:id",
   },
   COLLECTIONS_ALL: {
     title: "All Collections",
-    path: "/collections"
+    path: "/collections",
   },
   CONTACT: {
     title: "Contact Us",
-    path: "/contact-us"
+    path: "/contact-us",
   },
   HOME: {
     title: "Home",
-    path: "/"
+    path: "/",
   },
   ITEM_DETAIL: {
     title: "",
-    path: "/items/:id"
+    path: "/items/:id",
   },
   LEGACY_PID: {
     title: "",
-    path: "/legacy-pid/:pid"
+    path: "/legacy-pid/:pid",
   },
   PAGE_NOT_FOUND: {
     title: "404 Page Not Found",
-    path: "/notfound"
+    path: "/notfound",
   },
   SEARCH: {
     title: "Search",
-    path: "/search"
-  }
+    path: "/search",
+  },
 };
 
 // Admin Set contact emails
@@ -117,28 +117,28 @@ export const ADMIN_SET_CONTACTS = [
   {
     id: "b3771d7c-5117-4b48-a237-a0a6f02bc048",
     email: "special.collections@northwestern.edu",
-    title: "Charles Deering McCormick Library of Special Collections"
+    title: "Charles Deering McCormick Library of Special Collections",
   },
   {
     id: "ce79271f-aeeb-42a0-bb7b-d945223aadce",
     email: "govinfo@northwestern.edu",
-    title: "Government & Geographic Information Collection"
+    title: "Government & Geographic Information Collection",
   },
   {
     id: "fb560cc3-ea2b-41b0-bc0f-5e495c4f3f7f",
     email: "africana@northwestern.edu",
-    title: "Herskovits Library of African Studies"
+    title: "Herskovits Library of African Studies",
   },
   {
     id: "4d090cfa-f802-4ac3-9fe4-b5adc0294e80",
     email: "transportationlibrary@northwestern.edu",
-    title: "Transportation Library"
+    title: "Transportation Library",
   },
   {
     id: "810fb25f-bc4a-47f9-9de3-d57f6513699f",
     email: "archives@northwestern.edu",
-    title: "University Archives"
-  }
+    title: "University Archives",
+  },
 ];
 // Extras not currently in production yet:
 /**
