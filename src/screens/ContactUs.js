@@ -10,11 +10,11 @@ import { loadDefaultStructuredData } from "../services/google-structured-data";
 const breadCrumbs = [
   {
     title: "Home",
-    link: "/"
+    link: "/",
   },
   {
-    title: "Contact Us"
-  }
+    title: "Contact Us",
+  },
 ];
 
 const ScreensContactUs = () => {

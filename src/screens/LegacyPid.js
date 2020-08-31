@@ -18,7 +18,7 @@ function ScreensLegacyPid() {
   }, [params.pid]);
 
   let redirectTo = {
-    pathname: id ? `/items/${id}` : "/"
+    pathname: id ? `/items/${id}` : "/",
   };
 
   return loading ? <UILoadingSpinner /> : <Redirect to={redirectTo} />;

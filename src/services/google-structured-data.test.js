@@ -3,9 +3,9 @@ import * as gsd from "./google-structured-data";
 const mockObj = {
   description: ["description here"],
   title: {
-    primary: ["Title 1", "Title2"]
+    primary: ["Title 1", "Title2"],
   },
-  thumbnail_iiif_url: "http://here.com"
+  thumbnail_iiif_url: "http://here.com",
 };
 const pathName = "https://nu.com";
 
@@ -48,7 +48,7 @@ describe("work structured data", () => {
     thumbnail_url:
       "https://iiif.stack.rdc.library.northwestern.edu/iiif/2/fe%2F1c%2F30%2F0",
     subject: [{ label: "Smith, John" }, { label: "Ben" }],
-    ...mockObj
+    ...mockObj,
   };
   it("returns the expected work structured data ", () => {
     const obj = gsd.loadItemStructuredData(anotherMock, pathName);
