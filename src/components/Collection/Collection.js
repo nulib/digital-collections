@@ -37,8 +37,6 @@ const mobileDescriptionCss = css`
   margin-bottom: 2rem;
 `;
 const boxDescriptionCss = css`
-  background: #e4e0ee;
-  padding: 1rem;
   margin-bottom: 2rem;
   font-size: 14px;
   line-height: 1.4em;
