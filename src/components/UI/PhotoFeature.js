@@ -54,12 +54,12 @@ const PhotoFeature = props => {
       onMouseEnter={addHoverClass}
       onMouseLeave={addHoverClass}
       onClick={addHoverClass}
-      aria-labelledby="photo-feature"
+      aria-labelledby={`photo-feature-${id}`}
       data-testid="photo-feature"
     >
       <Link
         to={`/collections/${id}`}
-        id="photo-feature"
+        id={`photo-feature-${id}`}
         onClick={addHoverClass}
       >
         <div css={!isHover ? frontShow : frontHide}>

@@ -8,45 +8,24 @@ import LoadingSpinner from "../UI/LoadingSpinner";
 import {
   DataSearch,
   ReactiveList,
-  SelectedFilters
+  SelectedFilters,
 } from "@appbaseio/reactivesearch";
 import {
   getESDescription,
   getESImagePath,
-  getESTitle
+  getESTitle,
 } from "../../services/elasticsearch-parser";
 import {
   COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID,
   collectionDefaultQuery,
   reactiveSearchFacets,
-  simpleQueryStringQuery
+  simpleQueryStringQuery,
 } from "../../services/reactive-search";
 import { useSelector } from "react-redux";
 import PhotoBox from "../UI/PhotoBox";
 import { ROUTES } from "../../services/global-vars";
-import { isMobile } from "react-device-detect";
 import CollectionDescription from "./CollectionDescription";
 import FiltersShowHideButton from "../UI/FiltersShowHideButton";
-
-/** @jsx jsx */
-/** @jsxFrag React.Fragment **/
-
-import { css, jsx } from "@emotion/core";
-
-const mobileDescriptionCss = css`
-  margin-bottom: 2rem;
-`;
-const boxDescriptionCss = css`
-  background: #e4e0ee;
-  padding: 1rem;
-  margin-bottom: 2rem;
-  font-size: 14px;
-  line-height: 1.4em;
-  h3 {
-    font: 18px/1.2em "Campton Bold", Impact, sans-serif;
-    color: #342f2e;
-  }
-`;
 
 const Collection = () => {
   const [collection, setCollection] = useState();
@@ -56,7 +35,7 @@ const Collection = () => {
   const params = useParams();
   const location = useLocation();
   const history = useHistory();
-  const auth = useSelector(state => state.auth);
+  const auth = useSelector((state) => state.auth);
 
   useEffect(() => {
     function getApiData() {
@@ -101,7 +80,7 @@ const Collection = () => {
       message = "There was an error retrieving the collection, or the collection id does not exist."
     ) {
       history.push(ROUTES.PAGE_NOT_FOUND.path, {
-        message
+        message,
       });
     }
 
@@ -116,7 +95,7 @@ const Collection = () => {
     if (collection) {
       crumbs.push({
         title: getESTitle(collection),
-        link: ""
+        link: "",
       });
     }
     return crumbs;
@@ -126,7 +105,7 @@ const Collection = () => {
     return collection ? collectionDefaultQuery(collection.id) : null;
   };
 
-  const handleDisplaySidebarClick = e => {
+  const handleDisplaySidebarClick = (e) => {
     e.preventDefault();
     setShowSidebar(!showSidebar);
   };
@@ -140,7 +119,7 @@ const Collection = () => {
       id: res.id,
       imageUrl: getESImagePath(res),
       label: getESTitle(res),
-      type: res.model.name
+      type: res.model.name,
     };
 
     return <PhotoBox key={item.id} item={item} />;
@@ -150,35 +129,30 @@ const Collection = () => {
     {
       sortBy: "asc",
       dataField: "modified_date",
-      label: "Sort By Modified Date"
+      label: "Sort By Modified Date",
     },
     {
       sortBy: "desc",
       dataField: "_score",
-      label: "Sort By Relevancy"
+      label: "Sort By Relevancy",
     },
     {
       sortBy: "asc",
       dataField: "title.primary.keyword",
-      label: "Sort By Title"
-    }
+      label: "Sort By Title",
+    },
   ];
 
   const breadCrumbData = collection ? createBreadcrumbData(collection) : [];
   const collectionTitle = collection ? getESTitle(collection) : "";
   const collectionDescription = collection ? getESDescription(collection) : "";
 
-  // Split the description by line breaks, so it displays properly
-  const descriptionDisplay = collectionDescription
-    .split("\n")
-    .map((i, key) => <p key={key}>{i}</p>);
-
   const allFilters = [
     COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID,
-    ...reactiveSearchFacets.map(facet => facet.value)
+    ...reactiveSearchFacets.map((facet) => facet.value),
   ];
   const imageFacetsNoCollection = reactiveSearchFacets.filter(
-    facet => facet.value !== "Collection"
+    (facet) => facet.value !== "Collection"
   );
 
   const renderDisplay = () => {
@@ -204,22 +178,13 @@ const Collection = () => {
             tabIndex="-1"
           >
             <Breadcrumbs items={breadCrumbData} />
+
             <h2>{collectionTitle}</h2>
-            {!isMobile && (
-              <div
-                className="box"
-                css={boxDescriptionCss}
-                data-testid="collection-description"
-              >
-                <h3>Collection Description</h3>
-                {descriptionDisplay}
-              </div>
-            )}
-            {isMobile && (
-              <div css={mobileDescriptionCss}>
-                <CollectionDescription description={collectionDescription} />
-              </div>
-            )}
+
+            <div data-testid="collection-description">
+              <CollectionDescription description={collectionDescription} />
+            </div>
+
             {!loading && (
               <div>
                 <DataSearch
@@ -231,7 +196,7 @@ const Collection = () => {
                   filterLabel="Collections search"
                   innerClass={{
                     input: "searchbox rs-search-input is-fullwidth",
-                    list: "suggestionlist"
+                    list: "suggestionlist",
                   }}
                   queryFormat="or"
                   placeholder="Search within collection"
@@ -250,7 +215,7 @@ const Collection = () => {
                   componentId="collection-items-results"
                   dataField="title"
                   react={{
-                    and: [...allFilters]
+                    and: [...allFilters],
                   }}
                   defaultQuery={defaultQuery}
                   loader={<LoadingSpinner loading={true} />}
@@ -262,7 +227,7 @@ const Collection = () => {
                   innerClass={{
                     list: "rs-result-list photo-grid three-grid",
                     pagination: "rs-pagination",
-                    resultsInfo: "rs-results-info"
+                    resultsInfo: "rs-results-info",
                   }}
                   URLParams={true}
                   sortOptions={sortOptions}
