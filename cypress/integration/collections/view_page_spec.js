@@ -36,7 +36,6 @@ describe("Collections View page", () => {
 
     it("should display description", () => {
       cy.getByTestId("collection-description").within($sidebar => {
-        cy.contains("h3", "Collection Description");
         cy.contains("p", "113 antique maps of Africa");
       });
     });

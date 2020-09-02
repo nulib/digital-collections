@@ -40,10 +40,6 @@ const boxDescriptionCss = css`
   margin-bottom: 2rem;
   font-size: 14px;
   line-height: 1.4em;
-  h3 {
-    font: 18px/1.2em "Campton Bold", Impact, sans-serif;
-    color: #342f2e;
-  }
 `;
 
 const Collection = () => {
@@ -209,7 +205,6 @@ const Collection = () => {
                 css={boxDescriptionCss}
                 data-testid="collection-description"
               >
-                <h3>Collection Description</h3>
                 {descriptionDisplay}
               </div>
             )}
