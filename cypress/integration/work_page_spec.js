@@ -10,7 +10,7 @@ describe("Work page", () => {
     });
 
     it("should display OpenSeadragon viewer and its controls", () => {
-      cy.get(".landing-page").within($landingPage => {
+      cy.get(".landing-page").within(($landingPage) => {
         cy.get("[data-testid=section-open-seadragon]");
         cy.get(".openseadragon-canvas");
         cy.get("#zoom-in");
@@ -49,7 +49,7 @@ describe("Work page", () => {
     });
 
     it("should display title and description", () => {
-      cy.getByTestId("section-item-details").within($itemDetails => {
+      cy.getByTestId("section-item-details").within(($itemDetails) => {
         cy.get("h3").should("have.text", "Item Details");
         cy.get("[data-testid=item-title]");
         cy.get("[data-testid=item-description]");
@@ -63,7 +63,7 @@ describe("Work page", () => {
       // Set a wait time equal to code's animation duration (1 second)
       cy.wait(1000);
 
-      cy.window().then($window => {
+      cy.window().then(($window) => {
         expect($window.scrollY).to.be.greaterThan(1000);
       });
     });
@@ -76,7 +76,7 @@ describe("Work page", () => {
     });
 
     it("should display social links", () => {
-      cy.getByTestId("social-links").within($socialLinks => {
+      cy.getByTestId("social-links").within(($socialLinks) => {
         cy.get("button[aria-label=facebook]");
         cy.get("button[aria-label=twitter]");
         cy.get("button[aria-label=pinterest]");
@@ -101,7 +101,7 @@ describe("Work page", () => {
     });
 
     it("should display Library Department titles", () => {
-      cy.getByTestId("section-library-department").within($section => {
+      cy.getByTestId("section-library-department").within(($section) => {
         cy.contains("Library Department");
         cy.contains("Charles Deering McCormick Library of Special Collections");
       });
@@ -122,7 +122,7 @@ describe("Work page", () => {
     it("should display photo grid of Library Department items", () => {
       cy.getByTestId("section-library-department")
         .find("[data-testid=photo-grid]")
-        .within($photoGrid => {
+        .within(($photoGrid) => {
           cy.get("article").as("article");
           cy.get("@article").should("have.length.greaterThan", 1);
           cy.get("@article")
@@ -140,7 +140,7 @@ describe("Work page", () => {
     });
 
     it("should display the Collection titles", () => {
-      cy.getByTestId("section-collection").within($section => {
+      cy.getByTestId("section-collection").within(($section) => {
         cy.contains("Collection");
         cy.contains("Berkeley Folk Music Festival");
       });
@@ -170,7 +170,7 @@ describe("Work page", () => {
 
   it("should display This Item section", () => {
     cy.visit(singleFilesetRoute);
-    cy.getByTestId("this-item").within($thisItem => {
+    cy.getByTestId("this-item").within(($thisItem) => {
       cy.contains("This item");
       cy.get("img");
     });
@@ -182,7 +182,7 @@ describe("Work page", () => {
     });
 
     it("should display About, Find, and Cite tabs and they should show different content", () => {
-      cy.get("[data-testid=section-tabs-metadata] ul#tabs").within($tabs => {
+      cy.get("[data-testid=section-tabs-metadata] ul#tabs").within(($tabs) => {
         cy.contains("About this Item");
         cy.contains("Find this Item");
         cy.contains("Cite this Item");
@@ -210,7 +210,7 @@ describe("Work page", () => {
 
     context("About tab", () => {
       it("should display key metadata items and display links for metadata items which are facet-able", () => {
-        cy.getByTestId("tab-content-metadata").within($tabContent => {
+        cy.getByTestId("tab-content-metadata").within(($tabContent) => {
           cy.contains("Contributor");
           cy.contains("Olivier, Barry, 1935- (Photographer)")
             .should("have.attr", "href")
@@ -236,7 +236,7 @@ describe("Work page", () => {
       });
 
       it("should display links for metadata items which are facet-able", () => {
-        cy.getByTestId("tab-content-metadata").within($tabContent => {
+        cy.getByTestId("tab-content-metadata").within(($tabContent) => {
           cy.contains("a", "Olivier, Barry, 1935- (Photographer)");
           cy.contains(
             "a",
@@ -257,7 +257,7 @@ describe("Work page", () => {
     context("Find tab", () => {
       it("should display key metadata items and display links for metadata items which are facet-able", () => {
         cy.contains("Find this Item").click();
-        cy.getByTestId("tab-content-find").within($tabContent => {
+        cy.getByTestId("tab-content-find").within(($tabContent) => {
           cy.contains("Box Number");
           cy.contains("a", "4")
             .should("have.attr", "href")
@@ -286,7 +286,7 @@ describe("Work page", () => {
     context("Cite tab", () => {
       it("should display key cite metadata items", () => {
         cy.contains("Cite this Item").click();
-        cy.getByTestId("tab-content-cite").within($tabContent => {
+        cy.getByTestId("tab-content-cite").within(($tabContent) => {
           cy.contains("Identifier");
           cy.contains("MS 63");
           cy.contains("Title");
@@ -301,7 +301,7 @@ describe("Work page", () => {
     });
   });
 
-  context.only("Tabs download tab", () => {
+  context("Tabs download tab", () => {
     beforeEach(() => {
       cy.visit(multipleFilesetRoute);
     });
@@ -309,15 +309,23 @@ describe("Work page", () => {
     it("should display a download tab with a listing of all filesets", () => {
       cy.contains("Download").click();
       cy.wait(5000);
-      cy.getByTestId("tab-content-download").within($tabContent => {
+      cy.getByTestId("tab-content-download").within(($tabContent) => {
         cy.contains("Front cover");
         cy.get('[alt="Front cover thumbnail"]')
           .should("be.visible")
-          .and($img => {
+          .and(($img) => {
             // "naturalWidth" and "naturalHeight" are set when the image loads
             expect($img[0].naturalWidth).to.be.greaterThan(0);
           });
         cy.contains("Download JPEG");
+      });
+
+      context("Embed Rich Image Viewer", () => {
+        cy.getByTestId("embed-viewer");
+        cy.getByTestId("embed-viewer-code").should("not.be.visible");
+        cy.getByTestId("button-embed-viewer").click();
+        cy.getByTestId("embed-viewer-code").should("be.visible");
+        cy.contains("Copy Code");
       });
 
       context("HTML Embed feature", () => {

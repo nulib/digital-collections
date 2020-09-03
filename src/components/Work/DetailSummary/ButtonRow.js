@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import $ from "jquery";
 
 const ButtonRow = () => {
@@ -8,6 +9,8 @@ const ButtonRow = () => {
 
     if (buttonId === "item-cite") {
       dataTabId = "cite";
+    } else if (buttonId === "item-download-share") {
+      dataTabId = "download";
     }
 
     const $targetTab = $("#tabs").find(`[data-tab-id="${dataTabId}"]`);
@@ -15,7 +18,7 @@ const ButtonRow = () => {
     $targetTab.trigger("click");
     $("html, body").animate(
       {
-        scrollTop: $targetTab.offset().top - 60
+        scrollTop: $targetTab.offset().top - 60,
       },
       1000
     );
@@ -39,8 +42,20 @@ const ButtonRow = () => {
       >
         Cite This Item
       </button>
+      <button
+        id="item-download-share"
+        data-testid="item-download-share"
+        className="button"
+        onClick={handleButtonClick}
+      >
+        Download &amp; Share
+      </button>
     </div>
   );
+};
+
+ButtonRow.propTypes = {
+  handleEmbedViewerClick: PropTypes.func,
 };
 
 export default ButtonRow;
