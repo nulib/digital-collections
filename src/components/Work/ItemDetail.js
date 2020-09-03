@@ -28,7 +28,7 @@ const WorkItemDetail = ({ item }) => {
             Cite this Item
           </Tab>
           <Tab role="tab" data-tab-id="download">
-            Download
+            Download &amp; Share
           </Tab>
         </TabList>
 
@@ -52,7 +52,7 @@ const WorkItemDetail = ({ item }) => {
 };
 
 WorkItemDetail.propTypes = {
-  item: PropTypes.object
+  item: PropTypes.object,
 };
 
 export default WorkItemDetail;

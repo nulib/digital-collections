@@ -17,10 +17,10 @@ import { featuredCollections } from "./featured-collections";
 
 const breadcrumbs = [
   { link: "/", title: "Home" },
-  { link: "/about", title: "About" }
+  { link: "/about", title: "About" },
 ];
 
-const AboutScreen = () => {
+const ScreensAbout = () => {
   const aboutPics = shuffleArray([curtPic, druPic, joshPic, lizPic]);
 
   const styles = {
@@ -28,16 +28,16 @@ const AboutScreen = () => {
       backgroundImage: `url(${aboutPics[0]})`,
       backgroundRepeat: "no-repeat",
       backgroundSize: "cover",
-      backgroundPosition: "center"
+      backgroundPosition: "center",
     },
     iiifLogo: {
       display: "inline-block",
       width: "45px",
-      marginRight: "10px"
+      marginRight: "10px",
     },
     section: {
-      marginBottom: "3rem"
-    }
+      marginBottom: "3rem",
+    },
   };
 
   useEffect(() => {
@@ -312,4 +312,4 @@ const AboutScreen = () => {
   );
 };
 
-export default AboutScreen;
+export default ScreensAbout;
