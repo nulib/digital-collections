@@ -44,6 +44,7 @@ export class Layout extends Component {
   static propTypes = {
     authToken: PropTypes.string,
     fetchApiToken: PropTypes.func.isRequired,
+    history: ReactRouterPropTypes.history.isRequired,
   };
 
   componentDidMount() {
