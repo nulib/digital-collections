@@ -15,7 +15,7 @@ export function loadDataLayer({
   pageTitle = undefined,
   rightsStatement = undefined,
   subjects = undefined,
-  visibility = undefined
+  visibility = undefined,
 }) {
   const values = {
     adminset,
@@ -26,7 +26,7 @@ export function loadDataLayer({
     pageTitle,
     rightsStatement,
     subjects,
-    visibility
+    visibility,
   };
 
   // Add new values

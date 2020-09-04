@@ -3,7 +3,7 @@ import { withRouter } from "react-router";
 import { Route, Switch } from "react-router-dom";
 import { ReactiveBase } from "@appbaseio/reactivesearch";
 import { connect } from "react-redux";
-import AboutScreen from "./About/About";
+import ScreensAbout from "./About/About";
 import ScreensCollectionList from "./Collection/List";
 import ScreensContactUs from "./ContactUs";
 import Footer from "../components/UI/Footer";
@@ -16,13 +16,14 @@ import Default404 from "./Default404";
 import NavContainer from "../components/UI/Nav/NavContainer";
 import Notifications from "react-notify-toast";
 import ScreensSearch from "./Search/Search";
-//import "../Layout.css";
-// import "../libs/nuwebcomm-scripts.js";
+import ScreensEmbeddedViewer from "./EmbeddedViewer";
+
 import { fetchApiToken } from "../actions/auth";
 import PropTypes from "prop-types";
+import ReactRouterPropTypes from "react-router-prop-types";
 import ScreensLegacyPid from "./LegacyPid";
 
-const ReactiveBaseWrapper = props => {
+const ReactiveBaseWrapper = (props) => {
   return (
     <ReactiveBase
       app="common"
@@ -36,13 +37,13 @@ const ReactiveBaseWrapper = props => {
 
 ReactiveBaseWrapper.propTypes = {
   apiToken: PropTypes.string,
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 };
 
 export class Layout extends Component {
   static propTypes = {
     authToken: PropTypes.string,
-    fetchApiToken: PropTypes.func.isRequired
+    fetchApiToken: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
@@ -59,13 +60,24 @@ export class Layout extends Component {
       return null;
     }
 
+    // Embedded iframe route
+    if (this.props.history.location.pathname.includes("/embedded-viewer")) {
+      return (
+        <Route
+          exact
+          path={ROUTES.EMBEDDED_VIEWER.path}
+          component={ScreensEmbeddedViewer}
+        />
+      );
+    }
+
     return (
       <div>
         <Header />
         <Notifications />
         <NavContainer />
         <Switch>
-          <Route exact path={ROUTES.ABOUT.path} component={AboutScreen} />
+          <Route exact path={ROUTES.ABOUT.path} component={ScreensAbout} />
           <Route
             exact
             path={ROUTES.CONTACT.path}
@@ -100,12 +112,12 @@ export class Layout extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  authToken: state.auth.token
+const mapStateToProps = (state) => ({
+  authToken: state.auth.token,
 });
 
-const mapDispatchToProps = dispatch => ({
-  fetchApiToken: () => dispatch(fetchApiToken())
+const mapDispatchToProps = (dispatch) => ({
+  fetchApiToken: () => dispatch(fetchApiToken()),
 });
 
 const ConnectedLayout = connect(mapStateToProps, mapDispatchToProps)(Layout);

@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import IIIFImageEmbedModal from "../../UI/IIIFImageEmbedModal";
 import DownloadIIIFImage from "./DownloadIIIFImage";
 import { cleanupFilename } from "../../../services/helpers";
+import WorkEmbedViewer from "../EmbedViewer";
 
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
@@ -23,7 +24,7 @@ const table = css`
   }
 `;
 
-const WorkTabsDownload = React.memo(function({ item }) {
+const WorkTabsDownload = React.memo(function ({ item }) {
   const [loading, setLoading] = useState(true);
   const [tileSources, setTileSources] = useState([]);
   const [modalOpen, setModalOpen] = useState();
@@ -37,12 +38,12 @@ const WorkTabsDownload = React.memo(function({ item }) {
 
   useEffect(() => {
     fetch(item.iiif_manifest)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setTileSources(getTileSources(data));
         setLoading(false);
       })
-      .catch(e => console.log("There was an error fetching the manifest"));
+      .catch((e) => console.log("There was an error fetching the manifest"));
   }, [item.iiif_manifest]);
 
   function closeModal() {
@@ -66,6 +67,8 @@ const WorkTabsDownload = React.memo(function({ item }) {
 
   return (
     <div css={downloadWrapper} data-testid="tab-content-download">
+      {item.visibility === "open" && <WorkEmbedViewer item={item} />}
+
       <div className="responsive-table">
         <table css={table}>
           <tbody>
@@ -114,7 +117,7 @@ const WorkTabsDownload = React.memo(function({ item }) {
 });
 
 WorkTabsDownload.propTypes = {
-  item: PropTypes.object
+  item: PropTypes.object,
 };
 
 export default WorkTabsDownload;

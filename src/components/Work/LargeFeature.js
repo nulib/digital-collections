@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import * as elasticSearchParser from "../../services/elasticsearch-parser";
 import ButtonRow from "./DetailSummary/ButtonRow";
 import SocialLinks from "./DetailSummary/SocialLinks";
@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import { chopString } from "../../services/helpers";
 import IIIFDraggable from "./IIIFDraggable";
 
-const LargeFeature = props => {
+const LargeFeature = (props) => {
   const { item } = props;
   const title = elasticSearchParser.getESTitle(item);
   const description =
@@ -14,12 +14,12 @@ const LargeFeature = props => {
 
   const styles = {
     paddedBlock: {
-      marginBottom: "1em"
+      marginBottom: "1em",
     },
     subhead: {
       display: "block",
-      fontFamily: "Akkurat Pro Bold,Arial Black,sans-serif"
-    }
+      fontFamily: "Akkurat Pro Bold,Arial Black,sans-serif",
+    },
   };
 
   return (
@@ -54,7 +54,7 @@ const LargeFeature = props => {
 };
 
 LargeFeature.propTypes = {
-  item: PropTypes.object
+  item: PropTypes.object,
 };
 
 export default LargeFeature;

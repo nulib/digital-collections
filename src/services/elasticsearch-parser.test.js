@@ -3,12 +3,12 @@ import {
   getESImagePath,
   getESTitle,
   getIIIFUrlKey,
-  prepPhotoGridItems
+  prepPhotoGridItems,
 } from "./elasticsearch-parser";
 import {
   COLLECTION_MODEL,
   IIIF_MEDIUM_ITEM_REGION,
-  IMAGE_MODEL
+  IMAGE_MODEL,
 } from "./global-vars";
 import placeholderImage from "../images/book_placeholder.jpg";
 
@@ -16,11 +16,11 @@ describe("ElasticSearch parser module", () => {
   describe("Get description function", () => {
     test("returns the right description from a source result", () => {
       const _source = {
-        description: ["Description 1", "Description2"]
+        description: ["Description 1", "Description2"],
       };
       const emptySource = {
         accession_number: "12345",
-        full_text: ["some full text"]
+        full_text: ["some full text"],
       };
       const value = getESDescription(_source);
       const emptyString = getESDescription(emptySource);
@@ -33,13 +33,13 @@ describe("ElasticSearch parser module", () => {
   describe("Get image path function", () => {
     const urls = {
       representative_file_url: "http://localhost:8183/iiif/2/file",
-      thumbnail_iiif_url: "http://localhost:8183/iiif/thumbnail"
+      thumbnail_iiif_url: "http://localhost:8183/iiif/thumbnail",
     };
     const imageModel = {
-      model: { application: "Nextgen", name: "Image" }
+      model: { application: "Nextgen", name: "Image" },
     };
     const collectionModel = {
-      model: { application: "Nextgen", name: "Collection" }
+      model: { application: "Nextgen", name: "Collection" },
     };
 
     test("returns the right image path for an Image model", () => {
@@ -62,7 +62,7 @@ describe("ElasticSearch parser module", () => {
       const source = {
         representative_file_url: "",
         thumbnail_url: "",
-        ...imageModel
+        ...imageModel,
       };
       const value = getESImagePath(source);
 
@@ -85,14 +85,14 @@ describe("ElasticSearch parser module", () => {
         primary: ["Alchemical Properties: 15 Years of Dilettantism"],
         alternate: [
           "This is another alternate_title 10",
-          "This is an alternate title 10"
-        ]
-      }
+          "This is an alternate title 10",
+        ],
+      },
     };
     const multiTitle = {
       title: {
-        primary: ["Alchemical Properties: 15 Years of Dilettantism", "Title 2"]
-      }
+        primary: ["Alchemical Properties: 15 Years of Dilettantism", "Title 2"],
+      },
     };
 
     test("returns an empty string if no source supplied", () => {
@@ -129,9 +129,9 @@ describe("ElasticSearch parser module", () => {
         representative_file_url: "http://localhost:8183/iiif/2",
         title: {
           primary: ["Two Poster Work"],
-          alternate: ["Buzzy"]
-        }
-      }
+          alternate: ["Buzzy"],
+        },
+      },
     ];
 
     test("returns an empty array if no items are present in elastic search response", () => {
