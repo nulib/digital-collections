@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import * as elasticSearchParser from "../../services/elasticsearch-parser";
 import ButtonRow from "./DetailSummary/ButtonRow";
 import SocialLinks from "./DetailSummary/SocialLinks";
