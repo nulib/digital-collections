@@ -13,7 +13,9 @@ describe("Persona paths", () => {
 
       it("redirects to the Home screen given an invalid Legacy Pid value", () => {
         cy.visit("/legacy-pid/ABC123");
-        cy.location("pathname").should("be", "/");
+        cy.location().should((loc) => {
+          expect(loc.pathname).to.eq("/");
+        });
       });
     });
   });
