@@ -1,10 +1,15 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "NUL Digital Collections",
+  "name": "Northwestern Libraries Digital Collections",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "images/n-192x192.png",
       "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "images/n-512x512.png",
+      "sizes": "512x512",
       "type": "image/png"
     }
   ],

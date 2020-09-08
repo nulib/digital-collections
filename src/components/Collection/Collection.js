@@ -225,7 +225,7 @@ const Collection = () => {
                   paginationAt="bottom"
                   renderItem={renderItem}
                   innerClass={{
-                    list: "rs-result-list photo-grid three-grid",
+                    list: "rs-result-list photo-grid four-grid",
                     pagination: "rs-pagination",
                     resultsInfo: "rs-results-info",
                   }}
