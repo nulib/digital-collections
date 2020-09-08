@@ -55,6 +55,14 @@ jobs:
       - run:
           name: Build and Deploy
           command: deploy/build
+      - run:
+          name: Set FEN_DISTRIBUTION_ID
+          command: |
+            echo "export FEN_DISTRIBUTION_ID=\$${DEPLOY_TAG}_FEN_DISTRIBUTION_ID" >> $BASH_ENV
+      - run:
+          name: "Invalidate CloudFront Cache"
+          command: |
+            aws cloudfront create-invalidation --distribution-id ${FEN_DISTRIBUTION_ID} --invalidation-batch "Paths={Quantity=1,Items=[/*]},CallerReference=$(date +%Y%m%d%H%M%S)"
 workflows:
   ci:
     jobs:
