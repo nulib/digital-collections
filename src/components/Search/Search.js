@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import {
   DataSearch,
   SelectedFilters,
-  ReactiveList
+  ReactiveList,
 } from "@appbaseio/reactivesearch";
 import {
   getESImagePath,
-  getESTitle
+  getESTitle,
 } from "../../services/elasticsearch-parser";
 import LoadingSpinner from "../UI/LoadingSpinner";
 import {
@@ -14,7 +14,7 @@ import {
   GLOBAL_SEARCH_BAR_COMPONENT_ID,
   imagesOnlyDefaultQuery,
   reactiveSearchFacets,
-  simpleQueryStringQuery
+  simpleQueryStringQuery,
 } from "../../services/reactive-search";
 import PhotoBox from "../UI/PhotoBox";
 import { useLocation } from "react-router-dom";
@@ -49,12 +49,12 @@ const Search = ({ breadcrumbs = [] }) => {
     setComponentLoaded(true);
   }, [location]);
 
-  const handleDisplaySidebarClick = e => {
+  const handleDisplaySidebarClick = (e) => {
     e.preventDefault();
     setShowSidebar(!showSidebar);
   };
 
-  const onValueChange = value => {
+  const onValueChange = (value) => {
     dispatch(() => searchValueChange(value));
   };
 
@@ -62,12 +62,12 @@ const Search = ({ breadcrumbs = [] }) => {
    * Helper function to display a custom component to display instead of ReactiveSearch's
    * @param {Object} res - ReactivSearch result object
    */
-  const renderItem = res => {
+  const renderItem = (res) => {
     let item = {
       id: res.id,
       imageUrl: getESImagePath(res),
       label: getESTitle(res),
-      type: res.model.name
+      type: res.model.name,
     };
 
     return <PhotoBox key={item.id} item={item} />;
@@ -75,7 +75,7 @@ const Search = ({ breadcrumbs = [] }) => {
 
   const allFilters = [
     GLOBAL_SEARCH_BAR_COMPONENT_ID,
-    ...reactiveSearchFacets.map(f => f.value)
+    ...reactiveSearchFacets.map((f) => f.value),
   ];
 
   return (
@@ -104,12 +104,12 @@ const Search = ({ breadcrumbs = [] }) => {
           className="datasearch web-form"
           customQuery={simpleQueryStringQuery}
           componentId={GLOBAL_SEARCH_BAR_COMPONENT_ID}
-          dataField={[]}
+          dataField={"title.primary.keyword"}
           debounce={1000}
           filterLabel="Search"
           innerClass={{
             input: "searchbox rs-search-input",
-            list: "suggestionlist"
+            list: "suggestionlist",
           }}
           queryFormat="or"
           placeholder={DATASEARCH_PLACEHOLDER}
@@ -130,7 +130,7 @@ const Search = ({ breadcrumbs = [] }) => {
           innerClass={{
             list: "rs-result-list photo-grid four-grid",
             pagination: "rs-pagination",
-            resultsInfo: "rs-results-info"
+            resultsInfo: "rs-results-info",
           }}
           defaultQuery={imagesOnlyDefaultQuery}
           loader={<LoadingSpinner loading={true} />}
@@ -139,7 +139,7 @@ const Search = ({ breadcrumbs = [] }) => {
           paginationAt="bottom"
           pages={10}
           react={{
-            and: allFilters
+            and: allFilters,
           }}
           size={24}
           URLParams={true}
@@ -153,9 +153,9 @@ Search.propTypes = {
   breadcrumbs: PropTypes.arrayOf(
     PropTypes.shape({
       link: PropTypes.string,
-      title: PropTypes.string
+      title: PropTypes.string,
     })
-  )
+  ),
 };
 
 export default Search;
