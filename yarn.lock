@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@appbaseio/reactivecore@9.6.16":
-  version "9.6.16"
-  resolved "https://registry.yarnpkg.com/@appbaseio/reactivecore/-/reactivecore-9.6.16.tgz#ef5f53170e076c46adfee5a6472de865c20296c7"
-  integrity sha512-I3G19u+CqRU9TqEFep9Dg3K2/XxvbDGAtOgpkMO1kQrtHPWMhM+9FgttxGtSFqJr1eyAiI81pSlPk+gttx5yKA==
+"@appbaseio/reactivecore@9.6.19":
+  version "9.6.19"
+  resolved "https://registry.yarnpkg.com/@appbaseio/reactivecore/-/reactivecore-9.6.19.tgz#901d75cdee8f07d53f2be4ed4658f56e1ebbcaec"
+  integrity sha512-12lNCL3E+CK2bRPdlqJZKsl1HzZzD9GuxjtZq5wSGa0HHoWbT7C6btb57gL5kbUbhP8qB+fDYzGlRw6VuEDrsQ==
   dependencies:
     cross-fetch "^3.0.4"
     prop-types "^15.6.0"
@@ -13,12 +13,12 @@
     redux-thunk "^2.3.0"
     xdate "^0.8.2"
 
-"@appbaseio/reactivesearch@^3.4.3":
-  version "3.12.3"
-  resolved "https://registry.yarnpkg.com/@appbaseio/reactivesearch/-/reactivesearch-3.12.3.tgz#8aed64e79b1eeedf1c68f19a1fbb8a2d202e0a59"
-  integrity sha512-QS2QvW9wv26nXOEBxUzmKBN3Psf2/SmZWxLgDi9Sb27XzWkkitbb3hMCKrvpFFE9M7ZRV/SbopkmcAGj2kNyiw==
+"@appbaseio/reactivesearch@^3.12.4":
+  version "3.12.4"
+  resolved "https://registry.yarnpkg.com/@appbaseio/reactivesearch/-/reactivesearch-3.12.4.tgz#6842c9f004c456d9850e822aab2b4ee1e320dae6"
+  integrity sha512-jvo5QNVf/vmrdvHRTrXuC2tvsy9d4X2FudkKKyScL3+7sLUz1PAPGnQfFYJ4z5qfVFsBvIG47t7p3oSQdwgZLA==
   dependencies:
-    "@appbaseio/reactivecore" "9.6.16"
+    "@appbaseio/reactivecore" "9.6.19"
     "@emotion/core" "^10.0.28"
     "@emotion/styled" "^10.0.27"
     appbase-js "^4.1.0"
@@ -6311,15 +6311,15 @@ humanize-ms@^1.2.1:
   dependencies:
     ms "^2.0.0"
 
-husky@4.2.5:
-  version "4.2.5"
-  resolved "https://registry.yarnpkg.com/husky/-/husky-4.2.5.tgz#2b4f7622673a71579f901d9885ed448394b5fa36"
-  integrity sha512-SYZ95AjKcX7goYVZtVZF2i6XiZcHknw50iXvY7b0MiGoj5RwdgRQNEHdb+gPDPCXKlzwrybjFjkL6FOj8uRhZQ==
+husky@4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/husky/-/husky-4.3.0.tgz#0b2ec1d66424e9219d359e26a51c58ec5278f0de"
+  integrity sha512-tTMeLCLqSBqnflBZnlVDhpaIMucSGaYyX6855jM4AguGeWCeSzNdb1mfyWduTZ3pe3SJVvVWGL0jO1iKZVPfTA==
   dependencies:
     chalk "^4.0.0"
     ci-info "^2.0.0"
     compare-versions "^3.6.0"
-    cosmiconfig "^6.0.0"
+    cosmiconfig "^7.0.0"
     find-versions "^3.2.0"
     opencollective-postinstall "^2.0.2"
     pkg-dir "^4.2.0"
@@ -12963,6 +12963,11 @@ whatwg-fetch@^3.0.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-3.4.0.tgz#e11de14f4878f773fbebcde8871b2c0699af8b30"
   integrity sha512-rsum2ulz2iuZH08mJkT0Yi6JnKhwdw4oeyMjokgxd+mmqYSd9cPpOQf01TIWgjxG/U4+QR+AwKq6lSbXVxkyoQ==
+
+whatwg-fetch@^3.4.1:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-3.4.1.tgz#e5f871572d6879663fa5674c8f833f15a8425ab3"
+  integrity sha512-sofZVzE1wKwO+EYPbWfiwzaKovWiZXf4coEzjGP9b2GBVgQRLQUZ2QcuPpQExGDAW5GItpEm6Tl4OU5mywnAoQ==
 
 whatwg-mimetype@^2.1.0, whatwg-mimetype@^2.2.0, whatwg-mimetype@^2.3.0:
   version "2.3.0"
