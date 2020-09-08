@@ -1,22 +1,37 @@
 import React from "react";
 import { OpenSeadragonViewer } from "openseadragon-react-viewer";
 import { useParams } from "react-router-dom";
+import logo from "../images/northwestern-white.png";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
+
+const embedWrapper = css`
+  position: relative;
+`;
+const imgLogo = css`
+  position: absolute;
+  bottom: 0px;
+  left: 10px;
+  z-index: 10;
+  width: 220px;
+`;
 
 export default function ScreensEmbeddedViewer() {
   const params = useParams();
 
-  console.log("params", params);
-
   return (
-    <OpenSeadragonViewer
-      manifestUrl={decodeURIComponent(params.manifestUrl)}
-      options={{
-        showDropdown: true,
-        showThumbnails: true,
-        showToolbar: true,
-        deepLinking: false,
-        height: 800,
-      }}
-    />
+    <div className="embeded-viewer-wrapper" css={embedWrapper}>
+      <img src={logo} alt="Northwestern logo" css={imgLogo} />
+      <OpenSeadragonViewer
+        manifestUrl={decodeURIComponent(params.manifestUrl)}
+        options={{
+          showDropdown: true,
+          showThumbnails: true,
+          showToolbar: true,
+          deepLinking: false,
+          height: 800,
+        }}
+      />
+    </div>
   );
 }
