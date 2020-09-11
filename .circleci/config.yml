@@ -53,6 +53,15 @@ jobs:
       - run:
           name: Build and Deploy
           command: deploy/build
+      - run:
+          name: Set DC_DISTRIBUTION_ID
+          command: |
+            echo "export DC_DISTRIBUTION_ID=\$${DEPLOY_TAG}_DC_DISTRIBUTION_ID" >> $BASH_ENV
+      - run:
+          name: "Invalidate CloudFront Cache"
+          command: |
+            aws cloudfront create-invalidation --distribution-id ${DC_DISTRIBUTION_ID} --invalidation-batch "Paths={Quantity=1,Items=[/*]},CallerReference=$(date +%Y%m%d%H%M%S)"
+
 workflows:
   ci:
     jobs:
