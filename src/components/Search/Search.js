@@ -114,6 +114,7 @@ const Search = ({ breadcrumbs = [] }) => {
           queryFormat="or"
           placeholder={DATASEARCH_PLACEHOLDER}
           URLParams={true}
+          searchOperators={true}
           onValueChange={onValueChange}
         />
 

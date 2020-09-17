@@ -106,8 +106,10 @@ export function buildSubmenu(items = []) {
 }
 
 export function prepGlobalSearchInput(searchValue) {
+  searchValue = escapeDoubleQuotes(searchValue.replace(/\+/g, "%2B"));
+
   return {
     pathname: `/search`,
-    search: `?q="${escapeDoubleQuotes(searchValue).split(" ").join("+")}"`,
+    search: `?q="${searchValue.split(" ").join("+")}"`,
   };
 }
