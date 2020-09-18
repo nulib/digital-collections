@@ -38,6 +38,7 @@ export const HONEYBADGER_API_KEY = process.env.REACT_APP_HONEYBADGER_API_KEY;
 export const HONEYBADGER_ENV = process.env.REACT_APP_HONEYBADGER_ENV;
 
 export const SHARED_ITEM_PROXY_URL =
+  process.env.REACT_APP_SHARED_ITEM_PROXY_URL ||
   "https://dcapi.stack.rdc-staging.library.northwestern.edu/resolve/";
 
 // This array holds Keyword Metadata values set in Donut, which are used to group Collections

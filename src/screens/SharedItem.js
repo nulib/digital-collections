@@ -16,14 +16,12 @@ const loadingWrapper = css`
   justify-content: center;
 `;
 
-const testSuccessUrl =
-  "http://digital-collections.rdc-staging.library.northwestern.edu/shared/4f00df5b-1ec5-4d64-9c67-6a50bced88b4";
-
 export default function ScreensSharedItem() {
   const { sharedLinkId } = useParams();
   const history = useHistory();
   const [fetchErrors, setFetchErrors] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const [workData, setWorkData] = useState();
 
   useEffect(() => {
     fetch(`${SHARED_ITEM_PROXY_URL}${sharedLinkId}`)
@@ -38,8 +36,8 @@ export default function ScreensSharedItem() {
           );
         }
 
-        // Success, redirect user to the items page
-        history.push(`/items/${data._source.id}`);
+        console.log("data", data);
+        setWorkData(data._source);
       })
       .catch((error) => {
         setIsLoading(false);
@@ -56,7 +54,10 @@ export default function ScreensSharedItem() {
             <UILoadingSpinner />
           </div>
         ) : (
-          fetchErrors && <UIErrorSection message={fetchErrors} />
+          <div>
+            {fetchErrors && <UIErrorSection message={fetchErrors} />}
+            <h1>do it here</h1>
+          </div>
         )}
       </div>
     </div>
