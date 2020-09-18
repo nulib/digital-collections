@@ -22,6 +22,10 @@ export default function OpenSeadragonContainer({ item }) {
     height: 800,
   };
 
+  if (!item) {
+    return null;
+  }
+
   return (
     <section style={styles.wrapper} data-testid="section-open-seadragon">
       <OpenSeadragonViewer manifestUrl={item.iiifManifest} options={options} />
