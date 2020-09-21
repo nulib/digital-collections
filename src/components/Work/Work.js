@@ -70,7 +70,7 @@ const Work = ({ work }) => {
   }
 
   return (
-    <div>
+    <div data-testid="work-component">
       <LargeFeature item={work} />
       <LoadingSpinner loading={loading} />
       <ParentCollections

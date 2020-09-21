@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import UIErrorSection from "../components/UI/ErrorSection";
 import { SHARED_ITEM_PROXY_URL } from "../services/global-vars";
 import UILoadingSpinner from "../components/UI/LoadingSpinner";
+import ErrorBoundary from "../components/UI/ErrorBoundary";
+import SharedItem from "../components/SharedItem/SharedItem";
 
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
@@ -14,11 +16,11 @@ const errorWrapper = css`
 const loadingWrapper = css`
   display: flex;
   justify-content: center;
+  padding: 5rem 0;
 `;
 
 export default function ScreensSharedItem() {
   const { sharedLinkId } = useParams();
-  const history = useHistory();
   const [fetchErrors, setFetchErrors] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [workData, setWorkData] = useState();
@@ -36,7 +38,6 @@ export default function ScreensSharedItem() {
           );
         }
 
-        console.log("data", data);
         setWorkData(data._source);
       })
       .catch((error) => {
@@ -47,8 +48,8 @@ export default function ScreensSharedItem() {
   }, []);
 
   return (
-    <div className="standard-page" data-testid="shared-item-wrapper">
-      <div id="page" className="search" css={errorWrapper}>
+    <div className="landing-page" data-testid="shared-item-container">
+      <ErrorBoundary>
         {isLoading ? (
           <div css={loadingWrapper}>
             <UILoadingSpinner />
@@ -56,10 +57,10 @@ export default function ScreensSharedItem() {
         ) : (
           <div>
             {fetchErrors && <UIErrorSection message={fetchErrors} />}
-            <h1>do it here</h1>
+            <SharedItem work={workData} />
           </div>
         )}
-      </div>
+      </ErrorBoundary>
     </div>
   );
 }

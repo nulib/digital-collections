@@ -13,7 +13,7 @@ describe("ScreensSharedItem component", () => {
   }
   it("renders the component", () => {
     const { getByTestId } = setupTest();
-    expect(getByTestId("shared-item-wrapper")).toBeInTheDocument();
+    expect(getByTestId("shared-item-container")).toBeInTheDocument();
   });
 
   it("displays an error message when a fetch Error occurs", () => {
