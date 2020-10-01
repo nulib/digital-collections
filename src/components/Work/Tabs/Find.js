@@ -7,28 +7,28 @@ import { reactiveSearchFacets } from "../../../services/reactive-search";
 
 const styles = {
   tabContent: {
-    padding: "0 1rem"
-  }
+    padding: "0 1rem",
+  },
 };
 
 const TabsFind = ({ item }) => {
   if (!item) return;
+  const { descriptiveMetadata } = item;
   const {
-    accession_number: accessionNumber = "",
-    bibliographic_citation: bibliographicCitation = "",
-    box_name: boxName = "",
-    box_number: boxNumber = "",
-    call_number: callNumber = "",
-    catalog_key: catalogKey = "",
-    folder_name: [folderName] = "",
-    folder_number: [folderNumber] = ""
-  } = item;
+    boxName = "",
+    boxNumber = "",
+    citation: bibliographicCitation,
+    catalogKey = "",
+    folderName = "",
+    folderNumber = "",
+  } = descriptiveMetadata;
+  const { accessionNumber = "", call_number: callNumber = "" } = item;
 
   const getAdminSetEmail = () => {
     let email = "";
     try {
       let results = ADMIN_SET_CONTACTS.filter(
-        obj => obj.id === item.admin_set.id
+        (obj) => obj.id === item.admin_set.id
       );
       email = results[0].email;
     } catch (e) {}
@@ -39,7 +39,7 @@ const TabsFind = ({ item }) => {
 
     return {
       label: "More Information",
-      value: `For more information on this item or collection, please contact ${email}`
+      value: `For more information on this item or collection, please contact ${email}`,
     };
   };
 
@@ -49,21 +49,21 @@ const TabsFind = ({ item }) => {
     {
       label: "Box Number",
       //    facet: reactiveSearchFacets.find(facet => facet.value === "Box"),
-      value: boxNumber
+      value: boxNumber,
     },
     { label: "Call Number", value: callNumber },
     {
       label: "NUsearch",
       value: catalogKey,
-      external_url: getPrimoLink(catalogKey)
+      external_url: getPrimoLink(catalogKey),
     },
     { label: "Citation", value: bibliographicCitation },
     { label: "Folder Name", value: folderName },
     {
       label: "Folder Number",
       //  facet: reactiveSearchFacets.find(facet => facet.value === "Folder"),
-      value: folderNumber
-    }
+      value: folderNumber,
+    },
   ];
 
   const adminSetEmail = getAdminSetEmail();
@@ -89,7 +89,7 @@ const TabsFind = ({ item }) => {
 };
 
 TabsFind.propTypes = {
-  item: PropTypes.object
+  item: PropTypes.object,
 };
 
 export default TabsFind;

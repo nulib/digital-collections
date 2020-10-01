@@ -6,85 +6,95 @@ import { formatDate } from "../../../services/helpers";
 
 const styles = {
   tabContent: {
-    padding: "0 1rem"
-  }
+    padding: "0 1rem",
+  },
 };
 
 const TabsMetadata = ({ item }) => {
   if (!item) return;
   const {
     admin_set: { title: [admin_set] = "" } = "", // = "Library Division"
-    based_near = null,
-    abstract: [abstract] = "",
-    alternate_title: [alternateTitle] = "",
-    title = "",
-    caption: [caption] = "",
-    contributor = null,
-    creator = null,
     create_date = "",
-    description: [description] = "",
-    genre = null,
-    keywords: [keywords] = "",
-    language = null,
-    notes = null,
     nul_use_statement: nulUseStatement = null,
-    physical_description_material: [materials] = null,
-    physical_description_size: [size] = null,
-    provenance: [provenance] = "",
-    publisher = "",
-    related_material: relatedMaterial = null,
-    related_url: relatedUrl = null,
-    rights_holder: rightsHolder = "",
-    rights_statement: { label: rightsStatementText } = {},
-    scope_and_contents: scopeAndContents = null,
-    series = null,
-    source = "",
-    style_period: stylePeriod = null,
-    subject = "",
-    table_of_contents: tableOfContents = null,
-    technique = null
+    descriptiveMetadata,
   } = item;
+
+  const {
+    abstract = "",
+    alternateTitle = "",
+    ark,
+    caption = "",
+    contributor = "",
+    creator,
+    description = "",
+    genre = "",
+    keywords = "",
+    language = "",
+    legacyIdentifier = "",
+    location = "",
+    notes = "",
+    physicalDescriptionMaterial: materials,
+    physicalDescriptionSize: size,
+    provenance,
+    publisher,
+    relatedMaterial,
+    relatedUrl,
+    rightsHolder,
+    rightsStatement,
+    scopeAndContents,
+    series,
+    source,
+    stylePeriod,
+    subject,
+    tableOfContents,
+    technique,
+    title,
+  } = descriptiveMetadata;
 
   const metadataItems = [
     { label: "Alternate Title", value: alternateTitle },
     { label: "Abstract", value: abstract },
     { label: "Caption", value: caption },
-    {
-      label: "Creator",
-      value: creator,
-      facet: reactiveSearchFacets.find(facet => facet.value === "Creator")
-    },
+
     {
       label: "Contributor",
       value: contributor,
-      facet: reactiveSearchFacets.find(facet => facet.value === "Contributor")
+      facet: reactiveSearchFacets.find(
+        (facet) => facet.value === "Contributor"
+      ),
+    },
+    {
+      label: "Creator",
+      value: creator,
+      facet: reactiveSearchFacets.find((facet) => facet.value === "Creator"),
     },
     { label: "Date", value: formatDate(create_date) },
-    { label: "Description", value: description },
     {
       label: "Department",
-      value: admin_set
+      value: admin_set,
       // facet: reactiveSearchFacets.find(
       //   facet => facet.value === "LibraryDepartment"
       // )
     },
+    { label: "Description", value: description },
+
     { label: "Dimensions", value: size },
     {
       label: "Genre",
       value: genre,
-      facet: reactiveSearchFacets.find(facet => facet.value === "Genre")
+      facet: reactiveSearchFacets.find((facet) => facet.value === "Genre"),
     },
     { label: "Keyword", value: keywords },
     {
       label: "Language",
       value: language,
-      facet: reactiveSearchFacets.find(facet => facet.value === "Language")
+      facet: reactiveSearchFacets.find((facet) => facet.value === "Language"),
     },
-    // {
-    //   label: "Location",
-    //   value: based_near,
-    //   facet: reactiveSearchFacets.find(facet => facet.value === "Location")
-    // },
+    {
+      label: "Location",
+      value: location,
+      facet: reactiveSearchFacets.find((facet) => facet.value === "Location"),
+    },
     { label: "Materials", value: materials },
     { label: "Notes", value: notes },
     { label: "NUL Use Statement", value: nulUseStatement },
@@ -95,35 +105,37 @@ const TabsMetadata = ({ item }) => {
     { label: "Rights Holder", value: rightsHolder },
     {
       label: "Rights Statement",
-      value: rightsStatementText,
+      value: rightsStatement ? rightsStatement.label : "",
       facet: reactiveSearchFacets.find(
-        facet => facet.value === "RightsStatement"
-      )
+        (facet) => facet.value === "RightsStatement"
+      ),
     },
     { label: "Scope and Contents", value: scopeAndContents },
     {
       label: "Series",
-      value: series
-      //  facet: reactiveSearchFacets.find(facet => facet.value === "Series")
+      value: series,
+      facet: reactiveSearchFacets.find((facet) => facet.value === "Series"),
     },
     { label: "Source", value: source },
     {
       label: "Style Period",
       value: stylePeriod,
-      facet: reactiveSearchFacets.find(facet => facet.value === "StylePeriod")
+      facet: reactiveSearchFacets.find(
+        (facet) => facet.value === "StylePeriod"
+      ),
     },
     {
       label: "Subject",
       value: subject,
-      facet: reactiveSearchFacets.find(facet => facet.value === "Subject")
+      facet: reactiveSearchFacets.find((facet) => facet.value === "Subject"),
     },
     { label: "Table of Contents", value: tableOfContents },
     {
       label: "Technique",
       value: technique,
-      facet: reactiveSearchFacets.find(facet => facet.value === "Technique")
+      facet: reactiveSearchFacets.find((facet) => facet.value === "Technique"),
     },
-    { label: "Title", value: title }
+    { label: "Title", value: title },
   ];
   return (
     <div style={styles.tabContent} data-testid="tab-content-metadata">
@@ -141,7 +153,7 @@ const TabsMetadata = ({ item }) => {
 };
 
 TabsMetadata.propTypes = {
-  item: PropTypes.object
+  item: PropTypes.object,
 };
 
 export default TabsMetadata;

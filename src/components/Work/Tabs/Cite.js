@@ -4,36 +4,39 @@ import MetadataDisplay from "../MetadataDisplay";
 
 const styles = {
   monoSpace: {
-    fontFamily: "monospace"
+    fontFamily: "monospace",
   },
   tabContent: {
-    padding: "0 1rem"
-  }
+    padding: "0 1rem",
+  },
 };
 
-const TabsCite = props => {
+const TabsCite = ({ item }) => {
   const {
     admin_set: { title: [admin_set] = "" } = "", // division,
-    collection = null,
-    date: [date] = "",
+    collection,
+    createDate: [date] = "",
+    descriptiveMetadata,
     id = "",
-    identifier = null,
-    license = null,
     nulUseStatement = "",
-    title: title = ""
-  } = props.item;
+  } = item;
+
+  const {
+    identifier = "",
+    license = null,
+    title: title = "",
+  } = descriptiveMetadata;
 
   const nul = "Northwestern University Libraries";
   const item_link = `${window.location.origin}/items/${id}`;
   const today = new Date().toDateString();
-  const collection_title =
-    collection && collection.length > 0 ? `${collection[0].title}.` : "";
+  const collection_title = collection ? collection.title : "";
 
   const citePanel = [
     { label: "Identifier", value: identifier },
     { label: "Licenses", value: license },
     { label: "Title", value: title },
-    { label: "Use Statement", value: nulUseStatement }
+    { label: "Use Statement", value: nulUseStatement },
   ];
 
   return (
@@ -78,7 +81,7 @@ const TabsCite = props => {
 };
 
 TabsCite.propTypes = {
-  item: PropTypes.object.isRequired
+  item: PropTypes.object.isRequired,
 };
 
 export default TabsCite;
