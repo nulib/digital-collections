@@ -3,13 +3,12 @@ import PropTypes from "prop-types";
 import MetadataDisplay from "../MetadataDisplay";
 import { getPrimoLink } from "../../../services/helpers";
 import { ADMIN_SET_CONTACTS } from "../../../services/global-vars";
-import { reactiveSearchFacets } from "../../../services/reactive-search";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 
-const styles = {
-  tabContent: {
-    padding: "0 1rem",
-  },
-};
+const tabContent = css`
+  padding: 0 1rem;
+`;
 
 const TabsFind = ({ item }) => {
   if (!item) return;
@@ -17,7 +16,7 @@ const TabsFind = ({ item }) => {
   const {
     boxName = "",
     boxNumber = "",
-    citation: bibliographicCitation,
+    citation = "",
     catalogKey = "",
     folderName = "",
     folderNumber = "",
@@ -28,7 +27,7 @@ const TabsFind = ({ item }) => {
     let email = "";
     try {
       let results = ADMIN_SET_CONTACTS.filter(
-        (obj) => obj.id === item.admin_set.id
+        (obj) => obj.id === item.adminSet.id
       );
       email = results[0].email;
     } catch (e) {}
@@ -55,9 +54,9 @@ const TabsFind = ({ item }) => {
     {
       label: "NUsearch",
       value: catalogKey,
-      external_url: getPrimoLink(catalogKey),
+      externalUrl: getPrimoLink(catalogKey),
     },
-    { label: "Citation", value: bibliographicCitation },
+    { label: "Citation", value: citation },
     { label: "Folder Name", value: folderName },
     {
       label: "Folder Number",
@@ -72,14 +71,14 @@ const TabsFind = ({ item }) => {
   }
 
   return (
-    <div data-testid="tab-content-find" style={styles.tabContent}>
+    <div data-testid="tab-content-find" css={tabContent}>
       {findItems.map((findItem, i) => (
         <MetadataDisplay
           key={findItem.label}
           title={findItem.label}
           items={findItem.value}
           facet={findItem.facet}
-          external_url={findItem.external_url}
+          externalUrl={findItem.externalUrl}
           collection={item.collection[0]}
           boxNumber={boxNumber}
         />

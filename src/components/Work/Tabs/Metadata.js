@@ -3,17 +3,17 @@ import PropTypes from "prop-types";
 import MetadataDisplay from "../MetadataDisplay";
 import { reactiveSearchFacets } from "../../../services/reactive-search";
 import { formatDate } from "../../../services/helpers";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 
-const styles = {
-  tabContent: {
-    padding: "0 1rem",
-  },
-};
+const tabContent = css`
+  padding: 0 1rem;
+`;
 
 const TabsMetadata = ({ item }) => {
   if (!item) return;
   const {
-    admin_set: { title: [admin_set] = "" } = "", // = "Library Division"
+    adminSet: { title: [adminSet] = "" } = "", // = "Library Division"
     create_date = "",
     nul_use_statement: nulUseStatement = null,
     descriptiveMetadata,
@@ -22,7 +22,6 @@ const TabsMetadata = ({ item }) => {
   const {
     abstract = "",
     alternateTitle = "",
-    ark,
     caption = "",
     contributor = "",
     creator,
@@ -30,7 +29,6 @@ const TabsMetadata = ({ item }) => {
     genre = "",
     keywords = "",
     language = "",
-    legacyIdentifier = "",
     location = "",
     notes = "",
     physicalDescriptionMaterial: materials,
@@ -71,7 +69,7 @@ const TabsMetadata = ({ item }) => {
     { label: "Date", value: formatDate(create_date) },
     {
       label: "Department",
-      value: admin_set,
+      value: adminSet,
       // facet: reactiveSearchFacets.find(
       //   facet => facet.value === "LibraryDepartment"
       // )
@@ -138,14 +136,14 @@ const TabsMetadata = ({ item }) => {
     { label: "Title", value: title },
   ];
   return (
-    <div style={styles.tabContent} data-testid="tab-content-metadata">
+    <div css={tabContent} data-testid="tab-content-metadata">
       {metadataItems.map((metadataItem, i) => (
         <MetadataDisplay
           key={metadataItem.label}
           title={metadataItem.label}
           items={metadataItem.value}
           facet={metadataItem.facet}
-          external_url={metadataItem.external_url}
+          externalUrl={metadataItem.externalUrl}
         />
       ))}
     </div>

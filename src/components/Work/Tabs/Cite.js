@@ -1,19 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
 import MetadataDisplay from "../MetadataDisplay";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 
-const styles = {
-  monoSpace: {
-    fontFamily: "monospace",
-  },
-  tabContent: {
-    padding: "0 1rem",
-  },
-};
+const tabContent = css`
+  padding: 0 1rem;
+`;
+const monoSpace = css`
+  font-family: monospace;
+`;
 
 const TabsCite = ({ item }) => {
   const {
-    admin_set: { title: [admin_set] = "" } = "", // division,
+    adminSet: { title: [adminSet] = "" } = "", // division,
     collection,
     createDate: [date] = "",
     descriptiveMetadata,
@@ -28,9 +28,9 @@ const TabsCite = ({ item }) => {
   } = descriptiveMetadata;
 
   const nul = "Northwestern University Libraries";
-  const item_link = `${window.location.origin}/items/${id}`;
+  const itemLink = `${window.location.origin}/items/${id}`;
   const today = new Date().toDateString();
-  const collection_title = collection ? collection.title : "";
+  const collectionTitle = collection ? collection.title : "";
 
   const citePanel = [
     { label: "Identifier", value: identifier },
@@ -43,7 +43,7 @@ const TabsCite = ({ item }) => {
     <div data-testid="tab-content-cite">
       <div className="cite-group-col">
         <div className="cite-group">
-          <div style={styles.tabContent}>
+          <div css={tabContent}>
             {citePanel.map((item, i) => (
               <MetadataDisplay
                 key={item.label}
@@ -54,24 +54,24 @@ const TabsCite = ({ item }) => {
           </div>
         </div>
       </div>
-      {/* TO-DO admin_set not yet supported */}
-      {admin_set && (
+      {/* TO-DO adminSet not yet supported */}
+      {adminSet && (
         <div className="cite-group-col">
-          <div className="cite-group" style={styles.tabContent}>
+          <div className="cite-group" css={tabContent}>
             <h4>APA Format</h4>
-            <p>{`${admin_set}, ${nul}. (${date}). ${title}, Retrieved from ${item_link}`}</p>
+            <p>{`${adminSet}, ${nul}. (${date}). ${title}, Retrieved from ${itemLink}`}</p>
 
             <h4>Chicago/Turabian Format</h4>
-            <p>{`${admin_set}, ${nul}. "${title}", ${collection_title} Accessed ${today}. ${item_link}`}</p>
+            <p>{`${adminSet}, ${nul}. "${title}", ${collectionTitle} Accessed ${today}. ${itemLink}`}</p>
 
             <h4>MLA Format</h4>
-            <p>{`${admin_set}, ${nul}. "${title}", ${collection_title} ${date}. ${window.location.origin}/items/${id}`}</p>
+            <p>{`${adminSet}, ${nul}. "${title}", ${collectionTitle} ${date}. ${window.location.origin}/items/${id}`}</p>
 
             <h4>Wikipedia Citation</h4>
             <p>
               <code
-                style={styles.monoSpace}
-              >{`<ref name=NUL>{{cite web | url=${item_link} | title= ${title} (${date}) }} |author=Digital Collections, ${nul} |accessdate=${today} |publisher=${nul}, ${admin_set}}}</ref>`}</code>
+                css={monoSpace}
+              >{`<ref name=NUL>{{cite web | url=${itemLink} | title= ${title} (${date}) }} |author=Digital Collections, ${nul} |accessdate=${today} |publisher=${nul}, ${adminSet}}}</ref>`}</code>
             </p>
           </div>
         </div>

@@ -10,7 +10,7 @@ const MetadataDisplay = ({
   title,
   items,
   facet,
-  external_url = "",
+  externalUrl = "",
   collection,
   boxNumber,
 }) => {
@@ -66,7 +66,7 @@ const MetadataDisplay = ({
       return (
         <li key={(text, i)}>
           <a
-            href={external_url ? external_url : text}
+            href={externalUrl ? externalUrl : text}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -99,7 +99,7 @@ MetadataDisplay.propTypes = {
   title: PropTypes.string,
   items: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   facet: PropTypes.object,
-  external_url: PropTypes.string,
+  externalUrl: PropTypes.string,
   collection: PropTypes.object,
   boxNumber: PropTypes.array,
 };
