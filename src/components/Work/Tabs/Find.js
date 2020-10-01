@@ -3,32 +3,31 @@ import PropTypes from "prop-types";
 import MetadataDisplay from "../MetadataDisplay";
 import { getPrimoLink } from "../../../services/helpers";
 import { ADMIN_SET_CONTACTS } from "../../../services/global-vars";
-import { reactiveSearchFacets } from "../../../services/reactive-search";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 
-const styles = {
-  tabContent: {
-    padding: "0 1rem"
-  }
-};
+const tabContent = css`
+  padding: 0 1rem;
+`;
 
 const TabsFind = ({ item }) => {
   if (!item) return;
+  const { descriptiveMetadata } = item;
   const {
-    accession_number: accessionNumber = "",
-    bibliographic_citation: bibliographicCitation = "",
-    box_name: boxName = "",
-    box_number: boxNumber = "",
-    call_number: callNumber = "",
-    catalog_key: catalogKey = "",
-    folder_name: [folderName] = "",
-    folder_number: [folderNumber] = ""
-  } = item;
+    boxName = "",
+    boxNumber = "",
+    citation = "",
+    catalogKey = "",
+    folderName = "",
+    folderNumber = "",
+  } = descriptiveMetadata;
+  const { accessionNumber = "", call_number: callNumber = "" } = item;
 
   const getAdminSetEmail = () => {
     let email = "";
     try {
       let results = ADMIN_SET_CONTACTS.filter(
-        obj => obj.id === item.admin_set.id
+        (obj) => obj.id === item.adminSet.id
       );
       email = results[0].email;
     } catch (e) {}
@@ -39,7 +38,7 @@ const TabsFind = ({ item }) => {
 
     return {
       label: "More Information",
-      value: `For more information on this item or collection, please contact ${email}`
+      value: `For more information on this item or collection, please contact ${email}`,
     };
   };
 
@@ -49,21 +48,21 @@ const TabsFind = ({ item }) => {
     {
       label: "Box Number",
       //    facet: reactiveSearchFacets.find(facet => facet.value === "Box"),
-      value: boxNumber
+      value: boxNumber,
     },
     { label: "Call Number", value: callNumber },
     {
       label: "NUsearch",
       value: catalogKey,
-      external_url: getPrimoLink(catalogKey)
+      externalUrl: getPrimoLink(catalogKey),
     },
-    { label: "Citation", value: bibliographicCitation },
+    { label: "Citation", value: citation },
     { label: "Folder Name", value: folderName },
     {
       label: "Folder Number",
       //  facet: reactiveSearchFacets.find(facet => facet.value === "Folder"),
-      value: folderNumber
-    }
+      value: folderNumber,
+    },
   ];
 
   const adminSetEmail = getAdminSetEmail();
@@ -72,14 +71,14 @@ const TabsFind = ({ item }) => {
   }
 
   return (
-    <div data-testid="tab-content-find" style={styles.tabContent}>
+    <div data-testid="tab-content-find" css={tabContent}>
       {findItems.map((findItem, i) => (
         <MetadataDisplay
           key={findItem.label}
           title={findItem.label}
           items={findItem.value}
           facet={findItem.facet}
-          external_url={findItem.external_url}
+          externalUrl={findItem.externalUrl}
           collection={item.collection[0]}
           boxNumber={boxNumber}
         />
@@ -89,7 +88,7 @@ const TabsFind = ({ item }) => {
 };
 
 TabsFind.propTypes = {
-  item: PropTypes.object
+  item: PropTypes.object,
 };
 
 export default TabsFind;

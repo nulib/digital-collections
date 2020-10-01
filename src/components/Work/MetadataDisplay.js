@@ -10,13 +10,13 @@ const MetadataDisplay = ({
   title,
   items,
   facet,
-  external_url = "",
+  externalUrl = "",
   collection,
-  boxNumber
+  boxNumber,
 }) => {
   if (!items) return null;
 
-  const itemText = item => item.label || item;
+  const itemText = (item) => (item.label || item.term ? item.term.label : item);
 
   const linkElement = (facet, searchValue) => {
     let adjustedSearchValue = searchValue.split(" ").join("+");
@@ -55,18 +55,18 @@ const MetadataDisplay = ({
     );
   };
 
-  const multipleItems = item => {
+  const multipleItems = (item, i) => {
     let text = itemText(item);
 
     if (facet) {
-      return <li key={text}>{linkElement(facet, text)}</li>;
+      return <li key={(text, i)}>{linkElement(facet, text)}</li>;
     }
 
     if (externalUrlLabels.indexOf(title) > -1) {
       return (
-        <li key={text}>
+        <li key={(text, i)}>
           <a
-            href={external_url ? external_url : text}
+            href={externalUrl ? externalUrl : text}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -89,7 +89,7 @@ const MetadataDisplay = ({
           <p>{facet ? linkElement(facet, itemText(items)) : itemText(items)}</p>
         )
       ) : (
-        <ul>{items.map(item => multipleItems(item))}</ul>
+        <ul>{items.map((item, i) => multipleItems(item, i))}</ul>
       )}
     </>
   ) : null;
@@ -99,9 +99,9 @@ MetadataDisplay.propTypes = {
   title: PropTypes.string,
   items: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   facet: PropTypes.object,
-  external_url: PropTypes.string,
+  externalUrl: PropTypes.string,
   collection: PropTypes.object,
-  boxNumber: PropTypes.array
+  boxNumber: PropTypes.array,
 };
 
 export default MetadataDisplay;

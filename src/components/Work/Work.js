@@ -78,7 +78,7 @@ const Work = ({ work }) => {
         adminSetItems={adminSetItems}
         collection={collection}
       />
-      {/* <WorkItemDetail item={work} /> */}
+      <WorkItemDetail item={work} />
     </div>
   );
 };
