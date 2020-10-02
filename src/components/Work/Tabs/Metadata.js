@@ -15,7 +15,6 @@ const TabsMetadata = ({ item }) => {
   const {
     adminSet: { title: [adminSet] = "" } = "", // = "Library Division"
     create_date = "",
-    nul_use_statement: nulUseStatement = null,
     descriptiveMetadata,
   } = item;
 
@@ -47,6 +46,7 @@ const TabsMetadata = ({ item }) => {
     tableOfContents,
     technique,
     title,
+    termsOfUse,
   } = descriptiveMetadata;
 
   const metadataItems = [
@@ -95,7 +95,7 @@ const TabsMetadata = ({ item }) => {
     },
     { label: "Materials", value: materials },
     { label: "Notes", value: notes },
-    { label: "NUL Use Statement", value: nulUseStatement },
+    { label: "Terms of Use", value: termsOfUse },
     { label: "Provenance", value: provenance },
     { label: "Publisher", value: publisher },
     { label: "Related Material", value: relatedMaterial },

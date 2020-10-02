@@ -4,12 +4,12 @@ import PropTypes from "prop-types";
 import * as globalVars from "../../services/global-vars";
 import placeholderImage from "../../images/book_placeholder.png";
 import { chopString } from "../../services/helpers";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 
-const styles = {
-  title: {
-    lineHeight: "1.5rem",
-  },
-};
+const lineHeight = css`
+  lineheight: 1.5rem;
+`;
 
 const PhotoBox = (props) => {
   const { description, imageUrl, label, type } = props.item;
@@ -33,7 +33,7 @@ const PhotoBox = (props) => {
           onError={loadPlaceholderImage}
         />
         <h4 data-testid="title-photo-box">
-          <span style={styles.title} className="button-link">
+          <span css={lineHeight} className="button-link">
             {label}
           </span>
         </h4>

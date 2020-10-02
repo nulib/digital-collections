@@ -9,7 +9,7 @@ export function buildImageUrl(
   const idKey =
     modelType === globalVars.IMAGE_MODEL
       ? source.representativeFileSet
-        ? source.representativeImage.url
+        ? source.representativeFileSet.url
         : ""
       : "";
   return idKey ? `${idKey}${iiifParams}` : "";
@@ -56,7 +56,7 @@ export function extractCarouselData(elasticsearchResponse, modelType) {
  */
 export function getESDescription(source) {
   if (source.description && source.description.length > 0)
-    return source.description[0];
+    return source.description;
   return source.description || "No description";
 }
 
@@ -71,9 +71,7 @@ export function getESImagePath(
 ) {
   let imgUrl = "";
   if (_source.model && _source.model.name === globalVars.COLLECTION_MODEL) {
-    imgUrl = _source.representative_image
-      ? _source.representative_image.url
-      : "";
+    imgUrl = _source.representativeImage ? _source.representativeImage.url : "";
   }
   if (_source.model && _source.model.name === globalVars.IMAGE_MODEL) {
     imgUrl = _source.representativeFileSet
@@ -140,7 +138,11 @@ export function prepPhotoGridItems(
     id: source.id,
     type: modelType,
     imageUrl: getESImagePath(source),
-    label: source.descriptiveMetadata.title || "",
-    description: source.descriptiveMetadata.description[0],
+    label: source.descriptiveMetadata
+      ? source.descriptiveMetadata.title
+      : source.title,
+    description: source.descriptiveMetadata
+      ? source.descriptiveMetadata.description[0]
+      : source.description,
   }));
 }

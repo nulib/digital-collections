@@ -32,7 +32,7 @@ export function loadCollectionStructuredData(collection, pathname) {
     name: collection.title,
     url: `${productionUrl}${pathname}`,
     ...(collection.description && {
-      description: collection.description.join(" "),
+      description: collection.description,
     }),
     ...(collection.thumbnail_iiif_url && {
       thumbnail: collection.thumbnail_iiif_url,
