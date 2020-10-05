@@ -15,7 +15,7 @@ describe("ElasticSearch parser module", () => {
   describe("Get description function", () => {
     test("returns the right description from a source result", () => {
       const _source = {
-        description: ["Description 1", "Description2"],
+        description: "Description 1",
       };
       const emptySource = {
         accession_number: "12345",
@@ -35,7 +35,7 @@ describe("ElasticSearch parser module", () => {
         url: "http://localhost:8183/iiif/2/file",
         file_set_id: "filesetid1",
       },
-      representative_image: {
+      representativeImage: {
         url: "http://localhost:8183/iiif/2/image",
         work_id: "filesetid1",
       },
@@ -50,6 +50,7 @@ describe("ElasticSearch parser module", () => {
 
     test("returns the right image path for an Image model", () => {
       const source = { ...urls, ...imageModel };
+
       const value = getESImagePath(source);
 
       expect(value).toContain(urls.representativeFileSet.url);
@@ -59,14 +60,14 @@ describe("ElasticSearch parser module", () => {
     test("returns the right image path for a Collection model", () => {
       const source = { ...urls, ...collectionModel };
       const value = getESImagePath(source);
-      expect(value).toContain(urls.representative_image.url);
+      expect(value).toContain(urls.representativeImage.url);
       expect(value).toContain(IIIF_MEDIUM_ITEM_REGION);
     });
 
     test("returns a placeholder image when no image file path is specified", () => {
       const source = {
         representativeFileSet: {},
-        representative_image: {},
+        representativeImage: {},
         ...imageModel,
       };
       const value = getESImagePath(source);

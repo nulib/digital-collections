@@ -9,7 +9,7 @@ import * as globalVars from "../../services/global-vars";
 const { title } = globalVars.ROUTES.COLLECTIONS_ALL;
 const breadcrumbItems = [
   { title: "Collections", link: "collections" },
-  { title, link: "/" }
+  { title, link: "/" },
 ];
 
 const CollectionList = () => {
@@ -29,21 +29,19 @@ const CollectionList = () => {
       response,
       globalVars.COLLECTION_MODEL
     );
-    allCollections.forEach(collection => {
-      collection.description = collection.description || [];
-    });
+
     setAllCollections(allCollections);
     setFilteredCollections(allCollections);
     setLoading(false);
   }
 
-  const handleFilterChange = e => {
+  const handleFilterChange = (e) => {
     const filterValue = e.target.value.toUpperCase();
 
     if (!filterValue) {
       return setFilteredCollections(allCollections);
     }
-    const filteredList = filteredCollections.filter(collection => {
+    const filteredList = filteredCollections.filter((collection) => {
       return collection.label.toUpperCase().indexOf(filterValue) > -1;
     });
     setFilteredCollections(filteredList);

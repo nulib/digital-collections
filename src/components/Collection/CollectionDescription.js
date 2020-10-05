@@ -4,38 +4,46 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const styles = {
   moreLess: {
-    margin: "0 5px"
-  }
+    margin: "0 5px",
+  },
 };
 
 const CollectionDescription = ({ description }) => {
   const [expanded, setExpanded] = useState();
-  const tooLong = description.length > 1;
 
-  const handleClick = e => {
+  // Split the description by line breaks, so it displays properly
+  const descriptionDisplay = description
+    .split("\n")
+    .map((i, key) => <p key={key}>{i}</p>);
+
+  const tooLong = descriptionDisplay.length > 1;
+
+  const handleClick = (e) => {
     e.preventDefault();
     setExpanded(!expanded);
   };
 
   return (
     <>
-      {tooLong && !expanded && description[0]}
-      {(!tooLong || expanded) && description}
+      {tooLong && !expanded && descriptionDisplay[0]}
+      {(!tooLong || expanded) && descriptionDisplay}
       {tooLong && (
-        <a href="/" onClick={handleClick}>
-          <FontAwesomeIcon
-            icon={expanded ? "angle-up" : "angle-right"}
-            style={styles.moreLess}
-          />
-          {expanded ? "Less" : "More"}
-        </a>
+        <p>
+          <a href="/" onClick={handleClick}>
+            <FontAwesomeIcon
+              icon={expanded ? "angle-up" : "angle-right"}
+              style={styles.moreLess}
+            />
+            {expanded ? "Less" : "More"}
+          </a>
+        </p>
       )}
     </>
   );
 };
 
 CollectionDescription.propTypes = {
-  description: PropTypes.string
+  description: PropTypes.string,
 };
 
 export default CollectionDescription;
