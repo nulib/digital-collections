@@ -103,7 +103,7 @@ const Search = ({ breadcrumbs = [] }) => {
           className="datasearch web-form"
           customQuery={simpleQueryStringQuery}
           componentId={GLOBAL_SEARCH_BAR_COMPONENT_ID}
-          dataField={[]}
+          dataField={["full_text"]}
           debounce={1000}
           filterLabel="Search"
           innerClass={{
