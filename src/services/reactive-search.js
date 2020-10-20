@@ -6,9 +6,14 @@ export const DATASEARCH_PLACEHOLDER =
 
 export const reactiveSearchFacets = [
   {
-    elasticSearchField: "box.number.keyword",
-    label: "Box",
-    value: "Box",
+    elasticSearchField: "descriptiveMetadata.boxName.keyword",
+    label: "Box Name",
+    value: "BoxName",
+  },
+  {
+    elasticSearchField: "descriptiveMetadata.boxNumber.keyword",
+    label: "Box Number",
+    value: "BoxNumber",
   },
   {
     elasticSearchField: "collection.title.keyword",
@@ -16,27 +21,32 @@ export const reactiveSearchFacets = [
     value: "Collection",
   },
   {
-    elasticSearchField: "contributor.label.keyword",
+    elasticSearchField: "descriptiveMetadata.contributor.displayFacet",
     label: "Contributor",
     value: "Contributor",
   },
   {
-    elasticSearchField: "creator.label.keyword",
+    elasticSearchField: "descriptiveMetadata.creator.displayFacet",
     label: "Creator",
     value: "Creator",
   },
   {
-    elasticSearchField: "folder.number.keyword",
-    label: "Folder",
-    value: "Folder",
+    elasticSearchField: "descriptiveMetadata.folderName.keyword",
+    label: "Folder Name",
+    value: "FolderName",
   },
   {
-    elasticSearchField: "genre.label.keyword",
+    elasticSearchField: "descriptiveMetadata.folderNumber.keyword",
+    label: "Folder Number",
+    value: "FolderNumber",
+  },
+  {
+    elasticSearchField: "descriptiveMetadata.genre.displayFacet",
     label: "Genre",
     value: "Genre",
   },
   {
-    elasticSearchField: "language.label.keyword",
+    elasticSearchField: "descriptiveMetadata.language.displayFacet",
     label: "Language",
     value: "Language",
   },
@@ -46,37 +56,37 @@ export const reactiveSearchFacets = [
     value: "LibraryDepartment",
   },
   {
-    elasticSearchField: "based_near.label.keyword",
+    elasticSearchField: "descriptiveMetadata.location.displayFacet",
     label: "Location",
     value: "Location",
   },
   {
-    elasticSearchField: "rights_statement.label.keyword",
+    elasticSearchField: "descriptiveMetadata.rightsStatement.label.keyword",
     label: "Rights Statement",
     value: "RightsStatement",
   },
   {
-    elasticSearchField: "series.keyword",
+    elasticSearchField: "descriptiveMetadata.series.keyword",
     label: "Series",
     value: "Series",
   },
   {
-    elasticSearchField: "style_period.label.keyword",
+    elasticSearchField: "descriptiveMetadata.stylePeriod.displayFacet",
     label: "Style Period",
     value: "StylePeriod",
   },
   {
-    elasticSearchField: "subject.label.keyword",
+    elasticSearchField: "descriptiveMetadata.subject.displayFacet",
     label: "Subject",
     value: "Subject",
   },
   {
-    elasticSearchField: "technique.label.keyword",
+    elasticSearchField: "descriptiveMetadata.technique.displayFacet",
     label: "Technique",
     value: "Technique",
   },
   {
-    elasticSearchField: "visibility.keyword",
+    elasticSearchField: "visibility.label.keyword",
     label: "Visibility",
     value: "Visibility",
   },
