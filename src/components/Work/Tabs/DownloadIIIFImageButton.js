@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ClipLoader from "react-spinners/ClipLoader";
 
+/** @jsxRuntime classic */
 /** @jsx jsx */
-import { css, jsx } from "@emotion/core";
+import { css, jsx } from "@emotion/react";
 
 const errorMessage = css`
   color: #b2292e;
@@ -38,7 +39,7 @@ const DownloadIIIFImageButton = ({ handleClick, loading, error }) => {
 DownloadIIIFImageButton.propTypes = {
   handleClick: PropTypes.func.isRequired,
   loading: PropTypes.bool,
-  error: PropTypes.string
+  error: PropTypes.string,
 };
 
 export default DownloadIIIFImageButton;

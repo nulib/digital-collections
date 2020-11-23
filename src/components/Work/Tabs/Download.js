@@ -8,8 +8,9 @@ import DownloadIIIFImage from "./DownloadIIIFImage";
 import { cleanupFilename } from "../../../services/helpers";
 import WorkEmbedViewer from "../EmbedViewer";
 
+/** @jsxRuntime classic */
 /** @jsx jsx */
-import { css, jsx } from "@emotion/core";
+import { css, jsx } from "@emotion/react";
 
 const downloadWrapper = css`
   max-height: 600px;
