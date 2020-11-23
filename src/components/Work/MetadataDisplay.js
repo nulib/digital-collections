@@ -12,11 +12,11 @@ const MetadataDisplay = ({
   facet,
   external_url = "",
   collection,
-  boxNumber
+  boxNumber,
 }) => {
   if (!items) return null;
 
-  const itemText = item => item.label || item;
+  const itemText = (item) => item.label || item;
 
   const linkElement = (facet, searchValue) => {
     let adjustedSearchValue = searchValue.split(" ").join("+");
@@ -30,6 +30,8 @@ const MetadataDisplay = ({
           boxNumber[0]
         }"]&Collection=["${collectionTitle.split(" ").join("+")}"]`
       );
+
+      return <Link to={`/search?${encoded}`}>{searchValue}</Link>;
     }
 
     // Box should only filter on "collection" and "box" facets
@@ -39,9 +41,22 @@ const MetadataDisplay = ({
           .split(" ")
           .join("+")}"]`
       );
+      return <Link to={`/search?${encoded}`}>{searchValue}</Link>;
     }
 
-    return <Link to={`/search?${encoded}`}>{searchValue}</Link>;
+    return (
+      <Link
+        to={{
+          pathname: "/search",
+          state: {
+            facet,
+            searchValue,
+          },
+        }}
+      >
+        {searchValue}
+      </Link>
+    );
   };
 
   const moreInformation = () => {
@@ -55,7 +70,7 @@ const MetadataDisplay = ({
     );
   };
 
-  const multipleItems = item => {
+  const multipleItems = (item) => {
     let text = itemText(item);
 
     if (facet) {
@@ -89,7 +104,7 @@ const MetadataDisplay = ({
           <p>{facet ? linkElement(facet, itemText(items)) : itemText(items)}</p>
         )
       ) : (
-        <ul>{items.map(item => multipleItems(item))}</ul>
+        <ul>{items.map((item) => multipleItems(item))}</ul>
       )}
     </>
   ) : null;
@@ -101,7 +116,7 @@ MetadataDisplay.propTypes = {
   facet: PropTypes.object,
   external_url: PropTypes.string,
   collection: PropTypes.object,
-  boxNumber: PropTypes.array
+  boxNumber: PropTypes.array,
 };
 
 export default MetadataDisplay;
