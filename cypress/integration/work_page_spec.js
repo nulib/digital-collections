@@ -214,10 +214,7 @@ describe("Work page", () => {
           cy.contains("Contributor");
           cy.contains("Olivier, Barry, 1935- (Photographer)")
             .should("have.attr", "href")
-            .and(
-              "include",
-              "search?Contributor=%5B%22Olivier,+Barry,+1935-+(Photographer)%22%5D"
-            );
+            .and("include", "/search");
 
           cy.contains("Date");
           cy.contains("Department");
@@ -225,10 +222,7 @@ describe("Work page", () => {
             "Charles Deering McCormick Library of Special Collections"
           )
             .should("have.attr", "href")
-            .and(
-              "include",
-              "search?LibraryDepartment=%5B%22Charles+Deering+McCormick+Library+of+Special+Collections%22%5D"
-            );
+            .and("include", "/search");
 
           cy.contains("Title");
           cy.contains("Cat");

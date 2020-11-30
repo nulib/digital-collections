@@ -2,8 +2,10 @@ import React from "react";
 import { OpenSeadragonViewer } from "openseadragon-react-viewer";
 import { useParams } from "react-router-dom";
 import logo from "../images/northwestern-white.png";
+
+/** @jsxRuntime classic */
 /** @jsx jsx */
-import { css, jsx } from "@emotion/core";
+import { css, jsx } from "@emotion/react";
 
 const embedWrapper = css`
   position: relative;
