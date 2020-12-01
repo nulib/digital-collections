@@ -1,7 +1,7 @@
 ---
 version: 2.1
 orbs:
-  aws-cli: circleci/aws-cli@0.1
+  aws-cli: circleci/aws-cli@1
   cypress: cypress-io/cypress@1
 jobs:
   test:
@@ -67,14 +67,17 @@ workflows:
     jobs:
       - test
       - cypress/install:
+          executor: cypress/base-12
           yarn: true
       - cypress/run:
           requires:
             - cypress/install
+          executor: cypress/base-12
           yarn: true
           start: HTTPS=false HOST=localhost PORT=3000 yarn start | tee /var/log/yarn.log 2>&1
           wait-on: "http://localhost:3000"
           command: npx cypress run --config-file false --env host=localhost,port=3000
+          store_artifacts: true
       - deploy:
           requires:
             - test

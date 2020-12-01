@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import placeholderImage from "../../images/book_placeholder.png";
 
 import PropTypes from "prop-types";
+
+/** @jsxRuntime classic */
 /** @jsx jsx */
-import { css, jsx } from "@emotion/core";
+import { css, jsx } from "@emotion/react";
 
 const backHide = css`
   opacity: 0;
@@ -20,7 +22,7 @@ const frontHide = css`
   transition: visibility 0.5s, opacity 0.2s linear;
 `;
 
-const PhotoFeature = props => {
+const PhotoFeature = (props) => {
   let { id, description, imageUrl, label } = props.item;
   const [height, setHeight] = useState(0);
   const ref = useRef(null);
@@ -37,13 +39,13 @@ const PhotoFeature = props => {
     }
   }, [isHover]);
 
-  const addHoverClass = e => {
+  const addHoverClass = (e) => {
     if (!isHover) {
       e.preventDefault();
     }
     setIsHover(!isHover);
   };
-  const loadPlaceholderImage = e => {
+  const loadPlaceholderImage = (e) => {
     e.target.src = placeholderImage;
   };
 
@@ -88,9 +90,11 @@ const PhotoFeature = props => {
 PhotoFeature.propTypes = {
   item: PropTypes.shape({
     description: PropTypes.string,
+    id: PropTypes.string,
     imageUrl: PropTypes.string,
-    label: PropTypes.string
-  })
+    label: PropTypes.string,
+  }),
+  styles: PropTypes.object,
 };
 
 export default PhotoFeature;

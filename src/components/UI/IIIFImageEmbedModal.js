@@ -4,8 +4,9 @@ import PropTypes from "prop-types";
 import Modal from "react-modal";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
+/** @jsxRuntime classic */
 /** @jsx jsx */
-import { css, jsx } from "@emotion/core";
+import { css, jsx } from "@emotion/react";
 
 const wrapper = css`
   font-size: 1rem;
@@ -76,7 +77,7 @@ export default function IIIFImageEmbedModal({
   closeModal,
   id,
   iiifServerUrl,
-  modalOpen
+  modalOpen,
 }) {
   const [color, setColor] = useState("default");
   const [width, setWidth] = useState(3000);
@@ -119,13 +120,13 @@ export default function IIIFImageEmbedModal({
       shouldCloseOnEsc={true}
       style={{
         overlay: {
-          background: "rgba(0, 0, 0, 0.5)"
+          background: "rgba(0, 0, 0, 0.5)",
         },
         content: {
           left: "100px",
           right: "100px",
-          bottom: "auto"
-        }
+          bottom: "auto",
+        },
       }}
     >
       <div data-testid="image-embed-modal" className="content" css={wrapper}>
@@ -241,5 +242,5 @@ IIIFImageEmbedModal.propTypes = {
   closeModal: PropTypes.func,
   id: PropTypes.string,
   iiifServerUrl: PropTypes.string,
-  modalOpen: PropTypes.bool
+  modalOpen: PropTypes.bool,
 };

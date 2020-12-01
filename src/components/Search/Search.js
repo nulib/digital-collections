@@ -55,6 +55,7 @@ const Search = ({ breadcrumbs = [] }) => {
   };
 
   const onValueChange = (value) => {
+    console.log("\nvalue", value);
     dispatch(() => searchValueChange(value));
   };
 
