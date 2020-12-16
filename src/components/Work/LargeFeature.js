@@ -9,8 +9,7 @@ import IIIFDraggable from "./IIIFDraggable";
 const LargeFeature = (props) => {
   const { item } = props;
   const title = elasticSearchParser.getESTitle(item);
-  const description =
-    elasticSearchParser.getESDescription(item) || "No description provided.";
+  const description = elasticSearchParser.getESDescription(item) || "";
 
   const styles = {
     paddedBlock: {
