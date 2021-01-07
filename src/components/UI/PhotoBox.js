@@ -4,8 +4,10 @@ import PropTypes from "prop-types";
 import * as globalVars from "../../services/global-vars";
 import placeholderImage from "../../images/book_placeholder.png";
 import { chopString } from "../../services/helpers";
+
+/** @jsxRuntime classic */
 /** @jsx jsx */
-import { css, jsx } from "@emotion/core";
+import { css, jsx } from "@emotion/react";
 
 const lineHeight = css`
   lineheight: 1.5rem;
@@ -52,7 +54,7 @@ PhotoBox.propTypes = {
     description: PropTypes.string,
     id: PropTypes.string.isRequired,
     imageUrl: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
+    label: PropTypes.string,
     type: PropTypes.string.isRequired,
   }),
 };

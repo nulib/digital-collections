@@ -199,7 +199,7 @@ const Collection = () => {
                   dataField={["full_text"]}
                   filterLabel="Collections search"
                   innerClass={{
-                    input: "searchbox rs-search-input",
+                    input: "searchbox rs-search-input is-fullwidth",
                     list: "suggestionlist",
                   }}
                   queryFormat="or"
@@ -229,7 +229,7 @@ const Collection = () => {
                   paginationAt="bottom"
                   renderItem={renderItem}
                   innerClass={{
-                    list: "rs-result-list photo-grid three-grid",
+                    list: "rs-result-list photo-grid four-grid",
                     pagination: "rs-pagination",
                     resultsInfo: "rs-results-info",
                   }}

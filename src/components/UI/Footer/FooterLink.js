@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 
 function FooterLink(props) {
   return (
@@ -9,5 +10,10 @@ function FooterLink(props) {
     </li>
   );
 }
+
+FooterLink.propTypes = {
+  url: PropTypes.string,
+  label: PropTypes.string,
+};
 
 export default FooterLink;

@@ -6,8 +6,9 @@ import UILoadingSpinner from "../components/UI/LoadingSpinner";
 import ErrorBoundary from "../components/UI/ErrorBoundary";
 import SharedItem from "../components/SharedItem/SharedItem";
 
+/** @jsxRuntime classic */
 /** @jsx jsx */
-import { css, jsx } from "@emotion/core";
+import { css, jsx } from "@emotion/react";
 
 const errorWrapper = css`
   padding-bottom: 3rem;

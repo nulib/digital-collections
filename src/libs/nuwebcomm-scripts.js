@@ -211,39 +211,40 @@ $(document).ready(function () {
     switchTab2($(this));
   });
 
-  // photo feature flip image on hover
-  $(".photo-feature")
-    .has(".back")
-    .hover(
-      function () {
-        flipCard($(this));
-      },
-      function () {
-        unflipCard($(this));
-      }
-    );
-  $(".photo-feature")
-    .has(".back")
-    .click(function (e) {
-      if ($(this).find(".front").is(":visible")) {
-        flipCard($(this)); // hover was not triggered, so flip on click
-        e.preventDefault();
-      } // else goodbye!
-    });
-  function flipCard(cardObj) {
-    var img_height = cardObj.find("img").css("height");
-    $(".front").height(img_height);
-    $(".back").height(img_height);
-    cardObj.find(".front").hide();
-    cardObj.find(".back").show();
-  }
-  function unflipCard(cardObj) {
-    var img_height = cardObj.find("img").css("height");
-    $(".front").height("auto");
-    $(".back").height("auto");
-    cardObj.find(".front").show();
-    cardObj.find(".back").hide();
-  }
+  // REMOVING JS SIDE AS WE IMPLEMENT CSS-BASED TRANSITION
+  // // photo feature flip image on hover
+  // $(".photo-feature")
+  //   .has(".back")
+  //   .hover(
+  //     function () {
+  //       flipCard($(this));
+  //     },
+  //     function () {
+  //       unflipCard($(this));
+  //     }
+  //   );
+  // $(".photo-feature")
+  //   .has(".back")
+  //   .click(function (e) {
+  //     if ($(this).find(".front").is(":visible")) {
+  //       flipCard($(this)); // hover was not triggered, so flip on click
+  //       e.preventDefault();
+  //     } // else goodbye!
+  //   });
+  // function flipCard(cardObj) {
+  //   var img_height = cardObj.find("img").css("height");
+  //   $(".front").height(img_height);
+  //   $(".back").height(img_height);
+  //   cardObj.find(".front").hide();
+  //   cardObj.find(".back").show();
+  // }
+  // function unflipCard(cardObj) {
+  //   var img_height = cardObj.find("img").css("height");
+  //   $(".front").height("auto");
+  //   $(".back").height("auto");
+  //   cardObj.find(".front").show();
+  //   cardObj.find(".back").hide();
+  // }
 
   // remove border on image anchors
   $("a img").parent().css("border", "none");

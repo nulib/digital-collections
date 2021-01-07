@@ -7,12 +7,17 @@ import {
   faArrowCircleLeft,
   faArrowCircleRight,
   faCaretDown,
+  faCode,
   faCopy,
   faDownload,
   faExpand,
+  faFileCode,
+  faImage,
+  faImages,
   faSearchMinus,
   faSearchPlus,
-  faTimes
+  faTimes,
+  faTv,
 } from "@fortawesome/free-solid-svg-icons";
 
 export default function registerIcons() {
@@ -24,11 +29,16 @@ export default function registerIcons() {
     faArrowCircleLeft,
     faArrowCircleRight,
     faCaretDown,
+    faCode,
     faCopy,
     faDownload,
     faExpand,
+    faFileCode,
+    faImage,
+    faImages,
     faSearchMinus,
     faSearchPlus,
-    faTimes
+    faTimes,
+    faTv
   );
 }

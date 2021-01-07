@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import TabsCite from "./Tabs/Cite";
 import TabsMetadata from "./Tabs/Metadata";
 import TabsFind from "./Tabs/Find";
+import TabsDownload from "./Tabs/Download";
 
 const WorkItemDetail = ({ item }) => {
   if (!item) {
@@ -26,6 +27,9 @@ const WorkItemDetail = ({ item }) => {
           <Tab role="tab" data-tab-id="cite">
             Cite this Item
           </Tab>
+          <Tab role="tab" data-tab-id="download">
+            Download &amp; Share
+          </Tab>
         </TabList>
 
         <div id="tab-content">
@@ -38,6 +42,9 @@ const WorkItemDetail = ({ item }) => {
           <TabPanel>
             <TabsCite item={item} />
           </TabPanel>
+          <TabPanel>
+            <TabsDownload item={item} />
+          </TabPanel>
         </div>
       </Tabs>
     </section>
@@ -45,7 +52,7 @@ const WorkItemDetail = ({ item }) => {
 };
 
 WorkItemDetail.propTypes = {
-  item: PropTypes.object
+  item: PropTypes.object,
 };
 
 export default WorkItemDetail;

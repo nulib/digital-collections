@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import MetadataDisplay from "../MetadataDisplay";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+const styles = {
+  monoSpace: {
+    fontFamily: "monospace",
+  },
+  tabContent: {
+    padding: "0 1rem",
+  },
+  copyLink: { width: "2rem" },
+  active: { color: "#008656" },
+};
+
+/** @jsxRuntime classic */
 /** @jsx jsx */
-import { css, jsx } from "@emotion/core";
+import { css, jsx } from "@emotion/react";
 
 const tabContent = css`
   padding: 0 1rem;
@@ -27,6 +42,8 @@ const TabsCite = ({ item }) => {
     title: title = "",
   } = descriptiveMetadata;
 
+  const [copied, setCopied] = useState();
+
   const nul = "Northwestern University Libraries";
   const itemLink = `${window.location.origin}/items/${id}`;
   const today = new Date().toDateString();
@@ -38,6 +55,40 @@ const TabsCite = ({ item }) => {
     { label: "Title", value: title },
     { label: "Use Statement", value: nulUseStatement },
   ];
+
+  // TODO: Wire this up
+  // const formats = [
+  //   {
+  //     id: "permalink",
+  //     label: "Ark",
+  //     text: permalink,
+  //     style: {}
+  //   },
+  //   {
+  //     id: "apaFormat",
+  //     label: "APA Format",
+  //     text: `${adminSet}, ${nul}. (${date}). ${title}, Retrieved from ${item_link}`,
+  //     style: {}
+  //   },
+  //   {
+  //     id: "turabianFormat",
+  //     label: "Chicago/Turabian Format",
+  //     text: `${adminSet}, ${nul}. "${title}", ${collection_title} Accessed ${today}. ${item_link}`,
+  //     style: {}
+  //   },
+  //   {
+  //     id: "mlaFormat",
+  //     label: "MLA Format",
+  //     text: `${adminSet}, ${nul}. "${title}", ${collection_title} ${date}. ${window.location.origin}/items/${id}`,
+  //     style: {}
+  //   },
+  //   {
+  //     id: "wikiCitation",
+  //     label: "Wikipedia Citation",
+  //     text: `<ref name=NUL>{{cite web | url=${item_link} | title= ${title} (${date}) }} |author=Digital Collections, ${nul} |accessdate=${today} |publisher=${nul}, ${adminSet}}}</ref>`,
+  //     style: styles.monoSpace
+  //   }
+  // ];
 
   return (
     <div data-testid="tab-content-cite">
@@ -54,28 +105,43 @@ const TabsCite = ({ item }) => {
           </div>
         </div>
       </div>
-      {/* TO-DO adminSet not yet supported */}
-      {adminSet && (
-        <div className="cite-group-col">
-          <div className="cite-group" css={tabContent}>
-            <h4>APA Format</h4>
-            <p>{`${adminSet}, ${nul}. (${date}). ${title}, Retrieved from ${itemLink}`}</p>
-
-            <h4>Chicago/Turabian Format</h4>
-            <p>{`${adminSet}, ${nul}. "${title}", ${collectionTitle} Accessed ${today}. ${itemLink}`}</p>
-
-            <h4>MLA Format</h4>
-            <p>{`${adminSet}, ${nul}. "${title}", ${collectionTitle} ${date}. ${window.location.origin}/items/${id}`}</p>
-
-            <h4>Wikipedia Citation</h4>
+      <div className="cite-group-col">
+        {/* <div className="cite-group" css={tabContent}>
+          {formats.map((item, index) => (
+          <div key={item.id}>
+            <h4>{item.label}</h4>
             <p>
-              <code
-                css={monoSpace}
-              >{`<ref name=NUL>{{cite web | url=${itemLink} | title= ${title} (${date}) }} |author=Digital Collections, ${nul} |accessdate=${today} |publisher=${nul}, ${adminSet}}}</ref>`}</code>
+              <CopyToClipboard
+                text={item.text}
+                onCopy={() => setCopied(item.id)}
+              >
+                <button className="button-link" title="Copy to Clipboard">
+                  <FontAwesomeIcon
+                    icon="copy"
+                    style={
+                      copied === item.id
+                        ? { ...styles.copyLink, ...styles.active }
+                        : styles.copyLink
+                    }
+                  />
+                </button>
+              </CopyToClipboard>
+              {copied === item.id && (
+                <span style={styles.active}>
+                  Copied to Clipboard
+                  <br />
+                </span>
+              )}
+              {item.style ? (
+                <code style={item.style}>{item.text}</code>
+              ) : (
+                <>{item.text}</>
+              )}
             </p>
           </div>
-        </div>
-      )}
+        ))}
+          </div> */}
+      </div>
     </div>
   );
 };

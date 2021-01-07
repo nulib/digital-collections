@@ -2,8 +2,9 @@ import React from "react";
 import BarLoader from "react-spinners/BarLoader";
 import PropTypes from "prop-types";
 
+/** @jsxRuntime classic */
 /** @jsx jsx */
-import { css, jsx } from "@emotion/core";
+import { css, jsx } from "@emotion/react";
 
 const override = css`
   margin: 20px auto;
