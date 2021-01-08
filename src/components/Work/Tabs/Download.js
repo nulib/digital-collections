@@ -32,9 +32,9 @@ const WorkTabsDownload = React.memo(function ({ item }) {
   const [currentId, setCurrentId] = useState();
   const [currentLabel, setCurrentLabel] = useState();
 
-  const iiifServerUrl = item.representative_file_url.slice(
+  const iiifServerUrl = item.representativeFileSet.url.slice(
     0,
-    item.representative_file_url.lastIndexOf("/")
+    item.representativeFileSet.url.lastIndexOf("/")
   );
 
   useEffect(() => {

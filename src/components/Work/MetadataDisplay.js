@@ -58,17 +58,6 @@ const MetadataDisplay = ({
     );
   };
 
-  const moreInformation = () => {
-    const contactIndex = items.indexOf("contact") + 7;
-
-    return (
-      <p>
-        {`${items.substr(0, contactIndex)}`}{" "}
-        <Mailto email={items.substr(contactIndex).trim()} />
-      </p>
-    );
-  };
-
   const multipleItems = (item, i) => {
     let text = itemText(item);
 
@@ -97,11 +86,7 @@ const MetadataDisplay = ({
     <>
       <h4>{title}</h4>
       {typeof items === "string" ? (
-        title === "More Information" ? (
-          moreInformation(items)
-        ) : (
-          <p>{facet ? linkElement(facet, itemText(items)) : itemText(items)}</p>
-        )
+        <p>{facet ? linkElement(facet, itemText(items)) : itemText(items)}</p>
       ) : (
         <ul>{items.map((item, i) => multipleItems(item, i))}</ul>
       )}
