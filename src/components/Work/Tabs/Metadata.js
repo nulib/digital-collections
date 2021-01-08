@@ -3,8 +3,10 @@ import PropTypes from "prop-types";
 import MetadataDisplay from "../MetadataDisplay";
 import { reactiveSearchFacets } from "../../../services/reactive-search";
 import { formatDate } from "../../../services/helpers";
+
+/** @jsxRuntime classic */
 /** @jsx jsx */
-import { css, jsx } from "@emotion/core";
+import { css, jsx } from "@emotion/react";
 
 const tabContent = css`
   padding: 0 1rem;

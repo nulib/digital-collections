@@ -34,9 +34,9 @@ const ScreensContactUs = () => {
         <main id="main-content" className="content" tabIndex="0">
           <Breadcrumbs items={breadCrumbs} />
           <p>
-            Northwestern University Libraries' Repository and Digital Curation
-            department is located in the main library on our Evanston campus.
-            The department is responsible for digitization of library
+            Northwestern University Libraries&apos; Repository and Digital
+            Curation department is located in the main library on our Evanston
+            campus. The department is responsible for digitization of library
             collections, describing content, and creating the software that runs
             this website.
           </p>

@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import placeholderImage from "../../images/book_placeholder.png";
-
 import PropTypes from "prop-types";
+
+/** @jsxRuntime classic */
 /** @jsx jsx */
-import { css, jsx } from "@emotion/core";
+import { css, jsx } from "@emotion/react";
 
 const backHide = css`
   opacity: 0;
@@ -54,12 +55,12 @@ const PhotoFeature = (props) => {
       onMouseEnter={addHoverClass}
       onMouseLeave={addHoverClass}
       onClick={addHoverClass}
-      aria-labelledby="photo-feature"
+      aria-labelledby={`photo-feature-${id}`}
       data-testid="photo-feature"
     >
       <Link
         to={`/collections/${id}`}
-        id="photo-feature"
+        id={`photo-feature-${id}`}
         onClick={addHoverClass}
       >
         <div css={!isHover ? frontShow : frontHide}>
@@ -88,9 +89,11 @@ const PhotoFeature = (props) => {
 PhotoFeature.propTypes = {
   item: PropTypes.shape({
     description: PropTypes.string,
+    id: PropTypes.string,
     imageUrl: PropTypes.string,
     label: PropTypes.string,
   }),
+  styles: PropTypes.object,
 };
 
 export default PhotoFeature;

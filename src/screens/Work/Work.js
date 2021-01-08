@@ -131,14 +131,18 @@ const ScreensWork = () => {
 
   return (
     <div className="landing-page">
-      {/* <Helmet>
+      <Helmet>
         <title>{generateTitleTag(itemTitle)}</title>
-        {structuredData && (
+        {/* {structuredData && (
           <script type="application/ld+json">
             {JSON.stringify(structuredData)}
           </script>
-        )}
-      </Helmet> */}
+        )} */}
+        <link
+          rel="canonical"
+          href={`https://digitalcollections.library.northwestern.edu${location.pathname}`}
+        />
+      </Helmet>
       <ErrorBoundary>
         {error && <ErrorSection message={error} />}
         {item && idInSync && !error && <OpenSeadragonContainer item={item} />}

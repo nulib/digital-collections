@@ -30,6 +30,8 @@ const MetadataDisplay = ({
           boxNumber[0]
         }"]&Collection=["${collectionTitle.split(" ").join("+")}"]`
       );
+
+      return <Link to={`/search?${encoded}`}>{searchValue}</Link>;
     }
 
     // Box should only filter on "collection" and "box" facets
@@ -41,7 +43,19 @@ const MetadataDisplay = ({
       );
     }
 
-    return <Link to={`/search?${encoded}`}>{searchValue}</Link>;
+    return (
+      <Link
+        to={{
+          pathname: "/search",
+          state: {
+            facet,
+            searchValue,
+          },
+        }}
+      >
+        {searchValue}
+      </Link>
+    );
   };
 
   const moreInformation = () => {

@@ -5,7 +5,9 @@ import { prepGlobalSearchInput } from "../../../services/helpers";
 
 const GlobalSearch = () => {
   const [searchValue, setSearchValue] = useState("");
-  const reduxSearchValue = useSelector(state => state.search.searchValue || "");
+  const reduxSearchValue = useSelector(
+    (state) => state.search.searchValue || ""
+  );
 
   let history = useHistory();
 
@@ -13,12 +15,12 @@ const GlobalSearch = () => {
     setSearchValue(reduxSearchValue);
   }, [reduxSearchValue]);
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     history.push(prepGlobalSearchInput(searchValue));
   };
 
-  const handleSearchChange = e => {
+  const handleSearchChange = (e) => {
     setSearchValue(e.target.value);
   };
 
@@ -30,10 +32,8 @@ const GlobalSearch = () => {
     >
       <div className="search-form searchblox">
         <form role="search" onSubmit={handleSubmit}>
-          <label className="hide-label" htmlFor="q-desktop">
-            Search this website
-          </label>
           <input
+            aria-label="Search this website"
             placeholder="Search this site"
             type="text"
             value={searchValue}

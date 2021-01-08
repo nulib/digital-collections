@@ -3,8 +3,11 @@ import PropTypes from "prop-types";
 import MetadataDisplay from "../MetadataDisplay";
 import { getPrimoLink } from "../../../services/helpers";
 import { ADMIN_SET_CONTACTS } from "../../../services/global-vars";
+import { reactiveSearchFacets } from "../../../services/reactive-search";
+
+/** @jsxRuntime classic */
 /** @jsx jsx */
-import { css, jsx } from "@emotion/core";
+import { css, jsx } from "@emotion/react";
 
 const tabContent = css`
   padding: 0 1rem;

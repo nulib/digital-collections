@@ -119,6 +119,14 @@ export async function getAllCollections(numResults = PAGE_SIZE) {
               },
             ],
           },
+          // TODO: Wire this up
+          // sort: [
+          //   {
+          //     "title.primary.keyword": {
+          //       order: "asc",
+          //     },
+          //   },
+          // ],
         },
       },
     });
