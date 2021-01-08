@@ -130,8 +130,6 @@ const TabsMetadata = ({ item }) => {
     { label: "Title", value: title },
   ];
 
-  console.log("metadataItems", metadataItems);
-
   return (
     <div style={styles.tabContent} data-testid="tab-content-metadata">
       {metadataItems.map((metadataItem, i) => (
