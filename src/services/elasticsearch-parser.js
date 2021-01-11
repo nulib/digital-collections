@@ -55,9 +55,12 @@ export function extractCarouselData(elasticsearchResponse, modelType) {
  * @return {String} A single description text string
  */
 export function getESDescription(source) {
-  if (source.description && source.description.length > 0)
-    return source.description;
-  return source.description || "No description";
+  if (
+    source.descriptiveMetadata &&
+    source.descriptiveMetadata.description.length > 0
+  )
+    return source.descriptiveMetadata.description;
+  return "";
 }
 
 /**

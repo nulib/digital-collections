@@ -15,7 +15,7 @@ describe("ElasticSearch parser module", () => {
   describe("Get description function", () => {
     test("returns the right description from a source result", () => {
       const _source = {
-        description: "Description 1",
+        descriptiveMetadata: { description: "Description 1" },
       };
       const emptySource = {
         accession_number: "12345",
@@ -25,7 +25,7 @@ describe("ElasticSearch parser module", () => {
       const emptyString = getESDescription(emptySource);
 
       expect(value).toBe("Description 1");
-      expect(emptyString).toBe("No description");
+      expect(emptyString).toBe("");
     });
   });
 
