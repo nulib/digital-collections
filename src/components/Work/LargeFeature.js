@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import { chopString } from "../../services/helpers";
 import IIIFDraggable from "./IIIFDraggable";
 
-const LargeFeature = props => {
+const LargeFeature = (props) => {
   const { item } = props;
   const title = elasticSearchParser.getESTitle(item);
   const description =
@@ -14,12 +14,12 @@ const LargeFeature = props => {
 
   const styles = {
     paddedBlock: {
-      marginBottom: "1em"
+      marginBottom: "1em",
     },
     subhead: {
       display: "block",
-      fontFamily: "Akkurat Pro Bold,Arial Black,sans-serif"
-    }
+      fontFamily: "Akkurat Pro Bold,Arial Black,sans-serif",
+    },
   };
 
   return (
@@ -30,9 +30,14 @@ const LargeFeature = props => {
       <h3>Item Details</h3>
       <div className="large-feature-inner">
         <div className="content-side">
-          <h4 data-testid="item-title">{title}</h4>
+          {title && <h4 data-testid="item-title">{title}</h4>}
           <div className="text">
-            <p data-testid="item-description">{chopString(description, 70)}</p>
+            {Array.isArray(description) &&
+              description.map((desc) => (
+                <p key={desc} data-testid="item-description">
+                  {chopString(desc, 70)}
+                </p>
+              ))}
           </div>
           <ButtonRow />
         </div>
@@ -54,7 +59,7 @@ const LargeFeature = props => {
 };
 
 LargeFeature.propTypes = {
-  item: PropTypes.object
+  item: PropTypes.object,
 };
 
 export default LargeFeature;
