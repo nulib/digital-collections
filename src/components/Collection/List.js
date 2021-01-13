@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Breadcrumbs from "../UI/Breadcrumbs/Breadcrumbs";
 import PhotoGrid from "../UI/PhotoGrid";
 import LoadingSpinner from "../UI/LoadingSpinner";
 import { getAllCollections } from "../../api/elasticsearch-api";
@@ -7,10 +6,6 @@ import { prepPhotoGridItems } from "../../services/elasticsearch-parser";
 import * as globalVars from "../../services/global-vars";
 
 const { title } = globalVars.ROUTES.COLLECTIONS_ALL;
-const breadcrumbItems = [
-  { title: "Collections", link: "collections" },
-  { title, link: "/" },
-];
 
 const CollectionList = () => {
   const [allCollections, setAllCollections] = useState([]);
@@ -49,7 +44,6 @@ const CollectionList = () => {
 
   return (
     <>
-      <Breadcrumbs items={breadcrumbItems} />
       <div className="contain-1120">
         <h2>{title}</h2>
         <form className="web-form">

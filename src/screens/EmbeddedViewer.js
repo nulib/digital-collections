@@ -2,6 +2,8 @@ import React from "react";
 import { OpenSeadragonViewer } from "openseadragon-react-viewer";
 import { useParams } from "react-router-dom";
 import logo from "../images/northwestern-white.png";
+import { ErrorBoundary } from "react-error-boundary";
+import FallbackErrorComponent from "components/UI/FallbackErrorComponent";
 
 /** @jsxRuntime classic */
 /** @jsx jsx */
@@ -24,16 +26,18 @@ export default function ScreensEmbeddedViewer() {
   return (
     <div className="embeded-viewer-wrapper" css={embedWrapper}>
       <img src={logo} alt="Northwestern logo" css={imgLogo} />
-      <OpenSeadragonViewer
-        manifestUrl={decodeURIComponent(params.manifestUrl)}
-        options={{
-          showDropdown: true,
-          showThumbnails: true,
-          showToolbar: true,
-          deepLinking: false,
-          height: 800,
-        }}
-      />
+      <ErrorBoundary FallbackComponent={FallbackErrorComponent}>
+        <OpenSeadragonViewer
+          manifestUrl={decodeURIComponent(params.manifestUrl)}
+          options={{
+            showDropdown: true,
+            showThumbnails: true,
+            showToolbar: true,
+            deepLinking: false,
+            height: 800,
+          }}
+        />
+      </ErrorBoundary>
     </div>
   );
 }

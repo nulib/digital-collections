@@ -7,6 +7,8 @@ import Collection from "../../components/Collection/Collection";
 import * as elasticsearchApi from "../../api/elasticsearch-api.js";
 import { generateTitleTag } from "../../services/helpers";
 import { loadCollectionStructuredData } from "../../services/google-structured-data";
+import { ErrorBoundary } from "react-error-boundary";
+import FallbackErrorComponent from "components/UI/FallbackErrorComponent";
 
 const ScreensCollection = () => {
   const [structuredData, setStructuredData] = useState({});
@@ -43,7 +45,7 @@ const ScreensCollection = () => {
   function populateGTMDataLayer() {
     const dataLayer = {
       collections: collectionTitle.current,
-      pageTitle: collectionTitle.current
+      pageTitle: collectionTitle.current,
     };
     loadDataLayer(dataLayer);
   }
@@ -60,7 +62,9 @@ const ScreensCollection = () => {
         )}
       </Helmet>
       <div id="page" className="collection-items">
-        <Collection />
+        <ErrorBoundary FallbackComponent={FallbackErrorComponent}>
+          <Collection />
+        </ErrorBoundary>
       </div>
     </div>
   );

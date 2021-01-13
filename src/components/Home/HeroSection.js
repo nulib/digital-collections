@@ -2,17 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const HeroSection = props => {
+const HeroSection = (props) => {
   const { collectionId, title, subTitle, heroImage } = props.heroData;
   const bgImage = require(`../../images/${heroImage}`);
   const buttonText = "View Collection";
   const styles = {
     heroBg: {
-      backgroundImage: `url(${bgImage})`,
+      backgroundImage: `url(${bgImage.default})`,
       backgroundRepeat: "no-repeat",
       backgroundSize: "cover",
-      backgroundPosition: "center"
-    }
+      backgroundPosition: "center",
+    },
   };
 
   return (
@@ -54,8 +54,8 @@ HeroSection.propTypes = {
     collectionId: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     subTitle: PropTypes.string.isRequired,
-    heroImage: PropTypes.string.isRequired
-  })
+    heroImage: PropTypes.string.isRequired,
+  }),
 };
 
 export default HeroSection;

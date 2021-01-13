@@ -1,6 +1,8 @@
 import React from "react";
 import { OpenSeadragonViewer } from "openseadragon-react-viewer";
 import PropTypes from "prop-types";
+import { ErrorBoundary } from "react-error-boundary";
+import FallbackErrorComponent from "components/UI/FallbackErrorComponent";
 
 const styles = {
   spinner: {
@@ -28,7 +30,12 @@ export default function OpenSeadragonContainer({ item }) {
 
   return (
     <section style={styles.wrapper} data-testid="section-open-seadragon">
-      <OpenSeadragonViewer manifestUrl={item.iiifManifest} options={options} />
+      <ErrorBoundary FallbackComponent={FallbackErrorComponent}>
+        <OpenSeadragonViewer
+          manifestUrl={item.iiifManifest}
+          options={options}
+        />
+      </ErrorBoundary>
     </section>
   );
 }

@@ -5,8 +5,16 @@ import { Helmet } from "react-helmet";
 import { loadDataLayer } from "../../services/google-tag-manager";
 import { loadDefaultStructuredData } from "../../services/google-structured-data";
 import CollectionList from "../../components/Collection/List";
+import { ErrorBoundary } from "react-error-boundary";
+import Breadcrumbs from "components/UI/Breadcrumbs/Breadcrumbs";
+import FallbackErrorComponent from "components/UI/FallbackErrorComponent";
 
 const { title } = globalVars.ROUTES.COLLECTIONS_ALL;
+
+const breadcrumbItems = [
+  { title: "Collections", link: "collections" },
+  { title, link: "/" },
+];
 
 const ScreensCollectionList = () => {
   useEffect(() => {
@@ -23,7 +31,10 @@ const ScreensCollectionList = () => {
       </Helmet>
       <div id="page">
         <main id="main-content" className="content extended" tabIndex="0">
-          <CollectionList />
+          <Breadcrumbs items={breadcrumbItems} />
+          <ErrorBoundary FallbackComponent={FallbackErrorComponent}>
+            <CollectionList />
+          </ErrorBoundary>
         </main>
       </div>
     </div>
