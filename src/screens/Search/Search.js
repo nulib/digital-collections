@@ -4,6 +4,8 @@ import { Helmet } from "react-helmet";
 import { ROUTES } from "../../services/global-vars";
 import { loadDataLayer } from "../../services/google-tag-manager";
 import Search from "../../components/Search/Search";
+import { ErrorBoundary } from "react-error-boundary";
+import FallbackErrorComponent from "components/UI/FallbackErrorComponent";
 
 const ScreensSearch = () => {
   useEffect(() => {
@@ -12,7 +14,7 @@ const ScreensSearch = () => {
 
   const breadcrumbs = [
     { link: "/", title: "Home" },
-    { link: "", title: "Search Results" }
+    { link: "", title: "Search Results" },
   ];
 
   return (
@@ -21,7 +23,9 @@ const ScreensSearch = () => {
         <title>{generateTitleTag("Search")}</title>
       </Helmet>
       <div id="page" className="search">
-        <Search breadcrumbs={breadcrumbs} />
+        <ErrorBoundary FallbackComponent={FallbackErrorComponent}>
+          <Search breadcrumbs={breadcrumbs} />
+        </ErrorBoundary>
       </div>
     </div>
   );

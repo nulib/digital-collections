@@ -47,7 +47,7 @@ const Home = () => {
         //setKeywordCollections(keywordCollections);
         setLoading(false);
       })
-      .catch(error => console.log("Error grabbing data", error));
+      .catch((error) => console.log("Error grabbing data", error));
   }, []);
 
   function renderAdditionalGalleries() {
@@ -74,7 +74,7 @@ const Home = () => {
             slidesPerView={isMobileOnly ? 1 : isTablet ? 2 : 3}
             navigation
           >
-            {keywordCollections[i].map(item => (
+            {keywordCollections[i].map((item) => (
               <SwiperSlide key={item.id}>
                 <div
                   className="photo-feature-3-across"
@@ -181,7 +181,7 @@ const Home = () => {
           navigation
           className="photobox-swiper"
         >
-          {galleryItems.map(item => (
+          {galleryItems.map((item) => (
             <SwiperSlide key={item.id}>
               <div align="center">
                 <PhotoBox hideDescriptions={true} item={item} />

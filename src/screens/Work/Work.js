@@ -9,10 +9,11 @@ import { generateTitleTag } from "../../services/helpers";
 import { loadDataLayer } from "../../services/google-tag-manager";
 import { loadItemStructuredData } from "../../services/google-structured-data";
 import Work from "../../components/Work/Work";
-import ErrorBoundary from "../../components/UI/ErrorBoundary";
-import ErrorSection from "../../components/UI/ErrorSection";
-import * as globalVars from "../../services/global-vars";
-import LoadingSpinner from "../../components/UI/LoadingSpinner";
+import * as globalVars from "services/global-vars";
+import LoadingSpinner from "components/UI/LoadingSpinner";
+import { ErrorBoundary } from "react-error-boundary";
+import FallbackErrorComponent from "components/UI/FallbackErrorComponent";
+import ErrorSection from "components/UI/ErrorSection";
 
 const ScreensWork = () => {
   const [error, setError] = useState();
@@ -143,8 +144,8 @@ const ScreensWork = () => {
           href={`https://digitalcollections.library.northwestern.edu${location.pathname}`}
         />
       </Helmet>
-      <ErrorBoundary>
-        {error && <ErrorSection message={error} />}
+      <ErrorBoundary FallbackComponent={FallbackErrorComponent}>
+        {error && <ErrorSection>{error}</ErrorSection>}
         {item && idInSync && !error && <OpenSeadragonContainer item={item} />}
         <div id="page">
           <main id="main-content" className="content" tabIndex="0">

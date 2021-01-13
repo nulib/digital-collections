@@ -3,16 +3,13 @@ import { useParams } from "react-router-dom";
 import UIErrorSection from "../components/UI/ErrorSection";
 import { SHARED_ITEM_PROXY_URL } from "../services/global-vars";
 import UILoadingSpinner from "../components/UI/LoadingSpinner";
-import ErrorBoundary from "../components/UI/ErrorBoundary";
+import { ErrorBoundary } from "react-error-boundary";
 import SharedItem from "../components/SharedItem/SharedItem";
+import FallbackErrorComponent from "components/UI/FallbackErrorComponent";
 
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { css, jsx } from "@emotion/react";
-
-const errorWrapper = css`
-  padding-bottom: 3rem;
-`;
 
 const loadingWrapper = css`
   display: flex;
@@ -50,7 +47,7 @@ export default function ScreensSharedItem() {
 
   return (
     <div className="landing-page" data-testid="shared-item-container">
-      <ErrorBoundary>
+      <ErrorBoundary FallbackComponent={FallbackErrorComponent}>
         {isLoading ? (
           <div css={loadingWrapper}>
             <UILoadingSpinner />

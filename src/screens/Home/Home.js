@@ -5,6 +5,8 @@ import { generateTitleTag } from "../../services/helpers";
 import { loadDataLayer } from "../../services/google-tag-manager";
 import { loadDefaultStructuredData } from "../../services/google-structured-data";
 import Home from "../../components/Home/Home";
+import { ErrorBoundary } from "react-error-boundary";
+import FallbackErrorComponent from "components/UI/FallbackErrorComponent";
 
 const ScreensHome = () => {
   useEffect(() => {
@@ -21,7 +23,9 @@ const ScreensHome = () => {
       </Helmet>
       <div id="page">
         <main id="main-content" className="content" tabIndex="0">
-          <Home />
+          <ErrorBoundary FallbackComponent={FallbackErrorComponent}>
+            <Home />
+          </ErrorBoundary>
         </main>
       </div>
     </div>
