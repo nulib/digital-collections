@@ -40,8 +40,6 @@ jobs:
           command: |
             if [[ $CIRCLE_BRANCH == "master" ]]; then
               echo "export DEPLOY_TAG=production" >> $BASH_ENV
-            elif [[ $CIRCLE_BRANCH == "deploy/fen" ]]; then
-              echo "export DEPLOY_TAG=staging" >> $BASH_ENV
             else
               echo "export DEPLOY_TAG=$(echo $CIRCLE_BRANCH | awk -F/ '{print $NF}')" >> $BASH_ENV
             fi
@@ -84,3 +82,4 @@ workflows:
               only:
                 - master
                 - /^deploy\/.+/
+                - /^fen\/.+/
