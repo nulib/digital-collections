@@ -21,7 +21,6 @@ src/**/*.css
 .env.development.local
 .env.test.local
 .env.production.local
-.eslintcache
 
 npm-debug.log*
 yarn-debug.log*
@@ -42,3 +41,4 @@ process.yml
 /terraform/.terraform/
 
 .eslintcache
+

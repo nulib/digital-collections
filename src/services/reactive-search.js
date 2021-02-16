@@ -76,7 +76,7 @@ export const reactiveSearchFacets = [
     value: "StylePeriod",
   },
   {
-    elasticSearchField: "descriptiveMetadata.subject.displayFacet",
+    elasticSearchField: "descriptiveMetadata.subject.term.label.keyword",
     label: "Subject",
     value: "Subject",
   },
