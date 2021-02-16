@@ -34,6 +34,11 @@ variable "dns_zone" {
   type = string
 }
 
+variable "waf_acl" {
+  type    = string
+  default = null
+}
+
 variable "tags" {
   type    = map
   default = {}

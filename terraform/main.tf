@@ -72,7 +72,8 @@ resource "aws_cloudfront_distribution" "fen" {
   is_ipv6_enabled     = true
   comment             = "Fen"
   default_root_object = "index.html"
-
+  web_acl_id          = var.waf_acl
+  
   aliases = local.fen_aliases
 
   default_cache_behavior {
