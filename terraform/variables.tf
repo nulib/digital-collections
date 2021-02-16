@@ -44,12 +44,12 @@ locals {
   public_zone_name  = "${var.stack_name}.${var.dns_zone}"
   private_zone_name = "${var.stack_name}.vpc.${var.dns_zone}"
 
-  common_tags = "${merge(
+  common_tags = merge(
     var.tags,
     map(
       "Terraform", "true",
-      "Environment", "${local.namespace}",
+      "Environment", local.namespace,
       "Project", "Fen"
     )
-  )}"
+  )
 }

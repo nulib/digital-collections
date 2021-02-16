@@ -9,7 +9,7 @@ provider "aws" {
 locals {
   fen_dns_name = local.public_zone_name
   # TODO do we need fen aliases?
-  fen_aliases = "${concat(list(local.fen_dns_name), var.fen_dns_names)}"
+  fen_aliases = concat(list(local.fen_dns_name), var.fen_dns_names)
 }
 
 resource "aws_s3_bucket" "static_fen_bucket" {
@@ -37,18 +37,18 @@ data "aws_iam_policy_document" "fen_bucket_policy" {
 
     principals {
       type        = "AWS"
-      identifiers = ["${aws_cloudfront_origin_access_identity.fen_origin_access_identity.iam_arn}"]
+      identifiers = [aws_cloudfront_origin_access_identity.fen_origin_access_identity.iam_arn]
     }
   }
 
   statement {
     effect    = "Allow"
     actions   = ["s3:ListBucket"]
-    resources = ["${aws_s3_bucket.static_fen_bucket.arn}"]
+    resources = [aws_s3_bucket.static_fen_bucket.arn]
 
     principals {
       type        = "AWS"
-      identifiers = ["${aws_cloudfront_origin_access_identity.fen_origin_access_identity.iam_arn}"]
+      identifiers = [aws_cloudfront_origin_access_identity.fen_origin_access_identity.iam_arn]
     }
   }
 }
