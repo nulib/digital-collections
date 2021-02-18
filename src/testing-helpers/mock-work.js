@@ -32,6 +32,16 @@ export const mockWork = {
     folderName: [],
     license: null,
     rightsHolder: [],
+    dateCreated: [
+      {
+        edtf: "~2021",
+        humanized: "circa 2021?",
+      },
+      {
+        edtf: "199X",
+        humanized: "1990s",
+      },
+    ],
     genre: [
       {
         displayFacet: "pointers (breed, dogs)",

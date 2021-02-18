@@ -16,7 +16,6 @@ const TabsMetadata = ({ item }) => {
   if (!item) return;
   const {
     administrativeMetadata: { libraryUnit }, // = "Library Division"
-    createDate = "",
     descriptiveMetadata,
   } = item;
 
@@ -26,6 +25,7 @@ const TabsMetadata = ({ item }) => {
     caption,
     contributor,
     creator,
+    dateCreated,
     description,
     genre,
     keywords,
@@ -68,7 +68,7 @@ const TabsMetadata = ({ item }) => {
       value: creator,
       facet: reactiveSearchFacets.find((facet) => facet.value === "Creator"),
     },
-    { label: "Date", value: formatDate(createDate) },
+    { label: "Date", value: dateCreated.map((d) => d.humanized) },
     {
       label: "Department",
       value: libraryUnit.label,
