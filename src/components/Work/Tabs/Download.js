@@ -38,14 +38,14 @@ const WorkTabsDownload = React.memo(function ({ item }) {
   );
 
   useEffect(() => {
-    fetch(item.iiif_manifest)
+    fetch(item.iiifManifest)
       .then((response) => response.json())
       .then((data) => {
         setTileSources(getTileSources(data));
         setLoading(false);
       })
       .catch((e) => console.log("There was an error fetching the manifest"));
-  }, [item.iiif_manifest]);
+  }, [item.iiifManifest]);
 
   function closeModal() {
     setCurrentId(null);

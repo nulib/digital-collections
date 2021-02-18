@@ -40,7 +40,7 @@ describe("work structured data", () => {
   let anotherMock = {
     creator: [{ label: "john" }],
     contributor: [{ label: "bob" }, { label: "Rush, Otis" }],
-    iiif_manifest:
+    iiifManifest:
       "https://iiif.stack.rdc.library.northwestern.edu/public/c7/86/33/6b",
     representativeFileSet: {
       url: "http://location.com/xyz",

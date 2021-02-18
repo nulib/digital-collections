@@ -51,7 +51,7 @@ const LargeFeature = (props) => {
             <SocialLinks item={item} />
           </div>
 
-          <IIIFDraggable iiifManifest={item.iiif_manifest} />
+          <IIIFDraggable iiifManifest={item.iiifManifest} />
         </div>
       </div>
     </div>
