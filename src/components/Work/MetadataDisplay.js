@@ -6,17 +6,24 @@ import { getESTitle } from "../../services/elasticsearch-parser";
 
 const externalUrlLabels = ["Related Url", "NUsearch"];
 
+function prepItemText(item) {
+  if (item.term) {
+    return item.term.label || "";
+  }
+  if (item.label) {
+    return item.label.label;
+  }
+  return item;
+}
+
 const MetadataDisplay = ({
   title,
-  items,
+  items = [],
   facet,
-  externalUrl = "",
   collection,
   boxNumber,
 }) => {
   if (!items) return null;
-
-  const itemText = (item) => (item.label || item.term ? item.term.label : item);
 
   const linkElement = (facet, searchValue) => {
     let adjustedSearchValue = searchValue.split(" ").join("+");
@@ -59,22 +66,20 @@ const MetadataDisplay = ({
   };
 
   const multipleItems = (item, i) => {
-    let text = itemText(item);
+    let text = prepItemText(item);
 
     if (facet) {
-      return <li key={(text, i)}>{linkElement(facet, text)}</li>;
+      return <li key={text}>{linkElement(facet, text)}</li>;
     }
 
     if (externalUrlLabels.indexOf(title) > -1) {
       return (
-        <li key={(text, i)}>
-          <a
-            href={externalUrl ? externalUrl : text}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {text}
+        <li key={text}>
+          {text} (
+          <a href={item.url || ""} target="_blank" rel="noopener noreferrer">
+            {item.url}
           </a>
+          )
         </li>
       );
     }
@@ -86,7 +91,11 @@ const MetadataDisplay = ({
     <>
       <h4>{title}</h4>
       {typeof items === "string" ? (
-        <p>{facet ? linkElement(facet, itemText(items)) : itemText(items)}</p>
+        <p>
+          {facet
+            ? linkElement(facet, prepItemText(items))
+            : prepItemText(items)}
+        </p>
       ) : (
         <ul>{items.map((item, i) => multipleItems(item, i))}</ul>
       )}
