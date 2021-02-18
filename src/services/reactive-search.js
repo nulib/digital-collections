@@ -51,7 +51,7 @@ export const reactiveSearchFacets = [
     value: "Language",
   },
   {
-    elasticSearchField: "admin_set.title.keyword",
+    elasticSearchField: "administrativeMetadata.libraryUnit.label.keyword",
     label: "Library Department",
     value: "LibraryDepartment",
   },
