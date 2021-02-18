@@ -163,8 +163,8 @@ export async function getCollectionsByKeyword(keyword, numResults = PAGE_SIZE) {
         query: {
           bool: {
             must: [
-              { match: { "model.title": "Collection" } },
-              { match: { keyword: keyword } },
+              { match: { "model.name": "Collection" } },
+              { match: { keywords: keyword } },
             ],
           },
         },
@@ -225,7 +225,7 @@ export async function getFeaturedCollections(numResults = PAGE_SIZE) {
         query: {
           bool: {
             must: [
-              { match: { "model.title": "Collection" } },
+              { match: { "model.name": "Collection" } },
               { match: { featured: true } },
             ],
           },
