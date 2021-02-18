@@ -56,7 +56,7 @@ export function loadItemStructuredData(item, pathname) {
     // TODO: Wire this up once data in Elasticsearch meadow index firms up
     //
     image: item.representativeFileSet ? item.representativeFileSet.url : "",
-    contentUrl: item.iiif_manifest,
+    contentUrl: item.iiifManifest,
     name: item.title,
     thumbnail: item.thumbnail_url,
     url: `${productionUrl}${pathname}`,
