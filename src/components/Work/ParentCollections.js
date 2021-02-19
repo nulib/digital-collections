@@ -5,33 +5,35 @@ import ThisItem from "./ThisItem";
 import SectionTop from "../UI/SectionTop";
 import { reactiveSearchFacets } from "../../services/reactive-search";
 
-const ParentCollections = ({ adminSetItems = [], collection, item }) => {
-  const adminSetTitle = item.admin_set ? item.admin_set.title[0] : "";
+const ParentCollections = ({ libraryUnitItems = [], collection, item }) => {
+  const libraryDepartment = item.administrativeMetadata.libraryUnit
+    ? item.administrativeMetadata.libraryUnit.label
+    : "";
   return (
     <div>
-      {item && adminSetItems.length > 0 && (
+      {item && libraryUnitItems && libraryUnitItems.length > 0 && (
         <section className="section" data-testid="section-library-department">
           <SectionTop
             sectionTitle="Library Department"
-            optionalSubhead={adminSetTitle}
+            optionalSubhead={libraryDepartment}
             optionalButtons={[
               {
                 label: "View All Items in Library Department",
                 url: "/search",
                 state: {
                   facet: reactiveSearchFacets.find(
-                    facet => facet.value === "LibraryDepartment"
+                    (facet) => facet.value === "LibraryDepartment"
                   ),
-                  searchValue: adminSetTitle
-                }
-              }
+                  searchValue: libraryDepartment,
+                },
+              },
             ]}
           />
-          <PhotoGrid items={adminSetItems} hideDescriptions={true} />
+          <PhotoGrid items={libraryUnitItems} hideDescriptions={true} />
         </section>
       )}
 
-      {item && collection.items.length > 0 && (
+      {item && collection.items && collection.items.length > 0 && (
         <section data-testid="section-collection">
           <SectionTop
             sectionTitle="Collection"
@@ -39,8 +41,8 @@ const ParentCollections = ({ adminSetItems = [], collection, item }) => {
             optionalButtons={[
               {
                 label: "View All Items in Collection",
-                url: `/collections/${collection.id}`
-              }
+                url: `/collections/${collection.id}`,
+              },
             ]}
           />
           <PhotoGrid items={collection.items} />
@@ -53,13 +55,13 @@ const ParentCollections = ({ adminSetItems = [], collection, item }) => {
 };
 
 ParentCollections.propTypes = {
-  adminSetItems: PropTypes.array.isRequired,
+  libraryUnitItems: PropTypes.array.isRequired,
   collection: PropTypes.shape({
     id: PropTypes.string,
     title: PropTypes.string,
-    items: PropTypes.array
+    items: PropTypes.array,
   }),
-  item: PropTypes.object.isRequired
+  item: PropTypes.object.isRequired,
 };
 
 export default ParentCollections;
