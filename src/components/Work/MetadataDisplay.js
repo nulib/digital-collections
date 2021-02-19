@@ -66,7 +66,12 @@ const MetadataDisplay = ({
   };
 
   const multipleItems = (item, i) => {
-    let text = prepItemText(item);
+    let text = "";
+    if (title == "Contributor") {
+      text = item.displayFacet;
+    } else {
+      text = prepItemText(item);
+    }
 
     if (facet) {
       return <li key={text}>{linkElement(facet, text)}</li>;
