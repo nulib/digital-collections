@@ -6,12 +6,14 @@ import SectionTop from "../UI/SectionTop";
 import { reactiveSearchFacets } from "../../services/reactive-search";
 
 const ParentCollections = ({ libraryUnitItems = [], collection, item }) => {
+  if (!item) return;
+
   const libraryDepartment = item.administrativeMetadata.libraryUnit
     ? item.administrativeMetadata.libraryUnit.label
     : "";
   return (
     <div>
-      {item && libraryUnitItems && libraryUnitItems.length > 0 && (
+      {libraryUnitItems.length > 0 && (
         <section className="section" data-testid="section-library-department">
           <SectionTop
             sectionTitle="Library Department"
@@ -33,7 +35,7 @@ const ParentCollections = ({ libraryUnitItems = [], collection, item }) => {
         </section>
       )}
 
-      {item && collection.items && collection.items.length > 0 && (
+      {collection.items && collection.items.length > 0 && (
         <section data-testid="section-collection">
           <SectionTop
             sectionTitle="Collection"

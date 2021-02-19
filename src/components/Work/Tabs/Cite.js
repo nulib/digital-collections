@@ -43,7 +43,7 @@ const TabsCite = ({ item }) => {
   const collectionTitle =
     Object.keys(collection).length === 0 ? "" : collection.title;
   const libraryUnitLabel = item.administrativeMetadata.libraryUnit
-    ? item.administrativeMetadata.libraryUnitLabel
+    ? item.administrativeMetadata.libraryUnit.label
     : "";
 
   const citePanel = [
