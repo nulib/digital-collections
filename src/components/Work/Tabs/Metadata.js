@@ -71,7 +71,7 @@ const TabsMetadata = ({ item }) => {
     { label: "Date", value: dateCreated.map((d) => d.humanized) },
     {
       label: "Department",
-      value: libraryUnit.label,
+      value: libraryUnit ? libraryUnit.label : "",
       facet: reactiveSearchFacets.find(
         (facet) => facet.value === "LibraryDepartment"
       ),

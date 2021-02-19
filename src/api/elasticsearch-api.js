@@ -52,7 +52,7 @@ async function search(query_hash, retries = 8) {
  * @param {Number} numResults
  * @returns {Array}
  */
-export async function getAdminSetItems(id, numResults = PAGE_SIZE) {
+export async function getLibraryUnitItems(id, numResults = PAGE_SIZE) {
   try {
     const response = await search({
       ...getObjBase,
@@ -70,14 +70,7 @@ export async function getAdminSetItems(id, numResults = PAGE_SIZE) {
                   },
                   {
                     match: {
-                      "admin_set.id": id,
-                    },
-                  },
-                ],
-                must_not: [
-                  {
-                    match: {
-                      "collection.top_level": false,
+                      "administrativeMetadata.libraryUnit.id": id,
                     },
                   },
                 ],
@@ -130,7 +123,6 @@ export async function getAllCollections(numResults = PAGE_SIZE) {
         },
       },
     });
-    console.log("getAllCollections() response", response);
     return response.hits.hits.map((hit) => ({ id: hit._id, ...hit._source }));
   } catch (error) {
     console.log("Error in getAllCollections", error);
@@ -171,7 +163,6 @@ export async function getCollectionsByKeyword(keyword, numResults = PAGE_SIZE) {
         ...sortKey,
       },
     });
-    console.log("getCollectionsByKeyword() response", response);
     return response.hits.hits.map((hit) => hit._source);
   } catch (error) {
     console.log("Error in getCollectionsByKeyword()", error);
@@ -199,7 +190,6 @@ export async function getCollectionItems(id, numResults = PAGE_SIZE) {
                   { match: { "model.name": "Image" } },
                   { match: { "collection.id": id } },
                 ],
-                must_not: { match: { "collection.top_level": false } },
               },
             },
             boost: "5",

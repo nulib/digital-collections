@@ -101,8 +101,8 @@ const ScreensWork = () => {
       : [];
 
     const dataLayer = {
-      adminset: item.admin_set
-        ? item.admin_set.title.map((title) => title).join(", ")
+      adminset: item.administrativeMetadata.libraryUnit
+        ? item.administrativeMetadata.libraryUnit.label
         : "",
       // TODO: Will .collection be an object or array?
       // collections: item.collection.map(collection =>

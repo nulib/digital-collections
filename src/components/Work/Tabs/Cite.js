@@ -31,27 +31,27 @@ const flexTitle = css`
 `;
 
 const TabsCite = ({ item }) => {
-  const {
-    administrativeMetadata: { libraryUnit }, // = "Library Division"
-    collection,
-    createDate: [date] = "",
-    descriptiveMetadata,
-    id,
-    termsOfUse,
-  } = item;
+  const { collection, createDate: [date] = "", descriptiveMetadata, id } = item;
 
-  const { ark, identifier, license, title } = descriptiveMetadata;
+  const { ark, identifier, license, title, termsOfUse } = descriptiveMetadata;
 
   const [copied, setCopied] = useState();
 
   const nul = "Northwestern University Libraries";
   const itemLink = `${window.location.origin}/items/${id}`;
   const today = new Date().toDateString();
-  const collectionTitle = collection ? collection.title : "";
+  const collectionTitle =
+    Object.keys(collection).length === 0 ? "" : collection.title;
+  const libraryUnitLabel = item.administrativeMetadata.libraryUnit
+    ? item.administrativeMetadata.libraryUnit.label
+    : "";
 
   const citePanel = [
     { label: "Identifier", value: identifier },
-    { label: "Licenses", value: license },
+    {
+      label: "License",
+      value: license ? license.label : "",
+    },
     { label: "Title", value: title },
     { label: "Use Statement", value: termsOfUse },
   ];
@@ -66,25 +66,25 @@ const TabsCite = ({ item }) => {
     {
       id: "apaFormat",
       label: "APA Format",
-      text: `${libraryUnit.label}, ${nul}. (${date}). ${title}, Retrieved from ${itemLink}`,
+      text: `${libraryUnitLabel}, ${nul}. (${date}). ${title}, Retrieved from ${itemLink}`,
       style: {},
     },
     {
       id: "turabianFormat",
       label: "Chicago/Turabian Format",
-      text: `${libraryUnit.label}, ${nul}. "${title}", ${collectionTitle} Accessed ${today}. ${itemLink}`,
+      text: `${libraryUnitLabel}, ${nul}. "${title}", ${collectionTitle} Accessed ${today}. ${itemLink}`,
       style: {},
     },
     {
       id: "mlaFormat",
       label: "MLA Format",
-      text: `${libraryUnit.label}, ${nul}. "${title}", ${collectionTitle} ${date}. ${window.location.origin}/items/${id}`,
+      text: `${libraryUnitLabel}, ${nul}. "${title}", ${collectionTitle} ${date}. ${window.location.origin}/items/${id}`,
       style: {},
     },
     {
       id: "wikiCitation",
       label: "Wikipedia Citation",
-      text: `<ref name=NUL>{{cite web | url=${itemLink} | title= ${title} (${date}) }} |author=Digital Collections, ${nul} |accessdate=${today} |publisher=${nul}, ${libraryUnit.label}}}</ref>`,
+      text: `<ref name=NUL>{{cite web | url=${itemLink} | title= ${title} (${date}) }} |author=Digital Collections, ${nul} |accessdate=${today} |publisher=${nul}, ${libraryUnitLabel}}}</ref>`,
       style: styles.monoSpace,
     },
   ];
