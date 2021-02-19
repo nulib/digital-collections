@@ -112,14 +112,9 @@ export async function getAllCollections(numResults = PAGE_SIZE) {
               },
             ],
           },
-          // TODO: Wire this up
-          // sort: [
-          //   {
-          //     "title.primary.keyword": {
-          //       order: "asc",
-          //     },
-          //   },
-          // ],
+        },
+        sort: {
+          "title.keyword": "asc",
         },
       },
     });
@@ -310,7 +305,6 @@ export async function getRecentlyDigitizedItems(numResults = PAGE_SIZE) {
         },
       },
     });
-    console.log("getRecentlyDigitizedItems() HERE", response);
 
     return response.hits.hits.map((hit) => ({
       id: hit._id,
