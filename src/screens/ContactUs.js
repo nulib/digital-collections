@@ -4,7 +4,7 @@ import { generateTitleTag } from "../services/helpers";
 import { Helmet } from "react-helmet";
 import { loadDataLayer } from "../services/google-tag-manager";
 import { ROUTES } from "../services/global-vars";
-import Mailto from "react-protected-mailto";
+import Obfuscate from "react-obfuscate";
 import { loadDefaultStructuredData } from "../services/google-structured-data";
 
 const breadCrumbs = [
@@ -43,7 +43,7 @@ const ScreensContactUs = () => {
 
           <p>
             Questions about digitization, description of items, or software can
-            be directed here. <Mailto email="repository@northwestern.edu" />
+            be directed here. <Obfuscate email="repository@northwestern.edu" />
           </p>
 
           <p>

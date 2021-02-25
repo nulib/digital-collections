@@ -94,7 +94,6 @@ const Home = () => {
 
   async function getFeaturedCollections() {
     let response = await elasticsearchApi.getFeaturedCollections(8);
-    console.log("getFeaturedCollections() response", response);
     const collections = elasticsearchParser.prepPhotoFeatureItems(
       response,
       globalVars.COLLECTION_MODEL

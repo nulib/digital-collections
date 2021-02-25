@@ -10764,10 +10764,10 @@ react-notify-toast@^0.5.0:
     object-assign "^4.0.0"
     prop-types "^15.5.8"
 
-react-protected-mailto@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/react-protected-mailto/-/react-protected-mailto-1.0.3.tgz#2017fc8f8ad1177d65c47071cf7117fe05e7cec6"
-  integrity sha512-Lv/o4+FCDDYvEhxzb0XaXuhwKu8ICqanZhxJwMBrUqLNDpbZqOGMZrFtn47iey012K0b/AkEzzFmqLkDvdYlWA==
+react-obfuscate@^3.6.8:
+  version "3.6.8"
+  resolved "https://registry.yarnpkg.com/react-obfuscate/-/react-obfuscate-3.6.8.tgz#31deede7ad8e69672165ec38b4d662135c6bdb5f"
+  integrity sha512-Pc47sbOJEGqOQ65y22ZFwCGHlSwGn0tykl+sQ64wHy/ALcyZxK6zsNYD8Fp3YBcU2EhmJPSKR7BypBYtnAqqyA==
 
 react-redux@^6.0.1:
   version "6.0.1"

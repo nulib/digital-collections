@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import Mailto from "react-protected-mailto";
 import { getESTitle } from "../../services/elasticsearch-parser";
 
 const externalUrlLabels = ["Related Url", "NUsearch"];
