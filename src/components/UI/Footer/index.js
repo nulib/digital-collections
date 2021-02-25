@@ -1,88 +1,88 @@
-import React from 'react';
-import FooterSocial from './FooterSocial';
-import FooterLink from './FooterLink';
-import Mailto from 'react-protected-mailto';
+import React from "react";
+import FooterSocial from "./FooterSocial";
+import FooterLink from "./FooterLink";
+import Obfuscate from "react-obfuscate";
 
 const year = new Date().getFullYear();
 
 const nuLinks = [
   {
-    url: 'http://www.northwestern.edu/contact.html',
-    label: 'Contact Northwestern University'
+    url: "http://www.northwestern.edu/contact.html",
+    label: "Contact Northwestern University",
   },
   {
-    url: 'http://www.northwestern.edu/hr/careers/',
-    label: 'Careers'
+    url: "http://www.northwestern.edu/hr/careers/",
+    label: "Careers",
   },
   {
-    url: 'http://www.northwestern.edu/disclaimer.html',
-    label: 'Disclaimer'
+    url: "http://www.northwestern.edu/disclaimer.html",
+    label: "Disclaimer",
   },
   {
-    url: 'http://www.northwestern.edu/emergency/index.html',
-    label: 'Campus Emergency Information'
+    url: "http://www.northwestern.edu/emergency/index.html",
+    label: "Campus Emergency Information",
   },
   {
-    url: 'http://policies.northwestern.edu/',
-    label: 'University Policies'
-  }
+    url: "http://policies.northwestern.edu/",
+    label: "University Policies",
+  },
 ];
 
 const socialItems = [
   {
-    additionalClasses: 'facebook',
-    url: 'https://www.facebook.com/NorthwesternLibrary',
-    label: 'Facebook'
+    additionalClasses: "facebook",
+    url: "https://www.facebook.com/NorthwesternLibrary",
+    label: "Facebook",
   },
   {
-    additionalClasses: 'twitter',
-    url: 'https://twitter.com/nu_library',
-    label: 'Twitter'
+    additionalClasses: "twitter",
+    url: "https://twitter.com/nu_library",
+    label: "Twitter",
   },
   {
-    additionalClasses: 'instagram',
-    url: 'https://www.instagram.com/nu_library/',
-    label: 'Instagram'
+    additionalClasses: "instagram",
+    url: "https://www.instagram.com/nu_library/",
+    label: "Instagram",
   },
   {
-    additionalClasses: 'youtube',
-    url: 'https://www.youtube.com/user/NorthwesternLib',
-    label: 'YouTube'
-  }
+    additionalClasses: "youtube",
+    url: "https://www.youtube.com/user/NorthwesternLib",
+    label: "YouTube",
+  },
 ];
 
 const libraryLinks = [
   {
-    url: 'http://northwestern.libanswers.com/',
-    label: 'FAQs'
+    url: "http://northwestern.libanswers.com/",
+    label: "FAQs",
   },
   {
-    url: 'http://www.library.northwestern.edu/about/support/index.html',
-    label: 'Support Us'
+    url: "http://www.library.northwestern.edu/about/support/index.html",
+    label: "Support Us",
   },
   {
-    url: 'http://www.library.northwestern.edu/about/library-jobs/index.html',
-    label: 'Library Jobs'
-  },
-  {
-    url:
-      'http://www.library.northwestern.edu/about/administration/policies/index.html',
-    label: 'Library Policies'
+    url: "http://www.library.northwestern.edu/about/library-jobs/index.html",
+    label: "Library Jobs",
   },
   {
     url:
-      'http://www.library.northwestern.edu/about/contact/general-feedback.html',
-    label: 'Provide Feedback'
-  }
+      "http://www.library.northwestern.edu/about/administration/policies/index.html",
+    label: "Library Policies",
+  },
+  {
+    url:
+      "http://www.library.northwestern.edu/about/contact/general-feedback.html",
+    label: "Provide Feedback",
+  },
 ];
 
 const styles = {
   disclaimer: {
-    color: '#b6acd1' // NU Purple 30
-  }
+    color: "#b6acd1", // NU Purple 30
+  },
 };
 
-const Footer = props => {
+const Footer = (props) => {
   return (
     <footer>
       <div className="contain-970">
@@ -95,7 +95,7 @@ const Footer = props => {
           </a>
           <ul>
             <li>&copy; {year} Northwestern University</li>
-            {nuLinks.map(link => (
+            {nuLinks.map((link) => (
               <li key={link.url}>
                 <a href={link.url}>{link.label}</a>
               </li>
@@ -121,7 +121,12 @@ const Footer = props => {
               <span className="hide-label">Email address</span>
             </li>
             <li>
-              <Mailto email="library@northwestern.edu" />
+              <Obfuscate
+                email="library@northwestern.edu"
+                headers={{
+                  subject: "Contact from Digital Collections",
+                }}
+              />
             </li>
           </ul>
         </div>
@@ -130,7 +135,7 @@ const Footer = props => {
             <strong>Libraries Social Media</strong>
           </p>
 
-          {socialItems.map(item => (
+          {socialItems.map((item) => (
             <FooterSocial
               key={item.url}
               additionalClasses={item.additionalClasses}
@@ -158,8 +163,8 @@ const Footer = props => {
           University Libraries. Northwestern University Libraries does not claim
           the copyright of any materials on this site. If you are the copyright
           holder of any item(s) in this collection or have questions, comments
-          or concerns about this exhibit, please contact us via email at{' '}
-          <Mailto email="library@northwestern.edu" />.
+          or concerns about this exhibit, please contact us via email at{" "}
+          <Obfuscate email="library@northwestern.edu" />.
         </p>
       </div>
     </footer>
