@@ -27,6 +27,24 @@ import { ROUTES } from "../../services/global-vars";
 import CollectionDescription from "./CollectionDescription";
 import FiltersShowHideButton from "../UI/FiltersShowHideButton";
 
+const sortOptions = [
+  {
+    dataField: "modifiedDate",
+    label: "Sort By Modified Date",
+    sortBy: "desc",
+  },
+  {
+    dataField: "_score",
+    label: "Sort By Relevancy",
+    sortBy: "desc",
+  },
+  {
+    dataField: "descriptiveMetadata.title.keyword",
+    sortBy: "asc",
+    label: "Sort By Title",
+  },
+];
+
 const Collection = () => {
   const [collection, setCollection] = useState();
   const [error, setError] = useState();
@@ -124,24 +142,6 @@ const Collection = () => {
     return <PhotoBox key={item.id} item={item} />;
   }
 
-  const sortOptions = [
-    {
-      sortBy: "asc",
-      dataField: "modified_date",
-      label: "Sort By Modified Date",
-    },
-    {
-      sortBy: "desc",
-      dataField: "_score",
-      label: "Sort By Relevancy",
-    },
-    {
-      sortBy: "asc",
-      dataField: "title.primary.keyword",
-      label: "Sort By Title",
-    },
-  ];
-
   const breadCrumbData = collection ? createBreadcrumbData(collection) : [];
   const collectionTitle = collection ? getESTitle(collection) : "";
   const collectionDescription = collection ? getESDescription(collection) : "";
@@ -217,13 +217,14 @@ const Collection = () => {
 
                 <ReactiveList
                   componentId="collection-items-results"
-                  dataField="title"
+                  dataField="descriptiveMetadata.title.keyword"
                   react={{
                     and: [...allFilters],
                   }}
                   defaultQuery={defaultQuery}
+                  defaultSortOption={"Sort By Relevancy"}
                   loader={<LoadingSpinner loading={true} />}
-                  size={12}
+                  size={24}
                   pages={10}
                   pagination={true}
                   paginationAt="bottom"
@@ -235,7 +236,6 @@ const Collection = () => {
                   }}
                   URLParams={true}
                   sortOptions={sortOptions}
-                  defaultSortOption={"Sort By Relevancy"}
                 />
               </div>
             )}

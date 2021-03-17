@@ -1,16 +1,28 @@
 export const mockWork = {
   accessionNumber: "ss559",
   administrativeMetadata: {
-    preservationLevel: null,
+    libraryUnit: {
+      id: "MUSIC_LIBRARY",
+      label: "Music Library",
+      scheme: "library_unit",
+    },
+    preservationLevel: {
+      id: "1",
+      label: "Level 1",
+      scheme: "preservation_level",
+    },
     projectCycle: null,
     projectDesc: [],
     projectManager: [],
     projectName: [],
     projectProposer: [],
     projectTaskNumber: [],
-    status: null,
+    status: { id: "DONE", label: "Done", scheme: "status" },
   },
-  collection: {},
+  collection: {
+    id: "c5f405a1-2b3f-4523-9eca-50cd1afff523",
+    title: "Adam Collection",
+  },
   createDate: "2020-09-14T21:02:36.358937Z",
   descriptiveMetadata: {
     source: [],
@@ -20,6 +32,16 @@ export const mockWork = {
     folderName: [],
     license: null,
     rightsHolder: [],
+    dateCreated: [
+      {
+        edtf: "~2021",
+        humanized: "circa 2021?",
+      },
+      {
+        edtf: "199X",
+        humanized: "1990s",
+      },
+    ],
     genre: [
       {
         displayFacet: "pointers (breed, dogs)",

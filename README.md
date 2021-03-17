@@ -32,12 +32,17 @@ yarn start:use-staging-data
 
 The Digital Collections Fen application will be available at: https://devbox.library.northwestern.edu:3333/
 
-#### Elasticsearch
+#### Elasticsearch API
 
-If you'd like to view the Elasticsearch Staging index while developing, run the following command:
+To view the Elasticsearch index via Kibana, run the following to autheticate with AWS and initiate `es-proxy`:
 
 ```
-AWS_PROFILE=staging es-proxy
+export AWS_PROFILE=staging
+aws-adfs login  --profile=$AWS_PROFILE
+
+// Now start es-proxy which will output a local Kibana URL
+es-proxy
+
 ```
 
 The command will output a link, which you can copy and paste in your browser to view the Elasticsearch index, via Kibana.

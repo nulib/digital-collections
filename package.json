@@ -30,7 +30,7 @@
     "react-helmet": "^6.1.0",
     "react-modal": "^3.12.1",
     "react-notify-toast": "^0.5.0",
-    "react-protected-mailto": "^1.0.3",
+    "react-obfuscate": "^3.6.8",
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.1.0",
     "react-scripts": "^4.0.1",

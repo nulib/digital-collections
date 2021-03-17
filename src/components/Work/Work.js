@@ -9,7 +9,7 @@ import LargeFeature from "../../components/Work/LargeFeature";
 import PropTypes from "prop-types";
 
 const Work = ({ work }) => {
-  const [adminSetItems, setAdminSetItems] = useState([]);
+  const [libraryUnitItems, setLibraryUnitItems] = useState([]);
   const [collection, setCollection] = useState({
     id: "",
     title: "",
@@ -22,25 +22,25 @@ const Work = ({ work }) => {
       if (!work) {
         return;
       }
-      // TODO: Make this work
-      /*
-      const adminSetItems = await getAdminSets(work.admin_set.id);
-      let collectionResponse = await getCollections(work);
+      if (work.administrativeMetadata.libraryUnit) {
+        const libraryUnitItems = await getLibraryUnits(
+          work.administrativeMetadata.libraryUnit.id
+        );
+        setLibraryUnitItems(libraryUnitItems);
+      }
 
-      if (collectionResponse.items) {
+      let collectionResponse = await getCollections(work);
+      if (collectionResponse) {
         setCollection({ ...collectionResponse });
       }
 
-      setAdminSetItems(adminSetItems);
-
-      */
       setLoading(false);
     }
     getApiData();
   }, [work]);
 
-  async function getAdminSets(adminSetId) {
-    let sources = await elasticsearchApi.getAdminSetItems(adminSetId, 4);
+  async function getLibraryUnits(libraryUnitId) {
+    let sources = await elasticsearchApi.getLibraryUnitItems(libraryUnitId, 4);
 
     return elasticsearchParser.prepPhotoGridItems(
       sources,
@@ -49,22 +49,23 @@ const Work = ({ work }) => {
   }
 
   async function getCollections(work) {
-    if (work.collection.length === 0) {
+    if (Object.keys(work.collection).length === 0) {
       return {};
     }
 
     const sources = await elasticsearchApi.getCollectionItems(
-      work.collection[0].id,
+      work.collection.id,
       4
     );
+
     let items = elasticsearchParser.prepPhotoGridItems(
       sources,
       globalVars.IMAGE_MODEL
     );
 
     return {
-      id: work.collection[0].id,
-      title: elasticsearchParser.getESTitle(work.collection[0]),
+      id: work.collection.id,
+      title: work.collection.title,
       items,
     };
   }
@@ -75,7 +76,7 @@ const Work = ({ work }) => {
       <LoadingSpinner loading={loading} />
       <ParentCollections
         item={work}
-        adminSetItems={adminSetItems}
+        libraryUnitItems={libraryUnitItems}
         collection={collection}
       />
       <WorkItemDetail item={work} />

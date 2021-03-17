@@ -8,7 +8,7 @@ import IIIFDraggable from "./IIIFDraggable";
 
 const LargeFeature = (props) => {
   const { item } = props;
-  const title = elasticSearchParser.getESTitle(item);
+  const title = elasticSearchParser.getESTitle(item.descriptiveMetadata);
   const description =
     elasticSearchParser.getESDescription(item) || "No description provided.";
 
@@ -51,7 +51,7 @@ const LargeFeature = (props) => {
             <SocialLinks item={item} />
           </div>
 
-          <IIIFDraggable iiifManifest={item.iiif_manifest} />
+          <IIIFDraggable iiifManifest={item.iiifManifest} />
         </div>
       </div>
     </div>

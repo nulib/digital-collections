@@ -44,9 +44,9 @@ export const SHARED_ITEM_PROXY_URL =
 // This array holds Keyword Metadata values set in Donut, which are used to group Collections
 // on the Homepage
 export const HOMEPAGE_COLLECTION_GROUP_KEYWORDS = [
-  "Posters",
-  "Photography",
-  "Evanston",
+  "posters",
+  "photography",
+  "evanston",
 ];
 
 // Mobile breakpoint
@@ -120,34 +120,6 @@ export const ROUTES = {
   },
 };
 
-// Admin Set contact emails
-export const ADMIN_SET_CONTACTS = [
-  {
-    id: "b3771d7c-5117-4b48-a237-a0a6f02bc048",
-    email: "special.collections@northwestern.edu",
-    title: "Charles Deering McCormick Library of Special Collections",
-  },
-  {
-    id: "ce79271f-aeeb-42a0-bb7b-d945223aadce",
-    email: "govinfo@northwestern.edu",
-    title: "Government & Geographic Information Collection",
-  },
-  {
-    id: "fb560cc3-ea2b-41b0-bc0f-5e495c4f3f7f",
-    email: "africana@northwestern.edu",
-    title: "Herskovits Library of African Studies",
-  },
-  {
-    id: "4d090cfa-f802-4ac3-9fe4-b5adc0294e80",
-    email: "transportationlibrary@northwestern.edu",
-    title: "Transportation Library",
-  },
-  {
-    id: "810fb25f-bc4a-47f9-9de3-d57f6513699f",
-    email: "archives@northwestern.edu",
-    title: "University Archives",
-  },
-];
 // Extras not currently in production yet:
 /**
 Art Library artlibrary@northwestern.edu

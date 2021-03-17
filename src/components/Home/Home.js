@@ -35,16 +35,16 @@ const Home = () => {
     // Combine async network requests
     promises.push(getGalleryItems());
     promises.push(getFeaturedCollections());
-    // globalVars.HOMEPAGE_COLLECTION_GROUP_KEYWORDS.forEach(keyword =>
-    //   promises.push(getGalleryByKeyword(keyword))
-    // );
+    globalVars.HOMEPAGE_COLLECTION_GROUP_KEYWORDS.forEach((keyword) =>
+      promises.push(getGalleryByKeyword(keyword))
+    );
 
     // Put results on component state
     Promise.all(promises)
       .then(([galleryItems, featuredCollections, ...keywordCollections]) => {
         setGalleryItems(galleryItems);
         setFeaturedCollections(featuredCollections);
-        //setKeywordCollections(keywordCollections);
+        setKeywordCollections(keywordCollections);
         setLoading(false);
       })
       .catch((error) => console.log("Error grabbing data", error));
@@ -67,7 +67,9 @@ const Home = () => {
           data-testid="section-additional-collection-gallery"
         >
           <div className="section-top contain-1440">
-            <p className="subhead"> {keyword} Collections</p>
+            <p className="subhead" style={{ textTransform: "capitalize" }}>
+              {keyword} Collections
+            </p>
           </div>
           <Swiper
             spaceBetween={isMobileOnly ? 0 : isTablet ? 10 : 0}
@@ -92,7 +94,6 @@ const Home = () => {
 
   async function getFeaturedCollections() {
     let response = await elasticsearchApi.getFeaturedCollections(8);
-    console.log("getFeaturedCollections() response", response);
     const collections = elasticsearchParser.prepPhotoFeatureItems(
       response,
       globalVars.COLLECTION_MODEL

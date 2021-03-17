@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import MetadataDisplay from "../MetadataDisplay";
-import { getPrimoLink } from "../../../services/helpers";
-import { ADMIN_SET_CONTACTS } from "../../../services/global-vars";
-import { reactiveSearchFacets } from "../../../services/reactive-search";
+import MetadataDisplay from "components/Work/MetadataDisplay";
+import { getPrimoLink } from "services/helpers";
+import { reactiveSearchFacets } from "services/reactive-search";
+import WorkTabsMoreInformation from "components/Work/Tabs/MoreInformation";
 
 /** @jsxRuntime classic */
 /** @jsx jsx */
@@ -15,7 +15,7 @@ const tabContent = css`
 
 const TabsFind = ({ item }) => {
   if (!item) return;
-  const { descriptiveMetadata } = item;
+  const { accessionNumber, collection, descriptiveMetadata } = item;
   const {
     boxName = "",
     boxNumber = "",
@@ -24,36 +24,15 @@ const TabsFind = ({ item }) => {
     folderName = "",
     folderNumber = "",
   } = descriptiveMetadata;
-  const { accessionNumber = "", call_number: callNumber = "" } = item;
 
-  const getAdminSetEmail = () => {
-    let email = "";
-    try {
-      let results = ADMIN_SET_CONTACTS.filter(
-        (obj) => obj.id === item.adminSet.id
-      );
-      email = results[0].email;
-    } catch (e) {}
-
-    if (!email) {
-      return;
-    }
-
-    return {
-      label: "More Information",
-      value: `For more information on this item or collection, please contact ${email}`,
-    };
-  };
-
-  const findItems = [
+  const [findItems, setFindItems] = React.useState([
     { label: "Accession", value: accessionNumber },
     { label: "Box Name", value: boxName },
     {
       label: "Box Number",
-      //    facet: reactiveSearchFacets.find(facet => facet.value === "Box"),
+      facet: reactiveSearchFacets.find((facet) => facet.value === "BoxNumber"),
       value: boxNumber,
     },
-    { label: "Call Number", value: callNumber },
     {
       label: "NUsearch",
       value: catalogKey,
@@ -63,15 +42,12 @@ const TabsFind = ({ item }) => {
     { label: "Folder Name", value: folderName },
     {
       label: "Folder Number",
-      //  facet: reactiveSearchFacets.find(facet => facet.value === "Folder"),
+      facet: reactiveSearchFacets.find(
+        (facet) => facet.value === "FolderNumber"
+      ),
       value: folderNumber,
     },
-  ];
-
-  const adminSetEmail = getAdminSetEmail();
-  if (adminSetEmail) {
-    findItems.push(adminSetEmail);
-  }
+  ]);
 
   return (
     <div data-testid="tab-content-find" css={tabContent}>
@@ -86,6 +62,7 @@ const TabsFind = ({ item }) => {
           boxNumber={boxNumber}
         />
       ))}
+      <WorkTabsMoreInformation collection={item.collection} />
     </div>
   );
 };

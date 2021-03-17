@@ -15,25 +15,25 @@ const tabContent = css`
 const TabsMetadata = ({ item }) => {
   if (!item) return;
   const {
-    adminSet: { title: [adminSet] = "" } = "", // = "Library Division"
-    create_date = "",
+    administrativeMetadata: { libraryUnit }, // = "Library Division"
     descriptiveMetadata,
   } = item;
 
   const {
-    abstract = "",
-    alternateTitle = "",
-    caption = "",
-    contributor = "",
+    abstract,
+    alternateTitle,
+    caption,
+    contributor,
     creator,
-    description = "",
-    genre = "",
-    keywords = "",
-    language = "",
-    location = "",
-    notes = "",
-    physicalDescriptionMaterial: materials,
-    physicalDescriptionSize: size,
+    dateCreated,
+    description,
+    genre,
+    keywords,
+    language,
+    location,
+    notes,
+    physicalDescriptionMaterial,
+    physicalDescriptionSize,
     provenance,
     publisher,
     relatedMaterial,
@@ -68,17 +68,17 @@ const TabsMetadata = ({ item }) => {
       value: creator,
       facet: reactiveSearchFacets.find((facet) => facet.value === "Creator"),
     },
-    { label: "Date", value: formatDate(create_date) },
+    { label: "Date", value: dateCreated.map((d) => d.humanized) },
     {
       label: "Department",
-      value: adminSet,
-      // facet: reactiveSearchFacets.find(
-      //   facet => facet.value === "LibraryDepartment"
-      // )
+      value: libraryUnit ? libraryUnit.label : "",
+      facet: reactiveSearchFacets.find(
+        (facet) => facet.value === "LibraryDepartment"
+      ),
     },
     { label: "Description", value: description },
 
-    { label: "Dimensions", value: size },
+    { label: "Dimensions", value: physicalDescriptionSize },
     {
       label: "Genre",
       value: genre,
@@ -95,7 +95,7 @@ const TabsMetadata = ({ item }) => {
       value: location,
       facet: reactiveSearchFacets.find((facet) => facet.value === "Location"),
     },
-    { label: "Materials", value: materials },
+    { label: "Materials", value: physicalDescriptionMaterial },
     { label: "Notes", value: notes },
     { label: "Terms of Use", value: termsOfUse },
     { label: "Provenance", value: provenance },
@@ -139,13 +139,12 @@ const TabsMetadata = ({ item }) => {
   ];
   return (
     <div css={tabContent} data-testid="tab-content-metadata">
-      {metadataItems.map((metadataItem, i) => (
+      {metadataItems.map(({ label, value, facet }, i) => (
         <MetadataDisplay
-          key={metadataItem.label}
-          title={metadataItem.label}
-          items={metadataItem.value}
-          facet={metadataItem.facet}
-          externalUrl={metadataItem.externalUrl}
+          key={label}
+          title={label}
+          items={value}
+          facet={facet}
         />
       ))}
     </div>

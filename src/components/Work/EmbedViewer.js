@@ -38,7 +38,7 @@ export default function WorkEmbedViewer({ item }) {
   // In the future possibly support user entered params?
   const embedString = `<iframe src="${
     window.location.origin
-  }/embedded-viewer/${encodeURIComponent(item.iiif_manifest)}" title="${
+  }/embedded-viewer/${encodeURIComponent(item.iiifManifest)}" title="${
     item.title.primary[0]
   }" width="100%" height="800"></iframe>`;
 
