@@ -8,7 +8,7 @@ import IIIFDraggable from "./IIIFDraggable";
 
 const LargeFeature = (props) => {
   const { item } = props;
-  const title = elasticSearchParser.getESTitle(item.descriptiveMetadata);
+  const title = elasticSearchParser.getESTitle(item);
   const description =
     elasticSearchParser.getESDescription(item) || "No description provided.";
 

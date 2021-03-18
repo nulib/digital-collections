@@ -27,7 +27,7 @@ const MetadataDisplay = ({
   const linkElement = (facet, searchValue) => {
     let adjustedSearchValue = searchValue.split(" ").join("+");
     let encoded = encodeURI(`${facet.value}=["${adjustedSearchValue}"]`);
-    const collectionTitle = getESTitle(collection);
+    const collectionTitle = getESTitle(collection, true);
 
     // Folder should filter on "collection", "box", and "folder" facets
     if (facet.value === "Folder") {

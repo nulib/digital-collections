@@ -26,7 +26,7 @@ const ScreensCollection = () => {
         return;
       }
 
-      collectionTitle.current = getESTitle(response._source);
+      collectionTitle.current = getESTitle(response._source, true);
       populateGTMDataLayer(response._source);
 
       if (mounted) {
@@ -47,6 +47,7 @@ const ScreensCollection = () => {
       collections: collectionTitle.current,
       pageTitle: collectionTitle.current,
     };
+
     loadDataLayer(dataLayer);
   }
 

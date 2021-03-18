@@ -65,7 +65,7 @@ const Search = ({ breadcrumbs = [] }) => {
     let item = {
       id: res._id,
       imageUrl: buildImageUrl(res, IMAGE_MODEL),
-      label: getESTitle(res.descriptiveMetadata),
+      label: getESTitle(res),
       type: res.model.name,
     };
 

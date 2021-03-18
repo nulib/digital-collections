@@ -86,7 +86,7 @@ export async function getLibraryUnitItems(id, numResults = PAGE_SIZE) {
     const esSources = response.hits.hits.map((hit) => hit._source);
     return esSources;
   } catch (error) {
-    console.log(`Error in getAdminSetItems()`, error);
+    console.error(`Error in getAdminSetItems()`, error);
     return Promise.resolve([]);
   }
 }

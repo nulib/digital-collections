@@ -44,7 +44,10 @@ const WorkTabsDownload = React.memo(function ({ item }) {
         setTileSources(getTileSources(data));
         setLoading(false);
       })
-      .catch((e) => console.log("There was an error fetching the manifest"));
+      .catch((e) =>
+        //TODO: Handle this error in the UI
+        console.error("There was an error fetching the manifest:", e)
+      );
   }, [item.iiifManifest]);
 
   function closeModal() {

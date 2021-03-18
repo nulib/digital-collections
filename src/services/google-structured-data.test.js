@@ -1,9 +1,25 @@
 import * as gsd from "./google-structured-data";
+import { mockWork2 } from "testing-helpers/mock-work2";
 
-const mockObj = {
-  description: ["description here"],
-  title: "Title 1",
-  thumbnail_iiif_url: "http://here.com",
+const collectionMock = {
+  adminEmail: null,
+  createDate: "2021-02-26T22:20:24.303996Z",
+  description:
+    "The Berkeley Folk Music Festival Archive consists of over 32,000 items, including photographs of folk artists and groups, press clippings, correspondence, publicity information, and posters and flyers. Also included here are photographs and posters from other area music festivals. A few audio recordings from the Archive can be found here (copy and paste link): http://libraries.nu/FolkFestivalAudio",
+  featured: false,
+  findingAidUrl: null,
+  id: "18ec4c6b-192a-4ab8-9903-ea0f393c35f7",
+  keywords: ["featured"],
+  model: { application: "Meadow", name: "Collection" },
+  modifiedDate: "2021-03-09T16:17:41.421273Z",
+  published: true,
+  representativeImage: {
+    url:
+      "https://iiif.stack.rdc-staging.library.northwestern.edu/iiif/2/c0d39641-cedb-4213-aaa0-568b586d27b8",
+    workId: "0755cad4-4dd2-4df3-a702-664fb39885ba",
+  },
+  title: "Berkeley Folk Music Festival",
+  visibility: { id: "OPEN", label: "Public", scheme: "visibility" },
 };
 const pathName = "https://nu.com";
 
@@ -19,7 +35,7 @@ it("returns the expected default structured data ", () => {
 
 describe("collection structured data", () => {
   it("returns the expected collection structured data ", () => {
-    const obj = gsd.loadCollectionStructuredData(mockObj, pathName);
+    const obj = gsd.loadCollectionStructuredData(collectionMock, pathName);
     expect(obj["@type"]).toEqual("Collection");
     expect(obj).toHaveProperty("@context");
     expect(obj).toHaveProperty("name");
@@ -29,7 +45,7 @@ describe("collection structured data", () => {
   });
 
   it("does not add empty values", () => {
-    let anotherMock = { ...mockObj };
+    let anotherMock = { ...collectionMock };
     delete anotherMock.description;
     const obj = gsd.loadCollectionStructuredData(anotherMock, pathName);
     expect(obj).not.toHaveProperty("description");
@@ -37,22 +53,8 @@ describe("collection structured data", () => {
 });
 
 describe("work structured data", () => {
-  let anotherMock = {
-    creator: [{ label: "john" }],
-    contributor: [{ label: "bob" }, { label: "Rush, Otis" }],
-    iiifManifest:
-      "https://iiif.stack.rdc.library.northwestern.edu/public/c7/86/33/6b",
-    representativeFileSet: {
-      url: "http://location.com/xyz",
-      file_set_id: "filesetid1",
-    },
-    thumbnail_url:
-      "https://iiif.stack.rdc.library.northwestern.edu/iiif/2/fe%2F1c%2F30%2F0",
-    subject: [{ label: "Smith, John" }, { label: "Ben" }],
-    ...mockObj,
-  };
   it("returns the expected work structured data ", () => {
-    const obj = gsd.loadItemStructuredData(anotherMock, pathName);
+    const obj = gsd.loadItemStructuredData(mockWork2, pathName);
     expect(obj["@type"]).toEqual("ImageObject");
     expect(obj).toHaveProperty("@context");
     expect(obj).toHaveProperty("name");
@@ -63,12 +65,23 @@ describe("work structured data", () => {
   });
 
   it("returns a quoted value when a comma is present in a metadata value", () => {
-    const obj = gsd.loadItemStructuredData(anotherMock, pathName);
-    expect(obj.contributor).toContain("Rush, Otis");
+    const obj = gsd.loadItemStructuredData(mockWork2, pathName);
+    expect(obj.contributor).toContain("Olivier, Barry, 1935-");
 
-    anotherMock.contributor = [{ label: "Smith John" }, { label: "Ben" }];
-    const obj2 = gsd.loadItemStructuredData(anotherMock, pathName);
-    expect(obj2.contributor).toContain("Smith John");
-    expect(obj2.contributor).not.toContain('"Smith, John"');
+    mockWork2.descriptiveMetadata.contributor = [
+      ...mockWork2.descriptiveMetadata.contributor,
+      {
+        displayFacet: "Betty Boop (Model)",
+        facet:
+          "http://id.loc.gov/authorities/names/no2017159756|pht|Olivier, Barry, 1935- (Photographer)",
+        role: { id: "pht", label: "Model", scheme: "marc_relator" },
+        term: {
+          id: "http://id.loc.gov/authorities/names/no2017159756",
+          label: "Boop, Betty",
+        },
+      },
+    ];
+    const obj2 = gsd.loadItemStructuredData(mockWork2, pathName);
+    expect(obj2.contributor).toContain('"Boop, Betty"');
   });
 });
