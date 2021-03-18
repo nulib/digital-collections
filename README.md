@@ -1,12 +1,14 @@
-# FEN application
+# Digital Collections
 
 [![CircleCI](https://circleci.com/gh/nulib/digital-collections.svg?style=svg)](https://circleci.com/gh/nulib/digital-collections) [![Coverage Status](https://coveralls.io/repos/github/nulib/digital-collections/badge.svg?branch=deploy/staging)](https://coveralls.io/github/nulib/digital-collections?branch=deploy/staging)
 
-This ReactJS application serves as the presentation layer for contents ingested through Northwestern Libraries new ingestion application, [Meadow](https://github.com/nulib/meadow). It contains discovery UI components for searching, filtering, browsing and navigating of items against an AWS Elasticsearch index.
+<img src="public/images/screenshot.jpg" alt="Digital Collections">
+
+Digital Collections is a single page application serving as the presentation layer for our new ingestion application, [Meadow](https://github.com/nulib/meadow). Digital Collections contains discovery UI components for searching, filtering, browsing and navigating of items against an AWS Elasticsearch index.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy.
 
 ### Prerequisites
 
@@ -18,16 +20,17 @@ These instructions will get you a copy of the project up and running on your loc
 git clone git@github.com:nulib/digital-collections.git
 cd digital-collections
 
-git checkout deploy/fen
+git checkout deploy/staging
 yarn install
 ```
 
 ## Running a local development environment
 
-### Against staging data
+### Against production data
 
 ```bash
-yarn start:use-staging-data
+yarn start:use-real-data  // Run against production data
+yarn start:use-staging-data  // Run against staging data
 ```
 
 The Digital Collections Fen application will be available at: https://devbox.library.northwestern.edu:3333/
@@ -37,6 +40,7 @@ The Digital Collections Fen application will be available at: https://devbox.lib
 To view the Elasticsearch index via Kibana, run the following to autheticate with AWS and initiate `es-proxy`:
 
 ```
+// Example to view Staging environment Elasticsearch data
 export AWS_PROFILE=staging
 aws-adfs login  --profile=$AWS_PROFILE
 
@@ -48,6 +52,10 @@ es-proxy
 The command will output a link, which you can copy and paste in your browser to view the Elasticsearch index, via Kibana.
 
 ## Running the tests
+
+### End to end tests
+
+Cypress (coming soon)
 
 ### Unit Tests
 
@@ -66,11 +74,11 @@ Then to run unit tests:
 yarn test
 ```
 
-## Deployment
+## Deployment / CI
 
-Merging a feature branch into the `deploy/fen` branch will automatically update the staging environment (http://fen.rdc-staging.library.northwestern.edu/)
+Merging a feature branch into the `deploy/staging` branch will automatically update the staging environment (https://dc.rdc-staging.library.northwestern.edu/)
 
-There currently is no production environment for Fen.
+Merging `deploy/staging` into `master` will automatically update the production environment.
 
 ## ADR
 
@@ -94,7 +102,6 @@ Please read CONTRIBUTING.md for details on our code of conduct, and the process 
 ## Authors
 
 - Adam J. Arling <aarling@gmail.com>
-- Divya Katpally <katdivyareddy@gmail.com>
 - Karen Shaw <karendid@gmail.com>
 - Brendan Quinn <brendan-quinn@northwestern.edu>
 - Michael B. Klein <mbklein@gmail.com>
