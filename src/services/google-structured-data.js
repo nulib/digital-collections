@@ -31,12 +31,8 @@ export function loadCollectionStructuredData(collection, pathname) {
     "@type": "Collection",
     name: collection.title,
     url: `${productionUrl}${pathname}`,
-    ...(collection.description && {
-      description: collection.description,
-    }),
-    ...(collection.thumbnail_iiif_url && {
-      thumbnail: collection.thumbnail_iiif_url,
-    }),
+    ...(collection.description && { description: collection.description }),
+    thumbnail: collection.representativeImage?.url,
   };
 
   return obj;
@@ -49,48 +45,68 @@ export function loadCollectionStructuredData(collection, pathname) {
  */
 
 export function loadItemStructuredData(item, pathname) {
+  const {
+    descriptiveMetadata: {
+      contributor,
+      creator,
+      dateCreated,
+      description,
+      genre,
+      keywords,
+      physicalDescriptionMaterial,
+      rightsStatement,
+      subject,
+      title,
+    },
+    iiifManifest,
+    representativeFileSet,
+  } = item;
+  const itemImage = item.representativeFileSet?.url;
+
   let obj = {
     "@context": "http://schema.org",
     "@type": "ImageObject",
-
-    // TODO: Wire this up once data in Elasticsearch meadow index firms up
-    //
-    image: item.representativeFileSet ? item.representativeFileSet.url : "",
+    image: item.representativeFileSet?.url,
     contentUrl: item.iiifManifest,
-    name: item.title,
-    thumbnail: item.thumbnail_url,
+    ...(title && { name: title }),
+    thumbnail: itemImage,
     url: `${productionUrl}${pathname}`,
-    // ...(item.subject && {
-    //   about: item.subject.map(x => x.label)
-    // }),
-    // ...(item.creator.length > 0 && { author: item.creator.map(x => x.label) }),
-    // ...(item.subject && {
-    //   contentLocation: item.subject
-    //     .filter(x => x.role === "geographical")
-    //     .map(x => accountForCommas(x.label))
-    //     .join(", ")
-    // }),
-
-    ...(item.contributor &&
-      item.contributor.length > 0 && {
-        contributor: item.contributor.map((x) => x.label),
-      }),
-    // ...(item.create_date && { dateCreated: item.create_date }),
-    // ...(item.modified_date && { dateModified: item.modified_date }),
-    // ...(item.description && { description: item.description.join(" ") }),
-    // ...(item.genre && {
-    //   genre: item.genre.map(x => x.label)
-    // }),
-
-    // ...(item.keyword && {
-    //   keywords: item.keyword.map(x => accountForCommas(x)).join(", ")
-    // }),
-    // ...(item.rights_statement && { license: item.rights_statement.label }),
-    // ...(item.physical_description && {
-    //   material: item.physical_description.material
-    //     .map(x => accountForCommas(x.label))
-    //     .join(", ")
-    // })
+    ...(subject.length > 0 && { about: subject?.map((x) => x.term?.label) }),
+    ...(creator.length > 0 && {
+      author: item.descriptiveMetadata.creator.map((x) => x.term?.label),
+    }),
+    ...(subject.length > 0 && {
+      contentLocation: item.descriptiveMetadata.subject
+        ?.filter((x) => x.role?.id === "GEOGRAPHICAL")
+        .map((x) => accountForCommas(x.role?.label))
+        .join(", "),
+    }),
+    ...(contributor.length > 0 && {
+      contributor: contributor
+        .map((x) => accountForCommas(x.term?.label))
+        .join(", "),
+    }),
+    ...(dateCreated.length > 0 && {
+      dateCreated: dateCreated.map((x) => x.humanized),
+    }),
+    dateModified: item.modifiedDate,
+    ...(description.length > 0 && {
+      description: description?.join(" "),
+    }),
+    ...(genre.length > 0 && {
+      genre: genre.map((x) => x.term?.label),
+    }),
+    ...(keywords.length > 0 && {
+      keywords: keywords?.map((x) => accountForCommas(x)).join(", "),
+    }),
+    ...(rightsStatement && {
+      license: rightsStatement?.label,
+    }),
+    ...(physicalDescriptionMaterial.length > 0 && {
+      material: physicalDescriptionMaterial
+        .map((x) => accountForCommas(x))
+        .join(", "),
+    }),
   };
 
   return obj;

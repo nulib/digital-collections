@@ -1,4 +1,4 @@
-export function getAdminSetItems(id) {
+export async function getAdminSetItems(id) {
   return new Promise((resolve, reject) => {
     process.nextTick(() =>
       resolve([
@@ -153,7 +153,7 @@ export function getAdminSetItems(id) {
   });
 }
 
-export function getCollectionItems(id) {
+export async function getCollectionItems(id) {
   return new Promise((resolve, reject) => {
     process.nextTick(() =>
       resolve([
@@ -253,7 +253,7 @@ export function getCollectionItems(id) {
   });
 }
 
-export function getItem(id) {
+export async function getItem(id) {
   return new Promise((resolve, reject) => {
     process.nextTick(() =>
       id
@@ -279,6 +279,415 @@ export function getItem(id) {
         : reject({
             found: false,
           })
+    );
+  });
+}
+
+export async function getLibraryUnitItems() {
+  return new Promise((resolve, reject) => {
+    process.nextTick(() =>
+      resolve([
+        {
+          accessionNumber: "BFMF_B12_F15_003_008n_am",
+          administrativeMetadata: {
+            libraryUnit: {
+              id: "SPECIAL_COLLECTIONS",
+              label: "Charles Deering McCormick Library of Special Collections",
+              scheme: "library_unit",
+            },
+            preservationLevel: {
+              id: "1",
+              label: "Level 1",
+              scheme: "preservation_level",
+            },
+            projectCycle: "2018",
+            projectDesc: [
+              "NEH grant project to digitize Berkeley Folk Festival Collection",
+            ],
+            projectManager: ["Nicole Finzer"],
+            projectName: ["Berkeley Folk Music Festival"],
+            projectProposer: ["Scott Krafft"],
+            projectTaskNumber: ["P0123"],
+            status: {
+              id: "DONE",
+              label: "Done",
+              scheme: "status",
+            },
+          },
+          batches: [],
+          collection: {
+            id: "18ec4c6b-192a-4ab8-9903-ea0f393c35f7",
+            title: "Berkeley Folk Music Festival",
+          },
+          createDate: "2021-03-16T23:07:31.173234Z",
+          descriptiveMetadata: {
+            source: [],
+            title: "Musicians",
+            scopeAndContents: [],
+            notes: [],
+            folderName: ["Times Square Two"],
+            license: null,
+            rightsHolder: [],
+            genre: [
+              {
+                displayFacet: "black-and-white negatives",
+                facet:
+                  "http://vocab.getty.edu/aat/300128343||black-and-white negatives|",
+                role: null,
+                term: {
+                  id: "http://vocab.getty.edu/aat/300128343",
+                  label: "black-and-white negatives",
+                },
+              },
+            ],
+            catalogKey: [],
+            legacyIdentifier: [],
+            alternateTitle: [],
+            contributor: [],
+            caption: [],
+            boxName: ["12"],
+            physicalDescriptionMaterial: [],
+            rightsStatement: {
+              id: "http://rightsstatements.org/vocab/InC/1.0/",
+              label: "In Copyright",
+              scheme: "rights_statement",
+            },
+            series: [
+              "Berkeley Folk Music Festival -- 1. Artists' Photo Archive",
+            ],
+            tableOfContents: [],
+            location: [],
+            termsOfUse:
+              "The images on this web site are from material in the collections of the Charles Deering McCormick Library of Special Collections of Northwestern University Libraries, and are provided for use by its students, faculty and staff, and by other researchers visiting this site, for research consultation and scholarly purposes only. Further distribution and/or any commercial use of the images from this site is not permitted.",
+            identifier: ["MS 63"],
+            creator: [],
+            relatedMaterial: [],
+            ark: "ark:/81985/n20k26s37",
+            relatedUrl: [],
+            dateCreated: [
+              {
+                edtf: "1958~/1970~",
+                humanized: "circa 1958 to circa 1970",
+              },
+            ],
+            provenance: [],
+            folderNumber: ["15"],
+            keywords: [],
+            description: [
+              "Group of musicians. Found with material related to the Times Square Two. Digital scan of a black and white negative.",
+            ],
+            language: [],
+            stylePeriod: [],
+            publisher: [],
+            technique: [],
+            abstract: [],
+            citation: [],
+            physicalDescriptionSize: [],
+            boxNumber: [],
+            subject: [],
+          },
+          fileSets: [
+            {
+              accessionNumber: "BFMF_B12_F15_003_008n_am_donut_01",
+              exif: {
+                bitsPerSample: null,
+                compression: "Uncompressed",
+                imageHeight: 2998,
+                imageWidth: 4453,
+                make: "Phase One",
+                model: "IQ180",
+                photometricInterpretation: "BlackIsZero",
+                resolutionUnit: "inches",
+                xResolution: 3000,
+                yResolution: 3000,
+              },
+              id: "6dc2aef7-2c5d-4d22-8784-bd43d4a76830",
+              label: "BFMF_B12_F15_003_008n_am.tif",
+            },
+          ],
+          id: "ff4d07f7-1a9a-4041-958b-14a80bb0fb05",
+          iiifManifest:
+            "https://iiif.stack.rdc.library.northwestern.edu/public/ff/4d/07/f7/-1/a9/a-/40/41/-9/58/b-/14/a8/0b/b0/fb/05-manifest.json",
+          model: {
+            application: "Meadow",
+            name: "Image",
+          },
+          modifiedDate: "2021-03-16T23:07:37.325927Z",
+          project: {},
+          published: true,
+          representativeFileSet: {
+            fileSetId: "6dc2aef7-2c5d-4d22-8784-bd43d4a76830",
+            url:
+              "https://iiif.stack.rdc.library.northwestern.edu/iiif/2/6dc2aef7-2c5d-4d22-8784-bd43d4a76830",
+          },
+          sheet: {},
+          visibility: {
+            id: "OPEN",
+            label: "Public",
+            scheme: "visibility",
+          },
+          workType: {
+            id: "IMAGE",
+            label: "Image",
+            scheme: "work_type",
+          },
+        },
+        {
+          accessionNumber: "BFMF_B16_F02_021",
+          administrativeMetadata: {
+            libraryUnit: {
+              id: "SPECIAL_COLLECTIONS",
+              label: "Charles Deering McCormick Library of Special Collections",
+              scheme: "library_unit",
+            },
+            preservationLevel: {
+              id: "1",
+              label: "Level 1",
+              scheme: "preservation_level",
+            },
+            projectCycle: "2018",
+            projectDesc: [
+              "NEH grant project to digitize Berkeley Folk Festival Collection",
+            ],
+            projectManager: ["Nicole Finzer"],
+            projectName: ["Berkeley Folk Music Festival"],
+            projectProposer: ["Scott Krafft"],
+            projectTaskNumber: ["P0123"],
+            status: {
+              id: "DONE",
+              label: "Done",
+              scheme: "status",
+            },
+          },
+          batches: [],
+          collection: {
+            id: "18ec4c6b-192a-4ab8-9903-ea0f393c35f7",
+            title: "Berkeley Folk Music Festival",
+          },
+          createDate: "2021-03-16T02:39:47.773042Z",
+          descriptiveMetadata: {
+            source: [],
+            title: "Berkeley Folk Music Festival Jubilee Concert, 1963",
+            scopeAndContents: [],
+            notes: [],
+            folderName: ["Berkeley 1963 (P. Olivier)"],
+            license: null,
+            rightsHolder: [],
+            genre: [
+              {
+                displayFacet: "black-and-white photographs",
+                facet:
+                  "http://vocab.getty.edu/aat/300128347||black-and-white photographs|",
+                role: null,
+                term: {
+                  id: "http://vocab.getty.edu/aat/300128347",
+                  label: "black-and-white photographs",
+                },
+              },
+            ],
+            catalogKey: [],
+            legacyIdentifier: [],
+            alternateTitle: [],
+            contributor: [
+              {
+                displayFacet: "Berkeley Folk Music Festival (Contributor)",
+                facet:
+                  "http://id.loc.gov/authorities/names/n2012053361|ctb|Berkeley Folk Music Festival (Contributor)",
+                role: {
+                  id: "ctb",
+                  label: "Contributor",
+                  scheme: "marc_relator",
+                },
+                term: {
+                  id: "http://id.loc.gov/authorities/names/n2012053361",
+                  label: "Berkeley Folk Music Festival",
+                },
+              },
+              {
+                displayFacet: "Olivier, Phillip (Photographer)",
+                facet:
+                  "http://id.loc.gov/authorities/names/no2018025579|pht|Olivier, Phillip (Photographer)",
+                role: {
+                  id: "pht",
+                  label: "Photographer",
+                  scheme: "marc_relator",
+                },
+                term: {
+                  id: "http://id.loc.gov/authorities/names/no2018025579",
+                  label: "Olivier, Phillip",
+                },
+              },
+            ],
+            caption: [],
+            boxName: [],
+            physicalDescriptionMaterial: [],
+            rightsStatement: {
+              id: "http://rightsstatements.org/vocab/InC/1.0/",
+              label: "In Copyright",
+              scheme: "rights_statement",
+            },
+            series: [
+              "Berkeley Folk Music Festival -- 2. Festivals Photo Archive -- 2.1. Berkeley",
+            ],
+            tableOfContents: [],
+            location: [],
+            termsOfUse:
+              "The images on this web site are from material in the collections of the Charles Deering McCormick Library of Special Collections of Northwestern University Libraries, and are provided for use by its students, faculty and staff, and by other researchers visiting this site, for research consultation and scholarly purposes only. Further distribution and/or any commercial use of the images from this site is not permitted.",
+            identifier: ["MS 63"],
+            creator: [],
+            relatedMaterial: [],
+            ark: "ark:/81985/n2jh3dj2r",
+            relatedUrl: [],
+            dateCreated: [
+              {
+                edtf: "1963-06-30",
+                humanized: "June 30, 1963",
+              },
+            ],
+            provenance: [],
+            folderNumber: ["2"],
+            keywords: [],
+            description: [
+              "Audience watching a performer on stage at the Greek Theatre during the 1963 Berkeley Folk Music Festival",
+            ],
+            language: [],
+            stylePeriod: [],
+            publisher: [],
+            technique: [],
+            abstract: [],
+            citation: [],
+            physicalDescriptionSize: ["8 inches (height) x 10 inches (width)"],
+            boxNumber: ["16"],
+            subject: [
+              {
+                displayFacet: "Berkeley (Calif.) (Geographical)",
+                facet:
+                  "http://id.loc.gov/authorities/names/n79046046|GEOGRAPHICAL|Berkeley (Calif.) (Geographical)",
+                role: {
+                  id: "GEOGRAPHICAL",
+                  label: "Geographical",
+                  scheme: "subject_role",
+                },
+                term: {
+                  id: "http://id.loc.gov/authorities/names/n79046046",
+                  label: "Berkeley (Calif.)",
+                },
+              },
+              {
+                displayFacet:
+                  "William Randolph Hearst Greek Theatre (Berkeley, Calif.) (Geographical)",
+                facet:
+                  "http://id.loc.gov/authorities/names/n2014047648|GEOGRAPHICAL|William Randolph Hearst Greek Theatre (Berkeley, Calif.) (Geographical)",
+                role: {
+                  id: "GEOGRAPHICAL",
+                  label: "Geographical",
+                  scheme: "subject_role",
+                },
+                term: {
+                  id: "http://id.loc.gov/authorities/names/n2014047648",
+                  label:
+                    "William Randolph Hearst Greek Theatre (Berkeley, Calif.)",
+                },
+              },
+              {
+                displayFacet:
+                  "University of California, Berkeley (Geographical)",
+                facet:
+                  "http://id.loc.gov/authorities/names/n79046084|GEOGRAPHICAL|University of California, Berkeley (Geographical)",
+                role: {
+                  id: "GEOGRAPHICAL",
+                  label: "Geographical",
+                  scheme: "subject_role",
+                },
+                term: {
+                  id: "http://id.loc.gov/authorities/names/n79046084",
+                  label: "University of California, Berkeley",
+                },
+              },
+              {
+                displayFacet:
+                  "Berkeley Folk Music Festival (6th : 1963 : Berkeley, Calif.) (Topical)",
+                facet:
+                  "http://id.loc.gov/authorities/names/no2018164233|TOPICAL|Berkeley Folk Music Festival (6th : 1963 : Berkeley, Calif.) (Topical)",
+                role: {
+                  id: "TOPICAL",
+                  label: "Topical",
+                  scheme: "subject_role",
+                },
+                term: {
+                  id: "http://id.loc.gov/authorities/names/no2018164233",
+                  label:
+                    "Berkeley Folk Music Festival (6th : 1963 : Berkeley, Calif.)",
+                },
+              },
+            ],
+          },
+          fileSets: [
+            {
+              accessionNumber: "BFMF_B16_F02_021_donut_02",
+              exif: {
+                bitsPerSample: "8, 8, 8",
+                compression: "Uncompressed",
+                imageHeight: 4011,
+                imageWidth: 4217,
+                make: "Phase One",
+                model: "IQ180",
+                photometricInterpretation: "RGB",
+                planarConfiguration: "Chunky",
+                resolutionUnit: "inches",
+                xResolution: 400,
+                yResolution: 400,
+              },
+              id: "bfc5e82d-20c6-48a3-9503-6d06fb6cb81f",
+              label: "Verso",
+            },
+            {
+              accessionNumber: "BFMF_B16_F02_021_donut_01",
+              exif: {
+                bitsPerSample: "8, 8, 8",
+                compression: "Uncompressed",
+                imageHeight: 3978,
+                imageWidth: 4209,
+                make: "Phase One",
+                model: "IQ180",
+                photometricInterpretation: "RGB",
+                planarConfiguration: "Chunky",
+                resolutionUnit: "inches",
+                xResolution: 400,
+                yResolution: 400,
+              },
+              id: "d778f9b5-eb9b-423a-abae-f7a5c8c26e2a",
+              label: "Recto",
+            },
+          ],
+          id: "5f5f23ae-8613-41f2-bc58-40215700d7d4",
+          iiifManifest:
+            "https://iiif.stack.rdc.library.northwestern.edu/public/5f/5f/23/ae/-8/61/3-/41/f2/-b/c5/8-/40/21/57/00/d7/d4-manifest.json",
+          model: {
+            application: "Meadow",
+            name: "Image",
+          },
+          modifiedDate: "2021-03-16T02:39:54.213585Z",
+          project: {},
+          published: true,
+          representativeFileSet: {
+            fileSetId: "d778f9b5-eb9b-423a-abae-f7a5c8c26e2a",
+            url:
+              "https://iiif.stack.rdc.library.northwestern.edu/iiif/2/d778f9b5-eb9b-423a-abae-f7a5c8c26e2a",
+          },
+          sheet: {},
+          visibility: {
+            id: "OPEN",
+            label: "Public",
+            scheme: "visibility",
+          },
+          workType: {
+            id: "IMAGE",
+            label: "Image",
+            scheme: "work_type",
+          },
+        },
+      ])
     );
   });
 }

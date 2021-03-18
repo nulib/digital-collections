@@ -35,10 +35,10 @@ const ScreensWork = () => {
         return;
       }
 
-      //populateGTMDataLayer(item);
+      populateGTMDataLayer(item);
       setItem(item);
       setLoading(false);
-      //setStructuredData(loadItemStructuredData(item, location.pathname));
+      setStructuredData(loadItemStructuredData(item, location.pathname));
     }
 
     async function getItem() {
@@ -90,31 +90,22 @@ const ScreensWork = () => {
   }, [auth, history, location, params]);
 
   function populateGTMDataLayer(item) {
-    const rightsStatement = item.rights_statement
-      ? item.rights_statement.label
-      : "";
-    const creators = item.creator
-      ? item.creator.map((creator) => creator.label)
-      : [];
-    const contributors = item.contributor
-      ? item.contributor.map((contributor) => contributor.label)
-      : [];
+    const rightsStatement = item.descriptiveMetadata.rightsStatement?.label;
+    const creators = item.descriptiveMetadata.creator?.map(
+      (x) => x.term?.label
+    );
+    const contributors = item.descriptiveMetadata.contributor?.map(
+      (x) => x.term?.label
+    );
 
     const dataLayer = {
-      adminset: item.administrativeMetadata.libraryUnit
-        ? item.administrativeMetadata.libraryUnit.label
-        : "",
-      // TODO: Will .collection be an object or array?
-      // collections: item.collection.map(collection =>
-      //   collection.title.map(title => title).join(", ")
-      // ),
+      adminset: item.administrativeMetadata.libraryUnit?.label,
+      collections: item.collection?.title,
       creatorsContributors: [...creators, ...contributors],
       pageTitle: elasticsearchParser.getESTitle(item),
       rightsStatement,
-      subjects: item.subject
-        ? item.subject.map((subject) => subject.label)
-        : "",
-      visibility: item.visibility,
+      subjects: item.descriptiveMetadata.subject.map((x) => x.term?.label),
+      visibility: item.visibility?.label,
     };
 
     loadDataLayer(dataLayer);
@@ -134,11 +125,11 @@ const ScreensWork = () => {
     <div className="landing-page">
       <Helmet>
         <title>{generateTitleTag(itemTitle)}</title>
-        {/* {structuredData && (
+        {structuredData && (
           <script type="application/ld+json">
             {JSON.stringify(structuredData)}
           </script>
-        )} */}
+        )}
         <link
           rel="canonical"
           href={`https://digitalcollections.library.northwestern.edu${location.pathname}`}
