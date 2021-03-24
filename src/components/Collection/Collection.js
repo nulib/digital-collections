@@ -112,7 +112,7 @@ const Collection = () => {
 
     if (collection) {
       crumbs.push({
-        title: getESTitle(collection),
+        title: collection.title || "No title",
         link: "",
       });
     }
@@ -136,14 +136,14 @@ const Collection = () => {
     let item = {
       id: res.id,
       imageUrl: getESImagePath(res),
-      label: getESTitle(res.descriptiveMetadata),
+      label: res.descriptiveMetadata.title,
       type: res.model.name,
     };
     return <PhotoBox key={item.id} item={item} />;
   }
 
   const breadCrumbData = collection ? createBreadcrumbData(collection) : [];
-  const collectionTitle = collection ? getESTitle(collection) : "";
+  const collectionTitle = collection?.title;
   const collectionDescription = collection ? getESDescription(collection) : "";
 
   // Split the description by line breaks, so it displays properly

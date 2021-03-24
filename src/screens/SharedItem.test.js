@@ -1,5 +1,4 @@
 import React from "react";
-import { render } from "@testing-library/react";
 import { renderWithRouter } from "../services/@testing-library-helpers";
 import { Route } from "react-router-dom";
 import ScreensSharedItem from "./SharedItem";

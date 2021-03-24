@@ -86,7 +86,9 @@ describe("ElasticSearch parser module", () => {
 
   describe("Get title function", () => {
     const singleTitle = {
-      title: "Alchemical Properties: 15 Years of Dilettantism",
+      descriptiveMetadata: {
+        title: "Alchemical Properties: 15 Years of Dilettantism",
+      },
     };
     const multiTitle = {
       title: {
@@ -96,14 +98,14 @@ describe("ElasticSearch parser module", () => {
 
     test("returns an empty string if no source supplied", () => {
       const value = getESTitle();
-      expect(value).toEqual("No title exists");
+      expect(value).toEqual("");
     });
 
     test("returns a single title successfully", () => {
       const source = { ...singleTitle };
       const value = getESTitle(source);
 
-      expect(value).toBe(singleTitle.title);
+      expect(value).toBe(singleTitle.descriptiveMetadata.title);
     });
 
     //Multiple titles is not supported

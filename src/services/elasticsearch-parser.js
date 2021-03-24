@@ -90,8 +90,13 @@ export function getESImagePath(
  * @param {Object} _source
  * @return {String} A single title string
  */
-export function getESTitle(source) {
-  return source ? source.title : "No title exists";
+export function getESTitle(source, isCollection) {
+  if (!source) return "";
+  if (isCollection) {
+    return source.title || "No title exists";
+  } else {
+    return source.descriptiveMetadata.title || "No title exists";
+  }
 }
 
 export function getIIIFUrlKey(modelType) {
@@ -120,7 +125,7 @@ export function prepPhotoFeatureItems(
     imageUrl: source[iiifUrlKey]
       ? `${source[iiifUrlKey].url}${iiifParams}`
       : "",
-    label: getESTitle(source),
+    label: getESTitle(source, modelType === "Collection"),
     description: getESDescription(source),
   }));
 }
