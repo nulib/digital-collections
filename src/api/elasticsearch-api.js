@@ -261,7 +261,7 @@ export async function getLegacyPidItem(pid) {
             must: [
               {
                 match: {
-                  "legacy_identifier.keyword": pid,
+                  "descriptiveMetadata.legacyIdentifier.keyword": pid,
                 },
               },
             ],
