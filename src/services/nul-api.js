@@ -6,7 +6,11 @@ const nullUser = { token: null };
 export const loginKey = "loggedIn";
 
 export function anonymous() {
-  return !localStorage.getItem(loginKey);
+  try {
+    return !localStorage.getItem(loginKey);
+  } catch (e) {
+    return true;
+  }
 }
 
 export function currentUser() {
