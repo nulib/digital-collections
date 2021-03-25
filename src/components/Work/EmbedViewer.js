@@ -39,7 +39,7 @@ export default function WorkEmbedViewer({ item }) {
   const embedString = `<iframe src="${
     window.location.origin
   }/embedded-viewer/${encodeURIComponent(item.iiifManifest)}" title="${
-    item.title.primary[0]
+    item.descriptiveMetadata.title
   }" width="100%" height="800"></iframe>`;
 
   const handleCopyClick = () => {
