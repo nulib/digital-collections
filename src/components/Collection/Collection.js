@@ -144,12 +144,7 @@ const Collection = () => {
 
   const breadCrumbData = collection ? createBreadcrumbData(collection) : [];
   const collectionTitle = collection?.title;
-  const collectionDescription = collection ? getESDescription(collection) : "";
-
-  // Split the description by line breaks, so it displays properly
-  const descriptionDisplay = collectionDescription
-    .split("\n")
-    .map((i, key) => <p key={key}>{i}</p>);
+  const collectionDescription = collection?.description;
 
   const allFilters = [
     COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID,
@@ -185,7 +180,10 @@ const Collection = () => {
 
             <h2>{collectionTitle}</h2>
 
-            <div data-testid="collection-description">
+            <div
+              data-testid="collection-description"
+              style={{ whiteSpace: "pre-line" }}
+            >
               <CollectionDescription description={collectionDescription} />
             </div>
 
