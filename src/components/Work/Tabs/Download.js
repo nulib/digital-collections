@@ -71,7 +71,9 @@ const WorkTabsDownload = React.memo(function ({ item }) {
 
   return (
     <div css={downloadWrapper} data-testid="tab-content-download">
-      {item.visibility === "open" && <WorkEmbedViewer item={item} />}
+      {item.visibility?.id.toUpperCase() === "OPEN" && (
+        <WorkEmbedViewer item={item} />
+      )}
 
       <div className="responsive-table">
         <table css={table}>

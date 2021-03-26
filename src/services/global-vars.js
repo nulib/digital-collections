@@ -94,6 +94,10 @@ export const ROUTES = {
     title: "Contact Us",
     path: "/contact-us",
   },
+  EMBEDDED_VIEWER: {
+    title: "Embedded Viewer",
+    path: "/embedded-viewer/:manifestUrl",
+  },
   HOME: {
     title: "Home",
     path: "/",
