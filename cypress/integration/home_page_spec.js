@@ -15,7 +15,7 @@ describe("Home page", () => {
     });
   });
 
-  xit("displays section: recently added and updated items, along with its photo grid", () => {
+  it("displays section: recently added and updated items, along with its photo grid", () => {
     cy.get("[data-testid=section-recent-items]").within(($section) => {
       cy.get("[data-testid=headline-photo-grid-section]");
       //cy.get("[data-testid=link-photo-grid-section]");
@@ -31,7 +31,7 @@ describe("Home page", () => {
     });
   });
 
-  xit("displays section: featured collections section, along with its photo grid", () => {
+  it("displays section: featured collections section, along with its photo grid", () => {
     cy.get("[data-testid=section-featured-collections]").within(($section) => {
       cy.get("[data-testid=headline-photo-feature-section]");
       cy.contains("View All Collections");
@@ -51,10 +51,10 @@ describe("Home page", () => {
     });
   });
 
-  xit("renders additional Collection galleries", () => {
+  it("renders additional Collection galleries", () => {
     cy.getByTestId("section-additional-collection-gallery")
       .its("length")
-      .should("be.eq", 3);
+      .should("be.eq", 2);
 
     for (let keyword of HOMEPAGE_COLLECTION_GROUP_KEYWORDS) {
       cy.contains(`${keyword} Collections`);

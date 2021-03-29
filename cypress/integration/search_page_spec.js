@@ -2,7 +2,7 @@
 
 //const jwt = require("jsonwebtoken");
 
-xdescribe("Search page", () => {
+describe("Search page", () => {
   context("Anonymous user", () => {
     beforeEach(() => {
       cy.visit("/search");
@@ -17,8 +17,8 @@ xdescribe("Search page", () => {
         .as("facetList");
 
       cy.get("@facetList").within(($facetList) => {
-        cy.contains("open");
-        cy.contains("authenticated").should("not.exist");
+        cy.contains("Public");
+        cy.contains("Institution").should("not.exist");
       });
     });
 
@@ -176,8 +176,8 @@ xdescribe("Search page", () => {
         .as("facetList");
 
       cy.get("@facetList").within(($facetList) => {
-        cy.contains("open");
-        cy.contains("authenticated");
+        cy.contains("Institution");
+        cy.contains("Public");
       });
     });
   });
