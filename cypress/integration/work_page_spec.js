@@ -3,7 +3,7 @@
 const singleFilesetRoute = "/items/0ea41d0d-ad48-4331-9a87-8a55836fb7ca";
 const multipleFilesetRoute = "/items/0620eaca-54e6-4181-a858-39ddea0bb1c5";
 
-xdescribe("Work page", () => {
+describe("Work page", () => {
   context("OpenSeadragon single fileset work", () => {
     beforeEach(() => {
       cy.visit(singleFilesetRoute);
@@ -252,27 +252,28 @@ xdescribe("Work page", () => {
       it("should display key metadata items and display links for metadata items which are facet-able", () => {
         cy.contains("Find this Item").click();
         cy.getByTestId("tab-content-find").within(($tabContent) => {
-          cy.contains("Box Number");
-          cy.contains("a", "4")
-            .should("have.attr", "href")
-            .and(
-              "include",
-              "search?Box=%5B%224%22%5D&Collection=%5B%22Berkeley+Folk+Music+Festival%22%5D"
-            );
+          cy.contains("Box Number")
+            .next("ul")
+            .find("a")
+            .should("contain", "4")
+            .and("have.attr", "href")
+            .and("include", "search");
 
-          cy.contains("Accession");
-          cy.contains("Folder Number");
-          cy.contains("a", "1")
-            .should("have.attr", "href")
-            .and(
-              "include",
-              "search?Folder=%5B%221%22%5D&Box=%5B%224%22%5D&Collection=%5B%22Berkeley+Folk+Music+Festival%22%5D"
-            );
+          cy.contains("Accession")
+            .next()
+            .should("contain", "BFMF_B04_F01_004_011n_am");
 
-          cy.contains("More Information");
-          cy.contains(
-            "For more information on this item or collection, please contact ude.nretsewhtron@snoitcelloc.laiceps"
-          );
+          cy.contains("Folder Number")
+            .next("ul")
+            .find("a")
+            .should("contain", "1")
+            .and("have.attr", "href")
+            .and("include", "search");
+
+          // cy.contains("More Information");
+          // cy.contains(
+          //   "For more information on this item or collection, please contact ude.nretsewhtron@snoitcelloc.laiceps"
+          // );
         });
       });
     });
@@ -316,7 +317,7 @@ xdescribe("Work page", () => {
 
       context("Embed Rich Image Viewer", () => {
         cy.getByTestId("embed-viewer");
-        cy.getByTestId("embed-viewer-code").should("not.be.visible");
+        cy.getByTestId("embed-viewer-code").should("not.exist");
         cy.getByTestId("button-embed-viewer").click();
         cy.getByTestId("embed-viewer-code").should("be.visible");
         cy.contains("Copy Code");

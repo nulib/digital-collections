@@ -44,7 +44,7 @@ export const SHARED_ITEM_PROXY_URL =
 // This array holds Keyword Metadata values set in Donut, which are used to group Collections
 // on the Homepage
 export const HOMEPAGE_COLLECTION_GROUP_KEYWORDS = [
-  "posters",
+  //"posters", // Current no Collections seem to have the "Posters" keyword
   "photography",
   "evanston",
 ];

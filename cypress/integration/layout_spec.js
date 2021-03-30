@@ -48,9 +48,9 @@ describe("Layout elements (header, footer, etc.)", () => {
         cy.location("pathname").should("include", "search");
       });
 
-      xit("should not display mobile search", () => {
+      it("should not display mobile links", () => {
         // Validate mobile search not displayed
-        cy.get("[data-testid=mobie-links").should("not.be.visible");
+        cy.get("[data-testid=mobile-links").should("not.be.visible");
       });
     });
 

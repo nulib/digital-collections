@@ -12,7 +12,7 @@ describe("Collections landing page", () => {
     });
   });
 
-  xit("displays page title and collection items", () => {
+  it("displays page title and collection items", () => {
     cy.contains("h2", "All Collections");
 
     // Assuming we have at least 10 collections in production
@@ -28,7 +28,7 @@ describe("Collections landing page", () => {
       });
   });
 
-  xit("filters Collections through the input filter", () => {
+  it("filters Collections through the input filter", () => {
     cy.get("[data-testid=input-collection-filter]").as("inputFilter");
     cy.get(".photo-grid > article").as("articles");
 

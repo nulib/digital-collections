@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-xdescribe("Collections View page", () => {
+describe("Collections View page", () => {
   context("Anonymous user", () => {
     beforeEach(() => {
       cy.visit("/collections/1c2e2200-c12d-4c7f-8b87-a935c349898a");
@@ -50,8 +50,8 @@ xdescribe("Collections View page", () => {
         .as("facetList");
 
       cy.get("@facetList").within(($facetList) => {
-        cy.contains("open");
-        cy.contains("authenticated").should("not.exist");
+        cy.contains("Public");
+        cy.contains("Institution").should("not.exist");
       });
     });
 
