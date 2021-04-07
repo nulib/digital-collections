@@ -59,7 +59,6 @@ export function loadItemStructuredData(item, pathname) {
       title,
     },
     iiifManifest,
-    representativeFileSet,
   } = item;
   const itemImage = item.representativeFileSet?.url;
 
@@ -67,7 +66,7 @@ export function loadItemStructuredData(item, pathname) {
     "@context": "http://schema.org",
     "@type": "ImageObject",
     image: item.representativeFileSet?.url,
-    contentUrl: item.iiifManifest,
+    contentUrl: iiifManifest,
     ...(title && { name: title }),
     thumbnail: itemImage,
     url: `${productionUrl}${pathname}`,
@@ -100,7 +99,7 @@ export function loadItemStructuredData(item, pathname) {
       keywords: keywords?.map((x) => accountForCommas(x)).join(", "),
     }),
     ...(rightsStatement && {
-      license: rightsStatement?.label,
+      license: rightsStatement?.id,
     }),
     ...(physicalDescriptionMaterial.length > 0 && {
       material: physicalDescriptionMaterial

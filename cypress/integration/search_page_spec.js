@@ -113,7 +113,7 @@ describe("Search page", () => {
 
         // TODO: FYI I don't like using these cy.wait(), as they're arbitrary to environments,
         // but until we get a test environment spun up, they work for now?
-        cy.wait(3000);
+        cy.wait(6000);
         // Check for updates
         cy.get(".rs-result-list article")
           .first()
@@ -123,7 +123,7 @@ describe("Search page", () => {
 
         // Clear the filter by clicking on the filter link
         cy.get(".rs-selected-filters a").first().click();
-        cy.wait(3000);
+        cy.wait(6000);
         cy.get(".rs-result-list article")
           .first()
           .find("h4")
