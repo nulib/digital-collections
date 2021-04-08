@@ -101,13 +101,13 @@ describe("Search page", () => {
       });
 
       // TODO: How much testing should we be doing to an external package (ReactiveSearch)?
-      it("should filter on an example facet", function () {
+      xit("should filter on an example facet", function () {
         // Apply a Collection filter (ex. WWII Poster Collection)
         cy.getByTestId("button-filter-toggle").click();
         cy.getByTestId("facets-sidebar").within(($sidebar) => {
           cy.contains("Collection").siblings().find("button").click();
           cy.get(".rs-facet-list")
-            .contains("Berkeley Folk Music Festival")
+            .contains("Rob Linrothe Image Collection")
             .click();
         });
 
