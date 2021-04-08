@@ -132,7 +132,7 @@ const ScreensWork = () => {
         )}
         <link
           rel="canonical"
-          href={`https://digitalcollections.library.northwestern.edu${location.pathname}`}
+          href={`https://dc.library.northwestern.edu${location.pathname}`}
         />
       </Helmet>
       <ErrorBoundary FallbackComponent={FallbackErrorComponent}>
