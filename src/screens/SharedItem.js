@@ -6,6 +6,8 @@ import UILoadingSpinner from "../components/UI/LoadingSpinner";
 import { ErrorBoundary } from "react-error-boundary";
 import SharedItem from "../components/SharedItem/SharedItem";
 import FallbackErrorComponent from "components/UI/FallbackErrorComponent";
+import SharedItemNotification from "components/SharedItem/Notification";
+import { getSharedItem } from "api/elasticsearch-api";
 
 /** @jsxRuntime classic */
 /** @jsx jsx */
@@ -22,8 +24,15 @@ export default function ScreensSharedItem() {
   const [fetchErrors, setFetchErrors] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [workData, setWorkData] = useState();
+  const [sharedLinkData, setSharedLinkData] = React.useState();
 
   useEffect(() => {
+    getSharedItem(sharedLinkId).then((response) => {
+      if (response?.found) {
+        setSharedLinkData(response._source);
+      }
+    });
+
     fetch(`${SHARED_ITEM_PROXY_URL}${sharedLinkId}`)
       .then((response) => response.json())
       .then((data) => {
@@ -55,7 +64,14 @@ export default function ScreensSharedItem() {
         ) : (
           <div>
             {fetchErrors && <UIErrorSection message={fetchErrors} />}
-            <SharedItem work={workData} />
+            <>
+              {sharedLinkData && (
+                <SharedItemNotification
+                  expirationDate={sharedLinkData.expires}
+                />
+              )}
+              <SharedItem work={workData} />
+            </>
           </div>
         )}
       </ErrorBoundary>
