@@ -331,3 +331,17 @@ export async function getTotalItemCount() {
     return Promise.resolve(0);
   }
 }
+
+export async function getSharedItem(id) {
+  try {
+    let response = await client.get({
+      index: "shared_links",
+      id,
+    });
+    console.log(`response`, response);
+
+    return response;
+  } catch (e) {
+    console.error(`e`, e);
+  }
+}
