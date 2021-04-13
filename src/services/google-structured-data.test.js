@@ -21,7 +21,7 @@ const collectionMock = {
   title: "Berkeley Folk Music Festival",
   visibility: { id: "OPEN", label: "Public", scheme: "visibility" },
 };
-const pathName = "https://nu.com";
+const pathName = "/ima/path";
 
 it("returns the expected default structured data ", () => {
   const obj = gsd.loadDefaultStructuredData();
@@ -55,13 +55,31 @@ describe("collection structured data", () => {
 describe("work structured data", () => {
   it("returns the expected work structured data ", () => {
     const obj = gsd.loadItemStructuredData(mockWork2, pathName);
+
     expect(obj["@type"]).toEqual("ImageObject");
     expect(obj).toHaveProperty("@context");
-    expect(obj).toHaveProperty("name");
-    expect(obj).toHaveProperty("contentUrl");
-    expect(obj).toHaveProperty("image");
-    expect(obj).toHaveProperty("thumbnail");
-    expect(obj).toHaveProperty("url");
+    expect(obj.about).toEqual(["Watson, Doc", "Watson, Merle"]);
+    expect(obj.contentLocation).toEqual("");
+    expect(obj.contentUrl).toEqual(
+      "https://iiif.stack.rdc-staging.library.northwestern.edu/public/63/bd/ab/1f/-3/6c/f-/4e/65/-b/30/f-/41/62/68/4e/f9/80-manifest.json"
+    );
+    expect(obj.contributor).toEqual('"Olivier, Barry, 1935-"');
+    expect(obj.dateCreated[0]).toEqual("September 17, 1968");
+    expect(obj.description).toEqual(
+      "Doc Watson and Merle Watson (holding guitar). Digital image scanned from black and white negative."
+    );
+    expect(obj.genre[0]).toEqual("black-and-white negatives");
+    expect(obj.image).toEqual(
+      "https://iiif.stack.rdc-staging.library.northwestern.edu/iiif/2/069f462e-935d-4e75-a131-28fb95751da2"
+    );
+    expect(obj.license).toEqual("http://rightsstatements.org/vocab/InC/1.0/");
+    expect(obj.name).toEqual("Doc and Merle Watson");
+    expect(obj.thumbnail).toEqual(
+      "https://iiif.stack.rdc-staging.library.northwestern.edu/iiif/2/069f462e-935d-4e75-a131-28fb95751da2"
+    );
+    expect(obj.url).toEqual(
+      "https://digitalcollections.library.northwestern.edu/ima/path"
+    );
   });
 
   it("returns a quoted value when a comma is present in a metadata value", () => {

@@ -2,7 +2,7 @@
 
 //const jwt = require("jsonwebtoken");
 
-xdescribe("Search page", () => {
+describe("Search page", () => {
   context("Anonymous user", () => {
     beforeEach(() => {
       cy.visit("/search");
@@ -17,8 +17,8 @@ xdescribe("Search page", () => {
         .as("facetList");
 
       cy.get("@facetList").within(($facetList) => {
-        cy.contains("open");
-        cy.contains("authenticated").should("not.exist");
+        cy.contains("Public");
+        cy.contains("Institution").should("not.exist");
       });
     });
 
@@ -101,19 +101,19 @@ xdescribe("Search page", () => {
       });
 
       // TODO: How much testing should we be doing to an external package (ReactiveSearch)?
-      it("should filter on an example facet", function () {
+      xit("should filter on an example facet", function () {
         // Apply a Collection filter (ex. WWII Poster Collection)
         cy.getByTestId("button-filter-toggle").click();
         cy.getByTestId("facets-sidebar").within(($sidebar) => {
           cy.contains("Collection").siblings().find("button").click();
           cy.get(".rs-facet-list")
-            .contains("Berkeley Folk Music Festival")
+            .contains("Rob Linrothe Image Collection")
             .click();
         });
 
         // TODO: FYI I don't like using these cy.wait(), as they're arbitrary to environments,
         // but until we get a test environment spun up, they work for now?
-        cy.wait(3000);
+        cy.wait(6000);
         // Check for updates
         cy.get(".rs-result-list article")
           .first()
@@ -123,7 +123,7 @@ xdescribe("Search page", () => {
 
         // Clear the filter by clicking on the filter link
         cy.get(".rs-selected-filters a").first().click();
-        cy.wait(3000);
+        cy.wait(6000);
         cy.get(".rs-result-list article")
           .first()
           .find("h4")
@@ -176,8 +176,8 @@ xdescribe("Search page", () => {
         .as("facetList");
 
       cy.get("@facetList").within(($facetList) => {
-        cy.contains("open");
-        cy.contains("authenticated");
+        cy.contains("Institution");
+        cy.contains("Public");
       });
     });
   });

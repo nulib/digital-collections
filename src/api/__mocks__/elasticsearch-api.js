@@ -691,3 +691,25 @@ export async function getLibraryUnitItems() {
     );
   });
 }
+
+export async function getSharedItem() {
+  return new Promise((resolve, reject) => {
+    process.nextTick(() =>
+      resolve([
+        {
+          _index: "shared_links",
+          _type: "_doc",
+          _id: "ae4ba3ed-cbf4-4aba-a3c7-c10867b3499d",
+          _version: 1,
+          found: true,
+          _source: {
+            target_index: "meadow",
+            target_id: "4fcfdf52-c64f-4745-b246-fa2159c400d4",
+            shared_link_id: "ae4ba3ed-cbf4-4aba-a3c7-c10867b3499d",
+            expires: "2021-04-23T19:44:52.046456Z",
+          },
+        },
+      ])
+    );
+  });
+}
