@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@appbaseio/reactivesearch": "^3.14.0",
-    "@emotion/react": "^11.1.4",
+    "@emotion/react": "^11.1.5",
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@fortawesome/react-fontawesome": "^0.1.14",
