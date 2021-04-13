@@ -77,7 +77,7 @@
     "@nulib/prettier-config": "^1.2.0",
     "@testing-library/jest-dom": "^5.11.8",
     "@testing-library/react": "^11.2.2",
-    "@types/jest": "^26.0.19",
+    "@types/jest": "^26.0.22",
     "coveralls": "^3.0.9",
     "cypress": "6.2.1",
     "eslint-config-prettier": "^7.1.0",
