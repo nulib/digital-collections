@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@appbaseio/reactivecore@9.8.0":
-  version "9.8.0"
-  resolved "https://registry.yarnpkg.com/@appbaseio/reactivecore/-/reactivecore-9.8.0.tgz#43d12ddafa83121b577c201c59a34e5978952081"
-  integrity sha512-hu8cNIAfPzvtG4lIihemzFu1aOzaq35pO546CHPbgY0L27CYQW53M5G4l2jXZrBQ34MJXvoFZ75szLxMQ68RZg==
+"@appbaseio/reactivecore@9.10.2":
+  version "9.10.2"
+  resolved "https://registry.yarnpkg.com/@appbaseio/reactivecore/-/reactivecore-9.10.2.tgz#9213259c7dc4000173a196aa2c4dcc3b8d966bf0"
+  integrity sha512-UQU2BUCZxkEtOgc2qcyS7elxDG+F0z2NtFcLk9nhFCq8LfMEk6TIHt3EgqpebuRbpZbAI1aRgQzt9ueIilgcTQ==
   dependencies:
     cross-fetch "^3.0.4"
     prop-types "^15.6.0"
@@ -13,12 +13,12 @@
     redux-thunk "^2.3.0"
     xdate "^0.8.2"
 
-"@appbaseio/reactivesearch@^3.14.0":
-  version "3.14.0"
-  resolved "https://registry.yarnpkg.com/@appbaseio/reactivesearch/-/reactivesearch-3.14.0.tgz#eb425925f55bee3e3286408ff90c8ee1a721d30a"
-  integrity sha512-St7tm49Em3QHTLz+QTRQTVnEuASiuVYGF1jR2IYLj2zjOZZDpy9JAOkPhZRlm8UQzASOAejp9vdczDJCWySpoQ==
+"@appbaseio/reactivesearch@^3.17.0":
+  version "3.17.0"
+  resolved "https://registry.yarnpkg.com/@appbaseio/reactivesearch/-/reactivesearch-3.17.0.tgz#9e8b5d5ac135ae86c0dfc8bcadda1294fff78e35"
+  integrity sha512-6bAeVRQaVehT48AtBvElNK4AYvhY0mrT39JEbEv9r12vVdmMVJ0aD9B0zBZfPdVZp2eHTOeQtjfmR2GstJ4vrA==
   dependencies:
-    "@appbaseio/reactivecore" "9.8.0"
+    "@appbaseio/reactivecore" "9.10.2"
     "@emotion/core" "^10.0.28"
     "@emotion/styled" "^10.0.27"
     appbase-js "^4.1.0"
@@ -10700,10 +10700,10 @@ react-collapsible@^2.8.3:
   resolved "https://registry.yarnpkg.com/react-collapsible/-/react-collapsible-2.8.3.tgz#55b2c41f670a2031d29622110bbdb66c1a10ebc9"
   integrity sha512-SiVsLZW8qeh09eARzJ9/fwrwOlPWfAdu+vUJGQaTqVYH61XBnKqnwcTDeGZjL005hatmJSkk2CAtYtb4rz14fA==
 
-react-copy-to-clipboard@^5.0.1:
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/react-copy-to-clipboard/-/react-copy-to-clipboard-5.0.2.tgz#d82a437e081e68dfca3761fbd57dbf2abdda1316"
-  integrity sha512-/2t5mLMMPuN5GmdXo6TebFa8IoFxZ+KTDDqYhcDm0PhkgEzSxVvIX26G20s1EB02A4h2UZgwtfymZ3lGJm0OLg==
+react-copy-to-clipboard@^5.0.3:
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/react-copy-to-clipboard/-/react-copy-to-clipboard-5.0.3.tgz#2a0623b1115a1d8c84144e9434d3342b5af41ab4"
+  integrity sha512-9S3j+m+UxDZOM0Qb8mhnT/rMR0NGSrj9A/073yz2DSxPMYhmYFBMYIdI2X4o8AjOjyFsSNxDRnCX6s/gRxpriw==
   dependencies:
     copy-to-clipboard "^3"
     prop-types "^15.5.8"
