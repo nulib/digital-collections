@@ -38,7 +38,7 @@
     "react-share": "^4.4.0",
     "react-sizes": "^2.0.0",
     "react-slidedown": "^2.4.1",
-    "react-spinners": "^0.10.4",
+    "react-spinners": "^0.10.6",
     "react-tabs": "^3.1.2",
     "react-test-renderer": "^17.0.1",
     "redux": "^4.0.5",
