@@ -6,7 +6,7 @@
     "@appbaseio/reactivesearch": "^3.14.0",
     "@emotion/react": "^11.1.5",
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
-    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/react-fontawesome": "^0.1.14",
     "@reglendo/canvas2image": "^1.0.5-2",
     "cookie": "^0.4.0",
