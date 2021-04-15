@@ -11785,10 +11785,10 @@ react-spinners@^0.10.6:
   dependencies:
     "@emotion/core" "^10.0.35"
 
-react-tabs@^3.1.2:
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/react-tabs/-/react-tabs-3.1.2.tgz#9047ad7d8a53d357a67c14ad4c4a64cc16660fa8"
-  integrity sha512-OKS1l7QzSNcn+L2uFsxyGFHdXp9YsPGf/YOURWcImp7xLN36n0Wz+/j9HwlwGtlXCZexwshScR5BrcFbw/3P9Q==
+react-tabs@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/react-tabs/-/react-tabs-3.2.2.tgz#07bdc3cdb17bdffedd02627f32a93cd4b3d6e4d0"
+  integrity sha512-/o52eGKxFHRa+ssuTEgSM8qORnV4+k7ibW+aNQzKe+5gifeVz8nLxCrsI9xdRhfb0wCLdgIambIpb1qCxaMN+A==
   dependencies:
     clsx "^1.1.0"
     prop-types "^15.5.0"
