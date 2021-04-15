@@ -46,7 +46,7 @@
     "redux-thunk": "^2.2.0",
     "source-map-explorer": "^2.5.2",
     "swiper": "6.5.6",
-    "whatwg-fetch": "^3.5.0"
+    "whatwg-fetch": "^3.6.2"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,json,css,scss,md}": [
