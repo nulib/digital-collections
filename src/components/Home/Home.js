@@ -120,7 +120,7 @@ const Home = () => {
    * Get recently digitized items
    */
   async function getGalleryItems() {
-    let response = await elasticsearchApi.getRecentlyDigitizedItems(numResults);
+    let response = await elasticsearchApi.getRecentlyDigitizedItems(24);
     const items = elasticsearchParser.prepPhotoGridItems(
       response,
       globalVars.IMAGE_MODEL

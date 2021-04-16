@@ -79,7 +79,7 @@
     "@testing-library/react": "^11.2.2",
     "@types/jest": "^26.0.19",
     "coveralls": "^3.0.9",
-    "cypress": "6.2.1",
+    "cypress": "^7.1.0",
     "eslint-config-prettier": "^7.1.0",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.22.0",
