@@ -80,7 +80,7 @@
     "@types/jest": "^26.0.22",
     "coveralls": "^3.0.9",
     "cypress": "6.2.1",
-    "eslint-config-prettier": "^7.1.0",
+    "eslint-config-prettier": "^8.2.0",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.23.2",
     "husky": "6.0.0",
