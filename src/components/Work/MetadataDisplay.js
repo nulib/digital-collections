@@ -16,11 +16,12 @@ function prepItemText(item) {
 }
 
 const MetadataDisplay = ({
-  title,
-  items = [],
-  facet,
-  collection,
   boxNumber,
+  collection,
+  externalUrl,
+  items = [],
+  title,
+  facet,
 }) => {
   if (!items) return null;
 
@@ -79,11 +80,9 @@ const MetadataDisplay = ({
     if (externalUrlLabels.indexOf(title) > -1) {
       return (
         <li key={text}>
-          {text} (
-          <a href={item.url || ""} target="_blank" rel="noopener noreferrer">
-            {item.url}
+          <a href={externalUrl || ""} target="_blank" rel="noopener noreferrer">
+            {text}
           </a>
-          )
         </li>
       );
     }

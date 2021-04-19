@@ -66,10 +66,12 @@ workflows:
     jobs:
       - test
       - cypress/install:
+          executor: cypress/base-12
           yarn: true
       - cypress/run:
           requires:
             - cypress/install
+          executor: cypress/base-12
           yarn: true
           start: HTTPS=false HOST=localhost PORT=3000 yarn start | tee /var/log/yarn.log 2>&1
           wait-on: "http://localhost:3000"
