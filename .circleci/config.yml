@@ -32,7 +32,7 @@ jobs:
   deploy:
     working_directory: ~/glaze
     docker:
-      - image: circleci/python:3.7.1-node
+      - image: cimg/python:3.9.4-node
     steps:
       - checkout
       - run:
