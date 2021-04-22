@@ -10,4 +10,4 @@ echo "REACT_APP_ELASTICSEARCH_PROXY_BASE=$REACT_APP_ELASTICSEARCH_PROXY_BASE REA
 
 yarn install
 yarn build
-aws s3 sync --delete --acl public-read ./build/ s3://${S3_BUCKET}/
+aws s3 sync --delete --exclude '*.xml.gz' --acl public-read ./build/ s3://${S3_BUCKET}/
