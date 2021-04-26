@@ -25,6 +25,7 @@ const TabsMetadata = ({ item }) => {
     caption,
     contributor,
     creator,
+    culturalContext,
     dateCreated,
     description,
     genre,
@@ -68,6 +69,7 @@ const TabsMetadata = ({ item }) => {
       value: creator,
       facet: reactiveSearchFacets.find((facet) => facet.value === "Creator"),
     },
+    { label: "Cultural Context", value: culturalContext },
     { label: "Date", value: dateCreated.map((d) => d.humanized) },
     {
       label: "Department",
