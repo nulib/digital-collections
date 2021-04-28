@@ -65,7 +65,7 @@ describe("Collections View page", () => {
       });
     });
 
-    it("should update content with search within collection", () => {
+    xit("should update content with search within collection", () => {
       const searchTerms = ["kingdoms", "Guinea"];
 
       cy.get("input.rs-search-input").as("searchBox").type(searchTerms[0]);

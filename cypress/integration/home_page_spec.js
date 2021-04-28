@@ -21,7 +21,7 @@ describe("Home page", () => {
       //cy.get("[data-testid=link-photo-grid-section]");
       cy.contains("View All Works");
       cy.get("[data-testid=photo-box]")
-        .should("have.length", 8)
+        .should("have.length", 24)
         .and("have.class", "photo-box");
     });
 

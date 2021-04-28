@@ -303,6 +303,7 @@ export async function getRecentlyDigitizedItems(numResults = PAGE_SIZE) {
             ],
           },
         },
+        ...sortKey,
       },
     });
 
