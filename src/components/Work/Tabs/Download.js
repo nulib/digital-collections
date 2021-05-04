@@ -4,9 +4,9 @@ import { getTileSources } from "../../../services/iiif-parser";
 import UILoadingSpinner from "../../UI/LoadingSpinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import IIIFImageEmbedModal from "../../UI/IIIFImageEmbedModal";
-import DownloadIIIFImage from "./DownloadIIIFImage";
 import { cleanupFilename } from "../../../services/helpers";
 import WorkEmbedViewer from "../EmbedViewer";
+import { ImageDownloader } from "@samvera/image-downloader";
 
 /** @jsxRuntime classic */
 /** @jsx jsx */
@@ -93,10 +93,15 @@ const WorkTabsDownload = React.memo(function ({ item }) {
                 </td>
                 <td>{row.label}</td>
                 <td>
-                  <DownloadIIIFImage
+                  <ImageDownloader
                     imageUrl={`${row.id}/full/3000,/0/default.jpg`}
                     imageTitle={row.label ? cleanupFilename(row.label) : ""}
-                  />
+                    data-testid="download-button"
+                    className="button-link"
+                    iconColor="#4e2a84"
+                  >
+                    Download JPG
+                  </ImageDownloader>
                   <p>
                     <button
                       className="button-link"
