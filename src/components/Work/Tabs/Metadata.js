@@ -139,6 +139,7 @@ const TabsMetadata = ({ item }) => {
     },
     { label: "Title", value: title },
   ];
+
   return (
     <div css={tabContent} data-testid="tab-content-metadata">
       {metadataItems.map(({ label, value, facet }, i) => (
