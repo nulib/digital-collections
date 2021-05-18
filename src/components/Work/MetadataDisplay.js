@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { getESTitle } from "../../services/elasticsearch-parser";
 
-const externalUrlLabels = ["Related Url", "NUsearch"];
+const externalUrlLabels = ["NUsearch"];
 
 function prepItemText(item) {
   if (item.term) {
@@ -65,6 +65,7 @@ const MetadataDisplay = ({
     );
   };
 
+  // TODO: Refactor this implementation
   const multipleItems = (item, i) => {
     let text = "";
     if (title == "Contributor") {
@@ -81,6 +82,16 @@ const MetadataDisplay = ({
       return (
         <li key={text}>
           <a href={externalUrl || ""} target="_blank" rel="noopener noreferrer">
+            {text}
+          </a>
+        </li>
+      );
+    }
+
+    if (title === "Related Url") {
+      return (
+        <li key={text}>
+          <a href={item.url} target="_blank" rel="noopener noreferrer">
             {text}
           </a>
         </li>
