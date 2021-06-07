@@ -91,7 +91,7 @@
     "prettier": "^2.2.1",
     "prop-types": "^15.6.1",
     "react-router-prop-types": "^1.0.5",
-    "start-server-and-test": "^1.12.4"
+    "start-server-and-test": "^1.12.5"
   },
   "husky": {
     "hooks": {
