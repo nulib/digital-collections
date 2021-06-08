@@ -95,7 +95,7 @@ const WorkTabsDownload = React.memo(function ({ item }) {
                 <td>
                   <ImageDownloader
                     imageUrl={`${row.id}/full/3000,/0/default.jpg`}
-                    imageTitle={row.label ? cleanupFilename(row.label) : ""}
+                    imageTitle={item?.accessionNumber || ""}
                     data-testid="download-button"
                     className="button-link"
                     iconColor="#4e2a84"
