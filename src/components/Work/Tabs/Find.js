@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import MetadataDisplay from "components/Work/MetadataDisplay";
 import { getPrimoLink } from "services/helpers";
-import { reactiveSearchFacets } from "services/reactive-search";
+import { FACET_SENSORS } from "services/reactive-search";
 import WorkTabsMoreInformation from "components/Work/Tabs/MoreInformation";
 
 /** @jsxRuntime classic */
@@ -30,7 +30,7 @@ const TabsFind = ({ item }) => {
     { label: "Box Name", value: boxName },
     {
       label: "Box Number",
-      facet: reactiveSearchFacets.find((facet) => facet.value === "BoxNumber"),
+      facet: FACET_SENSORS.find((facet) => facet.componentId === "BoxNumber"),
       value: boxNumber,
     },
     {
@@ -42,8 +42,8 @@ const TabsFind = ({ item }) => {
     { label: "Folder Name", value: folderName },
     {
       label: "Folder Number",
-      facet: reactiveSearchFacets.find(
-        (facet) => facet.value === "FolderNumber"
+      facet: FACET_SENSORS.find(
+        (facet) => facet.componentId === "FolderNumber"
       ),
       value: folderNumber,
     },

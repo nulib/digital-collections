@@ -10,13 +10,10 @@ describe("Search page", () => {
     it("displays only public works in search results", () => {
       cy.getByTestId("button-filter-toggle").click();
       cy.contains("Visibility", { timeout: 15000 })
-        .siblings()
-        .find("button")
-        .click()
-        .get("ul.rs-facet-list")
+        .next("ul.rs-facet-list")
         .as("facetList");
 
-      cy.get("@facetList").within(($facetList) => {
+      cy.get("@facetList").within(() => {
         cy.contains("Public");
         cy.contains("Institution").should("not.exist");
       });
@@ -169,10 +166,7 @@ describe("Search page", () => {
 
       cy.getByTestId("button-filter-toggle").click();
       cy.contains("Visibility", { timeout: 15000 })
-        .siblings()
-        .find("button")
-        .click()
-        .get("ul.rs-facet-list")
+        .next("ul.rs-facet-list")
         .as("facetList");
 
       cy.get("@facetList").within(($facetList) => {

@@ -4,27 +4,23 @@ import {
   SelectedFilters,
   ReactiveList,
 } from "@appbaseio/reactivesearch";
-import {
-  buildImageUrl,
-  getESImagePath,
-  getESTitle,
-} from "../../services/elasticsearch-parser";
+import { buildImageUrl, getESTitle } from "services/elasticsearch-parser";
 import LoadingSpinner from "../UI/LoadingSpinner";
 import {
   DATASEARCH_PLACEHOLDER,
   GLOBAL_SEARCH_BAR_COMPONENT_ID,
   imagesOnlyDefaultQuery,
-  reactiveSearchFacets,
+  FACET_SENSORS,
   simpleQueryStringQuery,
-} from "../../services/reactive-search";
+} from "services/reactive-search";
 import PhotoBox from "../UI/PhotoBox";
 import { useLocation } from "react-router-dom";
-import { IMAGE_MODEL } from "../../services/global-vars";
+import { IMAGE_MODEL } from "services/global-vars";
 import FacetsSidebar from "../UI/FacetsSidebar";
 import Breadcrumbs from "../UI/Breadcrumbs/Breadcrumbs";
 import FiltersShowHideButton from "../UI/FiltersShowHideButton";
 import { useDispatch } from "react-redux";
-import { searchValueChange } from "../../actions/search";
+import { searchValueChange } from "actions/search";
 import PropTypes from "prop-types";
 
 const Search = ({ breadcrumbs = [] }) => {
@@ -74,14 +70,14 @@ const Search = ({ breadcrumbs = [] }) => {
 
   const allFilters = [
     GLOBAL_SEARCH_BAR_COMPONENT_ID,
-    ...reactiveSearchFacets.map((f) => f.value),
+    ...FACET_SENSORS.map((f) => f.componentId),
   ];
 
   return (
     <>
       {componentLoaded && (
         <FacetsSidebar
-          facets={reactiveSearchFacets}
+          facets={FACET_SENSORS}
           externalFacet={externalFacet}
           filters={allFilters}
           searchValue={searchValue}

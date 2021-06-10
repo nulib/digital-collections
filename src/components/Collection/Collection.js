@@ -18,7 +18,7 @@ import {
 import {
   COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID,
   collectionDefaultQuery,
-  reactiveSearchFacets,
+  FACET_SENSORS,
   simpleQueryStringQuery,
 } from "../../services/reactive-search";
 import { useSelector } from "react-redux";
@@ -148,10 +148,10 @@ const Collection = () => {
 
   const allFilters = [
     COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID,
-    ...reactiveSearchFacets.map((facet) => facet.value),
+    ...FACET_SENSORS.map((facet) => facet.componentId),
   ];
-  const imageFacetsNoCollection = reactiveSearchFacets.filter(
-    (facet) => facet.value !== "Collection"
+  const imageFacetsNoCollection = FACET_SENSORS.filter(
+    (facet) => facet.componentId !== "Collection"
   );
 
   const renderDisplay = () => {

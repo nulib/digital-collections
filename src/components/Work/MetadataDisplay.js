@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { getESTitle } from "../../services/elasticsearch-parser";
+import { getESTitle } from "services/elasticsearch-parser";
 
 const externalUrlLabels = ["NUsearch"];
 
