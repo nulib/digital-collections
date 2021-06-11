@@ -5,10 +5,20 @@ import { ROUTES } from "services/global-vars";
 import {
   imagesOnlyDefaultQuery,
   collectionDefaultQuery,
+  COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID,
   FACET_SENSORS,
-  GLOBAL_SEARCH_BAR_COMPONENT_ID,
+  FACET_SENSORS_ADMINISTRATIVE,
+  FACET_SENSORS_CREATOR,
+  FACET_SENSORS_DESCRIPTIVE,
 } from "services/reactive-search";
 import { MultiList } from "@appbaseio/reactivesearch";
+
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import { css, jsx } from "@emotion/react";
+const facetHeader = css`
+  margin-top: 40px;
+`;
 
 // Css class name helper
 const multiListInnerClass = {
@@ -20,9 +30,8 @@ const multiListInnerClass = {
 };
 
 const FacetsSidebar = ({
-  facets,
   externalFacet,
-  filters,
+  searchBarComponentId,
   searchValue,
   showSidebar,
 }) => {
@@ -40,19 +49,124 @@ const FacetsSidebar = ({
    * Organize the facetable metadata into groups
    */
   const facetSensors = FACET_SENSORS.map((sensor) => sensor.componentId);
-  // const facetProjectSensors = FACET_PROJECT_SENSORS.map(
-  //   (sensor) => sensor.componentId
-  // );
-  // const facetTechnicalMetadataSensors = FACET_TECHNICAL_METADATA_SENSORS.map(
-  //   (sensor) => sensor.componentId
-  // );
+  let facetSensorsCreator = FACET_SENSORS_CREATOR.map(
+    (sensor) => sensor.componentId
+  );
+
+  // If we're on a Collection page, remove Collection from displayed facets
+  if (searchBarComponentId === COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID) {
+    facetSensorsCreator = facetSensorsCreator.filter(
+      (facet) => facet.componentId !== "Collection"
+    );
+  }
+
+  const facetSensorsDescriptive = FACET_SENSORS_DESCRIPTIVE.map(
+    (sensor) => sensor.componentId
+  );
+  const facetSensorsAdministrative = FACET_SENSORS_ADMINISTRATIVE.map(
+    (sensor) => sensor.componentId
+  );
+
+  const filterList2 = (filterId, facetGroup) => {
+    let allFilters, filtersMinusCurrent;
+
+    switch (facetGroup) {
+      case "ADMINISTRATIVE":
+        filtersMinusCurrent = facetSensorsAdministrative.filter(
+          (filterItem) => filterItem !== filterId
+        );
+        allFilters = [
+          ...filtersMinusCurrent,
+          ...facetSensors,
+          ...facetSensorsCreator,
+          ...facetSensorsDescriptive,
+        ];
+        break;
+      case "CREATOR":
+        filtersMinusCurrent = facetSensorsCreator.filter(
+          (filterItem) => filterItem !== filterId
+        );
+        allFilters = [
+          ...filtersMinusCurrent,
+          ...facetSensors,
+          ...facetSensorsAdministrative,
+          ...facetSensorsDescriptive,
+        ];
+        break;
+      case "DESCRIPTIVE":
+        filtersMinusCurrent = facetSensorsDescriptive.filter(
+          (filterItem) => filterItem !== filterId
+        );
+        allFilters = [
+          ...filtersMinusCurrent,
+          ...facetSensors,
+          ...facetSensorsAdministrative,
+          ...facetSensorsCreator,
+        ];
+        break;
+      default:
+        filtersMinusCurrent = facetSensors.filter(
+          (filterItem) => filterItem !== filterId
+        );
+        allFilters = [
+          ...filtersMinusCurrent,
+          ...facetSensorsAdministrative,
+          ...facetSensorsCreator,
+          ...facetSensorsDescriptive,
+        ];
+        break;
+    }
+    return [...allFilters, searchBarComponentId];
+  };
 
   // Return all connected facets for regular metadata
   const filterList = (filterId) => {
     let filtersMinusCurrent = facetSensors.filter(
       (filterItem) => filterItem !== filterId
     );
-    return [...filtersMinusCurrent, GLOBAL_SEARCH_BAR_COMPONENT_ID];
+    return [
+      ...filtersMinusCurrent,
+      ...facetSensorsCreator,
+      ...facetSensorsDescriptive,
+      searchBarComponentId,
+    ];
+  };
+  const filterCreatorList = (filterId) => {
+    let filtersMinusCurrent = facetSensorsCreator.filter(
+      (filterItem) => filterItem !== filterId
+    );
+    return [
+      ...filtersMinusCurrent,
+      ...facetSensors,
+      ...facetSensorsDescriptive,
+      searchBarComponentId,
+    ];
+  };
+  const filterDescriptiveList = (filterId) => {
+    let filtersMinusCurrent = facetSensorsDescriptive.filter(
+      (filterItem) => filterItem !== filterId
+    );
+    return [
+      ...filtersMinusCurrent,
+      ...facetSensors,
+      ...facetSensorsCreator,
+      searchBarComponentId,
+    ];
+  };
+
+  function getDefaultValue(sensor) {
+    if (!externalFacet && !searchValue) {
+      return [];
+    }
+    return externalFacet?.title === sensor.title ? [searchValue] : [];
+  }
+
+  const defaultMultiListProps = {
+    defaultQuery: isSearchPage() ? imagesOnlyDefaultQuery : collectionsQuery,
+    innerClass: multiListInnerClass,
+    missingLabel: "None",
+    showMissing: true,
+    size: 500,
   };
 
   return (
@@ -68,28 +182,63 @@ const FacetsSidebar = ({
           !showSidebar ? "hidden" : ""
         }`}
       >
-        <h2>Filter By</h2>
-        {facets.map((f) => {
-          let defaultValue =
-            externalFacet && externalFacet.title === f.title
-              ? [searchValue]
-              : [];
-
+        {/* <h2>Filter By</h2> */}
+        <h2>General Filters</h2>
+        {FACET_SENSORS.map((f) => {
           return (
             <MultiList
               key={f.componentId}
               {...f}
-              defaultValue={defaultValue}
-              defaultQuery={
-                isSearchPage() ? imagesOnlyDefaultQuery : collectionsQuery
-              }
-              innerClass={multiListInnerClass}
-              missingLabel="None"
+              {...defaultMultiListProps}
+              defaultValue={getDefaultValue(f)}
               react={{
-                and: [...filterList(f.componentId)],
+                and: [...filterList2(f.componentId)],
               }}
-              showMissing={true}
-              size={500}
+            />
+          );
+        })}
+
+        <h2 css={facetHeader}>Creator/Contributor</h2>
+        {FACET_SENSORS_CREATOR.map((f) => {
+          return (
+            <MultiList
+              key={f.componentId}
+              {...f}
+              {...defaultMultiListProps}
+              defaultValue={getDefaultValue(f)}
+              react={{
+                and: [...filterList2(f.componentId, "CREATOR")],
+              }}
+            />
+          );
+        })}
+
+        <h2 css={facetHeader}>Subjects and Descriptive</h2>
+        {FACET_SENSORS_DESCRIPTIVE.map((f) => {
+          return (
+            <MultiList
+              key={f.componentId}
+              {...f}
+              {...defaultMultiListProps}
+              defaultValue={getDefaultValue(f)}
+              react={{
+                and: [...filterList2(f.componentId, "DESCRIPTIVE")],
+              }}
+            />
+          );
+        })}
+
+        <h2 css={facetHeader}>Administrative</h2>
+        {FACET_SENSORS_ADMINISTRATIVE.map((f) => {
+          return (
+            <MultiList
+              key={f.componentId}
+              {...f}
+              {...defaultMultiListProps}
+              defaultValue={getDefaultValue(f)}
+              react={{
+                and: [...filterList2(f.componentId, "ADMINISTRATIVE")],
+              }}
             />
           );
         })}
@@ -99,9 +248,8 @@ const FacetsSidebar = ({
 };
 
 FacetsSidebar.propTypes = {
-  facets: PropTypes.array,
   externalFacet: PropTypes.object,
-  filters: PropTypes.array,
+  searchBarComponentId: PropTypes.string,
   searchValue: PropTypes.string,
   showSidebar: PropTypes.bool,
 };

@@ -1,8 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import MetadataDisplay from "../MetadataDisplay";
-import { FACET_SENSORS } from "../../../services/reactive-search";
-import { formatDate } from "../../../services/helpers";
+import {
+  FACET_SENSORS,
+  FACET_SENSORS_ADMINISTRATIVE,
+  FACET_SENSORS_CREATOR,
+  FACET_SENSORS_DESCRIPTIVE,
+} from "services/reactive-search";
 
 /** @jsxRuntime classic */
 /** @jsx jsx */
@@ -18,6 +22,13 @@ const TabsMetadata = ({ item }) => {
     administrativeMetadata: { libraryUnit }, // = "Library Division"
     descriptiveMetadata,
   } = item;
+
+  const allFacets = [
+    ...FACET_SENSORS,
+    ...FACET_SENSORS_ADMINISTRATIVE,
+    ...FACET_SENSORS_CREATOR,
+    ...FACET_SENSORS_DESCRIPTIVE,
+  ];
 
   const {
     abstract,
@@ -60,19 +71,19 @@ const TabsMetadata = ({ item }) => {
     {
       label: "Contributor",
       value: contributor,
-      facet: FACET_SENSORS.find((facet) => facet.componentId === "Contributor"),
+      facet: allFacets.find((facet) => facet.componentId === "Contributor"),
     },
     {
       label: "Creator",
       value: creator,
-      facet: FACET_SENSORS.find((facet) => facet.componentId === "Creator"),
+      facet: allFacets.find((facet) => facet.componentId === "Creator"),
     },
     { label: "Cultural Context", value: culturalContext },
     { label: "Date", value: dateCreated.map((d) => d.humanized) },
     {
       label: "Department",
       value: libraryUnit ? libraryUnit.label : "",
-      facet: FACET_SENSORS.find(
+      facet: allFacets.find(
         (facet) => facet.componentId === "LibraryDepartment"
       ),
     },
@@ -82,18 +93,18 @@ const TabsMetadata = ({ item }) => {
     {
       label: "Genre",
       value: genre,
-      facet: FACET_SENSORS.find((facet) => facet.componentId === "Genre"),
+      facet: allFacets.find((facet) => facet.componentId === "Genre"),
     },
     { label: "Keyword", value: keywords },
     {
       label: "Language",
       value: language,
-      facet: FACET_SENSORS.find((facet) => facet.componentId === "Language"),
+      facet: allFacets.find((facet) => facet.componentId === "Language"),
     },
     {
       label: "Location",
       value: location,
-      facet: FACET_SENSORS.find((facet) => facet.componentId === "Location"),
+      facet: allFacets.find((facet) => facet.componentId === "Location"),
     },
     { label: "Materials", value: physicalDescriptionMaterial },
     { label: "Notes", value: notes },
@@ -106,32 +117,30 @@ const TabsMetadata = ({ item }) => {
     {
       label: "Rights Statement",
       value: rightsStatement ? rightsStatement.label : "",
-      facet: FACET_SENSORS.find(
-        (facet) => facet.componentId === "RightsStatement"
-      ),
+      facet: allFacets.find((facet) => facet.componentId === "RightsStatement"),
     },
     { label: "Scope and Contents", value: scopeAndContents },
     {
       label: "Series",
       value: series,
-      facet: FACET_SENSORS.find((facet) => facet.componentId === "Series"),
+      facet: allFacets.find((facet) => facet.componentId === "Series"),
     },
     { label: "Source", value: source },
     {
       label: "Style Period",
       value: stylePeriod,
-      facet: FACET_SENSORS.find((facet) => facet.componentId === "StylePeriod"),
+      facet: allFacets.find((facet) => facet.componentId === "StylePeriod"),
     },
     {
       label: "Subject",
       value: subject,
-      facet: FACET_SENSORS.find((facet) => facet.componentId === "Subject"),
+      facet: allFacets.find((facet) => facet.componentId === "Subject"),
     },
     { label: "Table of Contents", value: tableOfContents },
     {
       label: "Technique",
       value: technique,
-      facet: FACET_SENSORS.find((facet) => facet.componentId === "Technique"),
+      facet: allFacets.find((facet) => facet.componentId === "Technique"),
     },
     { label: "Title", value: title },
   ];

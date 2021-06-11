@@ -29,7 +29,12 @@ describe("Collections View page", () => {
         .should("not.be.visible");
       cy.get("@toggleButton").click();
       cy.get("@toggleButton").should("contain.text", "Hide Filters");
-      cy.get("@facetsSidebar").contains("h2", "Filter By");
+      cy.get("@facetsSidebar").within(() => {
+        cy.contains("h2", "General Filters");
+        cy.contains("h2", "Creator/Contributor");
+        cy.contains("h2", "Subjects and Descriptive");
+        cy.contains("h2", "Administrative");
+      });
       cy.get("@toggleButton").click();
       cy.get("@facetsSidebar").should("not.be.visible");
     });
@@ -110,7 +115,7 @@ describe("Collections View page", () => {
       cy.location("search").should("include", "?collection-items-results=5");
     });
 
-    context.only("Facet/filtering", () => {
+    context("Facet/filtering", () => {
       beforeEach(function () {
         //Get the first result;
         cy.get(".rs-result-list article").first().invoke("text").as("txt");

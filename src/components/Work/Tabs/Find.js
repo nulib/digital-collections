@@ -2,7 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import MetadataDisplay from "components/Work/MetadataDisplay";
 import { getPrimoLink } from "services/helpers";
-import { FACET_SENSORS } from "services/reactive-search";
+import {
+  FACET_SENSORS,
+  FACET_SENSORS_ADMINISTRATIVE,
+  FACET_SENSORS_CREATOR,
+  FACET_SENSORS_DESCRIPTIVE,
+} from "services/reactive-search";
 import WorkTabsMoreInformation from "components/Work/Tabs/MoreInformation";
 
 /** @jsxRuntime classic */
@@ -24,13 +29,19 @@ const TabsFind = ({ item }) => {
     folderName = "",
     folderNumber = "",
   } = descriptiveMetadata;
+  const allFacets = [
+    ...FACET_SENSORS,
+    ...FACET_SENSORS_ADMINISTRATIVE,
+    ...FACET_SENSORS_CREATOR,
+    ...FACET_SENSORS_DESCRIPTIVE,
+  ];
 
   const [findItems, setFindItems] = React.useState([
     { label: "Accession", value: accessionNumber },
     { label: "Box Name", value: boxName },
     {
       label: "Box Number",
-      facet: FACET_SENSORS.find((facet) => facet.componentId === "BoxNumber"),
+      facet: allFacets.find((facet) => facet.componentId === "BoxNumber"),
       value: boxNumber,
     },
     {
@@ -42,9 +53,7 @@ const TabsFind = ({ item }) => {
     { label: "Folder Name", value: folderName },
     {
       label: "Folder Number",
-      facet: FACET_SENSORS.find(
-        (facet) => facet.componentId === "FolderNumber"
-      ),
+      facet: allFacets.find((facet) => facet.componentId === "FolderNumber"),
       value: folderNumber,
     },
   ]);

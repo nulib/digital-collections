@@ -11,6 +11,9 @@ import {
   GLOBAL_SEARCH_BAR_COMPONENT_ID,
   imagesOnlyDefaultQuery,
   FACET_SENSORS,
+  FACET_SENSORS_ADMINISTRATIVE,
+  FACET_SENSORS_CREATOR,
+  FACET_SENSORS_DESCRIPTIVE,
   simpleQueryStringQuery,
 } from "services/reactive-search";
 import PhotoBox from "../UI/PhotoBox";
@@ -71,17 +74,19 @@ const Search = ({ breadcrumbs = [] }) => {
   const allFilters = [
     GLOBAL_SEARCH_BAR_COMPONENT_ID,
     ...FACET_SENSORS.map((f) => f.componentId),
+    ...FACET_SENSORS_ADMINISTRATIVE.map((f) => f.componentId),
+    ...FACET_SENSORS_CREATOR.map((f) => f.componentId),
+    ...FACET_SENSORS_DESCRIPTIVE.map((f) => f.componentId),
   ];
 
   return (
     <>
       {componentLoaded && (
         <FacetsSidebar
-          facets={FACET_SENSORS}
           externalFacet={externalFacet}
-          filters={allFilters}
           searchValue={searchValue}
           showSidebar={showSidebar}
+          searchBarComponentId={GLOBAL_SEARCH_BAR_COMPONENT_ID}
         />
       )}
 
