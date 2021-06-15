@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import MetadataDisplay from "../MetadataDisplay";
 import {
-  FACET_SENSORS,
-  FACET_SENSORS_ADMINISTRATIVE,
+  FACET_SENSORS_RIGHTS_USAGE,
+  FACET_SENSORS_LOCATION,
   FACET_SENSORS_CREATOR,
   FACET_SENSORS_DESCRIPTIVE,
 } from "services/reactive-search";
@@ -24,8 +24,8 @@ const TabsMetadata = ({ item }) => {
   } = item;
 
   const allFacets = [
-    ...FACET_SENSORS,
-    ...FACET_SENSORS_ADMINISTRATIVE,
+    ...FACET_SENSORS_RIGHTS_USAGE,
+    ...FACET_SENSORS_LOCATION,
     ...FACET_SENSORS_CREATOR,
     ...FACET_SENSORS_DESCRIPTIVE,
   ];

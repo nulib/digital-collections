@@ -42,10 +42,10 @@ describe("Search page", () => {
       cy.get("@toggleButton").click();
       cy.get("@toggleButton").should("contain.text", "Hide Filters");
       cy.get("@facetsSidebar").within(() => {
-        cy.contains("h2", "General Filters");
         cy.contains("h2", "Creator/Contributor");
         cy.contains("h2", "Subjects and Descriptive");
-        cy.contains("h2", "Administrative");
+        cy.contains("h2", "Location");
+        cy.contains("h2", "Rights and Usage");
       });
       cy.get("@toggleButton").click();
       cy.get("@facetsSidebar").should("not.be.visible");

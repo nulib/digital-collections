@@ -6,8 +6,8 @@ import {
   imagesOnlyDefaultQuery,
   collectionDefaultQuery,
   COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID,
-  FACET_SENSORS,
-  FACET_SENSORS_ADMINISTRATIVE,
+  FACET_SENSORS_RIGHTS_USAGE,
+  FACET_SENSORS_LOCATION,
   FACET_SENSORS_CREATOR,
   FACET_SENSORS_DESCRIPTIVE,
 } from "services/reactive-search";
@@ -48,7 +48,9 @@ const FacetsSidebar = ({
   /**
    * Organize the facetable metadata into groups
    */
-  const facetSensors = FACET_SENSORS.map((sensor) => sensor.componentId);
+  const facetSensors = FACET_SENSORS_RIGHTS_USAGE.map(
+    (sensor) => sensor.componentId
+  );
   let facetSensorsCreator = FACET_SENSORS_CREATOR.map(
     (sensor) => sensor.componentId
   );
@@ -63,7 +65,7 @@ const FacetsSidebar = ({
   const facetSensorsDescriptive = FACET_SENSORS_DESCRIPTIVE.map(
     (sensor) => sensor.componentId
   );
-  const facetSensorsAdministrative = FACET_SENSORS_ADMINISTRATIVE.map(
+  const facetSensorsAdministrative = FACET_SENSORS_LOCATION.map(
     (sensor) => sensor.componentId
   );
 
@@ -182,23 +184,7 @@ const FacetsSidebar = ({
           !showSidebar ? "hidden" : ""
         }`}
       >
-        {/* <h2>Filter By</h2> */}
-        <h2>General Filters</h2>
-        {FACET_SENSORS.map((f) => {
-          return (
-            <MultiList
-              key={f.componentId}
-              {...f}
-              {...defaultMultiListProps}
-              defaultValue={getDefaultValue(f)}
-              react={{
-                and: [...filterList2(f.componentId)],
-              }}
-            />
-          );
-        })}
-
-        <h2 css={facetHeader}>Creator/Contributor</h2>
+        <h2>Creator/Contributor</h2>
         {FACET_SENSORS_CREATOR.map((f) => {
           return (
             <MultiList
@@ -228,8 +214,8 @@ const FacetsSidebar = ({
           );
         })}
 
-        <h2 css={facetHeader}>Administrative</h2>
-        {FACET_SENSORS_ADMINISTRATIVE.map((f) => {
+        <h2 css={facetHeader}>Location</h2>
+        {FACET_SENSORS_LOCATION.map((f) => {
           return (
             <MultiList
               key={f.componentId}
@@ -238,6 +224,21 @@ const FacetsSidebar = ({
               defaultValue={getDefaultValue(f)}
               react={{
                 and: [...filterList2(f.componentId, "ADMINISTRATIVE")],
+              }}
+            />
+          );
+        })}
+
+        <h2 css={facetHeader}>Rights and Usage</h2>
+        {FACET_SENSORS_RIGHTS_USAGE.map((f) => {
+          return (
+            <MultiList
+              key={f.componentId}
+              {...f}
+              {...defaultMultiListProps}
+              defaultValue={getDefaultValue(f)}
+              react={{
+                and: [...filterList2(f.componentId)],
               }}
             />
           );

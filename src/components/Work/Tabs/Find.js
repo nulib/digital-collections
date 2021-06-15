@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import MetadataDisplay from "components/Work/MetadataDisplay";
 import { getPrimoLink } from "services/helpers";
 import {
-  FACET_SENSORS,
-  FACET_SENSORS_ADMINISTRATIVE,
+  FACET_SENSORS_RIGHTS_USAGE,
+  FACET_SENSORS_LOCATION,
   FACET_SENSORS_CREATOR,
   FACET_SENSORS_DESCRIPTIVE,
 } from "services/reactive-search";
@@ -30,8 +30,8 @@ const TabsFind = ({ item }) => {
     folderNumber = "",
   } = descriptiveMetadata;
   const allFacets = [
-    ...FACET_SENSORS,
-    ...FACET_SENSORS_ADMINISTRATIVE,
+    ...FACET_SENSORS_RIGHTS_USAGE,
+    ...FACET_SENSORS_LOCATION,
     ...FACET_SENSORS_CREATOR,
     ...FACET_SENSORS_DESCRIPTIVE,
   ];

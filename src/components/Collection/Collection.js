@@ -18,8 +18,8 @@ import {
 import {
   COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID,
   collectionDefaultQuery,
-  FACET_SENSORS,
-  FACET_SENSORS_ADMINISTRATIVE,
+  FACET_SENSORS_RIGHTS_USAGE,
+  FACET_SENSORS_LOCATION,
   FACET_SENSORS_CREATOR,
   FACET_SENSORS_DESCRIPTIVE,
   simpleQueryStringQuery,
@@ -151,12 +151,12 @@ const Collection = () => {
 
   const allFilters = [
     COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID,
-    ...FACET_SENSORS.map((facet) => facet.componentId),
-    ...FACET_SENSORS_ADMINISTRATIVE.map((facet) => facet.componentId),
+    ...FACET_SENSORS_RIGHTS_USAGE.map((facet) => facet.componentId),
+    ...FACET_SENSORS_LOCATION.map((facet) => facet.componentId),
     ...FACET_SENSORS_CREATOR.map((facet) => facet.componentId),
     ...FACET_SENSORS_DESCRIPTIVE.map((facet) => facet.componentId),
   ];
-  const imageFacetsNoCollection = FACET_SENSORS.filter(
+  const imageFacetsNoCollection = FACET_SENSORS_RIGHTS_USAGE.filter(
     (facet) => facet.componentId !== "Collection"
   );
 

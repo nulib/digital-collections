@@ -5,19 +5,12 @@ export const DATASEARCH_PLACEHOLDER =
   "Search by title, description, or wildcard (ie. Picass*)";
 
 const defaultListItemValues = {
-  showSearch: false,
+  showSearch: true,
   sortBy: "asc",
   URLParams: true,
 };
 
-export const FACET_SENSORS = [
-  {
-    ...defaultListItemValues,
-    componentId: "Language",
-    dataField: "descriptiveMetadata.language.displayFacet",
-    title: "Language",
-  },
-
+export const FACET_SENSORS_RIGHTS_USAGE = [
   {
     ...defaultListItemValues,
     componentId: "RightsStatement",
@@ -29,6 +22,7 @@ export const FACET_SENSORS = [
     ...defaultListItemValues,
     componentId: "Visibility",
     dataField: "visibility.label.keyword",
+    showSearch: false,
     title: "Visibility",
   },
 ];
@@ -38,22 +32,13 @@ export const FACET_SENSORS_CREATOR = [
     ...defaultListItemValues,
     componentId: "Contributor",
     dataField: "descriptiveMetadata.contributor.displayFacet",
-    showSearch: true,
     title: "Contributor",
   },
   {
     ...defaultListItemValues,
     componentId: "Creator",
     dataField: "descriptiveMetadata.creator.displayFacet",
-    showSearch: true,
     title: "Creator",
-  },
-  {
-    ...defaultListItemValues,
-    componentId: "Collection",
-    dataField: "collection.title.keyword",
-    showSearch: true,
-    title: "Collection",
   },
 ];
 
@@ -62,45 +47,57 @@ export const FACET_SENSORS_DESCRIPTIVE = [
     ...defaultListItemValues,
     componentId: "Genre",
     dataField: "descriptiveMetadata.genre.displayFacet",
-    showSearch: true,
     title: "Genre",
+  },
+  {
+    ...defaultListItemValues,
+    componentId: "Language",
+    dataField: "descriptiveMetadata.language.displayFacet",
+    title: "Language",
   },
   {
     ...defaultListItemValues,
     componentId: "Location",
     dataField: "descriptiveMetadata.location.displayFacet",
-    showSearch: true,
     title: "Location",
   },
   {
     ...defaultListItemValues,
     componentId: "StylePeriod",
     dataField: "descriptiveMetadata.stylePeriod.displayFacet",
-    showSearch: true,
     title: "Style Period",
   },
   {
     ...defaultListItemValues,
     componentId: "Subject",
     dataField: "descriptiveMetadata.subject.displayFacet",
-    showSearch: true,
     title: "Subject",
   },
   {
     ...defaultListItemValues,
     componentId: "Technique",
     dataField: "descriptiveMetadata.technique.displayFacet",
-    showSearch: true,
     title: "Technique",
   },
 ];
 
-export const FACET_SENSORS_ADMINISTRATIVE = [
+export const FACET_SENSORS_LOCATION = [
+  {
+    ...defaultListItemValues,
+    componentId: "LibraryDepartment",
+    dataField: "administrativeMetadata.libraryUnit.label.keyword",
+    title: "Library Department",
+  },
+  {
+    ...defaultListItemValues,
+    componentId: "Collection",
+    dataField: "collection.title.keyword",
+    title: "Collection",
+  },
   {
     ...defaultListItemValues,
     componentId: "BoxName",
     dataField: "descriptiveMetadata.boxName.keyword",
-    showSearch: true,
     title: "Box Name",
   },
   {
@@ -114,7 +111,6 @@ export const FACET_SENSORS_ADMINISTRATIVE = [
     ...defaultListItemValues,
     componentId: "FolderName",
     dataField: "descriptiveMetadata.folderName.keyword",
-    showSearch: true,
     title: "Folder Name",
   },
   {
@@ -124,17 +120,11 @@ export const FACET_SENSORS_ADMINISTRATIVE = [
     showSearch: false,
     title: "Folder Number",
   },
-  {
-    ...defaultListItemValues,
-    componentId: "LibraryDepartment",
-    dataField: "administrativeMetadata.libraryUnit.label.keyword",
-    title: "Library Department",
-  },
+
   {
     ...defaultListItemValues,
     componentId: "Series",
     dataField: "descriptiveMetadata.series.keyword",
-    showSearch: false,
     title: "Series",
   },
 ];

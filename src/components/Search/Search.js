@@ -10,8 +10,8 @@ import {
   DATASEARCH_PLACEHOLDER,
   GLOBAL_SEARCH_BAR_COMPONENT_ID,
   imagesOnlyDefaultQuery,
-  FACET_SENSORS,
-  FACET_SENSORS_ADMINISTRATIVE,
+  FACET_SENSORS_RIGHTS_USAGE,
+  FACET_SENSORS_LOCATION,
   FACET_SENSORS_CREATOR,
   FACET_SENSORS_DESCRIPTIVE,
   simpleQueryStringQuery,
@@ -73,8 +73,8 @@ const Search = ({ breadcrumbs = [] }) => {
 
   const allFilters = [
     GLOBAL_SEARCH_BAR_COMPONENT_ID,
-    ...FACET_SENSORS.map((f) => f.componentId),
-    ...FACET_SENSORS_ADMINISTRATIVE.map((f) => f.componentId),
+    ...FACET_SENSORS_RIGHTS_USAGE.map((f) => f.componentId),
+    ...FACET_SENSORS_LOCATION.map((f) => f.componentId),
     ...FACET_SENSORS_CREATOR.map((f) => f.componentId),
     ...FACET_SENSORS_DESCRIPTIVE.map((f) => f.componentId),
   ];
