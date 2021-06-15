@@ -4,91 +4,128 @@ export const GLOBAL_SEARCH_BAR_COMPONENT_ID = "q";
 export const DATASEARCH_PLACEHOLDER =
   "Search by title, description, or wildcard (ie. Picass*)";
 
-export const reactiveSearchFacets = [
+const defaultListItemValues = {
+  showSearch: true,
+  sortBy: "asc",
+  URLParams: true,
+};
+
+export const FACET_SENSORS_RIGHTS_USAGE = [
   {
-    elasticSearchField: "descriptiveMetadata.boxName.keyword",
-    label: "Box Name",
-    value: "BoxName",
+    ...defaultListItemValues,
+    componentId: "RightsStatement",
+    dataField: "descriptiveMetadata.rightsStatement.label.keyword",
+    title: "Rights Statement",
+  },
+
+  {
+    ...defaultListItemValues,
+    componentId: "Visibility",
+    dataField: "visibility.label.keyword",
+    showSearch: false,
+    title: "Visibility",
+  },
+];
+
+export const FACET_SENSORS_CREATOR = [
+  {
+    ...defaultListItemValues,
+    componentId: "Contributor",
+    dataField: "descriptiveMetadata.contributor.displayFacet",
+    title: "Contributor",
   },
   {
-    elasticSearchField: "descriptiveMetadata.boxNumber.keyword",
-    label: "Box Number",
-    value: "BoxNumber",
+    ...defaultListItemValues,
+    componentId: "Creator",
+    dataField: "descriptiveMetadata.creator.displayFacet",
+    title: "Creator",
+  },
+];
+
+export const FACET_SENSORS_DESCRIPTIVE = [
+  {
+    ...defaultListItemValues,
+    componentId: "Genre",
+    dataField: "descriptiveMetadata.genre.displayFacet",
+    title: "Genre",
   },
   {
-    elasticSearchField: "collection.title.keyword",
-    label: "Collection",
-    value: "Collection",
+    ...defaultListItemValues,
+    componentId: "Language",
+    dataField: "descriptiveMetadata.language.displayFacet",
+    title: "Language",
   },
   {
-    elasticSearchField: "descriptiveMetadata.contributor.displayFacet",
-    label: "Contributor",
-    value: "Contributor",
+    ...defaultListItemValues,
+    componentId: "Location",
+    dataField: "descriptiveMetadata.location.displayFacet",
+    title: "Location",
   },
   {
-    elasticSearchField: "descriptiveMetadata.creator.displayFacet",
-    label: "Creator",
-    value: "Creator",
+    ...defaultListItemValues,
+    componentId: "StylePeriod",
+    dataField: "descriptiveMetadata.stylePeriod.displayFacet",
+    title: "Style Period",
   },
   {
-    elasticSearchField: "descriptiveMetadata.folderName.keyword",
-    label: "Folder Name",
-    value: "FolderName",
+    ...defaultListItemValues,
+    componentId: "Subject",
+    dataField: "descriptiveMetadata.subject.displayFacet",
+    title: "Subject",
   },
   {
-    elasticSearchField: "descriptiveMetadata.folderNumber.keyword",
-    label: "Folder Number",
-    value: "FolderNumber",
+    ...defaultListItemValues,
+    componentId: "Technique",
+    dataField: "descriptiveMetadata.technique.displayFacet",
+    title: "Technique",
+  },
+];
+
+export const FACET_SENSORS_LOCATION = [
+  {
+    ...defaultListItemValues,
+    componentId: "LibraryDepartment",
+    dataField: "administrativeMetadata.libraryUnit.label.keyword",
+    title: "Library Department",
   },
   {
-    elasticSearchField: "descriptiveMetadata.genre.displayFacet",
-    label: "Genre",
-    value: "Genre",
+    ...defaultListItemValues,
+    componentId: "Collection",
+    dataField: "collection.title.keyword",
+    title: "Collection",
   },
   {
-    elasticSearchField: "descriptiveMetadata.language.displayFacet",
-    label: "Language",
-    value: "Language",
+    ...defaultListItemValues,
+    componentId: "BoxName",
+    dataField: "descriptiveMetadata.boxName.keyword",
+    title: "Box Name",
   },
   {
-    elasticSearchField: "administrativeMetadata.libraryUnit.label.keyword",
-    label: "Library Department",
-    value: "LibraryDepartment",
+    ...defaultListItemValues,
+    componentId: "BoxNumber",
+    dataField: "descriptiveMetadata.boxNumber.keyword",
+    showSearch: false,
+    title: "Box Number",
   },
   {
-    elasticSearchField: "descriptiveMetadata.location.displayFacet",
-    label: "Location",
-    value: "Location",
+    ...defaultListItemValues,
+    componentId: "FolderName",
+    dataField: "descriptiveMetadata.folderName.keyword",
+    title: "Folder Name",
   },
   {
-    elasticSearchField: "descriptiveMetadata.rightsStatement.label.keyword",
-    label: "Rights Statement",
-    value: "RightsStatement",
+    ...defaultListItemValues,
+    componentId: "FolderNumber",
+    dataField: "descriptiveMetadata.folderNumber.keyword",
+    showSearch: false,
+    title: "Folder Number",
   },
+
   {
-    elasticSearchField: "descriptiveMetadata.series.keyword",
-    label: "Series",
-    value: "Series",
-  },
-  {
-    elasticSearchField: "descriptiveMetadata.stylePeriod.displayFacet",
-    label: "Style Period",
-    value: "StylePeriod",
-  },
-  {
-    elasticSearchField: "descriptiveMetadata.subject.term.label.keyword",
-    label: "Subject",
-    value: "Subject",
-  },
-  {
-    elasticSearchField: "descriptiveMetadata.technique.displayFacet",
-    label: "Technique",
-    value: "Technique",
-  },
-  {
-    elasticSearchField: "visibility.label.keyword",
-    label: "Visibility",
-    value: "Visibility",
+    ...defaultListItemValues,
+    componentId: "Series",
+    dataField: "descriptiveMetadata.series.keyword",
+    title: "Series",
   },
 ];
 

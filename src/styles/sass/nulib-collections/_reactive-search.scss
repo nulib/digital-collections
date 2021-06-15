@@ -6,6 +6,27 @@
   font-size: 14px !important;
 }
 
+.rs-facet-list {
+  border: none !important;
+  padding-right: 1rem !important;
+
+  > li {
+    padding-bottom: 0;
+  }
+}
+
+.rs-facet-checkbox + label:hover {
+  color: $nu-purple !important;
+}
+.rs-facet-checkbox:hover + label::before {
+  border-color: $nu-purple !important;
+  color: $nu-purple !important;
+}
+.rs-facet-checkbox:checked + label::before {
+  border-color: $nu-purple !important;
+  background-color: $nu-purple !important;
+}
+
 .facets-sidebar {
   @extend #left-nav;
 
