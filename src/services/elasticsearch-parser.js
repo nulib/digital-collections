@@ -93,9 +93,9 @@ export function getESImagePath(
 export function getESTitle(source, isCollection) {
   if (!source) return "";
   if (isCollection) {
-    return source.title || "No title exists";
+    return source.title || "";
   } else {
-    return source.descriptiveMetadata.title || "No title exists";
+    return source.descriptiveMetadata.title || "";
   }
 }
 

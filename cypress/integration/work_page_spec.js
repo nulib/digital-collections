@@ -261,7 +261,7 @@ describe("Work page", () => {
 
           cy.contains("Accession")
             .next()
-            .should("contain", "BFMF_B04_F01_004_011n_am");
+            .should("contain", "BFMF_B04_F01_004_011n");
 
           cy.contains("Folder Number")
             .next("ul")
@@ -312,7 +312,7 @@ describe("Work page", () => {
             // "naturalWidth" and "naturalHeight" are set when the image loads
             expect($img[0].naturalWidth).to.be.greaterThan(0);
           });
-        cy.contains("Download JPEG");
+        cy.contains("Download JPG");
       });
 
       context("Embed Rich Image Viewer", () => {

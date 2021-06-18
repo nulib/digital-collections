@@ -146,8 +146,7 @@ export const mockWork2 = {
   published: true,
   representativeFileSet: {
     fileSetId: "069f462e-935d-4e75-a131-28fb95751da2",
-    url:
-      "https://iiif.stack.rdc-staging.library.northwestern.edu/iiif/2/069f462e-935d-4e75-a131-28fb95751da2",
+    url: "https://iiif.stack.rdc-staging.library.northwestern.edu/iiif/2/069f462e-935d-4e75-a131-28fb95751da2",
   },
   sheet: {},
   visibility: { id: "OPEN", label: "Public", scheme: "visibility" },

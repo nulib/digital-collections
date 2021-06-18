@@ -14,8 +14,7 @@ const collectionMock = {
   modifiedDate: "2021-03-09T16:17:41.421273Z",
   published: true,
   representativeImage: {
-    url:
-      "https://iiif.stack.rdc-staging.library.northwestern.edu/iiif/2/c0d39641-cedb-4213-aaa0-568b586d27b8",
+    url: "https://iiif.stack.rdc-staging.library.northwestern.edu/iiif/2/c0d39641-cedb-4213-aaa0-568b586d27b8",
     workId: "0755cad4-4dd2-4df3-a702-664fb39885ba",
   },
   title: "Berkeley Folk Music Festival",

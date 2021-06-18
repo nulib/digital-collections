@@ -3,7 +3,7 @@ import PhotoGrid from "../UI/PhotoGrid";
 import PropTypes from "prop-types";
 import ThisItem from "./ThisItem";
 import SectionTop from "../UI/SectionTop";
-import { reactiveSearchFacets } from "../../services/reactive-search";
+import { FACET_SENSORS_LOCATION } from "services/reactive-search";
 
 const ParentCollections = ({ libraryUnitItems = [], collection, item }) => {
   if (!item) return;
@@ -23,8 +23,8 @@ const ParentCollections = ({ libraryUnitItems = [], collection, item }) => {
                 label: "View All Items in Library Department",
                 url: "/search",
                 state: {
-                  facet: reactiveSearchFacets.find(
-                    (facet) => facet.value === "LibraryDepartment"
+                  facet: FACET_SENSORS_LOCATION.find(
+                    (facet) => facet.componentId === "LibraryDepartment"
                   ),
                   searchValue: libraryDepartment,
                 },

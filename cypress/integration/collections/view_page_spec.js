@@ -29,7 +29,12 @@ describe("Collections View page", () => {
         .should("not.be.visible");
       cy.get("@toggleButton").click();
       cy.get("@toggleButton").should("contain.text", "Hide Filters");
-      cy.get("@facetsSidebar").contains("h2", "Filter By");
+      cy.get("@facetsSidebar").within(() => {
+        cy.contains("h2", "Creator/Contributor");
+        cy.contains("h2", "Subjects and Descriptive");
+        cy.contains("h2", "Location");
+        cy.contains("h2", "Rights and Usage");
+      });
       cy.get("@toggleButton").click();
       cy.get("@facetsSidebar").should("not.be.visible");
     });
@@ -43,10 +48,7 @@ describe("Collections View page", () => {
     it("displays only public works in search results", () => {
       cy.getByTestId("button-filter-toggle").click();
       cy.contains("Visibility", { timeout: 15000 })
-        .siblings()
-        .find("button")
-        .click()
-        .get("ul.rs-facet-list")
+        .next("ul.rs-facet-list")
         .as("facetList");
 
       cy.get("@facetList").within(($facetList) => {
@@ -124,11 +126,13 @@ describe("Collections View page", () => {
       it("should filter on an example facet (based on Location)", function () {
         cy.getByTestId("button-filter-toggle").click();
         cy.getByTestId("facets-sidebar").within(($sidebar) => {
-          cy.contains("Location").siblings().find("button").click();
-          cy.get(".rs-facet-list").contains("England--London").click();
+          cy.contains("Location")
+            .siblings("ul")
+            .contains("England--London")
+            .click();
         });
 
-        cy.wait(3000);
+        cy.wait(5000);
         // Check for updates
         cy.get(".rs-result-list article")
           .first()
@@ -138,7 +142,7 @@ describe("Collections View page", () => {
 
         // Clear the filter by clicking on the filter link
         cy.get(".rs-selected-filters a").first().click();
-        cy.wait(3000);
+        cy.wait(5000);
         cy.get(".rs-result-list article")
           .first()
           .find("h4")
