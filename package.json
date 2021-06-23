@@ -80,7 +80,7 @@
   "devDependencies": {
     "@nulib/prettier-config": "^1.2.0",
     "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^11.2.6",
+    "@testing-library/react": "^12.0.0",
     "@types/jest": "^26.0.23",
     "coveralls": "^3.0.9",
     "cypress": "^7.5.0",
