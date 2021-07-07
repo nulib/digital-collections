@@ -79,6 +79,12 @@ export const FACET_SENSORS_DESCRIPTIVE = [
     dataField: "descriptiveMetadata.technique.displayFacet",
     title: "Technique",
   },
+  {
+    ...defaultListItemValues,
+    componentId: "WorkType",
+    dataField: "workType.label.keyword",
+    title: "Work Type",
+  },
 ];
 
 export const FACET_SENSORS_LOCATION = [
