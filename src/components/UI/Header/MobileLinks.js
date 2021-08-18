@@ -3,28 +3,28 @@ import MobileNav from "./MobileNav";
 import { useHistory } from "react-router-dom";
 import { prepGlobalSearchInput } from "../../../services/helpers";
 
-const MobileLinks = props => {
+const MobileLinks = (props) => {
   let history = useHistory();
   const [navOpen, setNavOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setSearchValue(e.target.value);
   };
 
-  const handleMenuClick = e => {
+  const handleMenuClick = (e) => {
     setNavOpen(!navOpen);
     setSearchValue(false);
   };
 
-  const handleSearchClick = e => {
+  const handleSearchClick = (e) => {
     e.preventDefault();
     setNavOpen(false);
     setSearchOpen(!searchOpen);
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     history.push(prepGlobalSearchInput(searchValue));
     setSearchOpen(false);
@@ -69,7 +69,7 @@ const MobileLinks = props => {
                 id="mobile-search-input"
                 placeholder="Search this site"
                 type="text"
-                onChange={e => handleChange(e)}
+                onChange={(e) => handleChange(e)}
               />
               <button type="submit">
                 <span className="hide-label">Search</span>

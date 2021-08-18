@@ -1,11 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import React from "react";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-const QuickLinksItems = props => {
+const QuickLinksItems = (props) => {
   return (
     <React.Fragment>
-      {props.quickLinks.map(item => (
+      {props.quickLinks.map((item) => (
         <li key={item.label}>
           <Link to={item.url}>{item.label}</Link>
         </li>
@@ -15,7 +15,7 @@ const QuickLinksItems = props => {
 };
 
 QuickLinksItems.propTypes = {
-  quickLinks: PropTypes.array
+  quickLinks: PropTypes.array,
 };
 
 export default QuickLinksItems;

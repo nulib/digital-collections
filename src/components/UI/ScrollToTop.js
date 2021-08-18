@@ -12,7 +12,7 @@ const ScrollToTop = ({ children }) => {
 };
 
 ScrollToTop.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
 export default ScrollToTop;

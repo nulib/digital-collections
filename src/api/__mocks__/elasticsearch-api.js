@@ -54,8 +54,7 @@ export async function getAdminSetItems(id) {
               "http://localhost:8183/iiif/2/14%2Fe4%2F36%2F99%2F-a%2F7c%2Fa-%2F42%2Fba%2F-a%2Fd6%2Fe-%2F16%2F63%2F25%2F96%2F22%2F14/manifest.json",
             representativeFileSet: {
               file_set_id: "filesetid1",
-              url:
-                "http://localhost:8183/iiif/2/14%2Fe4%2F36%2F99%2F-a%2F7c%2Fa-%2F42%2Fba%2F-a%2Fd6%2Fe-%2F16%2F63%2F25%2F96%2F22%2F14",
+              url: "http://localhost:8183/iiif/2/14%2Fe4%2F36%2F99%2F-a%2F7c%2Fa-%2F42%2Fba%2F-a%2Fd6%2Fe-%2F16%2F63%2F25%2F96%2F22%2F14",
             },
             resource_type: [],
             related_url: [],
@@ -417,8 +416,7 @@ export async function getLibraryUnitItems() {
           published: true,
           representativeFileSet: {
             fileSetId: "6dc2aef7-2c5d-4d22-8784-bd43d4a76830",
-            url:
-              "https://iiif.stack.rdc.library.northwestern.edu/iiif/2/6dc2aef7-2c5d-4d22-8784-bd43d4a76830",
+            url: "https://iiif.stack.rdc.library.northwestern.edu/iiif/2/6dc2aef7-2c5d-4d22-8784-bd43d4a76830",
           },
           sheet: {},
           visibility: {
@@ -672,8 +670,7 @@ export async function getLibraryUnitItems() {
           published: true,
           representativeFileSet: {
             fileSetId: "d778f9b5-eb9b-423a-abae-f7a5c8c26e2a",
-            url:
-              "https://iiif.stack.rdc.library.northwestern.edu/iiif/2/d778f9b5-eb9b-423a-abae-f7a5c8c26e2a",
+            url: "https://iiif.stack.rdc.library.northwestern.edu/iiif/2/d778f9b5-eb9b-423a-abae-f7a5c8c26e2a",
           },
           sheet: {},
           visibility: {

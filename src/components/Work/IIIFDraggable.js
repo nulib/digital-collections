@@ -5,11 +5,11 @@ import iiifLogo from "../../images/IIIF-logo.png";
 const styles = {
   iiifLogo: {
     width: "75px",
-    height: "auto"
-  }
+    height: "auto",
+  },
 };
 
-const IIIFDraggable = props => {
+const IIIFDraggable = (props) => {
   return (
     <a
       data-testid="iiif-draggable"
@@ -28,7 +28,7 @@ const IIIFDraggable = props => {
 };
 
 IIIFDraggable.propTypes = {
-  iiifManifest: PropTypes.string
+  iiifManifest: PropTypes.string,
 };
 
 export default IIIFDraggable;

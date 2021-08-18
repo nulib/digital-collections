@@ -42,3 +42,7 @@ process.yml
 
 .eslintcache
 
+# Yarn
+.yarn/*
+!.yarn/plugins
+!.yarn/releases

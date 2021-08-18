@@ -5,11 +5,11 @@ import {
   PinterestShareButton,
   FacebookIcon,
   TwitterIcon,
-  PinterestIcon
+  PinterestIcon,
 } from "react-share";
 import PropTypes from "prop-types";
 
-const SocialLinks = props => {
+const SocialLinks = (props) => {
   const currentLocation = String(window.location);
   const imgUrl = `${props.item.representative_file_url}/full/full/0/default.jpg`;
   const iconBgStyleObj = { fill: "#4e2a84" };
@@ -17,8 +17,8 @@ const SocialLinks = props => {
     shareButton: {
       cursor: "pointer",
       display: "inline-block",
-      margin: "0 2px"
-    }
+      margin: "0 2px",
+    },
   };
 
   return (
@@ -44,7 +44,7 @@ const SocialLinks = props => {
 };
 
 SocialLinks.propTypes = {
-  item: PropTypes.object.isRequired
+  item: PropTypes.object.isRequired,
 };
 
 export default SocialLinks;

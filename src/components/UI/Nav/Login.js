@@ -9,15 +9,15 @@ const Login = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
-  const authToken = useSelector(state => state.auth.token);
+  const authToken = useSelector((state) => state.auth.token);
   const styles = {
     link: {
       cursor: "pointer",
-      wordBreak: "break-word"
+      wordBreak: "break-word",
     },
     subNavLink: {
-      display: "inline-block"
-    }
+      display: "inline-block",
+    },
   };
 
   const handleLogout = () => {
