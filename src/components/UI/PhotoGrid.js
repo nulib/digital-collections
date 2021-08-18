@@ -23,7 +23,7 @@ function PhotoGrid(props) {
   return (
     <div className={className} data-testid="photo-grid">
       {props.items.length > 0 &&
-        props.items.map(item => (
+        props.items.map((item) => (
           <PhotoBox
             key={item.id}
             hideDescriptions={props.hideDescriptions}
@@ -37,7 +37,7 @@ function PhotoGrid(props) {
 PhotoGrid.propTypes = {
   cols: PropTypes.number,
   hideDescriptions: PropTypes.bool,
-  items: PropTypes.array
+  items: PropTypes.array,
 };
 
 export default PhotoGrid;

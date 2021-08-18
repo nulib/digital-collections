@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { chopString } from "../../services/helpers";
 
-const FeatureBox = props => {
+const FeatureBox = (props) => {
   const { description, id, image, label } = props.item;
   const urlHelper = props.modelType === "image" ? "/items" : "/collections";
 
@@ -26,9 +26,9 @@ FeatureBox.propTypes = {
     description: PropTypes.string,
     id: PropTypes.string,
     image: PropTypes.string,
-    label: PropTypes.string
+    label: PropTypes.string,
   }),
-  modelType: PropTypes.string // 'image' or 'collection'
+  modelType: PropTypes.string, // 'image' or 'collection'
 };
 
 export default FeatureBox;

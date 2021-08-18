@@ -6,7 +6,7 @@ const SectionTop = ({
   sectionTitle,
   optionalSubhead,
   optionalContent,
-  optionalButtons = []
+  optionalButtons = [],
 }) => {
   return (
     <div className="section">
@@ -17,13 +17,13 @@ const SectionTop = ({
         </p>
         <p>{optionalContent}</p>
         <ul className="center-list">
-          {optionalButtons.map(optionalButton => (
+          {optionalButtons.map((optionalButton) => (
             <li key={optionalButton.label}>
               <Link
                 className="button"
                 to={{
                   pathname: optionalButton.url,
-                  state: optionalButton.state
+                  state: optionalButton.state,
                 }}
               >
                 {optionalButton.label}
@@ -47,13 +47,13 @@ SectionTop.propTypes = {
         facet: PropTypes.shape({
           elasticSearchField: PropTypes.string,
           label: PropTypes.string,
-          value: PropTypes.string
+          value: PropTypes.string,
         }),
-        searchValue: PropTypes.string
+        searchValue: PropTypes.string,
       }),
-      url: PropTypes.string
+      url: PropTypes.string,
     })
-  )
+  ),
 };
 
 export default SectionTop;

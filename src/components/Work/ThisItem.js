@@ -4,19 +4,19 @@ import PropTypes from "prop-types";
 import { IIIF_LARGE_FEATURE_REGION } from "../../services/global-vars";
 import placeholderImage from "../../images/book_placeholder.png";
 
-const ThisItem = props => {
+const ThisItem = (props) => {
   const { item } = props;
   const styles = {
     caret: {
       fontSize: "6rem",
-      color: "#f0f0f0"
+      color: "#f0f0f0",
     },
     wrapper: {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      marginBottom: "5rem"
-    }
+      marginBottom: "5rem",
+    },
   };
 
   return (
@@ -41,7 +41,7 @@ const ThisItem = props => {
 };
 
 ThisItem.propTypes = {
-  item: PropTypes.object
+  item: PropTypes.object,
 };
 
 export default ThisItem;

@@ -65,13 +65,11 @@ const libraryLinks = [
     label: "Library Jobs",
   },
   {
-    url:
-      "http://www.library.northwestern.edu/about/administration/policies/index.html",
+    url: "http://www.library.northwestern.edu/about/administration/policies/index.html",
     label: "Library Policies",
   },
   {
-    url:
-      "http://www.library.northwestern.edu/about/contact/general-feedback.html",
+    url: "http://www.library.northwestern.edu/about/contact/general-feedback.html",
     label: "Provide Feedback",
   },
 ];
