@@ -9264,10 +9264,10 @@ open@^7.0.2, open@^7.3.1:
     is-docker "^2.0.0"
     is-wsl "^2.1.1"
 
-openseadragon-react-viewer@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/openseadragon-react-viewer/-/openseadragon-react-viewer-2.2.1.tgz#05dc3c2898efb1521a6b83ad37e5401e2a61dc85"
-  integrity sha512-xmSJjeNgQjV2/EXuPDA6geZd9iZevvVL95KXkH8t5iBGwcq1aaQ7nfrMMFkobDkmaY90vJdoey/V+LzGvjl41Q==
+openseadragon-react-viewer@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/openseadragon-react-viewer/-/openseadragon-react-viewer-3.3.0.tgz#2a7c5fdf8e177f85be1c4abd5f0a733525ef7d90"
+  integrity sha512-2W+t8AlVSwieP0/rKBDyHL+6Y6m0vrh0Y3gfUgfhwO0T5dDO2FzS7FwgocTUhFqj6EaKiKQeQNIJgDhr7m9Qzw==
   dependencies:
     "@emotion/react" "^11.1.5"
     "@reglendo/canvas2image" "^1.0.5-2"
