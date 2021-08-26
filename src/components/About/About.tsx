@@ -1,11 +1,10 @@
 import React from "react";
-import PropTypes from "prop-types";
-import FeatureBox from "../../components/UI/FeatureBox";
+import FeatureBox from "components/UI/FeatureBox";
 import { Link } from "react-router-dom";
-import iiifLogo from "../../images/IIIF-logo.png";
+import iiifLogo from "images/IIIF-logo.png";
 import { featuredCollections } from "screens/About/featured-collections";
 
-function About(props) {
+const About: React.FC = () => {
   const styles = {
     iiifLogo: {
       display: "inline-block",
@@ -259,8 +258,6 @@ function About(props) {
       </section>
     </>
   );
-}
-
-About.propTypes = {};
+};
 
 export default About;
