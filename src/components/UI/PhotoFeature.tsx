@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import placeholderImage from "../../images/book_placeholder.png";
-import PropTypes from "prop-types";
 
 /** @jsxRuntime classic */
 /** @jsx jsx */
@@ -21,10 +20,20 @@ const frontHide = css`
   transition: visibility 0.5s, opacity 0.2s linear;
 `;
 
-const PhotoFeature = (props) => {
-  let { id, description, imageUrl, label } = props.item;
+interface PhotoFeatureProps {
+  item: {
+    description: string;
+    id: string;
+    imageUrl: string;
+    label: string;
+  };
+  styles: {};
+}
+
+const PhotoFeature: React.FC<PhotoFeatureProps> = ({ item, styles }) => {
+  let { id, description, imageUrl, label } = item;
   const [height, setHeight] = useState(0);
-  const ref = useRef(null);
+  const ref = useRef<HTMLImageElement | null>(null);
   const [isHover, setIsHover] = useState(false);
   const backShow = css`
     opacity: 1;
@@ -33,25 +42,27 @@ const PhotoFeature = (props) => {
     height: ${height}px;
   `;
   useEffect(() => {
-    if (isHover) {
+    isHover &&
+      ref.current &&
       setHeight(ref.current.getBoundingClientRect().height);
-    }
   }, [isHover]);
 
-  const addHoverClass = (e) => {
+  const addHoverClass = (
+    e: React.MouseEvent<HTMLElement | HTMLAnchorElement>
+  ) => {
     if (!isHover) {
       e.preventDefault();
     }
     setIsHover(!isHover);
   };
-  const loadPlaceholderImage = (e) => {
-    e.target.src = placeholderImage;
+  const loadPlaceholderImage = (e: React.MouseEvent<HTMLImageElement>) => {
+    e.currentTarget.src = placeholderImage;
   };
 
   return (
     <article
       className="photo-feature"
-      style={props.styles}
+      style={styles}
       onMouseEnter={addHoverClass}
       onMouseLeave={addHoverClass}
       onClick={addHoverClass}
@@ -84,16 +95,6 @@ const PhotoFeature = (props) => {
       </Link>
     </article>
   );
-};
-
-PhotoFeature.propTypes = {
-  item: PropTypes.shape({
-    description: PropTypes.string,
-    id: PropTypes.string,
-    imageUrl: PropTypes.string,
-    label: PropTypes.string,
-  }),
-  styles: PropTypes.object,
 };
 
 export default PhotoFeature;
