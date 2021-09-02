@@ -21,7 +21,7 @@ git clone git@github.com:nulib/digital-collections.git
 cd digital-collections
 
 git checkout deploy/staging
-yarn install
+npm run install
 ```
 
 ## Running a local development environment
@@ -29,8 +29,8 @@ yarn install
 ### Against production data
 
 ```bash
-yarn start:use-real-data  // Run against production data
-yarn start:use-staging-data  // Run against staging data
+npm run start:use-real-data  // Run against production data
+npm run start:use-staging-data  // Run against staging data
 ```
 
 The Digital Collections Fen application will be available at: https://devbox.library.northwestern.edu:3333/
@@ -71,7 +71,7 @@ brew install watchman
 Then to run unit tests:
 
 ```
-yarn test
+npm run test
 ```
 
 ## Deployment / CI
