@@ -73,7 +73,8 @@
     "pre-commit": "lint-staged",
     "prettier": "prettier --check src/**/*.js* src/**/*.scss",
     "prettier-fix": "prettier --write src/**/*.js* src/**/*.scss",
-    "ci": "react-scripts test --watchAll=false --coverage",
+    "ci": "react-scripts test --watchAll=false --coverage --detectOpenHandles",
+    "ci-lcov": "react-scripts test --watchAll=false --coverage --detectOpenHandles --coverageReporters=text-lcov",
     "cypress:mock-auth": "CYPRESS_ELASTICSEARCH_PROXY_BASE=https://dcapi.stack.rdc.library.northwestern.edu cypress open",
     "prepare": "husky install"
   },

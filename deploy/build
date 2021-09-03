@@ -8,6 +8,6 @@ S3_BUCKET=$(aws ssm get-parameter --name /dc/s3_bucket | jq -r '.Parameter.Value
 
 echo "REACT_APP_ELASTICSEARCH_PROXY_BASE=$REACT_APP_ELASTICSEARCH_PROXY_BASE REACT_APP_DONUT_URL=$REACT_APP_DONUT_URL REACT_APP_IIIF_LOGIN_URL=$REACT_APP_IIIF_LOGIN_URL REACT_APP_SHARED_ITEM_PROXY_URL=$REACT_APP_SHARED_ITEM_PROXY_URL S3_BUCKET=$S3_BUCKET"
 
-yarn install
-yarn build
+npm install
+npm run-script build
 aws s3 sync --delete --exclude '*.xml.gz' --acl public-read ./build/ s3://${S3_BUCKET}/
