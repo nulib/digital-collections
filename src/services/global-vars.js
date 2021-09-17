@@ -37,6 +37,9 @@ export const COLLECTION_MODEL = "Collection";
 export const HONEYBADGER_API_KEY = process.env.REACT_APP_HONEYBADGER_API_KEY;
 export const HONEYBADGER_ENV = process.env.REACT_APP_HONEYBADGER_ENV;
 
+export const WORK_ARCHIVER_ENDPOINT =
+  process.env.REACT_APP_WORK_ARCHIVER_ENDPOINT;
+
 export const SHARED_ITEM_PROXY_URL =
   process.env.REACT_APP_SHARED_ITEM_PROXY_URL ||
   "https://dcapi.stack.rdc-staging.library.northwestern.edu/resolve/";
