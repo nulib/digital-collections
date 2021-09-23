@@ -1,12 +1,12 @@
-import React from 'react';
-import FeatureBox from './FeatureBox';
-import PropTypes from 'prop-types';
+import React from "react";
+import FeatureBox from "./FeatureBox";
+import PropTypes from "prop-types";
 
-const FeatureBoxSection = props => {
+const FeatureBoxSection = (props) => {
   return (
     <div className="section">
       <div className="feature-four-col">
-        {props.items.map(item => (
+        {props.items.map((item) => (
           <FeatureBox key={item.id} item={item} />
         ))}
       </div>
@@ -15,7 +15,7 @@ const FeatureBoxSection = props => {
 };
 
 FeatureBoxSection.propTypes = {
-  items: PropTypes.array
+  items: PropTypes.array,
 };
 
 export default FeatureBoxSection;

@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import CrumbLink from './CrumbLink';
+import React from "react";
+import PropTypes from "prop-types";
+import CrumbLink from "./CrumbLink";
 
-const Breadcrumbs = props => {
+const Breadcrumbs = (props) => {
   if (!props.items) {
     return [];
   }
@@ -28,7 +28,7 @@ const Breadcrumbs = props => {
 Breadcrumbs.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({ title: PropTypes.string, link: PropTypes.string })
-  )
+  ),
 };
 
 export default Breadcrumbs;

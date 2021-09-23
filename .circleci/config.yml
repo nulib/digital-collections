@@ -11,21 +11,21 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: dependency-cache-{{ checksum "yarn.lock" }}
+          key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
           name: Install JS Dependencies
-          command: yarn install
+          command: npm install
       - save_cache:
-          key: dependency-cache-{{ checksum "yarn.lock" }}
+          key: dependency-cache-{{ checksum "package-lock.json" }}
           paths:
             - ~/glaze/node_modules
       - run:
           name: JS Static Analysis
-          command: yarn prettier
+          command: npm run-script prettier
       - run:
           name: JS Tests
           command: |
-            yarn ci --coverageReporters=text-lcov | yarn run coveralls ~/glaze
+            npm run-script ci
       - store_artifacts:
           path: /tmp/test-results
           destination: tests
@@ -67,13 +67,11 @@ workflows:
       - test
       - cypress/install:
           executor: cypress/base-12
-          yarn: true
       - cypress/run:
           requires:
             - cypress/install
           executor: cypress/base-12
-          yarn: true
-          start: HTTPS=false HOST=localhost PORT=3000 yarn start | tee /var/log/yarn.log 2>&1
+          start: HTTPS=false HOST=localhost PORT=3000 SSL_CERT= SSL_KEY= npm run-script start | tee /var/log/ci.log 2>&1
           wait-on: "http://localhost:3000"
           command: npx cypress run --config-file false --env host=localhost,port=3000
       - deploy:

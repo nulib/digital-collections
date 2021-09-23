@@ -23,8 +23,6 @@ src/**/*.css
 .env.production.local
 
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 
 # IDEs
 /.vscode
@@ -41,4 +39,3 @@ process.yml
 /terraform/.terraform/
 
 .eslintcache
-

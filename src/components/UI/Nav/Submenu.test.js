@@ -6,18 +6,18 @@ const subMenuItems = [
   {
     id: "abc124",
     label: "Ima label",
-    url: "/testing1"
+    url: "/testing1",
   },
   {
     id: "def877",
     label: "Second label",
-    url: "/book-of-john"
+    url: "/book-of-john",
   },
   {
     id: "8uudhdd",
     label: "Another label",
-    url: "/tickets"
-  }
+    url: "/tickets",
+  },
 ];
 
 describe("NavSubmenu component", () => {

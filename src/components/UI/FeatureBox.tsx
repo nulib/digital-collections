@@ -1,11 +1,20 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { chopString } from "../../services/helpers";
 
-const FeatureBox = props => {
-  const { description, id, image, label } = props.item;
-  const urlHelper = props.modelType === "image" ? "/items" : "/collections";
+interface FeatureBoxProps {
+  item: {
+    description: string;
+    id: string;
+    image: string;
+    label: string;
+  };
+  modelType: string;
+}
+
+const FeatureBox: React.FC<FeatureBoxProps> = ({ item, modelType }) => {
+  const { description, id, image, label } = item;
+  const urlHelper = modelType === "image" ? "/items" : "/collections";
 
   return (
     <article className="feature-box">
@@ -19,16 +28,6 @@ const FeatureBox = props => {
       </Link>
     </article>
   );
-};
-
-FeatureBox.propTypes = {
-  item: PropTypes.shape({
-    description: PropTypes.string,
-    id: PropTypes.string,
-    image: PropTypes.string,
-    label: PropTypes.string
-  }),
-  modelType: PropTypes.string // 'image' or 'collection'
 };
 
 export default FeatureBox;

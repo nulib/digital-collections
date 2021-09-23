@@ -15,10 +15,10 @@ export function getManifest(url) {
                         "https://iiif.stack.rdc.library.northwestern.edu/1",
                       height: 480,
                       width: 640,
-                      format: null
-                    }
-                  }
-                ]
+                      format: null,
+                    },
+                  },
+                ],
               },
               {
                 label: "Label Number 2",
@@ -30,10 +30,10 @@ export function getManifest(url) {
                         "https://iiif.stack.rdc.library.northwestern.edu/2",
                       height: 480,
                       width: 640,
-                      format: null
-                    }
-                  }
-                ]
+                      format: null,
+                    },
+                  },
+                ],
               },
               {
                 label: "Label Number 3",
@@ -45,14 +45,14 @@ export function getManifest(url) {
                         "https://iiif.stack.rdc.library.northwestern.edu/3",
                       height: 480,
                       width: 640,
-                      format: null
-                    }
-                  }
-                ]
-              }
-            ]
-          }
-        ]
+                      format: null,
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        ],
       })
     );
   });

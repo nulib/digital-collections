@@ -1,7 +1,7 @@
 import React from "react";
 import GlobalLinks from "../Nav/GlobalLinks";
 
-const TopBar = props => {
+const TopBar = (props) => {
   return (
     <div id="top-bar" data-testid="top-bar">
       <div className="contain-1120">

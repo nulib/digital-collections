@@ -1,7 +1,7 @@
 import React from "react";
 import QuickLinksItems from "./QuickLinksItems";
 
-const QuickLinks = props => {
+const QuickLinks = (props) => {
   return (
     <div
       id="quick-links"

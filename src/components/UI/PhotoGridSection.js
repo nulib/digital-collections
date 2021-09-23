@@ -33,7 +33,7 @@ PhotoGridSection.propTypes = {
   items: PropTypes.array,
   linkTo: PropTypes.string,
   linkToText: PropTypes.string,
-  hideDescriptions: PropTypes.bool
+  hideDescriptions: PropTypes.bool,
 };
 
 export default PhotoGridSection;

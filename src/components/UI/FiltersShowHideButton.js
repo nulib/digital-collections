@@ -4,17 +4,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const styles = {
   button: {
-    marginTop: "2rem"
+    marginTop: "2rem",
   },
   iconLeft: {
-    marginRight: "8px"
+    marginRight: "8px",
   },
   iconRight: {
-    marginLeft: "8px"
-  }
+    marginLeft: "8px",
+  },
 };
 
-const FiltersShowHideButton = props => {
+const FiltersShowHideButton = (props) => {
   const { showSidebar, handleToggleFiltersClick } = props;
 
   return (
@@ -38,7 +38,7 @@ const FiltersShowHideButton = props => {
 
 FiltersShowHideButton.propTypes = {
   showSidebar: PropTypes.bool,
-  handleToggleFiltersClick: PropTypes.func
+  handleToggleFiltersClick: PropTypes.func,
 };
 
 export default FiltersShowHideButton;

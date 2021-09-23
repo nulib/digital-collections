@@ -1,18 +1,18 @@
-import React from 'react';
-import TopBar from './TopBar';
-import BottomBar from './BottomBar';
-import QuickLinks from './QuickLinks';
-import MobileLinks from './MobileLinks';
+import React from "react";
+import TopBar from "./TopBar";
+import BottomBar from "./BottomBar";
+import QuickLinks from "./QuickLinks";
+import MobileLinks from "./MobileLinks";
 
 const quickLinks = [
   {
-    label: 'About',
-    url: '/about'
+    label: "About",
+    url: "/about",
   },
   {
-    label: 'Contact Us',
-    url: '/contact-us'
-  }
+    label: "Contact Us",
+    url: "/contact-us",
+  },
 ];
 
 const Header = () => {

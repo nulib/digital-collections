@@ -8,26 +8,26 @@ class MobileNav extends Component {
   static propTypes = {
     closeMenu: PropTypes.func,
     navOpen: PropTypes.bool,
-    quickLinks: PropTypes.array
+    quickLinks: PropTypes.array,
   };
 
   state = {
     // Holds the open/close states of mobile subnavigation items (assuming they have children)
     menu: {
       collections: {
-        open: true
-      }
-    }
+        open: true,
+      },
+    },
   };
 
   /**
    * This function handles closing the mobile navigation when a legit link has been clicked
    */
-  handleNavItemClick = e => {
+  handleNavItemClick = (e) => {
     const {
       menu: {
-        collections: { open }
-      }
+        collections: { open },
+      },
     } = this.state;
     // Check if user clicked or touched the dropdown arrow
     let isArrowButton = e.target.getAttribute("role") === "button";
