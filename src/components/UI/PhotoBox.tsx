@@ -13,6 +13,22 @@ const lineHeight = css`
   lineheight: 1.5rem;
 `;
 
+function buildImgSrc(
+  imgUrl: string | undefined,
+  workType: string,
+  modelName: string
+): string {
+  if (imgUrl) return imgUrl;
+  if (modelName === "Collection") {
+    return imgPlaceholder;
+  }
+  if (workType === "IMAGE") {
+    return imgPlaceholder;
+  } else {
+    return avPlaceholder;
+  }
+}
+
 export interface PhotoBoxProps {
   description?: string;
   hideDescriptions?: boolean;
@@ -37,12 +53,7 @@ const PhotoBox: React.FC<PhotoBoxProps> = ({
     modelName === globalVars.IMAGE_MODEL ? "items" : "collections"
   }/${id}`;
 
-  const imgSrc = imageUrl
-    ? imageUrl
-    : workType === "IMAGE"
-    ? imgPlaceholder
-    : avPlaceholder;
-
+  const imgSrc = buildImgSrc(imageUrl, workType, modelName);
   const loadPlaceholderImage = (e: SyntheticEvent<HTMLImageElement>) => {
     e.currentTarget.src = imgPlaceholder;
   };
