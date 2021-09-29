@@ -5,7 +5,7 @@ import { PhotoBoxProps } from "components/UI/PhotoBox";
 
 interface PhotoGridProps {
   cols: number;
-  hideDescriptions: boolean;
+  hideDescriptions?: boolean;
   items: [];
 }
 
@@ -35,9 +35,17 @@ const PhotoGrid: React.FC<PhotoGridProps> = ({
     <div className={className} data-testid="photo-grid">
       {items.length > 0 &&
         items.map(
-          ({ id, imageUrl, label, modelName, workType }: PhotoBoxProps) => (
+          ({
+            description,
+            id,
+            imageUrl,
+            label,
+            modelName,
+            workType,
+          }: PhotoBoxProps) => (
             <PhotoBox
               key={id}
+              description={description}
               hideDescriptions={hideDescriptions}
               id={id}
               imageUrl={imageUrl}
