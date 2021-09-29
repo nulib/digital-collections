@@ -61,14 +61,16 @@ const Search = ({ breadcrumbs = [] }) => {
    * @param {Object} res - ReactivSearch result object
    */
   const renderItem = (res) => {
-    let item = {
-      id: res._id,
-      imageUrl: buildImageUrl(res, IMAGE_MODEL),
-      label: getESTitle(res),
-      type: res.model.name,
-    };
-
-    return <PhotoBox key={item.id} item={item} />;
+    return (
+      <PhotoBox
+        key={res._id}
+        id={res._id}
+        imageUrl={buildImageUrl(res, IMAGE_MODEL)}
+        label={getESTitle(res)}
+        modelName={res.model.name}
+        workType={res.workType.id}
+      />
+    );
   };
 
   const allFilters = [
