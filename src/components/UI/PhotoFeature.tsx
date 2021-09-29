@@ -20,13 +20,14 @@ const frontHide = css`
   transition: visibility 0.5s, opacity 0.2s linear;
 `;
 
-interface PhotoFeatureProps {
-  item: {
-    description: string;
-    id: string;
-    imageUrl: string;
-    label: string;
-  };
+export interface PhotoFeatureItem {
+  description?: string;
+  id: string;
+  imageUrl: string;
+  label: string;
+}
+export interface PhotoFeatureProps {
+  item: PhotoFeatureItem;
   styles: {};
 }
 
@@ -88,7 +89,7 @@ const PhotoFeature: React.FC<PhotoFeatureProps> = ({ item, styles }) => {
         <div css={isHover ? backShow : backHide}>
           <div className="back-text" data-testid="back-photo-box">
             <h4>{label}</h4>
-            <p>{description.substr(0, 200)}...</p>
+            <p>{description && description.substr(0, 200)}...</p>
             <p className="link">View Collection</p>
           </div>
         </div>
