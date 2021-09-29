@@ -69,6 +69,7 @@ const PhotoBox: React.FC<PhotoBoxProps> = ({
         />
         <h4 data-testid="title-photo-box">
           <span css={lineHeight} className="button-link">
+            {["AUDIO", "VIDEO"].indexOf(workType) > -1 && "[MEDIA] "}
             {label}
           </span>
         </h4>
