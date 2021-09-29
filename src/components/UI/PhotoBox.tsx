@@ -13,8 +13,8 @@ const lineHeight = css`
   lineheight: 1.5rem;
 `;
 
-interface PhotoBoxProps {
-  description: string;
+export interface PhotoBoxProps {
+  description?: string;
   hideDescriptions?: boolean;
   id: string;
   imageUrl?: string;

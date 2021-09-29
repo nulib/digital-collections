@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import HeroSection from "../../components/Home/HeroSection";
+import HeroSection from "./HeroSection";
 import PhotoBox from "../UI/PhotoBox";
-import PhotoFeature from "../UI/PhotoFeature";
+import PhotoFeature, { PhotoFeatureProps } from "../UI/PhotoFeature";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "../UI/LoadingSpinner";
 import { heroFava, heroWPA, heroWWII, heroWWII_2 } from "./hero-banners";
@@ -17,6 +17,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/swiper.scss";
 
+// TypeScript interfaces defined in their components, which we can share around
+import { PhotoFeatureItem } from "components/UI/PhotoFeature";
+import { PhotoBoxProps } from "components/UI/PhotoBox";
+
 SwiperCore.use([Navigation]);
 
 const Home = () => {
@@ -24,9 +28,9 @@ const Home = () => {
   const heroRandomNumber = getRandomInt(0, 2);
   const heroItems = [heroFava, heroWPA, heroWWII, heroWWII_2];
 
-  const [featuredCollections, setFeaturedCollections] = useState([]);
-  const [galleryItems, setGalleryItems] = useState([]);
-  const [keywordCollections, setKeywordCollections] = useState([]);
+  const [featuredCollections, setFeaturedCollections] = useState<any>([]);
+  const [galleryItems, setGalleryItems] = useState<any>([]);
+  const [keywordCollections, setKeywordCollections] = useState<any>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -76,7 +80,7 @@ const Home = () => {
             slidesPerView={isMobileOnly ? 1 : isTablet ? 2 : 3}
             navigation
           >
-            {keywordCollections[i].map((item) => (
+            {keywordCollections[i].map((item: PhotoFeatureItem) => (
               <SwiperSlide key={item.id}>
                 <div
                   className="photo-feature-3-across"
@@ -105,7 +109,7 @@ const Home = () => {
   /**
    * Get collections by keyword
    */
-  async function getGalleryByKeyword(keyword) {
+  async function getGalleryByKeyword(keyword: string) {
     let response = await elasticsearchApi.getCollectionsByKeyword(keyword);
 
     const items = elasticsearchParser.prepPhotoGridItems(
@@ -152,7 +156,7 @@ const Home = () => {
             slidesPerView={isMobileOnly ? 1 : isTablet ? 2 : 3}
             navigation
           >
-            {featuredCollections.map((item, i) => (
+            {featuredCollections.map((item: any, i: any) => (
               <SwiperSlide key={item.id || i}>
                 <div
                   className="photo-feature-3-across"
@@ -165,7 +169,9 @@ const Home = () => {
           </Swiper>
         </section>
       )}
+
       {!loading && renderAdditionalGalleries()}
+
       <section className="section" data-testid="section-recent-items">
         <div className="section-top contain-970">
           <h3 data-testid="headline-photo-grid-section">Works</h3>
@@ -182,13 +188,22 @@ const Home = () => {
           navigation
           className="photobox-swiper"
         >
-          {galleryItems.map((item) => (
-            <SwiperSlide key={item.id}>
-              <div align="center">
-                <PhotoBox hideDescriptions={true} item={item} />
-              </div>
-            </SwiperSlide>
-          ))}
+          {galleryItems.map(
+            ({ id, imageUrl, label, modelName, workType }: PhotoBoxProps) => (
+              <SwiperSlide key={id}>
+                <div style={{ textAlign: "center" }}>
+                  <PhotoBox
+                    hideDescriptions={true}
+                    id={id}
+                    imageUrl={imageUrl}
+                    label={label}
+                    modelName={modelName}
+                    workType={workType}
+                  />
+                </div>
+              </SwiperSlide>
+            )
+          )}
         </Swiper>
       </section>
     </>

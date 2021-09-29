@@ -144,7 +144,6 @@ export function prepPhotoGridItems(
 ) {
   return sources.map((source) => ({
     id: source.id,
-    type: modelType,
     imageUrl: getESImagePath(source),
     label: source.descriptiveMetadata
       ? source.descriptiveMetadata.title
@@ -152,5 +151,7 @@ export function prepPhotoGridItems(
     description: source.descriptiveMetadata
       ? source.descriptiveMetadata.description[0]
       : source.description,
+    modelName: modelType,
+    workType: source.workType?.id,
   }));
 }
