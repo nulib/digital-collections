@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "types": ["@emotion/core"],
+    "types": ["@emotion/core", "jest"],
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "baseUrl": "src",
@@ -18,5 +18,5 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src"]
+  "include": ["src", "./src/setupTests.js"]
 }
