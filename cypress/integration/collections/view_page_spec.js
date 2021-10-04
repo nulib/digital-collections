@@ -153,7 +153,7 @@ describe("Collections View page", () => {
           .should("have.text", this.txt);
       });
 
-      it.only("should display the correct work type for each filtered photo box", function () {
+      it("should display the correct work type for each filtered photo box", function () {
         // it should display the work type label
         cy.getByTestId("work-type-photo-box").each((label) => {
           expect(label.text()).to.be.oneOf(["AUDIO", "IMAGE", "VIDEO"]);
