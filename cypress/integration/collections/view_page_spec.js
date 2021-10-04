@@ -118,7 +118,11 @@ describe("Collections View page", () => {
     context("Facet/filtering", () => {
       beforeEach(function () {
         //Get the first result;
-        cy.get(".rs-result-list article").first().invoke("text").as("txt");
+        cy.get(".rs-result-list article")
+          .first()
+          .find("h4")
+          .invoke("text")
+          .as("txt");
         //Get the number of search results text E.g., 113 results in 10 ms.
         cy.get(".rs-results-info").invoke("text").as("resultsTxt");
       });
@@ -147,6 +151,13 @@ describe("Collections View page", () => {
           .first()
           .find("h4")
           .should("have.text", this.txt);
+      });
+
+      it.only("should display the correct work type for each filtered photo box", function () {
+        // it should display the work type label
+        cy.getByTestId("work-type-photo-box").each((label) => {
+          expect(label.text()).to.be.oneOf(["AUDIO", "IMAGE", "VIDEO"]);
+        });
       });
     });
   });
