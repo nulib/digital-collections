@@ -17,6 +17,7 @@ const smallLabel = css`
   display: flex-inline;
   color: #716c6b;
   font-size: 0.7222rem;
+  text-transform: capitalize;
 `;
 
 function buildImgSrc(
@@ -85,7 +86,9 @@ const PhotoBox: React.FC<PhotoBoxProps> = ({
         <p data-testid="description-photo-box">{chopString(description, 15)}</p>
       )}
 
-      <span css={smallLabel}>{workType}</span>
+      <span data-testid="work-type-photo-box" css={smallLabel}>
+        {workType}
+      </span>
     </article>
   );
 };
