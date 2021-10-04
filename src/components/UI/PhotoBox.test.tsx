@@ -1,10 +1,11 @@
 import React from "react";
 import PhotoBox from "./PhotoBox";
 import { render, screen } from "@testing-library/react";
+import { renderWithRouter } from "services/@testing-library-helpers";
 
 describe("Photo box component", () => {
   it("renders", () => {
-    render(
+    renderWithRouter(
       <PhotoBox
         key="4dfdfb3b-d533-4757-99eb-f70b5c4c2d9d"
         id="4dfdfb3b-d533-4757-99eb-f70b5c4c2d9d"
@@ -15,5 +16,10 @@ describe("Photo box component", () => {
       />
     );
     expect(screen.getByTestId("photo-box"));
+    expect(screen.getByTestId("img-photo-box")).toHaveAttribute("alt");
+    expect(screen.getByTestId("title-photo-box")).toHaveTextContent("Nigeria");
+    expect(screen.getByTestId("work-type-photo-box")).toHaveTextContent(
+      "IMAGE"
+    );
   });
 });
