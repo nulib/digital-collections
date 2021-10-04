@@ -13,6 +13,12 @@ const lineHeight = css`
   lineheight: 1.5rem;
 `;
 
+const smallLabel = css`
+  display: flex-inline;
+  color: #716c6b;
+  font-size: 0.7222rem;
+`;
+
 function buildImgSrc(
   imgUrl: string | undefined,
   workType: string,
@@ -78,6 +84,8 @@ const PhotoBox: React.FC<PhotoBoxProps> = ({
       {!hideDescriptions && description && (
         <p data-testid="description-photo-box">{chopString(description, 15)}</p>
       )}
+
+      <span css={smallLabel}>{workType}</span>
     </article>
   );
 };
