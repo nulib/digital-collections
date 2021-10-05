@@ -7,7 +7,7 @@ export function buildImageUrl(
   iiifParams = globalVars.IIIF_MEDIUM_ITEM_REGION
 ) {
   const idKey =
-    modelType === globalVars.IMAGE_MODEL
+    modelType === globalVars.IMAGE_MODEL || modelType === globalVars.WORK_MODEL
       ? source.representativeFileSet
         ? source.representativeFileSet.url
         : ""
@@ -76,7 +76,11 @@ export function getESImagePath(
   if (_source.model && _source.model.name === globalVars.COLLECTION_MODEL) {
     imgUrl = _source.representativeImage ? _source.representativeImage.url : "";
   }
-  if (_source.model && _source.model.name === globalVars.IMAGE_MODEL) {
+  if (
+    _source.model &&
+    (_source.model.name === globalVars.IMAGE_MODEL ||
+      _source.model.name === globalVars.WORK_MODEL)
+  ) {
     imgUrl = _source.representativeFileSet
       ? _source.representativeFileSet.url
       : "";

@@ -14,7 +14,7 @@ interface FeatureBoxProps {
 
 const FeatureBox: React.FC<FeatureBoxProps> = ({ item, modelType }) => {
   const { description, id, image, label } = item;
-  const urlHelper = modelType === "image" ? "/items" : "/collections";
+  const urlHelper = modelType === "collection" ? "/collections" : "/items";
 
   return (
     <article className="feature-box">

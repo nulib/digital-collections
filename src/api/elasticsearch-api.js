@@ -62,18 +62,16 @@ export async function getLibraryUnitItems(id, numResults = PAGE_SIZE) {
           function_score: {
             query: {
               bool: {
-                must: [
-                  {
-                    match: {
-                      "model.name": "Image",
-                    },
-                  },
-                  {
-                    match: {
-                      "administrativeMetadata.libraryUnit.id": id,
-                    },
-                  },
+                should: [
+                  { match: { "model.name": "Image" } },
+                  { match: { "model.name": "Work" } },
                 ],
+                minimum_should_match: 1,
+                must: {
+                  match: {
+                    "administrativeMetadata.libraryUnit.id": id,
+                  },
+                },
               },
             },
             boost: "5",
@@ -181,10 +179,12 @@ export async function getCollectionItems(id, numResults = PAGE_SIZE) {
           function_score: {
             query: {
               bool: {
-                must: [
+                should: [
                   { match: { "model.name": "Image" } },
-                  { match: { "collection.id": id } },
+                  { match: { "model.name": "Work" } },
                 ],
+                minimum_should_match: 1,
+                must: { match: { "collection.id": id } },
               },
             },
             boost: "5",
@@ -289,18 +289,16 @@ export async function getRecentlyDigitizedItems(numResults = PAGE_SIZE) {
         size: numResults,
         query: {
           bool: {
-            must: [
-              {
-                match: {
-                  "model.name": "Image",
-                },
-              },
-              {
-                match: {
-                  "model.application": "Meadow",
-                },
-              },
+            should: [
+              { match: { "model.name": "Image" } },
+              { match: { "model.name": "Work" } },
             ],
+            minimum_should_match: 1,
+            must: {
+              match: {
+                "model.application": "Meadow",
+              },
+            },
           },
         },
         ...sortKey,
