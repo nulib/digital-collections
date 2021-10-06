@@ -9,7 +9,7 @@ import LoadingSpinner from "../UI/LoadingSpinner";
 import {
   DATASEARCH_PLACEHOLDER,
   GLOBAL_SEARCH_BAR_COMPONENT_ID,
-  imagesOnlyDefaultQuery,
+  worksOnlyDefaultQuery,
   FACET_SENSORS_RIGHTS_USAGE,
   FACET_SENSORS_LOCATION,
   FACET_SENSORS_CREATOR,
@@ -135,7 +135,7 @@ const Search = ({ breadcrumbs = [] }) => {
             pagination: "rs-pagination",
             resultsInfo: "rs-results-info",
           }}
-          defaultQuery={imagesOnlyDefaultQuery}
+          defaultQuery={worksOnlyDefaultQuery}
           loader={<LoadingSpinner loading={true} />}
           renderItem={renderItem}
           pagination={true}

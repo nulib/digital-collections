@@ -32,6 +32,7 @@ export const IIIF_LARGE_IMAGE_REGION =
   process.env.IIIF_LARGE_IMAGE_REGION || "/full/800,/0/default.jpg";
 
 export const IMAGE_MODEL = "Image";
+export const WORK_MODEL = "Work";
 export const COLLECTION_MODEL = "Collection";
 
 export const HONEYBADGER_API_KEY = process.env.REACT_APP_HONEYBADGER_API_KEY;

@@ -163,11 +163,15 @@ export const simpleQueryStringQuery = (value = "*") => {
   };
 };
 
-export const imagesOnlyDefaultQuery = () => {
+export const worksOnlyDefaultQuery = () => {
   return {
     query: {
-      match: {
-        "model.name": "Image",
+      bool: {
+        should: [
+          { match: { "model.name": "Image" } },
+          { match: { "model.name": "Work" } },
+        ],
+        minimum_should_match: 1,
       },
     },
   };

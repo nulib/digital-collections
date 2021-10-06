@@ -7,7 +7,7 @@ export async function getAdminSetItems(id) {
           _source: {
             model: {
               application: "Nextgen",
-              name: "Image",
+              name: "Work",
             },
             id: "92df48a4-344a-456b-b860-2b189c45a940",
             admin_set: {
