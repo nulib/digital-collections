@@ -57,7 +57,7 @@ const PhotoBox: React.FC<PhotoBoxProps> = ({
 }) => {
   // Construct link to either Image or Collection screen
   const linkPath = `/${
-    modelName === globalVars.IMAGE_MODEL ? "items" : "collections"
+    modelName === globalVars.COLLECTION_MODEL ? "collections" : "items"
   }/${id}`;
 
   const imgSrc = buildImgSrc(imageUrl, workType, modelName);
