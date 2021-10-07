@@ -7,7 +7,7 @@ function FallbackErrorComponent({ error }) {
     <ErrorSection>
       <p>
         <FontAwesomeIcon icon="exclamation-triangle" /> Error loading content:{" "}
-        <pre>{error.message}</pre>
+        <span>{error.message}</span>
       </p>
     </ErrorSection>
   );

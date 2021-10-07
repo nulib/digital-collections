@@ -14,6 +14,8 @@ import LoadingSpinner from "components/UI/LoadingSpinner";
 import { ErrorBoundary } from "react-error-boundary";
 import FallbackErrorComponent from "components/UI/FallbackErrorComponent";
 import ErrorSection from "components/UI/ErrorSection";
+import useWorkType from "hooks/use-work-type";
+import WorkMediaPlayerWrapper from "components/Work/MediaPlayer/Wrapper";
 
 const ScreensWork = () => {
   const [error, setError] = useState();
@@ -26,6 +28,8 @@ const ScreensWork = () => {
   const params = useParams();
 
   const auth = useSelector((state) => state.auth);
+
+  const { isMediaType } = useWorkType();
 
   useEffect(() => {
     async function getApiData() {
@@ -137,7 +141,15 @@ const ScreensWork = () => {
       </Helmet>
       <ErrorBoundary FallbackComponent={FallbackErrorComponent}>
         {error && <ErrorSection>{error}</ErrorSection>}
-        {item && idInSync && !error && <OpenSeadragonContainer item={item} />}
+
+        {item && idInSync && !error && !isMediaType(item.workType) && (
+          <OpenSeadragonContainer item={item} />
+        )}
+
+        {item && isMediaType(item.workType) && (
+          <WorkMediaPlayerWrapper manifestId={item.iiifManifest} />
+        )}
+
         <div id="page">
           <main id="main-content" className="content" tabIndex="0">
             {item && item.hasOwnProperty("id") && <Work work={item} />}

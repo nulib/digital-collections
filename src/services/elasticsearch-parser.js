@@ -99,7 +99,7 @@ export function getESTitle(source, isCollection) {
   if (isCollection) {
     return source.title || "";
   } else {
-    return source.descriptiveMetadata.title || "";
+    return source.descriptiveMetadata?.title || "";
   }
 }
 
