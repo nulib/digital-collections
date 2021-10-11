@@ -94,7 +94,7 @@
     "eslint-plugin-react": "^7.26.1",
     "husky": "^7.0.1",
     "jest-canvas-mock": "^2.3.1",
-    "lint-staged": "^11.2.0",
+    "lint-staged": "^11.2.3",
     "prettier": "^2.4.1",
     "prop-types": "^15.6.1",
     "react-router-prop-types": "^1.0.5",
