@@ -98,13 +98,13 @@ describe("Collections View page", () => {
 
     it("should display URL params pagination", () => {
       cy.get(".rs-pagination");
-      cy.get(".rs-pagination > a").eq(5).click();
+      cy.get(".rs-pagination > a").eq(3).click();
       // Open page 5 of results
-      cy.location("search").should("include", "?collection-items-results=5");
+      cy.location("search").should("include", "?collection-items-results=3");
 
       cy.get(".rs-pagination > a.active")
         .invoke("attr", "alt")
-        .should("contain", "Page 5");
+        .should("contain", "Page 3");
 
       // Visit an item detail page
       cy.visit("/items/acec9f18-a2aa-424c-b0b8-fcaaaf579ba0", {
@@ -112,13 +112,17 @@ describe("Collections View page", () => {
       });
       // Go back through browsers history and expect to get to page 5 of results.
       cy.go("back");
-      cy.location("search").should("include", "?collection-items-results=5");
+      cy.location("search").should("include", "?collection-items-results=3");
     });
 
     context("Facet/filtering", () => {
       beforeEach(function () {
         //Get the first result;
-        cy.get(".rs-result-list article").first().invoke("text").as("txt");
+        cy.get(".rs-result-list article")
+          .first()
+          .find("h4")
+          .invoke("text")
+          .as("txt");
         //Get the number of search results text E.g., 113 results in 10 ms.
         cy.get(".rs-results-info").invoke("text").as("resultsTxt");
       });
@@ -147,6 +151,13 @@ describe("Collections View page", () => {
           .first()
           .find("h4")
           .should("have.text", this.txt);
+      });
+
+      it("should display the correct work type for each filtered photo box", function () {
+        // it should display the work type label
+        cy.getByTestId("work-type-photo-box").each((label) => {
+          expect(label.text()).to.be.oneOf(["AUDIO", "IMAGE", "VIDEO"]);
+        });
       });
     });
   });

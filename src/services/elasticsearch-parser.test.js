@@ -145,7 +145,8 @@ describe("ElasticSearch parser module", () => {
       expect(valueObj).toHaveProperty("id");
       expect(valueObj).toHaveProperty("imageUrl");
       expect(valueObj).toHaveProperty("label", "Two Poster Work");
-      expect(valueObj).toHaveProperty("type", IMAGE_MODEL);
+      expect(valueObj).toHaveProperty("modelName", IMAGE_MODEL);
+      expect(valueObj).toHaveProperty("workType");
     });
 
     test("returns the correct number of photogrid objects", () => {
@@ -160,7 +161,7 @@ describe("ElasticSearch parser module", () => {
     test("returns the right type when passed a Collection type", () => {
       const value = prepPhotoGridItems([esResponse], COLLECTION_MODEL);
       const valueObj = value[0];
-      expect(valueObj).toHaveProperty("type", COLLECTION_MODEL);
+      expect(valueObj).toHaveProperty("modelName", COLLECTION_MODEL);
     });
   });
 });

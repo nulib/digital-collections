@@ -142,7 +142,16 @@ const Collection = () => {
       label: res.descriptiveMetadata.title,
       type: res.model.name,
     };
-    return <PhotoBox key={item.id} item={item} />;
+    return (
+      <PhotoBox
+        key={item.id}
+        id={res.id}
+        imageUrl={getESImagePath(res)}
+        label={res.descriptiveMetadata.title}
+        modelName={res.model.name}
+        workType={res.workType?.id}
+      />
+    );
   }
 
   const breadCrumbData = collection ? createBreadcrumbData(collection) : [];

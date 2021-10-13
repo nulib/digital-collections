@@ -26,6 +26,7 @@ npm-debug.log*
 
 # IDEs
 /.vscode
+.idea
 
 # Cypress End to End Testing
 /cypress/integration/examples

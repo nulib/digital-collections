@@ -5,11 +5,15 @@ import TabsCite from "./Tabs/Cite";
 import TabsMetadata from "./Tabs/Metadata";
 import TabsFind from "./Tabs/Find";
 import TabsDownload from "./Tabs/Download";
+import TabsMediaDownload from "./Tabs/MediaDownload";
+import useWorkType from "hooks/use-work-type";
 
 const WorkItemDetail = ({ item }) => {
   if (!item) {
     return [];
   }
+
+  const { isMediaType } = useWorkType();
 
   return (
     <section
@@ -43,7 +47,11 @@ const WorkItemDetail = ({ item }) => {
             <TabsCite item={item} />
           </TabPanel>
           <TabPanel>
-            <TabsDownload item={item} />
+            {isMediaType(item.workType) ? (
+              <TabsMediaDownload item={item} />
+            ) : (
+              <TabsDownload item={item} />
+            )}
           </TabPanel>
         </div>
       </Tabs>

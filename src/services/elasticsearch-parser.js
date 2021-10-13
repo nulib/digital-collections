@@ -7,7 +7,7 @@ export function buildImageUrl(
   iiifParams = globalVars.IIIF_MEDIUM_ITEM_REGION
 ) {
   const idKey =
-    modelType === globalVars.IMAGE_MODEL
+    modelType === globalVars.IMAGE_MODEL || modelType === globalVars.WORK_MODEL
       ? source.representativeFileSet
         ? source.representativeFileSet.url
         : ""
@@ -76,7 +76,11 @@ export function getESImagePath(
   if (_source.model && _source.model.name === globalVars.COLLECTION_MODEL) {
     imgUrl = _source.representativeImage ? _source.representativeImage.url : "";
   }
-  if (_source.model && _source.model.name === globalVars.IMAGE_MODEL) {
+  if (
+    _source.model &&
+    (_source.model.name === globalVars.IMAGE_MODEL ||
+      _source.model.name === globalVars.WORK_MODEL)
+  ) {
     imgUrl = _source.representativeFileSet
       ? _source.representativeFileSet.url
       : "";
@@ -95,7 +99,7 @@ export function getESTitle(source, isCollection) {
   if (isCollection) {
     return source.title || "";
   } else {
-    return source.descriptiveMetadata.title || "";
+    return source.descriptiveMetadata?.title || "";
   }
 }
 
@@ -144,7 +148,6 @@ export function prepPhotoGridItems(
 ) {
   return sources.map((source) => ({
     id: source.id,
-    type: modelType,
     imageUrl: getESImagePath(source),
     label: source.descriptiveMetadata
       ? source.descriptiveMetadata.title
@@ -152,5 +155,7 @@ export function prepPhotoGridItems(
     description: source.descriptiveMetadata
       ? source.descriptiveMetadata.description[0]
       : source.description,
+    modelName: modelType,
+    workType: source.workType?.id,
   }));
 }

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { useLocation, useParams } from "react-router-dom";
 import { ROUTES } from "services/global-vars";
 import {
-  imagesOnlyDefaultQuery,
+  worksOnlyDefaultQuery,
   collectionDefaultQuery,
   COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID,
   FACET_SENSORS_RIGHTS_USAGE,
@@ -164,7 +164,7 @@ const FacetsSidebar = ({
   }
 
   const defaultMultiListProps = {
-    defaultQuery: isSearchPage() ? imagesOnlyDefaultQuery : collectionsQuery,
+    defaultQuery: isSearchPage() ? worksOnlyDefaultQuery : collectionsQuery,
     innerClass: multiListInnerClass,
     missingLabel: "None",
     showMissing: true,

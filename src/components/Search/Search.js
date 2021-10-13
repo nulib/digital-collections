@@ -9,7 +9,7 @@ import LoadingSpinner from "../UI/LoadingSpinner";
 import {
   DATASEARCH_PLACEHOLDER,
   GLOBAL_SEARCH_BAR_COMPONENT_ID,
-  imagesOnlyDefaultQuery,
+  worksOnlyDefaultQuery,
   FACET_SENSORS_RIGHTS_USAGE,
   FACET_SENSORS_LOCATION,
   FACET_SENSORS_CREATOR,
@@ -61,14 +61,16 @@ const Search = ({ breadcrumbs = [] }) => {
    * @param {Object} res - ReactivSearch result object
    */
   const renderItem = (res) => {
-    let item = {
-      id: res._id,
-      imageUrl: buildImageUrl(res, IMAGE_MODEL),
-      label: getESTitle(res),
-      type: res.model.name,
-    };
-
-    return <PhotoBox key={item.id} item={item} />;
+    return (
+      <PhotoBox
+        key={res._id}
+        id={res._id}
+        imageUrl={buildImageUrl(res, IMAGE_MODEL)}
+        label={getESTitle(res)}
+        modelName={res.model.name}
+        workType={res.workType.id}
+      />
+    );
   };
 
   const allFilters = [
@@ -133,7 +135,7 @@ const Search = ({ breadcrumbs = [] }) => {
             pagination: "rs-pagination",
             resultsInfo: "rs-results-info",
           }}
-          defaultQuery={imagesOnlyDefaultQuery}
+          defaultQuery={worksOnlyDefaultQuery}
           loader={<LoadingSpinner loading={true} />}
           renderItem={renderItem}
           pagination={true}
