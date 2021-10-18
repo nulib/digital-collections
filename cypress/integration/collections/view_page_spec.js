@@ -132,7 +132,7 @@ describe("Collections View page", () => {
         cy.getByTestId("facets-sidebar").within(($sidebar) => {
           cy.contains("Location")
             .siblings("ul")
-            .contains("England--London")
+            .contains("France--Paris")
             .click();
         });
 
