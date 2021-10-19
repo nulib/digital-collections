@@ -70,7 +70,7 @@ export const FACET_SENSORS_DESCRIPTIVE = [
   {
     ...defaultListItemValues,
     componentId: "Subject",
-    dataField: "descriptiveMetadata.subject.displayFacet",
+    dataField: "descriptiveMetadata.subject.term.label.keyword",
     title: "Subject",
   },
   {
