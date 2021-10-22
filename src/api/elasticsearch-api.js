@@ -62,16 +62,10 @@ export async function getLibraryUnitItems(id, numResults = PAGE_SIZE) {
           function_score: {
             query: {
               bool: {
-                should: [
-                  { match: { "model.name": "Image" } },
+                must: [
                   { match: { "model.name": "Work" } },
+                  { match: { "administrativeMetadata.libraryUnit.id": id } },
                 ],
-                minimum_should_match: 1,
-                must: {
-                  match: {
-                    "administrativeMetadata.libraryUnit.id": id,
-                  },
-                },
               },
             },
             boost: "5",
@@ -179,12 +173,10 @@ export async function getCollectionItems(id, numResults = PAGE_SIZE) {
           function_score: {
             query: {
               bool: {
-                should: [
-                  { match: { "model.name": "Image" } },
+                must: [
                   { match: { "model.name": "Work" } },
+                  { match: { "collection.id": id } },
                 ],
-                minimum_should_match: 1,
-                must: { match: { "collection.id": id } },
               },
             },
             boost: "5",
@@ -289,16 +281,14 @@ export async function getRecentlyDigitizedItems(numResults = PAGE_SIZE) {
         size: numResults,
         query: {
           bool: {
-            should: [
-              { match: { "model.name": "Image" } },
+            must: [
               { match: { "model.name": "Work" } },
-            ],
-            minimum_should_match: 1,
-            must: {
-              match: {
-                "model.application": "Meadow",
+              {
+                match: {
+                  "model.application": "Meadow",
+                },
               },
-            },
+            ],
           },
         },
         ...sortKey,
