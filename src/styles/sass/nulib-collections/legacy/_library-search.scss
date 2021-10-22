@@ -1,15 +1,15 @@
 #library-search-button {
-  background: url("../../../images/library-search.svg") no-repeat center/18px
+  background: url("../../../../images/library-search.svg") no-repeat center/18px
     18px;
 }
 
 #top-nav .contain-1120 > ul > li#library-search-button {
-  background: url("../../../images/library-search.svg") no-repeat center/18px
+  background: url("../../../../images/library-search.svg") no-repeat center/18px
     18px;
   &:hover a,
   &.hover a {
-    background: url("../../../images/library-search.svg") no-repeat center/18px
-      18px;
+    background: url("../../../../images/library-search.svg") no-repeat
+      center/18px 18px;
     &:hover,
     &:active {
       text-decoration: none;
@@ -44,7 +44,7 @@
 #library-search-dropdown,
 #library-search {
   margin: 0 auto;
-  background: url("../../../images/purple-polygons.png") repeat-y;
+  background: url("../../../../images/purple-polygons.png") repeat-y;
   //background-color: rgba(22,21,20,0.7);
   padding: 1.5rem 1rem 1rem 1rem;
 

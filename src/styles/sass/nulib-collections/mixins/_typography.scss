@@ -1,0 +1,10 @@
+// tyopography
+
+@mixin substitute-sans {
+  font-family: $sans;
+  letter-spacing: 0.01em;
+}
+
+@mixin substitute-display {
+  font-family: $display;
+}

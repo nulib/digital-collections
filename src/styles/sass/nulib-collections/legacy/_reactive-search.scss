@@ -36,12 +36,16 @@
   transition: opacity 0.25s ease-in-out;
   opacity: 1;
 
+  div[class*="-Container"] > input {
+    @include substitute-sans;
+  }
+
   ul {
     border: 1px solid $rich-black-10;
   }
 
   li {
-    font-family: $AkkuratProRegular;
+    @include substitute-sans;
     font-size: 14px;
     line-height: 1em;
   }
@@ -115,6 +119,11 @@ svg.search-icon {
       border-color: $nu-purple-60;
     }
   }
+}
+
+.rs-selected-filters > a {
+  @include substitute-sans;
+  font-weight: 700;
 }
 
 @media screen and (max-width: 768px) {
