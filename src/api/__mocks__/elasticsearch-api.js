@@ -86,7 +86,7 @@ export async function getAdminSetItems(id) {
           _source: {
             model: {
               application: "Nextgen",
-              name: "Image",
+              name: "Work",
             },
             id: "3b3b23e4-5212-4739-99c7-5b5da2db618f",
             admin_set: {
@@ -161,7 +161,7 @@ export async function getCollectionItems(id) {
           _source: {
             model: {
               application: "Nextgen",
-              name: "Image",
+              name: "Work",
             },
             id: "92df48a4-344a-456b-b860-2b189c45a940",
             admin_set: {
@@ -409,7 +409,7 @@ export async function getLibraryUnitItems() {
             "https://iiif.stack.rdc.library.northwestern.edu/public/ff/4d/07/f7/-1/a9/a-/40/41/-9/58/b-/14/a8/0b/b0/fb/05-manifest.json",
           model: {
             application: "Meadow",
-            name: "Image",
+            name: "Work",
           },
           modifiedDate: "2021-03-16T23:07:37.325927Z",
           project: {},
@@ -663,7 +663,7 @@ export async function getLibraryUnitItems() {
             "https://iiif.stack.rdc.library.northwestern.edu/public/5f/5f/23/ae/-8/61/3-/41/f2/-b/c5/8-/40/21/57/00/d7/d4-manifest.json",
           model: {
             application: "Meadow",
-            name: "Image",
+            name: "Work",
           },
           modifiedDate: "2021-03-16T02:39:54.213585Z",
           project: {},

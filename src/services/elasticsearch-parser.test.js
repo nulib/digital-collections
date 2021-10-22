@@ -41,15 +41,15 @@ describe("ElasticSearch parser module", () => {
       },
       thumbnail_iiif_url: "http://localhost:8183/iiif/thumbnail",
     };
-    const imageModel = {
-      model: { application: "Nextgen", name: "Image" },
+    const workModel = {
+      model: { application: "Nextgen", name: "Work" },
     };
     const collectionModel = {
       model: { application: "Nextgen", name: "Collection" },
     };
 
-    test("returns the right image path for an Image model", () => {
-      const source = { ...urls, ...imageModel };
+    test("returns the right image path for a Work model", () => {
+      const source = { ...urls, ...workModel };
 
       const value = getESImagePath(source);
 
@@ -68,7 +68,7 @@ describe("ElasticSearch parser module", () => {
       const source = {
         representativeFileSet: {},
         representativeImage: {},
-        ...imageModel,
+        ...workModel,
       };
       const value = getESImagePath(source);
 

@@ -145,7 +145,7 @@ export const mockWork = {
     "https://iiif.stack.rdc-staging.library.northwestern.edu/public/59/7f/f6/3b/-2/ea/0-/4a/4d/-9/fb/1-/49/e3/85/27/9d/aa-manifest.json",
   model: {
     application: "Meadow",
-    name: "Image",
+    name: "Work",
   },
   modifiedDate: "2020-09-18T19:35:07.244650Z",
   project: {
