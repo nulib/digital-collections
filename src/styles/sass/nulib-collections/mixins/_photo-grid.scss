@@ -1,0 +1,22 @@
+// photo grid
+
+@mixin photo-grid-article-label {
+  .photo-grid {
+    article {
+      h4 {
+        @include substitute-sans;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.5em;
+
+        > span {
+          font-family: inherit !important;
+        }
+      }
+
+      > p {
+        @include substitute-sans;
+      }
+    }
+  }
+}

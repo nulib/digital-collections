@@ -1,0 +1,31 @@
+// extend base
+@import "base/variables";
+
+// mixins for common style definitions
+@import "mixins/common";
+@import "mixins/photo-grid";
+@import "mixins/typography";
+
+// extend sections
+@import "sections/responsive-tabs";
+@import "sections/search";
+
+// extend standard-page modules
+@import "page-types/standard-page/photo-grid";
+
+// extend landing-page modules
+@import "page-types/landing-page/large-feature";
+@import "page-types/landing-page/photo-grid";
+
+// other customizations
+@import "legacy/nuwebcomm-overrides";
+@import "legacy/base";
+@import "legacy/library-search";
+@import "legacy/sets";
+@import "legacy/home";
+@import "legacy/item-view";
+@import "legacy/collapsible";
+@import "legacy/reactive-search";
+@import "legacy/sidebar";
+@import "legacy/open-seadragon";
+@import "legacy/errors";

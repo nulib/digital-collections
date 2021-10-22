@@ -1,0 +1,19 @@
+// search
+
+#search {
+  .search-form {
+    input {
+      @include substitute-sans;
+      font-weight: 700;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .search-form {
+    input {
+      @include substitute-sans;
+      font-weight: 700;
+    }
+  }
+}

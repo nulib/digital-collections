@@ -1,0 +1,31 @@
+// large feature (photo/text/links)
+
+.landing-page {
+  .large-feature-inner {
+    .content-side {
+      h4 {
+        @include substitute-display;
+        font-weight: 700;
+        line-height: 1.1em;
+      }
+
+      .text {
+        @include substitute-sans;
+      }
+    }
+
+    .right-side {
+      ul {
+        li {
+          a {
+            @include substitute-sans;
+          }
+        }
+      }
+
+      > div {
+        @include substitute-sans;
+      }
+    }
+  }
+}
