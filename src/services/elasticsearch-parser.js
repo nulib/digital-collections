@@ -76,11 +76,7 @@ export function getESImagePath(
   if (_source.model && _source.model.name === globalVars.COLLECTION_MODEL) {
     imgUrl = _source.representativeImage ? _source.representativeImage.url : "";
   }
-  if (
-    _source.model &&
-    (_source.model.name === globalVars.IMAGE_MODEL ||
-      _source.model.name === globalVars.WORK_MODEL)
-  ) {
+  if (_source.model && _source.model.name === globalVars.WORK_MODEL) {
     imgUrl = _source.representativeFileSet
       ? _source.representativeFileSet.url
       : "";
