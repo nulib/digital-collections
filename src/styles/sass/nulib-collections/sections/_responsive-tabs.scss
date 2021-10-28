@@ -1,0 +1,23 @@
+#tab-content,
+.tab-content {
+  p,
+  ul > li {
+    @include substitute-sans;
+
+    a {
+      font-family: inherit !important;
+      font-weight: 700;
+    }
+  }
+
+  .responsive-table table {
+    td {
+      @include substitute-sans;
+
+      a.button-link {
+        font-family: $AkkuratProBold !important;
+        font-weight: normal;
+      }
+    }
+  }
+}

@@ -70,7 +70,7 @@ export const FACET_SENSORS_DESCRIPTIVE = [
   {
     ...defaultListItemValues,
     componentId: "Subject",
-    dataField: "descriptiveMetadata.subject.displayFacet",
+    dataField: "descriptiveMetadata.subject.term.label.keyword",
     title: "Subject",
   },
   {
@@ -166,12 +166,8 @@ export const simpleQueryStringQuery = (value = "*") => {
 export const worksOnlyDefaultQuery = () => {
   return {
     query: {
-      bool: {
-        should: [
-          { match: { "model.name": "Image" } },
-          { match: { "model.name": "Work" } },
-        ],
-        minimum_should_match: 1,
+      match: {
+        "model.name": "Work",
       },
     },
   };

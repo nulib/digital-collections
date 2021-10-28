@@ -73,7 +73,7 @@ workflows:
           executor: cypress/base-12
           start: HTTPS=false HOST=localhost PORT=3000 SSL_CERT= SSL_KEY= npm run-script start | tee /var/log/ci.log 2>&1
           wait-on: "http://localhost:3000"
-          command: npx cypress run --config-file false --env host=localhost,port=3000
+          command: npx cypress run --config-file false --config defaultCommandTimeout=8000 --env host=localhost,port=3000
       - deploy:
           requires:
             - test
