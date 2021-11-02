@@ -1,6 +1,6 @@
 # Digital Collections
 
-[![CircleCI](https://circleci.com/gh/nulib/digital-collections.svg?style=svg)](https://circleci.com/gh/nulib/digital-collections) [![Coverage Status](https://coveralls.io/repos/github/nulib/digital-collections/badge.svg?branch=deploy/staging)](https://coveralls.io/github/nulib/digital-collections?branch=deploy/staging)
+[![digital-collections](https://github.com/nulib/digital-collections/actions/workflows/build.yml/badge.svg)](https://github.com/nulib/digital-collections/actions/workflows/build.yml) [![Coverage Status](https://coveralls.io/repos/github/nulib/digital-collections/badge.svg?branch=deploy/staging)](https://coveralls.io/github/nulib/digital-collections?branch=deploy/staging)
 
 <img src="public/images/screenshot.jpg" alt="Digital Collections">
 

@@ -24,6 +24,7 @@ jobs:
       - name: JS Tests
         run: npm run-script ci
   deploy:
+    needs: test
     if: ${{ (!github.event.pull_request) && (github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/heads/deploy/') || startsWith(github.ref, 'refs/heads/build/')) }}
     runs-on: ubuntu-latest
     steps:
