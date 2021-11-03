@@ -78,7 +78,7 @@ npm run test
 
 Merging a feature branch into the `deploy/staging` branch will automatically update the staging environment (https://dc.rdc-staging.library.northwestern.edu/)
 
-Merging `deploy/staging` into `master` will automatically update the production environment.
+Merging `deploy/staging` into `main` will automatically update the production environment.
 
 ## ADR
 
