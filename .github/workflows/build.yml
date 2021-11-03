@@ -1,0 +1,64 @@
+---
+name: digital-collections
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+      - name: Cache JS Dependencies
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-npm-test-${{ hashFiles('package-lock.json') }} }}
+          restore-keys: |
+            ${{ runner.os }}-npm-test-${{ hashFiles('package-lock.json') }} }}
+            ${{ runner.os }}-npm-test-
+      - name: Install JS Dependencies
+        run: npm install
+      - name: JS Static Analysis
+        run: npm run-script prettier
+      - name: JS Tests
+        run: npm run-script ci
+  deploy:
+    needs: test
+    if: ${{ (!github.event.pull_request) && (github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/heads/deploy/') || startsWith(github.ref, 'refs/heads/build/')) }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+      - name: Set DEPLOY_ENV from Branch Name
+        run: |
+          if [[ $BRANCH == 'refs/heads/master' ]]; then
+            echo "DEPLOY_ENV=production" >> $GITHUB_ENV
+          else
+            echo "DEPLOY_ENV=$(echo $BRANCH | awk -F/ '{print $NF}')" >> $GITHUB_ENV
+          fi
+        env:
+          BRANCH: ${{ github.ref }}
+      - name: Configure AWS
+        run: .github/scripts/configure_aws.sh
+        env:
+          DEPLOY_ENV: ${{ env.DEPLOY_ENV }}
+          SECRETS: ${{ toJSON(secrets) }}
+      - name: Cache JS Dependencies
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-npm-build-${{ hashFiles('package-lock.json') }} }}
+          restore-keys: |
+            ${{ runner.os }}-npm-build-${{ hashFiles('package-lock.json') }} }}
+            ${{ runner.os }}-npm-build-
+      - name: Build & Deploy
+        run: .github/scripts/build.sh
+      - name: Notify Honeybadger
+        run: .github/scripts/honeybadger_deploy_notification.sh
+        env:
+          DEPLOY_ENV: ${{ env.DEPLOY_ENV }}
+          HONEYBADGER_API_KEY: ${{ secrets.HONEYBADGER_API_KEY }}
+          HONEYBADGER_REVISION: ${{ github.sha }}
