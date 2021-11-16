@@ -19,7 +19,6 @@
     "jquery": "^3.6.0",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.1",
-    "node-sass-chokidar": "^1.3.5",
     "npm-run-all": "^4.1.2",
     "openseadragon": "^2.4.2",
     "openseadragon-react-viewer": "^3.1.0",
@@ -47,6 +46,7 @@
     "redux": "^4.1.1",
     "redux-mock-store": "^1.5.4",
     "redux-thunk": "^2.2.0",
+    "sass": "^1.43.4",
     "source-map-explorer": "^2.5.2",
     "swiper": "6.8.2",
     "whatwg-fetch": "^3.6.2"
@@ -61,8 +61,8 @@
   },
   "scripts": {
     "analyze": "source-map-explorer build/static/js/main.*",
-    "build-css": "node-sass-chokidar src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "build-css": "sass src/:src/",
+    "watch-css": "npm run build-css && sass src/:src/ --watch",
     "start-js": "react-scripts start --no-cache",
     "start": "HTTPS=${HTTPS:-true} HOST=${HOST:-devbox.library.northwestern.edu} PORT=${PORT:-3333} SSL_CRT_FILE=$SSL_CERT SSL_KEY_FILE=$SSL_KEY npm-run-all -p watch-css start-js",
     "start:use-real-data": "REACT_APP_DONUT_URL=https://donut.library.northwestern.edu/ REACT_APP_ELASTICSEARCH_PROXY_BASE=https://dcapi.stack.rdc.library.northwestern.edu REACT_APP_LIVE_IIIF=true npm-run-all -p start",
