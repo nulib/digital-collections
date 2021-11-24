@@ -26,6 +26,10 @@ const nuLinks = [
     url: "http://policies.northwestern.edu/",
     label: "University Policies",
   },
+  {
+    url: "https://www.northwestern.edu/privacy/index.html",
+    label: "Privacy Policy",
+  },
 ];
 
 const socialItems = [
