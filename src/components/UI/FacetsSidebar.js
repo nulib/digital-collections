@@ -121,41 +121,6 @@ const FacetsSidebar = ({
     return [...allFilters, searchBarComponentId];
   };
 
-  // Return all connected facets for regular metadata
-  const filterList = (filterId) => {
-    let filtersMinusCurrent = facetSensors.filter(
-      (filterItem) => filterItem !== filterId
-    );
-    return [
-      ...filtersMinusCurrent,
-      ...facetSensorsCreator,
-      ...facetSensorsDescriptive,
-      searchBarComponentId,
-    ];
-  };
-  const filterCreatorList = (filterId) => {
-    let filtersMinusCurrent = facetSensorsCreator.filter(
-      (filterItem) => filterItem !== filterId
-    );
-    return [
-      ...filtersMinusCurrent,
-      ...facetSensors,
-      ...facetSensorsDescriptive,
-      searchBarComponentId,
-    ];
-  };
-  const filterDescriptiveList = (filterId) => {
-    let filtersMinusCurrent = facetSensorsDescriptive.filter(
-      (filterItem) => filterItem !== filterId
-    );
-    return [
-      ...filtersMinusCurrent,
-      ...facetSensors,
-      ...facetSensorsCreator,
-      searchBarComponentId,
-    ];
-  };
-
   function getDefaultValue(sensor) {
     if (!externalFacet && !searchValue) {
       return [];
@@ -168,7 +133,7 @@ const FacetsSidebar = ({
     innerClass: multiListInnerClass,
     missingLabel: "None",
     showMissing: true,
-    size: 500,
+    size: 100,
   };
 
   return (

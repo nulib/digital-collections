@@ -6,7 +6,7 @@ export const DATASEARCH_PLACEHOLDER =
 
 const defaultListItemValues = {
   showSearch: true,
-  sortBy: "asc",
+  sortBy: "count",
   URLParams: true,
 };
 
