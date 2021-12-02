@@ -1,4 +1,4 @@
 {
   "baseUrl": "https://devbox.library.northwestern.edu:3333/",
-  "defaultCommandTimeout": 8000
+  "defaultCommandTimeout": 15000
 }

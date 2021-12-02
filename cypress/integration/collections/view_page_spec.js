@@ -96,7 +96,10 @@ describe("Collections View page", () => {
       });
     });
 
-    it("should display URL params pagination", () => {
+    /**
+     * Disabled pagination as a UI experiment 2021/12/02
+     */
+    xit("should display URL params pagination", () => {
       cy.get(".rs-pagination");
       cy.get(".rs-pagination > a").eq(3).click();
       // Open page 5 of results
@@ -132,7 +135,7 @@ describe("Collections View page", () => {
         cy.getByTestId("facets-sidebar").within(($sidebar) => {
           cy.contains("Location")
             .siblings("ul")
-            .contains("France--Paris")
+            .contains("England--London")
             .click();
         });
 
