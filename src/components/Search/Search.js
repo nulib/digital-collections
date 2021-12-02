@@ -1,30 +1,18 @@
 import React, { useState, useEffect } from "react";
-import {
-  DataSearch,
-  SelectedFilters,
-  ReactiveList,
-} from "@appbaseio/reactivesearch";
-import { buildImageUrl, getESTitle } from "services/elasticsearch-parser";
-import LoadingSpinner from "../UI/LoadingSpinner";
+import { DataSearch, SelectedFilters } from "@appbaseio/reactivesearch";
 import {
   DATASEARCH_PLACEHOLDER,
   GLOBAL_SEARCH_BAR_COMPONENT_ID,
-  worksOnlyDefaultQuery,
-  FACET_SENSORS_RIGHTS_USAGE,
-  FACET_SENSORS_LOCATION,
-  FACET_SENSORS_CREATOR,
-  FACET_SENSORS_DESCRIPTIVE,
   simpleQueryStringQuery,
 } from "services/reactive-search";
-import PhotoBox from "../UI/PhotoBox";
 import { useLocation } from "react-router-dom";
-import { IMAGE_MODEL } from "services/global-vars";
 import FacetsSidebar from "../UI/FacetsSidebar";
 import Breadcrumbs from "../UI/Breadcrumbs/Breadcrumbs";
 import FiltersShowHideButton from "../UI/FiltersShowHideButton";
 import { useDispatch } from "react-redux";
 import { searchValueChange } from "actions/search";
 import PropTypes from "prop-types";
+import WrappedReactiveList from "./WrappedReactiveList";
 
 const Search = ({ breadcrumbs = [] }) => {
   const [externalFacet, setExternalFacet] = useState();
@@ -36,6 +24,7 @@ const Search = ({ breadcrumbs = [] }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (!location) return;
     const handleLocationState = () => {
       if (location.state) {
         setExternalFacet(location.state.facet);
@@ -56,39 +45,14 @@ const Search = ({ breadcrumbs = [] }) => {
     dispatch(() => searchValueChange(value));
   };
 
-  /**
-   * Helper function to display a custom component to display instead of ReactiveSearch's
-   * @param {Object} res - ReactivSearch result object
-   */
-  const renderItem = (res) => {
-    return (
-      <PhotoBox
-        key={res._id}
-        id={res._id}
-        imageUrl={buildImageUrl(res, IMAGE_MODEL)}
-        label={getESTitle(res)}
-        modelName={res.model.name}
-        workType={res.workType.id}
-      />
-    );
-  };
-
-  const allFilters = [
-    GLOBAL_SEARCH_BAR_COMPONENT_ID,
-    ...FACET_SENSORS_RIGHTS_USAGE.map((f) => f.componentId),
-    ...FACET_SENSORS_LOCATION.map((f) => f.componentId),
-    ...FACET_SENSORS_CREATOR.map((f) => f.componentId),
-    ...FACET_SENSORS_DESCRIPTIVE.map((f) => f.componentId),
-  ];
-
   return (
     <>
       {componentLoaded && (
         <FacetsSidebar
           externalFacet={externalFacet}
+          searchBarComponentId={GLOBAL_SEARCH_BAR_COMPONENT_ID}
           searchValue={searchValue}
           showSidebar={showSidebar}
-          searchBarComponentId={GLOBAL_SEARCH_BAR_COMPONENT_ID}
         />
       )}
 
@@ -127,26 +91,7 @@ const Search = ({ breadcrumbs = [] }) => {
           handleToggleFiltersClick={handleDisplaySidebarClick}
         />
 
-        <ReactiveList
-          componentId="results"
-          dataField="title.primary.keyword"
-          innerClass={{
-            list: "rs-result-list photo-grid four-grid",
-            pagination: "rs-pagination",
-            resultsInfo: "rs-results-info",
-          }}
-          defaultQuery={worksOnlyDefaultQuery}
-          loader={<LoadingSpinner loading={true} />}
-          renderItem={renderItem}
-          pagination={true}
-          paginationAt="bottom"
-          pages={10}
-          react={{
-            and: allFilters,
-          }}
-          size={24}
-          URLParams={true}
-        />
+        <WrappedReactiveList />
       </main>
     </>
   );

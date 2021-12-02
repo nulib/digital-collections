@@ -1,52 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory, useLocation } from "react-router";
 import * as elasticsearchApi from "../../api/elasticsearch-api.js";
-import ErrorSection from "../UI/ErrorSection";
-import FacetsSidebar from "../UI/FacetsSidebar";
-import Breadcrumbs from "../UI/Breadcrumbs/Breadcrumbs";
-import LoadingSpinner from "../UI/LoadingSpinner";
-import {
-  DataSearch,
-  ReactiveList,
-  SelectedFilters,
-} from "@appbaseio/reactivesearch";
-import {
-  getESDescription,
-  getESImagePath,
-  getESTitle,
-} from "../../services/elasticsearch-parser";
+import ErrorSection from "components/UI/ErrorSection";
+import FacetsSidebar from "components/UI/FacetsSidebar";
+import Breadcrumbs from "components/UI/Breadcrumbs/Breadcrumbs";
+import LoadingSpinner from "components/UI/LoadingSpinner";
+import { DataSearch, SelectedFilters } from "@appbaseio/reactivesearch";
 import {
   COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID,
-  collectionDefaultQuery,
-  FACET_SENSORS_RIGHTS_USAGE,
-  FACET_SENSORS_LOCATION,
-  FACET_SENSORS_CREATOR,
-  FACET_SENSORS_DESCRIPTIVE,
   simpleQueryStringQuery,
-} from "../../services/reactive-search";
+} from "services/reactive-search";
 import { useSelector } from "react-redux";
-import PhotoBox from "../UI/PhotoBox";
+
 import { ROUTES } from "../../services/global-vars";
 import CollectionDescription from "./CollectionDescription";
-import FiltersShowHideButton from "../UI/FiltersShowHideButton";
-
-const sortOptions = [
-  {
-    dataField: "modifiedDate",
-    label: "Sort By Modified Date",
-    sortBy: "desc",
-  },
-  {
-    dataField: "_score",
-    label: "Sort By Relevancy",
-    sortBy: "desc",
-  },
-  {
-    dataField: "descriptiveMetadata.title.keyword",
-    sortBy: "asc",
-    label: "Sort By Title",
-  },
-];
+import FiltersShowHideButton from "components/UI/FiltersShowHideButton";
+import WrappedReactiveList from "components/Collection/WrappedReactiveList";
 
 const Collection = () => {
   const [collection, setCollection] = useState();
@@ -109,7 +78,6 @@ const Collection = () => {
     getApiData();
   }, [location, params, history, auth.token]);
 
-  // TODO: Move this, and grabbing the collection itself request, up to the screen component
   function createBreadcrumbData(collection) {
     let crumbs = [{ title: "Collections", link: "/collections" }];
 
@@ -122,52 +90,14 @@ const Collection = () => {
     return crumbs;
   }
 
-  const defaultQuery = () => {
-    return collection ? collectionDefaultQuery(collection.id) : null;
-  };
-
   const handleDisplaySidebarClick = (e) => {
     e.preventDefault();
     setShowSidebar(!showSidebar);
   };
 
-  /**
-   * Helper function to display a custom component to display instead of ReactiveSearch's
-   * @param {Object} res - ReactivSearch result object
-   */
-  function renderItem(res) {
-    let item = {
-      id: res.id,
-      imageUrl: getESImagePath(res),
-      label: res.descriptiveMetadata.title,
-      type: res.model.name,
-    };
-    return (
-      <PhotoBox
-        key={item.id}
-        id={res.id}
-        imageUrl={getESImagePath(res)}
-        label={res.descriptiveMetadata.title}
-        modelName={res.model.name}
-        workType={res.workType?.id}
-      />
-    );
-  }
-
   const breadCrumbData = collection ? createBreadcrumbData(collection) : [];
   const collectionTitle = collection?.title;
   const collectionDescription = collection?.description;
-
-  const allFilters = [
-    COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID,
-    ...FACET_SENSORS_RIGHTS_USAGE.map((facet) => facet.componentId),
-    ...FACET_SENSORS_LOCATION.map((facet) => facet.componentId),
-    ...FACET_SENSORS_CREATOR.map((facet) => facet.componentId),
-    ...FACET_SENSORS_DESCRIPTIVE.map((facet) => facet.componentId),
-  ];
-  const imageFacetsNoCollection = FACET_SENSORS_RIGHTS_USAGE.filter(
-    (facet) => facet.componentId !== "Collection"
-  );
 
   const renderDisplay = () => {
     if (error) {
@@ -182,7 +112,6 @@ const Collection = () => {
       return (
         <div>
           <FacetsSidebar
-            facets={imageFacetsNoCollection}
             searchBarComponentId={COLLECTION_ITEMS_SEARCH_BAR_COMPONENT_ID}
             showSidebar={showSidebar}
           />
@@ -228,28 +157,7 @@ const Collection = () => {
                   handleToggleFiltersClick={handleDisplaySidebarClick}
                 />
 
-                <ReactiveList
-                  componentId="collection-items-results"
-                  dataField="descriptiveMetadata.title.keyword"
-                  react={{
-                    and: [...allFilters],
-                  }}
-                  defaultQuery={defaultQuery}
-                  defaultSortOption={"Sort By Relevancy"}
-                  loader={<LoadingSpinner loading={true} />}
-                  size={24}
-                  pages={10}
-                  pagination={true}
-                  paginationAt="bottom"
-                  renderItem={renderItem}
-                  innerClass={{
-                    list: "rs-result-list photo-grid four-grid",
-                    pagination: "rs-pagination",
-                    resultsInfo: "rs-results-info",
-                  }}
-                  URLParams={true}
-                  sortOptions={sortOptions}
-                />
+                <WrappedReactiveList collectionId={collection?.id} />
               </div>
             )}
           </main>
