@@ -68,19 +68,19 @@ const WrappedReactiveList = ({ collectionId }) => {
         "representativeFileSet.url",
         "workType",
       ]}
-      loader={<LoadingSpinner loading={true} />}
-      size={10}
-      //pages={10}
-      // pagination={true}
-      // paginationAt="bottom"
-      renderItem={renderItem}
       innerClass={{
         list: "rs-result-list photo-grid four-grid",
         pagination: "rs-pagination",
         resultsInfo: "rs-results-info",
       }}
-      URLParams={true}
+      loader={<LoadingSpinner loading={true} />}
+      pages={10}
+      pagination={true}
+      paginationAt="bottom"
+      renderItem={renderItem}
+      size={24}
       sortOptions={sortOptions}
+      URLParams={true}
     />
   );
 };
