@@ -129,8 +129,6 @@ const FacetsSidebar = ({
   const defaultMultiListProps = {
     defaultQuery: isSearchPage ? () => worksOnlyDefaultQuery : collectionsQuery,
     innerClass: multiListInnerClass,
-    missingLabel: "None",
-    showMissing: true,
     size: 250,
   };
 
