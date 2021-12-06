@@ -12,6 +12,10 @@ function prepItemText(item) {
   if (item.label) {
     return item.label.label;
   }
+  // For Notes metadata field
+  if (item.note) {
+    return `${item.type.label} - ${item.note}`;
+  }
   return item;
 }
 
@@ -74,10 +78,12 @@ const MetadataDisplay = ({
       text = prepItemText(item);
     }
 
+    // Provide a link to Search on facet value which populates a new search
     if (facet) {
       return <li key={text}>{linkElement(facet, text)}</li>;
     }
 
+    // Link to an external URL outside our app
     if (externalUrlLabels.indexOf(title) > -1) {
       return (
         <li key={text}>
@@ -96,6 +102,10 @@ const MetadataDisplay = ({
           </a>
         </li>
       );
+    }
+
+    if (title === "Notes") {
+      return <li key={text}>{text}</li>;
     }
 
     return <li key={text}>{text}</li>;
