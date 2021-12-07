@@ -6,7 +6,7 @@ export const DATASEARCH_PLACEHOLDER =
 
 const defaultListItemValues = {
   showSearch: true,
-  sortBy: "asc",
+  sortBy: "count",
   URLParams: true,
 };
 
@@ -163,14 +163,18 @@ export const simpleQueryStringQuery = (value = "*") => {
   };
 };
 
-export const worksOnlyDefaultQuery = () => {
-  return {
-    query: {
-      match: {
-        "model.name": "Work",
-      },
+export const worksOnlyDefaultQuery = {
+  query: {
+    bool: {
+      must: [
+        {
+          match: {
+            "model.name": "Work",
+          },
+        },
+      ],
     },
-  };
+  },
 };
 
 export const collectionDefaultQuery = (collectionId) => {

@@ -37,10 +37,8 @@ const FacetsSidebar = ({
 }) => {
   const location = useLocation();
   const params = useParams();
+  const isSearchPage = location.pathname.indexOf(ROUTES.SEARCH.path) > -1;
 
-  const isSearchPage = () => {
-    return location.pathname.indexOf(ROUTES.SEARCH.path) > -1;
-  };
   const collectionsQuery = () => {
     return collectionDefaultQuery(params.id);
   };
@@ -69,7 +67,7 @@ const FacetsSidebar = ({
     (sensor) => sensor.componentId
   );
 
-  const filterList2 = (filterId, facetGroup) => {
+  const filterList = (filterId, facetGroup) => {
     let allFilters, filtersMinusCurrent;
 
     switch (facetGroup) {
@@ -121,41 +119,6 @@ const FacetsSidebar = ({
     return [...allFilters, searchBarComponentId];
   };
 
-  // Return all connected facets for regular metadata
-  const filterList = (filterId) => {
-    let filtersMinusCurrent = facetSensors.filter(
-      (filterItem) => filterItem !== filterId
-    );
-    return [
-      ...filtersMinusCurrent,
-      ...facetSensorsCreator,
-      ...facetSensorsDescriptive,
-      searchBarComponentId,
-    ];
-  };
-  const filterCreatorList = (filterId) => {
-    let filtersMinusCurrent = facetSensorsCreator.filter(
-      (filterItem) => filterItem !== filterId
-    );
-    return [
-      ...filtersMinusCurrent,
-      ...facetSensors,
-      ...facetSensorsDescriptive,
-      searchBarComponentId,
-    ];
-  };
-  const filterDescriptiveList = (filterId) => {
-    let filtersMinusCurrent = facetSensorsDescriptive.filter(
-      (filterItem) => filterItem !== filterId
-    );
-    return [
-      ...filtersMinusCurrent,
-      ...facetSensors,
-      ...facetSensorsCreator,
-      searchBarComponentId,
-    ];
-  };
-
   function getDefaultValue(sensor) {
     if (!externalFacet && !searchValue) {
       return [];
@@ -164,11 +127,9 @@ const FacetsSidebar = ({
   }
 
   const defaultMultiListProps = {
-    defaultQuery: isSearchPage() ? worksOnlyDefaultQuery : collectionsQuery,
+    defaultQuery: isSearchPage ? () => worksOnlyDefaultQuery : collectionsQuery,
     innerClass: multiListInnerClass,
-    missingLabel: "None",
-    showMissing: true,
-    size: 500,
+    size: 250,
   };
 
   return (
@@ -185,30 +146,28 @@ const FacetsSidebar = ({
         }`}
       >
         <h2>Creator/Contributor</h2>
-        {FACET_SENSORS_CREATOR.map((f) => {
-          return (
-            <MultiList
-              key={f.componentId}
-              {...f}
-              {...defaultMultiListProps}
-              defaultValue={getDefaultValue(f)}
-              react={{
-                and: [...filterList2(f.componentId, "CREATOR")],
-              }}
-            />
-          );
-        })}
+        {FACET_SENSORS_CREATOR.map((f) => (
+          <MultiList
+            key={f.componentId}
+            {...defaultMultiListProps}
+            {...f}
+            defaultValue={getDefaultValue(f)}
+            react={{
+              and: filterList(f.componentId, "CREATOR"),
+            }}
+          />
+        ))}
 
         <h2 css={facetHeader}>Subjects and Descriptive</h2>
         {FACET_SENSORS_DESCRIPTIVE.map((f) => {
           return (
             <MultiList
               key={f.componentId}
-              {...f}
               {...defaultMultiListProps}
+              {...f}
               defaultValue={getDefaultValue(f)}
               react={{
-                and: [...filterList2(f.componentId, "DESCRIPTIVE")],
+                and: filterList(f.componentId, "DESCRIPTIVE"),
               }}
             />
           );
@@ -219,11 +178,11 @@ const FacetsSidebar = ({
           return (
             <MultiList
               key={f.componentId}
-              {...f}
               {...defaultMultiListProps}
+              {...f}
               defaultValue={getDefaultValue(f)}
               react={{
-                and: [...filterList2(f.componentId, "ADMINISTRATIVE")],
+                and: filterList(f.componentId, "ADMINISTRATIVE"),
               }}
             />
           );
@@ -234,11 +193,11 @@ const FacetsSidebar = ({
           return (
             <MultiList
               key={f.componentId}
-              {...f}
               {...defaultMultiListProps}
+              {...f}
               defaultValue={getDefaultValue(f)}
               react={{
-                and: [...filterList2(f.componentId)],
+                and: filterList(f.componentId),
               }}
             />
           );
