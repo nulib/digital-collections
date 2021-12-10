@@ -8,7 +8,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.15",
-    "@nulib/react-media-player": "^1.6.0",
+    "@nulib/react-media-player": "^1.6.1",
     "@reglendo/canvas2image": "^1.0.5-2",
     "@samvera/image-downloader": "^1.1.0",
     "cookie": "^0.4.0",
