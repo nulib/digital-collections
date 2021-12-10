@@ -100,7 +100,7 @@ export const ROUTES = {
   },
   EMBEDDED_VIEWER: {
     title: "Embedded Viewer",
-    path: "/embedded-viewer/:manifestUrl",
+    path: "/embedded-viewer/:manifestUrl/:workType?",
   },
   HOME: {
     title: "Home",
