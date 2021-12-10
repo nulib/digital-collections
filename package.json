@@ -99,7 +99,7 @@
     "prop-types": "^15.6.1",
     "react-router-prop-types": "^1.0.5",
     "start-server-and-test": "^1.13.1",
-    "typescript": "^4.5.2"
+    "typescript": "^4.5.3"
   },
   "browserslist": [
     ">0.2%",
