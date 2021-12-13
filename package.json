@@ -47,7 +47,7 @@
     "redux-mock-store": "^1.5.4",
     "redux-thunk": "^2.4.1",
     "source-map-explorer": "^2.5.2",
-    "swiper": "7.3.1",
+    "swiper": "7.3.2",
     "whatwg-fetch": "^3.6.2"
   },
   "lint-staged": {
