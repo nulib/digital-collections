@@ -23,7 +23,7 @@
     "openseadragon": "^2.4.2",
     "openseadragon-react-viewer": "^3.4.1",
     "react": "^17.0.2",
-    "react-app-polyfill": "^2.0.0",
+    "react-app-polyfill": "^3.0.0",
     "react-collapsible": "^2.8.3",
     "react-copy-to-clipboard": "^5.0.4",
     "react-device-detect": "^1.17.0",
