@@ -85,7 +85,7 @@ export function getTileSources(manifest) {
         const resource = canvas.items[0].items[0].body;
         if (resource.type !== "image" && resource.service) {
           tileSources.push({
-            id: resource["id"],
+            id: resource.service[0]["id"],
             label: canvas.label.en[0],
           });
         }

@@ -39,13 +39,13 @@ const Home = () => {
     // Combine async network requests
     promises.push(getGalleryItems());
     promises.push(getFeaturedCollections());
-    globalVars.HOMEPAGE_COLLECTION_GROUP_KEYWORDS.forEach((keyword) =>
-      promises.push(getGalleryByKeyword(keyword))
+    promises.push(
+      getGalleryByKeywords(globalVars.HOMEPAGE_COLLECTION_GROUP_KEYWORDS)
     );
 
     // Put results on component state
     Promise.all(promises)
-      .then(([galleryItems, featuredCollections, ...keywordCollections]) => {
+      .then(([galleryItems, featuredCollections, keywordCollections]) => {
         setGalleryItems(galleryItems);
         setFeaturedCollections(featuredCollections);
         setKeywordCollections(keywordCollections);
@@ -63,7 +63,6 @@ const Home = () => {
       ) {
         return null;
       }
-
       return (
         <section
           className="section"
@@ -107,15 +106,16 @@ const Home = () => {
   }
 
   /**
-   * Get collections by keyword
+   * Get collections by keywords
    */
-  async function getGalleryByKeyword(keyword: string) {
-    let response = await elasticsearchApi.getCollectionsByKeyword(keyword);
-
-    const items = elasticsearchParser.prepPhotoGridItems(
-      response,
-      globalVars.COLLECTION_MODEL
-    );
+  async function getGalleryByKeywords(keywords: string[]) {
+    let response = await elasticsearchApi.getCollectionsByKeywords(keywords);
+    const items = response.map((item: any) => {
+      return elasticsearchParser.prepPhotoGridItems(
+        item.hits,
+        globalVars.COLLECTION_MODEL
+      );
+    });
 
     return items;
   }
