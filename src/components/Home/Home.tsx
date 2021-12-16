@@ -15,7 +15,7 @@ import SwiperCore, { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
-import "swiper/swiper.scss";
+import "swiper/scss";
 
 // TypeScript interfaces defined in their components, which we can share around
 import { PhotoFeatureItem } from "components/UI/PhotoFeature";
