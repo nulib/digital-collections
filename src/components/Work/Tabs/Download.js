@@ -28,6 +28,8 @@ const WorkTabsDownload = React.memo(function ({ item }) {
   const [currentId, setCurrentId] = useState();
   const [currentLabel, setCurrentLabel] = useState();
 
+  console.log(item.representativeFileSet.url);
+
   const iiifServerUrl = item.representativeFileSet.url.slice(
     0,
     item.representativeFileSet.url.lastIndexOf("/")
@@ -58,6 +60,7 @@ const WorkTabsDownload = React.memo(function ({ item }) {
       .split("%2F")
       .join("");
 
+    console.log(row);
     setCurrentId(parsedId);
     setCurrentLabel(row.label);
     setModalOpen(true);

@@ -133,24 +133,51 @@ export async function getCollection(id) {
   }
 }
 
-export async function getCollectionsByKeyword(keyword, numResults = PAGE_SIZE) {
+export async function getCollectionsByKeywords(
+  keywords,
+  numResults = PAGE_SIZE
+) {
+  const queryKeywords = keywords
+    .map((keyword) => {
+      return `keywords:${keyword}`;
+    })
+    .join(" OR ");
+
   try {
     const response = await search({
       ...getObjBase,
       body: {
-        size: numResults,
         query: {
-          bool: {
-            must: [
-              { match: { "model.name": "Collection" } },
-              { match: { keywords: keyword } },
+          query_string: {
+            query: `model.name:collection AND (${queryKeywords})`,
+          },
+        },
+        collapse: {
+          field: "keywords.keyword",
+          inner_hits: {
+            name: "collection_results",
+            size: numResults,
+            _source: [
+              "descriptiveMetadata",
+              "id",
+              "model",
+              "representativeImage",
+              "title",
             ],
           },
         },
+        _source: ["keywords"],
         ...sortKey,
       },
     });
-    return response.hits.hits.map((hit) => hit._source);
+    return response.hits.hits.map((hit) => {
+      return {
+        keyword: hit._source.keywords.join(),
+        hits: hit.inner_hits.collection_results.hits.hits.map(
+          (hit) => hit._source
+        ),
+      };
+    });
   } catch (error) {
     console.log("Error in getCollectionsByKeyword()", error);
     return Promise.resolve([]);
@@ -207,13 +234,14 @@ export async function getFeaturedCollections(numResults = PAGE_SIZE) {
             ],
           },
         },
+        _source: ["descriptiveMetadata", "id", "representativeImage", "title"],
         ...sortKey,
       },
     });
 
     return response.hits.hits.map((hit) => hit._source);
   } catch (error) {
-    console.log("Error in getCollectionsByKeyword()", error);
+    console.log("Error in getFeaturedCollections()", error);
     return Promise.resolve([]);
   }
 }
@@ -291,6 +319,12 @@ export async function getRecentlyDigitizedItems(numResults = PAGE_SIZE) {
             ],
           },
         },
+        _source: [
+          "descriptiveMetadata",
+          "model",
+          "representativeFileSet",
+          "workType",
+        ],
         ...sortKey,
       },
     });
