@@ -12,10 +12,10 @@ import { getRandomInt } from "../../services/helpers";
 import { isMobileOnly, isTablet } from "react-device-detect";
 // Import Swiper React components
 import SwiperCore, { Navigation } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
 
 // Import Swiper styles
-import "swiper/scss";
+import "swiper/swiper.scss";
 
 // TypeScript interfaces defined in their components, which we can share around
 import { PhotoFeatureItem } from "components/UI/PhotoFeature";

@@ -6,6 +6,7 @@ const client = new elasticsearch.Client({
   host: ELASTICSEARCH_PROXY_BASE + "/search",
   //log: 'trace'
 });
+
 const PAGE_SIZE = 500;
 const getObjBase = {
   index: "meadow",
