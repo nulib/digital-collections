@@ -12,7 +12,7 @@ import { getRandomInt } from "../../services/helpers";
 import { isMobileOnly, isTablet } from "react-device-detect";
 // Import Swiper React components
 import SwiperCore, { Navigation } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
 
 // Import Swiper styles
 import "swiper/swiper.scss";
