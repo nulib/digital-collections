@@ -48,7 +48,7 @@
     "redux-thunk": "^2.4.1",
     "sass": "^1.45.1",
     "source-map-explorer": "^2.5.2",
-    "swiper": "7.3.3",
+    "swiper": "7.3.4",
     "whatwg-fetch": "^3.6.2"
   },
   "lint-staged": {
