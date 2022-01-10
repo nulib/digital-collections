@@ -5,7 +5,6 @@ import TabsCite from "./Tabs/Cite";
 import TabsMetadata from "./Tabs/Metadata";
 import TabsFind from "./Tabs/Find";
 import TabsDownload from "./Tabs/Download";
-import TabsMediaDownload from "./Tabs/MediaDownload";
 import useWorkType from "hooks/use-work-type";
 
 const WorkItemDetail = ({ item }) => {
@@ -47,11 +46,7 @@ const WorkItemDetail = ({ item }) => {
             <TabsCite item={item} />
           </TabPanel>
           <TabPanel>
-            {isMediaType(item.workType) ? (
-              <TabsMediaDownload item={item} />
-            ) : (
-              <TabsDownload item={item} />
-            )}
+            <TabsDownload item={item} />
           </TabPanel>
         </div>
       </Tabs>

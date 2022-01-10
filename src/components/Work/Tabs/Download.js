@@ -12,10 +12,6 @@ import { ImageDownloader } from "@samvera/image-downloader";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/react";
 
-const downloadWrapper = css`
-  max-height: 600px;
-  overflow-y: auto;
-`;
 const table = css`
   td:nth-of-type(1) {
     width: 175px;
@@ -31,6 +27,8 @@ const WorkTabsDownload = React.memo(function ({ item }) {
   const [modalOpen, setModalOpen] = useState();
   const [currentId, setCurrentId] = useState();
   const [currentLabel, setCurrentLabel] = useState();
+
+  console.log(item.representativeFileSet.url);
 
   const iiifServerUrl = item.representativeFileSet.url.slice(
     0,
@@ -62,6 +60,7 @@ const WorkTabsDownload = React.memo(function ({ item }) {
       .split("%2F")
       .join("");
 
+    console.log(row);
     setCurrentId(parsedId);
     setCurrentLabel(row.label);
     setModalOpen(true);
@@ -70,59 +69,63 @@ const WorkTabsDownload = React.memo(function ({ item }) {
   if (loading) return <UILoadingSpinner loading />;
 
   return (
-    <div css={downloadWrapper} data-testid="tab-content-download">
+    <div data-testid="tab-content-download">
       {item.visibility?.id.toUpperCase() === "OPEN" && (
         <WorkEmbedViewer item={item} />
       )}
-
-      <div className="responsive-table">
-        <table css={table}>
-          <tbody>
-            <tr className="stripe">
-              <th>Image preview</th>
-              <th>Label</th>
-              <th>Actions</th>
-            </tr>
-            {tileSources.map((row, i) => (
-              <tr key={row.id} className={`${i % 2 === 0 ? "stripe" : ""}`}>
-                <td>
-                  <img
-                    src={`${row.id}/square/100,100/0/default.jpg`}
-                    alt={`${row.label} thumbnail`}
-                  />
-                </td>
-                <td>{row.label}</td>
-                <td>
-                  <ImageDownloader
-                    imageUrl={`${row.id}/full/3000,/0/default.jpg`}
-                    imageTitle={item?.accessionNumber || ""}
-                    data-testid="download-button"
-                    className="button-link"
-                    iconColor="#4e2a84"
-                  >
-                    Download JPG
-                  </ImageDownloader>
-                  <p>
-                    <button
-                      className="button-link"
-                      onClick={() => handleOpenModal(row)}
-                    >
-                      <FontAwesomeIcon icon="code" /> HTML Embed
-                    </button>
-                  </p>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <IIIFImageEmbedModal
-        altLabel={currentLabel}
-        closeModal={closeModal}
-        id={currentId}
-        iiifServerUrl={iiifServerUrl}
-        modalOpen={modalOpen}
-      />
+      {tileSources.length > 0 && (
+        <>
+          <div className="responsive-table">
+            <h4>Download and Embed Images</h4>
+            <table css={table}>
+              <tbody>
+                <tr className="stripe">
+                  <th>Image preview</th>
+                  <th>Label</th>
+                  <th>Actions</th>
+                </tr>
+                {tileSources.map((row, i) => (
+                  <tr key={row.id} className={`${i % 2 === 0 ? "stripe" : ""}`}>
+                    <td>
+                      <img
+                        src={`${row.id}/square/100,100/0/default.jpg`}
+                        alt={`${row.label} thumbnail`}
+                      />
+                    </td>
+                    <td>{row.label}</td>
+                    <td>
+                      <ImageDownloader
+                        imageUrl={`${row.id}/full/3000,/0/default.jpg`}
+                        imageTitle={item?.accessionNumber || ""}
+                        data-testid="download-button"
+                        className="button-link"
+                        iconColor="#4e2a84"
+                      >
+                        Download JPG
+                      </ImageDownloader>
+                      <p>
+                        <button
+                          className="button-link"
+                          onClick={() => handleOpenModal(row)}
+                        >
+                          <FontAwesomeIcon icon="code" /> HTML Embed
+                        </button>
+                      </p>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <IIIFImageEmbedModal
+            altLabel={currentLabel}
+            closeModal={closeModal}
+            id={currentId}
+            iiifServerUrl={iiifServerUrl}
+            modalOpen={modalOpen}
+          />
+        </>
+      )}
     </div>
   );
 });
