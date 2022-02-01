@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 import MetadataDisplay from "components/Work/MetadataDisplay";
 import { getPrimoLink } from "services/helpers";
@@ -20,7 +19,7 @@ const tabContent = css`
 
 const TabsFind = ({ item }) => {
   if (!item) return;
-  const { accessionNumber, collection, descriptiveMetadata } = item;
+  const { accessionNumber, descriptiveMetadata } = item;
   const {
     boxName = "",
     boxNumber = "",
@@ -36,7 +35,7 @@ const TabsFind = ({ item }) => {
     ...FACET_SENSORS_DESCRIPTIVE,
   ];
 
-  const [findItems, setFindItems] = React.useState([
+  const findItems = [
     { label: "Accession", value: accessionNumber },
     { label: "Box Name", value: boxName },
     {
@@ -56,7 +55,7 @@ const TabsFind = ({ item }) => {
       facet: allFacets.find((facet) => facet.componentId === "FolderNumber"),
       value: folderNumber,
     },
-  ]);
+  ];
 
   return (
     <div data-testid="tab-content-find" css={tabContent}>

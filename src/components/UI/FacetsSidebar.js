@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 import { useLocation, useParams } from "react-router-dom";
 import { ROUTES } from "services/global-vars";

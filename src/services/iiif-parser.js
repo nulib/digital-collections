@@ -63,8 +63,9 @@ export function getTileSources(manifest) {
      * IIIF Presentation 2.0 API
      */
     case "http://iiif.io/api/presentation/2/context.json":
-      if (!manifest.sequences || !manifest.sequences[0].canvases)
-        return tileSources;
+      if (!manifest.sequences || !manifest.sequences[0].canvases) {
+        return;
+      }
 
       manifest.sequences[0].canvases.forEach((canvas) => {
         if (canvas.images.length > 0 && canvas.images[0].resource) {
@@ -74,12 +75,13 @@ export function getTileSources(manifest) {
           });
         }
       });
+      break;
 
     /**
      * IIIF Presentation 3.0 API
      */
     case "http://iiif.io/api/presentation/3/context.json":
-      if (!manifest.items || manifest.items.length === 0) return tileSources;
+      if (!manifest.items || manifest.items.length === 0) return;
 
       manifest.items.forEach((canvas) => {
         const resource = canvas.items[0].items[0].body;
@@ -90,6 +92,7 @@ export function getTileSources(manifest) {
           });
         }
       });
+      break;
 
     default:
       console.warn(

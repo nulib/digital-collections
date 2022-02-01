@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 import MetadataDisplay from "../MetadataDisplay";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import { css, jsx } from "@emotion/react";
 
 const styles = {
   monoSpace: {
@@ -15,15 +19,8 @@ const styles = {
   active: { color: "#008656" },
 };
 
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { css, jsx } from "@emotion/react";
-
 const tabContent = css`
   padding: 0 1rem;
-`;
-const monoSpace = css`
-  font-family: monospace;
 `;
 const flexTitle = css`
   display: flex;

@@ -9,7 +9,6 @@ import {
   IIIF_MEDIUM_ITEM_REGION,
   IMAGE_MODEL,
 } from "./global-vars";
-import placeholderImage from "../images/book_placeholder.jpg";
 
 describe("ElasticSearch parser module", () => {
   describe("Get description function", () => {
@@ -88,11 +87,6 @@ describe("ElasticSearch parser module", () => {
     const singleTitle = {
       descriptiveMetadata: {
         title: "Alchemical Properties: 15 Years of Dilettantism",
-      },
-    };
-    const multiTitle = {
-      title: {
-        primary: ["Alchemical Properties: 15 Years of Dilettantism", "Title 2"],
       },
     };
 
