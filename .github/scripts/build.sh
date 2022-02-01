@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 export REACT_APP_ELASTICSEARCH_PROXY_BASE=$(aws ssm get-parameter --name /stack-glaze/react_app_elasticsearch_proxy_base | jq -r '.Parameter.Value')
 export REACT_APP_DONUT_URL=$(aws ssm get-parameter --name /stack-glaze/react_app_donut_url | jq -r '.Parameter.Value')
@@ -12,7 +13,11 @@ echo "REACT_APP_ELASTICSEARCH_PROXY_BASE=$REACT_APP_ELASTICSEARCH_PROXY_BASE REA
 
 npm install
 npm run-script build
-aws s3 sync --delete --exclude '*.xml.gz' --acl public-read ./build/ s3://${S3_BUCKET}/
+echo "Build succeeded."
 
-echo "Invalidating CloudFront Cache"
-aws cloudfront create-invalidation --distribution-id ${FEN_DISTRIBUTION_ID} --invalidation-batch "Paths={Quantity=1,Items=[/*]},CallerReference=$(date +%Y%m%d%H%M%S)"
+if [ "$DEPLOY" eq "true" ]; then
+  aws s3 sync --delete --exclude '*.xml.gz' --acl public-read ./build/ s3://${S3_BUCKET}/
+
+  echo "Invalidating CloudFront Cache"
+  aws cloudfront create-invalidation --distribution-id ${FEN_DISTRIBUTION_ID} --invalidation-batch "Paths={Quantity=1,Items=[/*]},CallerReference=$(date +%Y%m%d%H%M%S)"
+fi

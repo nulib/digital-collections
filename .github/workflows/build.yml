@@ -56,6 +56,8 @@ jobs:
             ${{ runner.os }}-npm-build-
       - name: Build & Deploy
         run: .github/scripts/build.sh
+        env:
+          DEPLOY: true
       - name: Notify Honeybadger
         run: .github/scripts/honeybadger_deploy_notification.sh
         env:
