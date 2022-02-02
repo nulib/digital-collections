@@ -46,7 +46,7 @@
     "redux": "^4.1.2",
     "redux-mock-store": "^1.5.4",
     "redux-thunk": "^2.4.1",
-    "sass": "^1.49.4",
+    "sass": "^1.49.7",
     "source-map-explorer": "^2.5.2",
     "swiper": "8.0.2",
     "whatwg-fetch": "^3.6.2"
