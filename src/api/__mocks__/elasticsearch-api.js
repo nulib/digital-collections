@@ -1,5 +1,5 @@
-export async function getAdminSetItems(id) {
-  return new Promise((resolve, reject) => {
+export async function getAdminSetItems() {
+  return new Promise((resolve) => {
     process.nextTick(() =>
       resolve([
         {
@@ -152,8 +152,8 @@ export async function getAdminSetItems(id) {
   });
 }
 
-export async function getCollectionItems(id) {
-  return new Promise((resolve, reject) => {
+export async function getCollectionItems() {
+  return new Promise((resolve) => {
     process.nextTick(() =>
       resolve([
         {
@@ -283,7 +283,7 @@ export async function getItem(id) {
 }
 
 export async function getLibraryUnitItems() {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     process.nextTick(() =>
       resolve([
         {
@@ -690,7 +690,7 @@ export async function getLibraryUnitItems() {
 }
 
 export async function getSharedItem() {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     process.nextTick(() =>
       resolve([
         {

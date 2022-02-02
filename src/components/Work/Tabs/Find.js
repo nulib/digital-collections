@@ -59,7 +59,7 @@ const TabsFind = ({ item }) => {
 
   return (
     <div data-testid="tab-content-find" css={tabContent}>
-      {findItems.map((findItem, i) => (
+      {findItems.map((findItem) => (
         <MetadataDisplay
           key={findItem.label}
           title={findItem.label}

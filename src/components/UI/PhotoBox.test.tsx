@@ -1,6 +1,6 @@
 import React from "react";
 import PhotoBox from "./PhotoBox";
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import { renderWithRouter } from "services/@testing-library-helpers";
 
 describe("Photo box component", () => {
