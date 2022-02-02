@@ -15,7 +15,7 @@ npm install
 npm run-script build
 echo "Build succeeded."
 
-if [ "$DEPLOY" eq "true" ]; then
+if [ "$DEPLOY" = "true" ]; then
   aws s3 sync --delete --exclude '*.xml.gz' --acl public-read ./build/ s3://${S3_BUCKET}/
 
   echo "Invalidating CloudFront Cache"
