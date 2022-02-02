@@ -84,7 +84,7 @@ const styles = {
   },
 };
 
-const Footer = (props) => {
+const Footer = () => {
   return (
     <footer>
       <div className="contain-970">

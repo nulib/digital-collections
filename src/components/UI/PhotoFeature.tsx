@@ -28,11 +28,11 @@ export interface PhotoFeatureItem {
 }
 export interface PhotoFeatureProps {
   item: PhotoFeatureItem;
-  styles: {};
+  styles: any;
 }
 
 const PhotoFeature: React.FC<PhotoFeatureProps> = ({ item, styles }) => {
-  let { id, description, imageUrl, label } = item;
+  const { id, description, imageUrl, label } = item;
   const [height, setHeight] = useState(0);
   const ref = useRef<HTMLImageElement | null>(null);
   const [isHover, setIsHover] = useState(false);
@@ -50,13 +50,15 @@ const PhotoFeature: React.FC<PhotoFeatureProps> = ({ item, styles }) => {
 
   const addHoverClass = (
     e: React.MouseEvent<HTMLElement | HTMLAnchorElement>
-  ) => {
+  ): void => {
     if (!isHover) {
       e.preventDefault();
     }
     setIsHover(!isHover);
   };
-  const loadPlaceholderImage = (e: React.MouseEvent<HTMLImageElement>) => {
+  const loadPlaceholderImage = (
+    e: React.MouseEvent<HTMLImageElement>
+  ): void => {
     e.currentTarget.src = placeholderImage;
   };
 

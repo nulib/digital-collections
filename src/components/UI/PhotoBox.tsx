@@ -61,7 +61,7 @@ const PhotoBox: React.FC<PhotoBoxProps> = ({
   }/${id}`;
 
   const imgSrc = buildImgSrc(imageUrl, workType, modelName);
-  const loadPlaceholderImage = (e: SyntheticEvent<HTMLImageElement>) => {
+  const loadPlaceholderImage = (e: SyntheticEvent<HTMLImageElement>): void => {
     e.currentTarget.src = imgPlaceholder;
   };
 

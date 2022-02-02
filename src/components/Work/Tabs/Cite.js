@@ -89,7 +89,7 @@ const TabsCite = ({ item }) => {
   return (
     <div data-testid="tab-content-cite">
       <div css={tabContent}>
-        {citePanel.map((item, i) => (
+        {citePanel.map((item) => (
           <MetadataDisplay
             key={item.label}
             title={item.label}
@@ -98,7 +98,7 @@ const TabsCite = ({ item }) => {
         ))}
       </div>
       <div className="cite-group" css={tabContent}>
-        {formats.map((item, index) => (
+        {formats.map((item) => (
           <div key={item.id}>
             <div css={flexTitle}>
               <h4>{item.label}</h4>

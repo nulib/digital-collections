@@ -136,11 +136,7 @@ export function prepPhotoFeatureItems(
  * @param {String} iiifParams /// IIIF image sizing params to use - defaults to a medium region
  * @return {Array} of prepped items
  */
-export function prepPhotoGridItems(
-  sources,
-  modelType,
-  iiifParams = globalVars.IIIF_MEDIUM_ITEM_REGION
-) {
+export function prepPhotoGridItems(sources, modelType) {
   return sources.map((source) => ({
     id: source.id,
     imageUrl: getESImagePath(source),
