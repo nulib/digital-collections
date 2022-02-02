@@ -2,7 +2,7 @@
   "plugins": ["react"],
   "extends": ["react-app", "plugin:prettier/recommended"],
   "parserOptions": {
-    "ecmaVersion": "latest",
+    "ecmaVersion": 6,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
