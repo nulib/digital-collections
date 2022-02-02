@@ -1,8 +1,6 @@
-import React from "react";
 import { OpenSeadragonViewer } from "openseadragon-react-viewer";
 import ReactMediaPlayer from "@nulib/react-media-player";
 import { useParams } from "react-router-dom";
-import logo from "../images/northwestern-white.png";
 import { ErrorBoundary } from "react-error-boundary";
 import FallbackErrorComponent from "components/UI/FallbackErrorComponent";
 

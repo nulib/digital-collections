@@ -4,7 +4,6 @@ import { getCollection } from "api/elasticsearch-api";
 import Obfuscate from "react-obfuscate";
 
 function WorkTabsMoreInformation({ collection = {} }) {
-  if (Object.keys(collection).length === 0) return null;
   const [adminEmail, setAdminEmail] = React.useState();
 
   React.useEffect(() => {
@@ -13,7 +12,9 @@ function WorkTabsMoreInformation({ collection = {} }) {
       setAdminEmail(collectionResponse._source.adminEmail || "");
     }
     fn();
-  }, []);
+  }, [collection.id]);
+
+  if (Object.keys(collection).length === 0) return null;
 
   return adminEmail ? (
     <>

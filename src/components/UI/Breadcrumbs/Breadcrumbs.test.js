@@ -7,9 +7,7 @@ test("Breadcrumbs displays correct amount of crumbs", () => {
     { title: "Crumb1", link: "/crumb1" },
     { title: "Crumb2", link: "/crumb2" },
   ];
-  const { getByTestId, debug } = renderWithRouter(
-    <Breadcrumbs items={crumbs} />
-  );
+  const { getByTestId } = renderWithRouter(<Breadcrumbs items={crumbs} />);
 
   expect(getByTestId(/breadcrumbs/)).toBeInTheDocument();
   expect(getByTestId(/breadcrumbs/).children.length).toEqual(2);
@@ -25,7 +23,7 @@ test("All breadcrumbs have links except the final breadcrumb", () => {
     { title: "Crumb1", link: "/crumb1" },
     { title: "Crumb2", link: "/crumb2" },
   ];
-  const { container, getByTestId, debug } = renderWithRouter(
+  const { container, getByTestId } = renderWithRouter(
     <Breadcrumbs items={crumbs} />
   );
   expect(container.querySelectorAll("a").length).toEqual(crumbs.length - 1);

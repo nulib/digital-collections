@@ -1,5 +1,4 @@
 import * as globalVars from "./global-vars";
-import placeholderImage from "../images/book_placeholder.jpg";
 
 export function buildImageUrl(
   source,
