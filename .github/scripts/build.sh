@@ -2,6 +2,7 @@
 set -e
 
 export REACT_APP_HONEYBADGER_API_KEY=$HONEYBADGER_API_KEY
+export REACT_APP_HONEYBADGER_ENV=$DEPLOY_ENV
 export REACT_APP_HONEYBADGER_REVISION=$HONEYBADGER_REVISION
 export REACT_APP_ELASTICSEARCH_PROXY_BASE=$(aws ssm get-parameter --name /stack-glaze/react_app_elasticsearch_proxy_base | jq -r '.Parameter.Value')
 export REACT_APP_DONUT_URL=$(aws ssm get-parameter --name /stack-glaze/react_app_donut_url | jq -r '.Parameter.Value')
