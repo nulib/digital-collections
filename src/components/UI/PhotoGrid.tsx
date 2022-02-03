@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes, { array } from "prop-types";
 import PhotoBox from "./PhotoBox";
 import { PhotoBoxProps } from "components/UI/PhotoBox";
 

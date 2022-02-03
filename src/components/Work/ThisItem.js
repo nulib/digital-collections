@@ -2,7 +2,6 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
 import { IIIF_LARGE_FEATURE_REGION } from "../../services/global-vars";
-import placeholderImage from "../../images/book_placeholder.png";
 
 const ThisItem = (props) => {
   const { item } = props;

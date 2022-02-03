@@ -2,6 +2,7 @@ import React from "react";
 import ReactMediaPlayer from "@nulib/react-media-player";
 
 // This is for testing
+// eslint-disable-next-line
 const url =
   "https://raw.githubusercontent.com/mathewjordan/mirador-playground/main/assets/iiif/manifest/assortedCanvases.json";
 

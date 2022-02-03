@@ -1,5 +1,5 @@
-export function getManifest(url) {
-  return new Promise((resolve, reject) => {
+export function getManifest() {
+  return new Promise((resolve) => {
     process.nextTick(() =>
       resolve({
         sequences: [

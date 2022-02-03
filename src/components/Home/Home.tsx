@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import HeroSection from "./HeroSection";
 import PhotoBox from "../UI/PhotoBox";
-import PhotoFeature, { PhotoFeatureProps } from "../UI/PhotoFeature";
+import PhotoFeature from "../UI/PhotoFeature";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "../UI/LoadingSpinner";
 import { heroFava, heroWPA, heroWWII, heroWWII_2 } from "./hero-banners";
@@ -23,8 +23,7 @@ import { PhotoBoxProps } from "components/UI/PhotoBox";
 
 SwiperCore.use([Navigation]);
 
-const Home = () => {
-  const numResults = 8;
+const Home: React.FC = () => {
   const heroRandomNumber = getRandomInt(0, 2);
   const heroItems = [heroFava, heroWPA, heroWWII, heroWWII_2];
 
@@ -34,7 +33,7 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    let promises = [];
+    const promises = [];
 
     // Combine async network requests
     promises.push(getGalleryItems());
@@ -54,7 +53,7 @@ const Home = () => {
       .catch((error) => console.log("Error grabbing data", error));
   }, []);
 
-  function renderAdditionalGalleries() {
+  function renderAdditionalGalleries(): React.ReactNode {
     return globalVars.HOMEPAGE_COLLECTION_GROUP_KEYWORDS.map((keyword, i) => {
       // No values (yet), just return
       if (
@@ -95,8 +94,8 @@ const Home = () => {
     });
   }
 
-  async function getFeaturedCollections() {
-    let response = await elasticsearchApi.getFeaturedCollections(8);
+  async function getFeaturedCollections(): Promise<Array<any>> {
+    const response = await elasticsearchApi.getFeaturedCollections(8);
     const collections = elasticsearchParser.prepPhotoFeatureItems(
       response,
       globalVars.COLLECTION_MODEL
@@ -108,8 +107,8 @@ const Home = () => {
   /**
    * Get collections by keywords
    */
-  async function getGalleryByKeywords(keywords: string[]) {
-    let response = await elasticsearchApi.getCollectionsByKeywords(keywords);
+  async function getGalleryByKeywords(keywords: string[]): Promise<Array<any>> {
+    const response = await elasticsearchApi.getCollectionsByKeywords(keywords);
     const items = response.map((item: any) => {
       return elasticsearchParser.prepPhotoGridItems(
         item.hits,
@@ -123,8 +122,8 @@ const Home = () => {
   /**
    * Get recently digitized items
    */
-  async function getGalleryItems() {
-    let response = await elasticsearchApi.getRecentlyDigitizedItems(24);
+  async function getGalleryItems(): Promise<Array<any>> {
+    const response = await elasticsearchApi.getRecentlyDigitizedItems(24);
     const items = elasticsearchParser.prepPhotoGridItems(
       response,
       globalVars.IMAGE_MODEL

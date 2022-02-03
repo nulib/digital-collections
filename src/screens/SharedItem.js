@@ -52,7 +52,7 @@ export default function ScreensSharedItem() {
         console.log("error fetching Shared item", error);
         setFetchErrors(`Error: Shared Link Id (${sharedLinkId}) doesn't exist`);
       });
-  }, []);
+  }, [sharedLinkId]);
 
   return (
     <div className="landing-page" data-testid="shared-item-container">

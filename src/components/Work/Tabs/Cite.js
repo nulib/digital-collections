@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 import MetadataDisplay from "../MetadataDisplay";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import { css, jsx } from "@emotion/react";
 
 const styles = {
   monoSpace: {
@@ -15,15 +19,8 @@ const styles = {
   active: { color: "#008656" },
 };
 
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { css, jsx } from "@emotion/react";
-
 const tabContent = css`
   padding: 0 1rem;
-`;
-const monoSpace = css`
-  font-family: monospace;
 `;
 const flexTitle = css`
   display: flex;
@@ -92,7 +89,7 @@ const TabsCite = ({ item }) => {
   return (
     <div data-testid="tab-content-cite">
       <div css={tabContent}>
-        {citePanel.map((item, i) => (
+        {citePanel.map((item) => (
           <MetadataDisplay
             key={item.label}
             title={item.label}
@@ -101,7 +98,7 @@ const TabsCite = ({ item }) => {
         ))}
       </div>
       <div className="cite-group" css={tabContent}>
-        {formats.map((item, index) => (
+        {formats.map((item) => (
           <div key={item.id}>
             <div css={flexTitle}>
               <h4>{item.label}</h4>

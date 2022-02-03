@@ -4,7 +4,6 @@ import { getTileSources } from "../../../services/iiif-parser";
 import UILoadingSpinner from "../../UI/LoadingSpinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import IIIFImageEmbedModal from "../../UI/IIIFImageEmbedModal";
-import { cleanupFilename } from "../../../services/helpers";
 import WorkEmbedViewer from "../EmbedViewer";
 import { ImageDownloader } from "@samvera/image-downloader";
 

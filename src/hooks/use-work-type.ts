@@ -1,10 +1,8 @@
 interface WorkType {
   id: string;
-  label: string;
-  scheme: string;
 }
 
-export default function useWorkType(): object {
+export default function useWorkType(): any {
   function isMediaType({ id = "" }: WorkType): boolean {
     return ["VIDEO", "AUDIO"].indexOf(id) > -1;
   }

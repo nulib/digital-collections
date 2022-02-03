@@ -13,7 +13,7 @@ const MobileLinks = (props) => {
     setSearchValue(e.target.value);
   };
 
-  const handleMenuClick = (e) => {
+  const handleMenuClick = () => {
     setNavOpen(!navOpen);
     setSearchValue(false);
   };

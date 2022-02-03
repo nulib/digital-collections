@@ -70,9 +70,9 @@ const MetadataDisplay = ({
   };
 
   // TODO: Refactor this implementation
-  const multipleItems = (item, i) => {
+  const multipleItems = (item) => {
     let text = "";
-    if (title == "Contributor") {
+    if (title === "Contributor") {
       text = item.displayFacet;
     } else {
       text = prepItemText(item);

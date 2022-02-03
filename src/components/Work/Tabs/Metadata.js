@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 import MetadataDisplay from "../MetadataDisplay";
 import {
@@ -147,7 +146,7 @@ const TabsMetadata = ({ item }) => {
 
   return (
     <div css={tabContent} data-testid="tab-content-metadata">
-      {metadataItems.map(({ label, value, facet }, i) => (
+      {metadataItems.map(({ label, value, facet }) => (
         <MetadataDisplay
           key={label}
           title={label}

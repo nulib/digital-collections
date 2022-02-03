@@ -1,4 +1,3 @@
-import React from "react";
 import BarLoader from "react-spinners/BarLoader";
 import PropTypes from "prop-types";
 
