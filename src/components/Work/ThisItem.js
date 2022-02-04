@@ -2,6 +2,12 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
 import { IIIF_LARGE_FEATURE_REGION } from "../../services/global-vars";
+import imgPlaceholder from "images/book_placeholder.png";
+import avPlaceholder from "images/av_placeholder.png";
+
+const imagePlaceholder = (workType) => {
+  return workType === "IMAGE" ? imgPlaceholder : avPlaceholder;
+};
 
 const ThisItem = (props) => {
   const { item } = props;
@@ -31,7 +37,9 @@ const ThisItem = (props) => {
       <img
         src={
           item &&
-          `${item.representativeFileSet.url}${IIIF_LARGE_FEATURE_REGION}`
+          (item.representativeFileSet?.url
+            ? `${item.representativeFileSet.url}${IIIF_LARGE_FEATURE_REGION}`
+            : imagePlaceholder(item.workType.id))
         }
         alt={item && item.label}
       />
