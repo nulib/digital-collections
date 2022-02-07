@@ -22,6 +22,10 @@ const ThisItem = (props) => {
       alignItems: "center",
       marginBottom: "5rem",
     },
+    thisItemImage: {
+      width: "300px",
+      height: "auto",
+    },
   };
 
   return (
@@ -42,6 +46,7 @@ const ThisItem = (props) => {
             : imagePlaceholder(item.workType.id))
         }
         alt={item && item.label}
+        style={styles.thisItemImage}
       />
     </div>
   );
