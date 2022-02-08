@@ -1,17 +1,21 @@
 import { ELASTICSEARCH_PROXY_BASE } from "../services/global-vars";
 import store from "../store";
 
-const elasticsearch = require("elasticsearch");
-const client = new elasticsearch.Client({
-  host: ELASTICSEARCH_PROXY_BASE + "/search",
-  //log: 'trace'
-});
-
 const PAGE_SIZE = 500;
-const getObjBase = {
-  index: "meadow",
-  headers: authHeader(),
+
+/**
+ * API Network request default config
+ */
+const defaultRequestConfig = {
+  method: "POST",
+  headers: authHeader({
+    "Content-Type": "application/json",
+  }),
 };
+
+/**
+ * Default ElasticSearch sort parameter
+ */
 const sortKey = {
   sort: [
     {
@@ -22,25 +26,50 @@ const sortKey = {
   ],
 };
 
+/**
+ * Helper function to build network request authorization headers
+ * @param {object} headers Initial headers config
+ * @returns {object} Network authorization headers
+ */
 function authHeader(headers = {}) {
   let result = {};
   let state = store.getState();
   if (state.auth.token) {
     result["Authorization"] = "Bearer " + state.auth.token;
   }
-  return { ...headers, ...result };
+  const response = { ...headers, ...result };
+  return response;
 }
 
+/**
+ * Update application values in Redux store?
+ */
 store.subscribe(() => {
-  getObjBase.headers = authHeader();
+  defaultRequestConfig.headers = authHeader({
+    "Content-Type": "application/json",
+  });
 });
 
-async function search(query_hash, retries = 8) {
+/**
+ * Wrapper for Elasticsearch API /search network requests
+ * @param {object} requestConfig Fetch API request params
+ * @param {number} retries In case of network error, retry a given amount of times
+ * @returns {Promise}
+ */
+async function search(requestConfig, retries = 8) {
+  const url = `${ELASTICSEARCH_PROXY_BASE}/search/meadow/_search`;
+  const body = JSON.stringify(requestConfig.body || {});
+
   try {
-    return await client.search(query_hash);
+    const response = await fetch(url, {
+      ...requestConfig,
+      body,
+    });
+    const data = await response.json();
+    return data;
   } catch (err) {
     if (err instanceof elasticsearch.errors.NoConnections) {
-      return await search(query_hash, retries - 1);
+      return await search(requestConfig, retries - 1);
     } else {
       throw new Error(`Error in elasticsearch-api.js: ${err}`);
     }
@@ -56,7 +85,7 @@ async function search(query_hash, retries = 8) {
 export async function getLibraryUnitItems(id, numResults = PAGE_SIZE) {
   try {
     const response = await search({
-      ...getObjBase,
+      ...defaultRequestConfig,
       body: {
         size: numResults,
         query: {
@@ -87,7 +116,7 @@ export async function getLibraryUnitItems(id, numResults = PAGE_SIZE) {
 export async function getAllCollections(numResults = PAGE_SIZE) {
   try {
     const response = await search({
-      ...getObjBase,
+      ...defaultRequestConfig,
       body: {
         size: numResults,
         query: {
@@ -113,23 +142,24 @@ export async function getAllCollections(numResults = PAGE_SIZE) {
     });
     return response.hits.hits.map((hit) => ({ id: hit._id, ...hit._source }));
   } catch (error) {
-    console.log("Error in getAllCollections", error);
+    console.error("Error in getAllCollections", error);
     return Promise.resolve([]);
   }
 }
 
 export async function getCollection(id) {
   try {
-    const response = await client.get({
-      ...getObjBase,
-      ignore: [404],
-      type: "_all",
-      id: id,
-    });
-
-    return response;
+    const response = await fetch(
+      `${ELASTICSEARCH_PROXY_BASE}/search/meadow/_all/${id}`,
+      {
+        ...defaultRequestConfig,
+        method: "GET",
+      }
+    );
+    const data = await response.json();
+    return data;
   } catch (error) {
-    console.log("Error in elasticsearch-api.js > getCollection", error);
+    console.error("Error in elasticsearch-api.js > getCollection", error);
     return Promise.resolve({ error });
   }
 }
@@ -146,7 +176,7 @@ export async function getCollectionsByKeywords(
 
   try {
     const response = await search({
-      ...getObjBase,
+      ...defaultRequestConfig,
       body: {
         query: {
           query_string: {
@@ -180,7 +210,7 @@ export async function getCollectionsByKeywords(
       };
     });
   } catch (error) {
-    console.log("Error in getCollectionsByKeyword()", error);
+    console.error("Error in getCollectionsByKeyword()", error);
     return Promise.resolve([]);
   }
 }
@@ -194,7 +224,7 @@ export async function getCollectionsByKeywords(
 export async function getCollectionItems(id, numResults = PAGE_SIZE) {
   try {
     const response = await search({
-      ...getObjBase,
+      ...defaultRequestConfig,
       body: {
         size: numResults,
         query: {
@@ -216,7 +246,7 @@ export async function getCollectionItems(id, numResults = PAGE_SIZE) {
     });
     return response.hits.hits.map((hit) => hit._source);
   } catch (error) {
-    console.log("Error in getCollectionItems()", error);
+    console.error("Error in getCollectionItems()", error);
     return Promise.resolve([]);
   }
 }
@@ -224,7 +254,7 @@ export async function getCollectionItems(id, numResults = PAGE_SIZE) {
 export async function getFeaturedCollections(numResults = PAGE_SIZE) {
   try {
     const response = await search({
-      ...getObjBase,
+      ...defaultRequestConfig,
       body: {
         size: numResults,
         query: {
@@ -242,23 +272,24 @@ export async function getFeaturedCollections(numResults = PAGE_SIZE) {
 
     return response.hits.hits.map((hit) => hit._source);
   } catch (error) {
-    console.log("Error in getFeaturedCollections()", error);
+    console.error("Error in getFeaturedCollections()", error);
     return Promise.resolve([]);
   }
 }
 
 export async function getItem(id) {
   try {
-    const response = await client.get({
-      ...getObjBase,
-      ignore: [404], // Handle not found errors within the response itself
-      type: "_all",
-      id: id,
-    });
-
-    return response;
+    const response = await fetch(
+      `${ELASTICSEARCH_PROXY_BASE}/search/meadow/_all/${id}`,
+      {
+        ...defaultRequestConfig,
+        method: "GET",
+      }
+    );
+    const data = await response.json();
+    return data;
   } catch (error) {
-    console.log("Error in getItem() in elasticsearch-api.js: ", error);
+    console.error("Error in getItem() in elasticsearch-api.js: ", error);
     const errorObject = {
       error: {
         reason:
@@ -275,7 +306,7 @@ export async function getItem(id) {
 export async function getLegacyPidItem(pid) {
   try {
     const response = await search({
-      ...getObjBase,
+      ...defaultRequestConfig,
       body: {
         query: {
           bool: {
@@ -293,7 +324,7 @@ export async function getLegacyPidItem(pid) {
     const id = response.hits.hits[0]._source.id;
     return id;
   } catch (e) {
-    console.log(`Error in getLegacyPidItem(): ${e}`);
+    console.error(`Error in getLegacyPidItem(): ${e}`);
     return Promise.resolve();
   }
 }
@@ -305,7 +336,7 @@ export async function getLegacyPidItem(pid) {
 export async function getRecentlyDigitizedItems(numResults = PAGE_SIZE) {
   try {
     const response = await search({
-      ...getObjBase,
+      ...defaultRequestConfig,
       body: {
         size: numResults,
         query: {
@@ -335,14 +366,14 @@ export async function getRecentlyDigitizedItems(numResults = PAGE_SIZE) {
       ...hit._source,
     }));
   } catch (error) {
-    console.log("Error in getRecentlyDigitizedItems()", error);
+    console.error("Error in getRecentlyDigitizedItems()", error);
   }
 }
 
 export async function getTotalItemCount() {
   try {
     const response = await search({
-      ...getObjBase,
+      ...defaultRequestConfig,
       body: {
         query: {
           match_all: {},
@@ -358,14 +389,15 @@ export async function getTotalItemCount() {
 
 export async function getSharedItem(id) {
   try {
-    let response = await client.get({
-      index: "shared_links",
-      id,
-    });
-    console.log(`response`, response);
-
-    return response;
+    const response = await fetch(
+      `${ELASTICSEARCH_PROXY_BASE}/search/shared_links/_all/${id}`,
+      {
+        method: "GET",
+      }
+    );
+    const data = await response.json();
+    return data;
   } catch (e) {
-    console.error(`e`, e);
+    console.error(`Error in getSharedItem()`, e);
   }
 }

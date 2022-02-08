@@ -13,7 +13,6 @@
     "@samvera/image-downloader": "^1.1.1",
     "cookie": "^0.4.0",
     "cross-fetch": "^3.1.4",
-    "elasticsearch": "^16.7.2",
     "honeybadger-js": "^2.3.0",
     "jest-util": "27.4.2",
     "jquery": "^3.6.0",
