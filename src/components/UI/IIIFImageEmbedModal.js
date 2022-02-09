@@ -83,7 +83,7 @@ export default function IIIFImageEmbedModal({
 
   useEffect(() => {
     function buildTag() {
-      return `<img src="${iiifServerUrl}/${id}/full/${width},/0/${color}.jpg" alt="${altLabel}">`;
+      return `<img src="${iiifServerUrl}/full/${width},/0/${color}.jpg" alt="${altLabel}" />`;
     }
     setEmbedCode(buildTag());
   }, [id, color, iiifServerUrl, width, altLabel]);
