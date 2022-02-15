@@ -1,5 +1,5 @@
 import React from "react";
-import ReactMediaPlayer from "@nulib/react-media-player";
+import CloverIIIF from "@samvera/clover-iiif";
 
 // This is for testing
 // eslint-disable-next-line
@@ -16,7 +16,7 @@ const WorkMediaPlayerWrapper: React.FC<WorkMediaPlayerWrapperProps> = ({
   if (!manifestId) return null;
   return (
     <div data-testid="media-player-wrapper">
-      <ReactMediaPlayer manifestId={manifestId} />
+      <CloverIIIF manifestId={manifestId} />
     </div>
   );
 };
