@@ -16,7 +16,7 @@ const WorkMediaPlayerWrapper: React.FC<WorkMediaPlayerWrapperProps> = ({
   if (!manifestId) return null;
   return (
     <div data-testid="media-player-wrapper">
-      <CloverIIIF manifestId={manifestId} />
+      <CloverIIIF key={manifestId} manifestId={manifestId} />
     </div>
   );
 };
