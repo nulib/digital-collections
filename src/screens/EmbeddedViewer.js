@@ -1,5 +1,5 @@
 import { OpenSeadragonViewer } from "openseadragon-react-viewer";
-import ReactMediaPlayer from "@nulib/react-media-player";
+import CloverIIIF from "@samvera/clover-iiif";
 import { useParams } from "react-router-dom";
 import { ErrorBoundary } from "react-error-boundary";
 import FallbackErrorComponent from "components/UI/FallbackErrorComponent";
@@ -35,7 +35,7 @@ export default function ScreensEmbeddedViewer() {
         )}
         {["audio", "video"].includes(workType) && (
           <div data-testid="embedded-viewer-av">
-            <ReactMediaPlayer manifestId={manifestId} />
+            <CloverIIIF manifestId={manifestId} />
           </div>
         )}
       </ErrorBoundary>
