@@ -1,4 +1,4 @@
-import { productionUrl } from "./global-vars";
+import { acquireLicensePage, productionUrl } from "./global-vars";
 
 /**
  * Load default values for Google Structured Data
@@ -71,6 +71,7 @@ export function loadItemStructuredData(item, pathname) {
     thumbnail: itemImage,
     url: `${productionUrl}${pathname}`,
     ...(subject.length > 0 && { about: subject?.map((x) => x.term?.label) }),
+    acquireLicensePage,
     ...(creator.length > 0 && {
       author: item.descriptiveMetadata.creator.map((x) => x.term?.label),
     }),
