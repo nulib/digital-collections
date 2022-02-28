@@ -6,7 +6,7 @@ function SharedItemNotification({ expirationDate }) {
   return (
     <div className="shared-link-notification">
       <p>
-        Access to this resource is for educational, personal and non commercial
+        Access to this resource is for educational, personal and noncommercial
         use. Written permission of copyright holders is required for
         distribution.{" "}
         <a
