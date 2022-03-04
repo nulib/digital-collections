@@ -80,6 +80,8 @@ export const productionUrl =
 
 // Google Tag Manager
 export const GOOGLE_TAG_MANAGER_ID = "GTM-MJ7RNV3";
+export const acquireLicensePage =
+  "https://www.library.northwestern.edu/about/administration/policies/rights-permissions.html";
 
 // React-router route config values
 export const ROUTES = {
