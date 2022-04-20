@@ -17,8 +17,6 @@ const honeybadger = Honeybadger.configure({
   revision: HONEYBADGER_REVISION,
 });
 
-console.log(honeybadger);
-
 ReactDOM.render(
   <HoneybadgerErrorBoundary honeybadger={honeybadger}>
     <Root store={store} />
