@@ -381,7 +381,9 @@ export async function getTotalItemCount() {
       },
     });
 
-    return response.hits.total;
+    return response.hits.total === "object"
+      ? response.hits.total.value
+      : response.hits.total;
   } catch (e) {
     return Promise.resolve(0);
   }
