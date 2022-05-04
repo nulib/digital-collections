@@ -39,7 +39,11 @@ function constructCarouselItems(docs, modelType) {
 export function extractCarouselData(elasticsearchResponse, modelType) {
   let obj = {};
 
-  obj.numFound = elasticsearchResponse.hits.total;
+  obj.numFound =
+    elasticsearchResponse.hits.total === "object"
+      ? elasticsearchResponse.hits.total.value
+      : elasticsearchResponse.hits.total;
+
   obj.items = constructCarouselItems(
     elasticsearchResponse.hits.hits,
     modelType
