@@ -35,23 +35,23 @@ const MetadataDisplay = ({
     const collectionTitle = getESTitle(collection, true);
 
     // Folder should filter on "collection", "box", and "folder" facets
-    if (facet.value === "Folder") {
+    if (facet.componentId === "FolderNumber") {
       encoded = encodeURI(
-        `Folder=["${adjustedSearchValue}"]&Box=["${
+        `FolderNumber=["${adjustedSearchValue}"]&Box=["${
           boxNumber[0]
         }"]&Collection=["${collectionTitle.split(" ").join("+")}"]`
       );
-
       return <Link to={`/search?${encoded}`}>{searchValue}</Link>;
     }
 
     // Box should only filter on "collection" and "box" facets
-    if (facet.value === "Box") {
+    if (facet.componentId === "BoxNumber") {
       encoded = encodeURI(
-        `Box=["${adjustedSearchValue}"]&Collection=["${collectionTitle
+        `BoxNumber=["${adjustedSearchValue}"]&Collection=["${collectionTitle
           .split(" ")
           .join("+")}"]`
       );
+      return <Link to={`/search?${encoded}`}>{searchValue}</Link>;
     }
 
     return (
