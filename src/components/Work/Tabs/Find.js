@@ -66,7 +66,7 @@ const TabsFind = ({ item }) => {
           items={findItem.value}
           facet={findItem.facet}
           externalUrl={findItem.externalUrl}
-          collection={item.collection[0]}
+          collection={item.collection}
           boxNumber={boxNumber}
         />
       ))}
