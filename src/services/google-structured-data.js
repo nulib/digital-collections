@@ -32,7 +32,6 @@ export function loadCollectionStructuredData(collection, pathname) {
     name: collection.title,
     url: `${productionUrl}${pathname}`,
     ...(collection.description && { description: collection.description }),
-    thumbnail: collection.representativeImage?.url,
   };
 
   return obj;
