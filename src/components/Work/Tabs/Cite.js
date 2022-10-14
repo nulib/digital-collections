@@ -28,7 +28,12 @@ const flexTitle = css`
 `;
 
 const TabsCite = ({ item }) => {
-  const { collection, createDate: [date] = "", descriptiveMetadata, id } = item;
+  const {
+    collection,
+    dateCreated: [date] = "",
+    descriptiveMetadata,
+    id,
+  } = item;
 
   const { ark, identifier, license, title, termsOfUse } = descriptiveMetadata;
 
@@ -69,13 +74,13 @@ const TabsCite = ({ item }) => {
     {
       id: "turabianFormat",
       label: "Chicago/Turabian Format",
-      text: `${libraryUnitLabel}, ${nul}. "${title}", ${collectionTitle} Accessed ${today}. ${itemLink}`,
+      text: `${libraryUnitLabel}, ${nul}. "${title}", ${collectionTitle}.  Accessed ${today}. ${itemLink}`,
       style: {},
     },
     {
       id: "mlaFormat",
       label: "MLA Format",
-      text: `${libraryUnitLabel}, ${nul}. "${title}", ${collectionTitle} ${date}. ${window.location.origin}/items/${id}`,
+      text: `${libraryUnitLabel}, ${nul}. "${title}", ${collectionTitle}. ${date}. ${window.location.origin}/items/${id}`,
       style: {},
     },
     {

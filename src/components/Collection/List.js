@@ -17,7 +17,7 @@ const CollectionList = () => {
   }, []);
 
   async function getCollections() {
-    let response = await getAllCollections(100);
+    let response = await getAllCollections(250);
 
     // Prep the data for PhotoGrid
     let allCollections = prepPhotoGridItems(
